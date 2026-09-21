@@ -455,6 +455,17 @@ declare
   r public.bowling_groups%rowtype;
   v_hash text := encode(digest(trim(coalesce(p_pin,'')),'sha256'),'hex');
   v_name text;
+  v_payload jsonb := coalesce(p_payload,'{}'::jsonb);
+  v_control_map jsonb := '{}'::jsonb;
+  v_controls jsonb := '[]'::jsonb;
+  v_sessions_before jsonb := '[]'::jsonb;
+  v_sessions_after jsonb := '[]'::jsonb;
+  v_meetups_after jsonb := '[]'::jsonb;
+  v_item jsonb;
+  v_old jsonb;
+  v_id text;
+  v_new_stamp bigint;
+  v_old_stamp bigint;
 begin
   select * into r
   from public.bowling_groups
@@ -473,9 +484,70 @@ begin
       'payload',r.payload
     );
   end if;
-  v_name := left(coalesce(nullif(p_payload #>> '{groupName}',''),r.group_name),80);
+
+  -- v0.4.4-dev.1: PUBLIC history keeps record-control tombstones server-side.
+  -- Older clients may omit recordControls; existing controls are still retained
+  -- and removed sessions are filtered so an old payload cannot resurrect them.
+  if r.group_code='PUBLIC' then
+    for v_item in
+      select value from jsonb_array_elements(coalesce(r.payload->'recordControls','[]'::jsonb))
+    loop
+      v_id := trim(coalesce(v_item->>'id',''));
+      if v_id <> '' then
+        v_control_map := jsonb_set(v_control_map,array[v_id],v_item,true);
+      end if;
+    end loop;
+
+    for v_item in
+      select value from jsonb_array_elements(coalesce(v_payload->'recordControls','[]'::jsonb))
+    loop
+      v_id := trim(coalesce(v_item->>'id',''));
+      if v_id <> '' then
+        v_old := v_control_map->v_id;
+        v_new_stamp := case when coalesce(v_item->>'updatedAt','') ~ '^[0-9]+$' then (v_item->>'updatedAt')::bigint else 0 end;
+        v_old_stamp := case when coalesce(v_old->>'updatedAt','') ~ '^[0-9]+$' then (v_old->>'updatedAt')::bigint else 0 end;
+        if v_old is null or v_new_stamp >= v_old_stamp then
+          v_control_map := jsonb_set(v_control_map,array[v_id],v_item,true);
+        end if;
+      end if;
+    end loop;
+
+    select coalesce(jsonb_agg(value),'[]'::jsonb)
+      into v_controls
+    from jsonb_each(v_control_map);
+
+    v_sessions_before := coalesce(v_payload->'sessions','[]'::jsonb);
+
+    select coalesce(jsonb_agg(s),'[]'::jsonb)
+      into v_sessions_after
+    from jsonb_array_elements(v_sessions_before) as x(s)
+    where coalesce(((v_control_map -> (s->>'id')) ->> 'state'),'published') <> 'removed';
+
+    select coalesce(jsonb_agg(m),'[]'::jsonb)
+      into v_meetups_after
+    from jsonb_array_elements(coalesce(v_payload->'meetups','[]'::jsonb)) as x(m)
+    where
+      not exists (
+        select 1
+        from jsonb_array_elements(v_sessions_before) as y(s)
+        where s->>'meetupId'=m->>'id'
+          and coalesce(((v_control_map -> (s->>'id')) ->> 'state'),'published')='removed'
+      )
+      or exists (
+        select 1
+        from jsonb_array_elements(v_sessions_after) as y(s)
+        where s->>'meetupId'=m->>'id'
+      );
+
+    v_payload := jsonb_set(v_payload,'{sessions}',v_sessions_after,true);
+    v_payload := jsonb_set(v_payload,'{meetups}',v_meetups_after,true);
+    v_payload := jsonb_set(v_payload,'{recordControls}',v_controls,true);
+    v_payload := jsonb_set(v_payload,'{schema}','2'::jsonb,true);
+  end if;
+
+  v_name := left(coalesce(nullif(v_payload #>> '{groupName}',''),r.group_name),80);
   update public.bowling_groups
-  set payload=coalesce(p_payload,'{}'::jsonb),
+  set payload=v_payload,
       group_name=v_name,
       revision=revision+1,
       updated_at=now(),
