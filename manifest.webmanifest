@@ -1,7 +1,7 @@
 {
   "name": "保齡球球聚｜BowlMeet",
   "short_name": "BowlMeet",
-  "description": "BowlMeet（保齡球球聚）：球聚現場、標準 10 格即時計分、統一成績紀錄、公開雲端歷史、我的成績、排行榜、分享與資料安全。",
+  "description": "BowlMeet（保齡球球聚）v0.4.4-R1：快速球聚、標準 10 格即時計分、賽後摘要、個人分析、進階歷史搜尋、公開紀錄控制，以及完整備份／還原、Snapshot、PWA 安全更新與資料相容保護。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
