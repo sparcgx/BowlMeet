@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.2-R5</title>
+<title>保齡球球聚｜BowlMeet v0.4.2-R6</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,6 +92,21 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 @media(max-width:680px){.live-top,.live-score-panel,.live-rank-panel{padding:12px}.live-head{flex-direction:column}.live-head-actions{width:100%;justify-content:stretch}.live-head-actions .btn{flex:1}.live-selector{grid-template-columns:1fr 1fr}.live-selector .btn{width:100%}.live-kpis{grid-template-columns:1fr 1fr}.live-kpis .live-kpi:last-child{grid-column:1/-1}.live-score-row{grid-template-columns:1fr 112px;gap:8px}.live-chips{grid-column:1/-1;grid-row:2}.live-entry{grid-column:2;grid-row:1}.live-chip{min-width:34px;padding:4px}.live-entry input{height:54px;font-size:25px}.live-entry .clear-live{height:54px}.live-section-head{align-items:flex-start}.live-round-nav{flex-wrap:wrap;justify-content:flex-end}.live-mobile-bar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:sticky;bottom:8px;z-index:20;padding:8px;margin-top:10px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);box-shadow:0 8px 28px rgba(17,24,39,.12)}}
 
 
+
+
+/* v0.4.2-R6 Live Quick Entry */
+.live-workstation{display:grid;gap:12px}
+.live-quick-setup{padding:16px}.live-quick-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:13px}.live-quick-head h2{margin:2px 0 0;font-size:19px}.live-quick-head p{margin:4px 0 0;font-size:11px;color:var(--muted);line-height:1.5}.live-quick-head .eyebrow{font-size:9px;font-weight:900;letter-spacing:.12em;color:#0f62fe}
+.live-quick-grid{display:grid;grid-template-columns:150px minmax(220px,1.4fr) 140px 100px;gap:9px;align-items:end}.live-player-field{grid-column:1/-1}.live-player-field .manual-participant-row{display:grid;grid-template-columns:1fr auto;gap:7px}.live-player-field .manual-participant-box{padding:0;border:0}
+.live-quick-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:11px}.live-start-primary{min-width:190px;font-size:14px;font-weight:900}.live-quick-actions .inline-note{flex:1;min-width:180px}
+.live-more-settings{margin-top:11px;border-top:1px solid var(--line);padding-top:9px}.live-more-settings summary{cursor:pointer;font-size:11px;font-weight:850;color:var(--muted)}.live-more-grid{display:grid;grid-template-columns:1fr 150px;gap:9px;margin-top:10px}.live-more-grid .full{grid-column:1/-1}
+.live-current-strip{padding:10px 13px}.live-current-strip .current-meetup{border:0;padding:0;background:transparent}
+.live-inline-player{display:grid;grid-template-columns:minmax(180px,1fr) auto;gap:8px;align-items:end;margin-top:10px}.live-inline-player .btn{height:38px}
+.live-selector-simple{grid-template-columns:140px auto auto!important}
+.live-history-compact{padding:0;overflow:hidden}.live-history-compact>summary{cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 15px;font-size:13px;font-weight:900;list-style:none}.live-history-compact>summary::-webkit-details-marker{display:none}.live-history-compact[open]>summary{border-bottom:1px solid var(--line)}.live-history-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;padding:11px 15px}.live-history-kpis>div{border:1px solid var(--line);border-radius:9px;padding:8px;background:#fafbfc}.live-history-kpis span{display:block;font-size:9px;color:var(--muted)}.live-history-kpis strong{display:block;font-size:17px;margin-top:2px}.live-history-compact .meetup-list{padding:0 15px 15px}.live-history-compact>.empty{margin:0 15px 15px}
+#meetupView .meetup-live-section,#meetupView .meetup-live-heading{display:none}
+@media(max-width:760px){.live-quick-grid{grid-template-columns:1fr 1fr}.live-player-field{grid-column:1/-1}.live-more-grid{grid-template-columns:1fr}.live-more-grid .full{grid-column:auto}.live-inline-player{grid-template-columns:1fr auto}}
+@media(max-width:520px){.live-quick-setup{padding:12px}.live-quick-head{flex-direction:column}.live-quick-grid{grid-template-columns:1fr 1fr}.live-quick-grid .field:nth-child(2){grid-column:1/-1}.live-player-field{grid-column:1/-1}.live-player-field .manual-participant-row{grid-template-columns:1fr}.live-player-field .manual-participant-row .btn{width:100%}.live-quick-actions{display:grid;grid-template-columns:1fr}.live-start-primary{width:100%;min-width:0}.live-quick-actions .inline-note{min-width:0}.live-inline-player{grid-template-columns:1fr}.live-inline-player .btn{width:100%}.live-selector-simple{grid-template-columns:1fr 1fr!important}.live-selector-simple .live-end-btn{grid-column:1/-1}.live-history-kpis{grid-template-columns:1fr 1fr}}
 
 /* v0.4.2-R5 Meetup + Live Unified */
 .meetup-live-section{margin-top:14px;display:grid;gap:10px}
@@ -320,13 +335,13 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.2-R5 · Meetup + Live Unified</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.2-R6 · Live Quick Entry</p></div></div>
   <div class="top-actions"><button class="btn install-btn" id="installAppBtn" type="button">安裝 App</button><button class="btn" id="exportBtn">備份</button><button class="btn" id="importBtn">還原</button><input type="file" id="importFile" accept="application/json,.json" hidden /></div>
 </div></header>
 <main>
   <nav class="tabs" aria-label="功能切換">
     <button class="tab active" data-view="scoreView">本次記分</button>
-    <button class="tab live-tab" data-view="meetupView">球聚／現場</button>
+    <button class="tab live-tab" data-view="meetupView">球聚現場</button>
     <button class="tab sync-tab" data-view="syncView">多人同步</button>
     <button class="tab group-tab" data-view="groupView">群組歷史</button>
     <button class="tab" data-view="personalView">我的成績</button>
@@ -341,58 +356,75 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
   </nav>
 
   <section id="meetupView" class="view">
-    <div class="meetup-hero">
-      <section class="card meetup-create">
-        <h2 id="meetupFormTitle">建立球聚活動</h2>
-        <p class="section-desc">先建立日期、球館、球道與參加球員；建立後可直接在本頁下方進入現場 10 格記分，活動與現場記分共用同一份資料。</p>
+    <div class="live-workstation">
+      <section class="card live-quick-setup" id="meetupSetupCard">
+        <div class="live-quick-head">
+          <div>
+            <span class="eyebrow">QUICK START</span>
+            <h2 id="meetupFormTitle">現場快速開場</h2>
+            <p>填玩家 → 開始 → 直接記 10 格。活動資料與現場成績自動連在一起。</p>
+          </div>
+          <span class="pill">一頁完成</span>
+        </div>
+
         <input id="meetupEditId" type="hidden" />
-        <div class="meetup-form-grid">
-          <div class="field wide"><label for="meetupTitle">活動名稱</label><input id="meetupTitle" maxlength="40" placeholder="例如：週六保齡球球聚" /></div>
+        <div class="live-quick-grid">
           <div class="field"><label for="meetupDate">日期</label><input id="meetupDate" type="date" /></div>
-          <div class="field"><label for="meetupGames">預計局數</label><select id="meetupGames"><option value="1">1 局</option><option value="2">2 局</option><option value="3">3 局</option><option value="4">4 局</option><option value="5">5 局</option><option value="6" selected>6 局</option></select></div>
-          <div class="field wide"><label for="meetupVenue">球館／地點</label><input id="meetupVenue" maxlength="60" value="亞運保齡球館" /></div>
+          <div class="field"><label for="meetupVenue">球館</label><input id="meetupVenue" maxlength="60" value="亞運保齡球館" /></div>
           <div class="field"><label for="meetupLanes">球道</label><input id="meetupLanes" maxlength="30" placeholder="例如：61、62" /></div>
-          <div class="field"><label for="meetupStatus">狀態</label><select id="meetupStatus"><option value="planned">預定</option><option value="ongoing">進行中</option><option value="done">已完成</option></select></div>
-          <div class="field full"><label>參加球員</label><div class="roster-picker"><div class="roster-picker-head"><span>從球員名冊勾選</span><button class="btn small" type="button" id="selectAllRosterBtn">全選</button></div><div class="pick-grid" id="meetupRosterPicker"></div></div></div>
-          <div class="field full"><label for="meetupManualPlayers">自行輸入名字</label><div class="manual-participant-box"><div class="manual-participant-row"><input id="meetupManualPlayers" maxlength="240" placeholder="例如：阿明、阿志、Kevin；可用逗號、頓號或換行分隔" /><button class="btn" type="button" id="addManualPlayersBtn">加入球員</button></div><div class="manual-participant-hint">直接加入本次球聚，不必先建立名冊。已加入的姓名可在下方個別移除。</div><div id="meetupManualPlayerChips" class="manual-player-chips"></div><div id="meetupManualPlayerEmpty" class="manual-player-empty">尚未手動加入球員。</div></div></div>
-          <div class="field full"><label for="meetupNotes">備註</label><textarea id="meetupNotes" maxlength="240" placeholder="聚會資訊、集合時間、特殊規則…"></textarea></div>
-          <div class="form-buttons full"><span class="inline-note" id="meetupFormHint">建立後直接在本頁下方開始現場記分。</span><button class="btn" type="button" id="cancelMeetupEditBtn" hidden>取消編輯</button><button class="btn" type="button" id="saveMeetupBtn">只儲存活動</button><button class="btn primary" type="button" id="saveStartMeetupBtn">儲存並開始記分</button></div>
+          <div class="field"><label for="meetupGames">局數</label><select id="meetupGames"><option value="1">1 局</option><option value="2">2 局</option><option value="3">3 局</option><option value="4">4 局</option><option value="5">5 局</option><option value="6" selected>6 局</option></select></div>
+
+          <div class="field live-player-field">
+            <label for="meetupManualPlayers">玩家</label>
+            <div class="manual-participant-row">
+              <input id="meetupManualPlayers" maxlength="240" placeholder="阿明、阿志、Kevin，可一次輸入多人" />
+              <button class="btn" type="button" id="addManualPlayersBtn">加入</button>
+            </div>
+            <div class="manual-participant-hint">用逗號、頓號或換行分隔；不需要先建立球員名冊。</div>
+            <div id="meetupManualPlayerChips" class="manual-player-chips"></div>
+            <div id="meetupManualPlayerEmpty" class="manual-player-empty">直接輸入玩家即可開始。</div>
+          </div>
         </div>
+
+        <div class="live-quick-actions">
+          <button class="btn primary live-start-primary" type="button" id="saveStartMeetupBtn">開始現場記分</button>
+          <span class="inline-note" id="meetupFormHint">最少只需日期與玩家；其他資料可不填。</span>
+          <button class="btn" type="button" id="cancelMeetupEditBtn" hidden>取消編輯</button>
+          <button class="btn" type="button" id="saveMeetupBtn" hidden>只儲存活動</button>
+        </div>
+
+        <details class="live-more-settings" id="meetupAdvancedDetails">
+          <summary>更多設定</summary>
+          <div class="live-more-grid">
+            <div class="field"><label for="meetupTitle">活動名稱</label><input id="meetupTitle" maxlength="40" placeholder="可不填，系統自動命名" /></div>
+            <div class="field"><label for="meetupStatus">狀態</label><select id="meetupStatus"><option value="planned">預定</option><option value="ongoing">進行中</option><option value="done">已完成</option></select></div>
+            <div class="field full"><label for="meetupNotes">備註</label><textarea id="meetupNotes" maxlength="240" placeholder="可選填"></textarea></div>
+            <div class="field full"><label>從球員名冊加入</label><div class="roster-picker"><div class="roster-picker-head"><span>已有名冊</span><button class="btn small" type="button" id="selectAllRosterBtn">全選</button></div><div class="pick-grid" id="meetupRosterPicker"></div></div></div>
+          </div>
+        </details>
       </section>
-      <aside class="card meetup-side">
-        <h2>球聚總覽</h2><p class="section-desc">活動、名冊與成績使用同一份本機資料。</p>
-        <div class="meetup-side-kpis">
-          <div class="mini-kpi"><div class="cap">球聚活動</div><div class="num" id="meetupCount">0</div></div>
-          <div class="mini-kpi"><div class="cap">球員名冊</div><div class="num" id="meetupRosterCount">0</div></div>
-          <div class="mini-kpi"><div class="cap">進行中</div><div class="num" id="meetupOngoing">0</div></div>
-          <div class="mini-kpi"><div class="cap">已完成</div><div class="num" id="meetupDone">0</div></div>
-        </div>
-        <div class="current-meetup" id="currentMeetupCard"><div class="eyebrow">目前球聚</div><div class="name">尚未選擇</div><div class="meta">從活動清單按「開始／繼續」即可連結記分。</div></div>
-      </aside>
-    </div>
-    <section class="card panel"><div class="toolbar"><div><h2 style="margin:0;font-size:16px">活動清單</h2><div class="section-desc" style="margin:3px 0 0">舊版計分卡會自動轉成已完成球聚，不會刪除原始成績。</div></div><span class="pill" id="meetupListCount">0 場</span></div><div id="meetupList" class="meetup-list"></div><div id="meetupEmpty" class="empty">尚未建立球聚活動。</div></section>
-    <section class="meetup-live-section" aria-labelledby="meetupLiveTitle">
-      <div class="meetup-live-heading">
-        <div>
-          <span class="eyebrow">LIVE</span>
-          <h2 id="meetupLiveTitle">現場 10 格記分</h2>
-          <p>建立或選擇球聚後，直接在同一頁進行現場記分，不需要再切換分頁。</p>
-        </div>
-        <button class="btn" type="button" id="jumpMeetupSetupBtn">回到活動設定</button>
-      </div>
+
+      <section class="card live-current-strip">
+        <div class="current-meetup" id="currentMeetupCard"><div class="eyebrow">目前球聚</div><div class="name">尚未開始</div><div class="meta">輸入玩家後按「開始現場記分」。</div></div>
+      </section>
+
       <div id="liveView" class="live-merged-section">
 
     <div class="live-shell">
       <section class="card live-top">
         <div class="live-head">
-          <div class="live-title"><h2>即時記分</h2><p id="liveMeetupMeta">選擇一場球聚後，以標準保齡球一局 10 格記分；每球輸入都會立即儲存並自動計算分數。</p></div>
+          <div class="live-title"><h2>直接填分數</h2><p id="liveMeetupMeta">玩家直接在下方 10 格輸入每球倒瓶數，系統即時儲存並自動計算 Strike、Spare 與總分。</p></div>
           <div class="live-head-actions"><span class="pill" id="liveSyncBadge">本機</span><button class="btn" id="liveFullScoreBtn" type="button">完整記分表</button><button class="btn" id="liveShareBtn" type="button">分享成績</button></div>
         </div>
-        <div class="live-selector">
-          <div class="field"><label for="liveMeetupSelect">球聚活動</label><select id="liveMeetupSelect"><option value="">選擇球聚…</option></select></div>
-          <div class="field"><label for="liveGameRound">目前局次</label><select id="liveGameRound"><option value="1">第 1 局</option></select></div>
+        <div class="live-selector live-selector-simple">
+          <div class="field" hidden><label for="liveMeetupSelect">球聚活動</label><select id="liveMeetupSelect"><option value="">選擇球聚…</option></select></div>
+          <div class="field"><label for="liveGameRound">局次</label><select id="liveGameRound"><option value="1">第 1 局</option></select></div>
           <button class="btn" id="livePrevRoundBtn" type="button">← 上一局</button>
           <button class="btn live-end-btn" id="liveEndMeetupBtn" type="button">結束球聚</button>
+        </div>
+        <div class="live-inline-player">
+          <div class="field"><label for="liveQuickPlayerName">現場加玩家</label><input id="liveQuickPlayerName" maxlength="30" placeholder="輸入玩家姓名" autocomplete="off" /></div>
+          <button class="btn primary" id="liveAddPlayerBtn" type="button">＋ 加入玩家</button>
         </div>
         <div id="liveContent">
           <div class="live-kpis">
@@ -406,7 +438,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
         </div>
       </section>
 
-      <div id="liveEmpty" class="card live-empty"><strong>尚未選擇球聚</strong><p>先從上方選擇活動，或回到「球聚活動」建立日期、球館與參加球員。</p><button class="btn primary" id="liveGoMeetupsBtn" type="button">回到活動設定</button></div>
+      <div id="liveEmpty" class="card live-empty"><strong>先開始一場球聚</strong><p>在上方輸入玩家姓名並按「開始現場記分」，馬上就能填 10 格分數。</p><button class="btn primary" id="liveGoMeetupsBtn" type="button">回到快速開場</button></div>
 
       <div id="liveMain" class="live-main" hidden>
         <section class="card live-score-panel">
@@ -423,7 +455,19 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
       </div>
     </div>
       </div>
-    </section>
+
+      <details class="card live-history-compact">
+        <summary><span>過往球聚／管理</span><span class="pill" id="meetupListCount">0 場</span></summary>
+        <div class="live-history-kpis">
+          <div><span>全部</span><strong id="meetupCount">0</strong></div>
+          <div><span>球員</span><strong id="meetupRosterCount">0</strong></div>
+          <div><span>進行中</span><strong id="meetupOngoing">0</strong></div>
+          <div><span>已完成</span><strong id="meetupDone">0</strong></div>
+        </div>
+        <div id="meetupList" class="meetup-list"></div>
+        <div id="meetupEmpty" class="empty">尚未建立球聚活動。</div>
+      </details>
+    </div>
   </section>
 
 
@@ -928,7 +972,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.2-R5 · Meetup + Live Unified / Group History</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.2-R6 · Live Quick Entry / Group History</div>
 </main>
 </div>
 <script>
@@ -948,7 +992,7 @@ const PERSONALKEY='bowlingMeetup.personal.v041';
 const PERSONALSECRETKEY='bowlingMeetup.personalAuth.v041';
 const GROUPKEY='bowlingMeetup.group.v042';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.2-R5';
+const APP_VERSION='0.4.2-R6';
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
 const BUILTIN_CLOUD=true;
@@ -1597,6 +1641,15 @@ function liveRollDisabled(frame,index,rollIndex){const r=normalizeBowlingFrame(f
 function liveFrameNotation(frame,index){const r=normalizeBowlingFrame(frame,index).rolls;const mark=(v,spare=false)=>v===null?'':v===10?'X':spare?'/':v===0?'–':String(v);if(index<9)return r[0]===10?'X':[mark(r[0]),mark(r[1],r[0]!==null&&r[1]!==null&&r[0]+r[1]===10)].filter(Boolean).join(' ');const out=[];if(r[0]!==null)out.push(mark(r[0]));if(r[1]!==null)out.push(mark(r[1],r[0]!==10&&r[0]!==null&&r[0]+r[1]===10));if(r[2]!==null)out.push(mark(r[2],r[0]===10&&r[1]!==10&&r[1]+r[2]===10));return out.join(' ')}
 function renderLiveFrame(frame,index,calc,viewer,pid){const f=normalizeBowlingFrame(frame,index),done=bowlingFrameComplete(f,index),notation=liveFrameNotation(f,index),score=calc.cumulative[index],inputs=f.rolls.map((v,ri)=>{const disabled=viewer||liveRollDisabled(f,index,ri),max=liveRollMax(f,index,ri);return `<input class="live-roll-input" data-pid="${esc(pid)}" data-frame="${index}" data-roll="${ri}" type="number" inputmode="numeric" min="0" max="${max}" step="1" placeholder="${ri+1}" value="${v===null?'':v}" ${disabled?'disabled':''} aria-label="第 ${index+1} 格第 ${ri+1} 球" />`}).join('');return `<div class="live-frame ${index===9?'tenth':''} ${done?'done':''}"><div class="live-frame-head"><b>${index+1}</b><span class="live-frame-notation">${esc(notation||'—')}</span></div><div class="live-rolls">${inputs}</div><div class="live-frame-score ${score===null?'unresolved':''}">${score===null?'—':score}</div></div>`}
 function renderLivePlayerRow(r,rank,viewer,planned){const currentText=r.current??'—',legacy=r.legacyCurrent?`<div class="live-legacy-total">此局已有舊式總分 ${esc(r.scores[liveGameNo-1])}，尚無 10 格明細。開始輸入任一格後會改用 10 格自動計分。</div>`:'';return `<article class="live-score-row frame-mode ${r.gameComplete?'complete':''}" data-pid="${esc(r.id)}"><div class="live-player-head"><div class="live-person"><span class="live-rank ${rank<=3?'top':''}">${rank||'—'}</span><div><strong>${esc(r.name)}</strong><small>第 ${liveGameNo} 局 · ${r.frameDone}/10 格完成 · 全場 ${r.games}/${planned} 局</small></div></div><div class="live-game-total"><span>本局</span><strong>${currentText}</strong><small>${r.gameComplete?'完成':'進行中'}</small></div></div><div class="live-frame-scroll"><div class="live-frames">${Array.from({length:10},(_,fi)=>renderLiveFrame(r.game?.[fi],fi,r.frameCalc,viewer,r.id)).join('')}</div></div>${legacy}<div class="live-row-actions"><button class="btn small" type="button" data-clear-live-game="${esc(r.id)}" ${viewer?'disabled':''}>清除本局 10 格</button></div></article>`}
+function addLivePlayerDirect(){
+  const input=$('liveQuickPlayerName'),name=String(input?.value||'').trim();if(!name)return;
+  const m=meetups.find(x=>x.id===currentMeetupId);if(!m){alert('請先在上方按「開始現場記分」。');$('meetupManualPlayers')?.focus();return}
+  if(meetupParticipantNames(m).some(n=>nameKey(n)===nameKey(name))){alert('這位玩家已在本場球聚。');input.select();return}
+  m.participantNames=uniqueNames([...(m.participantNames||[]),name]);m.updatedAt=Date.now();persistMeetups();
+  const sess=ensureLiveSession(m);if(!sess.players.some(p=>nameKey(p.name)===nameKey(name))){sess.players.push(makePlayer(name,[]));sess.updatedAt=Date.now();persist()}
+  input.value='';renderAll();renderLive();setLiveSaveState(name+' 已加入',true);
+  setTimeout(()=>{const p=sess.players.find(x=>nameKey(x.name)===nameKey(name));document.querySelector(`.live-roll-input[data-pid="${CSS.escape(p?.id||'')}"]:not(:disabled)`)?.focus()},30)
+}
 function saveLiveRoll(input,advance=false){
   const m=meetups.find(x=>x.id===currentMeetupId);if(!m)return;if(!syncAllowWrite(m.id,'現場 10 格記分')){renderLive();return}
   const sess=ensureLiveSession(m),p=sess.players.find(x=>x.id===input.dataset.pid);if(!p)return;const gameIndex=liveGameNo-1,frameIndex=Number(input.dataset.frame),rollIndex=Number(input.dataset.roll),game=ensurePlayerBowlingGame(p,gameIndex),frame=normalizeBowlingFrame(game[frameIndex],frameIndex),raw=input.value.trim(),val=raw===''?null:Number(raw);
@@ -1643,7 +1696,7 @@ function renderManualMeetupPlayers(){const chips=$('meetupManualPlayerChips'),em
 function addManualMeetupPlayers(){const input=$('meetupManualPlayers');if(!input)return;const added=parseManualPlayerNames(input.value);manualMeetupPlayers=uniqueNames([...manualMeetupPlayers,...added]);input.value='';renderManualMeetupPlayers();if(added.length)$('meetupFormHint').textContent=`已加入 ${added.length} 位手動球員。`}
 function linkedSession(m){return sessions.find(s=>s.meetupId===m.id)||null}
 function resetMeetupForm(){
-  $('meetupEditId').value='';$('meetupFormTitle').textContent='建立球聚活動';$('meetupTitle').value='';$('meetupDate').value=today();$('meetupGames').value='6';$('meetupVenue').value=$('venue').value||'亞運保齡球館';$('meetupLanes').value='';$('meetupStatus').value='planned';$('meetupNotes').value='';$('meetupManualPlayers').value='';manualMeetupPlayers=[];$('cancelMeetupEditBtn').hidden=true;renderMeetupRosterPicker([]);renderManualMeetupPlayers()
+  $('meetupEditId').value='';$('meetupFormTitle').textContent='現場快速開場';if($('meetupAdvancedDetails'))$('meetupAdvancedDetails').open=false;$('meetupTitle').value='';$('meetupDate').value=today();$('meetupGames').value='6';$('meetupVenue').value=$('venue').value||'亞運保齡球館';$('meetupLanes').value='';$('meetupStatus').value='planned';$('meetupNotes').value='';$('meetupManualPlayers').value='';manualMeetupPlayers=[];$('cancelMeetupEditBtn').hidden=true;renderMeetupRosterPicker([]);renderManualMeetupPlayers()
 }
 function renderMeetupRosterPicker(selected=[]){
   const chosen=new Set(selected);const active=roster.filter(r=>r.active!==false).sort((a,b)=>a.name.localeCompare(b.name,'zh-Hant'));
@@ -1657,7 +1710,7 @@ function saveMeetup(start=false){
   const data={id,title,date,venue:$('meetupVenue').value.trim(),lanes:$('meetupLanes').value.trim(),plannedGames:Number($('meetupGames').value)||6,status:$('meetupStatus').value,notes:$('meetupNotes').value.trim(),participantIds:ids,participantNames:names,customAwards:Array.isArray(old?.customAwards)?old.customAwards:[],createdAt:old?.createdAt||Date.now(),updatedAt:Date.now()};
   const ix=meetups.findIndex(m=>m.id===id);if(ix>=0)meetups[ix]=data;else meetups.push(data);persistMeetups();$('meetupFormHint').textContent=ix>=0?'活動已更新。':'活動已建立。';resetMeetupForm();renderAll();if(start)openLiveMeetup(id)
 }
-function editMeetup(id){const m=meetups.find(x=>x.id===id);if(!m)return;$('meetupEditId').value=m.id;$('meetupFormTitle').textContent='編輯球聚活動';$('meetupTitle').value=m.title||'';$('meetupDate').value=m.date||today();$('meetupGames').value=String(m.plannedGames||6);$('meetupVenue').value=m.venue||'';$('meetupLanes').value=m.lanes||'';$('meetupStatus').value=m.status||'planned';$('meetupNotes').value=m.notes||'';$('meetupManualPlayers').value='';$('cancelMeetupEditBtn').hidden=false;renderMeetupRosterPicker(m.participantIds||[]);const rosterNames=(m.participantIds||[]).map(pid=>roster.find(r=>r.id===pid)?.name).filter(Boolean);const selectedKeys=new Set(rosterNames.map(nameKey));manualMeetupPlayers=uniqueNames((m.participantNames||[]).filter(n=>!selectedKeys.has(nameKey(n))));renderManualMeetupPlayers();switchView('meetupView');window.scrollTo({top:0,behavior:'smooth'})}
+function editMeetup(id){const m=meetups.find(x=>x.id===id);if(!m)return;$('meetupEditId').value=m.id;$('meetupFormTitle').textContent='編輯球聚活動';$('meetupTitle').value=m.title||'';$('meetupDate').value=m.date||today();$('meetupGames').value=String(m.plannedGames||6);$('meetupVenue').value=m.venue||'';$('meetupLanes').value=m.lanes||'';$('meetupStatus').value=m.status||'planned';$('meetupNotes').value=m.notes||'';$('meetupManualPlayers').value='';$('cancelMeetupEditBtn').hidden=false;renderMeetupRosterPicker(m.participantIds||[]);const rosterNames=(m.participantIds||[]).map(pid=>roster.find(r=>r.id===pid)?.name).filter(Boolean);const selectedKeys=new Set(rosterNames.map(nameKey));manualMeetupPlayers=uniqueNames((m.participantNames||[]).filter(n=>!selectedKeys.has(nameKey(n))));renderManualMeetupPlayers();if($('meetupAdvancedDetails'))$('meetupAdvancedDetails').open=true;switchView('meetupView');window.scrollTo({top:0,behavior:'smooth'})}
 function startMeetup(id){
   const m=meetups.find(x=>x.id===id);if(!m)return;setCurrentMeetup(id);if(m.status==='planned'){m.status='ongoing';m.updatedAt=Date.now();persistMeetups()}
   const s=linkedSession(m);if(s){loadSession(s.id);return}
@@ -1925,9 +1978,10 @@ $('awardMeetup').addEventListener('change',renderAwards);$('awardCurrentBtn').ad
 
 $('liveMeetupSelect').addEventListener('change',e=>{if(e.target.value)selectLiveMeetup(e.target.value,true);else{setCurrentMeetup('');renderLive()}});
 $('liveGameRound').addEventListener('change',e=>setLiveRound(e.target.value));
+$('liveAddPlayerBtn').addEventListener('click',addLivePlayerDirect);$('liveQuickPlayerName').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addLivePlayerDirect()}});
 $('livePrevRoundBtn').addEventListener('click',()=>changeLiveRound(-1));$('livePrevRoundBtn2').addEventListener('click',()=>changeLiveRound(-1));$('livePrevRoundMobile').addEventListener('click',()=>changeLiveRound(-1));
 $('liveNextRoundBtn').addEventListener('click',finishLiveRound);$('liveNextRoundMobile').addEventListener('click',finishLiveRound);
-$('liveEndMeetupBtn').addEventListener('click',endLiveMeetup);$('liveGoMeetupsBtn').addEventListener('click',()=>{$('meetupFormTitle')?.scrollIntoView({behavior:'smooth',block:'start'})});$('jumpMeetupSetupBtn').addEventListener('click',()=>{$('meetupFormTitle')?.scrollIntoView({behavior:'smooth',block:'start'})});
+$('liveEndMeetupBtn').addEventListener('click',endLiveMeetup);$('liveGoMeetupsBtn').addEventListener('click',()=>{$('meetupSetupCard')?.scrollIntoView({behavior:'smooth',block:'start'});$('meetupManualPlayers')?.focus()});
 $('liveRankMetric').addEventListener('change',e=>{liveMetric=e.target.value;saveLivePrefs();renderLive()});
 $('liveScoreList').addEventListener('change',e=>{const input=e.target.closest('.live-roll-input');if(input)saveLiveRoll(input,false)});
 $('liveScoreList').addEventListener('keydown',e=>{const input=e.target.closest('.live-roll-input');if(input&&e.key==='Enter'){e.preventDefault();saveLiveRoll(input,true)}});
