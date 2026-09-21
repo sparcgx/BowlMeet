@@ -14,6 +14,7 @@
 <section class="card"><p><strong>Public Record Control 前置：</strong>Supabase 已套用 <code>supabase_v044_public_record_control_patch.sql</code>；跨裝置 tombstone 與 R1 legacy repush 防復活測試已通過。</p></section>
 <section class="card"><p><strong>Preview Isolation：</strong>dev.4 使用獨立 localStorage / IndexedDB、獨立雲端群組 <code>V44D44</code> 與 <code>bowlmeet-preview-v044d4-*</code> Cache，不會讀寫 Stable 或先前 dev Preview 資料。</p></section>
 <section class="card"><p><strong>Automated Regression：</strong>日期、玩家、球館、球道、公開狀態、全文搜尋、排序、來源 tab 組合與清除篩選均已 PASS；正式 PUBLIC 未變更。</p></section>
+<section class="card"><p><strong>Automated Live Regression：</strong>多場 History Push/Pull、recordControls、動態玩家／球館／球道選單、組合條件摘要、清除篩選與重新 render 均已 PASS；測試以 transaction + ROLLBACK 執行，正式 PUBLIC 與 Preview Cloud 未被污染。</p></section>
 <section class="card" id="checks">
 <div class="row"><span class="label">JavaScript</span><span class="status bad" id="js">未執行</span></div>
 <div class="row"><span class="label">HTTPS / Secure Context</span><span class="status" id="secure">檢查中</span></div>
