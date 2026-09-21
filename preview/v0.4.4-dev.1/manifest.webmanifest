@@ -1,0 +1,36 @@
+{
+  "name": "保齡球球聚｜BowlMeet v0.4.4-dev.1 Preview",
+  "short_name": "BowlMeet Dev",
+  "description": "BowlMeet（保齡球球聚）：快速球聚、最近／常用玩家、標準 10 格即時計分、統一成績紀錄、公開紀錄取消／重新公開、我的成績、排行榜、分享與資料安全。",
+  "lang": "zh-Hant",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#ffffff",
+  "orientation": "any",
+  "categories": [
+    "sports",
+    "utilities"
+  ],
+  "icons": [
+    {
+      "src": "../../icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "../../icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "../../icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
