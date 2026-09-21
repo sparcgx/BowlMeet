@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.3.3</title>
+<title>保齡球球聚｜BowlMeet v0.4.3.3-R1</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -96,6 +96,9 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 
 
 
+
+/* v0.4.3.3-R1 Regression Cleanup */
+.settings-update-state{margin-top:10px;border-top:1px solid var(--line);padding-top:9px}.settings-update-state strong{display:block;font-size:11px}.settings-update-state span{display:block;margin-top:3px;font-size:10px;line-height:1.45;color:var(--muted)}
 
 /* v0.4.3.3 Navigation & Utility Consolidation */
 .topbar-brand-only{justify-content:flex-start}.settings-app-state{border:1px solid var(--line);border-radius:11px;padding:11px;background:#fafbfc;margin-bottom:10px}.settings-app-state .pwa-status{margin-top:5px}.backup-restore-actions{margin:12px 0}.backup-restore-panel .safety-status{margin-top:10px}
@@ -358,7 +361,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.3.3 · Navigation & Utility Consolidation</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.3.3-R1 · Regression & Cleanup Fix</p></div></div>
 </div></header>
 <main>
   <nav class="tabs" aria-label="功能切換">
@@ -500,7 +503,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
           <h2>設定</h2>
           <p>日常使用以「球聚現場」為主。雲端、裝置與相容性功能集中在這裡，不干擾現場記分流程。</p>
         </div>
-        <span class="pill">v0.4.3.3</span>
+        <span class="pill">v0.4.3.3-R1</span>
       </section>
 
       <div class="settings-grid">
@@ -549,16 +552,17 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
             <div class="pwa-status" id="pwaHelp">正在檢查 PWA 狀態。</div>
           </div>
           <div class="settings-system-list">
-            <div><span>目前版本</span><strong>v0.4.3.3</strong></div>
+            <div><span>目前版本</span><strong>v0.4.3.3-R1</strong></div>
             <div><span>啟動首頁</span><strong>球聚現場</strong></div>
           </div>
           <div class="settings-actions"><button class="btn primary install-btn" id="installAppBtn" type="button">安裝 App</button><button class="btn" id="settingsCheckUpdateBtn" type="button">檢查更新</button></div>
+          <div class="settings-update-state"><strong id="settingsUpdateState">尚未檢查更新</strong><span id="settingsUpdateDetail">檢查結果會直接顯示在這裡；安全套用更新仍在「資料安全」。</span></div>
         </section>
 
         <section class="card settings-panel">
           <div class="settings-panel-head"><div><h2>資料與系統</h2><p>備份、還原、快照與完整性檢查集中在「資料安全」。</p></div></div>
           <div class="settings-system-list">
-            <div><span>目前版本</span><strong>v0.4.3.3</strong></div>
+            <div><span>目前版本</span><strong>v0.4.3.3-R1</strong></div>
             <div><span>主要作業模式</span><strong>球聚現場</strong></div>
             <div><span>本機資料</span><strong>IndexedDB + localStorage</strong></div>
           </div>
@@ -674,7 +678,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
             <button class="btn primary" id="claimPlayerBtn" type="button">認領並同步</button>
           </div>
           <div id="personalClaimList" class="personal-claims"><div class="personal-empty">尚未認領任何球聚球員。</div></div>
-          <div class="personal-note">v0.4.1 的認領屬於輕量個人綁定，不是政府證件或正式帳號身分驗證；請只認領自己的球員列。</div>
+          <div class="personal-note">BowlMeet 身分認領屬於輕量個人綁定，不是政府證件或正式帳號身分驗證；請只認領自己的球員列。</div>
         </section>
 
         <section class="card personal-panel wide">
@@ -965,7 +969,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
       <div class="card safety-card"><div class="cap">主要資料庫</div><div class="num" id="safetyEngine">初始化…</div><div class="sub" id="safetyEngineSub">正在檢查 IndexedDB</div></div>
       <div class="card safety-card"><div class="cap">安全快照</div><div class="num" id="snapshotCount">0</div><div class="sub">最多保留最近 10 個</div></div>
       <div class="card safety-card"><div class="cap">最近快照</div><div class="num" id="lastSnapshotTime">—</div><div class="sub" id="lastSnapshotReason">尚無快照</div></div>
-      <div class="card safety-card"><div class="cap">資料 Schema</div><div class="num">v2</div><div class="sub">App v0.4.1 · Local-first Sync</div></div>
+      <div class="card safety-card"><div class="cap">資料 Schema</div><div class="num">v2</div><div class="sub">App v0.4.3.3-R1 · Local-first</div></div>
     </section>
     <div class="safety-layout">
       <section class="card safety-panel">
@@ -1016,7 +1020,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.3.3 · Navigation & Utility Consolidation</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.3.3-R1 · Regression & Cleanup Fix</div>
 </main>
 </div>
 <script>
@@ -1039,7 +1043,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.3.3';
+const APP_VERSION='0.4.3.3-R1';
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
 const BUILTIN_CLOUD=true;
@@ -1216,7 +1220,7 @@ async function saveCompletedSessionToGroupHistory(){
   const g=getGroupConfig();
   if(!groupLinked())return {status:'local'};
   groupDirty=true;clearTimeout(groupPushTimer);
-  if(!navigator.onLine){groupLastError='離線 · 本次成績等待同步';renderGroupHistory();return {status:'pending'}}
+  if(!navigator.onLine){groupLastError='離線 · 本次成績等待同步';renderPublicSyncState();return {status:'pending'}}
   const ok=await groupSyncNow(false,false,'score-save');
   return ok?{status:'synced'}:{status:'pending',error:groupLastError||'同步失敗'};
 }
@@ -1607,6 +1611,10 @@ function buildGroupPayload(remotePayload=groupRemote){
   return {schema:1,appVersion:APP_VERSION,groupName:PUBLIC_HISTORY_NAME,meetups:mergedMeetups,sessions:mergedSessions,updatedAt:Date.now()};
 }
 function storeGroupRemote(payload){groupRemote=normalizeGroupPayload(payload||{})}
+function renderPublicSyncState(){
+  renderHistory();
+  renderFieldSettings();
+}
 function scheduleGroupPush(reason='local-change'){
   if(groupApplyingRemote||!syncConfigured())return;const g=getGroupConfig();if(!g.auto)return;groupDirty=true;clearTimeout(groupPushTimer);groupPushTimer=setTimeout(()=>groupSyncNow(false,false,reason),1400)
 }
@@ -1616,7 +1624,7 @@ async function groupPush(payload,baseRevision){
   return syncRpc('bowling_group_push',{p_group_code:PUBLIC_HISTORY_CODE,p_pin:PUBLIC_HISTORY_PIN,p_payload:payload,p_base_revision:Number(baseRevision)||0,p_device_id:d.id,p_device_name:cfg.deviceName||d.name})
 }
 async function ensurePublicHistory(){
-  if(!syncConfigured()){groupLastError='BowlMeet Cloud 尚未就緒';renderGroupHistory();return false}
+  if(!syncConfigured()){groupLastError='BowlMeet Cloud 尚未就緒';renderPublicSyncState();return false}
   const d=syncDevice(),cfg=getSyncConfig();setGroupConfig({auto:getGroupConfig().auto});
   try{
     let r=await groupPull();
@@ -1633,8 +1641,8 @@ async function ensurePublicHistory(){
 }
 async function groupSyncNow(manual=true,pullOnly=false,reason='manual'){
   if(!syncConfigured()){if(manual)alert('BowlMeet Cloud 尚未就緒。');return false}
-  if(groupBusy)return false;if(!navigator.onLine){groupLastError='離線';if(manual)alert('目前離線；公開歷史會在恢復連線後再同步。');renderGroupHistory();return false}
-  groupBusy=true;groupLastError='';renderGroupHistory();let success=false;
+  if(groupBusy)return false;if(!navigator.onLine){groupLastError='離線';if(manual)alert('目前離線；公開歷史會在恢復連線後再同步。');renderPublicSyncState();return false}
+  groupBusy=true;groupLastError='';renderPublicSyncState();let success=false;
   try{
     let remote=await groupPull();
     if(!remote?.ok&&remote?.error==='not_found_or_pin'){const ready=await ensurePublicHistory();if(!ready)throw new Error(groupLastError||'無法建立公開歷史');remote=await groupPull()}
@@ -1649,7 +1657,7 @@ async function groupSyncNow(manual=true,pullOnly=false,reason='manual'){
     setGroupConfig({revision,lastSyncAt:Date.now()});success=true;
     if(manual)flash(pullOnly?'公開歷史已重新整理。':'我的紀錄已同步到公開歷史。');
   }catch(e){groupLastError=String(e?.message||e);if(manual)alert('公開歷史同步失敗：'+groupLastError)}
-  finally{groupBusy=false;renderGroupHistory();renderHistory()}
+  finally{groupBusy=false;renderPublicSyncState();renderHistory()}
   return success
 }
 function startGroupPolling(){
@@ -1664,27 +1672,20 @@ async function importGroupHistory(){
     const names=[];for(const s of remote.sessions)for(const p of s.players||[])if(p.name)names.push(p.name);syncRosterNames(names);queueDbStatePersist('public-history-import');syncPersonalFromClaims(true);renderAll();flash('公開歷史已合併到本機。')
   }finally{groupApplyingRemote=false}
 }
-function groupHistoryRows(){
-  const q=($('groupHistorySearch')?.value||'').trim().toLowerCase(),sort=$('groupHistorySort')?.value||'newest',p=normalizeGroupPayload(groupRemote),mm=new Map(p.meetups.map(m=>[m.id,m]));
-  let list=p.sessions.filter(s=>{const m=mm.get(s.meetupId);const hay=[s.date,s.venue,s.lane,m?.title,...(s.players||[]).map(x=>x.name)].join(' ').toLowerCase();return !q||hay.includes(q)});
-  list=[...list].sort((a,b)=>sort==='oldest'?String(a.date).localeCompare(String(b.date))||a.createdAt-b.createdAt:String(b.date).localeCompare(String(a.date))||b.createdAt-a.createdAt);
-  return {list,meetupMap:mm,payload:p}
-}
-function renderGroupHistory(){
-  if(!$('groupStateKpi'))return;const g=getGroupConfig(),linked=syncConfigured(),{list,meetupMap,payload}=groupHistoryRows();
-  $('groupStateKpi').textContent=groupBusy?'同步中…':groupLastError?'待重試':linked?'公開':'離線';
-  $('groupStateSub').textContent=groupLastError||(g.lastSyncAt?'最後更新 '+new Date(g.lastSyncAt).toLocaleTimeString('zh-TW'):'自動連接單一公開歷史');
-  $('groupCodeKpi').textContent='PUBLIC';$('groupRoleSub').textContent='所有人可查看與新增';$('groupMeetupsKpi').textContent=payload.meetups.length;$('groupSessionsKpi').textContent=payload.sessions.length;$('groupRevisionSub').textContent='revision '+(g.revision||0);
-  const card=$('groupActiveCard');card.innerHTML='<div class="group-card-head"><div><div class="group-card-title">'+esc(PUBLIC_HISTORY_NAME)+'</div><div class="group-meta">'+payload.meetups.length+' 場球聚 · '+payload.sessions.length+' 張計分卡 · 所有裝置共用</div></div><span class="group-status '+(!groupLastError&&navigator.onLine?'online':'warn')+'">'+(groupBusy?'同步中':navigator.onLine?'Public Cloud':'離線')+'</span></div>';
-  $('groupAutoToggle').checked=g.auto!==false;$('groupSyncBtn').disabled=!linked;$('groupPullBtn').disabled=!linked;$('importGroupHistoryBtn').disabled=!linked||(!payload.meetups.length&&!payload.sessions.length);
-  $('groupStatusText').textContent='公開模式：任何使用這個 BowlMeet 網站的人都可查看公開歷史並新增紀錄。請勿放入不希望公開的私人資訊。';
-  $('groupHistoryCount').textContent=list.length+' 張';$('groupHistoryEmpty').style.display=list.length?'none':'block';
-  $('groupHistoryList').innerHTML=list.map(s=>{const m=meetupMap.get(s.meetupId),sm=sessionSummary(s),rows=(s.players||[]).map(p=>{const pc=playerCalc(p);return '<div class="mv">'+esc(p.name)+'</div><div>'+pc.count+' 局</div><div>'+pc.total+'</div><div>'+(pc.avg??'—')+'</div>'}).join('');return '<article class="group-session"><div class="group-session-head"><div><div class="group-session-title">'+esc(fmtDate(s.date))+' · '+esc(m?.title||s.venue||'公開紀錄')+'</div><div class="group-session-meta">'+(s.venue?esc(s.venue)+' · ':'')+(s.lane?'球道 '+esc(s.lane)+' · ':'')+sm.games+' 局 · 平均 '+(sm.avg??'—')+(sm.best!==null?' · 最高 '+sm.best+' ('+esc(sm.bestName)+')':'')+'</div></div><span class="group-readonly">PUBLIC</span></div><div class="mini-grid"><div class="mh">球員</div><div class="mh">局數</div><div class="mh">總分</div><div class="mh">平均</div>'+rows+'</div></article>'}).join('')
-}
+
 async function initGroup(){
-  renderGroupHistory();renderHistory();const ready=await ensurePublicHistory();if(ready){await groupSyncNow(false,true,'init');startGroupPolling()}else{renderGroupHistory();renderHistory()};
-  window.addEventListener('online',async()=>{renderGroupHistory();if(await ensurePublicHistory()){await groupSyncNow(false,true,'online');startGroupPolling()}});
-  window.addEventListener('offline',()=>{groupLastError='離線';renderGroupHistory()});
+  renderPublicSyncState();
+  const ready=await ensurePublicHistory();
+  if(ready){await groupSyncNow(false,true,'init');startGroupPolling()}else renderPublicSyncState();
+  window.addEventListener('online',async()=>{
+    groupLastError='';
+    renderPublicSyncState();
+    if(await ensurePublicHistory()){await groupSyncNow(false,true,'online');startGroupPolling()}
+  });
+  window.addEventListener('offline',()=>{
+    groupLastError='離線';
+    renderPublicSyncState()
+  });
   document.addEventListener('visibilitychange',()=>{if(!document.hidden&&syncConfigured())groupSyncNow(false,true,'resume')})
 }
 
@@ -1957,13 +1958,19 @@ function shareCanvasBlob(){return new Promise((resolve,reject)=>{const c=drawSha
 async function downloadShareCard(){try{const b=await shareCanvasBlob();const a=document.createElement('a');a.href=URL.createObjectURL(b);const m=meetups.find(x=>x.id===$('shareMeetup').value);const t=$('shareCardType')?.value||'ranking',label=t==='awards'?'獎項卡':t==='summary'?'總覽卡':t==='meetupCard'?'球聚卡':'排行榜卡';a.download='BowlMeet_'+(m?.date||today())+'_'+label+'.png';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1200)}catch(e){alert(e.message)}}
 async function nativeShareCard(){try{const b=await shareCanvasBlob();const m=meetups.find(x=>x.id===$('shareMeetup').value),t=$('shareCardType')?.value||'ranking',label=t==='awards'?'獎項卡':t==='summary'?'總覽卡':t==='meetupCard'?'球聚卡':'排行榜卡',file=new File([b],'BowlMeet_'+(m?.date||today())+'_'+label+'.png',{type:'image/png'});if(navigator.share&&navigator.canShare?.({files:[file]})){await navigator.share({title:m?.title||'BowlMeet 球聚成績',text:'BowlMeet 球聚成績卡',files:[file]})}else if(navigator.share){await navigator.share({title:m?.title||'BowlMeet 球聚成績',text:'BowlMeet 球聚成績卡'});await downloadShareCard()}else{await downloadShareCard();alert('此瀏覽器不支援原生分享，已改為下載 PNG。')}}catch(e){if(e?.name!=='AbortError'){console.error(e);alert('分享失敗，請改用「下載 PNG」。')}}}
 function updatePwaState(){const dot=$('pwaDot'),label=$('pwaState'),help=$('pwaHelp');if(!dot||!label)return;dot.className='pwa-dot '+(navigator.onLine?'online':'offline');const standalone=window.matchMedia?.('(display-mode: standalone)').matches||navigator.standalone===true;if(standalone){label.textContent='已以 App 模式執行';$('installAppBtn').textContent='已安裝';$('installAppBtn').classList.add('ready');help.textContent='目前為獨立 App 視窗。主要資料仍儲存在此裝置。'}else if(location.protocol==='file:'){label.textContent='目前為本機 HTML 模式';help.textContent='一般功能可使用；要安裝 PWA，請把 PWA 套件放到 HTTPS 網站或 localhost。iPhone 使用 Safari「分享 → 加入主畫面」。'}else{label.textContent=navigator.onLine?'PWA 已就緒':'離線模式';help.textContent='Android / Chrome / Edge 可到「設定 → App / PWA」安裝。iPhone 請用 Safari「分享 → 加入主畫面」。'}}
-async function installPwa(){const standalone=window.matchMedia?.('(display-mode: standalone)').matches||navigator.standalone===true;if(standalone){alert('目前已在 App 模式執行。');return}if(deferredInstallPrompt){deferredInstallPrompt.prompt();const choice=await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;updatePwaState();if(choice.outcome!=='accepted')return}else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){alert('iPhone / iPad：請用 Safari 開啟後，按「分享」→「加入主畫面」。')}else if(location.protocol==='file:'){alert('PWA 安裝需要 HTTPS 或 localhost。請使用 v0.4.1 PWA 套件部署後再安裝。')}else{alert('目前瀏覽器沒有提供自動安裝提示。可從瀏覽器選單選擇「安裝應用程式」或「加入主畫面」。')}}
-function setUpdateUi(text,detail='',ready=false){if($('updateState'))$('updateState').textContent=text;if($('updateDetail'))$('updateDetail').textContent=detail;if($('applyUpdateBtn'))$('applyUpdateBtn').disabled=!ready}
+async function installPwa(){const standalone=window.matchMedia?.('(display-mode: standalone)').matches||navigator.standalone===true;if(standalone){alert('目前已在 App 模式執行。');return}if(deferredInstallPrompt){deferredInstallPrompt.prompt();const choice=await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;updatePwaState();if(choice.outcome!=='accepted')return}else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){alert('iPhone / iPad：請用 Safari 開啟後，按「分享」→「加入主畫面」。')}else if(location.protocol==='file:'){alert('PWA 安裝需要 HTTPS 或 localhost。請部署目前版本的 BowlMeet PWA 後再安裝。')}else{alert('目前瀏覽器沒有提供自動安裝提示。可從瀏覽器選單選擇「安裝應用程式」或「加入主畫面」。')}}
+function setUpdateUi(text,detail='',ready=false){
+  if($('updateState'))$('updateState').textContent=text;
+  if($('updateDetail'))$('updateDetail').textContent=detail;
+  if($('settingsUpdateState'))$('settingsUpdateState').textContent=text;
+  if($('settingsUpdateDetail'))$('settingsUpdateDetail').textContent=detail;
+  if($('applyUpdateBtn'))$('applyUpdateBtn').disabled=!ready
+}
 function watchRegistration(reg){pwaRegistration=reg;if(reg.waiting){pendingServiceWorker=reg.waiting;setUpdateUi('有新版可安全更新','按「安全更新」會先建立快照，再套用新版本。',true)}reg.addEventListener('updatefound',()=>{const w=reg.installing;if(!w)return;setUpdateUi('正在下載更新','Service Worker 安裝中…',false);w.addEventListener('statechange',()=>{if(w.state==='installed'){if(navigator.serviceWorker.controller){pendingServiceWorker=w;setUpdateUi('有新版可安全更新','新版已下載完成，等待安全套用。',true)}else setUpdateUi('PWA 已就緒','首次安裝完成。',false)}})})}
 async function checkPwaUpdate(){if(!pwaRegistration){setUpdateUi('目前無法檢查','請使用 HTTPS / localhost 的 PWA 套件。',false);return}setUpdateUi('正在檢查更新','請稍候…',false);try{await pwaRegistration.update();setTimeout(()=>{if(!pendingServiceWorker)setUpdateUi('目前已是最新','沒有偵測到等待中的新版。',false)},900)}catch(e){setUpdateUi('更新檢查失敗',String(e?.message||e),false)}}
 async function applyPwaUpdate(){if(!pendingServiceWorker){setUpdateUi('沒有等待中的更新','先按「檢查更新」。',false);return}try{setUpdateUi('正在建立安全快照','完成後才會套用新版。',false);await createSnapshot('PWA 更新前自動快照');await persistDbStateNow('pre-pwa-update');reloadingForUpdate=true;pendingServiceWorker.postMessage({type:'SKIP_WAITING'});setUpdateUi('正在套用新版','App 即將重新載入。',false)}catch(e){console.error(e);setUpdateUi('安全更新失敗','目前版本仍保留，資料未被清除。',true)}}
 function initPwa(){window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;$('installAppBtn').classList.add('ready');$('installAppBtn').textContent='安裝 App'});window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;updatePwaState()});window.addEventListener('online',updatePwaState);window.addEventListener('offline',updatePwaState);if('serviceWorker'in navigator&&location.protocol!=='file:'){navigator.serviceWorker.addEventListener('controllerchange',()=>{if(reloadingForUpdate)location.reload()});navigator.serviceWorker.register('./sw.js').then(reg=>{watchRegistration(reg);setUpdateUi(reg.waiting?'有新版可安全更新':'PWA 更新保護已啟用',reg.waiting?'新版已下載，等待套用。':'更新時會先建立快照。',!!reg.waiting)}).catch(e=>{console.warn('Service Worker 註冊失敗',e);setUpdateUi('PWA 註冊失敗',String(e?.message||e),false)})}else setUpdateUi(location.protocol==='file:'?'本機 HTML 模式':'瀏覽器不支援 Service Worker','PWA 安全更新需要 HTTPS / localhost。',false);updatePwaState()}
-function renderShare(){renderShareOptions();drawShareCard();updatePwaState()}
+function renderShare(){renderShareOptions();drawShareCard()}
 
 
 /* v0.4.1 Player Claim + Personal Score Sync */
@@ -2059,7 +2066,7 @@ function renderPersonal(){
   const rows=[...personalData.games].sort((a,b)=>String(b.date).localeCompare(String(a.date))||b.gameNo-a.gameNo||b.updatedAt-a.updatedAt);$('personalHistoryCount').textContent=`${rows.length} 局`;$('personalHistoryEmpty').style.display=rows.length?'none':'block';$('personalHistoryBody').innerHTML=rows.map(g=>`<tr><td>${esc(fmtDate(g.date))}</td><td>${esc(g.meetupTitle||'球聚')}</td><td>${esc(g.venue||'—')}</td><td>${esc(g.lane||'—')}</td><td>G${esc(g.gameNo)}</td><td class="personal-score">${esc(g.score)}</td><td>${esc(g.sourcePlayerName||'—')}</td></tr>`).join('')
 }
 
-function renderAll(){renderKpis();renderHistory();renderStats();renderMeetups();renderRoster();renderLeaderboard();renderAwards();renderRosterQuickSelect();refreshSheetCalcs();renderShareOptions();renderSafety();renderSync();renderGroupHistory();renderPersonal();if(document.getElementById('meetupView')?.classList.contains('active'))renderLive()}
+function renderAll(){renderKpis();renderHistory();renderStats();renderMeetups();renderRoster();renderLeaderboard();renderAwards();renderRosterQuickSelect();refreshSheetCalcs();renderShareOptions();renderSafety();renderSync();renderFieldSettings();renderPersonal();if(document.getElementById('meetupView')?.classList.contains('active'))renderLive()}
 
 function mirrorLiveSessionToCurrentScore(sess){
   if(!sess)return;
@@ -2093,6 +2100,7 @@ function switchView(id){
   if(viewId==='meetupView')renderLive();
   if(viewId==='syncView')renderSync();
   if(viewId==='personalView')renderPersonal();
+  if(viewId==='historyView')renderHistory();
   if(window.matchMedia?.('(max-width:680px)').matches){
     const active=[...document.querySelectorAll('.tab[data-view]')].find(t=>t.dataset.view===viewId);
     active?.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
@@ -2134,7 +2142,7 @@ $('liveFullScoreBtn').addEventListener('click',()=>{const m=meetups.find(x=>x.id
 $('liveShareBtn').addEventListener('click',()=>{if(!currentMeetupId)return;switchView('shareView');$('shareMeetup').value=currentMeetupId;drawShareCard()});
 
 $('saveSyncConfigBtn').addEventListener('click',saveSyncServiceConfig);$('testSyncServiceBtn').addEventListener('click',testSyncService);$('createSyncRoomBtn').addEventListener('click',createSyncRoom);$('joinSyncRoomBtn').addEventListener('click',joinSyncRoom);$('syncNowBtn').addEventListener('click',()=>syncNow(true,'manual'));$('leaveSyncRoomBtn').addEventListener('click',leaveSyncRoom);$('copySyncInviteBtn').addEventListener('click',async()=>{if(await copyText(inviteText()))alert('邀請資訊已複製。')});$('syncAutoToggle').addEventListener('change',e=>{setSyncConfig({auto:e.target.checked});startSyncPolling();renderSync()});
-$('settingsPublicAutoToggle').addEventListener('change',e=>{setGroupConfig({auto:e.target.checked});startGroupPolling();renderGroupHistory();renderFieldSettings()});
+$('settingsPublicAutoToggle').addEventListener('change',e=>{setGroupConfig({auto:e.target.checked});startGroupPolling();renderPublicSyncState()});
 $('settingsPersonalAutoToggle').addEventListener('change',e=>{personalData.autoSync=e.target.checked;persistPersonalLocal(false,'settings-personal-auto');startPersonalPolling();renderPersonal();renderFieldSettings()});
 $('settingsOpenPublicBtn').addEventListener('click',()=>{historySource='public';switchView('historyView');renderHistory()});
 $('settingsOpenPersonalBtn').addEventListener('click',()=>switchView('personalView'));
