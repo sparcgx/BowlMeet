@@ -51,7 +51,7 @@ begin
   -- v0.4.4-dev.1: PUBLIC history keeps record-control tombstones server-side.
   -- Older clients may omit recordControls; existing controls are still retained
   -- and removed sessions are filtered so an old payload cannot resurrect them.
-  if r.group_code in ('PUBLIC','DEV442') then
+  if r.group_code in ('PUBLIC','DEV442','V44D22') then
     for v_item in
       select value from jsonb_array_elements(coalesce(r.payload->'recordControls','[]'::jsonb))
     loop
