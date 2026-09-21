@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.2-R2</title>
+<title>保齡球球聚｜BowlMeet v0.4.2-R3</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -140,6 +140,10 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 
 
 
+
+/* v0.4.2-R3 Personal PIN Change */
+.personal-password-panel{margin-top:12px;padding:13px;border:1px solid var(--line);border-radius:13px;background:#fafbfc}.personal-password-panel h3{margin:0 0 4px;font-size:14px}.personal-password-panel h3 span{font-size:10px;color:var(--muted);font-weight:750;margin-left:6px}.personal-password-panel>p{margin:0 0 11px;font-size:11px;line-height:1.55;color:var(--muted)}
+@media(max-width:620px){.personal-password-panel .personal-form.two{grid-template-columns:1fr}.personal-password-panel .personal-actions .btn{flex:1 1 100%}}
 
 /* v0.4.2-R2 OCR Quality Enhancement */
 .ocr-quality-note{font-size:11px;color:var(--muted);line-height:1.5;margin-top:7px}.ocr-pass-badge{display:inline-flex;align-items:center;border-radius:999px;padding:3px 7px;font-size:9px;font-weight:850;background:#eef4ff;color:#0f62fe;margin-left:5px}
@@ -289,7 +293,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.2-R2 · OCR Quality Enhancement</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.2-R3 · Personal PIN Change</p></div></div>
   <div class="top-actions"><button class="btn install-btn" id="installAppBtn" type="button">安裝 App</button><button class="btn" id="exportBtn">備份</button><button class="btn" id="importBtn">還原</button><input type="file" id="importFile" accept="application/json,.json" hidden /></div>
 </div></header>
 <main>
@@ -547,8 +551,19 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
           <div class="personal-form" style="margin-top:12px">
             <div class="field"><label for="personalCreateName">顯示名稱</label><input id="personalCreateName" maxlength="30" placeholder="例如：志強" /></div>
           </div>
-          <div class="personal-actions"><button class="btn primary" id="createPersonalProfileBtn" type="button">建立個人身分</button><button class="btn" id="copyPersonalLoginBtn" type="button" disabled>複製登入資訊</button><button class="btn danger" id="disconnectPersonalBtn" type="button" disabled>解除此裝置連結</button></div>
-          <div class="personal-note">個人身分使用目前設定的 Supabase Project。Personal PIN 只保存在此裝置，不會寫入 JSON 備份或 Snapshot；換裝置時請用 Player ID＋PIN 重新連結。</div>
+          <div class="personal-actions"><button class="btn primary" id="createPersonalProfileBtn" type="button">建立個人身分</button><button class="btn" id="copyPersonalLoginBtn" type="button" disabled>複製登入資訊</button><button class="btn" id="togglePersonalPasswordBtn" type="button" disabled>變更密碼</button><button class="btn danger" id="disconnectPersonalBtn" type="button" disabled>解除此裝置連結</button></div>
+          <div id="personalPasswordPanel" class="personal-password-panel" hidden>
+            <h3>變更密碼 <span>Personal PIN</span></h3>
+            <p>請輸入目前的 6 位 Personal PIN，再設定新的 6 位 PIN。變更後舊 PIN 立即失效。</p>
+            <div class="personal-form two">
+              <div class="field"><label for="personalCurrentPin">目前 PIN</label><input id="personalCurrentPin" type="password" maxlength="6" inputmode="numeric" autocomplete="current-password" placeholder="目前 6 位 PIN" /></div>
+              <div class="field"><label for="personalNewPin">新 PIN</label><input id="personalNewPin" type="password" maxlength="6" inputmode="numeric" autocomplete="new-password" placeholder="新的 6 位 PIN" /></div>
+              <div class="field"><label for="personalConfirmPin">確認新 PIN</label><input id="personalConfirmPin" type="password" maxlength="6" inputmode="numeric" autocomplete="new-password" placeholder="再輸入一次新 PIN" /></div>
+            </div>
+            <div class="personal-actions"><button class="btn primary" id="changePersonalPinBtn" type="button">確認變更密碼</button><button class="btn" id="cancelPersonalPinBtn" type="button">取消</button></div>
+            <div class="personal-note">其他已連結裝置仍保存舊 PIN；變更後需要用新 PIN 重新連結。Player ID 與個人成績不會改變。</div>
+          </div>
+          <div class="personal-note">個人身分使用 BowlMeet Cloud。Personal PIN 只保存在此裝置，不會寫入 JSON 備份或 Snapshot；換裝置時請用 Player ID＋PIN 重新連結。</div>
         </section>
 
         <section class="card personal-panel">
@@ -878,7 +893,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.2-R2 · OCR Quality / Built-in Cloud / Group History</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.2-R3 · Personal PIN Change / Group History</div>
 </main>
 </div>
 <script>
@@ -898,7 +913,7 @@ const PERSONALKEY='bowlingMeetup.personal.v041';
 const PERSONALSECRETKEY='bowlingMeetup.personalAuth.v041';
 const GROUPKEY='bowlingMeetup.group.v042';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.2-R2';
+const APP_VERSION='0.4.2-R3';
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
 const BUILTIN_CLOUD=true;
@@ -1750,7 +1765,35 @@ async function createPersonalProfile(){
   if(!syncConfigured()){alert('BowlMeet Cloud 尚未就緒，請先到「多人同步」檢查雲端狀態。');return}const displayName=$('personalCreateName').value.trim();if(!displayName){alert('請輸入顯示名稱。');return}await createSnapshot('建立個人身分前');const playerId=personalPlayerId(),pin=personalPin(),d=syncDevice(),cfg=getSyncConfig(),now=Date.now();const next=normalizePersonalData({profile:{playerId,displayName,createdAt:now,updatedAt:now},claims:personalData.claims,games:personalData.games,autoSync:true,updatedAt:now});try{const r=await syncRpc('bowling_player_create',{p_player_id:playerId,p_pin:pin,p_display_name:displayName,p_payload:{schema:1,appVersion:APP_VERSION,profile:next.profile,claims:next.claims,games:next.games,updatedAt:now},p_device_id:d.id,p_device_name:cfg.deviceName||d.name});if(!r?.ok)throw new Error(r?.error||'建立失敗');personalData=next;personalData.revision=Number(r.revision)||1;personalData.lastSyncAt=Date.now();setPersonalAuth(playerId,pin);personalDirty=false;persistPersonalLocal(false,'personal-create');startPersonalPolling();renderPersonal();alert(`個人身分已建立。\n\nPlayer ID：${playerId}\nPersonal PIN：${pin}\n\n請保存這組資訊，換裝置時會用到。`)}catch(e){alert(`建立個人身分失敗：${e?.message||e}`)}}
 async function linkPersonalProfile(){
   if(!syncConfigured()){alert('BowlMeet Cloud 尚未就緒，請先到「多人同步」檢查雲端狀態。');return}const playerId=$('personalLinkId').value.trim().toUpperCase(),pin=$('personalLinkPin').value.trim();if(!/^BM-[A-Z2-9]{6}$/.test(playerId)){alert('Player ID 格式應為 BM-XXXXXX。');return}if(!/^\d{6}$/.test(pin)){alert('Personal PIN 需為 6 位數字。');return}await createSnapshot('連結個人身分前');try{setPersonalAuth(playerId,pin);const r=await syncRpc('bowling_player_pull',{p_player_id:playerId,p_pin:pin});if(!r?.ok)throw new Error(r?.error==='not_found_or_pin'?'Player ID 或 Personal PIN 不正確':(r?.error||'連結失敗'));const switching=personalData.profile?.playerId&&personalData.profile.playerId!==playerId;if(switching&&!confirm(`目前裝置已有 ${personalData.profile.playerId} 的個人成績。要切換到 ${playerId} 嗎？切換後不會把兩位玩家的個人成績混在一起。`)){setPersonalAuth('','');return}if(switching)personalData=normalizePersonalData(r.payload||{});else{const merged=mergePersonalData(personalData,r.payload||{},'merge');personalData=merged.data}if(!personalData.profile)personalData.profile={playerId,displayName:String(r.display_name||'BowlMeet Player'),createdAt:Date.now(),updatedAt:Date.now()};personalData.profile.playerId=playerId;personalData.revision=Number(r.revision)||0;personalData.lastSyncAt=Date.now();personalDirty=false;persistPersonalLocal(false,'personal-link');startPersonalPolling();renderPersonal();flash('個人身分已連結，雲端成績已拉回。')}catch(e){setPersonalAuth('','');alert(`連結失敗：${e?.message||e}`)}}
-function disconnectPersonal(){if(!personalLinked())return;if(!confirm('確定解除這台裝置的個人雲端連結？本機個人成績會保留，之後可再次用 Player ID＋PIN 連結。'))return;clearInterval(personalTimer);clearTimeout(personalPushTimer);setPersonalAuth('','');personalLastError='';renderPersonal()}
+function setPersonalPasswordPanel(open){
+  const panel=$('personalPasswordPanel');if(!panel)return;panel.hidden=!open;
+  if(!open){$('personalCurrentPin').value='';$('personalNewPin').value='';$('personalConfirmPin').value=''}
+  else{setTimeout(()=>$('personalCurrentPin')?.focus(),0)}
+}
+async function changePersonalPin(){
+  if(!personalLinked()){alert('請先連結「我的 BowlMeet 身分」。');return}
+  if(!syncConfigured()){alert('BowlMeet Cloud 尚未就緒。');return}
+  const auth=personalAuth(),currentPin=$('personalCurrentPin').value.trim(),newPin=$('personalNewPin').value.trim(),confirmPin=$('personalConfirmPin').value.trim();
+  if(!/^\d{6}$/.test(currentPin)){alert('目前 PIN 需為 6 位數字。');return}
+  if(!/^\d{6}$/.test(newPin)){alert('新 PIN 需為 6 位數字。');return}
+  if(newPin!==confirmPin){alert('兩次輸入的新 PIN 不一致。');return}
+  if(newPin===currentPin){alert('新 PIN 不可與目前 PIN 相同。');return}
+  if(currentPin!==auth.pin){alert('目前 PIN 不正確。');return}
+  const btn=$('changePersonalPinBtn');btn.disabled=true;const oldText=btn.textContent;btn.textContent='變更中…';
+  try{
+    const d=syncDevice(),cfg=getSyncConfig();
+    const r=await syncRpc('bowling_player_change_pin',{p_player_id:auth.playerId,p_current_pin:currentPin,p_new_pin:newPin,p_device_id:d.id,p_device_name:cfg.deviceName||d.name});
+    if(!r?.ok)throw new Error(r?.error==='not_found_or_pin'?'目前 PIN 不正確':r?.error==='same_pin'?'新 PIN 不可與目前 PIN 相同':(r?.error||'變更失敗'));
+    setPersonalAuth(auth.playerId,newPin);
+    personalData.revision=Number(r.revision)||personalData.revision;
+    personalData.lastSyncAt=Date.now();
+    personalLastError='';personalDirty=false;persistPersonalLocal(false,'personal-pin-change');
+    setPersonalPasswordPanel(false);startPersonalPolling();renderPersonal();
+    alert('BowlMeet 身分密碼已變更。\n\n舊 Personal PIN 已失效；其他裝置請使用新 PIN 重新連結。');
+  }catch(e){alert('變更密碼失敗：'+(e?.message||e))}
+  finally{btn.disabled=false;btn.textContent=oldText}
+}
+function disconnectPersonal(){if(!personalLinked())return;if(!confirm('確定解除這台裝置的個人雲端連結？本機個人成績會保留，之後可再次用 Player ID＋PIN 連結。'))return;clearInterval(personalTimer);clearTimeout(personalPushTimer);setPersonalAuth('','');personalLastError='';setPersonalPasswordPanel(false);renderPersonal()}
 function personalMeetupOptions(){const sel=$('personalClaimMeetup');if(!sel)return;const prev=sel.value||currentMeetupId||'';sel.innerHTML='<option value="">選擇球聚…</option>'+[...meetups].sort((a,b)=>String(b.date).localeCompare(String(a.date))).map(m=>`<option value="${esc(m.id)}">${esc(fmtDate(m.date))} · ${esc(m.title)}</option>`).join('');if(prev&&meetups.some(m=>m.id===prev))sel.value=prev;renderPersonalPlayerOptions()}
 function renderPersonalPlayerOptions(){const sel=$('personalClaimPlayer');if(!sel)return;const m=meetups.find(x=>x.id===$('personalClaimMeetup').value);if(!m){sel.innerHTML='<option value="">選擇球員…</option>';return}const s=linkedSession(m);let players=(s?.players||[]).map(p=>({id:p.id||'',name:p.name||''})).filter(x=>x.name);if(!players.length)players=meetupParticipantNames(m).map(name=>({id:'',name}));sel.innerHTML='<option value="">選擇球員…</option>'+players.map((p,i)=>`<option value="${esc(p.id||`name:${i}`)}" data-name="${esc(p.name)}">${esc(p.name)}</option>`).join('')}
 function claimSelectedPlayer(){
@@ -1761,7 +1804,7 @@ async function copyPersonalLogin(){if(!personalLinked())return;const a=personalA
 function renderPersonal(){
   const p=personalData.profile,a=personalAuth(),linked=personalLinked(),ready=personalCloudReady(),scores=personalGameValues(),av=avg(scores),pb=scores.length?Math.max(...scores):null;$('personalStatusKpi').textContent=personalBusy?'同步中…':linked?(personalLastError?'待重試':'已連結'):(p?'本機資料':'未建立');$('personalStatusSub').textContent=personalLastError||(linked?(personalData.lastSyncAt?`最後同步 ${new Date(personalData.lastSyncAt).toLocaleTimeString('zh-TW')}`:'等待首次同步'):(p?'需要 PIN 重新連結':'可建立 BowlMeet 個人身分'));$('personalIdKpi').textContent=p?.playerId||'—';$('personalGamesKpi').textContent=scores.length;$('personalAvgSub').textContent=`平均 ${av??'—'}`;$('personalPbKpi').textContent=pb??'—';$('personalClaimsSub').textContent=`${personalData.claims.length} 場已認領`;
   const card=$('personalProfileCard');if(p){card.className='personal-profile-card';card.innerHTML=`<div class="personal-profile-top"><div><div class="personal-profile-name">${esc(p.displayName||'BowlMeet Player')}</div><div class="personal-profile-id">${esc(p.playerId)}</div><div class="personal-profile-meta">${scores.length} 局 · AVG ${esc(av??'—')} · PB ${esc(pb??'—')}<br>Personal PIN：${linked?'已安全保存在此裝置':'未連結此裝置'}</div></div><span class="personal-status ${linked&&!personalLastError?'online':p?'warn':''}">${linked?(personalLastError?'待重試':'Cloud Linked'):'Local only'}</span></div>`}else{card.className='personal-profile-card empty';card.textContent='尚未建立或連結個人身分。'}
-  $('createPersonalProfileBtn').disabled=!!p;$('copyPersonalLoginBtn').disabled=!linked;$('disconnectPersonalBtn').disabled=!linked;$('pullPersonalBtn').disabled=!ready;$('syncPersonalBtn').disabled=!ready;$('personalAutoSync').checked=personalData.autoSync!==false;$('personalCloudState').textContent=personalBusy?'個人成績同步中…':ready?(personalLastError?'個人雲端待重試':'個人雲端已連結'):(p?'尚未完成個人雲端連結':'尚未連結個人雲端');$('personalCloudDetail').textContent=personalLastError||(!syncConfigured()?'內建 BowlMeet Cloud 尚未就緒，請到「多人同步」重新檢查雲端。':linked?(personalData.lastSyncAt?`revision ${personalData.revision||0} · 最後同步 ${new Date(personalData.lastSyncAt).toLocaleString('zh-TW')}`:'已具備同步條件。'):'輸入 Player ID＋Personal PIN 即可跨裝置拉回。');
+  $('createPersonalProfileBtn').disabled=!!p;$('copyPersonalLoginBtn').disabled=!linked;$('togglePersonalPasswordBtn').disabled=!linked;$('disconnectPersonalBtn').disabled=!linked;if(!linked)setPersonalPasswordPanel(false);$('pullPersonalBtn').disabled=!ready;$('syncPersonalBtn').disabled=!ready;$('personalAutoSync').checked=personalData.autoSync!==false;$('personalCloudState').textContent=personalBusy?'個人成績同步中…':ready?(personalLastError?'個人雲端待重試':'個人雲端已連結'):(p?'尚未完成個人雲端連結':'尚未連結個人雲端');$('personalCloudDetail').textContent=personalLastError||(!syncConfigured()?'內建 BowlMeet Cloud 尚未就緒，請到「多人同步」重新檢查雲端。':linked?(personalData.lastSyncAt?`revision ${personalData.revision||0} · 最後同步 ${new Date(personalData.lastSyncAt).toLocaleString('zh-TW')}`:'已具備同步條件。'):'輸入 Player ID＋Personal PIN 即可跨裝置拉回。');
   personalMeetupOptions();const claims=$('personalClaimList');claims.innerHTML=personalData.claims.length?[...personalData.claims].sort((a,b)=>b.updatedAt-a.updatedAt).map(c=>{const m=meetups.find(x=>x.id===c.meetupId);return `<div class="personal-claim-item"><div><strong>${esc(c.sourcePlayerName)} <span class="claim-badge">已認領</span></strong><span>${esc(m?.title||'球聚')} · ${esc(fmtDate(m?.date||''))}${c.roomCode?` · 房間 ${esc(c.roomCode)}`:''}</span></div><button class="btn small" type="button" data-unclaim="${esc(c.id)}">停止追蹤</button></div>`}).join(''):'<div class="personal-empty">尚未認領任何球聚球員。</div>';
   const rows=[...personalData.games].sort((a,b)=>String(b.date).localeCompare(String(a.date))||b.gameNo-a.gameNo||b.updatedAt-a.updatedAt);$('personalHistoryCount').textContent=`${rows.length} 局`;$('personalHistoryEmpty').style.display=rows.length?'none':'block';$('personalHistoryBody').innerHTML=rows.map(g=>`<tr><td>${esc(fmtDate(g.date))}</td><td>${esc(g.meetupTitle||'球聚')}</td><td>${esc(g.venue||'—')}</td><td>${esc(g.lane||'—')}</td><td>G${esc(g.gameNo)}</td><td class="personal-score">${esc(g.score)}</td><td>${esc(g.sourcePlayerName||'—')}</td></tr>`).join('')
 }
@@ -1822,7 +1865,7 @@ $('saveSyncConfigBtn').addEventListener('click',saveSyncServiceConfig);$('testSy
 
 $('createGroupBtn').addEventListener('click',createGroup);$('joinGroupBtn').addEventListener('click',joinGroup);$('groupSyncBtn').addEventListener('click',()=>groupSyncNow(true,false,'manual'));$('groupPullBtn').addEventListener('click',()=>groupSyncNow(true,true,'manual-pull'));$('copyGroupInviteBtn').addEventListener('click',copyGroupInvite);$('importGroupHistoryBtn').addEventListener('click',importGroupHistory);$('leaveGroupBtn').addEventListener('click',leaveGroup);$('groupAutoToggle').addEventListener('change',e=>{setGroupConfig({auto:e.target.checked});startGroupPolling();renderGroupHistory()});$('groupHistorySearch').addEventListener('input',renderGroupHistory);$('groupHistorySort').addEventListener('change',renderGroupHistory);
 
-$('createPersonalProfileBtn').addEventListener('click',createPersonalProfile);$('linkPersonalProfileBtn').addEventListener('click',linkPersonalProfile);$('copyPersonalLoginBtn').addEventListener('click',copyPersonalLogin);$('disconnectPersonalBtn').addEventListener('click',disconnectPersonal);$('pullPersonalBtn').addEventListener('click',()=>syncPersonalNow(true,true,'manual-pull'));$('syncPersonalBtn').addEventListener('click',()=>syncPersonalNow(true,false,'manual'));$('personalAutoSync').addEventListener('change',e=>{personalData.autoSync=e.target.checked;persistPersonalLocal(false,'personal-auto');startPersonalPolling()});$('personalClaimMeetup').addEventListener('change',renderPersonalPlayerOptions);$('claimPlayerBtn').addEventListener('click',claimSelectedPlayer);$('personalClaimList').addEventListener('click',e=>{const b=e.target.closest('[data-unclaim]');if(b)removePersonalClaim(b.dataset.unclaim)});
+$('createPersonalProfileBtn').addEventListener('click',createPersonalProfile);$('linkPersonalProfileBtn').addEventListener('click',linkPersonalProfile);$('copyPersonalLoginBtn').addEventListener('click',copyPersonalLogin);$('togglePersonalPasswordBtn').addEventListener('click',()=>setPersonalPasswordPanel($('personalPasswordPanel').hidden));$('changePersonalPinBtn').addEventListener('click',changePersonalPin);$('cancelPersonalPinBtn').addEventListener('click',()=>setPersonalPasswordPanel(false));$('disconnectPersonalBtn').addEventListener('click',disconnectPersonal);$('pullPersonalBtn').addEventListener('click',()=>syncPersonalNow(true,true,'manual-pull'));$('syncPersonalBtn').addEventListener('click',()=>syncPersonalNow(true,false,'manual'));$('personalAutoSync').addEventListener('change',e=>{personalData.autoSync=e.target.checked;persistPersonalLocal(false,'personal-auto');startPersonalPolling()});$('personalClaimMeetup').addEventListener('change',renderPersonalPlayerOptions);$('claimPlayerBtn').addEventListener('click',claimSelectedPlayer);$('personalClaimList').addEventListener('click',e=>{const b=e.target.closest('[data-unclaim]');if(b)removePersonalClaim(b.dataset.unclaim)});
 $('installAppBtn').addEventListener('click',installPwa);$('shareCardType').addEventListener('change',()=>updateShareControls(true));$('shareMeetup').addEventListener('change',()=>{updateShareControls(false);drawShareCard()});$('shareMetric').addEventListener('change',drawShareCard);$('shareTopN').addEventListener('change',drawShareCard);$('shareCardTitle').addEventListener('input',()=>{clearTimeout(drawShareCard.t);drawShareCard.t=setTimeout(drawShareCard,180)});$('refreshShareBtn').addEventListener('click',drawShareCard);$('downloadShareBtn').addEventListener('click',downloadShareCard);$('nativeShareBtn').addEventListener('click',nativeShareCard);
 $('createSnapshotBtn').addEventListener('click',async()=>{const s=await createSnapshot('手動快照');if(s)alert('安全快照已建立。');else alert('目前無法建立 IndexedDB 快照。')});
 $('integrityCheckBtn').addEventListener('click',runIntegrityCheck);$('safetyExportBtn').addEventListener('click',exportFullBackup);$('checkUpdateBtn').addEventListener('click',checkPwaUpdate);$('applyUpdateBtn').addEventListener('click',applyPwaUpdate);
