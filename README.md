@@ -33,7 +33,22 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 - Preview local storage / IndexedDB / Cache / Cloud ✅ Isolated
 - Preview Cloud：`V44D22`，目前 0 sessions / 0 meetups
 - Stable PUBLIC：revision 21 / 4 sessions / 4 meetups / v0.4.3.3-R1，未變更
-- 狀態：**Implementation Complete / Automated Regression PASS / Manual Device Acceptance Pending**
+- 狀態：**Device Preview & Live Regression PASS / dev.2 Validation Complete**
+
+## v0.4.4-dev.2 Manual Device Acceptance
+
+- 完成球聚後自動開啟賽後摘要 ✅ PASS
+- 玩家數 ✅ PASS
+- 正式完成局數 ✅ PASS
+- 未完成 10 格排除統計 ✅ PASS
+- 總分 / 平均 / 最高單局 ✅ PASS
+- 每位玩家局數 / 總分 / 平均 / 最高 ✅ PASS
+- 分享球聚卡導流 ✅ PASS
+- 查看成績紀錄導流 ✅ PASS
+- 過往球聚重新開啟賽後摘要 ✅ PASS
+- 關閉 / 重新開啟資料保留 ✅ PASS
+- Stable / dev.1 Preview 資料隔離 ✅ PASS
+- 結論：**v0.4.4-dev.2 Validation Complete**
 
 ## v0.4.4-dev.2 Session Summary & Post-Game Review
 
