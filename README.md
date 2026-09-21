@@ -94,6 +94,19 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - 使用 `focus({preventScroll:true})` 避免瀏覽器再次把水平捲動拉回。
 - 不修改 Session / bowlingFrames / Supabase schema / PUBLIC payload。
 
+### HF1 Automated Gate
+
+- JavaScript syntax ✅ PASS
+- Duplicate static ID ✅ 0
+- Missing DOM reference ✅ 0
+- 一般儲存後水平 scrollLeft 保留 ✅ PASS
+- 一般儲存不強制搶焦點 ✅ PASS
+- Enter 後前進下一個可輸入球 ✅ PASS
+- Strike 後跳過 disabled 第二球 ✅ PASS
+- Preview PWA cache isolation ✅ PASS
+- Stable root 維持 v0.4.4-R1 ✅ 未變更
+- 狀態：**Hotfix Implementation Complete / Manual Device Acceptance Pending**
+
 ## v0.4.4-R1 Final Freeze & Stable Promotion
 
 - Automated Regression ✅ PASS
