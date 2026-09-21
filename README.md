@@ -56,7 +56,7 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - Direct table ACL：anon / authenticated 無直接 table 權限 ✅
 - RPC ACL：PUBLIC execute = false；anon / authenticated / service_role 明確授權 ✅
 - Supabase Performance Advisor ✅ 0 findings
-- 狀態：**v0.4.4-R1 Validation Complete / Stable Candidate**
+- 狀態：**v0.4.4-R1 Stable / Freeze Baseline**
 
 ### R1 Final Cloud Gate
 
@@ -82,6 +82,20 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - PUBLIC tombstone 與 legacy repush 防復活已再次通過 transaction + ROLLBACK。
 - 正式 main 根目錄仍維持 v0.4.3.3-R1；v0.4.4-R1 尚未合併至正式站。
 - 最後 Gate：R1 Preview 實機驗收。
+
+## v0.4.4-R1 Final Freeze & Stable Promotion
+
+- Automated Regression ✅ PASS
+- Cloud Gate ✅ PASS
+- Manual Device Acceptance ✅ PASS
+- Full Backup / Replace / Merge Restore ✅ PASS
+- PWA Update Safety ✅ PASS
+- PUBLIC tombstone / legacy repush protection ✅ PASS
+- Supabase RLS / RPC ACL / Performance Gate ✅ PASS
+- Previous Stable archived at `stable/v0.4.3.3-R1`
+- Promotion target：`main`
+- Freeze baseline：`v0.4.4-R1`
+- 結論：**Stable / Freeze Baseline**
 
 ## v0.4.4-R1 Manual Device Acceptance
 
