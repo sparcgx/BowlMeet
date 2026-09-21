@@ -1,7 +1,7 @@
 {
   "name": "保齡球球聚｜BowlMeet",
   "short_name": "BowlMeet",
-  "description": "BowlMeet（保齡球球聚）：快速球聚、標準 10 格即時計分、賽後摘要、玩家局數／總分／平均／最高、統一成績紀錄、公開紀錄控制、分享與資料安全。",
+  "description": "BowlMeet（保齡球球聚）：快速球聚、標準 10 格即時計分、賽後摘要、個人平均／PB／近期趨勢、Strike／Spare／Open Frame 分析、統一成績紀錄、公開紀錄控制、分享與資料安全。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
