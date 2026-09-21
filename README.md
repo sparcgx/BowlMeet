@@ -21,6 +21,23 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 3. 再開 `index.html` 進行 BowlMeet 實機驗收。
 4. iPhone Safari 可使用「分享 → 加入主畫面」安裝為 PWA。
 
+## v0.4.4-dev.1 Device Preview & Live Regression
+
+- Device Preview：`/preview/v0.4.4-dev.1/` ✅ 已建立
+- Stable 根目錄：v0.4.3.3-R1 ✅ 未覆蓋
+- Preview localStorage / IndexedDB ✅ 獨立 namespace
+- Preview Service Worker Cache ✅ 僅清理 `bowlmeet-preview-v044-*`
+- Preview 公開雲端：`DEV442` ✅ 與正式 `PUBLIC` 隔離
+- DEV442 seed / pull ✅ PASS
+- 取消公開 ✅ PASS
+- v0.4.3.3-R1 legacy repush 防復活 ✅ PASS
+- 重新公開 ✅ PASS
+- stale revision conflict ✅ PASS
+- 錯誤 PIN rejection ✅ PASS
+- Regression 完成後 DEV442 已清空：0 sessions / 0 meetups / 0 recordControls
+- 正式 PUBLIC 維持 revision 21 / 4 sessions / 4 meetups / v0.4.3.3-R1
+- 狀態：**Automated Live Regression PASS / Manual Device Interaction Pending**
+
 ## v0.4.4-dev.1 Database Migration Status
 
 - Supabase migration：`v044_public_record_control_compat` ✅ Applied
