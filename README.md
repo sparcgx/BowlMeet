@@ -36,7 +36,23 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 - 錯誤 PIN rejection ✅ PASS
 - Regression 完成後 DEV442 已清空：0 sessions / 0 meetups / 0 recordControls
 - 正式 PUBLIC 維持 revision 21 / 4 sessions / 4 meetups / v0.4.3.3-R1
-- 狀態：**Automated Live Regression PASS / Manual Device Interaction Pending**
+- 狀態：**Device Preview & Live Regression PASS / dev.1 Validation Complete**
+
+## v0.4.4-dev.1 Manual Device Acceptance
+
+- Device Preview 實機開啟 ✅ PASS
+- 球聚建立 / 玩家加入 ✅ PASS
+- 10 格現場計分 ✅ PASS
+- 下一局流程 ✅ PASS
+- 關閉 / 重新開啟資料保留 ✅ PASS
+- 最近／常用玩家 ✅ PASS
+- 沿用上一場 ✅ PASS
+- 成績紀錄公開狀態 ✅ PASS
+- 取消公開 ✅ PASS
+- 重新整理後狀態維持 ✅ PASS
+- 重新公開 ✅ PASS
+- Stable v0.4.3.3-R1 未受 Preview 影響 ✅ PASS
+- 結論：**v0.4.4-dev.1 Validation Complete**
 
 ## v0.4.4-dev.1 Database Migration Status
 
