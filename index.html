@@ -294,12 +294,12 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 </div></header>
 <main>
   <nav class="tabs" aria-label="功能切換">
-    <button class="tab active" data-view="meetupView">球聚活動</button>
+    <button class="tab active" data-view="scoreView">本次記分</button>
+    <button class="tab" data-view="meetupView">球聚活動</button>
     <button class="tab live-tab" data-view="liveView">現場模式</button>
     <button class="tab sync-tab" data-view="syncView">多人同步</button>
     <button class="tab group-tab" data-view="groupView">群組歷史</button>
     <button class="tab" data-view="personalView">我的成績</button>
-    <button class="tab" data-view="scoreView">本次記分</button>
     <button class="tab" data-view="photoView">拍照匯入</button>
     <button class="tab" data-view="rosterView">球員名冊</button>
     <button class="tab" data-view="leaderboardView">排行榜</button>
@@ -310,7 +310,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     <button class="tab" data-view="safetyView">資料安全</button>
   </nav>
 
-  <section id="meetupView" class="view active">
+  <section id="meetupView" class="view">
     <div class="meetup-hero">
       <section class="card meetup-create">
         <h2 id="meetupFormTitle">建立球聚活動</h2>
@@ -583,7 +583,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </section>
 
-  <section id="scoreView" class="view">
+  <section id="scoreView" class="view active">
     <section class="kpis">
       <div class="card kpi"><div class="label">總球局</div><div class="value" id="kpiGames">0</div><div class="sub">所有已儲存局數</div></div>
       <div class="card kpi"><div class="label">平均分數</div><div class="value" id="kpiAvg">—</div><div class="sub">全部球局平均</div></div>
@@ -1815,7 +1815,7 @@ $('photoInput').addEventListener('change',e=>setPhoto(e.target.files&&e.target.f
 $('rotateLeftBtn').addEventListener('click',()=>rotatePhoto(-90));$('rotateRightBtn').addEventListener('click',()=>rotatePhoto(90));$('ocrBtn').addEventListener('click',runOcr);$('clearPhotoBtn').addEventListener('click',clearPhoto);$('ocrQuality').addEventListener('change',()=>{if($('photoPreview').src)previewTemplateGrid()});$('ocrMode').addEventListener('change',()=>{previewTemplateGrid();if($('ocrMode').value==='general')$('templateStatus').textContent='一般 OCR 模式：不使用固定表格欄位定位。';else previewTemplateGrid()});$('showGridGuide').addEventListener('change',()=>previewTemplateGrid());$('reparseBtn').addEventListener('click',()=>{renderOcrRows(parseOcrText($('ocrRawText').value));$('verifyFilter').value='pending';renderVerificationCenter();setOcrStatus('已重新解析；請完成待確認欄位。',100)});$('applyOcrBtn').addEventListener('click',applyOcrToSheet);
 renderOcrRows(blankOcrRows());updateStages();
 
-$('date').value=today();$('meetupDate').value=today();load();resetMeetupForm();resetRosterForm();if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll();initPwa();initSync();initGroup();startPersonalPolling();switchView('meetupView',{scroll:false});initDataSafety().then(()=>{if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll()});
+$('date').value=today();$('meetupDate').value=today();load();resetMeetupForm();resetRosterForm();if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll();initPwa();initSync();initGroup();startPersonalPolling();switchView('scoreView',{scroll:false});initDataSafety().then(()=>{if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll()});
 })();
 </script>
 </body>
