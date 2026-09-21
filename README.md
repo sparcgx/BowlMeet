@@ -1,4 +1,4 @@
-# BowlMeet v0.4.4-dev.1 — Quick Session & Player Workflow + Public Record Control
+# BowlMeet v0.4.4-dev.2 — Session Summary & Post-Game Review
 
 BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，建立玩家並進行標準 10 格即時計分。
 
@@ -20,6 +20,17 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 2. 先開 `deployment-test.html`，確認 JavaScript、HTTPS / Secure Context、IndexedDB 與 Service Worker。
 3. 再開 `index.html` 進行 BowlMeet 實機驗收。
 4. iPhone Safari 可使用「分享 → 加入主畫面」安裝為 PWA。
+
+## v0.4.4-dev.2 Session Summary & Post-Game Review
+
+- 完成球聚後自動開啟賽後摘要 Dialog。
+- 已完成球聚可從「過往球聚」再次開啟賽後摘要。
+- KPI：玩家數、正式完成局數、總分、平均、最高單局。
+- 玩家摘要：完成局、總分、平均、最高。
+- 未完成 10 格不列入正式局數、平均與最高分。
+- 可從賽後摘要直接前往「分享球聚卡」或「成績紀錄」。
+- 不新增第二套成績資料；摘要完全由既有 Meetup + Session 即時計算。
+- v0.4.4-dev.1 已完成 Device Preview & Live Regression；dev.2 從其驗收完成分支建立。
 
 ## v0.4.4-dev.1 Device Preview & Live Regression
 
