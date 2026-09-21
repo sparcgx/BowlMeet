@@ -1,0 +1,36 @@
+{
+  "name": "保齡球球聚｜BowlMeet v0.4.4-R1 Preview",
+  "short_name": "BowlMeet R1",
+  "description": "BowlMeet（保齡球球聚）v0.4.4-R1：快速球聚、標準 10 格即時計分、賽後摘要、個人分析、進階歷史搜尋、公開紀錄控制，以及完整備份／還原、Snapshot、PWA 安全更新與資料相容保護。",
+  "lang": "zh-Hant",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#ffffff",
+  "orientation": "any",
+  "categories": [
+    "sports",
+    "utilities"
+  ],
+  "icons": [
+    {
+      "src": "../../icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "../../icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "../../icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
