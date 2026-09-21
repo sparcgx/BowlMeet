@@ -1,4 +1,4 @@
-# BowlMeet v0.4.4-dev.3 — Personal Performance Analytics
+# BowlMeet v0.4.4-dev.4 — History Search & Filter Enhancement
 
 BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，建立玩家並進行標準 10 格即時計分。
 
@@ -20,6 +20,32 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 2. 先開 `deployment-test.html`，確認 JavaScript、HTTPS / Secure Context、IndexedDB 與 Service Worker。
 3. 再開 `index.html` 進行 BowlMeet 實機驗收。
 4. iPhone Safari 可使用「分享 → 加入主畫面」安裝為 PWA。
+
+## v0.4.4-dev.4 History Search & Filter Enhancement
+
+- 沿用 Unified Score History，不建立第二套歷史資料。
+- 保留來源分頁：全部 / 我的紀錄 / 公開歷史。
+- 全文搜尋擴充：日期、玩家、球館、球道、球聚名稱。
+- 新增開始日期 / 結束日期精準篩選。
+- 新增玩家、球館、球道動態選單。
+- 新增公開狀態：全部狀態 / 已公開 / 已取消公開 / 僅本機 / 公開未匯入 / 本機＋公開。
+- 來源分頁、全文搜尋、精準條件與排序可同時組合。
+- 新增篩選摘要與「清除篩選」。
+- Session ID 去重、取消公開 tombstone、本機資料安全規則維持不變。
+
+## v0.4.4-dev.4 Automated Gate
+
+- JavaScript syntax ✅ PASS
+- Static HTML duplicate ID ✅ 0
+- Literal DOM reference missing ✅ 0
+- 日期範圍 ✅ PASS
+- 玩家 ✅ PASS
+- 球館 + 球道 ✅ PASS
+- 已公開 / 已取消公開 / 僅本機 / 公開未匯入 / 本機＋公開 ✅ PASS
+- 全文搜尋球聚名稱 ✅ PASS
+- 最新 / 最舊排序 ✅ PASS
+- 來源 tab + 精準條件組合 ✅ PASS
+- 狀態：**Implementation Complete / Automated Regression PASS / Device Preview Pending**
 
 ## v0.4.4-dev.3 Manual Device Acceptance
 
