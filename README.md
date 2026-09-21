@@ -74,6 +74,15 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - Performance Advisor ✅ 0 findings
 - Security Advisor 的 SECURITY DEFINER 提示屬匿名 PWA RPC 架構預期警告；RPC 內仍以 PIN / revision 驗證存取。
 
+### R1 Freeze Decision
+
+- v0.4.4-dev.1 ～ dev.4 均已完成實機驗收。
+- R1 僅做 Regression / Data Safety 修正，不新增一般功能。
+- Full Backup / Legacy Restore 相容修正已通過自動回歸。
+- PUBLIC tombstone 與 legacy repush 防復活已再次通過 transaction + ROLLBACK。
+- 正式 main 根目錄仍維持 v0.4.3.3-R1；v0.4.4-R1 尚未合併至正式站。
+- 最後 Gate：R1 Preview 實機驗收。
+
 ## v0.4.4-dev.4 Manual Device Acceptance
 
 - 日期起 / 迄篩選 ✅ PASS
