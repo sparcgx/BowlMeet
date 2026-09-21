@@ -13,6 +13,7 @@
 <section class="card"><p><strong>dev.3 驗收重點：</strong>個人分析新增最低單局、最近 5 局，以及 Strike / Spare / Open Frame 與逐格資料覆蓋率；舊版只有總分的資料不得被推算逐格結果。</p></section>
 <section class="card"><p><strong>Public Record Control 前置：</strong>Supabase 已套用 <code>supabase_v044_public_record_control_patch.sql</code>；跨裝置 tombstone 與 R1 legacy repush 防復活測試已通過。</p></section>
 <section class="card"><p><strong>Preview Isolation：</strong>dev.3 使用獨立 localStorage / IndexedDB、獨立雲端群組 <code>V44D33</code> 與 <code>bowlmeet-preview-v044d3-*</code> Cache，不會讀寫 Stable、dev.1 或 dev.2 Preview 資料。</p></section>
+<section class="card"><p><strong>Automated Live Regression：</strong>Recent 5、最低單局、Strike / Spare / Open、逐格覆蓋、第 10 格特殊情境、雲端 Push/Pull bowlingFrames 保留與重新載入一致性均已 PASS；正式 PUBLIC 未變更。</p></section>
 <section class="card" id="checks">
 <div class="row"><span class="label">JavaScript</span><span class="status bad" id="js">未執行</span></div>
 <div class="row"><span class="label">HTTPS / Secure Context</span><span class="status" id="secure">檢查中</span></div>
