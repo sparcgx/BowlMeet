@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.4-dev.2</title>
+<title>保齡球球聚｜BowlMeet v0.4.4-dev.3</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -67,14 +67,17 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 
 
 /* v0.3.1 Player Analytics */
-.analytics-shell{padding:18px;margin-bottom:14px}.analytics-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:13px}.analytics-head h2{margin:0 0 4px;font-size:18px}.analytics-head p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}.analytics-controls{display:grid;grid-template-columns:minmax(190px,1fr) minmax(150px,.72fr);gap:9px;min-width:min(420px,100%)}.analytics-kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:9px}.analytics-kpis .mini-kpi{min-width:0}.analytics-sub{font-size:10px;color:var(--muted);margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.analytics-sub.up,.delta.up,.form-block small.up{color:var(--success)}.analytics-sub.down,.delta.down,.form-block small.down{color:var(--danger)}
+.analytics-shell{padding:18px;margin-bottom:14px}.analytics-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:13px}.analytics-head h2{margin:0 0 4px;font-size:18px}.analytics-head p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}.analytics-controls{display:grid;grid-template-columns:minmax(190px,1fr) minmax(150px,.72fr);gap:9px;min-width:min(420px,100%)}.analytics-kpis{display:grid;grid-template-columns:repeat(8,1fr);gap:9px}.analytics-kpis .mini-kpi{min-width:0}.analytics-sub{font-size:10px;color:var(--muted);margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.analytics-sub.up,.delta.up,.form-block small.up{color:var(--success)}.analytics-sub.down,.delta.down,.form-block small.down{color:var(--danger)}
 .analytics-layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(280px,.8fr);gap:14px;margin-bottom:14px}.analytics-layout.secondary{grid-template-columns:1fr 1fr}.analytics-card{padding:17px}.analytics-card h3{font-size:16px;margin:0 0 4px}.analytics-card-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:10px}.analytics-card-head p{font-size:11px;color:var(--muted);margin:0;line-height:1.5}.analytics-empty{padding:34px;text-align:center;color:var(--muted)}
 .chart-legend{display:flex;align-items:center;gap:12px;font-size:10px;color:var(--muted);white-space:nowrap}.chart-legend span{display:inline-flex;align-items:center;gap:5px}.dot{width:8px;height:8px;border-radius:50%;display:inline-block}.score-dot{background:#0f62fe}.line-key{width:20px;height:0;border-top:2px dashed #7c3aed;display:inline-block}.trend-chart{width:100%;min-height:270px;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}.trend-chart svg{width:100%;height:auto;display:block}.grid-line{stroke:#edf0f4;stroke-width:1}.threshold-line{stroke:#d9b15c;stroke-width:1;stroke-dasharray:5 5}.axis-text{fill:#7a8495;font-size:10px}.score-line{fill:none;stroke:#0f62fe;stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round}.ma-line{fill:none;stroke:#7c3aed;stroke-width:2;stroke-dasharray:6 5;stroke-linejoin:round}.score-point{fill:#fff;stroke:#0f62fe;stroke-width:2.5}.pb-label{fill:#7c3aed;font-size:10px;font-weight:800}.analytics-placeholder{padding:60px 18px;text-align:center;color:var(--muted);font-size:12px}
 .pb-grid{display:grid;gap:9px}.pb-item{border:1px solid var(--line);border-radius:11px;padding:11px;background:#fafbfc}.pb-item span{font-size:11px;color:var(--muted);display:block}.pb-item strong{font-size:24px;display:block;margin-top:3px}.pb-item small{font-size:10px;color:var(--muted);display:block;margin-top:3px;line-height:1.4}.threshold-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:9px}.threshold-grid>div{border:1px solid var(--line);border-radius:10px;padding:9px;text-align:center}.threshold-grid span{font-size:10px;color:var(--muted);display:block}.threshold-grid strong{font-size:17px;display:block;margin-top:2px}
 .monthly-bars{display:grid;gap:9px}.monthly-row{display:grid;grid-template-columns:72px 1fr 62px;gap:9px;align-items:center}.monthly-label{font-size:11px;color:#566173}.monthly-track{height:9px;background:#eef1f5;border-radius:99px;overflow:hidden}.monthly-track span{display:block;height:100%;background:#5b8def;border-radius:99px}.monthly-value{text-align:right}.monthly-value strong{font-size:12px;display:block}.monthly-value small{font-size:9px;color:var(--muted);display:block;margin-top:1px}
 .recent-form{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.form-block{border:1px solid var(--line);border-radius:12px;padding:13px;background:#fff}.form-block span{font-size:11px;color:var(--muted);display:block}.form-block strong{display:block;font-size:25px;margin-top:3px}.form-block small{font-size:10px;color:var(--muted);display:block;margin-top:3px}
+.frame-performance-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.frame-metric{border:1px solid var(--line);border-radius:12px;padding:13px;background:#fff}.frame-metric span{display:block;font-size:11px;color:var(--muted)}.frame-metric strong{display:block;font-size:25px;margin-top:3px}.frame-metric small{display:block;font-size:10px;color:var(--muted);margin-top:3px;line-height:1.45}.frame-data-note{margin-top:10px;padding:10px 12px;border-radius:11px;background:#f7f9fc;color:var(--muted);font-size:10px;line-height:1.55}.frame-data-note strong{color:var(--text)}
+@media(max-width:900px){.frame-performance-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.frame-performance-grid{grid-template-columns:1fr 1fr}}
 .player-history-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}.player-history-table{width:100%;border-collapse:collapse;min-width:760px}.player-history-table th,.player-history-table td{padding:10px 11px;border-bottom:1px solid var(--line);font-size:12px;text-align:left}.player-history-table th{background:#fafafa;color:var(--muted);position:sticky;top:0}.player-history-table tr:last-child td{border-bottom:0}.player-history-table td strong{display:block}.player-history-table td small{display:block;color:var(--muted);margin-top:2px}.history-score{font-size:17px!important;font-weight:900}.delta{font-weight:800}
-@media(max-width:1120px){.analytics-kpis{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:1120px){.analytics-kpis{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:900px){.analytics-head{align-items:stretch;flex-direction:column}.analytics-controls{min-width:0;width:100%}.analytics-layout,.analytics-layout.secondary{grid-template-columns:1fr}}
 @media(max-width:620px){.analytics-shell,.analytics-card{padding:12px}.analytics-controls{grid-template-columns:1fr}.analytics-kpis{grid-template-columns:1fr 1fr}.recent-form{grid-template-columns:1fr}.chart-legend{display:none}.trend-chart{min-height:220px}.monthly-row{grid-template-columns:66px 1fr 58px}.analytics-card-head{align-items:flex-start;flex-direction:column}}
 
@@ -97,7 +100,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 
 
 
-/* v0.4.4-dev.2 Regression Cleanup */
+/* v0.4.4-dev.3 Regression Cleanup */
 .settings-update-state{margin-top:10px;border-top:1px solid var(--line);padding-top:9px}.settings-update-state strong{display:block;font-size:11px}.settings-update-state span{display:block;margin-top:3px;font-size:10px;line-height:1.45;color:var(--muted)}
 
 /* v0.4.3.3 Navigation & Utility Consolidation */
@@ -364,7 +367,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.4-dev.2 · Session Summary & Post-Game Review</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.4-dev.3 · Personal Performance Analytics</p></div></div>
 </div></header>
 <main>
   <nav class="tabs" aria-label="功能切換">
@@ -511,7 +514,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
           <h2>設定</h2>
           <p>日常使用以「球聚現場」為主。雲端、裝置與相容性功能集中在這裡，不干擾現場記分流程。</p>
         </div>
-        <span class="pill">v0.4.4-dev.2</span>
+        <span class="pill">v0.4.4-dev.3</span>
       </section>
 
       <div class="settings-grid">
@@ -560,7 +563,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
             <div class="pwa-status" id="pwaHelp">正在檢查 PWA 狀態。</div>
           </div>
           <div class="settings-system-list">
-            <div><span>目前版本</span><strong>v0.4.4-dev.2</strong></div>
+            <div><span>目前版本</span><strong>v0.4.4-dev.3</strong></div>
             <div><span>啟動首頁</span><strong>球聚現場</strong></div>
           </div>
           <div class="settings-actions"><button class="btn primary install-btn" id="installAppBtn" type="button">安裝 App</button><button class="btn" id="settingsCheckUpdateBtn" type="button">檢查更新</button></div>
@@ -570,7 +573,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
         <section class="card settings-panel">
           <div class="settings-panel-head"><div><h2>資料與系統</h2><p>備份、還原、快照與完整性檢查集中在「資料安全」。</p></div></div>
           <div class="settings-system-list">
-            <div><span>目前版本</span><strong>v0.4.4-dev.2</strong></div>
+            <div><span>目前版本</span><strong>v0.4.4-dev.3</strong></div>
             <div><span>主要作業模式</span><strong>球聚現場</strong></div>
             <div><span>本機資料</span><strong>IndexedDB + localStorage</strong></div>
           </div>
@@ -892,10 +895,10 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
   <section id="statsView" class="view">
     <section class="card analytics-shell">
       <div class="analytics-head">
-        <div><h2>個人分析</h2><p>Player Analytics · 個人歷史、平均、趨勢與 PB。所有統計直接使用已儲存計分卡與舊版單局紀錄。</p></div>
+        <div><h2>個人分析</h2><p>Player Analytics · 正式局數、平均、PB、近期趨勢與逐格表現。總分型統計沿用歷史紀錄；Strike / Spare / Open 僅使用有完整 10 格資料的正式局。</p></div>
         <div class="analytics-controls">
           <div class="field"><label for="playerAnalyticsPlayer">球員</label><select id="playerAnalyticsPlayer"><option value="">尚無球員</option></select></div>
-          <div class="field"><label for="playerAnalyticsRange">分析範圍</label><select id="playerAnalyticsRange"><option value="all">全部歷史</option><option value="10">最近 10 局</option><option value="20">最近 20 局</option><option value="50">最近 50 局</option><option value="year">今年</option></select></div>
+          <div class="field"><label for="playerAnalyticsRange">分析範圍</label><select id="playerAnalyticsRange"><option value="all">全部歷史</option><option value="5">最近 5 局</option><option value="10">最近 10 局</option><option value="20">最近 20 局</option><option value="50">最近 50 局</option><option value="year">今年</option></select></div>
         </div>
       </div>
       <div class="analytics-kpis">
@@ -903,6 +906,8 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
         <div class="mini-kpi"><div class="cap">區間平均</div><div class="num" id="paRangeAvg">—</div><div class="analytics-sub" id="paRangeDelta">—</div></div>
         <div class="mini-kpi"><div class="cap">生涯平均</div><div class="num" id="paCareerAvg">—</div><div class="analytics-sub" id="paCareerGames">0 局</div></div>
         <div class="mini-kpi"><div class="cap">PB · 最高單局</div><div class="num" id="paPb">—</div><div class="analytics-sub" id="paPbDate">尚無紀錄</div></div>
+        <div class="mini-kpi"><div class="cap">最低單局</div><div class="num" id="paLow">—</div><div class="analytics-sub" id="paLowDate">尚無紀錄</div></div>
+        <div class="mini-kpi"><div class="cap">最近 5 局平均</div><div class="num" id="paRecent5">—</div><div class="analytics-sub">固定取最新 5 局</div></div>
         <div class="mini-kpi"><div class="cap">最近 10 局平均</div><div class="num" id="paRecent10">—</div><div class="analytics-sub">固定取最新 10 局</div></div>
         <div class="mini-kpi"><div class="cap">200+ 局數</div><div class="num" id="pa200">0</div><div class="analytics-sub" id="pa200Rate">0%</div></div>
       </div>
@@ -938,6 +943,17 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
           <div id="recentForm" class="recent-form"></div>
         </section>
       </div>
+
+      <section class="card analytics-card" style="margin-bottom:14px">
+        <div class="analytics-card-head"><div><h3>逐格表現</h3><p>Strike / Spare / Open Frame 只計入有完整 10 格逐球資料的正式完成局。</p></div><span class="pill" id="paFrameCoverage">0/0 局</span></div>
+        <div class="frame-performance-grid">
+          <div class="frame-metric"><span>Strike %</span><strong id="paStrikeRate">—</strong><small id="paStrikeCount">0 格</small></div>
+          <div class="frame-metric"><span>Spare %</span><strong id="paSpareRate">—</strong><small id="paSpareCount">0 格</small></div>
+          <div class="frame-metric"><span>Open Frame %</span><strong id="paOpenRate">—</strong><small id="paOpenCount">0 格</small></div>
+          <div class="frame-metric"><span>逐格資料覆蓋</span><strong id="paFrameCoverageRate">0%</strong><small id="paFrameCount">0 完成格</small></div>
+        </div>
+        <div class="frame-data-note" id="paFrameNote"><strong>資料口徑：</strong>舊版匯入或只存單局總分的紀錄仍會參與平均／PB，但不會被推算為 Strike / Spare / Open。</div>
+      </section>
 
       <section class="card analytics-card">
         <div class="analytics-card-head"><div><h3>個人歷史</h3><p id="historyRangeText">目前範圍內的逐局紀錄。</p></div><span class="pill" id="playerHistoryCount">0 局</span></div>
@@ -977,7 +993,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
       <div class="card safety-card"><div class="cap">主要資料庫</div><div class="num" id="safetyEngine">初始化…</div><div class="sub" id="safetyEngineSub">正在檢查 IndexedDB</div></div>
       <div class="card safety-card"><div class="cap">安全快照</div><div class="num" id="snapshotCount">0</div><div class="sub">最多保留最近 10 個</div></div>
       <div class="card safety-card"><div class="cap">最近快照</div><div class="num" id="lastSnapshotTime">—</div><div class="sub" id="lastSnapshotReason">尚無快照</div></div>
-      <div class="card safety-card"><div class="cap">資料 Schema</div><div class="num">v2</div><div class="sub">App v0.4.4-dev.2 · Local-first</div></div>
+      <div class="card safety-card"><div class="cap">資料 Schema</div><div class="num">v2</div><div class="sub">App v0.4.4-dev.3 · Local-first</div></div>
     </section>
     <div class="safety-layout">
       <section class="card safety-panel">
@@ -1061,7 +1077,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.4-dev.2 · Session Summary & Post-Game Review</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.4-dev.3 · Personal Performance Analytics</div>
 </main>
 </div>
 <script>
@@ -1085,7 +1101,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.4-dev.2';
+const APP_VERSION='0.4.4-dev.3';
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
 const BUILTIN_CLOUD=true;
