@@ -1,5 +1,5 @@
-const CACHE='bowlmeet-v0.4.2-group-history-shell';
-const RUNTIME='bowlmeet-v0.4.2-group-history-runtime';
+const CACHE='bowlmeet-v0.4.2-r1-built-in-cloud-shell';
+const RUNTIME='bowlmeet-v0.4.2-r1-built-in-cloud-runtime';
 const APP_SHELL=['./','./index.html','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-maskable-512.png'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(APP_SHELL)))});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE&&k!==RUNTIME).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
