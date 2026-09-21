@@ -617,6 +617,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
         <div class="right-actions"><button class="btn" id="newSessionBtn">新增一張</button><button class="btn primary" id="saveSessionBtn">儲存本次成績</button></div>
       </div>
       <div id="message" class="message"></div>
+      <div class="legacy-note" style="margin-top:10px">完成「儲存本次成績」後：若已加入共享群組且權限為 Host / Editor，會立即寫入「群組歷史」；離線時先保存在本機，恢復連線後再同步。</div>
     </section>
   </section>
 
@@ -1060,13 +1061,34 @@ function validateSheet(){
   return {ok:true,players:players.filter(p=>p.name&&playerNumbers(p).length)};
 }
 function mergePlayerClocks(inputPlayers,oldPlayers=[]){const now=Date.now();return inputPlayers.map(p=>{const old=oldPlayers.find(x=>x.id===p.id)||oldPlayers.find(x=>nameKey(x.name)===nameKey(p.name));const scores=Array.from({length:6},(_,i)=>normalizeScore((p.scores||[])[i]));const clocks=Array.from({length:6},(_,i)=>{const oldVal=normalizeScore((old?.scores||[])[i]),newVal=scores[i],oldClock=Number((old?.scoreUpdatedAt||[])[i])||(oldVal!==null?Number(old?.updatedAt)||0:0);return old&&oldVal===newVal?oldClock:now});return {...p,id:p.id||old?.id||uid(),scores,scoreUpdatedAt:clocks,updatedAt:Math.max(now,...clocks)}})}
-function saveSession(){
-  const v=validateSheet();if(!v.ok){flash(v.msg,'err');return}
-  const existing=sessions.find(s=>s.id===(editingId||''));const targetMeetup=currentMeetupId||(existing&&existing.meetupId)||'';if(!syncAllowWrite(targetMeetup,'儲存完整記分表'))return;const now=Date.now();const data={id:editingId||uid(),date:$('date').value,venue:$('venue').value.trim(),lane:$('lane').value.trim(),players:mergePlayerClocks(v.players,existing?.players||[]),meetupId:targetMeetup,importAudit:pendingImportAudit||(existing&&existing.importAudit)||null,updatedAt:now};
-  const idx=sessions.findIndex(s=>s.id===data.id);
-  if(idx>=0){data.createdAt=sessions[idx].createdAt||now;sessions[idx]=data;flash('計分卡已更新。')}else{data.createdAt=now;sessions.push(data);editingId=data.id;flash('本次成績已儲存。')}
-  persist();syncRosterNames(v.players.map(p=>p.name));if(data.meetupId){const m=meetups.find(x=>x.id===data.meetupId);if(m){m.date=data.date;m.venue=data.venue;m.lanes=data.lane;if(m.status==='planned')m.status='ongoing';m.participantNames=[...new Set([...(m.participantNames||[]),...v.players.map(p=>p.name).filter(Boolean)])];m.participantIds=[...new Set([...(m.participantIds||[]),...v.players.map(p=>roster.find(r=>nameKey(r.name)===nameKey(p.name))?.id).filter(Boolean)])];m.updatedAt=now;persistMeetups()}}localStorage.setItem(SETTINGS,JSON.stringify({venue:data.venue}));updateEditStatus();saveDraft();syncPersonalFromClaims(true);renderAll();
+async function saveCompletedSessionToGroupHistory(){
+  const g=getGroupConfig();
+  if(!groupLinked())return {status:'local'};
+  if(g.role==='viewer')return {status:'viewer'};
+  groupDirty=true;clearTimeout(groupPushTimer);
+  if(!navigator.onLine){groupLastError='離線 · 本次成績等待同步';renderGroupHistory();return {status:'pending'}}
+  const ok=await groupSyncNow(false,false,'score-save');
+  return ok?{status:'synced'}:{status:'pending',error:groupLastError||'同步失敗'};
 }
+async function saveSession(){
+  const v=validateSheet();if(!v.ok){flash(v.msg,'err');return}
+  const btn=$('saveSessionBtn');if(btn.disabled)return;
+  const existing=sessions.find(s=>s.id===(editingId||''));const targetMeetup=currentMeetupId||(existing&&existing.meetupId)||'';if(!syncAllowWrite(targetMeetup,'儲存完整記分表'))return;const now=Date.now();const data={id:editingId||uid(),date:$('date').value,venue:$('venue').value.trim(),lane:$('lane').value.trim(),players:mergePlayerClocks(v.players,existing?.players||[]),meetupId:targetMeetup,importAudit:pendingImportAudit||(existing&&existing.importAudit)||null,updatedAt:now};
+  const idx=sessions.findIndex(s=>s.id===data.id),isUpdate=idx>=0;
+  if(isUpdate){data.createdAt=sessions[idx].createdAt||now;sessions[idx]=data}else{data.createdAt=now;sessions.push(data);editingId=data.id}
+  persist();syncRosterNames(v.players.map(p=>p.name));
+  if(data.meetupId){const m=meetups.find(x=>x.id===data.meetupId);if(m){m.date=data.date;m.venue=data.venue;m.lanes=data.lane;if(m.status==='planned')m.status='ongoing';m.participantNames=[...new Set([...(m.participantNames||[]),...v.players.map(p=>p.name).filter(Boolean)])];m.participantIds=[...new Set([...(m.participantIds||[]),...v.players.map(p=>roster.find(r=>nameKey(r.name)===nameKey(p.name))?.id).filter(Boolean)])];m.updatedAt=now;persistMeetups()}}
+  localStorage.setItem(SETTINGS,JSON.stringify({venue:data.venue}));updateEditStatus();saveDraft();syncPersonalFromClaims(true);renderAll();
+  btn.disabled=true;btn.textContent='儲存群組歷史…';
+  try{
+    const gr=await saveCompletedSessionToGroupHistory();
+    if(gr.status==='synced')flash(isUpdate?'計分卡已更新並同步到群組歷史。':'本次成績已儲存到群組歷史。');
+    else if(gr.status==='pending')flash('本次成績已儲存在本機；群組歷史等待重新同步。','err');
+    else if(gr.status==='viewer')flash('本次成績已儲存在本機；目前群組權限為 Viewer，未寫入群組歷史。','err');
+    else flash(isUpdate?'計分卡已更新。尚未加入共享群組。':'本次成績已儲存。尚未加入共享群組。');
+  }finally{btn.disabled=false;updateEditStatus()}
+}
+
 function updateEditStatus(){const s=$('sheetStatus');if(editingId){s.textContent='編輯已儲存計分卡';$('saveSessionBtn').textContent='儲存修改'}else{s.textContent=currentMeetupId?'球聚記分尚未儲存':'尚未儲存';$('saveSessionBtn').textContent='儲存本次成績'}renderCurrentMeetup();renderRosterQuickSelect()}
 function allGames(){
   const out=[];
@@ -1393,8 +1415,8 @@ async function groupPush(payload,baseRevision){
   return syncRpc('bowling_group_push',{p_group_code:g.groupCode,p_pin:g.pin,p_payload:payload,p_base_revision:Number(baseRevision)||0,p_device_id:d.id,p_device_name:cfg.deviceName||d.name})
 }
 async function groupSyncNow(manual=true,pullOnly=false,reason='manual'){
-  const g=getGroupConfig();if(!groupLinked()){if(manual)alert('尚未加入共享群組。');return}if(groupBusy)return;if(!navigator.onLine){groupLastError='離線';if(manual)alert('目前離線；群組共享歷史保留在本機快取，恢復網路後再同步。');renderGroupHistory();return}
-  groupBusy=true;groupLastError='';renderGroupHistory();
+  const g=getGroupConfig();if(!groupLinked()){if(manual)alert('尚未加入共享群組。');return false}if(groupBusy)return false;if(!navigator.onLine){groupLastError='離線';if(manual)alert('目前離線；群組共享歷史保留在本機快取，恢復網路後再同步。');renderGroupHistory();return false}
+  groupBusy=true;groupLastError='';renderGroupHistory();let success=false;
   try{
     let remote=await groupPull();if(!remote?.ok)throw new Error(remote?.error==='not_found_or_pin'?'群組不存在或 PIN 不正確':(remote?.error||'無法讀取群組'));
     storeGroupRemote(remote.payload||{});let revision=Number(remote.revision)||0;
@@ -1407,10 +1429,11 @@ async function groupSyncNow(manual=true,pullOnly=false,reason='manual'){
       if(!pushed?.ok)throw new Error(pushed?.error||'群組歷史推送失敗');
       revision=Number(pushed.revision)||revision;storeGroupRemote(pushed.payload||payload);groupDirty=false;
     }
-    setGroupConfig({revision,lastSyncAt:Date.now(),groupName:groupRemote.groupName||g.groupName});
+    setGroupConfig({revision,lastSyncAt:Date.now(),groupName:groupRemote.groupName||g.groupName});success=true;
     if(manual)flash(pullOnly?'群組共享歷史已更新。':'群組歷史同步完成。');
   }catch(e){groupLastError=String(e?.message||e);if(manual)alert('群組同步失敗：'+groupLastError)}
   finally{groupBusy=false;renderGroupHistory()}
+  return success;
 }
 function startGroupPolling(){
   clearInterval(groupTimer);const g=getGroupConfig();if(!groupLinked()||g.auto===false)return;groupTimer=setInterval(()=>{if(!document.hidden)groupSyncNow(false,false,'poll')},GROUP_POLL_MS)
