@@ -1,4 +1,4 @@
-# BowlMeet v0.4.4-R1 — Regression & Data Safety
+# BowlMeet v0.4.4-R1-HF1 — Frame Input Focus & Scroll Hotfix
 
 BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，建立玩家並進行標準 10 格即時計分。
 
@@ -82,6 +82,17 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - PUBLIC tombstone 與 legacy repush 防復活已再次通過 transaction + ROLLBACK。
 - 正式 main 根目錄仍維持 v0.4.3.3-R1；v0.4.4-R1 尚未合併至正式站。
 - 最後 Gate：R1 Preview 實機驗收。
+
+## v0.4.4-R1-HF1 Frame Input Focus & Scroll Hotfix
+
+- Hotfix base：`stable/v0.4.4-R1`
+- 修正現場 10 格記分每次儲存後 `.live-frame-scroll` 被重設到第 1 格。
+- 儲存前記錄目前玩家、格、球與水平 scrollLeft。
+- `renderLive()` 後恢復該玩家的水平位置。
+- 一般 change 儲存只恢復畫面位置，不強制搶回焦點。
+- Enter 儲存維持原本「前進到下一個可輸入球」行為。
+- 使用 `focus({preventScroll:true})` 避免瀏覽器再次把水平捲動拉回。
+- 不修改 Session / bowlingFrames / Supabase schema / PUBLIC payload。
 
 ## v0.4.4-R1 Final Freeze & Stable Promotion
 
