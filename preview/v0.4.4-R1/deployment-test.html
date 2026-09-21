@@ -13,6 +13,7 @@
 <section class="card"><p><strong>R1 驗收重點：</strong>不新增功能；驗證 dev.1～dev.4 完整回歸、完整備份／還原、舊版備份相容、PWA 更新前快照、PUBLIC tombstone 與資料隔離。</p></section>
 <section class="card"><p><strong>Public Record Control 前置：</strong>Supabase 已套用 <code>supabase_v044_public_record_control_patch.sql</code>；跨裝置 tombstone 與 R1 legacy repush 防復活測試已通過。</p></section>
 <section class="card"><p><strong>Preview Isolation：</strong>R1 使用獨立 localStorage / IndexedDB、獨立雲端群組 <code>V44R22</code> 與 <code>bowlmeet-preview-v044r1-*</code> Cache，不會讀寫 Stable 或 dev Preview 資料。</p></section>
+<section class="card"><p><strong>R1 Final Cloud Gate：</strong>Backup / Restore、Perfect Game、未完成第 10 格、賽後摘要、個人分析、History Filter、PWA Snapshot 更新順序、PUBLIC tombstone 防復活、revision conflict、錯 PIN 與 Preview 隔離均已自動驗證 PASS。剩餘項目為實機 Device Acceptance。</p></section>
 <section class="card" id="checks">
 <div class="row"><span class="label">JavaScript</span><span class="status bad" id="js">未執行</span></div>
 <div class="row"><span class="label">HTTPS / Secure Context</span><span class="status" id="secure">檢查中</span></div>
