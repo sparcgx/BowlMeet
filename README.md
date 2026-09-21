@@ -42,7 +42,11 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 - Frame analytics regression：3 Strike / 2 Spare / 5 Open ✅ PASS
 - Frame coverage regression：1 / 2 局 = 50% ✅ PASS
 - 舊版總分資料排除逐格統計 ✅ PASS
-- 狀態：**Implementation Complete / Automated Regression PASS / Device Preview Pending**
+- Device Preview：`/preview/v0.4.4-dev.3/` ✅ Ready
+- Preview localStorage / IndexedDB / Cache / Cloud ✅ Isolated
+- Preview Cloud：`V44D33`，目前 0 sessions / 0 meetups
+- Stable PUBLIC：revision 21 / 4 sessions / 4 meetups / v0.4.3.3-R1，未變更
+- 狀態：**Implementation Complete / Automated Regression PASS / Manual Device Acceptance Pending**
 
 ## v0.4.4-dev.2 Automated Gate
 
