@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.1</title>
+<title>保齡球球聚｜BowlMeet v0.4.2</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,6 +139,18 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 
 
 
+
+/* v0.4.2 Group History & Shared Records */
+.group-tab{position:relative}.group-tab:after{content:'GROUP';font-size:8px;font-weight:900;letter-spacing:.04em;margin-left:5px;color:#7c3aed}.group-tab.active:after{color:#c4b5fd}
+.group-shell{display:grid;gap:14px}.group-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.group-kpi{padding:16px}.group-kpi .cap{font-size:11px;color:var(--muted);font-weight:750}.group-kpi .num{font-size:23px;font-weight:900;margin-top:5px;word-break:break-word}.group-kpi .sub{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.45}
+.group-layout{display:grid;grid-template-columns:1fr 1fr;gap:14px}.group-panel{padding:17px}.group-panel.wide{grid-column:1/-1}.group-panel h2{font-size:16px;margin:0 0 5px}.group-panel>p{font-size:12px;color:var(--muted);line-height:1.6;margin:0 0 13px}.group-form{display:grid;gap:10px}.group-form.two{grid-template-columns:1fr 1fr}.group-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.group-card{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fafbfc}.group-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.group-card-title{font-size:18px;font-weight:900}.group-code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:24px;font-weight:950;letter-spacing:.08em;color:#6d28d9;margin-top:7px}.group-meta{font-size:11px;color:var(--muted);line-height:1.55;margin-top:4px}.group-secret{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px}.group-secret>div{border:1px solid var(--line);border-radius:10px;padding:9px;background:#fff}.group-secret span{display:block;font-size:9px;color:var(--muted);font-weight:750}.group-secret strong{display:block;font-size:14px;margin-top:2px}
+.group-status{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;font-size:10px;font-weight:850;background:#f1f3f6;color:#5b6472}.group-status.online{background:#f0ecff;color:#6d28d9}.group-status.warn{background:#fff7e6;color:#b26a00}
+.group-toolbar{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-bottom:12px}.group-toolbar-left{display:flex;gap:8px;flex-wrap:wrap;min-width:0}.group-toolbar input,.group-toolbar select{border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:#fff}.group-toolbar input{min-width:260px}
+.group-history-list{display:grid;gap:10px}.group-session{border:1px solid var(--line);border-radius:13px;padding:13px;background:#fff}.group-session-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.group-session-title{font-weight:850}.group-session-meta{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.5}.group-readonly{font-size:10px;font-weight:850;border-radius:999px;padding:4px 8px;background:#f0ecff;color:#6d28d9;white-space:nowrap}.group-empty{padding:30px 16px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}.group-note{font-size:11px;color:var(--muted);line-height:1.55;margin-top:9px}.group-checkbox{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:700;margin-top:10px}.group-checkbox input{width:16px;height:16px}
+@media(max-width:900px){.group-layout{grid-template-columns:1fr}.group-panel.wide{grid-column:auto}.group-kpis{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.group-kpis{grid-template-columns:1fr 1fr;gap:8px}.group-kpi,.group-panel{padding:12px}.group-form.two{grid-template-columns:1fr}.group-secret{grid-template-columns:1fr}.group-actions .btn{flex:1}.group-toolbar{align-items:stretch;flex-direction:column}.group-toolbar-left{display:grid;grid-template-columns:1fr}.group-toolbar input{min-width:0;width:100%}.group-session-head{flex-direction:column}}
+
 /* v0.4.1 Mobile Horizontal Tabs */
 @media(max-width:680px){
   .tabs{
@@ -173,12 +185,12 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
   .view>*{max-width:100%;min-width:0}
   .card,.panel,.sheet-card,.photo-box,.ocr-review,.meetup-create,.meetup-side,.roster-card,.leaderboard-card,
   .analytics-shell,.analytics-card,.live-top,.live-score-panel,.live-rank-panel,.share-controls,.share-preview-card,
-  .sync-panel,.safety-card,.awards-head,.award-card,.custom-award-panel,.award-rules-panel,.personal-panel{
+  .sync-panel,.group-panel,.safety-card,.awards-head,.award-card,.custom-award-panel,.award-rules-panel,.personal-panel{
     max-width:100%;min-width:0;
   }
 
   .meetup-hero,.meetup-list,.roster-layout,.history-layout,.photo-grid,.analytics-layout,.analytics-layout.secondary,
-  .live-main,.share-layout,.sync-layout,.awards-bottom,.personal-layout{
+  .live-main,.share-layout,.sync-layout,.group-layout,.awards-bottom,.personal-layout{
     grid-template-columns:minmax(0,1fr)!important;
     width:100%;min-width:0;
   }
@@ -195,11 +207,11 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 
   .meetup-create,.meetup-side,.roster-card,.leaderboard-card,.sheet-card,.panel,.photo-box,.ocr-review,
   .analytics-shell,.analytics-card,.live-top,.live-score-panel,.live-rank-panel,.share-controls,.share-preview-card,
-  .sync-panel,.awards-head,.award-card,.custom-award-panel,.award-rules-panel,.personal-panel{
+  .sync-panel,.group-panel,.awards-head,.award-card,.custom-award-panel,.award-rules-panel,.personal-panel{
     padding:12px!important;
   }
 
-  .kpis,.live-kpis,.sync-kpis,.award-kpis,.personal-kpis,.analytics-kpis,.leaderboard-summary{
+  .kpis,.live-kpis,.sync-kpis,.group-kpis,.award-kpis,.personal-kpis,.analytics-kpis,.leaderboard-summary{
     grid-template-columns:repeat(2,minmax(0,1fr))!important;
     gap:8px!important;
   }
@@ -266,7 +278,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.1 · Player Claim / Personal Score Sync</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.2 · Group History / Shared Records</p></div></div>
   <div class="top-actions"><button class="btn install-btn" id="installAppBtn" type="button">安裝 App</button><button class="btn" id="exportBtn">備份</button><button class="btn" id="importBtn">還原</button><input type="file" id="importFile" accept="application/json,.json" hidden /></div>
 </div></header>
 <main>
@@ -274,6 +286,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     <button class="tab active" data-view="meetupView">球聚活動</button>
     <button class="tab live-tab" data-view="liveView">現場模式</button>
     <button class="tab sync-tab" data-view="syncView">多人同步</button>
+    <button class="tab group-tab" data-view="groupView">群組歷史</button>
     <button class="tab" data-view="personalView">我的成績</button>
     <button class="tab" data-view="scoreView">本次記分</button>
     <button class="tab" data-view="photoView">拍照匯入</button>
@@ -432,6 +445,70 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </section>
 
+
+
+  <section id="groupView" class="view">
+    <div class="group-shell">
+      <section class="group-kpis">
+        <div class="card group-kpi"><div class="cap">群組狀態</div><div class="num" id="groupStateKpi">未加入</div><div class="sub" id="groupStateSub">本機歷史不受影響</div></div>
+        <div class="card group-kpi"><div class="cap">Group Code</div><div class="num" id="groupCodeKpi">—</div><div class="sub" id="groupRoleSub">Host / Editor / Viewer</div></div>
+        <div class="card group-kpi"><div class="cap">共享球聚</div><div class="num" id="groupMeetupsKpi">0</div><div class="sub">群組雲端歷史</div></div>
+        <div class="card group-kpi"><div class="cap">共享計分卡</div><div class="num" id="groupSessionsKpi">0</div><div class="sub" id="groupRevisionSub">revision 0</div></div>
+      </section>
+
+      <div class="group-layout">
+        <section class="card group-panel">
+          <h2>建立共享群組</h2>
+          <p>主持人建立群組後，會把目前裝置的球聚與計分卡歷史上傳為群組共享紀錄。之後 Host / Editor 的新紀錄可持續合併進群組。</p>
+          <div class="group-form">
+            <div class="field"><label for="groupCreateName">群組名稱</label><input id="groupCreateName" maxlength="40" placeholder="例如：週六保齡球團" /></div>
+          </div>
+          <div class="group-actions"><button class="btn primary" id="createGroupBtn" type="button">建立群組並上傳歷史</button></div>
+          <div class="group-note">使用「多人同步」頁設定的 Supabase Project URL / Anon Key。Group PIN 是輕量共享憑證，不等同正式帳號登入。</div>
+        </section>
+
+        <section class="card group-panel">
+          <h2>加入既有群組</h2>
+          <p>B 方只要輸入 Group Code＋PIN，就能拉取並查看這個群組已共享的全部歷史紀錄，不需要取得 A 的本機資料。</p>
+          <div class="group-form two">
+            <div class="field"><label for="groupJoinCode">Group Code</label><input id="groupJoinCode" maxlength="6" placeholder="ABC123" autocapitalize="characters" /></div>
+            <div class="field"><label for="groupJoinPin">Group PIN</label><input id="groupJoinPin" maxlength="6" inputmode="numeric" placeholder="123456" /></div>
+            <div class="field"><label for="groupJoinRole">此裝置模式</label><select id="groupJoinRole"><option value="viewer" selected>Viewer · 只看共享歷史</option><option value="editor">Editor · 可合併本機歷史</option></select></div>
+          </div>
+          <div class="group-actions"><button class="btn primary" id="joinGroupBtn" type="button">加入並拉取全部歷史</button></div>
+          <div class="group-note">Viewer 不會把這台裝置的本機歷史上傳。Editor 進行「同步群組」時會將本機歷史與群組歷史合併。</div>
+        </section>
+
+        <section class="card group-panel wide">
+          <h2>目前群組</h2>
+          <div id="groupActiveCard" class="group-card"><div class="group-card-head"><div><div class="group-card-title">尚未加入群組</div><div class="group-meta">建立或加入群組後，這裡會顯示共享狀態。</div></div><span class="group-status">Local</span></div></div>
+          <label class="group-checkbox"><input id="groupAutoToggle" type="checkbox" checked /> 自動同步群組歷史</label>
+          <div class="group-actions">
+            <button class="btn primary" id="groupSyncBtn" type="button" disabled>同步群組</button>
+            <button class="btn" id="groupPullBtn" type="button" disabled>只拉取</button>
+            <button class="btn" id="copyGroupInviteBtn" type="button" disabled>複製群組資訊</button>
+            <button class="btn" id="importGroupHistoryBtn" type="button" disabled>匯入共享歷史至本機</button>
+            <button class="btn danger" id="leaveGroupBtn" type="button" disabled>離開群組</button>
+          </div>
+          <div class="group-note" id="groupStatusText">群組歷史與「我的成績」分開保存；加入群組不會自動改寫你的本機歷史。</div>
+        </section>
+
+        <section class="card group-panel wide">
+          <h2>群組共享歷史</h2>
+          <p>這裡顯示群組雲端中的所有共享計分卡。Viewer 可以完整查看，但不能從這個頁面刪除或修改群組紀錄。</p>
+          <div class="group-toolbar">
+            <div class="group-toolbar-left">
+              <input id="groupHistorySearch" type="search" placeholder="搜尋日期、球員、球館、球道…" />
+              <select id="groupHistorySort"><option value="newest">最新優先</option><option value="oldest">最舊優先</option></select>
+            </div>
+            <span class="pill" id="groupHistoryCount">0 張</span>
+          </div>
+          <div id="groupHistoryList" class="group-history-list"></div>
+          <div id="groupHistoryEmpty" class="group-empty">尚未拉取任何群組共享歷史。</div>
+        </section>
+      </div>
+    </div>
+  </section>
 
   <section id="personalView" class="view">
     <div class="personal-shell">
@@ -639,7 +716,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
         <div id="sessionList" class="session-list"></div>
         <div id="sessionEmpty" class="empty">尚未儲存任何計分卡。</div>
       </section>
-      <aside class="card panel"><h2>資料說明</h2><div class="legacy-note">v0.4.1 會沿用 v0.3.5～v0.1.0 的既有資料，不覆蓋舊紀錄；現場模式完成後會清空目前選擇，但歷史成績仍完整保留。</div><div class="legacy-note">每張計分卡可只輸入部分局數；空白局不會被算入總局數與平均。</div></aside>
+      <aside class="card panel"><h2>資料說明</h2><div class="legacy-note">v0.4.2 會沿用 v0.4.1～v0.1.0 的既有資料，不覆蓋舊紀錄；現場模式完成後會清空目前選擇，但歷史成績仍完整保留。</div><div class="legacy-note">每張計分卡可只輸入部分局數；空白局不會被算入總局數與平均。</div></aside>
     </div>
   </section>
 
@@ -778,7 +855,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.1 · Multi-device Sync / Local-first / Data Safety</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.2 · Group History / Shared Records / Local-first</div>
 </main>
 </div>
 <script>
@@ -796,7 +873,9 @@ const SYNCKEY='bowlingMeetup.sync.v040';
 const DEVICEKEY='bowlingMeetup.device.v040';
 const PERSONALKEY='bowlingMeetup.personal.v041';
 const PERSONALSECRETKEY='bowlingMeetup.personalAuth.v041';
-const APP_VERSION='0.4.1';
+const GROUPKEY='bowlingMeetup.group.v042';
+const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
+const APP_VERSION='0.4.2';
 const DB_NAME='bowlingMeetup.local';
 const DB_VERSION=2;
 const DB_STATE_STORE='state';
@@ -804,6 +883,7 @@ const DB_SNAPSHOT_STORE='snapshots';
 const DB_SYNC_LOG_STORE='syncLog';
 const SYNC_POLL_MS=5000;
 const PERSONAL_POLL_MS=7000;
+const GROUP_POLL_MS=10000;
 const SNAPSHOT_LIMIT=10;
 let photoFile=null; let photoRotation=0; let ocrCandidates=[]; let lastGrid=null; let pendingImportAudit=null;
 const $=id=>document.getElementById(id);
@@ -811,6 +891,7 @@ let sessions=[]; let legacy=[]; let meetups=[]; let roster=[]; let editingId='';
 let appDb=null; let dbReady=false; let dbMode='初始化中'; let dbPersistTimer=null; let pendingRestorePayload=null; let pwaRegistration=null; let pendingServiceWorker=null; let reloadingForUpdate=false;
 let syncTimer=null; let syncPushTimer=null; let syncBusy=false; let syncDirty=false; let syncApplyingRemote=false; let syncRemotePresence={}; let syncLastError='';
 let personalData={profile:null,claims:[],games:[],revision:0,lastSyncAt:0,autoSync:true,updatedAt:0}; let personalTimer=null; let personalPushTimer=null; let personalBusy=false; let personalDirty=false; let personalLastError='';
+let groupRemote={schema:1,groupName:'',meetups:[],sessions:[],updatedAt:0}; let groupTimer=null; let groupPushTimer=null; let groupBusy=false; let groupDirty=false; let groupApplyingRemote=false; let groupLastError='';
 function today(){const d=new Date();const off=d.getTimezoneOffset();return new Date(d.getTime()-off*60000).toISOString().slice(0,10)}
 function uid(){return (globalThis.crypto&&crypto.randomUUID)?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2)}
 function esc(v=''){return String(v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
@@ -894,8 +975,8 @@ function load(){
   try{const s=JSON.parse(localStorage.getItem(SETTINGS)||'{}');if(s.venue)$('venue').value=s.venue;if(s.venue)$('meetupVenue').value=s.venue}catch{}
   migrateV3();
 }
-function persist(){localStorage.setItem(V2KEY,JSON.stringify(sessions));queueDbStatePersist('sessions');scheduleCloudPush('sessions')}
-function persistMeetups(){localStorage.setItem(MEETUPKEY,JSON.stringify(meetups));queueDbStatePersist('meetups');scheduleCloudPush('meetups')}
+function persist(){localStorage.setItem(V2KEY,JSON.stringify(sessions));queueDbStatePersist('sessions');scheduleCloudPush('sessions');scheduleGroupPush('sessions')}
+function persistMeetups(){localStorage.setItem(MEETUPKEY,JSON.stringify(meetups));queueDbStatePersist('meetups');scheduleCloudPush('meetups');scheduleGroupPush('meetups')}
 function persistRoster(){localStorage.setItem(ROSTERKEY,JSON.stringify(roster));queueDbStatePersist('roster')}
 function setCurrentMeetup(id=''){currentMeetupId=id||'';if(currentMeetupId)localStorage.setItem(ACTIVEKEY,currentMeetupId);else localStorage.removeItem(ACTIVEKEY);queueDbStatePersist('active-meetup');renderCurrentMeetup();renderRosterQuickSelect()}
 function nameKey(v){return String(v||'').trim().toLocaleLowerCase('zh-Hant')}
@@ -1188,6 +1269,132 @@ function saveSyncServiceConfig(){const url=$('syncServiceUrl').value.trim(),anon
 async function testSyncService(){const url=$('syncServiceUrl').value.trim(),anonKey=$('syncAnonKey').value.trim(),deviceName=$('syncDeviceName').value.trim()||defaultDeviceName();setSyncConfig({url,anonKey,deviceName,auto:$('syncAutoToggle').checked});renderSync();if(!syncConfigured()){alert('Project URL 或 Anon Key 格式不完整。');return}try{const res=await fetch(`${cleanSupabaseUrl(getSyncConfig().url)}/rest/v1/`,{headers:{apikey:getSyncConfig().anonKey,Authorization:`Bearer ${getSyncConfig().anonKey}`}});if(!res.ok&&res.status!==404)throw new Error(`HTTP ${res.status}`);alert('已可連線到 Supabase。下一步可建立或加入房間。')}catch(e){alert(`無法連線：${e?.message||e}`)}}
 function initSync(){const params=new URLSearchParams(location.search);if(params.get('room'))$('syncJoinCode').value=params.get('room').toUpperCase().slice(0,6);if(params.get('pin'))$('syncJoinPin').value=params.get('pin').slice(0,6);if(params.get('role')==='viewer')$('syncJoinRole').value='viewer';renderSync();startSyncPolling();window.addEventListener('online',()=>{renderSync();if(getSyncConfig().enabled)syncNow(false,'online')});window.addEventListener('offline',()=>{syncLastError='離線';renderSync()});document.addEventListener('visibilitychange',()=>{if(!document.hidden&&getSyncConfig().enabled)syncNow(false,'resume')})}
 
+
+function normalizeGroupPayload(payload={}){
+  return {schema:1,appVersion:String(payload.appVersion||APP_VERSION),groupName:String(payload.groupName||''),meetups:Array.isArray(payload.meetups)?payload.meetups.map(normalizeMeetupRecord):[],sessions:Array.isArray(payload.sessions)?payload.sessions.map(normalizeSessionRecord):[],updatedAt:Number(payload.updatedAt)||0};
+}
+function getGroupConfig(){
+  const raw=safeJsonParse(localStorage.getItem(GROUPKEY),{})||{},auth=safeJsonParse(localStorage.getItem(GROUPSECRETKEY),{})||{};
+  return {enabled:!!raw.enabled,groupCode:String(raw.groupCode||'').toUpperCase(),groupName:String(raw.groupName||''),role:['host','editor','viewer'].includes(raw.role)?raw.role:'viewer',revision:Number(raw.revision)||0,lastSyncAt:Number(raw.lastSyncAt)||0,auto:raw.auto!==false,pin:String(auth.pin||'')};
+}
+function setGroupConfig(patch={}){
+  const current=getGroupConfig(),next={...current,...patch},pub={enabled:!!next.enabled,groupCode:String(next.groupCode||'').toUpperCase(),groupName:String(next.groupName||''),role:['host','editor','viewer'].includes(next.role)?next.role:'viewer',revision:Number(next.revision)||0,lastSyncAt:Number(next.lastSyncAt)||0,auto:next.auto!==false};
+  localStorage.setItem(GROUPKEY,JSON.stringify(pub));
+  if(next.pin)localStorage.setItem(GROUPSECRETKEY,JSON.stringify({pin:String(next.pin)}));else localStorage.removeItem(GROUPSECRETKEY);
+  return {...pub,pin:String(next.pin||'')};
+}
+function groupRoleLabel(role){return role==='host'?'主持人':role==='editor'?'協作者':'唯讀'}
+function groupLinked(){const g=getGroupConfig();return !!(g.enabled&&g.groupCode&&g.pin)}
+function groupCanWrite(){const g=getGroupConfig();return groupLinked()&&(g.role==='host'||g.role==='editor')}
+function mergeGroupMeetups(a=[],b=[]){
+  const map=new Map();for(const raw of [...a,...b]){const x=normalizeMeetupRecord(raw),old=map.get(x.id);if(!old||itemStamp(x)>=itemStamp(old))map.set(x.id,x)}return [...map.values()]
+}
+function mergeGroupSessions(a=[],b=[]){
+  const map=new Map();for(const raw of a){const x=normalizeSessionRecord(raw);map.set(x.id,x)}
+  for(const raw of b){const x=normalizeSessionRecord(raw),old=map.get(x.id);map.set(x.id,old?mergeSyncSession(old,x):x)}
+  return [...map.values()]
+}
+function buildGroupPayload(remotePayload=groupRemote){
+  const remote=normalizeGroupPayload(remotePayload),g=getGroupConfig(),mergedMeetups=mergeGroupMeetups(remote.meetups,meetups),mergedSessions=mergeGroupSessions(remote.sessions,sessions);
+  return {schema:1,appVersion:APP_VERSION,groupName:g.groupName||remote.groupName||'BowlMeet Group',meetups:mergedMeetups,sessions:mergedSessions,updatedAt:Date.now()};
+}
+function storeGroupRemote(payload){
+  groupRemote=normalizeGroupPayload(payload||{});
+}
+function scheduleGroupPush(reason='local-change'){
+  if(groupApplyingRemote)return;const g=getGroupConfig();if(!g.enabled||g.role==='viewer'||!g.auto)return;groupDirty=true;clearTimeout(groupPushTimer);groupPushTimer=setTimeout(()=>groupSyncNow(false,false,reason),1400)
+}
+async function groupPull(){
+  const g=getGroupConfig();return syncRpc('bowling_group_pull',{p_group_code:g.groupCode,p_pin:g.pin})
+}
+async function groupPush(payload,baseRevision){
+  const g=getGroupConfig(),d=syncDevice(),cfg=getSyncConfig();
+  return syncRpc('bowling_group_push',{p_group_code:g.groupCode,p_pin:g.pin,p_payload:payload,p_base_revision:Number(baseRevision)||0,p_device_id:d.id,p_device_name:cfg.deviceName||d.name})
+}
+async function groupSyncNow(manual=true,pullOnly=false,reason='manual'){
+  const g=getGroupConfig();if(!groupLinked()){if(manual)alert('尚未加入共享群組。');return}if(groupBusy)return;if(!navigator.onLine){groupLastError='離線';if(manual)alert('目前離線；群組共享歷史保留在本機快取，恢復網路後再同步。');renderGroupHistory();return}
+  groupBusy=true;groupLastError='';renderGroupHistory();
+  try{
+    let remote=await groupPull();if(!remote?.ok)throw new Error(remote?.error==='not_found_or_pin'?'群組不存在或 PIN 不正確':(remote?.error||'無法讀取群組'));
+    storeGroupRemote(remote.payload||{});let revision=Number(remote.revision)||0;
+    if(groupCanWrite()&&!pullOnly&&(groupDirty||manual)){
+      let payload=buildGroupPayload(remote.payload||{});
+      let pushed=await groupPush(payload,revision);
+      if(pushed?.conflict){
+        storeGroupRemote(pushed.payload||{});revision=Number(pushed.revision)||revision;payload=buildGroupPayload(pushed.payload||{});pushed=await groupPush(payload,revision);
+      }
+      if(!pushed?.ok)throw new Error(pushed?.error||'群組歷史推送失敗');
+      revision=Number(pushed.revision)||revision;storeGroupRemote(pushed.payload||payload);groupDirty=false;
+    }
+    setGroupConfig({revision,lastSyncAt:Date.now(),groupName:groupRemote.groupName||g.groupName});
+    if(manual)flash(pullOnly?'群組共享歷史已更新。':'群組歷史同步完成。');
+  }catch(e){groupLastError=String(e?.message||e);if(manual)alert('群組同步失敗：'+groupLastError)}
+  finally{groupBusy=false;renderGroupHistory()}
+}
+function startGroupPolling(){
+  clearInterval(groupTimer);const g=getGroupConfig();if(!groupLinked()||g.auto===false)return;groupTimer=setInterval(()=>{if(!document.hidden)groupSyncNow(false,false,'poll')},GROUP_POLL_MS)
+}
+async function createGroup(){
+  if(!syncConfigured()){alert('請先到「多人同步」完成 Supabase Project URL / Anon Key 設定。');return}
+  const name=$('groupCreateName').value.trim()||'BowlMeet Group';await createSnapshot('建立共享群組前');
+  const code=roomCode(),pin=roomPin(),d=syncDevice(),cfg=getSyncConfig();try{
+    const temp={enabled:true,groupCode:code,groupName:name,role:'host',pin,revision:0,lastSyncAt:0,auto:true};setGroupConfig(temp);
+    const payload=buildGroupPayload({groupName:name,meetups:[],sessions:[]});
+    const r=await syncRpc('bowling_group_create',{p_group_code:code,p_pin:pin,p_group_name:name,p_payload:payload,p_device_id:d.id,p_device_name:cfg.deviceName||d.name});
+    if(!r?.ok)throw new Error(r?.error||'建立群組失敗');
+    setGroupConfig({...temp,revision:Number(r.revision)||1,lastSyncAt:Date.now()});storeGroupRemote(r.payload||payload);groupDirty=false;startGroupPolling();renderGroupHistory();switchView('groupView');
+    alert('共享群組已建立。\n\nGroup Code：'+code+'\nGroup PIN：'+pin+'\n\n任何取得這組資訊的人都能查看群組共享歷史，請只分享給群組成員。');
+  }catch(e){setGroupConfig({enabled:false,groupCode:'',groupName:'',role:'viewer',pin:'',revision:0,lastSyncAt:0});alert('建立群組失敗：'+(e?.message||e))}
+}
+async function joinGroup(){
+  if(!syncConfigured()){alert('請先到「多人同步」完成 Supabase 同步服務設定。');return}
+  const code=$('groupJoinCode').value.trim().toUpperCase(),pin=$('groupJoinPin').value.trim(),role=$('groupJoinRole').value;
+  if(!/^[A-Z2-9]{6}$/.test(code)){alert('Group Code 需為 6 碼英數字。');return}if(!/^\d{6}$/.test(pin)){alert('Group PIN 需為 6 位數字。');return}
+  try{
+    const r=await syncRpc('bowling_group_pull',{p_group_code:code,p_pin:pin});if(!r?.ok)throw new Error(r?.error==='not_found_or_pin'?'群組不存在或 PIN 不正確':(r?.error||'加入失敗'));
+    storeGroupRemote(r.payload||{});setGroupConfig({enabled:true,groupCode:code,groupName:String(r.group_name||groupRemote.groupName||'BowlMeet Group'),role:role==='editor'?'editor':'viewer',pin,revision:Number(r.revision)||0,lastSyncAt:Date.now(),auto:true});groupDirty=false;startGroupPolling();renderGroupHistory();switchView('groupView');flash('已加入群組並拉取全部共享歷史。');
+  }catch(e){alert('加入群組失敗：'+(e?.message||e))}
+}
+async function leaveGroup(){
+  const g=getGroupConfig();if(!g.enabled)return;if(!confirm('確定離開共享群組 '+g.groupCode+'？本機既有成績不會被刪除。'))return;
+  clearInterval(groupTimer);clearTimeout(groupPushTimer);setGroupConfig({enabled:false,groupCode:'',groupName:'',role:'viewer',pin:'',revision:0,lastSyncAt:0,auto:true});groupRemote=normalizeGroupPayload({});groupDirty=false;groupLastError='';renderGroupHistory()
+}
+async function copyGroupInvite(){
+  if(!groupLinked())return;const g=getGroupConfig(),base=(location.protocol==='http:'||location.protocol==='https:')?location.origin+location.pathname:'';
+  const text='BowlMeet 共享群組\n群組：'+(g.groupName||'BowlMeet Group')+'\nGroup Code：'+g.groupCode+'\nGroup PIN：'+g.pin+'\n建議模式：Viewer'+(base?'\n網址：'+base+'?group='+encodeURIComponent(g.groupCode):'')+'\n\n任何取得 Code＋PIN 的人都能查看共享歷史。';
+  if(await copyText(text))alert('群組資訊已複製。')
+}
+async function importGroupHistory(){
+  if(!groupLinked()){alert('尚未加入共享群組。');return}const remote=normalizeGroupPayload(groupRemote);if(!remote.sessions.length&&!remote.meetups.length){alert('目前沒有可匯入的群組歷史。');return}
+  if(!confirm('要把群組共享歷史合併到這台裝置的本機紀錄嗎？\n\n不會刪除現有資料，且套用前會先建立安全快照。'))return;
+  await createSnapshot('匯入群組共享歷史前');groupApplyingRemote=true;try{
+    meetups=mergeGroupMeetups(meetups,remote.meetups);sessions=mergeGroupSessions(sessions,remote.sessions);
+    localStorage.setItem(MEETUPKEY,JSON.stringify(meetups));localStorage.setItem(V2KEY,JSON.stringify(sessions));
+    const names=[];for(const s of remote.sessions)for(const p of s.players||[])if(p.name)names.push(p.name);syncRosterNames(names);queueDbStatePersist('group-history-import');syncPersonalFromClaims(true);renderAll();flash('群組共享歷史已合併到本機。');
+  }finally{groupApplyingRemote=false}
+}
+function groupHistoryRows(){
+  const q=($('groupHistorySearch')?.value||'').trim().toLowerCase(),sort=$('groupHistorySort')?.value||'newest',p=normalizeGroupPayload(groupRemote),mm=new Map(p.meetups.map(m=>[m.id,m]));
+  let list=p.sessions.filter(s=>{const m=mm.get(s.meetupId);const hay=[s.date,s.venue,s.lane,m?.title,...(s.players||[]).map(x=>x.name)].join(' ').toLowerCase();return !q||hay.includes(q)});
+  list=[...list].sort((a,b)=>sort==='oldest'?String(a.date).localeCompare(String(b.date))||a.createdAt-b.createdAt:String(b.date).localeCompare(String(a.date))||b.createdAt-a.createdAt);
+  return {list,meetupMap:mm,payload:p}
+}
+function renderGroupHistory(){
+  if(!$('groupStateKpi'))return;const g=getGroupConfig(),linked=groupLinked(),{list,meetupMap,payload}=groupHistoryRows();
+  $('groupStateKpi').textContent=groupBusy?'同步中…':linked?(groupLastError?'待重試':'已加入'):'未加入';
+  $('groupStateSub').textContent=groupLastError||(linked?(g.lastSyncAt?'最後同步 '+new Date(g.lastSyncAt).toLocaleTimeString('zh-TW'):'等待首次同步'):'本機歷史不受影響');
+  $('groupCodeKpi').textContent=linked?g.groupCode:'—';$('groupRoleSub').textContent=linked?groupRoleLabel(g.role):'Host / Editor / Viewer';$('groupMeetupsKpi').textContent=payload.meetups.length;$('groupSessionsKpi').textContent=payload.sessions.length;$('groupRevisionSub').textContent='revision '+(g.revision||0);
+  const card=$('groupActiveCard');if(linked){card.innerHTML='<div class="group-card-head"><div><div class="group-card-title">'+esc(g.groupName||payload.groupName||'BowlMeet Group')+'</div><div class="group-code">'+esc(g.groupCode)+'</div><div class="group-meta">'+esc(groupRoleLabel(g.role))+' · '+payload.meetups.length+' 場球聚 · '+payload.sessions.length+' 張計分卡</div></div><span class="group-status '+(!groupLastError&&navigator.onLine?'online':'warn')+'">'+(groupBusy?'同步中':navigator.onLine?'Cloud Linked':'離線')+'</span></div><div class="group-secret"><div><span>Group PIN</span><strong>'+esc(g.pin)+'</strong></div><div><span>資料模式</span><strong>'+esc(g.role==='viewer'?'唯讀共享歷史':'可合併本機歷史')+'</strong></div></div>'}else{card.innerHTML='<div class="group-card-head"><div><div class="group-card-title">尚未加入群組</div><div class="group-meta">建立或加入群組後，這裡會顯示共享狀態。</div></div><span class="group-status">Local</span></div>'}
+  $('groupAutoToggle').checked=g.auto!==false;$('groupSyncBtn').disabled=!linked||g.role==='viewer';$('groupPullBtn').disabled=!linked;$('copyGroupInviteBtn').disabled=!linked;$('importGroupHistoryBtn').disabled=!linked||(!payload.meetups.length&&!payload.sessions.length);$('leaveGroupBtn').disabled=!linked;
+  $('groupStatusText').textContent=linked?(g.role==='viewer'?'Viewer：可查看所有群組歷史，但不會上傳這台裝置的本機紀錄。':'Host / Editor：同步時會把本機歷史與雲端群組歷史做增量合併。'):'群組歷史與「我的成績」分開保存；加入群組不會自動改寫你的本機歷史。';
+  $('groupHistoryCount').textContent=list.length+' 張';$('groupHistoryEmpty').style.display=list.length?'none':'block';
+  $('groupHistoryList').innerHTML=list.map(s=>{const m=meetupMap.get(s.meetupId),sm=sessionSummary(s),rows=(s.players||[]).map(p=>{const pc=playerCalc(p);return '<div class="mv">'+esc(p.name)+'</div><div>'+pc.count+' 局</div><div>'+pc.total+'</div><div>'+(pc.avg??'—')+'</div>'}).join('');return '<article class="group-session"><div class="group-session-head"><div><div class="group-session-title">'+esc(fmtDate(s.date))+' · '+esc(m?.title||s.venue||'共享紀錄')+'</div><div class="group-session-meta">'+(s.venue?esc(s.venue)+' · ':'')+(s.lane?'球道 '+esc(s.lane)+' · ':'')+sm.games+' 局 · 平均 '+(sm.avg??'—')+(sm.best!==null?' · 最高 '+sm.best+' ('+esc(sm.bestName)+')':'')+'</div></div><span class="group-readonly">Shared</span></div><div class="mini-grid"><div class="mh">球員</div><div class="mh">局數</div><div class="mh">總分</div><div class="mh">平均</div>'+rows+'</div></article>'}).join('');
+}
+function initGroup(){
+  const params=new URLSearchParams(location.search);if(params.get('group')&&$('groupJoinCode'))$('groupJoinCode').value=params.get('group').toUpperCase().slice(0,6);
+  renderGroupHistory();startGroupPolling();window.addEventListener('online',()=>{renderGroupHistory();if(groupLinked())groupSyncNow(false,false,'online')});window.addEventListener('offline',()=>{groupLastError='離線';renderGroupHistory()});document.addEventListener('visibilitychange',()=>{if(!document.hidden&&groupLinked())groupSyncNow(false,false,'resume')})
+}
+
 function livePrefs(){try{const x=JSON.parse(localStorage.getItem(LIVEKEY)||'{}');return x&&typeof x==='object'?x:{}}catch{return {}}}
 function saveLivePrefs(){const p=livePrefs();if(currentMeetupId)p[currentMeetupId]={gameNo:liveGameNo,metric:liveMetric};localStorage.setItem(LIVEKEY,JSON.stringify(p));queueDbStatePersist('live-state')}
 function liveRecommendedRound(m,s){const planned=Math.max(1,Math.min(6,Number(m?.plannedGames)||6));const players=(s?.players||[]).filter(p=>String(p.name||'').trim());for(let i=0;i<planned;i++){if(players.some(p=>normalizeScore((p.scores||[])[i])===null))return i+1}return planned}
@@ -1457,7 +1664,7 @@ function renderPersonal(){
   const rows=[...personalData.games].sort((a,b)=>String(b.date).localeCompare(String(a.date))||b.gameNo-a.gameNo||b.updatedAt-a.updatedAt);$('personalHistoryCount').textContent=`${rows.length} 局`;$('personalHistoryEmpty').style.display=rows.length?'none':'block';$('personalHistoryBody').innerHTML=rows.map(g=>`<tr><td>${esc(fmtDate(g.date))}</td><td>${esc(g.meetupTitle||'球聚')}</td><td>${esc(g.venue||'—')}</td><td>${esc(g.lane||'—')}</td><td>G${esc(g.gameNo)}</td><td class="personal-score">${esc(g.score)}</td><td>${esc(g.sourcePlayerName||'—')}</td></tr>`).join('')
 }
 
-function renderAll(){renderKpis();renderHistory();renderStats();renderMeetups();renderRoster();renderLeaderboard();renderAwards();renderRosterQuickSelect();refreshSheetCalcs();renderShareOptions();renderSafety();renderSync();renderPersonal();if(document.getElementById('liveView')?.classList.contains('active'))renderLive()}
+function renderAll(){renderKpis();renderHistory();renderStats();renderMeetups();renderRoster();renderLeaderboard();renderAwards();renderRosterQuickSelect();refreshSheetCalcs();renderShareOptions();renderSafety();renderSync();renderGroupHistory();renderPersonal();if(document.getElementById('liveView')?.classList.contains('active'))renderLive()}
 
 function loadSession(id){const s=sessions.find(x=>x.id===id);if(!s)return;editingId=s.id;setCurrentMeetup(s.meetupId||'');pendingImportAudit=s.importAudit||null;$('date').value=s.date||today();$('venue').value=s.venue||'';$('lane').value=s.lane||'';renderScoreRows((s.players||[]).map(p=>({id:p.id||uid(),name:p.name||'',scores:p.scores||[]})));updateEditStatus();saveDraft();switchView('scoreView');window.scrollTo({top:0,behavior:'smooth'})}
 function deleteSession(id){const s=sessions.find(x=>x.id===id);if(!s)return;if(!confirm(`確定刪除 ${fmtDate(s.date)} 的這張計分卡？`))return;sessions=sessions.filter(x=>x.id!==id);persist();if(editingId===id)newSheet(false);renderAll()}
@@ -1468,6 +1675,7 @@ function switchView(id){
   if(id==='awardsView')renderAwards();
   if(id==='liveView')renderLive();
   if(id==='syncView')renderSync();
+  if(id==='groupView')renderGroupHistory();
   if(id==='personalView')renderPersonal();
   if(window.matchMedia?.('(max-width:680px)').matches){
     const active=[...document.querySelectorAll('.tab[data-view]')].find(t=>t.dataset.view===id);
@@ -1509,6 +1717,9 @@ $('liveShareBtn').addEventListener('click',()=>{if(!currentMeetupId)return;switc
 
 $('saveSyncConfigBtn').addEventListener('click',saveSyncServiceConfig);$('testSyncServiceBtn').addEventListener('click',testSyncService);$('createSyncRoomBtn').addEventListener('click',createSyncRoom);$('joinSyncRoomBtn').addEventListener('click',joinSyncRoom);$('syncNowBtn').addEventListener('click',()=>syncNow(true,'manual'));$('leaveSyncRoomBtn').addEventListener('click',leaveSyncRoom);$('copySyncInviteBtn').addEventListener('click',async()=>{if(await copyText(inviteText()))alert('邀請資訊已複製。')});$('syncAutoToggle').addEventListener('change',e=>{setSyncConfig({auto:e.target.checked});startSyncPolling();renderSync()});
 
+
+$('createGroupBtn').addEventListener('click',createGroup);$('joinGroupBtn').addEventListener('click',joinGroup);$('groupSyncBtn').addEventListener('click',()=>groupSyncNow(true,false,'manual'));$('groupPullBtn').addEventListener('click',()=>groupSyncNow(true,true,'manual-pull'));$('copyGroupInviteBtn').addEventListener('click',copyGroupInvite);$('importGroupHistoryBtn').addEventListener('click',importGroupHistory);$('leaveGroupBtn').addEventListener('click',leaveGroup);$('groupAutoToggle').addEventListener('change',e=>{setGroupConfig({auto:e.target.checked});startGroupPolling();renderGroupHistory()});$('groupHistorySearch').addEventListener('input',renderGroupHistory);$('groupHistorySort').addEventListener('change',renderGroupHistory);
+
 $('createPersonalProfileBtn').addEventListener('click',createPersonalProfile);$('linkPersonalProfileBtn').addEventListener('click',linkPersonalProfile);$('copyPersonalLoginBtn').addEventListener('click',copyPersonalLogin);$('disconnectPersonalBtn').addEventListener('click',disconnectPersonal);$('pullPersonalBtn').addEventListener('click',()=>syncPersonalNow(true,true,'manual-pull'));$('syncPersonalBtn').addEventListener('click',()=>syncPersonalNow(true,false,'manual'));$('personalAutoSync').addEventListener('change',e=>{personalData.autoSync=e.target.checked;persistPersonalLocal(false,'personal-auto');startPersonalPolling()});$('personalClaimMeetup').addEventListener('change',renderPersonalPlayerOptions);$('claimPlayerBtn').addEventListener('click',claimSelectedPlayer);$('personalClaimList').addEventListener('click',e=>{const b=e.target.closest('[data-unclaim]');if(b)removePersonalClaim(b.dataset.unclaim)});
 $('installAppBtn').addEventListener('click',installPwa);$('shareCardType').addEventListener('change',()=>updateShareControls(true));$('shareMeetup').addEventListener('change',()=>{updateShareControls(false);drawShareCard()});$('shareMetric').addEventListener('change',drawShareCard);$('shareTopN').addEventListener('change',drawShareCard);$('shareCardTitle').addEventListener('input',()=>{clearTimeout(drawShareCard.t);drawShareCard.t=setTimeout(drawShareCard,180)});$('refreshShareBtn').addEventListener('click',drawShareCard);$('downloadShareBtn').addEventListener('click',downloadShareCard);$('nativeShareBtn').addEventListener('click',nativeShareCard);
 $('createSnapshotBtn').addEventListener('click',async()=>{const s=await createSnapshot('手動快照');if(s)alert('安全快照已建立。');else alert('目前無法建立 IndexedDB 快照。')});
@@ -1523,7 +1734,7 @@ $('photoInput').addEventListener('change',e=>setPhoto(e.target.files&&e.target.f
 $('rotateLeftBtn').addEventListener('click',()=>rotatePhoto(-90));$('rotateRightBtn').addEventListener('click',()=>rotatePhoto(90));$('ocrBtn').addEventListener('click',runOcr);$('clearPhotoBtn').addEventListener('click',clearPhoto);$('ocrMode').addEventListener('change',()=>{previewTemplateGrid();if($('ocrMode').value==='general')$('templateStatus').textContent='一般 OCR 模式：不使用固定表格欄位定位。';else previewTemplateGrid()});$('showGridGuide').addEventListener('change',()=>previewTemplateGrid());$('reparseBtn').addEventListener('click',()=>{renderOcrRows(parseOcrText($('ocrRawText').value));$('verifyFilter').value='pending';renderVerificationCenter();setOcrStatus('已重新解析；請完成待確認欄位。',100)});$('applyOcrBtn').addEventListener('click',applyOcrToSheet);
 renderOcrRows(blankOcrRows());updateStages();
 
-$('date').value=today();$('meetupDate').value=today();load();resetMeetupForm();resetRosterForm();if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll();initPwa();initSync();startPersonalPolling();switchView('meetupView',{scroll:false});initDataSafety().then(()=>{if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll()});
+$('date').value=today();$('meetupDate').value=today();load();resetMeetupForm();resetRosterForm();if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll();initPwa();initSync();initGroup();startPersonalPolling();switchView('meetupView',{scroll:false});initDataSafety().then(()=>{if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll()});
 })();
 </script>
 </body>
