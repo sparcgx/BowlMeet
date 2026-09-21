@@ -46,7 +46,12 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 - Preview localStorage / IndexedDB / Cache / Cloud ✅ Isolated
 - Preview Cloud：`V44D33`，目前 0 sessions / 0 meetups
 - Stable PUBLIC：revision 21 / 4 sessions / 4 meetups / v0.4.3.3-R1，未變更
-- 狀態：**Implementation Complete / Automated Regression PASS / Manual Device Acceptance Pending**
+- 雲端 Push / Pull 保留完整 bowlingFrames ✅ PASS
+- 第 10 格 Strike / Spare / Open ✅ PASS
+- JSON / normalize reload 後逐格分析一致 ✅ PASS
+- Preview Cloud rollback 後仍為 0 sessions / 0 meetups ✅ PASS
+- 正式 PUBLIC 維持 revision 21 ✅ 未變更
+- 狀態：**Device Preview & Automated Live Regression PASS / Manual Device Acceptance Pending**
 
 ## v0.4.4-dev.2 Automated Gate
 
