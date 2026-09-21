@@ -1,4 +1,4 @@
-# BowlMeet v0.4.2-R1 — Built-in Cloud Configuration
+# BowlMeet v0.4.2-R2 — OCR Quality Enhancement
 
 這個目錄可直接放到 GitHub Pages。
 
@@ -54,3 +54,14 @@
 - Group Code / Group PIN、Room PIN、Personal PIN 仍維持動態與個別儲存。
 - 不包含 PostgreSQL 密碼、service_role 或 secret key。
 - v0.4.2 Group History 第一次使用前仍需在 Supabase SQL Editor 執行最新版 `supabase_schema.sql`。
+
+
+## v0.4.2-R2 OCR Quality Enhancement
+
+- 拍照匯入新增「高品質 / 標準 / 快速」辨識品質。
+- 高品質模式提高處理解析度，逐格進行多次 OCR。
+- 藍色手寫筆跡自動分離，降低表格線與印刷字干擾。
+- 分數使用數字白名單與多種 PSM 結果比對；結果一致時提升信心，互相矛盾時降低信心並要求人工確認。
+- 姓名也採多重辨識，低信心欄位仍保留人工驗證。
+- 低解析度照片會顯示拍攝品質提示。
+- 驗證中心會顯示多重辨識 PASS 標示。
