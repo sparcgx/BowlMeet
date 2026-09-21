@@ -1,4 +1,4 @@
-# BowlMeet v0.4.2-R2 — OCR Quality Enhancement
+# BowlMeet v0.4.2-R3 — Personal PIN Change
 
 這個目錄可直接放到 GitHub Pages。
 
@@ -65,3 +65,13 @@
 - 姓名也採多重辨識，低信心欄位仍保留人工驗證。
 - 低解析度照片會顯示拍攝品質提示。
 - 驗證中心會顯示多重辨識 PASS 標示。
+
+
+## v0.4.2-R3 Personal PIN Change
+
+- 「我的 BowlMeet 身分」在已連結狀態新增「變更密碼」。
+- 變更流程需輸入目前 Personal PIN、新 PIN、再次確認新 PIN。
+- 新 PIN 仍限制 6 位數字。
+- 變更成功後舊 PIN 立即失效，Player ID 與個人成績維持不變。
+- 目前裝置會自動改用新 PIN；其他已連結裝置需要使用新 PIN 重新連結。
+- 新增 Supabase RPC `bowling_player_change_pin`；部署後需重新執行最新版 `supabase_schema.sql`。
