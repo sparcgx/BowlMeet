@@ -393,7 +393,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
       <section class="sync-kpis">
         <div class="card sync-kpi"><div class="cap">同步狀態</div><div class="num" id="syncStateKpi">未連線</div><div class="sub" id="syncStateSub">本機資料正常</div></div>
         <div class="card sync-kpi"><div class="cap">球聚房間</div><div class="num" id="syncRoomKpi">—</div><div class="sub" id="syncRoomSub">尚未加入</div></div>
-        <div class="card sync-kpi"><div class="cap">此裝置權限</div><div class="num" id="syncRoleKpi">—</div><div class="sub" id="syncRoleSub">Host / Editor / Viewer</div></div>
+        <div class="card sync-kpi"><div class="cap">此裝置權限</div><div class="num" id="syncRoleKpi">—</div><div class="sub" id="syncRoleSub">所有成員可讀寫</div></div>
         <div class="card sync-kpi"><div class="cap">近期裝置</div><div class="num" id="syncDevicesKpi">0</div><div class="sub">5 分鐘內有活動</div></div>
       </section>
 
@@ -471,7 +471,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     <div class="group-shell">
       <section class="group-kpis">
         <div class="card group-kpi"><div class="cap">群組狀態</div><div class="num" id="groupStateKpi">未加入</div><div class="sub" id="groupStateSub">本機歷史不受影響</div></div>
-        <div class="card group-kpi"><div class="cap">Group Code</div><div class="num" id="groupCodeKpi">—</div><div class="sub" id="groupRoleSub">Host / Editor / Viewer</div></div>
+        <div class="card group-kpi"><div class="cap">Group Code</div><div class="num" id="groupCodeKpi">—</div><div class="sub" id="groupRoleSub">所有成員可讀寫</div></div>
         <div class="card group-kpi"><div class="cap">共享球聚</div><div class="num" id="groupMeetupsKpi">0</div><div class="sub">群組雲端歷史</div></div>
         <div class="card group-kpi"><div class="cap">共享計分卡</div><div class="num" id="groupSessionsKpi">0</div><div class="sub" id="groupRevisionSub">revision 0</div></div>
       </section>
@@ -493,10 +493,10 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
           <div class="group-form two">
             <div class="field"><label for="groupJoinCode">Group Code</label><input id="groupJoinCode" maxlength="6" placeholder="ABC123" autocapitalize="characters" /></div>
             <div class="field"><label for="groupJoinPin">Group PIN</label><input id="groupJoinPin" maxlength="6" inputmode="numeric" placeholder="123456" /></div>
-            <div class="field"><label for="groupJoinRole">此裝置模式</label><select id="groupJoinRole"><option value="viewer" selected>Viewer · 只看共享歷史</option><option value="editor">Editor · 可合併本機歷史</option></select></div>
+            <div class="field"><label>群組權限</label><input value="所有成員皆可查看與寫入" readonly /></div>
           </div>
           <div class="group-actions"><button class="btn primary" id="joinGroupBtn" type="button">加入並拉取全部歷史</button></div>
-          <div class="group-note">Viewer 不會把這台裝置的本機歷史上傳。Editor 進行「同步群組」時會將本機歷史與群組歷史合併。</div>
+          <div class="group-note">加入群組後，每位成員都可以查看共享歷史，也可以把自己的本次計分與本機歷史同步到群組。</div>
         </section>
 
         <section class="card group-panel wide">
@@ -515,7 +515,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 
         <section class="card group-panel wide">
           <h2>群組共享歷史</h2>
-          <p>這裡顯示群組雲端中的所有共享計分卡。Viewer 可以完整查看，但不能從這個頁面刪除或修改群組紀錄。</p>
+          <p>這裡顯示群組雲端中的所有共享計分卡。所有群組成員都可以查看並新增／同步自己的計分紀錄。</p>
           <div class="group-toolbar">
             <div class="group-toolbar-left">
               <input id="groupHistorySearch" type="search" placeholder="搜尋日期、球員、球館、球道…" />
@@ -617,7 +617,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
         <div class="right-actions"><button class="btn" id="newSessionBtn">新增一張</button><button class="btn primary" id="saveSessionBtn">儲存本次成績</button></div>
       </div>
       <div id="message" class="message"></div>
-      <div class="legacy-note" style="margin-top:10px">完成「儲存本次成績」後：若已加入共享群組且權限為 Host / Editor，會立即寫入「群組歷史」；離線時先保存在本機，恢復連線後再同步。</div>
+      <div class="legacy-note" style="margin-top:10px">完成「儲存本次成績」後：若已加入共享群組，任何成員儲存後都會立即寫入「群組歷史」；離線時先保存在本機，恢復連線後再同步。</div>
     </section>
   </section>
 
@@ -1064,7 +1064,6 @@ function mergePlayerClocks(inputPlayers,oldPlayers=[]){const now=Date.now();retu
 async function saveCompletedSessionToGroupHistory(){
   const g=getGroupConfig();
   if(!groupLinked())return {status:'local'};
-  if(g.role==='viewer')return {status:'viewer'};
   groupDirty=true;clearTimeout(groupPushTimer);
   if(!navigator.onLine){groupLastError='離線 · 本次成績等待同步';renderGroupHistory();return {status:'pending'}}
   const ok=await groupSyncNow(false,false,'score-save');
@@ -1084,7 +1083,6 @@ async function saveSession(){
     const gr=await saveCompletedSessionToGroupHistory();
     if(gr.status==='synced')flash(isUpdate?'計分卡已更新並同步到群組歷史。':'本次成績已儲存到群組歷史。');
     else if(gr.status==='pending')flash('本次成績已儲存在本機；群組歷史等待重新同步。','err');
-    else if(gr.status==='viewer')flash('本次成績已儲存在本機；目前群組權限為 Viewer，未寫入群組歷史。','err');
     else flash(isUpdate?'計分卡已更新。尚未加入共享群組。':'本次成績已儲存。尚未加入共享群組。');
   }finally{btn.disabled=false;updateEditStatus()}
 }
@@ -1366,7 +1364,7 @@ async function createSyncRoom(){if(!syncConfigured()){alert('BowlMeet Cloud 尚�
 async function joinSyncRoom(){if(!syncConfigured()){alert('BowlMeet Cloud 尚未就緒，請先按「重新檢查雲端」。');return}const code=$('syncJoinCode').value.trim().toUpperCase(),pin=$('syncJoinPin').value.trim(),role=$('syncJoinRole').value;if(!/^[A-Z2-9]{6}$/.test(code)){alert('房間代碼需為 6 碼英數字。');return}if(!/^\d{6}$/.test(pin)){alert('PIN 需為 6 位數字。');return}await createSnapshot('加入多人房間前');try{const d=syncDevice(),cfg=getSyncConfig();await syncRpc('bowling_room_touch',{p_room_code:code,p_pin:pin,p_device_id:d.id,p_device_name:cfg.deviceName||d.name,p_role:role});const r=await syncRpc('bowling_room_pull',{p_room_code:code,p_pin:pin});if(!r?.ok)throw new Error(r?.error==='not_found_or_pin'?'房間不存在或 PIN 不正確':(r?.error||'加入失敗'));const meetupId=String(r.payload?.meetup?.id||'');if(!meetupId)throw new Error('房間沒有有效球聚資料');setSyncConfig({enabled:true,roomCode:code,pin,role,meetupId,revision:Number(r.revision)||0,lastSyncAt:Date.now()});syncRemotePresence=r.presence||{};mergeRoomPayload(r.payload,{select:true});syncDirty=false;await addSyncLog('JOIN',`已加入房間 ${code} · ${syncRoleLabel(role)}`);startSyncPolling();renderSync();switchView('liveView')}catch(e){alert(`加入房間失敗：${e?.message||e}`)}}
 async function leaveSyncRoom(){const c=getSyncConfig();if(!c.enabled)return;if(!confirm(`確定離開多人房間 ${c.roomCode}？本機已同步的球聚與成績仍會保留。`))return;clearInterval(syncTimer);clearTimeout(syncPushTimer);setSyncConfig({enabled:false,roomCode:'',pin:'',role:'editor',meetupId:'',revision:0,lastSyncAt:0});syncRemotePresence={};syncDirty=false;await addSyncLog('LEAVE',`已離開房間 ${c.roomCode}`);renderSync()}
 function renderSyncOptions(){const sel=$('syncHostMeetup');if(!sel)return;const prev=sel.value||currentMeetupId||'';sel.innerHTML='<option value="">選擇球聚…</option>'+[...meetups].sort((a,b)=>String(b.date).localeCompare(String(a.date))).map(m=>`<option value="${esc(m.id)}">${esc(fmtDate(m.date))} · ${esc(m.title)}</option>`).join('');if(prev&&meetups.some(m=>m.id===prev))sel.value=prev}
-function renderSync(){const c=getSyncConfig(),d=syncDevice(),active=c.enabled&&c.roomCode;renderSyncOptions();if($('syncDeviceName')&&document.activeElement!==$('syncDeviceName'))$('syncDeviceName').value=c.deviceName||d.name;if($('syncAutoToggle'))$('syncAutoToggle').checked=c.auto!==false;const online=navigator.onLine&&!syncLastError;$('syncStateKpi').textContent=syncBusy?'同步中…':active?(online?'已連線':'待同步'):'未連線';$('syncStateSub').textContent=syncLastError||(!navigator.onLine?'目前離線':active?(c.lastSyncAt?`最後同步 ${new Date(c.lastSyncAt).toLocaleTimeString('zh-TW')}`:'等待第一次同步'):'本機資料正常');$('syncRoomKpi').textContent=active?c.roomCode:'—';$('syncRoomSub').textContent=active?`revision ${c.revision||0}`:'尚未加入';$('syncRoleKpi').textContent=active?syncRoleLabel(c.role):'—';$('syncRoleSub').textContent=active?(c.role==='viewer'?'唯讀，不會推送成績':'可推送球聚成績'):'Host / Editor / Viewer';const now=Date.now(),pres=Object.values(syncRemotePresence||{}).filter(x=>now-Number(x.lastSeen||0)<300000);$('syncDevicesKpi').textContent=pres.length;const room=$('syncRoomCard');if(active){const m=meetups.find(x=>x.id===c.meetupId),state=syncBusy?'同步中':(!navigator.onLine?'離線':'已連線');room.innerHTML=`<div class="sync-room-title"><div><strong>${esc(m?.title||'多人球聚')}</strong><span>${esc(fmtDate(m?.date||''))} · ${esc(m?.venue||'')}</span></div><span class="sync-status-pill ${navigator.onLine&&!syncLastError?'online':'warn'}"><i class="sync-dot"></i>${esc(state)}</span></div><div class="sync-room-code">${esc(c.roomCode)}</div><div class="sync-room-meta">revision ${c.revision||0} · ${esc(syncRoleLabel(c.role))} · ${esc(c.deviceName||d.name)}</div><div class="sync-room-secret"><div class="sync-secret"><span>房間 PIN</span><strong>${esc(c.pin)}</strong></div><div class="sync-secret"><span>同步球聚</span><strong>${esc(m?.title||c.meetupId)}</strong></div></div>`;$('syncNowBtn').disabled=false;$('copySyncInviteBtn').disabled=false;$('leaveSyncRoomBtn').disabled=false;$('syncInviteText').hidden=false;$('syncInviteText').textContent=inviteText()}else{room.innerHTML='<div class="sync-room-title"><div><strong>尚未加入多人房間</strong><span>建立或加入房間後會顯示同步資訊。</span></div><span class="sync-status-pill"><i class="sync-dot"></i>Local</span></div>';$('syncNowBtn').disabled=true;$('copySyncInviteBtn').disabled=true;$('leaveSyncRoomBtn').disabled=true;$('syncInviteText').hidden=true}const dl=$('syncDeviceList');dl.innerHTML=pres.length?pres.sort((a,b)=>Number(b.lastSeen)-Number(a.lastSeen)).map(x=>`<div class="sync-device"><div><strong>${esc(x.name||x.deviceId||'裝置')}</strong><span>${esc(new Date(Number(x.lastSeen)||0).toLocaleTimeString('zh-TW'))}</span></div><span class="tag">${esc(syncRoleLabel(x.role))}</span></div>`).join(''):'<div class="sync-empty">尚無近期裝置資訊。</div>';renderSyncLogs()}
+function renderSync(){const c=getSyncConfig(),d=syncDevice(),active=c.enabled&&c.roomCode;renderSyncOptions();if($('syncDeviceName')&&document.activeElement!==$('syncDeviceName'))$('syncDeviceName').value=c.deviceName||d.name;if($('syncAutoToggle'))$('syncAutoToggle').checked=c.auto!==false;const online=navigator.onLine&&!syncLastError;$('syncStateKpi').textContent=syncBusy?'同步中…':active?(online?'已連線':'待同步'):'未連線';$('syncStateSub').textContent=syncLastError||(!navigator.onLine?'目前離線':active?(c.lastSyncAt?`最後同步 ${new Date(c.lastSyncAt).toLocaleTimeString('zh-TW')}`:'等待第一次同步'):'本機資料正常');$('syncRoomKpi').textContent=active?c.roomCode:'—';$('syncRoomSub').textContent=active?`revision ${c.revision||0}`:'尚未加入';$('syncRoleKpi').textContent=active?syncRoleLabel(c.role):'—';$('syncRoleSub').textContent=active?(c.role==='viewer'?'唯讀，不會推送成績':'可推送球聚成績'):'所有成員可讀寫';const now=Date.now(),pres=Object.values(syncRemotePresence||{}).filter(x=>now-Number(x.lastSeen||0)<300000);$('syncDevicesKpi').textContent=pres.length;const room=$('syncRoomCard');if(active){const m=meetups.find(x=>x.id===c.meetupId),state=syncBusy?'同步中':(!navigator.onLine?'離線':'已連線');room.innerHTML=`<div class="sync-room-title"><div><strong>${esc(m?.title||'多人球聚')}</strong><span>${esc(fmtDate(m?.date||''))} · ${esc(m?.venue||'')}</span></div><span class="sync-status-pill ${navigator.onLine&&!syncLastError?'online':'warn'}"><i class="sync-dot"></i>${esc(state)}</span></div><div class="sync-room-code">${esc(c.roomCode)}</div><div class="sync-room-meta">revision ${c.revision||0} · ${esc(syncRoleLabel(c.role))} · ${esc(c.deviceName||d.name)}</div><div class="sync-room-secret"><div class="sync-secret"><span>房間 PIN</span><strong>${esc(c.pin)}</strong></div><div class="sync-secret"><span>同步球聚</span><strong>${esc(m?.title||c.meetupId)}</strong></div></div>`;$('syncNowBtn').disabled=false;$('copySyncInviteBtn').disabled=false;$('leaveSyncRoomBtn').disabled=false;$('syncInviteText').hidden=false;$('syncInviteText').textContent=inviteText()}else{room.innerHTML='<div class="sync-room-title"><div><strong>尚未加入多人房間</strong><span>建立或加入房間後會顯示同步資訊。</span></div><span class="sync-status-pill"><i class="sync-dot"></i>Local</span></div>';$('syncNowBtn').disabled=true;$('copySyncInviteBtn').disabled=true;$('leaveSyncRoomBtn').disabled=true;$('syncInviteText').hidden=true}const dl=$('syncDeviceList');dl.innerHTML=pres.length?pres.sort((a,b)=>Number(b.lastSeen)-Number(a.lastSeen)).map(x=>`<div class="sync-device"><div><strong>${esc(x.name||x.deviceId||'裝置')}</strong><span>${esc(new Date(Number(x.lastSeen)||0).toLocaleTimeString('zh-TW'))}</span></div><span class="tag">${esc(syncRoleLabel(x.role))}</span></div>`).join(''):'<div class="sync-empty">尚無近期裝置資訊。</div>';renderSyncLogs()}
 function saveSyncServiceConfig(){const deviceName=$('syncDeviceName').value.trim()||defaultDeviceName();setSyncConfig({deviceName,auto:$('syncAutoToggle').checked});renderSync();flash('裝置名稱已儲存。')}
 function setCloudUi(state,detail,cls=''){const s=$('syncCloudState'),d=$('syncCloudDetail');if(s){s.className='cloud-state'+(cls?' '+cls:'');s.innerHTML='<i class="cloud-dot"></i>'+esc(state)}if(d)d.textContent=detail}
 async function testSyncService(showAlert=true){const deviceName=$('syncDeviceName')?.value.trim()||getSyncConfig().deviceName||defaultDeviceName();setSyncConfig({deviceName,auto:$('syncAutoToggle')?.checked!==false});renderSync();if(!syncConfigured()){setCloudUi('設定異常','內建 Project URL 或 Publishable Key 格式不正確。','warn');if(showAlert)alert('內建雲端設定格式不正確。');return false}setCloudUi('檢查中','正在連線 BowlMeet Cloud…');try{const cfg=getSyncConfig(),res=await fetch(`${cleanSupabaseUrl(cfg.url)}/auth/v1/settings`,{headers:{apikey:cfg.anonKey}});if(!res.ok)throw new Error(res.status===401?'HTTP 401 · Publishable Key 驗證失敗':`HTTP ${res.status}`);setCloudUi('已連線','內建 Supabase 連線正常，可使用多人同步、群組歷史與 Player Claim。','online');if(showAlert)alert('BowlMeet Cloud 已連線。');return true}catch(e){setCloudUi('連線異常',String(e?.message||e),'warn');if(showAlert)alert(`無法連線 BowlMeet Cloud：${e?.message||e}`);return false}}
@@ -1386,9 +1384,9 @@ function setGroupConfig(patch={}){
   if(next.pin)localStorage.setItem(GROUPSECRETKEY,JSON.stringify({pin:String(next.pin)}));else localStorage.removeItem(GROUPSECRETKEY);
   return {...pub,pin:String(next.pin||'')};
 }
-function groupRoleLabel(role){return role==='host'?'主持人':role==='editor'?'協作者':'唯讀'}
+function groupRoleLabel(role){return role==='host'?'建立者':'成員'}
 function groupLinked(){const g=getGroupConfig();return !!(g.enabled&&g.groupCode&&g.pin)}
-function groupCanWrite(){const g=getGroupConfig();return groupLinked()&&(g.role==='host'||g.role==='editor')}
+function groupCanWrite(){return groupLinked()}
 function mergeGroupMeetups(a=[],b=[]){
   const map=new Map();for(const raw of [...a,...b]){const x=normalizeMeetupRecord(raw),old=map.get(x.id);if(!old||itemStamp(x)>=itemStamp(old))map.set(x.id,x)}return [...map.values()]
 }
@@ -1405,7 +1403,7 @@ function storeGroupRemote(payload){
   groupRemote=normalizeGroupPayload(payload||{});
 }
 function scheduleGroupPush(reason='local-change'){
-  if(groupApplyingRemote)return;const g=getGroupConfig();if(!g.enabled||g.role==='viewer'||!g.auto)return;groupDirty=true;clearTimeout(groupPushTimer);groupPushTimer=setTimeout(()=>groupSyncNow(false,false,reason),1400)
+  if(groupApplyingRemote)return;const g=getGroupConfig();if(!g.enabled||!g.auto)return;groupDirty=true;clearTimeout(groupPushTimer);groupPushTimer=setTimeout(()=>groupSyncNow(false,false,reason),1400)
 }
 async function groupPull(){
   const g=getGroupConfig();return syncRpc('bowling_group_pull',{p_group_code:g.groupCode,p_pin:g.pin})
@@ -1452,11 +1450,11 @@ async function createGroup(){
 }
 async function joinGroup(){
   if(!syncConfigured()){alert('BowlMeet Cloud 尚未就緒，請先到「多人同步」檢查雲端狀態。');return}
-  const code=$('groupJoinCode').value.trim().toUpperCase(),pin=$('groupJoinPin').value.trim(),role=$('groupJoinRole').value;
+  const code=$('groupJoinCode').value.trim().toUpperCase(),pin=$('groupJoinPin').value.trim();
   if(!/^[A-Z2-9]{6}$/.test(code)){alert('Group Code 需為 6 碼英數字。');return}if(!/^\d{6}$/.test(pin)){alert('Group PIN 需為 6 位數字。');return}
   try{
     const r=await syncRpc('bowling_group_pull',{p_group_code:code,p_pin:pin});if(!r?.ok)throw new Error(r?.error==='not_found_or_pin'?'群組不存在或 PIN 不正確':(r?.error||'加入失敗'));
-    storeGroupRemote(r.payload||{});setGroupConfig({enabled:true,groupCode:code,groupName:String(r.group_name||groupRemote.groupName||'BowlMeet Group'),role:role==='editor'?'editor':'viewer',pin,revision:Number(r.revision)||0,lastSyncAt:Date.now(),auto:true});groupDirty=false;startGroupPolling();renderGroupHistory();switchView('groupView');flash('已加入群組並拉取全部共享歷史。');
+    storeGroupRemote(r.payload||{});setGroupConfig({enabled:true,groupCode:code,groupName:String(r.group_name||groupRemote.groupName||'BowlMeet Group'),role:'editor',pin,revision:Number(r.revision)||0,lastSyncAt:Date.now(),auto:true});groupDirty=false;startGroupPolling();renderGroupHistory();switchView('groupView');flash('已加入群組並拉取全部共享歷史。');
   }catch(e){alert('加入群組失敗：'+(e?.message||e))}
 }
 async function leaveGroup(){
@@ -1465,7 +1463,7 @@ async function leaveGroup(){
 }
 async function copyGroupInvite(){
   if(!groupLinked())return;const g=getGroupConfig(),base=(location.protocol==='http:'||location.protocol==='https:')?location.origin+location.pathname:'';
-  const text='BowlMeet 共享群組\n群組：'+(g.groupName||'BowlMeet Group')+'\nGroup Code：'+g.groupCode+'\nGroup PIN：'+g.pin+'\n建議模式：Viewer'+(base?'\n網址：'+base+'?group='+encodeURIComponent(g.groupCode):'')+'\n\n任何取得 Code＋PIN 的人都能查看共享歷史。';
+  const text='BowlMeet 共享群組\n群組：'+(g.groupName||'BowlMeet Group')+'\nGroup Code：'+g.groupCode+'\nGroup PIN：'+g.pin+'\n權限：所有群組成員可讀寫'+(base?'\n網址：'+base+'?group='+encodeURIComponent(g.groupCode):'')+'\n\n任何取得 Code＋PIN 的群組成員都能查看並新增共享歷史。';
   if(await copyText(text))alert('群組資訊已複製。')
 }
 async function importGroupHistory(){
@@ -1487,10 +1485,10 @@ function renderGroupHistory(){
   if(!$('groupStateKpi'))return;const g=getGroupConfig(),linked=groupLinked(),{list,meetupMap,payload}=groupHistoryRows();
   $('groupStateKpi').textContent=groupBusy?'同步中…':linked?(groupLastError?'待重試':'已加入'):'未加入';
   $('groupStateSub').textContent=groupLastError||(linked?(g.lastSyncAt?'最後同步 '+new Date(g.lastSyncAt).toLocaleTimeString('zh-TW'):'等待首次同步'):'本機歷史不受影響');
-  $('groupCodeKpi').textContent=linked?g.groupCode:'—';$('groupRoleSub').textContent=linked?groupRoleLabel(g.role):'Host / Editor / Viewer';$('groupMeetupsKpi').textContent=payload.meetups.length;$('groupSessionsKpi').textContent=payload.sessions.length;$('groupRevisionSub').textContent='revision '+(g.revision||0);
-  const card=$('groupActiveCard');if(linked){card.innerHTML='<div class="group-card-head"><div><div class="group-card-title">'+esc(g.groupName||payload.groupName||'BowlMeet Group')+'</div><div class="group-code">'+esc(g.groupCode)+'</div><div class="group-meta">'+esc(groupRoleLabel(g.role))+' · '+payload.meetups.length+' 場球聚 · '+payload.sessions.length+' 張計分卡</div></div><span class="group-status '+(!groupLastError&&navigator.onLine?'online':'warn')+'">'+(groupBusy?'同步中':navigator.onLine?'Cloud Linked':'離線')+'</span></div><div class="group-secret"><div><span>Group PIN</span><strong>'+esc(g.pin)+'</strong></div><div><span>資料模式</span><strong>'+esc(g.role==='viewer'?'唯讀共享歷史':'可合併本機歷史')+'</strong></div></div>'}else{card.innerHTML='<div class="group-card-head"><div><div class="group-card-title">尚未加入群組</div><div class="group-meta">建立或加入群組後，這裡會顯示共享狀態。</div></div><span class="group-status">Local</span></div>'}
-  $('groupAutoToggle').checked=g.auto!==false;$('groupSyncBtn').disabled=!linked||g.role==='viewer';$('groupPullBtn').disabled=!linked;$('copyGroupInviteBtn').disabled=!linked;$('importGroupHistoryBtn').disabled=!linked||(!payload.meetups.length&&!payload.sessions.length);$('leaveGroupBtn').disabled=!linked;
-  $('groupStatusText').textContent=linked?(g.role==='viewer'?'Viewer：可查看所有群組歷史，但不會上傳這台裝置的本機紀錄。':'Host / Editor：同步時會把本機歷史與雲端群組歷史做增量合併。'):'群組歷史與「我的成績」分開保存；加入群組不會自動改寫你的本機歷史。';
+  $('groupCodeKpi').textContent=linked?g.groupCode:'—';$('groupRoleSub').textContent=linked?groupRoleLabel(g.role):'所有成員可讀寫';$('groupMeetupsKpi').textContent=payload.meetups.length;$('groupSessionsKpi').textContent=payload.sessions.length;$('groupRevisionSub').textContent='revision '+(g.revision||0);
+  const card=$('groupActiveCard');if(linked){card.innerHTML='<div class="group-card-head"><div><div class="group-card-title">'+esc(g.groupName||payload.groupName||'BowlMeet Group')+'</div><div class="group-code">'+esc(g.groupCode)+'</div><div class="group-meta">'+esc(groupRoleLabel(g.role))+' · '+payload.meetups.length+' 場球聚 · '+payload.sessions.length+' 張計分卡</div></div><span class="group-status '+(!groupLastError&&navigator.onLine?'online':'warn')+'">'+(groupBusy?'同步中':navigator.onLine?'Cloud Linked':'離線')+'</span></div><div class="group-secret"><div><span>Group PIN</span><strong>'+esc(g.pin)+'</strong></div><div><span>資料模式</span><strong>'+esc('所有成員可讀寫')+'</strong></div></div>'}else{card.innerHTML='<div class="group-card-head"><div><div class="group-card-title">尚未加入群組</div><div class="group-meta">建立或加入群組後，這裡會顯示共享狀態。</div></div><span class="group-status">Local</span></div>'}
+  $('groupAutoToggle').checked=g.auto!==false;$('groupSyncBtn').disabled=!linked;$('groupPullBtn').disabled=!linked;$('copyGroupInviteBtn').disabled=!linked;$('importGroupHistoryBtn').disabled=!linked||(!payload.meetups.length&&!payload.sessions.length);$('leaveGroupBtn').disabled=!linked;
+  $('groupStatusText').textContent=linked?'所有群組成員都可查看與寫入；同步時會把本機歷史與雲端群組歷史做增量合併。':'群組歷史與「我的成績」分開保存；加入群組不會自動改寫你的本機歷史。';
   $('groupHistoryCount').textContent=list.length+' 張';$('groupHistoryEmpty').style.display=list.length?'none':'block';
   $('groupHistoryList').innerHTML=list.map(s=>{const m=meetupMap.get(s.meetupId),sm=sessionSummary(s),rows=(s.players||[]).map(p=>{const pc=playerCalc(p);return '<div class="mv">'+esc(p.name)+'</div><div>'+pc.count+' 局</div><div>'+pc.total+'</div><div>'+(pc.avg??'—')+'</div>'}).join('');return '<article class="group-session"><div class="group-session-head"><div><div class="group-session-title">'+esc(fmtDate(s.date))+' · '+esc(m?.title||s.venue||'共享紀錄')+'</div><div class="group-session-meta">'+(s.venue?esc(s.venue)+' · ':'')+(s.lane?'球道 '+esc(s.lane)+' · ':'')+sm.games+' 局 · 平均 '+(sm.avg??'—')+(sm.best!==null?' · 最高 '+sm.best+' ('+esc(sm.bestName)+')':'')+'</div></div><span class="group-readonly">Shared</span></div><div class="mini-grid"><div class="mh">球員</div><div class="mh">局數</div><div class="mh">總分</div><div class="mh">平均</div>'+rows+'</div></article>'}).join('');
 }
