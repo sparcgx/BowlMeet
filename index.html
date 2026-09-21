@@ -141,6 +141,9 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 
 
 
+/* v0.4.2-R1 Photo Source Fix */
+@media(max-width:620px){.photo-tools .camera-btn{flex:1 1 calc(50% - 4px);justify-content:center;text-align:center}.photo-tools #rotateLeftBtn,.photo-tools #rotateRightBtn,.photo-tools #ocrBtn,.photo-tools #clearPhotoBtn{flex:1 1 calc(50% - 4px)}}
+
 /* v0.4.2-R1 Built-in Cloud Configuration */
 .cloud-summary{border:1px solid #cfe0ff;background:#f7faff;border-radius:13px;padding:13px}.cloud-summary-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.cloud-summary strong{font-size:14px}.cloud-summary p{font-size:11px!important;margin:4px 0 0!important;line-height:1.55!important}.cloud-state{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:850;background:#eef1f5;color:#596579;white-space:nowrap}.cloud-state.online{background:#eaf7ef;color:#14804a}.cloud-state.warn{background:#fff7e6;color:#b26a00}.cloud-dot{width:7px;height:7px;border-radius:50%;background:#9aa3af}.cloud-state.online .cloud-dot{background:#21a366}.cloud-state.warn .cloud-dot{background:#d97706}.cloud-endpoint{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;color:#64748b;word-break:break-all;margin-top:8px}.cloud-advanced{margin-top:10px;border-top:1px solid var(--line);padding-top:9px}.cloud-advanced summary{cursor:pointer;font-size:11px;font-weight:800;color:#556175}.cloud-advanced-content{font-size:11px;color:var(--muted);line-height:1.55;margin-top:7px}
 
@@ -625,11 +628,12 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
           <label class="checkline"><input id="showGridGuide" type="checkbox" checked /> 顯示表格定位預覽</label>
         </div>
         <div id="photoDrop" class="photo-drop">
-          <div id="photoEmpty" class="photo-empty"><strong>尚未選擇計分卡照片</strong>可直接使用手機相機拍攝，或從相簿選取。</div>
+          <div id="photoEmpty" class="photo-empty"><strong>尚未選擇計分卡照片</strong>可直接使用手機相機拍攝，或從相簿選取已拍好的照片。</div>
           <img id="photoPreview" alt="計分卡預覽" style="display:none" />
         </div>
         <div class="photo-tools">
-          <label class="btn primary camera-btn">📷 拍照 / 選照片<input id="photoInput" type="file" accept="image/*" capture="environment" /></label>
+          <label class="btn primary camera-btn">📷 直接拍照<input id="photoCameraInput" type="file" accept="image/*" capture="environment" /></label>
+          <label class="btn camera-btn">🖼️ 從相簿選擇<input id="photoInput" type="file" accept="image/*" /></label>
           <button class="btn" id="rotateLeftBtn" disabled>↶ 左轉</button>
           <button class="btn" id="rotateRightBtn" disabled>↷ 右轉</button>
           <button class="btn" id="ocrBtn" disabled>開始辨識</button>
@@ -1233,7 +1237,7 @@ function setPhoto(file){
   if(!file)return;photoFile=file;photoRotation=0;const url=URL.createObjectURL(file);const img=$('photoPreview');img.onload=()=>{if(img.dataset.oldUrl)URL.revokeObjectURL(img.dataset.oldUrl);img.dataset.oldUrl=url};img.src=url;img.style.display='block';$('photoEmpty').style.display='none';$('photoDrop').classList.add('has-image');['rotateLeftBtn','rotateRightBtn','ocrBtn','clearPhotoBtn'].forEach(id=>$(id).disabled=false);ocrCandidates=[];pendingImportAudit=null;renderOcrRows(blankOcrRows(3));setOcrStatus('照片已載入，可開始辨識。',0);updateStages();setTimeout(previewTemplateGrid,40)
 }
 function rotatePhoto(delta){if(!$('photoPreview').src)return;photoRotation=(photoRotation+delta+360)%360;$('photoPreview').style.transform=`rotate(${photoRotation}deg)`;lastGrid=null;ocrCandidates=[];renderOcrRows(blankOcrRows(3));setOcrStatus(`已旋轉 ${photoRotation}°，請重新辨識。`,0);updateStages();setTimeout(previewTemplateGrid,20)}
-function clearPhoto(){const img=$('photoPreview');if(img.dataset.oldUrl)URL.revokeObjectURL(img.dataset.oldUrl);img.removeAttribute('src');img.style.display='none';img.style.transform='none';delete img.dataset.oldUrl;photoFile=null;photoRotation=0;$('photoEmpty').style.display='block';$('photoDrop').classList.remove('has-image');['rotateLeftBtn','rotateRightBtn','ocrBtn','clearPhotoBtn'].forEach(id=>$(id).disabled=true);$('photoInput').value='';$('ocrRawText').value='';renderOcrRows(blankOcrRows());updateStages();$('gridPreviewWrap').hidden=true;lastGrid=null;pendingImportAudit=null;$('verifyFilter').value='pending';$('templateStatus').textContent='固定表格模式會自動找出 10 欄與球員列；若定位不理想，可先旋轉照片或切換「一般 OCR」。';setOcrStatus('等待照片',0);updateStages()}
+function clearPhoto(){const img=$('photoPreview');if(img.dataset.oldUrl)URL.revokeObjectURL(img.dataset.oldUrl);img.removeAttribute('src');img.style.display='none';img.style.transform='none';delete img.dataset.oldUrl;photoFile=null;photoRotation=0;$('photoEmpty').style.display='block';$('photoDrop').classList.remove('has-image');['rotateLeftBtn','rotateRightBtn','ocrBtn','clearPhotoBtn'].forEach(id=>$(id).disabled=true);$('photoInput').value='';if($('photoCameraInput'))$('photoCameraInput').value='';$('ocrRawText').value='';renderOcrRows(blankOcrRows());updateStages();$('gridPreviewWrap').hidden=true;lastGrid=null;pendingImportAudit=null;$('verifyFilter').value='pending';$('templateStatus').textContent='固定表格模式會自動找出 10 欄與球員列；若定位不理想，可先旋轉照片或切換「一般 OCR」。';setOcrStatus('等待照片',0);updateStages()}
 function applyOcrToSheet(){
   const st=verificationStats();if(st.pending){flash(`還有 ${st.pending} 個欄位尚未確認。`,'err');return}
   const rows=ocrCandidates.map(r=>({id:uid(),name:String(r.name||'').trim(),scores:Array.from({length:6},(_,i)=>normalizeScore((r.scores||[])[i]))})).filter(r=>r.name||r.scores.some(v=>v!==null));
@@ -1747,7 +1751,7 @@ $('applyRestoreBtn').addEventListener('click',async()=>{if(!pendingRestorePayloa
 $('verificationCenter').addEventListener('change',e=>{const item=e.target.closest('.verify-item');if(item&&e.target.classList.contains('verify-input'))editVerificationItem(item,e.target.value)});
 $('verificationCenter').addEventListener('click',e=>{const b=e.target.closest('button[data-vact]');if(!b)return;const item=b.closest('.verify-item'),ri=Number(item.dataset.ri),si=Number(item.dataset.si),type=item.dataset.type,r=ocrCandidates[ri];if(!r)return;if(b.dataset.vact==='confirm'){if(type==='name')r.nameVerified=true;else r.scoreVerified[si]=true;renderOcrRows(ocrCandidates)}else if(b.dataset.vact==='clear'){if(type==='name'){r.name='';r.nameVerified=true;r.nameModified=r.name!==r.nameOriginal}else{r.scores[si]=null;r.scoreVerified[si]=true;r.scoreModified=r.scoreOriginal[si]!==null}renderOcrRows(ocrCandidates)}});
 $('verifyFilter').addEventListener('change',renderVerificationCenter);$('confidenceThreshold').addEventListener('change',()=>renderOcrRows(ocrCandidates));$('confirmAllBtn').addEventListener('click',confirmAllPending);$('jumpPendingBtn').addEventListener('click',()=>{const first=$('verificationCenter').querySelector('.verify-item.pending');if(first)first.scrollIntoView({behavior:'smooth',block:'center'});else flash('目前沒有待確認欄位。')});
-$('photoInput').addEventListener('change',e=>setPhoto(e.target.files&&e.target.files[0]));
+$('photoInput').addEventListener('change',e=>setPhoto(e.target.files&&e.target.files[0]));$('photoCameraInput').addEventListener('change',e=>setPhoto(e.target.files&&e.target.files[0]));
 $('rotateLeftBtn').addEventListener('click',()=>rotatePhoto(-90));$('rotateRightBtn').addEventListener('click',()=>rotatePhoto(90));$('ocrBtn').addEventListener('click',runOcr);$('clearPhotoBtn').addEventListener('click',clearPhoto);$('ocrMode').addEventListener('change',()=>{previewTemplateGrid();if($('ocrMode').value==='general')$('templateStatus').textContent='一般 OCR 模式：不使用固定表格欄位定位。';else previewTemplateGrid()});$('showGridGuide').addEventListener('change',()=>previewTemplateGrid());$('reparseBtn').addEventListener('click',()=>{renderOcrRows(parseOcrText($('ocrRawText').value));$('verifyFilter').value='pending';renderVerificationCenter();setOcrStatus('已重新解析；請完成待確認欄位。',100)});$('applyOcrBtn').addEventListener('click',applyOcrToSheet);
 renderOcrRows(blankOcrRows());updateStages();
 
