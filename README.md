@@ -21,6 +21,24 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 3. 再開 `index.html` 進行 BowlMeet 實機驗收。
 4. iPhone Safari 可使用「分享 → 加入主畫面」安裝為 PWA。
 
+## v0.4.4-dev.4 Manual Device Acceptance
+
+- 日期起 / 迄篩選 ✅ PASS
+- 玩家篩選 ✅ PASS
+- 球館篩選 ✅ PASS
+- 球道篩選 ✅ PASS
+- 公開狀態篩選 ✅ PASS
+- 全文搜尋 ✅ PASS
+- 最新 / 最舊排序 ✅ PASS
+- 來源 Tab + 精準條件組合 ✅ PASS
+- 動態選單選值保留 ✅ PASS
+- 篩選摘要 ✅ PASS
+- 清除篩選 ✅ PASS
+- 關閉 / 重新開啟後資料與篩選邏輯正常 ✅ PASS
+- Stable / dev.1 / dev.2 / dev.3 / dev.4 Preview 隔離 ✅ PASS
+- 正式 PUBLIC 未受影響 ✅ PASS
+- 結論：**v0.4.4-dev.4 Validation Complete**
+
 ## v0.4.4-dev.4 History Search & Filter Enhancement
 
 - 沿用 Unified Score History，不建立第二套歷史資料。
@@ -56,7 +74,7 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 - 清除篩選回復預設並重新 render ✅ PASS
 - Live Regression 使用 transaction + ROLLBACK，Preview Cloud 未污染 ✅ PASS
 - 正式 PUBLIC 維持 revision 21 ✅ 未變更
-- 狀態：**Device Preview & Automated Live Regression PASS / Manual Device Acceptance Pending**
+- 狀態：**Device Preview & Live Regression PASS / dev.4 Validation Complete**
 
 ## v0.4.4-dev.3 Manual Device Acceptance
 
