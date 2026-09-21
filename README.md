@@ -1,6 +1,17 @@
-# BowlMeet v0.4.3.3-R1 — Regression & Cleanup Fix
+# BowlMeet v0.4.4-dev.1 — Quick Session & Player Workflow + Public Record Control
 
 BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，建立玩家並進行標準 10 格即時計分。
+
+## v0.4.4-dev.1 開發重點
+
+- 快速開場新增「最近／常用玩家」，可點一下加入。
+- 新增「沿用上一場」，快速帶入上一場參加玩家。
+- 按「開始現場記分」時至少需要一位玩家，避免建立空球聚。
+- Unified Score History 新增「取消公開」與「重新公開」。
+- 取消公開只移除公開版本；本機 Session、局數、平均與個人分析資料不刪除。
+- 取消公開狀態會參與公開同步合併，避免下一次自動同步把已取消的 Session 再次發布。
+- 公開控制狀態會納入本機安全快照與完整備份。
+- v0.4.3.3-R1 仍為 Stable / Freeze Baseline；本版在 `v0.4.4-dev.1` 分支開發。
 
 ## GitHub Pages 部署
 
@@ -9,13 +20,13 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 3. 再開 `index.html` 進行 BowlMeet 實機驗收。
 4. iPhone Safari 可使用「分享 → 加入主畫面」安裝為 PWA。
 
-## v0.4.3.3-R1 驗收重點
+## v0.4.4-dev.1 驗收重點
 
 依序確認：
 
-- 球聚現場：新增玩家、10 格記分、Strike / Spare、自動帶入本次計分。
+- 球聚現場：最近／常用玩家、沿用上一場、新增玩家、10 格記分、Strike / Spare、自動帶入本次計分。
 - 本次計分：目前球聚的完整單局總分正確。
-- 成績紀錄：全部 / 我的紀錄 / 公開歷史切換與 Session ID 去重正常。
+- 成績紀錄：全部 / 我的紀錄 / 公開歷史切換、Session ID 去重、取消公開／重新公開正常。
 - 我的成績：Player ID / Personal PIN 與個人成績同步正常。
 - 分享成績：球聚完整成績卡可顯示所有玩家、各局與總和。
 - 資料安全：備份、還原、快照、完整性檢查、PWA 安全更新。
