@@ -1447,16 +1447,66 @@ function renderPlayerHistory(games,careerAvg){
   $('playerHistoryCount').textContent=`${games.length} 局`;$('historyRangeText').textContent=games.length?`${fmtDate(games[0].date)} ～ ${fmtDate(games[games.length-1].date)} · 依時間新到舊顯示`:'目前範圍沒有紀錄';
   $('playerHistoryBody').innerHTML=[...games].reverse().map(g=>{const d=careerAvg===null?null:Math.round((g.score-careerAvg)*10)/10;return `<tr><td>${esc(fmtDate(g.date))}</td><td><strong>${esc(g.meetupTitle||g.venue||'歷史紀錄')}</strong>${g.meetupTitle&&g.venue?`<small>${esc(g.venue)}</small>`:''}</td><td>${esc(g.lane||'—')}</td><td>${g.gameNo?`第 ${g.gameNo} 局`:'—'}</td><td class="history-score">${g.score}</td><td class="delta ${d>0?'up':d<0?'down':''}">${d===null?'—':`${d>0?'+':''}${d}`}</td></tr>`}).join('');
 }
+function playerFrameAnalytics(name,games){
+  let coveredGames=0,frames=0,strikes=0,spares=0,opens=0;
+  for(const g of games||[]){
+    if(!g.sessionId||!g.gameNo)continue;
+    const s=sessions.find(x=>x.id===g.sessionId);if(!s)continue;
+    const p=(s.players||[]).find(x=>nameKey(x.name)===nameKey(name));if(!p)continue;
+    const game=normalizeBowlingGames(p.bowlingFrames)[Number(g.gameNo)-1],calc=bowlingGameCalc(game);
+    if(!calc.complete)continue;
+    coveredGames++;
+    for(let fi=0;fi<10;fi++){
+      const r=normalizeBowlingFrame(calc.frames[fi],fi).rolls,a=r[0],b=r[1];frames++;
+      if(a===10)strikes++;
+      else if(a!==null&&b!==null&&a+b===10)spares++;
+      else opens++;
+    }
+  }
+  const pct=n=>frames?Math.round(n/frames*1000)/10:null;
+  return {coveredGames,totalGames:(games||[]).length,frames,strikes,spares,opens,strikeRate:pct(strikes),spareRate:pct(spares),openRate:pct(opens),coverage:(games||[]).length?Math.round(coveredGames/(games||[]).length*100):0};
+}
+function renderFrameAnalytics(name,games){
+  const st=playerFrameAnalytics(name,games);
+  $('paFrameCoverage').textContent=st.coveredGames+'/'+st.totalGames+' 局';
+  $('paStrikeRate').textContent=st.strikeRate===null?'—':st.strikeRate+'%';
+  $('paSpareRate').textContent=st.spareRate===null?'—':st.spareRate+'%';
+  $('paOpenRate').textContent=st.openRate===null?'—':st.openRate+'%';
+  $('paStrikeCount').textContent=st.strikes+' 格';
+  $('paSpareCount').textContent=st.spares+' 格';
+  $('paOpenCount').textContent=st.opens+' 格';
+  $('paFrameCoverageRate').textContent=st.coverage+'%';
+  $('paFrameCount').textContent=st.frames+' 完成格';
+  $('paFrameNote').innerHTML=st.coveredGames
+    ?'<strong>資料口徑：</strong>目前範圍 '+st.totalGames+' 局中有 '+st.coveredGames+' 局具完整逐格資料；Strike / Spare / Open 以這 '+st.frames+' 個完成格計算。舊版總分紀錄不推算逐格結果。'
+    :'<strong>資料口徑：</strong>目前範圍尚無完整逐格資料；平均、PB 與趨勢仍可使用既有正式單局總分。';
+}
 function renderStats(){
   const sel=$('playerAnalyticsPlayer'),range=$('playerAnalyticsRange');if(!sel||!range)return;
   const current=sel.value;const names=analyticsPlayerNames();sel.innerHTML=names.length?names.map(x=>`<option value="${esc(x.name)}">${esc(x.alias?`${x.alias}（${x.name}）`:x.name)}</option>`).join(''):'<option value="">尚無球員</option>';
   if(names.length){const preferred=names.find(x=>playerCareerGames(x.name).length)?.name||names[0].name;sel.value=names.some(x=>x.name===current)?current:preferred}else sel.value='';
   const name=sel.value,career=name?playerCareerGames(name):[];const filtered=filterAnalyticsGames(career,range.value||'all');const has=career.length>0;$('playerAnalyticsEmpty').style.display=has?'none':'block';$('playerAnalyticsContent').style.display=has?'block':'none';if(!has)return;
-  const careerScores=career.map(g=>g.score),scores=filtered.map(g=>g.score),careerAvg=mean1(careerScores),rangeAvg=mean1(scores),recent10=mean1(careerScores.slice(-10));const pb=Math.max(...careerScores),pbGame=[...career].reverse().find(g=>g.score===pb);const diff=(rangeAvg!==null&&careerAvg!==null)?Math.round((rangeAvg-careerAvg)*10)/10:null;
-  $('paGames').textContent=filtered.length;$('paGamesSub').textContent=range.value==='all'?'全部歷史':range.options[range.selectedIndex]?.textContent||'目前範圍';$('paRangeAvg').textContent=rangeAvg??'—';$('paRangeDelta').textContent=diff===null?'—':`${diff>0?'+':''}${diff} vs 生涯平均`;$('paRangeDelta').className=`analytics-sub ${diff>0?'up':diff<0?'down':''}`;$('paCareerAvg').textContent=careerAvg??'—';$('paCareerGames').textContent=`${career.length} 局`;$('paPb').textContent=pb;$('paPbDate').textContent=pbGame?`${fmtDate(pbGame.date)}${pbGame.gameNo?` · 第 ${pbGame.gameNo} 局`:''}`:'尚無紀錄';$('paRecent10').textContent=recent10??'—';const c200=careerScores.filter(v=>v>=200).length;$('pa200').textContent=c200;$('pa200Rate').textContent=`${career.length?Math.round(c200/career.length*100):0}%`;
+  const careerScores=career.map(g=>g.score),scores=filtered.map(g=>g.score),careerAvg=mean1(careerScores),rangeAvg=mean1(scores),recent5=mean1(careerScores.slice(-5)),recent10=mean1(careerScores.slice(-10));
+  const pb=Math.max(...careerScores),pbGame=[...career].reverse().find(g=>g.score===pb),low=Math.min(...careerScores),lowGame=career.find(g=>g.score===low),diff=(rangeAvg!==null&&careerAvg!==null)?Math.round((rangeAvg-careerAvg)*10)/10:null;
+  $('paGames').textContent=filtered.length;
+  $('paGamesSub').textContent=range.value==='all'?'全部歷史':range.options[range.selectedIndex]?.textContent||'目前範圍';
+  $('paRangeAvg').textContent=rangeAvg??'—';
+  $('paRangeDelta').textContent=diff===null?'—':(diff>0?'+':'')+diff+' vs 生涯平均';
+  $('paRangeDelta').className='analytics-sub '+(diff>0?'up':diff<0?'down':'');
+  $('paCareerAvg').textContent=careerAvg??'—';
+  $('paCareerGames').textContent=career.length+' 局';
+  $('paPb').textContent=pb;
+  $('paPbDate').textContent=pbGame?fmtDate(pbGame.date)+(pbGame.gameNo?' · 第 '+pbGame.gameNo+' 局':''):'尚無紀錄';
+  $('paLow').textContent=low;
+  $('paLowDate').textContent=lowGame?fmtDate(lowGame.date)+(lowGame.gameNo?' · 第 '+lowGame.gameNo+' 局':''):'尚無紀錄';
+  $('paRecent5').textContent=recent5??'—';
+  $('paRecent10').textContent=recent10??'—';
+  const c200=careerScores.filter(v=>v>=200).length;
+  $('pa200').textContent=c200;
+  $('pa200Rate').textContent=(career.length?Math.round(c200/career.length*100):0)+'%';
   $('trendSummary').textContent=`${name} · ${filtered.length} 局 · 區間平均 ${rangeAvg??'—'} · 生涯平均 ${careerAvg??'—'}`;$('playerTrendChart').innerHTML=trendSvg(filtered);
   const sp=seriesPB(name);$('pbSingle').textContent=pb;$('pbSingleSub').textContent=pbGame?`${fmtDate(pbGame.date)}${pbGame.venue?` · ${pbGame.venue}`:''}`:'—';$('pb3').textContent=sp.best3??'—';$('pb3Sub').textContent=sp.best3Info;$('pb6').textContent=sp.best6??'—';$('pb6Sub').textContent=sp.best6Info;$('pa150').textContent=careerScores.filter(v=>v>=150).length;$('pa180').textContent=careerScores.filter(v=>v>=180).length;$('pa200b').textContent=c200;
-  renderMonthlyBars(filtered);renderRecentForm(career);renderPlayerHistory(filtered,careerAvg);
+  renderMonthlyBars(filtered);renderRecentForm(career);renderFrameAnalytics(name,filtered);renderPlayerHistory(filtered,careerAvg);
 }
 function openPlayerAnalytics(name){switchView('statsView');renderStats();const sel=$('playerAnalyticsPlayer');if([...sel.options].some(o=>o.value===name))sel.value=name;renderStats();window.scrollTo({top:0,behavior:'smooth'})}
 function blankOcrRows(n=6){return Array.from({length:n},()=>({name:'',scores:Array(6).fill(null),nameConf:100,scoreConf:Array(6).fill(100),nameOriginal:'',scoreOriginal:Array(6).fill(null),nameRawText:'',scoreRawText:Array(6).fill(''),nameCrop:'',scoreCrops:Array(6).fill(''),nameVerified:false,scoreVerified:Array(6).fill(false),nameModified:false,scoreModified:Array(6).fill(false),namePasses:0,scorePasses:Array(6).fill(0)}))}
