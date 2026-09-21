@@ -1658,7 +1658,8 @@ function mergeGroupSessions(a=[],b=[]){
 }
 function buildGroupPayload(remotePayload=groupRemote){
   const remote=normalizeGroupPayload(remotePayload),recordControls=mergePublicRecordControls(remote.recordControls,getPublicControl().records),stateMap=new Map(recordControls.map(x=>[x.id,x.state])),isVisible=s=>stateMap.get(s.id)!=='removed';
-  const mergedMeetups=mergeGroupMeetups(remote.meetups,meetups),mergedSessions=mergeGroupSessions(remote.sessions.filter(isVisible),sessions.filter(isVisible)).filter(isVisible);
+  const allSessions=mergeGroupSessions(remote.sessions,sessions),mergedSessions=allSessions.filter(isVisible),visibleMeetupIds=new Set(mergedSessions.map(s=>s.meetupId).filter(Boolean)),removedMeetupIds=new Set(allSessions.filter(s=>!isVisible(s)).map(s=>s.meetupId).filter(Boolean));
+  const mergedMeetups=mergeGroupMeetups(remote.meetups,meetups).filter(m=>!removedMeetupIds.has(m.id)||visibleMeetupIds.has(m.id));
   return {schema:2,appVersion:APP_VERSION,groupName:PUBLIC_HISTORY_NAME,meetups:mergedMeetups,sessions:mergedSessions,recordControls,updatedAt:Date.now()};
 }
 function storeGroupRemote(payload){groupRemote=normalizeGroupPayload(payload||{})}
