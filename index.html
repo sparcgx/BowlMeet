@@ -1790,7 +1790,12 @@ async function changePersonalPin(){
     personalLastError='';personalDirty=false;persistPersonalLocal(false,'personal-pin-change');
     setPersonalPasswordPanel(false);startPersonalPolling();renderPersonal();
     alert('BowlMeet 身分密碼已變更。\n\n舊 Personal PIN 已失效；其他裝置請使用新 PIN 重新連結。');
-  }catch(e){alert('變更密碼失敗：'+(e?.message||e))}
+  }catch(e){
+    const msg=String(e?.message||e);
+    if(msg.includes('bowling_player_change_pin')&&msg.includes('schema cache')){
+      alert('變更密碼功能尚未部署到 Supabase。\n\n請到 Supabase → SQL Editor 執行 GitHub 最新版 supabase_schema.sql，完成後重新整理 BowlMeet 再試一次。');
+    }else alert('變更密碼失敗：'+msg)
+  }
   finally{btn.disabled=false;btn.textContent=oldText}
 }
 function disconnectPersonal(){if(!personalLinked())return;if(!confirm('確定解除這台裝置的個人雲端連結？本機個人成績會保留，之後可再次用 Player ID＋PIN 連結。'))return;clearInterval(personalTimer);clearTimeout(personalPushTimer);setPersonalAuth('','');personalLastError='';setPersonalPasswordPanel(false);renderPersonal()}
