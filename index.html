@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.2-R3</title>
+<title>保齡球球聚｜BowlMeet v0.4.2-R4</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -90,6 +90,23 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 .live-rank-controls{display:flex;gap:8px;align-items:end;margin-bottom:10px}.live-rank-controls .field{flex:1}.live-rank-table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}.live-rank-table{width:100%;border-collapse:collapse;min-width:480px}.live-rank-table th,.live-rank-table td{padding:9px 10px;border-bottom:1px solid var(--line);font-size:11px;text-align:left}.live-rank-table th{background:#fafbfc;color:var(--muted)}.live-rank-table tr:last-child td{border-bottom:0}.live-rank-table .pos{font-size:16px;font-weight:900}.live-rank-table .who{font-size:13px;font-weight:850}.live-rank-table .primary-val{font-size:15px;font-weight:900;color:#0b57d0}.live-empty{padding:44px 18px;text-align:center}.live-empty strong{display:block;font-size:17px}.live-empty p{font-size:12px;color:var(--muted);line-height:1.55;margin:6px auto 14px;max-width:460px}.live-mobile-bar{display:none}
 @media(max-width:980px){.live-main{grid-template-columns:1fr}.live-kpis{grid-template-columns:repeat(3,1fr)}.live-selector{grid-template-columns:1fr 150px auto}.live-selector .live-end-btn{grid-column:1/-1}.live-score-row{grid-template-columns:minmax(140px,.8fr) 1fr 125px}}
 @media(max-width:680px){.live-top,.live-score-panel,.live-rank-panel{padding:12px}.live-head{flex-direction:column}.live-head-actions{width:100%;justify-content:stretch}.live-head-actions .btn{flex:1}.live-selector{grid-template-columns:1fr 1fr}.live-selector .btn{width:100%}.live-kpis{grid-template-columns:1fr 1fr}.live-kpis .live-kpi:last-child{grid-column:1/-1}.live-score-row{grid-template-columns:1fr 112px;gap:8px}.live-chips{grid-column:1/-1;grid-row:2}.live-entry{grid-column:2;grid-row:1}.live-chip{min-width:34px;padding:4px}.live-entry input{height:54px;font-size:25px}.live-entry .clear-live{height:54px}.live-section-head{align-items:flex-start}.live-round-nav{flex-wrap:wrap;justify-content:flex-end}.live-mobile-bar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:sticky;bottom:8px;z-index:20;padding:8px;margin-top:10px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);box-shadow:0 8px 28px rgba(17,24,39,.12)}}
+
+
+/* v0.4.2-R4 Live 10-Frame Scoring */
+.live-score-row.frame-mode{display:block;padding:12px;min-width:0}
+.live-player-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:9px}
+.live-game-total{display:flex;align-items:baseline;gap:7px;white-space:nowrap}.live-game-total span{font-size:9px;color:var(--muted);font-weight:800}.live-game-total strong{font-size:24px;font-weight:950}.live-game-total small{font-size:9px;color:var(--muted)}
+.live-frame-scroll{overflow-x:auto;overscroll-behavior-x:contain;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+.live-frames{display:grid;grid-template-columns:repeat(9,minmax(88px,1fr)) minmax(116px,1.2fr);gap:5px;min-width:940px}
+.live-frame{border:1px solid var(--line);border-radius:9px;background:#fafbfc;overflow:hidden;min-width:0}.live-frame.done{border-color:#bfe2ca;background:#f8fcf9}
+.live-frame-head{display:flex;justify-content:space-between;align-items:center;padding:4px 6px;border-bottom:1px solid var(--line);font-size:8px;color:var(--muted);font-weight:850}.live-frame-head b{font-size:10px;color:var(--text)}
+.live-rolls{display:grid;grid-template-columns:repeat(2,1fr);gap:3px;padding:5px}.live-frame.tenth .live-rolls{grid-template-columns:repeat(3,1fr)}
+.live-roll-input{width:100%;min-width:0;height:34px;border:1px solid #cfd6e2;border-radius:7px;background:#fff;text-align:center;font-size:15px;font-weight:900;outline:none;padding:0}.live-roll-input:focus{border-color:#0f62fe;box-shadow:0 0 0 2px #eaf2ff}.live-roll-input.invalid{border-color:#d92d20;background:#fff5f5}.live-roll-input:disabled{background:#eef1f5;color:#9aa3af;border-style:dashed}
+.live-frame-score{min-height:22px;display:flex;align-items:center;justify-content:center;border-top:1px solid var(--line);font-size:11px;font-weight:900;color:#0b57d0}.live-frame-score.unresolved{color:var(--muted);font-weight:750}
+.live-frame-notation{font-size:8px;color:var(--muted);letter-spacing:.02em}
+.live-row-actions{display:flex;justify-content:flex-end;gap:7px;margin-top:7px}.live-row-actions .btn{font-size:9px;padding:5px 8px}
+.live-legacy-total{font-size:9px;color:#8a5a00;background:#fff9e8;border:1px solid #f0dfab;border-radius:8px;padding:6px 8px;margin-top:7px}
+@media(max-width:680px){.live-score-row.frame-mode{padding:10px}.live-player-head{align-items:flex-start}.live-game-total{flex-wrap:wrap;justify-content:flex-end}.live-game-total strong{font-size:22px}.live-frames{min-width:900px}.live-frame-scroll{margin:0 -2px}}
 
 /* v0.3.2 PWA + Share Score Card */
 .install-btn.ready{background:#eaf7ef;border-color:#bee6cd;color:var(--success)}
@@ -293,7 +310,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.2-R3 · Personal PIN Change</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.2-R4 · Live 10-Frame Scoring</p></div></div>
   <div class="top-actions"><button class="btn install-btn" id="installAppBtn" type="button">安裝 App</button><button class="btn" id="exportBtn">備份</button><button class="btn" id="importBtn">還原</button><input type="file" id="importFile" accept="application/json,.json" hidden /></div>
 </div></header>
 <main>
@@ -352,7 +369,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     <div class="live-shell">
       <section class="card live-top">
         <div class="live-head">
-          <div class="live-title"><h2>現場模式</h2><p id="liveMeetupMeta">選擇一場球聚後即可快速輸入每一局分數；每次輸入都會立即儲存並更新排行榜。</p></div>
+          <div class="live-title"><h2>現場模式</h2><p id="liveMeetupMeta">選擇一場球聚後，以標準保齡球一局 10 格記分；每球輸入都會立即儲存並自動計算分數。</p></div>
           <div class="live-head-actions"><span class="pill" id="liveSyncBadge">本機</span><button class="btn" id="liveFullScoreBtn" type="button">完整記分表</button><button class="btn" id="liveShareBtn" type="button">分享成績</button></div>
         </div>
         <div class="live-selector">
@@ -365,7 +382,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
           <div class="live-kpis">
             <div class="live-kpi"><span>參加球員</span><strong id="livePlayers">0</strong><small>本場球聚</small></div>
             <div class="live-kpi"><span>目前局次</span><strong id="liveRoundKpi">—</strong><small id="liveRoundKpiSub">尚未開始</small></div>
-            <div class="live-kpi"><span>本局已輸入</span><strong id="liveRoundDone">0/0</strong><small id="liveMissingText">等待分數</small></div>
+            <div class="live-kpi"><span>本局完成</span><strong id="liveRoundDone">0/0</strong><small id="liveMissingText">等待 10 格記分</small></div>
             <div class="live-kpi"><span>目前平均</span><strong id="liveAvg">—</strong><small>所有已輸入局數</small></div>
             <div class="live-kpi"><span>目前最高</span><strong id="liveBest">—</strong><small id="liveBestName">尚無分數</small></div>
           </div>
@@ -377,7 +394,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 
       <div id="liveMain" class="live-main" hidden>
         <section class="card live-score-panel">
-          <div class="live-section-head"><div><h3>快速記分</h3><p>輸入 0～300。按 Enter 會儲存並跳到下一位球員。</p></div><div class="live-round-nav"><button class="btn small" id="livePrevRoundBtn2" type="button">←</button><span class="live-round-badge" id="liveRoundBadge">第 1 局</span><button class="btn small primary" id="liveNextRoundBtn" type="button">下一局 →</button></div></div>
+          <div class="live-section-head"><div><h3>10 格即時計分</h3><p>每格輸入每球倒瓶數 0～10；全倒與補中依標準規則自動加成，第 10 格支援加投。</p></div><div class="live-round-nav"><button class="btn small" id="livePrevRoundBtn2" type="button">←</button><span class="live-round-badge" id="liveRoundBadge">第 1 局</span><button class="btn small primary" id="liveNextRoundBtn" type="button">下一局 →</button></div></div>
           <div id="liveScoreList" class="live-score-list"></div>
           <div class="live-mobile-bar"><button class="btn" id="livePrevRoundMobile" type="button">← 上一局</button><button class="btn primary" id="liveNextRoundMobile" type="button">下一局 →</button></div>
         </section>
@@ -893,7 +910,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.2-R3 · Personal PIN Change / Group History</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.2-R4 · Live 10-Frame Scoring / Group History</div>
 </main>
 </div>
 <script>
@@ -913,7 +930,7 @@ const PERSONALKEY='bowlingMeetup.personal.v041';
 const PERSONALSECRETKEY='bowlingMeetup.personalAuth.v041';
 const GROUPKEY='bowlingMeetup.group.v042';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.2-R3';
+const APP_VERSION='0.4.2-R4';
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
 const BUILTIN_CLOUD=true;
@@ -978,7 +995,17 @@ async function initDataSafety(){
     await persistDbStateNow('startup');renderAll();renderSafety();
   }catch(e){console.warn('IndexedDB init failed; fallback to localStorage',e);dbReady=false;dbMode='localStorage fallback';renderSafety();}
 }
-function normalizeSessionRecord(s){return {id:s.id||uid(),date:s.date||today(),venue:String(s.venue||''),lane:String(s.lane||''),meetupId:String(s.meetupId||''),players:Array.isArray(s.players)?s.players.map(p=>{const scores=Array.from({length:6},(_,i)=>normalizeScore((p.scores||[])[i])),base=Number(p.updatedAt)||Number(s.updatedAt)||Number(s.createdAt)||0;return {id:p.id||uid(),name:String(p.name||''),scores,scoreUpdatedAt:Array.from({length:6},(_,i)=>Number((p.scoreUpdatedAt||[])[i])||(scores[i]!==null?base:0)),updatedAt:base}}):[],createdAt:Number(s.createdAt)||Date.now(),importAudit:s.importAudit||null,updatedAt:Number(s.updatedAt)||Number(s.createdAt)||Date.now()}}
+function normalizeBowlingRoll(v){if(v===''||v===null||typeof v==='undefined')return null;const n=Number(v);return Number.isInteger(n)&&n>=0&&n<=10?n:null}
+function normalizeBowlingFrame(raw,index=0){const count=index===9?3:2,r=raw&&typeof raw==='object'?raw:{};return {rolls:Array.from({length:count},(_,i)=>normalizeBowlingRoll((r.rolls||[])[i])),updatedAt:Number(r.updatedAt)||0}}
+function normalizeBowlingGames(raw){return Array.from({length:6},(_,gi)=>{const game=Array.isArray(raw?.[gi])?raw[gi]:null;if(!game)return null;return Array.from({length:10},(_,fi)=>normalizeBowlingFrame(game[fi],fi))})}
+function bowlingGameStarted(game){return Array.isArray(game)&&game.some(f=>(f?.rolls||[]).some(v=>normalizeBowlingRoll(v)!==null))}
+function bowlingFrameComplete(frame,index){const r=normalizeBowlingFrame(frame,index).rolls,a=r[0],b=r[1],d=r[2];if(index<9)return a===10||(a!==null&&b!==null);if(a===null)return false;if(a===10)return b!==null&&d!==null;if(b===null)return false;if(a+b===10)return d!==null;return true}
+function bowlingFrameValid(frame,index){const r=normalizeBowlingFrame(frame,index).rolls,a=r[0],b=r[1],d=r[2];if(index<9)return !(a!==null&&a<10&&b!==null&&a+b>10);if(a!==null&&a<10&&b!==null&&a+b>10)return false;if(a===10&&b!==null&&b<10&&d!==null&&b+d>10)return false;return true}
+function bowlingNextRolls(frames,from,count){const out=[];for(let fi=from+1;fi<10&&out.length<count;fi++){const r=normalizeBowlingFrame(frames[fi],fi).rolls;if(fi<9){if(r[0]===null)break;out.push(r[0]);if(r[0]!==10){if(r[1]===null)break;out.push(r[1])}}else{for(const v of r){if(v===null)break;out.push(v)}}}return out.slice(0,count)}
+function bowlingGameCalc(rawGame){const frames=Array.from({length:10},(_,i)=>normalizeBowlingFrame(rawGame?.[i],i)),started=bowlingGameStarted(frames);let total=0,scoredFrames=0,completedFrames=0;const frameScores=Array(10).fill(null),cumulative=Array(10).fill(null);for(let i=0;i<10;i++){const f=frames[i],r=f.rolls;if(bowlingFrameComplete(f,i))completedFrames++;if(i<9){if(r[0]===10){const bonus=bowlingNextRolls(frames,i,2);if(bonus.length===2)frameScores[i]=10+bonus[0]+bonus[1]}else if(r[0]!==null&&r[1]!==null){if(r[0]+r[1]===10){const bonus=bowlingNextRolls(frames,i,1);if(bonus.length===1)frameScores[i]=10+bonus[0]}else frameScores[i]=r[0]+r[1]}}else if(bowlingFrameComplete(f,i))frameScores[i]=(r[0]||0)+(r[1]||0)+(r[2]||0);if(frameScores[i]!==null){total+=frameScores[i];scoredFrames++;cumulative[i]=total}else cumulative[i]=i?cumulative[i-1]:null}const complete=frames.every((f,i)=>bowlingFrameComplete(f,i)&&bowlingFrameValid(f,i));return {frames,started,complete,total:scoredFrames?total:null,final:complete?total:null,frameScores,cumulative,completedFrames,scoredFrames}}
+function mergeBowlingGames(localRaw,remoteRaw,localUpdated=0,remoteUpdated=0){const a=normalizeBowlingGames(localRaw),b=normalizeBowlingGames(remoteRaw);return Array.from({length:6},(_,gi)=>{const ga=a[gi],gb=b[gi];if(!ga&&!gb)return null;if(!ga)return gb;if(!gb)return ga;return Array.from({length:10},(_,fi)=>{const af=normalizeBowlingFrame(ga[fi],fi),bf=normalizeBowlingFrame(gb[fi],fi);if(bf.updatedAt>af.updatedAt)return bf;if(af.updatedAt>bf.updatedAt)return af;return remoteUpdated>localUpdated?bf:af})})}
+function bowlingGameStamp(game){if(!Array.isArray(game))return 0;return Math.max(0,...game.map(f=>Number(f?.updatedAt)||0))}
+function normalizeSessionRecord(s){return {id:s.id||uid(),date:s.date||today(),venue:String(s.venue||''),lane:String(s.lane||''),meetupId:String(s.meetupId||''),players:Array.isArray(s.players)?s.players.map(p=>{const scores=Array.from({length:6},(_,i)=>normalizeScore((p.scores||[])[i])),base=Number(p.updatedAt)||Number(s.updatedAt)||Number(s.createdAt)||0,bowlingFrames=normalizeBowlingGames(p.bowlingFrames),frameUpdatedAt=Array.from({length:6},(_,i)=>Number((p.frameUpdatedAt||[])[i])||bowlingGameStamp(bowlingFrames[i]));return {id:p.id||uid(),name:String(p.name||''),scores,scoreUpdatedAt:Array.from({length:6},(_,i)=>Number((p.scoreUpdatedAt||[])[i])||(scores[i]!==null?base:0)),bowlingFrames,frameUpdatedAt,updatedAt:Math.max(base,...frameUpdatedAt)}}):[],createdAt:Number(s.createdAt)||Date.now(),importAudit:s.importAudit||null,updatedAt:Number(s.updatedAt)||Number(s.createdAt)||Date.now()}}
 function normalizeMeetupRecord(x){return {id:x.id||uid(),title:String(x.title||'球聚活動'),date:x.date||today(),venue:String(x.venue||''),lanes:String(x.lanes||x.lane||''),plannedGames:Math.max(1,Math.min(6,Number(x.plannedGames)||6)),status:['planned','ongoing','done'].includes(x.status)?x.status:'planned',notes:String(x.notes||''),participantIds:Array.isArray(x.participantIds)?x.participantIds:[],participantNames:Array.isArray(x.participantNames)?x.participantNames.map(String):[],customAwards:Array.isArray(x.customAwards)?x.customAwards.map(a=>({id:a.id||uid(),title:String(a.title||'自訂獎項'),winner:String(a.winner||''),note:String(a.note||''),createdAt:Number(a.createdAt)||Date.now()})):[],createdAt:Number(x.createdAt)||Date.now(),updatedAt:Number(x.updatedAt)||Number(x.createdAt)||Date.now()}}
 function normalizeRosterRecord(r){return {id:r.id||uid(),name:String(r.name||'').trim(),alias:String(r.alias||''),note:String(r.note||''),active:r.active!==false,createdAt:Number(r.createdAt)||Date.now(),updatedAt:Number(r.updatedAt)||Number(r.createdAt)||Date.now()}}
 function parseRestorePayload(obj){
@@ -1031,7 +1058,7 @@ function migrateV3(){
   if(meetupChanged)persistMeetups();if(sessionChanged)persist();if(rosterChanged)persistRoster();
   if(currentMeetupId&&!meetups.some(m=>m.id===currentMeetupId))setCurrentMeetup('');
 }
-function makePlayer(name='',scores=[],scoreUpdatedAt=[]){const now=Date.now(),vals=Array.from({length:6},(_,i)=>normalizeScore(scores[i]));return {id:uid(),name,scores:vals,scoreUpdatedAt:Array.from({length:6},(_,i)=>Number(scoreUpdatedAt[i])||(vals[i]!==null?now:0)),updatedAt:now}}
+function makePlayer(name='',scores=[],scoreUpdatedAt=[]){const now=Date.now(),vals=Array.from({length:6},(_,i)=>normalizeScore(scores[i]));return {id:uid(),name,scores:vals,scoreUpdatedAt:Array.from({length:6},(_,i)=>Number(scoreUpdatedAt[i])||(vals[i]!==null?now:0)),bowlingFrames:Array(6).fill(null),frameUpdatedAt:Array(6).fill(0),updatedAt:now}}
 function defaultPlayers(){return [makePlayer(),makePlayer(),makePlayer()]}
 function normalizeScore(v){if(v===''||v===null||typeof v==='undefined')return null;const n=Number(v);return Number.isInteger(n)&&n>=0&&n<=300?n:null}
 function playerNumbers(p){return (p.scores||[]).map(normalizeScore).filter(v=>v!==null)}
@@ -1075,7 +1102,7 @@ function validateSheet(){
   if(!valid)return {ok:false,msg:'至少輸入一位球員與一局分數。'};
   return {ok:true,players:players.filter(p=>p.name&&playerNumbers(p).length)};
 }
-function mergePlayerClocks(inputPlayers,oldPlayers=[]){const now=Date.now();return inputPlayers.map(p=>{const old=oldPlayers.find(x=>x.id===p.id)||oldPlayers.find(x=>nameKey(x.name)===nameKey(p.name));const scores=Array.from({length:6},(_,i)=>normalizeScore((p.scores||[])[i]));const clocks=Array.from({length:6},(_,i)=>{const oldVal=normalizeScore((old?.scores||[])[i]),newVal=scores[i],oldClock=Number((old?.scoreUpdatedAt||[])[i])||(oldVal!==null?Number(old?.updatedAt)||0:0);return old&&oldVal===newVal?oldClock:now});return {...p,id:p.id||old?.id||uid(),scores,scoreUpdatedAt:clocks,updatedAt:Math.max(now,...clocks)}})}
+function mergePlayerClocks(inputPlayers,oldPlayers=[]){const now=Date.now();return inputPlayers.map(p=>{const old=oldPlayers.find(x=>x.id===p.id)||oldPlayers.find(x=>nameKey(x.name)===nameKey(p.name));const scores=Array.from({length:6},(_,i)=>normalizeScore((p.scores||[])[i])),oldFrames=normalizeBowlingGames(old?.bowlingFrames),clocks=Array.from({length:6},(_,i)=>{const oldVal=normalizeScore((old?.scores||[])[i]),newVal=scores[i],oldClock=Number((old?.scoreUpdatedAt||[])[i])||(oldVal!==null?Number(old?.updatedAt)||0:0);return old&&oldVal===newVal?oldClock:now});const bowlingFrames=Array.from({length:6},(_,i)=>old&&normalizeScore((old.scores||[])[i])===scores[i]?oldFrames[i]:null),frameUpdatedAt=Array.from({length:6},(_,i)=>bowlingFrames[i]?(Number((old?.frameUpdatedAt||[])[i])||bowlingGameStamp(bowlingFrames[i])):0);return {...p,id:p.id||old?.id||uid(),scores,scoreUpdatedAt:clocks,bowlingFrames,frameUpdatedAt,updatedAt:Math.max(now,...clocks,...frameUpdatedAt)}})}
 async function saveCompletedSessionToGroupHistory(){
   const g=getGroupConfig();
   if(!groupLinked())return {status:'local'};
@@ -1361,8 +1388,14 @@ function roomPresenceEntry(){const c=getSyncConfig(),d=syncDevice();return {devi
 async function addSyncLog(kind,message){const rec={id:`sync-${Date.now()}-${uid().slice(0,6)}`,createdAt:Date.now(),kind,message:String(message||'')};if(dbReady&&appDb){try{await idbPut(DB_SYNC_LOG_STORE,rec);const all=(await idbGetAll(DB_SYNC_LOG_STORE)).sort((a,b)=>b.createdAt-a.createdAt);for(const old of all.slice(60))await idbDelete(DB_SYNC_LOG_STORE,old.id)}catch{}}renderSyncLogs()}
 async function renderSyncLogs(){const box=$('syncLogList');if(!box)return;let rows=[];if(dbReady&&appDb){try{rows=(await idbGetAll(DB_SYNC_LOG_STORE)).sort((a,b)=>b.createdAt-a.createdAt).slice(0,30)}catch{}}box.innerHTML=rows.length?rows.map(x=>`<div class="sync-log"><div><strong>${esc(x.message)}</strong><span>${esc(new Date(x.createdAt).toLocaleString('zh-TW'))}</span></div><span class="tag">${esc(x.kind||'SYNC')}</span></div>`).join(''):'<div class="sync-empty">尚無同步活動。</div>'}
 function playerClock(p,i){return Number((p?.scoreUpdatedAt||[])[i])||0}
-function normalizeSyncPlayer(p={}){const scores=Array.from({length:6},(_,i)=>normalizeScore((p.scores||[])[i])),base=Number(p.updatedAt)||0;return {id:p.id||uid(),name:String(p.name||''),scores,scoreUpdatedAt:Array.from({length:6},(_,i)=>Number((p.scoreUpdatedAt||[])[i])||(scores[i]!==null?base:0)),updatedAt:base}}
-function mergeSyncPlayer(local,remote){if(!local)return normalizeSyncPlayer(remote);if(!remote)return normalizeSyncPlayer(local);local=normalizeSyncPlayer(local);remote=normalizeSyncPlayer(remote);const scores=[],clocks=[];for(let i=0;i<6;i++){const lc=playerClock(local,i),rc=playerClock(remote,i);if(rc>lc){scores[i]=remote.scores[i];clocks[i]=rc}else if(lc>rc){scores[i]=local.scores[i];clocks[i]=lc}else{const chooseRemote=(Number(remote.updatedAt)||0)>(Number(local.updatedAt)||0);scores[i]=chooseRemote?remote.scores[i]:local.scores[i];clocks[i]=Math.max(lc,rc)}}const remoteNewer=(Number(remote.updatedAt)||0)>(Number(local.updatedAt)||0);return {id:local.id||remote.id,name:remoteNewer?(remote.name||local.name):(local.name||remote.name),scores,scoreUpdatedAt:clocks,updatedAt:Math.max(Number(local.updatedAt)||0,Number(remote.updatedAt)||0,...clocks)}}
+function normalizeSyncPlayer(p={}){const scores=Array.from({length:6},(_,i)=>normalizeScore((p.scores||[])[i])),base=Number(p.updatedAt)||0,bowlingFrames=normalizeBowlingGames(p.bowlingFrames),frameUpdatedAt=Array.from({length:6},(_,i)=>Number((p.frameUpdatedAt||[])[i])||bowlingGameStamp(bowlingFrames[i]));return {id:p.id||uid(),name:String(p.name||''),scores,scoreUpdatedAt:Array.from({length:6},(_,i)=>Number((p.scoreUpdatedAt||[])[i])||(scores[i]!==null?base:0)),bowlingFrames,frameUpdatedAt,updatedAt:Math.max(base,...frameUpdatedAt)}}
+function mergeSyncPlayer(local,remote){
+  if(!local)return normalizeSyncPlayer(remote);if(!remote)return normalizeSyncPlayer(local);
+  local=normalizeSyncPlayer(local);remote=normalizeSyncPlayer(remote);
+  const scores=[],clocks=[];for(let i=0;i<6;i++){const lc=playerClock(local,i),rc=playerClock(remote,i);if(rc>lc){scores[i]=remote.scores[i];clocks[i]=rc}else if(lc>rc){scores[i]=local.scores[i];clocks[i]=lc}else{const chooseRemote=(Number(remote.updatedAt)||0)>(Number(local.updatedAt)||0);scores[i]=chooseRemote?remote.scores[i]:local.scores[i];clocks[i]=Math.max(lc,rc)}}
+  const remoteNewer=(Number(remote.updatedAt)||0)>(Number(local.updatedAt)||0),bowlingFrames=mergeBowlingGames(local.bowlingFrames,remote.bowlingFrames,local.updatedAt,remote.updatedAt),frameUpdatedAt=Array.from({length:6},(_,i)=>Math.max(Number((local.frameUpdatedAt||[])[i])||0,Number((remote.frameUpdatedAt||[])[i])||0,bowlingGameStamp(bowlingFrames[i])));
+  return {id:local.id||remote.id,name:remoteNewer?(remote.name||local.name):(local.name||remote.name),scores,scoreUpdatedAt:clocks,bowlingFrames,frameUpdatedAt,updatedAt:Math.max(Number(local.updatedAt)||0,Number(remote.updatedAt)||0,...clocks,...frameUpdatedAt)}
+}
 function mergeSyncSession(local,remote){remote=normalizeSessionRecord(remote||{});if(!local)return remote;local=normalizeSessionRecord(local);const remoteNewer=itemStamp(remote)>itemStamp(local),base=remoteNewer?{...local,...remote}:{...remote,...local};const locals=[...(local.players||[])],used=new Set(),merged=[];for(const rp of remote.players||[]){let lp=locals.find(x=>x.id===rp.id);if(!lp)lp=locals.find(x=>nameKey(x.name)===nameKey(rp.name));if(lp)used.add(lp.id);merged.push(mergeSyncPlayer(lp,rp))}for(const lp of locals)if(!used.has(lp.id)&&!merged.some(x=>x.id===lp.id||nameKey(x.name)===nameKey(lp.name)))merged.push(normalizeSyncPlayer(lp));base.players=merged;base.updatedAt=Math.max(itemStamp(local),itemStamp(remote),...merged.map(x=>Number(x.updatedAt)||0));return base}
 function buildRoomPayload(meetupId){const m=meetups.find(x=>x.id===meetupId);if(!m)throw new Error('找不到要同步的球聚');const s=linkedSession(m)||ensureLiveSession(m);return {schema:2,appVersion:APP_VERSION,updatedAt:Date.now(),meetup:JSON.parse(JSON.stringify(m)),session:JSON.parse(JSON.stringify(normalizeSessionRecord(s))),participants:meetupParticipantNames(m)}}
 function mergeRoomPayload(payload,{select=false}={}){if(!payload?.meetup)throw new Error('遠端房間資料格式不正確');syncApplyingRemote=true;try{const rm=normalizeMeetupRecord(payload.meetup),mi=meetups.findIndex(x=>x.id===rm.id);if(mi<0)meetups.push(rm);else if(itemStamp(rm)>itemStamp(meetups[mi]))meetups[mi]={...meetups[mi],...rm};const rs=payload.session?normalizeSessionRecord(payload.session):null;if(rs){let si=sessions.findIndex(x=>x.id===rs.id);if(si<0)si=sessions.findIndex(x=>x.meetupId===rm.id);if(si<0)sessions.push(rs);else sessions[si]=mergeSyncSession(sessions[si],rs)}for(const name of meetupParticipantNames(rm)){if(!roster.some(r=>nameKey(r.name)===nameKey(name)))roster.push({id:uid(),name,alias:'',note:'由多人房間加入',active:true,createdAt:Date.now(),updatedAt:Date.now()})}localStorage.setItem(MEETUPKEY,JSON.stringify(meetups));localStorage.setItem(V2KEY,JSON.stringify(sessions));localStorage.setItem(ROSTERKEY,JSON.stringify(roster));if(select)setCurrentMeetup(rm.id);queueDbStatePersist('remote-sync-merge')}finally{syncApplyingRemote=false}syncPersonalFromClaims(true);renderAll()}
@@ -1555,7 +1588,7 @@ function finishLiveRound(){
 function endLiveMeetup(){const m=meetups.find(x=>x.id===currentMeetupId);if(!m)return;if(!confirm(`確定結束「${m.title}」？完成後會清空目前現場畫面，已儲存成績不會刪除。`))return;completeLiveMeetup(m)}
 function renderLive(){
   const sel=$('liveMeetupSelect');if(!sel)return;const prev=currentMeetupId||sel.value||'';const ordered=[...meetups].sort((a,b)=>(a.status==='ongoing'?0:a.status==='planned'?1:2)-(b.status==='ongoing'?0:b.status==='planned'?1:2)||String(b.date).localeCompare(String(a.date))||b.createdAt-a.createdAt);sel.innerHTML='<option value="">選擇球聚…</option>'+ordered.map(m=>`<option value="${esc(m.id)}">${m.status==='ongoing'?'● ':''}${esc(fmtDate(m.date))} · ${esc(m.title)}</option>`).join('');if(prev&&meetups.some(m=>m.id===prev))sel.value=prev;
-  const m=meetups.find(x=>x.id===sel.value)||meetups.find(x=>x.id===currentMeetupId);if(!m){$('liveEmpty').hidden=false;$('liveMain').hidden=true;$('liveContent').hidden=true;$('liveMeetupMeta').textContent='選擇一場球聚後即可快速輸入每一局分數；每次輸入都會立即儲存並更新排行榜。';$('liveFullScoreBtn').disabled=true;$('liveShareBtn').disabled=true;$('liveEndMeetupBtn').disabled=true;$('liveSyncBadge').textContent='本機';return}
+  const m=meetups.find(x=>x.id===sel.value)||meetups.find(x=>x.id===currentMeetupId);if(!m){$('liveEmpty').hidden=false;$('liveMain').hidden=true;$('liveContent').hidden=true;$('liveMeetupMeta').textContent='選擇一場球聚後，以標準保齡球一局 10 格記分；每球輸入都會立即儲存並自動計算分數。';$('liveFullScoreBtn').disabled=true;$('liveShareBtn').disabled=true;$('liveEndMeetupBtn').disabled=true;$('liveSyncBadge').textContent='本機';return}
   if(currentMeetupId!==m.id)setCurrentMeetup(m.id);const sess=ensureLiveSession(m);const planned=Math.max(1,Math.min(6,Number(m.plannedGames)||6));const prefs=livePrefs()[m.id]||{};if(!Number.isFinite(liveGameNo)||liveGameNo<1||liveGameNo>planned)liveGameNo=Number(prefs.gameNo)||liveRecommendedRound(m,sess);liveGameNo=Math.max(1,Math.min(planned,liveGameNo));liveMetric=prefs.metric||liveMetric||'total';
   $('liveEmpty').hidden=true;$('liveMain').hidden=false;$('liveContent').hidden=false;$('liveFullScoreBtn').disabled=false;$('liveShareBtn').disabled=false;const syncCfg=getSyncConfig(),syncBound=syncCfg.enabled&&syncCfg.meetupId===m.id,viewer=syncBound&&syncCfg.role==='viewer';$('liveEndMeetupBtn').disabled=viewer;$('liveSyncBadge').textContent=syncBound?`同步 ${syncCfg.roomCode} · ${syncRoleLabel(syncCfg.role)}`:'本機';
   $('liveMeetupMeta').textContent=`${m.title} · ${fmtDate(m.date)} · ${m.venue||'未填球館'}${m.lanes?` · 球道 ${m.lanes}`:''} · ${statusLabel(m.status)}`;
