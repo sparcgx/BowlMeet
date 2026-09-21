@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.3</title>
+<title>保齡球球聚｜BowlMeet v0.4.3.1</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -351,7 +351,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.3 · Field-First Simplification</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.3.1 · Full Meetup Share Card</p></div></div>
   <div class="top-actions"><button class="btn install-btn" id="installAppBtn" type="button">安裝 App</button><button class="btn" id="exportBtn">備份</button><button class="btn" id="importBtn">還原</button><input type="file" id="importFile" accept="application/json,.json" hidden /></div>
 </div></header>
 <main>
@@ -937,9 +937,9 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     <div class="share-layout">
       <section class="card share-controls">
         <h2>分享成績卡</h2>
-        <p class="section-desc">產生 1080 × 1350 排行榜卡、球聚總覽卡或獎項卡。支援手機原生分享；不支援時會改為下載 PNG。</p>
+        <p class="section-desc">產生 1080 × 1350 排行榜卡、球聚完整成績卡、球聚總覽卡或獎項卡。支援手機原生分享；不支援時會改為下載 PNG。</p>
         <div class="share-form">
-          <div class="field"><label for="shareCardType">分享卡類型</label><select id="shareCardType"><option value="ranking">排行榜卡</option><option value="summary">球聚總覽卡</option><option value="awards">獎項卡</option></select><div class="share-type-note" id="shareTypeNote">排行榜卡可依總分、平均或最高單局排序。</div></div>
+          <div class="field"><label for="shareCardType">分享卡類型</label><select id="shareCardType"><option value="ranking">排行榜卡</option><option value="meetupCard">球聚完整成績卡</option><option value="summary">球聚總覽卡</option><option value="awards">獎項卡</option></select><div class="share-type-note" id="shareTypeNote">排行榜卡可依總分、平均或最高單局排序。</div></div>
           <div class="field"><label for="shareMeetup">球聚範圍</label><select id="shareMeetup"><option value="all">全部歷史</option></select></div>
           <div class="field" id="shareMetricField"><label for="shareMetric">排行榜指標</label><select id="shareMetric"><option value="total">總分</option><option value="avg">平均</option><option value="best">最高單局</option></select></div>
           <div class="field" id="shareTopNField"><label for="shareTopN">顯示名次</label><select id="shareTopN"><option value="3">前 3 名</option><option value="5" selected>前 5 名</option><option value="8">前 8 名</option></select></div>
@@ -947,7 +947,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
         </div>
         <div class="share-actions"><button class="btn" id="refreshShareBtn" type="button">重新產生</button><button class="btn" id="downloadShareBtn" type="button">下載 PNG</button><button class="btn primary" id="nativeShareBtn" type="button">分享成績卡</button></div>
         <div class="pwa-panel"><div class="pwa-title"><span id="pwaDot" class="pwa-dot"></span><span id="pwaState">檢查 App 狀態…</span></div><div class="pwa-status" id="pwaHelp">PWA 安裝需要以 HTTPS 或 localhost 開啟。iPhone 請用 Safari 的「分享 → 加入主畫面」。</div></div>
-        <div class="share-note">分享圖片只使用目前裝置的球聚與成績資料，不會上傳。獎項卡需要選擇單一球聚。PWA 本體可離線使用；照片 OCR 第一次使用仍可能需要網路載入辨識元件。</div>
+        <div class="share-note">分享圖片只使用目前裝置的球聚與成績資料，不會上傳。球聚完整成績卡會顯示該場所有玩家、所有局分數與總和；完整成績卡與獎項卡需要選擇單一球聚。PWA 本體可離線使用；照片 OCR 第一次使用仍可能需要網路載入辨識元件。</div>
       </section>
       <section class="card share-preview-card">
         <div class="share-preview-head"><div><h2>成績卡預覽</h2><p class="section-desc" style="margin-bottom:0">白色極簡版型，適合 LINE、訊息與社群分享。</p></div><span class="pill" id="shareGeneratedAt">尚未產生</span></div>
@@ -1009,7 +1009,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.3 · Field-First Simplification</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.3.1 · Full Meetup Share Card</div>
 </main>
 </div>
 <script>
@@ -1032,7 +1032,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.3';
+const APP_VERSION='0.4.3.1';
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
 const BUILTIN_CLOUD=true;
@@ -1842,10 +1842,10 @@ function renderShareOptions(){
   sel.value=[...sel.options].some(o=>o.value===prev)?prev:(currentMeetupId||'all');updateShareControls(false)
 }
 function updateShareControls(redraw=true){
-  const type=$('shareCardType')?.value||'ranking',scope=$('shareMeetup')?.value||'all';const awardsMode=type==='awards',summaryMode=type==='summary';
+  const type=$('shareCardType')?.value||'ranking',scope=$('shareMeetup')?.value||'all';const awardsMode=type==='awards',summaryMode=type==='summary',meetupCardMode=type==='meetupCard';
   const rankOnly=type==='ranking';$('shareMetricField')?.classList.toggle('share-field-hidden',!rankOnly);$('shareTopNField')?.classList.toggle('share-field-hidden',!rankOnly);
-  if($('shareTypeNote'))$('shareTypeNote').textContent=type==='ranking'?'排行榜卡可依總分、平均或最高單局排序。':type==='summary'?'球聚總覽卡整合 KPI、前三名與主要獎項。':'獎項卡顯示自動獎項與自訂獎項；需選擇單一球聚。';
-  if((awardsMode||summaryMode)&&scope==='all'&&meetups.length){$('shareMeetup').value=currentMeetupId&&meetups.some(m=>m.id===currentMeetupId)?currentMeetupId:[...meetups].sort((a,b)=>String(b.date).localeCompare(String(a.date)))[0].id}
+  if($('shareTypeNote'))$('shareTypeNote').textContent=type==='ranking'?'排行榜卡可依總分、平均或最高單局排序。':type==='meetupCard'?'球聚完整成績卡顯示該場所有玩家、每一局分數與個人總和。':type==='summary'?'球聚總覽卡整合 KPI、前三名與主要獎項。':'獎項卡顯示自動獎項與自訂獎項；需選擇單一球聚。';
+  if((awardsMode||summaryMode||meetupCardMode)&&scope==='all'&&meetups.length){$('shareMeetup').value=currentMeetupId&&meetups.some(m=>m.id===currentMeetupId)?currentMeetupId:[...meetups].sort((a,b)=>String(b.date).localeCompare(String(a.date)))[0].id}
   if(redraw)drawShareCard()
 }
 function roundedRect(ctx,x,y,w,h,r){const rr=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+rr,y);ctx.arcTo(x+w,y,x+w,y+h,rr);ctx.arcTo(x+w,y+h,x,y+h,rr);ctx.arcTo(x,y+h,x,y,rr);ctx.arcTo(x,y,x+w,y,rr);ctx.closePath()}
@@ -1853,16 +1853,59 @@ function canvasText(ctx,text,x,y,maxWidth){let t=String(text??'');if(ctx.measure
 function shareScopeData(){const scope=$('shareMeetup').value||'all',m=meetups.find(x=>x.id===scope);const rows=rankingRowsForScope(scope).filter(x=>x.games),allScoreRows=scope==='all'?allGames():((linkedSession(m||{})?.players||[]).flatMap(p=>(p.scores||[]).map(normalizeScore).filter(v=>v!==null).map(score=>({score}))));const vals=allScoreRows.map(x=>x.score);return {scope,m,rows,vals,overallAvg:avg(vals),overallBest:vals.length?Math.max(...vals):null}}
 function drawShareHeader(ctx,W,title,meta){ctx.fillStyle='#172033';ctx.fillRect(0,0,W,250);ctx.fillStyle='#fff';ctx.font='800 62px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText('BowlMeet',72,92);ctx.font='800 42px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,title,72,158,W-144);ctx.fillStyle='#cbd5e1';ctx.font='500 24px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,meta,72,205,W-144)}
 function drawShareStats(ctx,stats,y=286){stats.forEach((it,i)=>{const x=72+i*236,w=210,h=126;ctx.fillStyle='#fff';roundedRect(ctx,x,y,w,h,22);ctx.fill();ctx.strokeStyle='#e4e8ef';ctx.lineWidth=2;ctx.stroke();ctx.fillStyle='#697386';ctx.font='600 20px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText(it[0],x+22,y+36);ctx.fillStyle='#172033';ctx.font='850 40px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,it[1],x+22,y+91,w-44)})}
-function shareFooter(ctx,W,H,label){ctx.fillStyle='#697386';ctx.font='500 20px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText(`${label} · ${new Date().toLocaleString('zh-TW')}`,72,H-62);ctx.fillStyle='#0f62fe';ctx.font='800 20px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.textAlign='right';ctx.fillText('BowlMeet v0.4.1-R3',W-72,H-62);ctx.textAlign='left'}
+function shareFooter(ctx,W,H,label){ctx.fillStyle='#697386';ctx.font='500 20px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText(`${label} · ${new Date().toLocaleString('zh-TW')}`,72,H-62);ctx.fillStyle='#0f62fe';ctx.font='800 20px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.textAlign='right';ctx.fillText('BowlMeet '+APP_VERSION,W-72,H-62);ctx.textAlign='left'}
 function drawRankingShareCard(ctx,W,H,data,title,meta){const metric=$('shareMetric').value||'total',topN=Number($('shareTopN').value)||5;let rows=[...data.rows];rows.sort((a,b)=>shareMetricValue(b,metric)-shareMetricValue(a,metric)||b.games-a.games||a.name.localeCompare(b.name,'zh-Hant'));rows=rows.slice(0,topN);drawShareHeader(ctx,W,title,meta);drawShareStats(ctx,[['球員',String(rows.length)],['局數',String(data.vals.length)],['平均',String(data.overallAvg??'—')],['最高',String(data.overallBest??'—')]]);const tableX=72,tableY=454,tableW=936,rowH=topN>=8?72:topN>=5?84:96;ctx.fillStyle='#fff';roundedRect(ctx,tableX,tableY,tableW,72+Math.max(rows.length,1)*rowH,24);ctx.fill();ctx.strokeStyle='#e4e8ef';ctx.lineWidth=2;ctx.stroke();ctx.fillStyle='#f8fafc';roundedRect(ctx,tableX,tableY,tableW,72,24);ctx.fill();ctx.fillStyle='#5b6472';ctx.font='700 21px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText('排名',tableX+28,tableY+45);ctx.fillText('球員',tableX+145,tableY+45);ctx.fillText('局數',tableX+520,tableY+45);ctx.fillText('總分',tableX+635,tableY+45);ctx.fillText('平均',tableX+755,tableY+45);ctx.fillText('最高',tableX+855,tableY+45);if(!rows.length){ctx.fillStyle='#8a93a3';ctx.font='500 28px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText('目前沒有可分享的成績',tableX+250,tableY+150)}rows.forEach((r,i)=>{const y=tableY+72+i*rowH;if(i>0){ctx.strokeStyle='#eef1f5';ctx.beginPath();ctx.moveTo(tableX+22,y);ctx.lineTo(tableX+tableW-22,y);ctx.stroke()}ctx.fillStyle=i===0?'#0f62fe':'#172033';ctx.font='900 33px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText(String(i+1),tableX+38,y+58);ctx.fillStyle='#172033';ctx.font='800 28px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,r.name,tableX+145,y+57,340);ctx.font='700 25px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText(String(r.games),tableX+535,y+57);ctx.fillText(String(r.total),tableX+635,y+57);ctx.fillText(String(r.avg??'—'),tableX+755,y+57);ctx.fillText(String(r.best??'—'),tableX+855,y+57)});shareFooter(ctx,W,H,`排行榜 · ${metric==='avg'?'平均分':metric==='best'?'最高單局':'總分'}`)}
 function drawAwardsShareCard(ctx,W,H,data,title,meta){if(!data.m){drawShareHeader(ctx,W,title,'請選擇單一球聚');shareFooter(ctx,W,H,'獎項卡');return}const result=computeAwards(data.m.id),custom=Array.isArray(data.m.customAwards)?data.m.customAwards:[],items=[...result.awards.filter(a=>a.winners.length).map(a=>({title:a.title,winner:a.winners.join('、'),value:a.value,detail:a.detail})),...custom.map(a=>({title:a.title,winner:a.winner,value:'自訂獎項',detail:a.note||''}))].slice(0,8);drawShareHeader(ctx,W,title,meta);drawShareStats(ctx,[['參加',String(result.rows.length)],['自動獎項',String(result.awards.filter(a=>a.winners.length).length)],['自訂獎項',String(custom.length)],['PB 刷新',String(result.pbBreakers.length)]]);const startY=454,cardW=448,cardH=176,gap=40;items.forEach((a,i)=>{const col=i%2,row=Math.floor(i/2),x=72+col*(cardW+gap),y=startY+row*(cardH+22);ctx.fillStyle='#fff';roundedRect(ctx,x,y,cardW,cardH,22);ctx.fill();ctx.strokeStyle='#e4e8ef';ctx.lineWidth=2;ctx.stroke();ctx.fillStyle='#0f62fe';ctx.fillRect(x,y,6,cardH);ctx.fillStyle='#697386';ctx.font='700 20px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,a.title,x+28,y+38,cardW-56);ctx.fillStyle='#172033';ctx.font='850 30px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,a.winner||'—',x+28,y+82,cardW-56);ctx.fillStyle='#0f62fe';ctx.font='800 22px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,a.value||'',x+28,y+120,cardW-56);ctx.fillStyle='#697386';ctx.font='500 17px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,a.detail||'',x+28,y+151,cardW-56)});if(!items.length){ctx.fillStyle='#8a93a3';ctx.font='500 30px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText('這場球聚目前尚無可顯示的獎項',220,560)}shareFooter(ctx,W,H,'球聚獎項')}
+function meetupFullShareRows(m){
+  if(!m)return [];
+  const sess=linkedSession(m),byName=new Map();
+  for(const name of meetupParticipantNames(m)){const k=nameKey(name);if(k&&!byName.has(k))byName.set(k,{name,scores:Array(6).fill(null)})}
+  for(const p of sess?.players||[]){const k=nameKey(p.name);if(!k)continue;const row=byName.get(k)||{name:p.name,scores:Array(6).fill(null)};row.name=p.name||row.name;row.scores=Array.from({length:6},(_,i)=>normalizeScore((p.scores||[])[i]));byName.set(k,row)}
+  return [...byName.values()]
+}
+function drawMeetupFullShareCard(ctx,W,H,data,title,meta){
+  const m=data.m;if(!m){drawShareHeader(ctx,W,title,'請選擇單一球聚');shareFooter(ctx,W,H,'球聚完整成績卡');return}
+  const rows=meetupFullShareRows(m),planned=Math.max(1,Math.min(6,Number(m.plannedGames)||6)),visibleScores=rows.flatMap(r=>r.scores.slice(0,planned).filter(v=>v!==null)),playerCount=rows.length,gameCount=visibleScores.length;
+  drawShareHeader(ctx,W,title,meta);
+  drawShareStats(ctx,[['玩家',String(playerCount)],['已記局數',String(gameCount)],['平均',String(avg(visibleScores)??'—')],['最高',String(visibleScores.length?Math.max(...visibleScores):'—')]]);
+  const x=54,y=454,w=972,headerH=62,rowCount=Math.max(rows.length,1),availableH=760,rowH=Math.max(48,Math.min(66,Math.floor(availableH/rowCount))),tableH=headerH+rowH*rowCount;
+  ctx.fillStyle='#fff';roundedRect(ctx,x,y,w,tableH,20);ctx.fill();ctx.strokeStyle='#e4e8ef';ctx.lineWidth=2;ctx.stroke();
+  ctx.fillStyle='#f8fafc';roundedRect(ctx,x,y,w,headerH,20);ctx.fill();
+  const nameW=220,totalW=130,scoreArea=w-nameW-totalW,colW=scoreArea/planned;
+  ctx.fillStyle='#5b6472';ctx.font='750 18px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';
+  ctx.fillText('玩家',x+22,y+39);
+  for(let gi=0;gi<planned;gi++){ctx.textAlign='center';ctx.fillText('G'+(gi+1),x+nameW+colW*(gi+.5),y+39)}
+  ctx.fillText('總和',x+w-totalW/2,y+39);ctx.textAlign='left';
+  if(!rows.length){ctx.fillStyle='#8a93a3';ctx.font='500 27px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText('這場球聚目前沒有玩家資料',x+280,y+145)}
+  rows.forEach((r,ri)=>{
+    const ry=y+headerH+ri*rowH;
+    if(ri>0){ctx.strokeStyle='#eef1f5';ctx.beginPath();ctx.moveTo(x+18,ry);ctx.lineTo(x+w-18,ry);ctx.stroke()}
+    const vals=r.scores.slice(0,planned),entered=vals.filter(v=>v!==null),total=entered.reduce((a,b)=>a+b,0);
+    ctx.fillStyle='#172033';ctx.font='800 '+(rowH<=52?19:22)+'px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,r.name||'未命名',x+22,ry+rowH*.63,nameW-36);
+    ctx.textAlign='center';ctx.font='750 '+(rowH<=52?18:21)+'px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';
+    vals.forEach((v,gi)=>{ctx.fillStyle=v===null?'#a3aab5':'#172033';ctx.fillText(v===null?'—':String(v),x+nameW+colW*(gi+.5),ry+rowH*.63)});
+    ctx.fillStyle=entered.length?'#0f62fe':'#a3aab5';ctx.font='850 '+(rowH<=52?19:23)+'px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText(entered.length?String(total):'—',x+w-totalW/2,ry+rowH*.63);ctx.textAlign='left'
+  });
+  shareFooter(ctx,W,H,'球聚完整成績卡')
+}
 function drawSummaryShareCard(ctx,W,H,data,title,meta){if(!data.m){drawRankingShareCard(ctx,W,H,data,title,meta);return}let rows=[...data.rows].sort((a,b)=>b.total-a.total||b.games-a.games).slice(0,3),aw=computeAwards(data.m.id);drawShareHeader(ctx,W,title,meta);drawShareStats(ctx,[['球員',String(data.rows.length)],['局數',String(data.vals.length)],['平均',String(data.overallAvg??'—')],['最高',String(data.overallBest??'—')]]);ctx.fillStyle='#172033';ctx.font='850 29px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText('TOP 3',72,470);const topY=495;rows.forEach((r,i)=>{const x=72+i*306,w=282,h=160;ctx.fillStyle='#fff';roundedRect(ctx,x,topY,w,h,20);ctx.fill();ctx.strokeStyle='#e4e8ef';ctx.stroke();ctx.fillStyle=i===0?'#0f62fe':'#697386';ctx.font='900 34px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText(`#${i+1}`,x+22,topY+45);ctx.fillStyle='#172033';ctx.font='850 27px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,r.name,x+22,topY+88,w-44);ctx.fillStyle='#697386';ctx.font='650 19px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText(`${r.total} 分 · AVG ${r.avg??'—'}`,x+22,topY+126)});ctx.fillStyle='#172033';ctx.font='850 29px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText('今日亮點',72,720);const highlights=aw.awards.filter(a=>['champion','single','club200','pb'].includes(a.key)).slice(0,4);highlights.forEach((a,i)=>{const x=72+(i%2)*488,y=746+Math.floor(i/2)*190,w=448,h=164;ctx.fillStyle='#fff';roundedRect(ctx,x,y,w,h,20);ctx.fill();ctx.strokeStyle='#e4e8ef';ctx.stroke();ctx.fillStyle='#697386';ctx.font='700 19px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText(a.title,x+24,y+36);ctx.fillStyle='#172033';ctx.font='850 27px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,a.winners.length?a.winners.join('、'):'尚無結果',x+24,y+78,w-48);ctx.fillStyle='#0f62fe';ctx.font='800 22px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,a.value,x+24,y+116,w-48);ctx.fillStyle='#697386';ctx.font='500 16px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,a.detail,x+24,y+145,w-48)});shareFooter(ctx,W,H,'球聚總覽')}
 function drawShareCard(){
-  const canvas=$('shareCanvas');if(!canvas)return null;const ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height,type=$('shareCardType')?.value||'ranking',data=shareScopeData(),m=data.m;const title=$('shareCardTitle').value.trim()||(m?.title||(type==='awards'?'球聚獎項':'BowlMeet 球聚成績')),meta=m?`${fmtDate(m.date)} · ${m.venue||'未填球館'}${m.lanes?` · 球道 ${m.lanes}`:''}`:'全部歷史成績';ctx.clearRect(0,0,W,H);ctx.fillStyle='#f5f7fa';ctx.fillRect(0,0,W,H);if(type==='awards')drawAwardsShareCard(ctx,W,H,data,title,meta);else if(type==='summary')drawSummaryShareCard(ctx,W,H,data,title,meta);else drawRankingShareCard(ctx,W,H,data,title,meta);$('shareGeneratedAt').textContent=`已更新 · ${type==='awards'?'獎項卡':type==='summary'?'總覽卡':'排行榜卡'}`;lastShareBlob=null;return canvas
+  const canvas=$('shareCanvas');if(!canvas)return null;
+  const ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height,type=$('shareCardType')?.value||'ranking',data=shareScopeData(),m=data.m;
+  const autoTitle=type==='meetupCard'&&m?(fmtDate(m.date)+' 球聚卡'):(m?.title||(type==='awards'?'球聚獎項':'BowlMeet 球聚成績'));
+  const title=$('shareCardTitle').value.trim()||autoTitle;
+  const meta=m?((m.title||'球聚')+' · '+(m.venue||'未填球館')+(m.lanes?' · 球道 '+m.lanes:'')):'全部歷史成績';
+  ctx.clearRect(0,0,W,H);ctx.fillStyle='#f5f7fa';ctx.fillRect(0,0,W,H);
+  if(type==='awards')drawAwardsShareCard(ctx,W,H,data,title,meta);
+  else if(type==='summary')drawSummaryShareCard(ctx,W,H,data,title,meta);
+  else if(type==='meetupCard')drawMeetupFullShareCard(ctx,W,H,data,title,meta);
+  else drawRankingShareCard(ctx,W,H,data,title,meta);
+  $('shareGeneratedAt').textContent='已更新 · '+(type==='awards'?'獎項卡':type==='summary'?'總覽卡':type==='meetupCard'?'球聚完整卡':'排行榜卡');
+  lastShareBlob=null;return canvas
 }
 function shareCanvasBlob(){return new Promise((resolve,reject)=>{const c=drawShareCard();if(!c){reject(new Error('無法產生成績卡'));return}c.toBlob(b=>b?resolve(b):reject(new Error('圖片產生失敗')),'image/png',0.95)})}
-async function downloadShareCard(){try{const b=await shareCanvasBlob();const a=document.createElement('a');a.href=URL.createObjectURL(b);const m=meetups.find(x=>x.id===$('shareMeetup').value);const t=$('shareCardType')?.value||'ranking';a.download=`BowlMeet_${m?.date||today()}_${t==='awards'?'獎項卡':t==='summary'?'總覽卡':'排行榜卡'}.png`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1200)}catch(e){alert(e.message)}}
-async function nativeShareCard(){try{const b=await shareCanvasBlob();const m=meetups.find(x=>x.id===$('shareMeetup').value),file=new File([b],`BowlMeet_${m?.date||today()}_${($('shareCardType')?.value||'ranking')==='awards'?'獎項卡':($('shareCardType')?.value||'ranking')==='summary'?'總覽卡':'排行榜卡'}.png`,{type:'image/png'});if(navigator.share&&navigator.canShare?.({files:[file]})){await navigator.share({title:m?.title||'BowlMeet 球聚成績',text:'BowlMeet 球聚成績卡',files:[file]})}else if(navigator.share){await navigator.share({title:m?.title||'BowlMeet 球聚成績',text:'BowlMeet 球聚成績卡'});await downloadShareCard()}else{await downloadShareCard();alert('此瀏覽器不支援原生分享，已改為下載 PNG。')}}catch(e){if(e?.name!=='AbortError'){console.error(e);alert('分享失敗，請改用「下載 PNG」。')}}}
+async function downloadShareCard(){try{const b=await shareCanvasBlob();const a=document.createElement('a');a.href=URL.createObjectURL(b);const m=meetups.find(x=>x.id===$('shareMeetup').value);const t=$('shareCardType')?.value||'ranking',label=t==='awards'?'獎項卡':t==='summary'?'總覽卡':t==='meetupCard'?'球聚卡':'排行榜卡';a.download='BowlMeet_'+(m?.date||today())+'_'+label+'.png';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1200)}catch(e){alert(e.message)}}
+async function nativeShareCard(){try{const b=await shareCanvasBlob();const m=meetups.find(x=>x.id===$('shareMeetup').value),t=$('shareCardType')?.value||'ranking',label=t==='awards'?'獎項卡':t==='summary'?'總覽卡':t==='meetupCard'?'球聚卡':'排行榜卡',file=new File([b],'BowlMeet_'+(m?.date||today())+'_'+label+'.png',{type:'image/png'});if(navigator.share&&navigator.canShare?.({files:[file]})){await navigator.share({title:m?.title||'BowlMeet 球聚成績',text:'BowlMeet 球聚成績卡',files:[file]})}else if(navigator.share){await navigator.share({title:m?.title||'BowlMeet 球聚成績',text:'BowlMeet 球聚成績卡'});await downloadShareCard()}else{await downloadShareCard();alert('此瀏覽器不支援原生分享，已改為下載 PNG。')}}catch(e){if(e?.name!=='AbortError'){console.error(e);alert('分享失敗，請改用「下載 PNG」。')}}}
 function updatePwaState(){const dot=$('pwaDot'),label=$('pwaState'),help=$('pwaHelp');if(!dot||!label)return;dot.className='pwa-dot '+(navigator.onLine?'online':'offline');const standalone=window.matchMedia?.('(display-mode: standalone)').matches||navigator.standalone===true;if(standalone){label.textContent='已以 App 模式執行';$('installAppBtn').textContent='已安裝';$('installAppBtn').classList.add('ready');help.textContent='目前為獨立 App 視窗。主要資料仍儲存在此裝置。'}else if(location.protocol==='file:'){label.textContent='目前為本機 HTML 模式';help.textContent='一般功能可使用；要安裝 PWA，請把 PWA 套件放到 HTTPS 網站或 localhost。iPhone 使用 Safari「分享 → 加入主畫面」。'}else{label.textContent=navigator.onLine?'PWA 已就緒':'離線模式';help.textContent='Android / Chrome / Edge 可使用上方「安裝 App」。iPhone 請用 Safari「分享 → 加入主畫面」。'}}
 async function installPwa(){const standalone=window.matchMedia?.('(display-mode: standalone)').matches||navigator.standalone===true;if(standalone){alert('目前已在 App 模式執行。');return}if(deferredInstallPrompt){deferredInstallPrompt.prompt();const choice=await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;updatePwaState();if(choice.outcome!=='accepted')return}else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){alert('iPhone / iPad：請用 Safari 開啟後，按「分享」→「加入主畫面」。')}else if(location.protocol==='file:'){alert('PWA 安裝需要 HTTPS 或 localhost。請使用 v0.4.1 PWA 套件部署後再安裝。')}else{alert('目前瀏覽器沒有提供自動安裝提示。可從瀏覽器選單選擇「安裝應用程式」或「加入主畫面」。')}}
 function setUpdateUi(text,detail='',ready=false){if($('updateState'))$('updateState').textContent=text;if($('updateDetail'))$('updateDetail').textContent=detail;if($('applyUpdateBtn'))$('applyUpdateBtn').disabled=!ready}
