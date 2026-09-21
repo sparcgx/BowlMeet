@@ -163,6 +163,104 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     padding:9px 14px;
   }
 }
+
+/* v0.4.1 Mobile Content Fit */
+@media(max-width:680px){
+  html,body{width:100%;max-width:100%;overflow-x:hidden}
+  .app{width:100%;max-width:100%;overflow-x:hidden}
+  main{width:100%;max-width:100%;min-width:0;padding:10px 10px 36px}
+  .view,.view.active{width:100%;max-width:100%;min-width:0}
+  .view>*{max-width:100%;min-width:0}
+  .card,.panel,.sheet-card,.photo-box,.ocr-review,.meetup-create,.meetup-side,.roster-card,.leaderboard-card,
+  .analytics-shell,.analytics-card,.live-top,.live-score-panel,.live-rank-panel,.share-controls,.share-preview-card,
+  .sync-panel,.safety-card,.awards-head,.award-card,.custom-award-panel,.award-rules-panel,.personal-panel{
+    max-width:100%;min-width:0;
+  }
+
+  .meetup-hero,.meetup-list,.roster-layout,.history-layout,.photo-grid,.analytics-layout,.analytics-layout.secondary,
+  .live-main,.share-layout,.sync-layout,.awards-bottom,.personal-layout{
+    grid-template-columns:minmax(0,1fr)!important;
+    width:100%;min-width:0;
+  }
+
+  .meetup-form-grid,.sheet-head,.leaderboard-controls,.analytics-controls,.sync-form.two,.personal-form.two,
+  .personal-claim-row,.custom-award-form{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+
+  .meetup-form-grid .wide,.meetup-form-grid .full,.sheet-head .head-actions,
+  .personal-claim-row .btn,.custom-award-form .full{
+    grid-column:auto!important;
+  }
+
+  .meetup-create,.meetup-side,.roster-card,.leaderboard-card,.sheet-card,.panel,.photo-box,.ocr-review,
+  .analytics-shell,.analytics-card,.live-top,.live-score-panel,.live-rank-panel,.share-controls,.share-preview-card,
+  .sync-panel,.awards-head,.award-card,.custom-award-panel,.award-rules-panel,.personal-panel{
+    padding:12px!important;
+  }
+
+  .kpis,.live-kpis,.sync-kpis,.award-kpis,.personal-kpis,.analytics-kpis,.leaderboard-summary{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+  .kpis .kpi:last-child,.live-kpis .live-kpi:last-child{grid-column:1/-1}
+
+  .field,.field input,.field select,.field textarea,
+  .toolbar input,.toolbar select,.roster-toolbar input,.score-roster-tools select{
+    min-width:0!important;max-width:100%;width:100%;
+  }
+
+  .form-buttons,.sheet-actions,.left-actions,.right-actions,.meetup-actions,.personal-actions,.sync-actions,
+  .photo-tools,.ocr-actions,.awards-controls,.live-head-actions,.live-round-nav{
+    width:100%;max-width:100%;
+  }
+
+  .form-buttons .btn,.sheet-actions .btn,.left-actions .btn,.right-actions .btn,.personal-actions .btn,
+  .sync-actions .btn,.photo-tools .btn,.ocr-actions .btn{
+    min-width:0;
+  }
+
+  .score-table-wrap,.rank-table-wrap,.player-history-wrap,.personal-history-wrap,.live-rank-table-wrap,
+  .ocr-rows,.verify-list,.snapshot-list{
+    width:100%;max-width:100%;min-width:0;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .score-table{min-width:760px}
+  .rank-table,.player-history-table,.personal-history-table{min-width:640px}
+  .live-rank-table{min-width:520px}
+
+  .live-score-row{
+    width:100%;max-width:100%;min-width:0;
+    grid-template-columns:minmax(0,1fr) 108px!important;
+  }
+  .live-person,.live-chips,.live-entry{min-width:0}
+  .live-chips{grid-column:1/-1!important;overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px}
+  .live-chip{flex:0 0 auto}
+  .live-entry input{min-width:0;width:100%}
+
+  .meetup-top,.session-head,.snapshot-item,.sync-device,.sync-log,.personal-profile-top{
+    min-width:0;
+  }
+  .meetup-name,.meetup-meta,.session-title,.session-meta,.personal-profile-name,.personal-profile-meta{
+    overflow-wrap:anywhere;
+  }
+
+  .roster-row{width:100%;max-width:100%;min-width:0}
+  .roster-actions{flex-wrap:wrap}
+  .roster-actions .btn{flex:1 1 auto}
+
+  .active-meetup-banner,.live-head,.awards-head,.analytics-head{
+    width:100%;max-width:100%;min-width:0;
+  }
+
+  .share-canvas-wrap{width:100%;max-width:100%;overflow:auto;padding:8px}
+  .share-canvas{width:100%!important;max-width:540px;height:auto}
+
+  img,canvas,svg{max-width:100%}
+}
+
 </style>
 </head>
 <body>
