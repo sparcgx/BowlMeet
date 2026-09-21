@@ -11,6 +11,7 @@
 <body><main class="wrap">
 <section class="card"><span class="pill">BowlMeet v0.4.4-dev.1</span><h1>iPhone Safari Deployment Test</h1><p>此頁用來確認目前不是檔案預覽器，而是真正以 HTTPS 網頁方式執行。</p></section>
 <section class="card"><p><strong>dev.1 驗收重點：</strong>快速開場的「最近／常用玩家、沿用上一場」，以及「成績紀錄」的取消公開／重新公開。取消公開不得刪除本機原始成績。</p></section>
+<section class="card"><p><strong>Public Record Control 前置：</strong>跨裝置測試前，Supabase 必須先套用 <code>supabase_v044_public_record_control_patch.sql</code>，避免仍使用 R1 的舊裝置重新推回已取消公開紀錄。</p></section>
 <section class="card" id="checks">
 <div class="row"><span class="label">JavaScript</span><span class="status bad" id="js">未執行</span></div>
 <div class="row"><span class="label">HTTPS / Secure Context</span><span class="status" id="secure">檢查中</span></div>
