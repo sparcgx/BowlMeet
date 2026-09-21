@@ -13,6 +13,7 @@
 <section class="card"><p><strong>dev.2 驗收重點：</strong>完成球聚後自動出現賽後摘要；只統計正式完成局，並可直接進入分享球聚卡與成績紀錄。</p></section>
 <section class="card"><p><strong>Public Record Control 前置：</strong>Supabase 已套用 <code>supabase_v044_public_record_control_patch.sql</code>；跨裝置 tombstone 與 R1 legacy repush 防復活測試已通過。</p></section>
 <section class="card"><p><strong>Preview Isolation：</strong>dev.2 使用獨立 localStorage / IndexedDB、獨立雲端群組 <code>V44D22</code> 與 <code>bowlmeet-preview-v044d2-*</code> Cache，不會讀寫 Stable 或 dev.1 Preview 資料。</p></section>
+<section class="card"><p><strong>Manual Device Acceptance：</strong>實機流程已全部 PASS；賽後摘要、正式完成局統計、未完成局排除、分享／歷史導流、重新開啟摘要與資料隔離均驗收完成。</p></section>
 <section class="card" id="checks">
 <div class="row"><span class="label">JavaScript</span><span class="status bad" id="js">未執行</span></div>
 <div class="row"><span class="label">HTTPS / Secure Context</span><span class="status" id="secure">檢查中</span></div>
