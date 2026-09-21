@@ -56,7 +56,7 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - Direct table ACL：anon / authenticated 無直接 table 權限 ✅
 - RPC ACL：PUBLIC execute = false；anon / authenticated / service_role 明確授權 ✅
 - Supabase Performance Advisor ✅ 0 findings
-- 狀態：**R1 Automated Regression & Cloud Gate PASS / Manual Device Acceptance Pending**
+- 狀態：**v0.4.4-R1 Validation Complete / Stable Candidate**
 
 ### R1 Final Cloud Gate
 
@@ -82,6 +82,22 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - PUBLIC tombstone 與 legacy repush 防復活已再次通過 transaction + ROLLBACK。
 - 正式 main 根目錄仍維持 v0.4.3.3-R1；v0.4.4-R1 尚未合併至正式站。
 - 最後 Gate：R1 Preview 實機驗收。
+
+## v0.4.4-R1 Manual Device Acceptance
+
+- 建立球聚 / 玩家 / 10 格正式計分 ✅ PASS
+- 賽後摘要 ✅ PASS
+- 個人分析 ✅ PASS
+- History Filter ✅ PASS
+- 取消公開 → 重開 App 狀態維持 ✅ PASS
+- 重新公開 ✅ PASS
+- 進行中 Draft / Live State ✅ PASS
+- Full Backup ✅ PASS
+- Replace Restore：成績 / bowlingFrames / publicControl / workspace ✅ PASS
+- Merge Restore：目前 workspace 不被覆蓋 ✅ PASS
+- PWA 關閉 / 重開後資料完整 ✅ PASS
+- Preview / Stable / PUBLIC 資料隔離 ✅ PASS
+- 結論：**v0.4.4-R1 Validation Complete / Stable Candidate**
 
 ## v0.4.4-dev.4 Manual Device Acceptance
 
