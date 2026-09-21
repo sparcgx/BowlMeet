@@ -56,7 +56,23 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - Direct table ACL：anon / authenticated 無直接 table 權限 ✅
 - RPC ACL：PUBLIC execute = false；anon / authenticated / service_role 明確授權 ✅
 - Supabase Performance Advisor ✅ 0 findings
-- 狀態：**R1 Implementation Complete / Final Cloud & Device Gate Pending**
+- 狀態：**R1 Automated Regression & Cloud Gate PASS / Manual Device Acceptance Pending**
+
+### R1 Final Cloud Gate
+
+- R1 Preview：`/preview/v0.4.4-R1/` ✅ Ready
+- Preview localStorage / IndexedDB / Cache / Cloud ✅ Isolated
+- Preview Cloud：`V44R22`，rollback 後 0 sessions / 0 meetups / 0 recordControls
+- 取消公開 ✅ PASS
+- Legacy repush 防復活 ✅ PASS
+- 重新公開 ✅ PASS
+- stale revision conflict ✅ PASS
+- 錯誤 PIN rejection ✅ PASS
+- PUBLIC 正式資料：revision 21 / 4 sessions / 4 meetups / v0.4.3.3-R1 ✅ 未變更
+- RPC ACL：PUBLIC execute=false；anon / authenticated / service_role 明確授權 ✅
+- Core tables：RLS enabled；anon / authenticated 無直接 table ACL ✅
+- Performance Advisor ✅ 0 findings
+- Security Advisor 的 SECURITY DEFINER 提示屬匿名 PWA RPC 架構預期警告；RPC 內仍以 PIN / revision 驗證存取。
 
 ## v0.4.4-dev.4 Manual Device Acceptance
 
