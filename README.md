@@ -21,6 +21,22 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 3. 再開 `index.html` 進行 BowlMeet 實機驗收。
 4. iPhone Safari 可使用「分享 → 加入主畫面」安裝為 PWA。
 
+## v0.4.4-dev.3 Manual Device Acceptance
+
+- 個人分析頁開啟與球員切換 ✅ PASS
+- 最高 / 最低單局 ✅ PASS
+- 最近 5 局平均 ✅ PASS
+- 最近 5 / 10 / 全部歷史範圍切換 ✅ PASS
+- Strike % ✅ PASS
+- Spare % ✅ PASS
+- Open Frame % ✅ PASS
+- 逐格資料覆蓋率 ✅ PASS
+- 第 10 格特殊情境顯示正常 ✅ PASS
+- 關閉 / 重新開啟後分析結果一致 ✅ PASS
+- Stable / dev.1 / dev.2 Preview 資料隔離 ✅ PASS
+- 正式 PUBLIC 未受影響 ✅ PASS
+- 結論：**v0.4.4-dev.3 Validation Complete**
+
 ## v0.4.4-dev.3 Personal Performance Analytics
 
 - 沿用既有「個人分析」，不建立第二套統計模組。
@@ -51,7 +67,7 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 - JSON / normalize reload 後逐格分析一致 ✅ PASS
 - Preview Cloud rollback 後仍為 0 sessions / 0 meetups ✅ PASS
 - 正式 PUBLIC 維持 revision 21 ✅ 未變更
-- 狀態：**Device Preview & Automated Live Regression PASS / Manual Device Acceptance Pending**
+- 狀態：**Device Preview & Live Regression PASS / dev.3 Validation Complete**
 
 ## v0.4.4-dev.2 Automated Gate
 
