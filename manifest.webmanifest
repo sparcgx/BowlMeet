@@ -1,0 +1,18 @@
+{
+  "name": "保齡球球聚｜BowlMeet",
+  "short_name": "BowlMeet",
+  "description": "BowlMeet（保齡球球聚）：多人球聚、玩家認領、個人成績跨裝置同步、現場快速記分、排行榜、獎項、分享卡與資料安全。",
+  "lang": "zh-Hant",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#ffffff",
+  "orientation": "any",
+  "categories": ["sports","utilities"],
+  "icons": [
+    {"src":"./icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
+    {"src":"./icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any"},
+    {"src":"./icons/icon-maskable-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}
+  ]
+}
