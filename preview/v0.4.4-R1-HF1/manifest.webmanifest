@@ -1,0 +1,36 @@
+{
+  "name": "保齡球球聚｜BowlMeet v0.4.4-R1-HF1 Preview",
+  "short_name": "BowlMeet HF1",
+  "description": "BowlMeet（保齡球球聚）v0.4.4-R1-HF1：修正現場 10 格記分輸入後橫向位置與焦點回到第一格的問題；保留 v0.4.4-R1 全部穩定功能。",
+  "lang": "zh-Hant",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#ffffff",
+  "orientation": "any",
+  "categories": [
+    "sports",
+    "utilities"
+  ],
+  "icons": [
+    {
+      "src": "../../icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "../../icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "../../icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
