@@ -1,4 +1,4 @@
-# BowlMeet v0.4.4-dev.4 — History Search & Filter Enhancement
+# BowlMeet v0.4.4-R1 — Regression & Data Safety
 
 BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，建立玩家並進行標準 10 格即時計分。
 
@@ -20,6 +20,43 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 2. 先開 `deployment-test.html`，確認 JavaScript、HTTPS / Secure Context、IndexedDB 與 Service Worker。
 3. 再開 `index.html` 進行 BowlMeet 實機驗收。
 4. iPhone Safari 可使用「分享 → 加入主畫面」安裝為 PWA。
+
+## v0.4.4-R1 Regression & Data Safety
+
+R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過的功能整合成 Release Candidate，並封住資料安全與跨版本還原邊界。
+
+### R1 Data Safety Fix
+
+- Full Backup 改由 `captureState()` 核心狀態輸出，除了成績、球聚、名冊、Personal Data、Public Control，也包含 active meetup、draft、settings、liveState。
+- Replace Restore：新版完整備份可恢復 workspace。
+- Merge / Add Restore：不覆蓋目前裝置 workspace。
+- Legacy Backup：若舊備份不存在 `personalData`、`publicControl` 或 workspace 欄位，保留目前裝置的現代狀態，不再誤清資料。
+- 舊備份缺少 `publicControl` 時，不會清除現有取消公開 tombstone。
+- Snapshot / state restore 遇到空 draft 時會移除舊 draft，避免殘留。
+
+### R1 Automated Gate
+
+- JavaScript syntax ✅ PASS
+- Static HTML duplicate ID ✅ 0
+- Literal DOM reference missing ✅ 0
+- v0.4.4-dev.1 Quick Session / Public Record Control markers ✅ PASS
+- v0.4.4-dev.2 Post-Game Review markers ✅ PASS
+- v0.4.4-dev.3 Personal Analytics markers ✅ PASS
+- v0.4.4-dev.4 History Filter markers ✅ PASS
+- Perfect Game 300 ✅ PASS
+- 未完成第 10 格不寫正式分數 ✅ PASS
+- Post-Game Review 正式局統計 ✅ PASS
+- Frame Analytics / Legacy coverage ✅ PASS
+- History 組合篩選 ✅ PASS
+- PWA 更新順序：Snapshot → persist → SKIP_WAITING ✅ PASS
+- Legacy Backup Replace 保留 Personal / tombstone / workspace ✅ PASS
+- Modern Full Backup Replace 恢復完整 workspace ✅ PASS
+- Modern Merge 保留目前 workspace ✅ PASS
+- Supabase 核心 tables RLS ✅ Enabled
+- Direct table ACL：anon / authenticated 無直接 table 權限 ✅
+- RPC ACL：PUBLIC execute = false；anon / authenticated / service_role 明確授權 ✅
+- Supabase Performance Advisor ✅ 0 findings
+- 狀態：**R1 Implementation Complete / Final Cloud & Device Gate Pending**
 
 ## v0.4.4-dev.4 Manual Device Acceptance
 
