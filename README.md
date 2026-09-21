@@ -45,7 +45,11 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 - 全文搜尋球聚名稱 ✅ PASS
 - 最新 / 最舊排序 ✅ PASS
 - 來源 tab + 精準條件組合 ✅ PASS
-- 狀態：**Implementation Complete / Automated Regression PASS / Device Preview Pending**
+- Device Preview：`/preview/v0.4.4-dev.4/` ✅ Ready
+- Preview localStorage / IndexedDB / Cache / Cloud ✅ Isolated
+- Preview Cloud：`V44D44`，目前 0 sessions / 0 meetups
+- Stable PUBLIC：revision 21 / 4 sessions / 4 meetups / v0.4.3.3-R1，未變更
+- 狀態：**Implementation Complete / Automated Regression PASS / Manual Device Acceptance Pending**
 
 ## v0.4.4-dev.3 Manual Device Acceptance
 
