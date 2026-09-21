@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.2-R6</title>
+<title>保齡球球聚｜BowlMeet v0.4.2-R7</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -93,6 +93,9 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 
 
 
+
+/* v0.4.2-R7 Live Current Score Sync */
+.live-score-link-note{margin-top:8px;border-left:3px solid #0f62fe;padding-left:9px}
 
 /* v0.4.2-R6 Live Quick Entry */
 .live-workstation{display:grid;gap:12px}
@@ -335,7 +338,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.2-R6 · Live Quick Entry</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.2-R7 · Live ↔ Current Score Sync</p></div></div>
   <div class="top-actions"><button class="btn install-btn" id="installAppBtn" type="button">安裝 App</button><button class="btn" id="exportBtn">備份</button><button class="btn" id="importBtn">還原</button><input type="file" id="importFile" accept="application/json,.json" hidden /></div>
 </div></header>
 <main>
@@ -711,6 +714,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
         <div class="right-actions"><button class="btn" id="newSessionBtn">新增一張</button><button class="btn primary" id="saveSessionBtn">儲存本次成績</button></div>
       </div>
       <div id="message" class="message"></div>
+      <div class="legacy-note live-score-link-note">現場 10 格完成後會自動帶入本次計分對應局次；不需要重複輸入。</div>
       <div class="legacy-note" style="margin-top:10px">完成「儲存本次成績」後：若已加入共享群組，任何成員儲存後都會立即寫入「群組歷史」；離線時先保存在本機，恢復連線後再同步。</div>
     </section>
   </section>
@@ -972,7 +976,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.2-R6 · Live Quick Entry / Group History</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.2-R7 · Live ↔ Current Score Sync / Group History</div>
 </main>
 </div>
 <script>
@@ -992,7 +996,7 @@ const PERSONALKEY='bowlingMeetup.personal.v041';
 const PERSONALSECRETKEY='bowlingMeetup.personalAuth.v041';
 const GROUPKEY='bowlingMeetup.group.v042';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.2-R6';
+const APP_VERSION='0.4.2-R7';
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
 const BUILTIN_CLOUD=true;
@@ -1647,7 +1651,7 @@ function addLivePlayerDirect(){
   if(meetupParticipantNames(m).some(n=>nameKey(n)===nameKey(name))){alert('這位玩家已在本場球聚。');input.select();return}
   m.participantNames=uniqueNames([...(m.participantNames||[]),name]);m.updatedAt=Date.now();persistMeetups();
   const sess=ensureLiveSession(m);if(!sess.players.some(p=>nameKey(p.name)===nameKey(name))){sess.players.push(makePlayer(name,[]));sess.updatedAt=Date.now();persist()}
-  input.value='';renderAll();renderLive();setLiveSaveState(name+' 已加入',true);
+  input.value='';mirrorLiveSessionToCurrentScore(sess);renderAll();renderLive();setLiveSaveState(name+' 已加入 · 已連動本次計分',true);
   setTimeout(()=>{const p=sess.players.find(x=>nameKey(x.name)===nameKey(name));document.querySelector(`.live-roll-input[data-pid="${CSS.escape(p?.id||'')}"]:not(:disabled)`)?.focus()},30)
 }
 function saveLiveRoll(input,advance=false){
@@ -1657,10 +1661,10 @@ function saveLiveRoll(input,advance=false){
   frame.rolls[rollIndex]=val;if(frameIndex<9&&frame.rolls[0]===10)frame.rolls[1]=null;if(frameIndex===9&&frame.rolls[0]!==null&&frame.rolls[0]<10&&frame.rolls[1]!==null&&frame.rolls[0]+frame.rolls[1]<10)frame.rolls[2]=null;
   if(!bowlingFrameValid(frame,frameIndex)){input.classList.add('invalid');setLiveSaveState('此格倒瓶數不可超過 10',true);input.focus();return}
   const now=Date.now();frame.updatedAt=now;game[frameIndex]=frame;p.frameUpdatedAt[gameIndex]=now;
-  const calc=bowlingGameCalc(game),oldScores=Array.from({length:6},(_,i)=>normalizeScore((p.scores||[])[i])),base=Number(p.updatedAt)||Number(sess.updatedAt)||0,oldClocks=Array.from({length:6},(_,i)=>Number((p.scoreUpdatedAt||[])[i])||(oldScores[i]!==null?base:0));p.scores=Array.from({length:6},(_,i)=>i===gameIndex?(calc.complete?calc.final:null):oldScores[i]);p.scoreUpdatedAt=Array.from({length:6},(_,i)=>i===gameIndex?now:oldClocks[i]);p.updatedAt=now;sess.updatedAt=now;persist();syncPersonalFromClaims(true);setLiveSaveState(calc.complete?`第 ${liveGameNo} 局完成 · ${calc.final} 分`:'10 格記分已儲存',true);
+  const calc=bowlingGameCalc(game),oldScores=Array.from({length:6},(_,i)=>normalizeScore((p.scores||[])[i])),base=Number(p.updatedAt)||Number(sess.updatedAt)||0,oldClocks=Array.from({length:6},(_,i)=>Number((p.scoreUpdatedAt||[])[i])||(oldScores[i]!==null?base:0));p.scores=Array.from({length:6},(_,i)=>i===gameIndex?(calc.complete?calc.final:null):oldScores[i]);p.scoreUpdatedAt=Array.from({length:6},(_,i)=>i===gameIndex?now:oldClocks[i]);p.updatedAt=now;sess.updatedAt=now;persist();mirrorLiveSessionToCurrentScore(sess);syncPersonalFromClaims(true);setLiveSaveState(calc.complete?`第 ${liveGameNo} 局完成 · ${calc.final} 分 · 已連動本次計分`:'10 格記分已儲存 · 本次計分同步中',true);
   const key={pid:p.id,frame:frameIndex,roll:rollIndex};renderLive();if(advance)setTimeout(()=>{const inputs=[...document.querySelectorAll('.live-roll-input:not(:disabled)')],cur=inputs.find(x=>x.dataset.pid===key.pid&&Number(x.dataset.frame)===key.frame&&Number(x.dataset.roll)===key.roll),ix=inputs.indexOf(cur),next=inputs[ix+1];if(next){next.focus();next.select()}},25)
 }
-function clearLiveGame(pid){const m=meetups.find(x=>x.id===currentMeetupId);if(!m||!syncAllowWrite(m.id,'清除本局 10 格'))return;const sess=ensureLiveSession(m),p=sess.players.find(x=>x.id===pid);if(!p)return;if(!confirm(`確定清除「${p.name}」第 ${liveGameNo} 局的 10 格記分？`))return;const gi=liveGameNo-1,now=Date.now();p.bowlingFrames=normalizeBowlingGames(p.bowlingFrames);p.bowlingFrames[gi]=null;p.frameUpdatedAt=Array.from({length:6},(_,i)=>i===gi?now:Number((p.frameUpdatedAt||[])[i])||0);p.scores=Array.from({length:6},(_,i)=>i===gi?null:normalizeScore((p.scores||[])[i]));p.scoreUpdatedAt=Array.from({length:6},(_,i)=>i===gi?now:Number((p.scoreUpdatedAt||[])[i])||0);p.updatedAt=now;sess.updatedAt=now;persist();syncPersonalFromClaims(true);renderLive();setLiveSaveState('本局已清除',true)}
+function clearLiveGame(pid){const m=meetups.find(x=>x.id===currentMeetupId);if(!m||!syncAllowWrite(m.id,'清除本局 10 格'))return;const sess=ensureLiveSession(m),p=sess.players.find(x=>x.id===pid);if(!p)return;if(!confirm(`確定清除「${p.name}」第 ${liveGameNo} 局的 10 格記分？`))return;const gi=liveGameNo-1,now=Date.now();p.bowlingFrames=normalizeBowlingGames(p.bowlingFrames);p.bowlingFrames[gi]=null;p.frameUpdatedAt=Array.from({length:6},(_,i)=>i===gi?now:Number((p.frameUpdatedAt||[])[i])||0);p.scores=Array.from({length:6},(_,i)=>i===gi?null:normalizeScore((p.scores||[])[i]));p.scoreUpdatedAt=Array.from({length:6},(_,i)=>i===gi?now:Number((p.scoreUpdatedAt||[])[i])||0);p.updatedAt=now;sess.updatedAt=now;persist();mirrorLiveSessionToCurrentScore(sess);syncPersonalFromClaims(true);renderLive();setLiveSaveState('本局已清除 · 已連動本次計分',true)}
 function liveCompletedFrameSlots(p,planned){let count=0;const games=normalizeBowlingGames(p.bowlingFrames);for(let gi=0;gi<planned;gi++){const calc=bowlingGameCalc(games[gi]);if(calc.started)count+=calc.completedFrames;else if(normalizeScore((p.scores||[])[gi])!==null)count+=10}return count}
 
 function clearCompletedMeetupContext(meetupId){
@@ -1937,10 +1941,31 @@ function renderPersonal(){
 
 function renderAll(){renderKpis();renderHistory();renderStats();renderMeetups();renderRoster();renderLeaderboard();renderAwards();renderRosterQuickSelect();refreshSheetCalcs();renderShareOptions();renderSafety();renderSync();renderGroupHistory();renderPersonal();if(document.getElementById('meetupView')?.classList.contains('active'))renderLive()}
 
+function mirrorLiveSessionToCurrentScore(sess){
+  if(!sess)return;
+  const draft={date:sess.date||today(),venue:sess.venue||'',lane:sess.lane||'',players:(sess.players||[]).map(p=>({id:p.id||uid(),name:p.name||'',scores:Array.from({length:6},(_,i)=>normalizeScore((p.scores||[])[i]))})),editingId:sess.id,meetupId:sess.meetupId||currentMeetupId||'',importAudit:sess.importAudit||null};
+  localStorage.setItem(DRAFTKEY,JSON.stringify(draft));queueDbStatePersist('live-current-score-sync');
+  const scoreActive=document.getElementById('scoreView')?.classList.contains('active');
+  if(scoreActive){
+    editingId=sess.id;currentMeetupId=sess.meetupId||currentMeetupId||'';pendingImportAudit=sess.importAudit||null;
+    $('date').value=sess.date||today();$('venue').value=sess.venue||'';$('lane').value=sess.lane||'';
+    renderScoreRows((sess.players||[]).map(p=>({id:p.id||uid(),name:p.name||'',scores:p.scores||[]})));
+    updateEditStatus();
+  }
+}
+function openCurrentScoreFromActiveMeetup(){
+  const m=meetups.find(x=>x.id===currentMeetupId);if(!m)return false;
+  const sess=linkedSession(m);if(!sess)return false;
+  editingId=sess.id;pendingImportAudit=sess.importAudit||null;
+  $('date').value=sess.date||today();$('venue').value=sess.venue||'';$('lane').value=sess.lane||'';
+  renderScoreRows((sess.players||[]).map(p=>({id:p.id||uid(),name:p.name||'',scores:p.scores||[]})));
+  updateEditStatus();saveDraft();return true
+}
 function loadSession(id){const s=sessions.find(x=>x.id===id);if(!s)return;editingId=s.id;setCurrentMeetup(s.meetupId||'');pendingImportAudit=s.importAudit||null;$('date').value=s.date||today();$('venue').value=s.venue||'';$('lane').value=s.lane||'';renderScoreRows((s.players||[]).map(p=>({id:p.id||uid(),name:p.name||'',scores:p.scores||[]})));updateEditStatus();saveDraft();switchView('scoreView');window.scrollTo({top:0,behavior:'smooth'})}
 function deleteSession(id){const s=sessions.find(x=>x.id===id);if(!s)return;if(!confirm(`確定刪除 ${fmtDate(s.date)} 的這張計分卡？`))return;sessions=sessions.filter(x=>x.id!==id);persist();if(editingId===id)newSheet(false);renderAll()}
 function switchView(id){
   const requested=id,viewId=id==='liveView'?'meetupView':id;
+  if(viewId==='scoreView'&&currentMeetupId)openCurrentScoreFromActiveMeetup();
   document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===viewId));
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.view===viewId));
   if(viewId==='shareView')renderShare();
