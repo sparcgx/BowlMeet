@@ -49,7 +49,14 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 - Preview localStorage / IndexedDB / Cache / Cloud ✅ Isolated
 - Preview Cloud：`V44D44`，目前 0 sessions / 0 meetups
 - Stable PUBLIC：revision 21 / 4 sessions / 4 meetups / v0.4.3.3-R1，未變更
-- 狀態：**Implementation Complete / Automated Regression PASS / Manual Device Acceptance Pending**
+- Cloud Push / Pull 多場 History 資料保留 ✅ PASS
+- recordControls Push / Pull 保留 ✅ PASS
+- 動態玩家 / 球館 / 球道選單保留目前選值 ✅ PASS
+- 篩選摘要 ✅ PASS
+- 清除篩選回復預設並重新 render ✅ PASS
+- Live Regression 使用 transaction + ROLLBACK，Preview Cloud 未污染 ✅ PASS
+- 正式 PUBLIC 維持 revision 21 ✅ 未變更
+- 狀態：**Device Preview & Automated Live Regression PASS / Manual Device Acceptance Pending**
 
 ## v0.4.4-dev.3 Manual Device Acceptance
 
