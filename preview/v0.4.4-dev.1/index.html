@@ -362,7 +362,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.4-dev.1 · Quick Session & Player Workflow + Public Record Control</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>PREVIEW · BowlMeet v0.4.4-dev.1 · Quick Session & Player Workflow + Public Record Control</p></div></div>
 </div></header>
 <main>
   <nav class="tabs" aria-label="功能切換">
@@ -1026,35 +1026,35 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.4-dev.1 · Quick Session & Player Workflow + Public Record Control</div>
+  <div class="footer-note">PREVIEW · 保齡球球聚｜BowlMeet · v0.4.4-dev.1 · 本機資料與公開雲端皆與 Stable 隔離</div>
 </main>
 </div>
 <script>
 (()=>{
 'use strict';
-const V1KEY='bowlingScoreWorkstation.records.v1';
-const V2KEY='bowlingScoreWorkstation.sessions.v2';
-const DRAFTKEY='bowlingScoreWorkstation.draft.v2';
-const SETTINGS='bowlingScoreWorkstation.settings.v2';
-const MEETUPKEY='bowlingMeetup.events.v3';
-const ROSTERKEY='bowlingMeetup.roster.v3';
-const ACTIVEKEY='bowlingMeetup.activeEvent.v3';
-const LIVEKEY='bowlingMeetup.liveState.v033';
-const SYNCKEY='bowlingMeetup.sync.v040';
-const DEVICEKEY='bowlingMeetup.device.v040';
-const PERSONALKEY='bowlingMeetup.personal.v041';
-const PERSONALSECRETKEY='bowlingMeetup.personalAuth.v041';
-const GROUPKEY='bowlingMeetup.group.v042';
-const PUBLIC_CONTROL_KEY='bowlingMeetup.publicControl.v044';
-const PUBLIC_HISTORY_CODE='PUBLIC';
-const PUBLIC_HISTORY_PIN='042042';
-const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
-const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
+const V1KEY='bowlmeet.preview.v044.records.v1';
+const V2KEY='bowlmeet.preview.v044.sessions.v2';
+const DRAFTKEY='bowlmeet.preview.v044.draft.v2';
+const SETTINGS='bowlmeet.preview.v044.settings.v2';
+const MEETUPKEY='bowlmeet.preview.v044.events.v3';
+const ROSTERKEY='bowlmeet.preview.v044.roster.v3';
+const ACTIVEKEY='bowlmeet.preview.v044.activeEvent.v3';
+const LIVEKEY='bowlmeet.preview.v044.liveState.v033';
+const SYNCKEY='bowlmeet.preview.v044.sync.v040';
+const DEVICEKEY='bowlmeet.preview.v044.device.v040';
+const PERSONALKEY='bowlmeet.preview.v044.personal.v041';
+const PERSONALSECRETKEY='bowlmeet.preview.v044.personalAuth.v041';
+const GROUPKEY='bowlmeet.preview.v044.group.v042';
+const PUBLIC_CONTROL_KEY='bowlmeet.preview.v044.publicControl.v044';
+const PUBLIC_HISTORY_CODE='DEV442';
+const PUBLIC_HISTORY_PIN='044044';
+const PUBLIC_HISTORY_NAME='BowlMeet v0.4.4 Preview 公開歷史';
+const GROUPSECRETKEY='bowlmeet.preview.v044.groupAuth.v042';
 const APP_VERSION='0.4.4-dev.1';
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
 const BUILTIN_CLOUD=true;
-const DB_NAME='bowlingMeetup.local';
+const DB_NAME='bowlmeet.preview.v044.local';
 const DB_VERSION=2;
 const DB_STATE_STORE='state';
 const DB_SNAPSHOT_STORE='snapshots';
