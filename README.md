@@ -1,4 +1,4 @@
-# BowlMeet v0.4.1-R3 — iPhone Safari Deployment Test
+# BowlMeet v0.4.2 — Group History & Shared Records
 
 這個目錄可直接放到 GitHub Pages。
 
@@ -32,3 +32,14 @@
 ## Supabase
 
 多人同步／Player Claim 仍需在 BowlMeet「多人同步」頁輸入自己的 Supabase Project URL 與 Anon Key。`supabase_schema.sql` 不包含你的專案密鑰。
+
+
+## v0.4.2 Group History & Shared Records
+
+- 新增「群組歷史」分頁。
+- A 建立共享群組後，可把目前裝置的球聚與計分卡歷史上傳到群組。
+- B 使用 Group Code + Group PIN 加入後，可查看群組全部共享歷史。
+- Viewer 只讀，不會把本機紀錄上傳。
+- Host / Editor 可將本機歷史與群組歷史增量合併。
+- 群組共享資料與「我的成績」分開；加入群組不會自動改寫本機歷史。
+- 要啟用此功能，請重新在 Supabase SQL Editor 執行最新版 `supabase_schema.sql`。
