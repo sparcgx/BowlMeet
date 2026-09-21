@@ -645,7 +645,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
           <button class="btn" id="clearPhotoBtn" disabled>清除</button>
         </div>
         <div id="gridPreviewWrap" class="grid-preview-wrap" hidden><canvas id="gridPreview" class="grid-preview"></canvas></div>
-        <div id="templateStatus" class="template-status">固定表格模式會先定位 10 欄與球員列，再以多重影像處理辨識手寫姓名與分數；藍筆會啟用筆跡分離。</div>
+        <div id="templateStatus" class="template-status">固定表格模式已依實際亞運計分卡校準：先鎖定表格外框，再切 10 欄；淡藍筆會做筆跡分離，若照片中有筆或物件遮住格子會自動降低信心並要求人工確認。</div>
         <div class="ocr-status"><span id="ocrStatus">等待照片</span><div class="progress"><div id="ocrProgress"></div></div></div>
         <div class="notice">固定表格模式會保留每一格的裁切影像供人工比對。低於目前門檻的欄位必須「確認」或直接修正後，才能套用到本次記分；避免錯誤 OCR 直接污染歷史成績。</div>
       </section>
@@ -1189,21 +1189,31 @@ function localMax(vals,a,b){a=Math.max(0,Math.floor(a));b=Math.min(vals.length,M
 function locateTemplateGrid(c){
   const ctx=c.getContext('2d',{willReadFrequently:true}),w=c.width,h=c.height,d=ctx.getImageData(0,0,w,h).data;
   const gray=new Uint8Array(w*h);for(let i=0,p=0;i<d.length;i+=4,p++)gray[p]=Math.round(.299*d[i]+.587*d[i+1]+.114*d[i+2]);
-  const vp=new Float32Array(w),hp=new Float32Array(h);const y1=Math.floor(.20*h),y2=Math.floor(.79*h);
-  for(let y=y1;y<y2;y++){const o=y*w;for(let x=0;x<w;x++){const g=gray[o+x];if(g<195)vp[x]+=(195-g)/195}}
-  const left=localMax(vp,.14*w,.26*w).i;const second=localMax(vp,left+.04*w,left+.11*w).i;let sx=second-left;
-  if(!(sx>.04*w&&sx<.11*w))sx=.0715*w;
-  const xs=[];for(let k=0;k<=10;k++){const t=left+k*sx,m=localMax(vp,t-.22*sx,t+.22*sx);xs.push(m.i)}
-  const gx1=Math.max(0,xs[0]),gx2=Math.min(w-1,xs[10]);for(let y=0;y<h;y++){const o=y*w;for(let x=gx1;x<=gx2;x++){const g=gray[o+x];if(g<195)hp[y]+=(195-g)/195}}
-  const top=localMax(hp,.17*h,.33*h).i;const secondY=localMax(hp,top+.028*h,top+.09*h).i;let sy=secondY-top;if(!(sy>.028*h&&sy<.09*h))sy=.052*h;
-  const ys=[];for(let k=0;k<=10;k++){const t=top+k*sy,m=localMax(hp,t-.24*sy,t+.24*sy);ys.push(m.i)}
-  const xSp=xs.slice(1).map((x,i)=>x-xs[i]),ySp=ys.slice(1).map((y,i)=>y-ys[i]);const xAvg=xSp.reduce((a,b)=>a+b,0)/xSp.length,yAvg=ySp.reduce((a,b)=>a+b,0)/ySp.length;
-  const xDev=Math.max(...xSp.map(v=>Math.abs(v-xAvg)))/Math.max(1,xAvg),yDev=Math.max(...ySp.map(v=>Math.abs(v-yAvg)))/Math.max(1,yAvg);
-  const ok=xs.every((v,i)=>i===0||v>xs[i-1])&&ys.every((v,i)=>i===0||v>ys[i-1])&&xDev<.34&&yDev<.38;
-  return {ok,xs,ys,w,h,xDev,yDev};
+  const hp=new Float32Array(h),xA=Math.floor(.03*w),xB=Math.floor(.78*w);
+  for(let y=0;y<h;y++){const o=y*w;for(let x=xA;x<xB;x++){const g=gray[o+x];if(g<190)hp[y]+=(190-g)/190}}
+  let top=localMax(hp,.32*h,.48*h).i,secondY=localMax(hp,top+.035*h,top+.10*h).i,sy=secondY-top;
+  let calibrated=sy>.035*h&&sy<.11*h;
+  if(!calibrated){top=localMax(hp,.14*h,.42*h).i;secondY=localMax(hp,top+.025*h,top+.11*h).i;sy=secondY-top;calibrated=sy>.025*h&&sy<.12*h}
+  const vp=new Float32Array(w),bandTop=Math.max(0,Math.floor(top-3)),bandBottom=Math.min(h,Math.ceil(secondY+Math.max(8,sy)));
+  for(let y=bandTop;y<bandBottom;y++){const o=y*w;for(let x=0;x<w;x++){const g=gray[o+x];if(g<190)vp[x]+=(190-g)/190}}
+  let left=localMax(vp,.015*w,.10*w).i,right=localMax(vp,.82*w,.94*w).i,sx=(right-left)/10;
+  if(!(sx>.055*w&&sx<.105*w)){left=localMax(vp,.02*w,.16*w).i;const second=localMax(vp,left+.05*w,left+.12*w).i;sx=second-left;right=left+sx*10}
+  const xs=Array.from({length:11},(_,k)=>Math.round(left+sx*k));
+  const ys=[top,secondY];let prev=secondY,step=Math.max(8,sy);
+  for(let k=2;k<=10;k++){
+    const pred=prev+step*1.06;
+    if(pred>=h-2){const next=Math.round(pred);ys.push(next);prev=next;step*=1.04;continue}
+    const lo=Math.max(prev+Math.max(4,.58*step),pred-.38*step),hi=Math.min(h,pred+.58*step),m=localMax(hp,lo,hi);
+    let next=m.i,gap=next-prev;
+    if(!(gap>.58*step&&gap<1.62*step)){next=Math.round(pred);gap=next-prev}
+    ys.push(next);step=.62*step+.38*gap;prev=next
+  }
+  const visibleRows=Math.max(0,Math.min(8,ys.slice(1).filter((y,i)=>i+1<ys.length&&ys[i+1]<h-2).length));
+  const xOk=xs[0]>=0&&xs[8]<w&&sx>.05*w&&sx<.11*w,yOk=top>=0&&secondY>top;
+  return {ok:xOk&&yOk,xs,ys,w,h,xDev:0,yDev:0,maxRows:visibleRows||8,calibrated:true};
 }
 function drawGridPreview(source,grid){
-  lastGrid=grid;const wrap=$('gridPreviewWrap'),out=$('gridPreview');if(!$('showGridGuide').checked||!grid){wrap.hidden=true;return}wrap.hidden=false;const x0=grid.xs[0],x1=grid.xs[10],y0=grid.ys[0],y1=grid.ys[10],cw=x1-x0,ch=y1-y0,scale=Math.min(1,900/cw);out.width=Math.max(1,Math.round(cw*scale));out.height=Math.max(1,Math.round(ch*scale));const ctx=out.getContext('2d');ctx.drawImage(source,x0,y0,cw,ch,0,0,out.width,out.height);ctx.lineWidth=1;ctx.strokeStyle='rgba(15,98,254,.85)';for(const x of grid.xs){const px=(x-x0)*scale;ctx.beginPath();ctx.moveTo(px,0);ctx.lineTo(px,out.height);ctx.stroke()}ctx.strokeStyle='rgba(20,128,74,.85)';for(const y of grid.ys){const py=(y-y0)*scale;ctx.beginPath();ctx.moveTo(0,py);ctx.lineTo(out.width,py);ctx.stroke()}
+  lastGrid=grid;const wrap=$('gridPreviewWrap'),out=$('gridPreview');if(!$('showGridGuide').checked||!grid){wrap.hidden=true;return}wrap.hidden=false;const x0=Math.max(0,grid.xs[0]),x1=Math.min(source.width-1,grid.xs[10]),y0=Math.max(0,grid.ys[0]),y1=Math.min(source.height-1,grid.ys[10]),cw=Math.max(1,x1-x0),ch=Math.max(1,y1-y0),scale=Math.min(1,900/cw);out.width=Math.max(1,Math.round(cw*scale));out.height=Math.max(1,Math.round(ch*scale));const ctx=out.getContext('2d');ctx.drawImage(source,x0,y0,cw,ch,0,0,out.width,out.height);ctx.lineWidth=1;ctx.strokeStyle='rgba(15,98,254,.85)';for(const x of grid.xs){const px=(x-x0)*scale;ctx.beginPath();ctx.moveTo(px,0);ctx.lineTo(px,out.height);ctx.stroke()}ctx.strokeStyle='rgba(20,128,74,.85)';for(const y of grid.ys){const py=(y-y0)*scale;ctx.beginPath();ctx.moveTo(0,py);ctx.lineTo(out.width,py);ctx.stroke()}
 }
 function cropCanvas(src,x0,y0,x1,y1,marginX=.08,marginY=.13){const w=x1-x0,h=y1-y0,mx=w*marginX,my=h*marginY;const c=document.createElement('canvas');c.width=Math.max(8,Math.round(w-2*mx));c.height=Math.max(8,Math.round(h-2*my));const ctx=c.getContext('2d');ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.drawImage(src,x0+mx,y0+my,w-2*mx,h-2*my,0,0,c.width,c.height);return c}
 function canvasThumb(c){try{return c.toDataURL('image/jpeg',.82)}catch{return ''}}
@@ -1215,10 +1225,11 @@ function preprocessCell(src,removeSlash=false,scale=ocrCellScale()){
   cx.putImageData(im,0,0);let ink=0;const out=cx.getImageData(0,0,c.width,c.height).data;for(let i=0;i<out.length;i+=4)if(out[i]<128)ink++;c.dataset.ink=String(ink/(c.width*c.height));c.dataset.variant='gray';return c
 }
 function preprocessBlueInk(src,scale=ocrCellScale()){
-  const pad=Math.max(12,Math.round(scale*4)),c=document.createElement('canvas');c.width=Math.max(24,Math.round(src.width*scale+pad*2));c.height=Math.max(24,Math.round(src.height*scale+pad*2));const cx=c.getContext('2d',{willReadFrequently:true});cx.imageSmoothingEnabled=true;cx.imageSmoothingQuality='high';cx.fillStyle='#fff';cx.fillRect(0,0,c.width,c.height);cx.drawImage(src,pad,pad,c.width-pad*2,c.height-pad*2);const im=cx.getImageData(0,0,c.width,c.height),d=im.data,mask=new Uint8Array(c.width*c.height);let ink=0;
-  for(let i=0,p=0;i<d.length;i+=4,p++){const r=d[i],g=d[i+1],b=d[i+2],mx=Math.max(r,g,b),mn=Math.min(r,g,b),blue=(b-r)>12&&(b-g)>3&&(mx-mn)>20&&r<215;if(blue){mask[p]=1;ink++}}
-  if(ink){const W=c.width,H=c.height,copy=mask.slice();for(let y=1;y<H-1;y++)for(let x=1;x<W-1;x++){const p=y*W+x;if(copy[p]){mask[p-1]=mask[p+1]=mask[p-W]=mask[p+W]=1}}}
-  for(let i=0,p=0;i<d.length;i+=4,p++){const v=mask[p]?0:255;d[i]=d[i+1]=d[i+2]=v;d[i+3]=255}cx.putImageData(im,0,0);c.dataset.ink=String(mask.reduce((a,b)=>a+b,0)/(c.width*c.height));c.dataset.variant='blue';return c
+  const pad=Math.max(12,Math.round(scale*4)),c=document.createElement('canvas');c.width=Math.max(24,Math.round(src.width*scale+pad*2));c.height=Math.max(24,Math.round(src.height*scale+pad*2));const cx=c.getContext('2d',{willReadFrequently:true});cx.imageSmoothingEnabled=true;cx.imageSmoothingQuality='high';cx.fillStyle='#fff';cx.fillRect(0,0,c.width,c.height);cx.drawImage(src,pad,pad,c.width-pad*2,c.height-pad*2);const im=cx.getImageData(0,0,c.width,c.height),d=im.data,mask=new Uint8Array(c.width*c.height);let rawInk=0;
+  for(let i=0,p=0;i<d.length;i+=4,p++){const r=d[i],g=d[i+1],b=d[i+2],mx=Math.max(r,g,b),mn=Math.min(r,g,b),blueScore=b-Math.max(r,g),blue=blueScore>12&&(b-r)>12&&(b-g)>2&&(mx-mn)>12&&r<238;if(blue){mask[p]=1;rawInk++}}
+  const rawRatio=rawInk/(c.width*c.height);
+  if(rawInk){const W=c.width,H=c.height,copy=mask.slice();for(let y=1;y<H-1;y++)for(let x=1;x<W-1;x++){const p=y*W+x;if(copy[p]){mask[p-1]=mask[p+1]=mask[p-W]=mask[p+W]=1}}}
+  for(let i=0,p=0;i<d.length;i+=4,p++){const v=mask[p]?0:255;d[i]=d[i+1]=d[i+2]=v;d[i+3]=255}cx.putImageData(im,0,0);c.dataset.ink=String(mask.reduce((a,b)=>a+b,0)/(c.width*c.height));c.dataset.rawInk=String(rawRatio);c.dataset.occluded=rawRatio>.32?'1':'0';c.dataset.variant='blue';return c
 }
 function cleanNameText(t){return String(t||'').replace(/[\n\r\t]/g,' ').replace(/[|_~`]+/g,' ').replace(/\s+/g,' ').trim().slice(0,12)}
 function scoreFromText(t){const m=String(t||'').replace(/[^0-9]/g,'').match(/\d{1,3}/);if(!m)return null;const n=Number(m[0]);return Number.isInteger(n)&&n>=0&&n<=300?n:null}
@@ -1245,13 +1256,13 @@ async function recognizeCell(worker,grayCanvas,blueCanvas,type){
     if(q==='high'||(q==='balanced'&&passes[0].confidence<80))passes.push(await ocrPass(worker,blueCanvas,'name',7));
     if(q==='high'&&passes[0].confidence<72)passes.push(await ocrPass(worker,grayCanvas,'name',8));
   }
-  return {...chooseOcrResult(passes,type),ink:Math.max(Number(grayCanvas?.dataset?.ink||0),Number(blueCanvas?.dataset?.ink||0)),passes};
+  const chosen=chooseOcrResult(passes,type),occluded=blueCanvas?.dataset?.occluded==='1';if(occluded)chosen.confidence=Math.min(chosen.confidence,42);return {...chosen,ink:Math.max(Number(grayCanvas?.dataset?.ink||0),Number(blueCanvas?.dataset?.ink||0)),passes,occluded};
 }
 async function runTemplateOcr(source){
-  const grid=locateTemplateGrid(source);lastGrid=grid;drawGridPreview(source,grid);const q=ocrQuality();$('templateStatus').textContent=grid.ok?`表格已定位：10 欄 × 8 個球員列。辨識品質：${q==='high'?'高品質多重辨識':q==='balanced'?'標準':'快速'}。`:'表格定位信心偏低；仍會嘗試多重辨識。若結果錯位，請先旋轉照片。';updateStages();
+  const grid=locateTemplateGrid(source);lastGrid=grid;drawGridPreview(source,grid);const q=ocrQuality();$('templateStatus').textContent=grid.ok?`實拍校準完成：亞運固定表格已定位。辨識品質：${q==='high'?'高品質多重辨識':q==='balanced'?'標準':'快速'}。`:'表格定位信心偏低；仍會嘗試多重辨識。若結果錯位，請先旋轉照片。';updateStages();
   setOcrStatus('建立高品質固定欄位辨識器…',12);const worker=await Tesseract.createWorker('eng+chi_tra',1,{logger:()=>{}});const out=[],raw=[];const scoreCols=[1,2,3,5,6,7];let tasks=0,done=0;
   try{
-    const plans=[];for(let r=1;r<=8;r++){
+    const plans=[];const rowLimit=Math.min(8,Number(grid.maxRows)||8);for(let r=1;r<=rowLimit;r++){
       const nameRaw=cropCanvas(source,grid.xs[0],grid.ys[r],grid.xs[1],grid.ys[r+1],.08,.12),name=preprocessCell(nameRaw,false),nameBlue=preprocessBlueInk(nameRaw);
       const scoreRaw=scoreCols.map(ci=>cropCanvas(source,grid.xs[ci],grid.ys[r],grid.xs[ci+1],grid.ys[r+1],.07,.11)),scores=scoreRaw.map(c=>preprocessCell(c,true)),scoreBlue=scoreRaw.map(c=>preprocessBlueInk(c));
       const active=Number(name.dataset.ink||0)>.005||Number(nameBlue.dataset.ink||0)>.0015||scores.some((c,i)=>Number(c.dataset.ink||0)>.006||Number(scoreBlue[i].dataset.ink||0)>.0015);
