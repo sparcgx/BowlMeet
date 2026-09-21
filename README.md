@@ -11,7 +11,7 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 - 取消公開只移除公開版本；本機 Session、局數、平均與個人分析資料不刪除。
 - 取消公開狀態會參與公開同步合併，避免下一次自動同步把已取消的 Session 再次發布。
 - 公開控制狀態會納入本機安全快照與完整備份。
-- 跨版本防復活由 Supabase `bowling_group_push` 保留 `recordControls` tombstone；現有資料庫請先執行 `supabase_v044_public_record_control_patch.sql`。
+- 跨版本防復活由 Supabase `bowling_group_push` 保留 `recordControls` tombstone；`supabase_v044_public_record_control_patch.sql` 已於 2026-09-22 套用至 BowlMeet Supabase。
 - v0.4.3.3-R1 仍為 Stable / Freeze Baseline；本版在 `v0.4.4-dev.1` 分支開發。
 
 ## GitHub Pages 部署
@@ -20,6 +20,14 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 2. 先開 `deployment-test.html`，確認 JavaScript、HTTPS / Secure Context、IndexedDB 與 Service Worker。
 3. 再開 `index.html` 進行 BowlMeet 實機驗收。
 4. iPhone Safari 可使用「分享 → 加入主畫面」安裝為 PWA。
+
+## v0.4.4-dev.1 Database Migration Status
+
+- Supabase migration：`v044_public_record_control_compat` ✅ Applied
+- Tombstone remove 測試 ✅ PASS
+- v0.4.3.3-R1 legacy repush 防復活 ✅ PASS
+- 測試以 transaction + ROLLBACK 執行，正式 PUBLIC 資料維持 revision 21。
+- 狀態：**Database Migration Applied / Ready for Device Preview**
 
 ## v0.4.4-dev.1 驗收重點
 
