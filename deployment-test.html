@@ -12,6 +12,7 @@
 <section class="card"><span class="pill">BowlMeet v0.4.4-R1</span><h1>iPhone Safari Deployment Test</h1><p>此頁用來確認目前不是檔案預覽器，而是真正以 HTTPS 網頁方式執行。</p></section>
 <section class="card"><p><strong>R1 驗收重點：</strong>不新增功能；驗證 dev.1～dev.4 完整回歸、完整備份／還原、舊版備份相容、PWA 更新前快照、PUBLIC tombstone 與資料隔離。</p></section>
 <section class="card"><p><strong>Public Record Control 前置：</strong>Supabase 已套用 <code>supabase_v044_public_record_control_patch.sql</code>；跨裝置 tombstone 與 R1 legacy repush 防復活測試已通過。</p></section>
+<section class="card"><p><strong>Final Freeze：</strong>Automated Regression、Cloud Gate 與 Manual Device Acceptance 均已 PASS；v0.4.4-R1 核准為 Stable / Freeze Baseline。</p></section>
 <section class="card" id="checks">
 <div class="row"><span class="label">JavaScript</span><span class="status bad" id="js">未執行</span></div>
 <div class="row"><span class="label">HTTPS / Secure Context</span><span class="status" id="secure">檢查中</span></div>
