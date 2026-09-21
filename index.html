@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.3.2</title>
+<title>保齡球球聚｜BowlMeet v0.4.3.3</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -96,6 +96,10 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 
 
 
+
+/* v0.4.3.3 Navigation & Utility Consolidation */
+.topbar-brand-only{justify-content:flex-start}.settings-app-state{border:1px solid var(--line);border-radius:11px;padding:11px;background:#fafbfc;margin-bottom:10px}.settings-app-state .pwa-status{margin-top:5px}.backup-restore-actions{margin:12px 0}.backup-restore-panel .safety-status{margin-top:10px}
+@media(max-width:680px){.topbar-brand-only{justify-content:flex-start}.settings-app-panel .settings-actions .btn,.backup-restore-actions .btn{width:100%;flex:1 1 100%}}
 
 /* v0.4.3 Field-First Settings */
 .settings-shell{display:grid;gap:14px}.settings-hero{padding:17px;display:flex;align-items:flex-start;justify-content:space-between;gap:14px}.settings-hero h2{margin:3px 0 0;font-size:20px}.settings-hero p{margin:5px 0 0;max-width:760px;font-size:11px;line-height:1.6;color:var(--muted)}.settings-eyebrow{font-size:9px;font-weight:900;letter-spacing:.12em;color:#0f62fe}
@@ -353,9 +357,8 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 </head>
 <body>
 <div class="app">
-<header class="topbar"><div class="topbar-inner">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.3.2 · Unified Score History</p></div></div>
-  <div class="top-actions"><button class="btn install-btn" id="installAppBtn" type="button">安裝 App</button><button class="btn" id="exportBtn">備份</button><button class="btn" id="importBtn">還原</button><input type="file" id="importFile" accept="application/json,.json" hidden /></div>
+<header class="topbar"><div class="topbar-inner topbar-brand-only">
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.3.3 · Navigation & Utility Consolidation</p></div></div>
 </div></header>
 <main>
   <nav class="tabs" aria-label="功能切換">
@@ -497,7 +500,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
           <h2>設定</h2>
           <p>日常使用以「球聚現場」為主。雲端、裝置與相容性功能集中在這裡，不干擾現場記分流程。</p>
         </div>
-        <span class="pill">v0.4.3</span>
+        <span class="pill">v0.4.3.3</span>
       </section>
 
       <div class="settings-grid">
@@ -539,10 +542,23 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
           </div>
         </section>
 
-        <section class="card settings-panel">
-          <div class="settings-panel-head"><div><h2>資料與系統</h2><p>備份、完整性檢查與版本更新維持獨立資料安全工具。</p></div></div>
+        <section class="card settings-panel settings-app-panel">
+          <div class="settings-panel-head"><div><h2>App / PWA</h2><p>安裝 BowlMeet、確認 App 模式與目前版本。維護操作不再放在主畫面右上角。</p></div></div>
+          <div class="settings-app-state">
+            <div class="pwa-title"><span id="pwaDot" class="pwa-dot"></span><span id="pwaState">檢查 App 狀態…</span></div>
+            <div class="pwa-status" id="pwaHelp">正在檢查 PWA 狀態。</div>
+          </div>
           <div class="settings-system-list">
-            <div><span>目前版本</span><strong>v0.4.3</strong></div>
+            <div><span>目前版本</span><strong>v0.4.3.3</strong></div>
+            <div><span>啟動首頁</span><strong>球聚現場</strong></div>
+          </div>
+          <div class="settings-actions"><button class="btn primary install-btn" id="installAppBtn" type="button">安裝 App</button><button class="btn" id="settingsCheckUpdateBtn" type="button">檢查更新</button></div>
+        </section>
+
+        <section class="card settings-panel">
+          <div class="settings-panel-head"><div><h2>資料與系統</h2><p>備份、還原、快照與完整性檢查集中在「資料安全」。</p></div></div>
+          <div class="settings-system-list">
+            <div><span>目前版本</span><strong>v0.4.3.3</strong></div>
             <div><span>主要作業模式</span><strong>球聚現場</strong></div>
             <div><span>本機資料</span><strong>IndexedDB + localStorage</strong></div>
           </div>
@@ -933,7 +949,6 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
           <div class="field"><label for="shareCardTitle">卡片標題</label><input id="shareCardTitle" maxlength="40" placeholder="留白會自動使用球聚名稱" /></div>
         </div>
         <div class="share-actions"><button class="btn" id="refreshShareBtn" type="button">重新產生</button><button class="btn" id="downloadShareBtn" type="button">下載 PNG</button><button class="btn primary" id="nativeShareBtn" type="button">分享成績卡</button></div>
-        <div class="pwa-panel"><div class="pwa-title"><span id="pwaDot" class="pwa-dot"></span><span id="pwaState">檢查 App 狀態…</span></div><div class="pwa-status" id="pwaHelp">PWA 安裝需要以 HTTPS 或 localhost 開啟。iPhone 請用 Safari 的「分享 → 加入主畫面」。</div></div>
         <div class="share-note">分享圖片只使用目前裝置的球聚與成績資料，不會上傳。球聚完整成績卡會顯示該場所有玩家、所有局分數與總和；完整成績卡與獎項卡需要選擇單一球聚。PWA 本體可離線使用；照片 OCR 第一次使用仍可能需要網路載入辨識元件。</div>
       </section>
       <section class="card share-preview-card">
@@ -956,7 +971,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
       <section class="card safety-panel">
         <h2>IndexedDB 與資料完整性</h2>
         <p>主要資料會寫入 IndexedDB，並同步保留 localStorage 相容鏡像。若 IndexedDB 不可用，會自動退回 localStorage，不中斷記分。</p>
-        <div class="safety-actions"><button class="btn primary" id="createSnapshotBtn" type="button">立即建立快照</button><button class="btn" id="integrityCheckBtn" type="button">資料完整性檢查</button><button class="btn" id="safetyExportBtn" type="button">匯出完整備份</button></div>
+        <div class="safety-actions"><button class="btn primary" id="createSnapshotBtn" type="button">立即建立快照</button><button class="btn" id="integrityCheckBtn" type="button">資料完整性檢查</button></div>
         <div class="safety-status" id="integrityResult"><strong>狀態：</strong>尚未執行完整性檢查。</div>
       </section>
       <section class="card safety-panel">
@@ -964,10 +979,15 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
         <p>每日自動建立一次快照；匯入資料與 PWA 更新前也會自動建立。可從最近 10 個恢復點回復。</p>
         <div id="snapshotList" class="snapshot-list"><div class="snapshot-empty">正在載入快照…</div></div>
       </section>
-      <section class="card safety-panel">
-        <h2>Merge Restore</h2>
-        <p>JSON 還原支援「智慧合併」、「只新增」與「完全取代」。任何匯入套用前都會先自動建立快照。</p>
-        <div class="safety-status"><strong>智慧合併：</strong>同 ID 資料會依 updatedAt 保留較新的版本；不同 ID 會加入。球員名冊也會避免重複姓名。</div>
+      <section class="card safety-panel backup-restore-panel">
+        <h2>備份與還原</h2>
+        <p>完整備份會匯出球聚、球員名冊、計分卡與個人成績資料。還原支援「智慧合併」、「只新增」與「完全取代」，套用前會自動建立安全快照。</p>
+        <div class="safety-actions backup-restore-actions">
+          <button class="btn primary" id="exportBtn" type="button">匯出完整備份</button>
+          <button class="btn" id="importBtn" type="button">選擇備份並還原</button>
+          <input type="file" id="importFile" accept="application/json,.json" hidden />
+        </div>
+        <div class="safety-status"><strong>智慧合併：</strong>同 ID 資料依 updatedAt 保留較新的版本；不同 ID 會加入。任何還原套用前都會先建立快照。</div>
       </section>
       <section class="card safety-panel">
         <h2>PWA 安全更新</h2>
@@ -996,7 +1016,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.3.2 · Unified Score History</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.3.3 · Navigation & Utility Consolidation</div>
 </main>
 </div>
 <script>
@@ -1019,7 +1039,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.3.2';
+const APP_VERSION='0.4.3.3';
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
 const BUILTIN_CLOUD=true;
@@ -1936,7 +1956,7 @@ function drawShareCard(){
 function shareCanvasBlob(){return new Promise((resolve,reject)=>{const c=drawShareCard();if(!c){reject(new Error('無法產生成績卡'));return}c.toBlob(b=>b?resolve(b):reject(new Error('圖片產生失敗')),'image/png',0.95)})}
 async function downloadShareCard(){try{const b=await shareCanvasBlob();const a=document.createElement('a');a.href=URL.createObjectURL(b);const m=meetups.find(x=>x.id===$('shareMeetup').value);const t=$('shareCardType')?.value||'ranking',label=t==='awards'?'獎項卡':t==='summary'?'總覽卡':t==='meetupCard'?'球聚卡':'排行榜卡';a.download='BowlMeet_'+(m?.date||today())+'_'+label+'.png';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1200)}catch(e){alert(e.message)}}
 async function nativeShareCard(){try{const b=await shareCanvasBlob();const m=meetups.find(x=>x.id===$('shareMeetup').value),t=$('shareCardType')?.value||'ranking',label=t==='awards'?'獎項卡':t==='summary'?'總覽卡':t==='meetupCard'?'球聚卡':'排行榜卡',file=new File([b],'BowlMeet_'+(m?.date||today())+'_'+label+'.png',{type:'image/png'});if(navigator.share&&navigator.canShare?.({files:[file]})){await navigator.share({title:m?.title||'BowlMeet 球聚成績',text:'BowlMeet 球聚成績卡',files:[file]})}else if(navigator.share){await navigator.share({title:m?.title||'BowlMeet 球聚成績',text:'BowlMeet 球聚成績卡'});await downloadShareCard()}else{await downloadShareCard();alert('此瀏覽器不支援原生分享，已改為下載 PNG。')}}catch(e){if(e?.name!=='AbortError'){console.error(e);alert('分享失敗，請改用「下載 PNG」。')}}}
-function updatePwaState(){const dot=$('pwaDot'),label=$('pwaState'),help=$('pwaHelp');if(!dot||!label)return;dot.className='pwa-dot '+(navigator.onLine?'online':'offline');const standalone=window.matchMedia?.('(display-mode: standalone)').matches||navigator.standalone===true;if(standalone){label.textContent='已以 App 模式執行';$('installAppBtn').textContent='已安裝';$('installAppBtn').classList.add('ready');help.textContent='目前為獨立 App 視窗。主要資料仍儲存在此裝置。'}else if(location.protocol==='file:'){label.textContent='目前為本機 HTML 模式';help.textContent='一般功能可使用；要安裝 PWA，請把 PWA 套件放到 HTTPS 網站或 localhost。iPhone 使用 Safari「分享 → 加入主畫面」。'}else{label.textContent=navigator.onLine?'PWA 已就緒':'離線模式';help.textContent='Android / Chrome / Edge 可使用上方「安裝 App」。iPhone 請用 Safari「分享 → 加入主畫面」。'}}
+function updatePwaState(){const dot=$('pwaDot'),label=$('pwaState'),help=$('pwaHelp');if(!dot||!label)return;dot.className='pwa-dot '+(navigator.onLine?'online':'offline');const standalone=window.matchMedia?.('(display-mode: standalone)').matches||navigator.standalone===true;if(standalone){label.textContent='已以 App 模式執行';$('installAppBtn').textContent='已安裝';$('installAppBtn').classList.add('ready');help.textContent='目前為獨立 App 視窗。主要資料仍儲存在此裝置。'}else if(location.protocol==='file:'){label.textContent='目前為本機 HTML 模式';help.textContent='一般功能可使用；要安裝 PWA，請把 PWA 套件放到 HTTPS 網站或 localhost。iPhone 使用 Safari「分享 → 加入主畫面」。'}else{label.textContent=navigator.onLine?'PWA 已就緒':'離線模式';help.textContent='Android / Chrome / Edge 可到「設定 → App / PWA」安裝。iPhone 請用 Safari「分享 → 加入主畫面」。'}}
 async function installPwa(){const standalone=window.matchMedia?.('(display-mode: standalone)').matches||navigator.standalone===true;if(standalone){alert('目前已在 App 模式執行。');return}if(deferredInstallPrompt){deferredInstallPrompt.prompt();const choice=await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;updatePwaState();if(choice.outcome!=='accepted')return}else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){alert('iPhone / iPad：請用 Safari 開啟後，按「分享」→「加入主畫面」。')}else if(location.protocol==='file:'){alert('PWA 安裝需要 HTTPS 或 localhost。請使用 v0.4.1 PWA 套件部署後再安裝。')}else{alert('目前瀏覽器沒有提供自動安裝提示。可從瀏覽器選單選擇「安裝應用程式」或「加入主畫面」。')}}
 function setUpdateUi(text,detail='',ready=false){if($('updateState'))$('updateState').textContent=text;if($('updateDetail'))$('updateDetail').textContent=detail;if($('applyUpdateBtn'))$('applyUpdateBtn').disabled=!ready}
 function watchRegistration(reg){pwaRegistration=reg;if(reg.waiting){pendingServiceWorker=reg.waiting;setUpdateUi('有新版可安全更新','按「安全更新」會先建立快照，再套用新版本。',true)}reg.addEventListener('updatefound',()=>{const w=reg.installing;if(!w)return;setUpdateUi('正在下載更新','Service Worker 安裝中…',false);w.addEventListener('statechange',()=>{if(w.state==='installed'){if(navigator.serviceWorker.controller){pendingServiceWorker=w;setUpdateUi('有新版可安全更新','新版已下載完成，等待安全套用。',true)}else setUpdateUi('PWA 已就緒','首次安裝完成。',false)}})})}
@@ -2118,13 +2138,13 @@ $('settingsPublicAutoToggle').addEventListener('change',e=>{setGroupConfig({auto
 $('settingsPersonalAutoToggle').addEventListener('change',e=>{personalData.autoSync=e.target.checked;persistPersonalLocal(false,'settings-personal-auto');startPersonalPolling();renderPersonal();renderFieldSettings()});
 $('settingsOpenPublicBtn').addEventListener('click',()=>{historySource='public';switchView('historyView');renderHistory()});
 $('settingsOpenPersonalBtn').addEventListener('click',()=>switchView('personalView'));
-$('settingsOpenSafetyBtn').addEventListener('click',()=>switchView('safetyView'));
+$('settingsOpenSafetyBtn').addEventListener('click',()=>switchView('safetyView'));$('settingsCheckUpdateBtn').addEventListener('click',checkPwaUpdate);
 
 
 $('createPersonalProfileBtn').addEventListener('click',createPersonalProfile);$('linkPersonalProfileBtn').addEventListener('click',linkPersonalProfile);$('copyPersonalLoginBtn').addEventListener('click',copyPersonalLogin);$('togglePersonalPasswordBtn').addEventListener('click',()=>setPersonalPasswordPanel($('personalPasswordPanel').hidden));$('changePersonalPinBtn').addEventListener('click',changePersonalPin);$('cancelPersonalPinBtn').addEventListener('click',()=>setPersonalPasswordPanel(false));$('disconnectPersonalBtn').addEventListener('click',disconnectPersonal);$('pullPersonalBtn').addEventListener('click',()=>syncPersonalNow(true,true,'manual-pull'));$('syncPersonalBtn').addEventListener('click',()=>syncPersonalNow(true,false,'manual'));$('personalAutoSync').addEventListener('change',e=>{personalData.autoSync=e.target.checked;persistPersonalLocal(false,'personal-auto');startPersonalPolling()});$('personalClaimMeetup').addEventListener('change',renderPersonalPlayerOptions);$('claimPlayerBtn').addEventListener('click',claimSelectedPlayer);$('personalClaimList').addEventListener('click',e=>{const b=e.target.closest('[data-unclaim]');if(b)removePersonalClaim(b.dataset.unclaim)});
 $('installAppBtn').addEventListener('click',installPwa);$('shareCardType').addEventListener('change',()=>updateShareControls(true));$('shareMeetup').addEventListener('change',()=>{updateShareControls(false);drawShareCard()});$('shareMetric').addEventListener('change',drawShareCard);$('shareTopN').addEventListener('change',drawShareCard);$('shareCardTitle').addEventListener('input',()=>{clearTimeout(drawShareCard.t);drawShareCard.t=setTimeout(drawShareCard,180)});$('refreshShareBtn').addEventListener('click',drawShareCard);$('downloadShareBtn').addEventListener('click',downloadShareCard);$('nativeShareBtn').addEventListener('click',nativeShareCard);
 $('createSnapshotBtn').addEventListener('click',async()=>{const s=await createSnapshot('手動快照');if(s)alert('安全快照已建立。');else alert('目前無法建立 IndexedDB 快照。')});
-$('integrityCheckBtn').addEventListener('click',runIntegrityCheck);$('safetyExportBtn').addEventListener('click',exportFullBackup);$('checkUpdateBtn').addEventListener('click',checkPwaUpdate);$('applyUpdateBtn').addEventListener('click',applyPwaUpdate);
+$('integrityCheckBtn').addEventListener('click',runIntegrityCheck);$('checkUpdateBtn').addEventListener('click',checkPwaUpdate);$('applyUpdateBtn').addEventListener('click',applyPwaUpdate);
 $('snapshotList').addEventListener('click',e=>{const b=e.target.closest('[data-restore-snapshot]');if(b)restoreSnapshot(b.dataset.restoreSnapshot)});
 $('cancelRestoreBtn').addEventListener('click',()=>{pendingRestorePayload=null;const d=$('restoreDialog');if(d.close)d.close();else d.removeAttribute('open')});
 $('applyRestoreBtn').addEventListener('click',async()=>{if(!pendingRestorePayload)return;const mode=document.querySelector('input[name="restoreMode"]:checked')?.value||'merge';$('applyRestoreBtn').disabled=true;try{const report=await applyRestorePayload(pendingRestorePayload,mode);pendingRestorePayload=null;const d=$('restoreDialog');if(d.close)d.close();else d.removeAttribute('open');alert(`還原完成：新增 ${report.added}、更新 ${report.updated}、略過 ${report.skipped}。`)}catch(e){console.error(e);alert('還原失敗：目前資料未被清除。')}finally{$('applyRestoreBtn').disabled=false}});
