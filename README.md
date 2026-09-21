@@ -1,38 +1,40 @@
-# BowlMeet v0.4.3.3 — Navigation & Utility Consolidation
+# BowlMeet v0.4.3.3-R1 — Regression & Cleanup Fix
 
-這個目錄可直接放到 GitHub Pages。
+BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，建立玩家並進行標準 10 格即時計分。
 
 ## GitHub Pages 部署
 
-1. 建立一個 GitHub repository，例如 `BowlMeet`。
-2. 將本目錄所有檔案放到 repository 根目錄。
-3. GitHub → Repository → Settings → Pages。
-4. Build and deployment 選 `Deploy from a branch`。
-5. Branch 選 `main`，Folder 選 `/ (root)`，按 Save。
-6. GitHub Pages 完成後，用 iPhone Safari 開啟 Pages 網址。
-7. 先開 `deployment-test.html`，確認 JavaScript、Secure Context、IndexedDB、Service Worker API 都正常。
-8. 再開 `index.html` 測試 BowlMeet 手機功能選單。
+1. Repository 使用 `main` 分支與 `/ (root)` 發佈。
+2. 先開 `deployment-test.html`，確認 JavaScript、HTTPS / Secure Context、IndexedDB 與 Service Worker。
+3. 再開 `index.html` 進行 BowlMeet 實機驗收。
+4. iPhone Safari 可使用「分享 → 加入主畫面」安裝為 PWA。
 
-## iPhone 驗收
+## v0.4.3.3-R1 驗收重點
 
-依序切換：
+依序確認：
 
-- 球聚活動
-- 我的成績
-- 成績紀錄
-- 多人同步
-- 現場模式
+- 球聚現場：新增玩家、10 格記分、Strike / Spare、自動帶入本次計分。
+- 本次計分：目前球聚的完整單局總分正確。
+- 成績紀錄：全部 / 我的紀錄 / 公開歷史切換與 Session ID 去重正常。
+- 我的成績：Player ID / Personal PIN 與個人成績同步正常。
+- 分享成績：球聚完整成績卡可顯示所有玩家、各局與總和。
+- 資料安全：備份、還原、快照、完整性檢查、PWA 安全更新。
+- 設定：BowlMeet Cloud、公開歷史同步、我的成績同步、App / PWA。
+- 舊版多裝置 Room Code 功能僅保留在「設定 → 進階｜多裝置協作（舊版相容）」。
 
-每次切換後，下方應只顯示對應功能。
+## 雲端架構
+
+- 一般使用者不需要輸入 Supabase Project URL 或 Publishable Key；網站使用內建 BowlMeet Cloud 設定。
+- 公開歷史已整合到「成績紀錄」，使用單一公開資料來源。
+- 「我的成績」使用 Player ID + 6 位 Personal PIN。
+- 舊 Room Code 多裝置同步只保留相容用途，不屬於主要操作流程。
+- `supabase_schema.sql` 不包含 PostgreSQL 密碼、service_role 或 secret key。
 
 ## PWA
 
-在 iPhone Safari 開啟 `index.html` → 分享 → 加入主畫面。
-
-## Supabase
-
-多人同步／Player Claim 仍需在 BowlMeet「多人同步」頁輸入自己的 Supabase Project URL 與 Anon Key。`supabase_schema.sql` 不包含你的專案密鑰。
-
+- Android / Chrome / Edge：到「設定 → App / PWA」使用安裝功能。
+- iPhone / iPad：Safari → 分享 → 加入主畫面。
+- PWA 更新可從「設定」檢查；安全套用仍在「資料安全 → PWA 安全更新」，套用前會建立快照。
 
 ## v0.4.2 Group History & Shared Records
 
@@ -177,3 +179,13 @@
 - 資料安全保留快照、完整性檢查與 PWA 安全更新，各維護操作依功能分組。
 - 還原仍沿用智慧合併 / 只新增 / 完全取代，且套用前自動建立安全快照。
 - 原有匯出、匯入與安裝事件 ID 保留，因此既有功能邏輯不需要重新建立資料或遷移。
+
+
+## v0.4.3.3-R1 Regression & Cleanup Fix
+
+- 修正「設定 → App / PWA → 檢查更新」結果原本只顯示在資料安全頁的問題；現在設定頁同步顯示檢查狀態。
+- 修正網路離線 / 恢復連線時「成績紀錄」公開雲端狀態未即時更新。
+- 切換進「成績紀錄」時會重新渲染本機與公開來源狀態。
+- 移除已廢棄的獨立公開歷史 UI renderer 與不存在的 Group History DOM 參照；保留公開雲端 Pull / Push / Merge 底層。
+- 清理使用者可見的舊版 v0.4.1 PWA / Data Safety 文字。
+- 更新 manifest、deployment-test 與 README，使說明符合目前 Field-First、Unified Score History 與 Settings 架構。
