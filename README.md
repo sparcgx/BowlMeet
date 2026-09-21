@@ -1,4 +1,4 @@
-# BowlMeet v0.4.2 — Group History & Shared Records
+# BowlMeet v0.4.2-R1 — Built-in Cloud Configuration
 
 這個目錄可直接放到 GitHub Pages。
 
@@ -43,3 +43,14 @@
 - Host / Editor 可將本機歷史與群組歷史增量合併。
 - 群組共享資料與「我的成績」分開；加入群組不會自動改寫本機歷史。
 - 要啟用此功能，請重新在 Supabase SQL Editor 執行最新版 `supabase_schema.sql`。
+
+
+## v0.4.2-R1 Built-in Cloud Configuration
+
+- 內建 Supabase Project URL 與 Publishable Key。
+- 一般使用者不再需要輸入 Project URL / Key。
+- 多人同步頁改為 BowlMeet Cloud 連線狀態與裝置名稱。
+- 啟動時自動檢查雲端連線。
+- Group Code / Group PIN、Room PIN、Personal PIN 仍維持動態與個別儲存。
+- 不包含 PostgreSQL 密碼、service_role 或 secret key。
+- v0.4.2 Group History 第一次使用前仍需在 Supabase SQL Editor 執行最新版 `supabase_schema.sql`。
