@@ -1,7 +1,7 @@
 {
   "name": "保齡球球聚｜BowlMeet",
   "short_name": "BowlMeet",
-  "description": "BowlMeet（保齡球球聚）：多人球聚、玩家認領、個人成績跨裝置同步、現場快速記分、排行榜、獎項、分享卡與資料安全。",
+  "description": "BowlMeet（保齡球球聚）：球聚記分、多人同步、Group History 共享歷史、Player Claim、排行榜、獎項與資料安全。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
