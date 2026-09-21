@@ -1,4 +1,4 @@
-# BowlMeet v0.4.4-dev.2 — Session Summary & Post-Game Review
+# BowlMeet v0.4.4-dev.3 — Personal Performance Analytics
 
 BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，建立玩家並進行標準 10 格即時計分。
 
@@ -20,6 +20,29 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 2. 先開 `deployment-test.html`，確認 JavaScript、HTTPS / Secure Context、IndexedDB 與 Service Worker。
 3. 再開 `index.html` 進行 BowlMeet 實機驗收。
 4. iPhone Safari 可使用「分享 → 加入主畫面」安裝為 PWA。
+
+## v0.4.4-dev.3 Personal Performance Analytics
+
+- 沿用既有「個人分析」，不建立第二套統計模組。
+- 新增「最近 5 局」分析範圍。
+- KPI 新增：最低單局、最近 5 局平均。
+- 保留：總局數、區間平均、生涯平均、PB、最近 10 局、200+。
+- 新增逐格表現：Strike %、Spare %、Open Frame %、逐格資料覆蓋率。
+- Strike / Spare / Open 只使用具有完整 `bowlingFrames` 的正式完成局。
+- 舊版匯入或只保存單局總分的紀錄仍參與平均、PB、趨勢，但不推算逐格結果。
+- 逐格分類以每局 10 個 Frame 為母體：第一球 10 = Strike；非 Strike 且兩球合計 10 = Spare；其餘 = Open。
+- 近期趨勢沿用成績趨勢圖、5 局移動平均與最近 5 / 10 / 20 局比較。
+
+## v0.4.4-dev.3 Automated Gate
+
+- JavaScript syntax ✅ PASS
+- Static HTML duplicate ID ✅ 0
+- Literal DOM reference missing ✅ 0
+- Recent 5 range regression ✅ PASS
+- Frame analytics regression：3 Strike / 2 Spare / 5 Open ✅ PASS
+- Frame coverage regression：1 / 2 局 = 50% ✅ PASS
+- 舊版總分資料排除逐格統計 ✅ PASS
+- 狀態：**Implementation Complete / Automated Regression PASS / Device Preview Pending**
 
 ## v0.4.4-dev.2 Automated Gate
 
