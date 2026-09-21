@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.1-R3</title>
+<title>保齡球球聚｜BowlMeet v0.4.1</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -139,26 +139,36 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 
 
 
-/* v0.4.1-R3 Mobile Navigation Fix */
-.mobile-view-nav{display:none}
-.view-anchor{height:0;scroll-margin-top:92px}
+/* v0.4.1 Mobile Horizontal Tabs */
 @media(max-width:680px){
-  .tabs{display:none!important}
-  .mobile-view-nav{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:10px;margin:0 0 12px;padding:10px 11px;border:1px solid var(--line);border-radius:13px;background:#fff;box-shadow:var(--shadow);position:sticky;top:68px;z-index:34}
-  .mobile-view-nav label{font-size:12px;font-weight:850;color:#4c566a;white-space:nowrap}
-  .mobile-view-nav select{width:100%;min-width:0;border:1px solid #cfd6e2;border-radius:10px;background:#fff;color:var(--text);padding:10px 36px 10px 11px;font-size:15px;font-weight:800;outline:none}
-  .mobile-view-nav select:focus{border-color:#8bb5ff;box-shadow:0 0 0 3px var(--primary-soft)}
-  .view{display:none!important}
-  .view.active:not([hidden]){display:block!important}
-  .view-anchor{scroll-margin-top:132px}
+  .tabs{
+    display:flex!important;
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;
+    gap:8px;
+    padding:2px 1px 9px;
+    margin-bottom:12px;
+    white-space:nowrap;
+    scrollbar-width:none;
+    overscroll-behavior-x:contain;
+  }
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{
+    flex:0 0 auto;
+    white-space:nowrap;
+    scroll-snap-align:start;
+    min-height:42px;
+    padding:9px 14px;
+  }
 }
-
 </style>
 </head>
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.1-R3 · iPhone Safari Deployment Test / Player Claim</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.1 · Player Claim / Personal Score Sync</p></div></div>
   <div class="top-actions"><button class="btn install-btn" id="installAppBtn" type="button">安裝 App</button><button class="btn" id="exportBtn">備份</button><button class="btn" id="importBtn">還原</button><input type="file" id="importFile" accept="application/json,.json" hidden /></div>
 </div></header>
 <main>
@@ -177,59 +187,6 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     <button class="tab" data-view="shareView">分享成績</button>
     <button class="tab" data-view="safetyView">資料安全</button>
   </nav>
-  <div class="mobile-view-nav" id="mobileViewNav" aria-label="手機功能選單" data-nav-core="R3">
-    <label for="mobileViewSelect">功能</label>
-    <select id="mobileViewSelect" aria-label="選擇 BowlMeet 功能" oninput="window.BowlMeetMobileSelect&&window.BowlMeetMobileSelect(this.value)" onchange="window.BowlMeetMobileSelect&&window.BowlMeetMobileSelect(this.value)">
-      <option value="meetupView">球聚活動</option>
-      <option value="liveView">現場模式</option>
-      <option value="syncView">多人同步</option>
-      <option value="personalView">我的成績</option>
-      <option value="scoreView">本次記分</option>
-      <option value="photoView">拍照匯入</option>
-      <option value="rosterView">球員名冊</option>
-      <option value="leaderboardView">排行榜</option>
-      <option value="awardsView">獎項</option>
-      <option value="historyView">成績紀錄</option>
-      <option value="statsView">個人分析</option>
-      <option value="shareView">分享成績</option>
-      <option value="safetyView">資料安全</option>
-    </select>
-  </div>
-  <div id="viewAnchor" class="view-anchor" aria-hidden="true"></div>
-  <script>
-  (()=>{
-    const allowed=new Set(['meetupView','liveView','syncView','personalView','scoreView','photoView','rosterView','leaderboardView','awardsView','historyView','statsView','shareView','safetyView']);
-    function activate(id,scroll=false){
-      if(!allowed.has(id)||!document.getElementById(id))id='meetupView';
-      document.querySelectorAll('main .view').forEach(v=>{
-        const on=v.id===id;
-        v.classList.toggle('active',on);
-        if(on){v.hidden=false;v.removeAttribute('hidden');v.style.setProperty('display','block','important')}
-        else{v.hidden=true;v.setAttribute('hidden','');v.style.setProperty('display','none','important')}
-        v.setAttribute('aria-hidden',on?'false':'true');
-      });
-      document.querySelectorAll('.tab[data-view]').forEach(t=>{
-        const on=t.dataset.view===id;t.classList.toggle('active',on);t.setAttribute('aria-selected',on?'true':'false');
-      });
-      const sel=document.getElementById('mobileViewSelect');if(sel&&sel.value!==id)sel.value=id;
-      document.documentElement.dataset.activeView=id;
-      if(scroll){requestAnimationFrame(()=>document.getElementById('viewAnchor')?.scrollIntoView({block:'start',behavior:'auto'}))}
-      return id;
-    }
-    window.BowlMeetActivateView=activate;
-    window.BowlMeetMobileSelect=id=>{
-      try{
-        if(typeof window.BowlMeetSwitchView==='function')return window.BowlMeetSwitchView(id,{scroll:true,source:'mobile-select'});
-      }catch(err){console.error('BowlMeet mobile switch fallback',err)}
-      return activate(id,true);
-    };
-    // Capture both events: some iOS/WebView shells emit input before change, others only change.
-    ['input','change'].forEach(type=>document.addEventListener(type,e=>{
-      if(e.target?.id==='mobileViewSelect')window.BowlMeetMobileSelect(e.target.value);
-    },true));
-  })();
-  </script>
-
 
   <section id="meetupView" class="view active">
     <div class="meetup-hero">
@@ -741,7 +698,7 @@ const SYNCKEY='bowlingMeetup.sync.v040';
 const DEVICEKEY='bowlingMeetup.device.v040';
 const PERSONALKEY='bowlingMeetup.personal.v041';
 const PERSONALSECRETKEY='bowlingMeetup.personalAuth.v041';
-const APP_VERSION='0.4.1-R3';
+const APP_VERSION='0.4.1';
 const DB_NAME='bowlingMeetup.local';
 const DB_VERSION=2;
 const DB_STATE_STORE='state';
@@ -1406,21 +1363,21 @@ function renderAll(){renderKpis();renderHistory();renderStats();renderMeetups();
 
 function loadSession(id){const s=sessions.find(x=>x.id===id);if(!s)return;editingId=s.id;setCurrentMeetup(s.meetupId||'');pendingImportAudit=s.importAudit||null;$('date').value=s.date||today();$('venue').value=s.venue||'';$('lane').value=s.lane||'';renderScoreRows((s.players||[]).map(p=>({id:p.id||uid(),name:p.name||'',scores:p.scores||[]})));updateEditStatus();saveDraft();switchView('scoreView');window.scrollTo({top:0,behavior:'smooth'})}
 function deleteSession(id){const s=sessions.find(x=>x.id===id);if(!s)return;if(!confirm(`確定刪除 ${fmtDate(s.date)} 的這張計分卡？`))return;sessions=sessions.filter(x=>x.id!==id);persist();if(editingId===id)newSheet(false);renderAll()}
-function switchView(id,options={}){
-  id=window.BowlMeetActivateView?window.BowlMeetActivateView(id,false):id;
-  const run=(name,fn)=>{try{fn()}catch(err){console.error(`BowlMeet ${name} render failed`,err)}};
-  if(id==='shareView')run('share',renderShare);
-  if(id==='awardsView')run('awards',renderAwards);
-  if(id==='liveView')run('live',renderLive);
-  if(id==='syncView')run('sync',renderSync);
-  if(id==='personalView')run('personal',renderPersonal);
-  if(options.scroll!==false&&window.matchMedia?.('(max-width:680px)').matches){requestAnimationFrame(()=>document.getElementById('viewAnchor')?.scrollIntoView({block:'start',behavior:'auto'}))}
-  return id;
+function switchView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.view===id));
+  if(id==='shareView')renderShare();
+  if(id==='awardsView')renderAwards();
+  if(id==='liveView')renderLive();
+  if(id==='syncView')renderSync();
+  if(id==='personalView')renderPersonal();
+  if(window.matchMedia?.('(max-width:680px)').matches){
+    const active=[...document.querySelectorAll('.tab[data-view]')].find(t=>t.dataset.view===id);
+    active?.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  }
 }
-window.BowlMeetSwitchView=switchView;
 
-/* Desktop tabs use delegation. Mobile select is also wired by the standalone navigation core above. */
-document.querySelector('.tabs')?.addEventListener('click',e=>{const t=e.target.closest('.tab[data-view]');if(!t)return;e.preventDefault();switchView(t.dataset.view,{scroll:true})});
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>switchView(t.dataset.view)));
 $('addPlayerBtn').addEventListener('click',()=>{const rows=currentPlayersFromTable();if(rows.length>=12){flash('最多 12 位球員。','err');return}rows.push(makePlayer());renderScoreRows(rows)});
 $('saveSessionBtn').addEventListener('click',saveSession);
 $('newSessionBtn').addEventListener('click',()=>newSheet(true));
