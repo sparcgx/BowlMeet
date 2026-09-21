@@ -1,7 +1,7 @@
 {
   "name": "保齡球球聚｜BowlMeet",
   "short_name": "BowlMeet",
-  "description": "BowlMeet（保齡球球聚）：球聚記分、多人同步、Group History 共享歷史、Player Claim、排行榜、獎項與資料安全。",
+  "description": "BowlMeet（保齡球球聚）：球聚現場、標準 10 格即時計分、統一成績紀錄、公開雲端歷史、我的成績、排行榜、分享與資料安全。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
@@ -9,10 +9,28 @@
   "background_color": "#f5f7fa",
   "theme_color": "#ffffff",
   "orientation": "any",
-  "categories": ["sports","utilities"],
+  "categories": [
+    "sports",
+    "utilities"
+  ],
   "icons": [
-    {"src":"./icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
-    {"src":"./icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any"},
-    {"src":"./icons/icon-maskable-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }
