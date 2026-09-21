@@ -21,6 +21,20 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 3. 再開 `index.html` 進行 BowlMeet 實機驗收。
 4. iPhone Safari 可使用「分享 → 加入主畫面」安裝為 PWA。
 
+## v0.4.4-dev.2 Automated Gate
+
+- JavaScript syntax ✅ PASS
+- Static HTML duplicate ID ✅ 0
+- Literal DOM reference missing ✅ 0
+- Post-game summary calculation regression ✅ PASS
+- 未完成局排除統計 ✅ PASS
+- PWA / Manifest / Deployment Test ✅ PASS
+- Isolated Device Preview ✅ Ready
+- Preview local storage / IndexedDB / Cache / Cloud ✅ Isolated
+- Preview Cloud：`V44D22`，目前 0 sessions / 0 meetups
+- Stable PUBLIC：revision 21 / 4 sessions / 4 meetups / v0.4.3.3-R1，未變更
+- 狀態：**Implementation Complete / Automated Regression PASS / Manual Device Acceptance Pending**
+
 ## v0.4.4-dev.2 Session Summary & Post-Game Review
 
 - 完成球聚後自動開啟賽後摘要 Dialog。
