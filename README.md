@@ -14,6 +14,32 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 - Legacy `switchView('statsView')` 繼續相容。
 - 正式 `main` 與正式 PUBLIC 不在本 branch 修改。
 
+### v0.4.5-dev.3 Automated Gate
+
+- JavaScript syntax ✅ PASS
+- Static HTML duplicate ID ✅ 0
+- Literal DOM reference missing ✅ 0
+- Duplicate function declaration ✅ 0
+- Unified Player Context fixture regression ✅ PASS
+- LOCAL / PUBLIC / MIXED identity state ✅ PASS
+- Analytics year / recent-N range regression ✅ PASS
+- Player Hub → Analytics → 返回 Player Hub ✅ Contract PASS
+- Player Hub → History → Session → 返回 ✅ Contract PASS
+- PUBLIC-only Player Hub / Roster action guard ✅ PASS
+- Legacy `switchView('statsView')` alias ✅ PASS
+- Supabase schema SHA 與 dev.2 相同 ✅ `33689e39edcee5b25250a83ec472fa30dce379c9`
+- Supabase Performance Advisor ✅ 0 findings
+- Device Preview：`/preview/v0.4.5-dev.3/` ✅ Pages deployment success
+- Preview Cloud：`V45D31`，由 dev.2 Preview `V45D23` 複製測試快照
+- Preview IndexedDB：`bowlmeet.preview.v045d3.local` ✅ Isolated
+- Preview Cache：`bowlmeet-preview-v045d3-` ✅ Isolated
+- Preview localStorage：`bowlmeet.preview.v045d3.*` ✅ Isolated
+- 真實快照回歸：千淯 8 / AVG 146.5 / PB 184；志強 8 / 122.0 / 166；軒豪 8 / 118.8 / 152；雅 3 / 163.7 / 188；毅雯 3 / 78.0 / 82
+- 正式 `main` APP_VERSION ✅ `0.4.4-R1-HF1`
+- 正式 PUBLIC ✅ revision 23 未變更
+- 狀態：**Device Preview & Automated Live Regression PASS / Manual Device Acceptance Pending**
+
+
 
 ## v0.4.4-dev.1 開發重點
 
