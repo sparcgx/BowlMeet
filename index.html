@@ -1255,7 +1255,7 @@ const SNAPSHOT_LIMIT=10;
 let photoFile=null; let photoRotation=0; let ocrCandidates=[]; let lastGrid=null; let pendingImportAudit=null;
 const $=id=>document.getElementById(id);
 let sessions=[]; let legacy=[]; let meetups=[]; let roster=[]; let editingId=''; let currentMeetupId=''; let deferredInstallPrompt=null; let lastShareBlob=null; let liveGameNo=1; let liveMetric='total'; let liveSaveTimer=null; let manualMeetupPlayers=[]; let historySource='all'; let historyMode='scores'; let playerDirectoryDetail=false; let playerDirectoryView='list'; let postReviewMeetupId='';
-let playerContext={key:'',rosterId:'',playerName:'',source:'LOCAL',originView:'players',hubOrigin:'players',originSessionId:'',view:'hub',analyticsRange:'all',history:{search:'',sort:'newest',range:'all',scrollTop:0,sessionId:''},navigation:{current:'players',previous:'',returnTarget:'players',sessionReturnTarget:'playerHistory',preserveScroll:true,scroll:{players:0,playerHub:0,playerHistory:0,analytics:0,scoreHistory:0}}};
+let playerContext={key:'',rosterId:'',playerName:'',source:'LOCAL',originView:'players',hubOrigin:'players',originSessionId:'',view:'hub',analyticsRange:'all',history:{search:'',sort:'newest',range:'all',scrollTop:0,sessionId:''},navigation:{current:'players',previous:'',returnTarget:'players',hubReturnTarget:'players',sessionReturnTarget:'playerHistory',preserveScroll:true,scroll:{players:0,playerHub:0,playerHistory:0,analytics:0,scoreHistory:0}}};
 let appDb=null; let dbReady=false; let dbMode='初始化中'; let dbPersistTimer=null; let pendingRestorePayload=null; let pwaRegistration=null; let pendingServiceWorker=null; let reloadingForUpdate=false;
 let syncTimer=null; let syncPushTimer=null; let syncBusy=false; let syncDirty=false; let syncApplyingRemote=false; let syncRemotePresence={}; let syncLastError='';
 let personalData={profile:null,claims:[],games:[],revision:0,lastSyncAt:0,autoSync:true,updatedAt:0}; let personalTimer=null; let personalPushTimer=null; let personalBusy=false; let personalDirty=false; let personalLastError='';
@@ -2265,7 +2265,7 @@ function ensurePlayerContext(){
 function playerNavigation(){
   if(!playerContext.navigation||typeof playerContext.navigation!=='object')playerContext.navigation={};
   const nav=playerContext.navigation;
-  nav.current=nav.current||'players';nav.previous=nav.previous||'';nav.returnTarget=nav.returnTarget||'players';nav.sessionReturnTarget=nav.sessionReturnTarget||'playerHistory';nav.preserveScroll=nav.preserveScroll!==false;
+  nav.current=nav.current||'players';nav.previous=nav.previous||'';nav.returnTarget=nav.returnTarget||'players';nav.hubReturnTarget=nav.hubReturnTarget||'players';nav.sessionReturnTarget=nav.sessionReturnTarget||'playerHistory';nav.preserveScroll=nav.preserveScroll!==false;
   nav.scroll=nav.scroll&&typeof nav.scroll==='object'?nav.scroll:{};
   for(const key of ['players','playerHub','playerHistory','analytics','scoreHistory'])if(!Number.isFinite(nav.scroll[key]))nav.scroll[key]=0;
   return nav;
@@ -2299,6 +2299,7 @@ function returnPlayerContext(fallback='players'){
   if(target==='playerHub'&&!playerRow(playerContext.key)){navigatePlayerContext('players',{capture:false});return}
   if(target==='scoreHistory'&&playerContext.originSessionId&&!unifiedHistoryRecords().some(x=>x.id===playerContext.originSessionId)){navigatePlayerContext('players',{capture:false});return}
   navigatePlayerContext(target,{capture:true});
+  if(target==='playerHub')playerNavigation().returnTarget=playerNavigation().hubReturnTarget||'players';
 }
 function playerSourceText(source){return source==='PUBLIC'?'公開球員':source==='MIXED'?'本機＋公開':'本機球員'}
 function renderPlayerHub(){
@@ -2316,7 +2317,7 @@ function openPlayerHub(ref,options={}){
   const origin=options.origin||'players',returnTarget=origin==='session'?'scoreHistory':'players';
   capturePlayerNavigationScroll(returnTarget);
   if(!setPlayerContext(ref,{view:'hub',originView:origin,hubOrigin:origin,originSessionId:options.sessionId||''}))return;
-  const nav=playerNavigation();nav.current=returnTarget;nav.returnTarget=returnTarget;
+  const nav=playerNavigation();nav.current=returnTarget;nav.returnTarget=returnTarget;nav.hubReturnTarget=returnTarget;
   navigatePlayerContext('playerHub',{returnTarget,top:true,capture:false});
 }
 function closePlayerHub(){returnPlayerContext('players')}
