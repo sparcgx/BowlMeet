@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.5-dev.4 Preview",
-  "short_name": "BowlMeet dev.4",
-  "description": "BowlMeet v0.4.5-dev.4 Preview：Player Navigation、Compact Hub、Session Navigation、Analytics Context、Mobile Accessibility 與 PUBLIC Guard RC Readiness 驗收版；使用獨立 Preview Storage / Cloud / Cache。",
+  "name": "保齡球球聚｜BowlMeet v0.4.5-dev.4-R1 Preview",
+  "short_name": "BowlMeet dev.4-R1",
+  "description": "BowlMeet v0.4.5-dev.4-R1 Preview：Player Navigation、Compact Hub、Session Navigation、Analytics Context、Mobile Accessibility 與 PUBLIC Guard RC Readiness 驗收版；使用獨立 Preview Storage / Cloud / Cache。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
