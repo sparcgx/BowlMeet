@@ -83,6 +83,18 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - 正式 main 根目錄仍維持 v0.4.3.3-R1；v0.4.4-R1 尚未合併至正式站。
 - 最後 Gate：R1 Preview 實機驗收。
 
+## v0.4.4-R1-HF1 Manual Device Acceptance
+
+- 第 1～10 格連續輸入 ✅ PASS
+- 第 6～10 格水平捲動後輸入不回第 1 格 ✅ PASS
+- 一般儲存不搶焦點 ✅ PASS
+- Enter 前進下一個可輸入球 ✅ PASS
+- Strike 後正確跳過停用第二球 ✅ PASS
+- 第 10 格操作正常 ✅ PASS
+- PWA Preview 重開後操作正常 ✅ PASS
+- Stable / Preview / PUBLIC 隔離 ✅ PASS
+- 結論：**v0.4.4-R1-HF1 Validation Complete / Hotfix Stable Candidate**
+
 ## v0.4.4-R1-HF1 Frame Input Focus & Scroll Hotfix
 
 - Hotfix base：`stable/v0.4.4-R1`
@@ -105,7 +117,7 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - Strike 後跳過 disabled 第二球 ✅ PASS
 - Preview PWA cache isolation ✅ PASS
 - Stable root 維持 v0.4.4-R1 ✅ 未變更
-- 狀態：**Hotfix Implementation Complete / Manual Device Acceptance Pending**
+- 狀態：**HF1 Validation Complete / Hotfix Stable Candidate**
 
 ## v0.4.4-R1 Final Freeze & Stable Promotion
 
