@@ -661,7 +661,7 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 
 ## v0.4.5-dev.4 Player Experience & Session Navigation Polish
 
-**Status: DEV4-06-R2 Cross-Module Sync Regression & Context Safety — Automated Regression PASS / Manual Device Acceptance Pending**
+**Status: DEV4-06-R3 Final Regression Evidence & Release Gate — 20/20 Automated PASS + 10/10 Manual PASS / RC Candidate Ready**
 
 ### Scope
 - DEV4-01 — Player Navigation State Polish ✅ Architecture / Integration Complete
@@ -805,6 +805,16 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 8. 無效／已刪除 `activeMeetupId` 會清除；排行榜與分享回到「全部歷史」，獎項回到有效球聚。
 9. Root 與 isolated Preview：JavaScript Syntax、Duplicate ID、Missing DOM Ref、Context Contract 均須 PASS。
 10. Preview Storage / Cloud / Cache 仍與正式 Stable / PUBLIC 隔離。
+
+### DEV4-06-R3｜Final Regression Evidence & Release Gate
+- Locked the tested artifact to remote Commit `6f8462d89545948bffd35b520d793858565efd72` (`v0.4.5-dev.4-R2`).
+- User device acceptance completed on 2026-09-22: DEV4-06-R2 10-item regression matrix ✅ 10/10 PASS.
+- Re-runnable automated gate: `node tools/dev4-06-r3-release-gate.mjs`.
+- Automated Release Gate ✅ 20/20 PASS / 0 FAIL.
+- Final evidence: `release-evidence/DEV4-06-R3_Final_Regression_Evidence.md` and `.json`.
+- Release decision: `RC_CANDIDATE_READY`.
+- No application code, APP_VERSION, Session / Backup / Roster metadata, Supabase schema, Stable branch, `main`, or formal PUBLIC change is included in R3.
+- Next governed stage: `v0.4.5-RC.1｜Release Candidate Integration & Freeze Gate`; no additional dev.4 feature scope.
 
 ### Guardrails
 - Keep Unified History as the single score/history source.
