@@ -1,4 +1,15 @@
-# BowlMeet v0.4.5 — Stable / PUBLIC
+# BowlMeet v0.4.5.1 — Public Results Only Hotfix
+
+`v0.4.5.1` 將「排行榜」與「分享成績」鎖定為單一公開歷史資料源：只使用 `groupRemote` 中仍為 published 的 Session；本機未公開、等待同步與已取消公開的成績不列入排行榜，也不能產生分享卡。
+
+- 排行榜的全部歷史、單一球聚、KPI 與排名均由公開 Session 計算。
+- 分享卡的排行榜、完整成績、總覽與獎項均由公開 Session 計算。
+- 球聚選單只顯示包含公開 Session 的球聚。
+- 從現場、賽後摘要或本機歷史分享尚未公開的球聚時，會要求先完成公開同步。
+- 不修改 Session / Backup / Roster / Personal Data 格式。
+- 不修改 Supabase schema，不執行 migration，也不改寫既有 PUBLIC payload。
+
+## v0.4.5 — Stable / PUBLIC
 
 `v0.4.5` 已由 Freeze Certified `v0.4.5-RC.1` 正式升版，並通過 Stable Promotion & PUBLIC Release Gate。正式應用維持既有 `PUBLIC` Cloud、Storage 與資料格式；本次 promotion 不執行 Supabase migration，也不改寫既有 PUBLIC 資料。
 

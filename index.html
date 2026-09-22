@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.5</title>
+<title>保齡球球聚｜BowlMeet v0.4.5.1</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -869,7 +869,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 
   <section id="leaderboardView" class="view">
     <section class="card leaderboard-card">
-      <h2>球聚排行榜</h2><p class="section-desc">可查看單一球聚或全部歷史成績。排名指標可切換總分、平均與最高單局。</p>
+      <h2>公開成績排行榜</h2><p class="section-desc">只統計已同步到公開歷史的成績；本機未公開或已取消公開的紀錄不會列入。排名指標可切換總分、平均與最高單局。</p>
       <div class="leaderboard-controls"><div class="field"><label for="leaderboardMeetup">球聚範圍</label><select id="leaderboardMeetup"><option value="all">全部歷史</option></select></div><div class="field"><label for="leaderboardMetric">排名指標</label><select id="leaderboardMetric"><option value="total">總分</option><option value="avg">平均</option><option value="best">最高單局</option></select></div><button class="btn" id="leaderboardCurrentBtn" type="button">目前球聚</button></div>
       <div class="leaderboard-summary"><div class="mini-kpi"><div class="cap">上榜球員</div><div class="num" id="rankPlayers">0</div></div><div class="mini-kpi"><div class="cap">已完成局數</div><div class="num" id="rankGames">0</div></div><div class="mini-kpi"><div class="cap">整體平均</div><div class="num" id="rankAvg">—</div></div><div class="mini-kpi"><div class="cap">最高單局</div><div class="num" id="rankBest">—</div></div></div>
       <div class="rank-table-wrap"><table class="rank-table"><thead><tr><th>排名</th><th>球員</th><th>局數</th><th>總分</th><th>平均</th><th>最高</th><th>完成度</th></tr></thead><tbody id="leaderboardBody"></tbody></table><div id="leaderboardEmpty" class="leaderboard-empty">尚無可排行的成績。</div></div>
@@ -1154,7 +1154,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     <div class="share-layout">
       <section class="card share-controls">
         <h2>分享成績卡</h2>
-        <p class="section-desc">產生 1080 × 1350 排行榜卡、球聚完整成績卡、球聚總覽卡或獎項卡。支援手機原生分享；不支援時會改為下載 PNG。</p>
+        <p class="section-desc">只使用已同步到公開歷史的成績，產生 1080 × 1350 排行榜卡、球聚完整成績卡、球聚總覽卡或獎項卡。支援手機原生分享；不支援時會改為下載 PNG。</p>
         <div class="share-form">
           <div class="field"><label for="shareCardType">分享卡類型</label><select id="shareCardType"><option value="ranking">排行榜卡</option><option value="meetupCard">球聚完整成績卡</option><option value="summary">球聚總覽卡</option><option value="awards">獎項卡</option></select><div class="share-type-note" id="shareTypeNote">排行榜卡可依總分、平均或最高單局排序。</div></div>
           <div class="field"><label for="shareMeetup">球聚範圍</label><select id="shareMeetup"><option value="all">全部歷史</option></select></div>
@@ -1163,7 +1163,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
           <div class="field"><label for="shareCardTitle">卡片標題</label><input id="shareCardTitle" maxlength="40" placeholder="留白會自動使用球聚名稱" /></div>
         </div>
         <div class="share-actions"><button class="btn" id="refreshShareBtn" type="button">重新產生</button><button class="btn" id="downloadShareBtn" type="button">下載 PNG</button><button class="btn primary" id="nativeShareBtn" type="button">分享成績卡</button></div>
-        <div class="share-note">分享圖片只使用目前裝置的球聚與成績資料，不會上傳。球聚完整成績卡會顯示該場所有玩家、所有局分數與總和；完整成績卡與獎項卡需要選擇單一球聚。PWA 本體可離線使用；照片 OCR 第一次使用仍可能需要網路載入辨識元件。</div>
+        <div class="share-note">分享圖片只讀取公開歷史中已發布的成績，不會混入本機未公開或已取消公開的紀錄，也不會因產生圖片而上傳資料。球聚完整成績卡會顯示該場公開的所有玩家、局分數與總和；完整成績卡與獎項卡需要選擇單一已公開球聚。</div>
       </section>
       <section class="card share-preview-card">
         <div class="share-preview-head"><div><h2>成績卡預覽</h2><p class="section-desc" style="margin-bottom:0">白色極簡版型，適合 LINE、訊息與社群分享。</p></div><span class="pill" id="shareGeneratedAt">尚未產生</span></div>
@@ -1179,7 +1179,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
       <div class="card safety-card"><div class="cap">主要資料庫</div><div class="num" id="safetyEngine">初始化…</div><div class="sub" id="safetyEngineSub">正在檢查 IndexedDB</div></div>
       <div class="card safety-card"><div class="cap">安全快照</div><div class="num" id="snapshotCount">0</div><div class="sub">最多保留最近 10 個</div></div>
       <div class="card safety-card"><div class="cap">最近快照</div><div class="num" id="lastSnapshotTime">—</div><div class="sub" id="lastSnapshotReason">尚無快照</div></div>
-      <div class="card safety-card"><div class="cap">資料 Schema</div><div class="num">v2</div><div class="sub">App v0.4.5 · Local-first</div></div>
+      <div class="card safety-card"><div class="cap">資料 Schema</div><div class="num">v2</div><div class="sub">App v0.4.5.1 · Local-first</div></div>
     </section>
     <div class="safety-layout">
       <section class="card safety-panel">
@@ -1287,7 +1287,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.5';
+const APP_VERSION='0.4.5.1';
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
 const BUILTIN_CLOUD=true;
@@ -1533,10 +1533,10 @@ function openPostGameReview(meetupId){
   $('postReviewTitle').textContent=meetup.title||'本次球聚摘要';$('postReviewMeta').textContent=`${fmtDate(meetup.date)} · ${meetup.venue||'未填球館'}${meetup.lanes?` · 球道 ${meetup.lanes}`:''}`;
   $('postReviewPlayers').textContent=players;$('postReviewGames').textContent=games;$('postReviewTotal').textContent=total;$('postReviewAvg').textContent=average??'—';$('postReviewBest').textContent=best?.score??'—';$('postReviewBestName').textContent=best?.name||'尚無正式分數';
   $('postReviewBody').innerHTML=rows.map(r=>`<tr><td class="post-review-player">${esc(r.name)}</td><td>${r.games}</td><td>${r.total}</td><td>${r.avg??'—'}</td><td>${r.best??'—'}</td></tr>`).join('');$('postReviewEmpty').hidden=games>0;$('postReviewBody').hidden=games===0;
-  $('postReviewShareBtn').disabled=!data.session;$('postReviewHistoryBtn').disabled=!data.session;
+  $('postReviewShareBtn').disabled=!data.session||!publicSessionForMeetup(meetupId);$('postReviewHistoryBtn').disabled=!data.session;
   const d=$('postGameReviewDialog');if(d.showModal)d.showModal();else d.setAttribute('open','')
 }
-function openPostReviewShare(){const id=postReviewMeetupId;if(!id)return;closePostGameReview();setCurrentMeetup(id);switchView('shareView');renderShareOptions(id);$('shareMeetup').value=id;$('shareCardType').value='meetupCard';syncMeetupDerivedSelectors(id);updateShareControls(true)}
+function openPostReviewShare(){const id=postReviewMeetupId;if(!id||!requirePublicMeetup(id,'分享成績'))return;closePostGameReview();setCurrentMeetup(id);switchView('shareView');renderShareOptions(id);$('shareMeetup').value=id;$('shareCardType').value='meetupCard';syncMeetupDerivedSelectors(id);updateShareControls(true)}
 function openPostReviewHistory(){const id=postReviewMeetupId,data=postGameReviewData(id);closePostGameReview();historySource='all';historyMode='scores';playerDirectoryDetail=false;switchView('historyView');renderHistory();if(data?.session)setTimeout(()=>document.querySelector(`[data-id="${CSS.escape(data.session.id)}"]`)?.closest('.session')?.scrollIntoView({behavior:'smooth',block:'center'}),80)}
 function unifiedHistoryRecords(){
   const remote=normalizeGroupPayload(groupRemote),remoteSessions=remote.sessions||[],remoteMeetups=remote.meetups||[],stateMap=new Map(effectivePublicRecordControls(remote).map(x=>[x.id,x.state]));
@@ -1546,6 +1546,22 @@ function unifiedHistoryRecords(){
   for(const id of ids){const local=localById.get(id)||null,pub=remoteById.get(id)||null,removed=stateMap.get(id)==='removed';if(removed&&!local)continue;const session=local||pub;if(!session)continue;rows.push({id,session,local:!!local,public:!!pub&&!removed,publicSession:pub,publicRemoved:removed,meetup:meetupMap.get(session.meetupId)||null})}
   return rows
 }
+function publicHistoryRecords(){
+  const remote=normalizeGroupPayload(groupRemote),stateMap=new Map(effectivePublicRecordControls(remote).map(x=>[x.id,x.state])),meetupMap=new Map((remote.meetups||[]).map(m=>[m.id,m]));
+  return (remote.sessions||[]).filter(s=>stateMap.get(s.id)!=='removed').map(session=>({id:session.id,session,meetup:meetupMap.get(session.meetupId)||null}))
+}
+function publicMeetupRecords(){
+  const records=publicHistoryRecords(),ids=new Set(records.map(r=>r.session.meetupId).filter(Boolean)),remote=normalizeGroupPayload(groupRemote);
+  return (remote.meetups||[]).filter(m=>ids.has(m.id)).sort((a,b)=>String(b.date).localeCompare(String(a.date))||Number(b.createdAt)-Number(a.createdAt))
+}
+function publicMeetupById(id){return publicMeetupRecords().find(m=>m.id===id)||null}
+function publicSessionForMeetup(id){return publicHistoryRecords().find(r=>r.session.meetupId===id)?.session||null}
+function publicGames(){
+  const out=[];
+  for(const {session:s,meetup} of publicHistoryRecords())for(const p of s.players||[])for(let i=0;i<(p.scores||[]).length;i++){const score=normalizeScore(p.scores[i]);if(score!==null)out.push({date:s.date||'',player:p.name||'未命名',score,venue:s.venue||'',lane:s.lane||'',source:'public',gameNo:i+1,sessionId:s.id,meetupId:s.meetupId||'',meetupTitle:meetup?.title||'',createdAt:Number(s.createdAt)||0})}
+  return out
+}
+function requirePublicMeetup(id,action='查看'){if(id&&publicSessionForMeetup(id))return true;alert(`這場球聚尚未出現在公開歷史，無法${action}。\n\n請先完成公開同步後再試一次。`);return false}
 function historyFilterValues(){
   return {
     q:$('historySearch')?.value.trim().toLowerCase()||'',
@@ -1607,7 +1623,7 @@ async function importPublicSession(id){
   }finally{groupApplyingRemote=false}
 }
 function shareHistorySession(id){
-  const s=sessions.find(x=>x.id===id);if(!s||!s.meetupId||!meetups.some(m=>m.id===s.meetupId))return;
+  const record=publicHistoryRecords().find(x=>x.id===id),s=record?.session;if(!s?.meetupId||!record.meetup){alert('這張成績目前不是公開紀錄，無法產生分享卡。');return}
   setCurrentMeetup(s.meetupId);switchView('shareView');renderShareOptions(s.meetupId);$('shareMeetup').value=s.meetupId;$('shareCardType').value='meetupCard';syncMeetupDerivedSelectors(s.meetupId);updateShareControls(true)
 }
 async function setPublicVisibility(id,state){
@@ -2472,9 +2488,9 @@ function renderRoster(){
 function renderRosterQuickSelect(){const sel=$('rosterQuickSelect');if(!sel)return;const used=new Set(currentPlayersFromTable().map(p=>nameKey(p.name)));const opts=roster.filter(r=>r.active!==false&&!used.has(nameKey(r.name))).sort((a,b)=>a.name.localeCompare(b.name,'zh-Hant'));sel.innerHTML='<option value="">從常用球員加入…</option>'+opts.map(r=>`<option value="${esc(r.id)}">${esc(r.alias||r.name)}</option>`).join('')}
 function quickAddRoster(){const id=$('rosterQuickSelect').value,r=roster.find(x=>x.id===id);if(!r)return;const rows=currentPlayersFromTable();if(rows.length>=12){flash('最多 12 位球員。','err');return}if(rows.some(p=>nameKey(p.name)===nameKey(r.name))){flash('這位球員已在本次記分。','err');return}const blankIx=rows.findIndex(p=>!p.name&&!p.scores.some(v=>v!==null));if(blankIx>=0)rows[blankIx]=makePlayer(r.name,[]);else rows.push(makePlayer(r.name,[]));renderScoreRows(rows);renderRosterQuickSelect()}
 
-function meetupAwardRows(meetupId){
-  const m=meetups.find(x=>x.id===meetupId);if(!m)return [];
-  const s=linkedSession(m),map=new Map();
+function meetupAwardRows(meetupId,source='local'){
+  const publicOnly=source==='public',m=publicOnly?publicMeetupById(meetupId):meetups.find(x=>x.id===meetupId);if(!m)return [];
+  const s=publicOnly?publicSessionForMeetup(meetupId):linkedSession(m),map=new Map();
   for(const name of meetupParticipantNames(m))map.set(nameKey(name),{name,scores:[]});
   if(s)for(const p of s.players||[]){const k=nameKey(p.name);if(!k)continue;if(!map.has(k))map.set(k,{name:p.name,scores:[]});map.get(k).scores=(p.scores||[]).map(normalizeScore).filter(v=>v!==null)}
   return [...map.values()].map(x=>{const scores=x.scores,total=scores.reduce((a,b)=>a+b,0),average=avg(scores),best=scores.length?Math.max(...scores):null,spread=scores.length>=3?Math.max(...scores)-Math.min(...scores):null,improve=scores.length>=2?scores[scores.length-1]-scores[0]:null;return {name:x.name,scores,games:scores.length,total,avg:average,best,spread,improve}})
@@ -2485,14 +2501,14 @@ function tiedWinners(rows,valueFn,{filter=()=>true,prefer=null}={}){
 function lowestWinner(rows,valueFn,{filter=()=>true,prefer=null}={}){
   const valid=rows.filter(r=>r.games&&filter(r));if(!valid.length)return {winners:[],value:null};let best=null;for(const r of valid){const v=valueFn(r);if(v===null||v===undefined||Number.isNaN(v))continue;if(best===null||v<best)best=v}if(best===null)return {winners:[],value:null};let winners=valid.filter(r=>valueFn(r)===best);if(prefer&&winners.length>1){const pv=Math.max(...winners.map(prefer));winners=winners.filter(r=>prefer(r)===pv)}return {winners,value:best}
 }
-function priorPbForPlayer(name,m){
-  const mk=nameKey(name),cutDate=String(m?.date||''),cutCreated=Number(m?.createdAt)||0;const vals=allGames().filter(g=>nameKey(g.player)===mk&&g.meetupId!==m.id).filter(g=>{if(!cutDate)return true;const gd=String(g.date||'');if(gd<cutDate)return true;if(gd>cutDate)return false;return Number(g.createdAt||0)<cutCreated}).map(g=>g.score).filter(v=>Number.isInteger(v));return vals.length?Math.max(...vals):null
+function priorPbForPlayer(name,m,source='local'){
+  const mk=nameKey(name),cutDate=String(m?.date||''),cutCreated=Number(m?.createdAt)||0,games=source==='public'?publicGames():allGames();const vals=games.filter(g=>nameKey(g.player)===mk&&g.meetupId!==m.id).filter(g=>{if(!cutDate)return true;const gd=String(g.date||'');if(gd<cutDate)return true;if(gd>cutDate)return false;return Number(g.createdAt||0)<cutCreated}).map(g=>g.score).filter(v=>Number.isInteger(v));return vals.length?Math.max(...vals):null
 }
-function computeAwards(meetupId){
-  const m=meetups.find(x=>x.id===meetupId),rows=meetupAwardRows(meetupId);if(!m)return {meetup:null,rows:[],awards:[],club200:[],pbBreakers:[]};
+function computeAwards(meetupId,source='public'){
+  const m=source==='public'?publicMeetupById(meetupId):meetups.find(x=>x.id===meetupId),rows=meetupAwardRows(meetupId,source);if(!m)return {meetup:null,rows:[],awards:[],club200:[],pbBreakers:[]};
   const champ=tiedWinners(rows,r=>r.total),avgKing=tiedWinners(rows,r=>r.avg??-1),high=tiedWinners(rows,r=>r.best??-1),steady=lowestWinner(rows,r=>r.spread,{filter:r=>r.games>=3&&r.spread!==null,prefer:r=>r.avg??-1}),improve=tiedWinners(rows,r=>r.improve,{filter:r=>r.games>=2&&r.improve>0});
   const club200=rows.filter(r=>r.best!==null&&r.best>=200).sort((a,b)=>b.best-a.best||a.name.localeCompare(b.name,'zh-Hant'));
-  const pbBreakers=rows.map(r=>({r,prior:priorPbForPlayer(r.name,m)})).filter(x=>x.prior!==null&&x.r.best!==null&&x.r.best>x.prior).sort((a,b)=>(b.r.best-b.prior)-(a.r.best-a.prior));
+  const pbBreakers=rows.map(r=>({r,prior:priorPbForPlayer(r.name,m,source)})).filter(x=>x.prior!==null&&x.r.best!==null&&x.r.best>x.prior).sort((a,b)=>(b.r.best-b.prior)-(a.r.best-a.prior));
   const names=x=>x.winners.map(w=>w.name).join('、');
   const awards=[
     {key:'champion',title:'球聚冠軍',winners:champ.winners.map(x=>x.name),value:champ.value===null?'—':`${champ.value} 分`,detail:champ.winners.length?`總分最高 · ${champ.winners[0].games} 局`:'尚無成績'},
@@ -2509,7 +2525,7 @@ function renderAwardOptions(){
   const sel=$('awardMeetup');if(!sel)return;const prev=sel.value||validMeetupContextId(currentMeetupId)||'';const list=[...meetups].sort((a,b)=>String(b.date).localeCompare(String(a.date))||b.createdAt-a.createdAt);sel.innerHTML=list.length?list.map(m=>`<option value="${esc(m.id)}">${esc(fmtDate(m.date))} · ${esc(m.title)}</option>`).join(''):'<option value="">尚無球聚</option>';sel.value=[...sel.options].some(o=>o.value===prev)?prev:(validMeetupContextId(currentMeetupId)||list[0]?.id||'')
 }
 function renderAwards(){
-  renderAwardOptions();const id=$('awardMeetup')?.value||'',result=computeAwards(id),m=result.meetup;const custom=Array.isArray(m?.customAwards)?m.customAwards:[];
+  renderAwardOptions();const id=$('awardMeetup')?.value||'',result=computeAwards(id,'local'),m=result.meetup;const custom=Array.isArray(m?.customAwards)?m.customAwards:[];
   $('awardAutoCount').textContent=result.awards.filter(a=>a.winners.length).length;$('awardCustomCount').textContent=custom.length;$('award200Count').textContent=result.club200.length;$('awardPbCount').textContent=result.pbBreakers.length;
   $('autoAwardGrid').innerHTML=result.awards.map(a=>`<article class="card award-card ${a.winners.length?'':'empty'}"><div class="award-title">${esc(a.title)}</div><div class="award-winner">${esc(a.winners.length?a.winners.join('、'):'尚無結果')}</div><div class="award-value">${esc(a.value)}</div><div class="award-detail">${esc(a.detail)}</div></article>`).join('');
   const winnerSel=$('customAwardWinner');winnerSel.innerHTML=m?'<option value="">選擇球員</option>'+result.rows.map(r=>`<option value="${esc(r.name)}">${esc(r.name)}</option>`).join(''):'<option value="">請先選球聚</option>';
@@ -2519,62 +2535,59 @@ function openMeetupAwards(id){setCurrentMeetup(id);switchView('awardsView');rend
 function addCustomAward(){const id=$('awardMeetup').value,m=meetups.find(x=>x.id===id);if(!m)return;if(!syncAllowWrite(id,'新增獎項'))return;const title=$('customAwardTitle').value.trim(),winner=$('customAwardWinner').value,note=$('customAwardNote').value.trim();if(!title||!winner){alert('請輸入獎項名稱並選擇得獎者。');return}if(!Array.isArray(m.customAwards))m.customAwards=[];m.customAwards.push({id:uid(),title,winner,note,createdAt:Date.now()});m.updatedAt=Date.now();persistMeetups();$('customAwardTitle').value='';$('customAwardWinner').value='';$('customAwardNote').value='';renderAwards();renderShareOptions()}
 function deleteCustomAward(id){const mid=$('awardMeetup').value,m=meetups.find(x=>x.id===mid);if(!m)return;if(!syncAllowWrite(mid,'移除獎項'))return;m.customAwards=(m.customAwards||[]).filter(a=>a.id!==id);m.updatedAt=Date.now();persistMeetups();renderAwards();renderShareOptions()}
 
-function rankingRows(){
-  const scope=$('leaderboardMeetup').value;if(scope==='all'){const map=new Map();for(const g of allGames()){const k=nameKey(g.player);if(!map.has(k))map.set(k,{name:g.player,scores:[]});map.get(k).scores.push(g.score)}return [...map.values()].map(x=>({name:x.name,games:x.scores.length,total:x.scores.reduce((a,b)=>a+b,0),avg:avg(x.scores),best:x.scores.length?Math.max(...x.scores):null,planned:null}))}
-  const m=meetups.find(x=>x.id===scope);if(!m)return [];const s=linkedSession(m),map=new Map();for(const name of meetupParticipantNames(m))map.set(nameKey(name),{name,scores:[]});if(s)for(const p of s.players||[]){const k=nameKey(p.name);if(!map.has(k))map.set(k,{name:p.name,scores:[]});map.get(k).scores.push(...(p.scores||[]).map(normalizeScore).filter(v=>v!==null))}return [...map.values()].map(x=>({name:x.name,games:x.scores.length,total:x.scores.reduce((a,b)=>a+b,0),avg:avg(x.scores),best:x.scores.length?Math.max(...x.scores):null,planned:Number(m.plannedGames)||6}))
-}
+function rankingRows(){return rankingRowsForScope($('leaderboardMeetup').value||'all')}
 function renderLeaderboard(preferredScope=''){
-  const sel=$('leaderboardMeetup');const prev=preferredScope||sel.value||'all';sel.innerHTML='<option value="all">全部歷史</option>'+[...meetups].sort((a,b)=>String(b.date).localeCompare(String(a.date))).map(m=>`<option value="${esc(m.id)}">${esc(fmtDate(m.date))} · ${esc(m.title)}</option>`).join('');sel.value=[...sel.options].some(o=>o.value===prev)?prev:(validMeetupContextId(currentMeetupId)||'all');
-  const metric=$('leaderboardMetric').value||'total';let rows=rankingRows();const metricVal=x=>metric==='avg'?(x.avg??-1):metric==='best'?(x.best??-1):x.total;rows.sort((a,b)=>metricVal(b)-metricVal(a)||b.games-a.games||a.name.localeCompare(b.name,'zh-Hant'));$('rankPlayers').textContent=rows.filter(x=>x.games).length;$('rankGames').textContent=rows.reduce((a,b)=>a+b.games,0);const scores=[];rows.forEach(x=>{if(x.games&&x.avg!==null)for(let i=0;i<x.games;i++){} });const allScoreRows=sel.value==='all'?allGames():((linkedSession(meetups.find(m=>m.id===sel.value)||{})?.players||[]).flatMap(p=>(p.scores||[]).map(normalizeScore).filter(v=>v!==null).map(score=>({score}))));const vals=allScoreRows.map(x=>x.score);$('rankAvg').textContent=avg(vals)??'—';$('rankBest').textContent=vals.length?Math.max(...vals):'—';$('leaderboardEmpty').style.display=rows.some(x=>x.games)?'none':'block';let last=null,rank=0;const max=Math.max(1,...rows.map(metricVal));$('leaderboardBody').innerHTML=rows.filter(x=>x.games||sel.value!=='all').map((x,i)=>{const val=metricVal(x);if(last===null||val!==last)rank=i+1;last=val;const progress=x.planned?Math.min(100,Math.round((x.games/x.planned)*100)):100;return `<tr><td class="rank-no">${rank}</td><td class="rank-name">${esc(x.name)}</td><td>${x.games}</td><td class="${metric==='total'?'rank-primary':''}">${x.total}</td><td class="${metric==='avg'?'rank-primary':''}">${x.avg??'—'}</td><td class="${metric==='best'?'rank-primary':''}">${x.best??'—'}</td><td>${x.planned?`<div class="rank-progress"><span style="width:${progress}%"></span></div><div style="font-size:10px;color:var(--muted);margin-top:3px">${x.games}/${x.planned} 局</div>`:'全部歷史'}</td></tr>`}).join('')
+  const sel=$('leaderboardMeetup'),published=publicMeetupRecords(),prev=preferredScope||sel.value||'all';sel.innerHTML='<option value="all">全部公開歷史</option>'+published.map(m=>`<option value="${esc(m.id)}">${esc(fmtDate(m.date))} · ${esc(m.title)}</option>`).join('');sel.value=[...sel.options].some(o=>o.value===prev)?prev:'all';
+  const metric=$('leaderboardMetric').value||'total';let rows=rankingRows();const metricVal=x=>metric==='avg'?(x.avg??-1):metric==='best'?(x.best??-1):x.total;rows.sort((a,b)=>metricVal(b)-metricVal(a)||b.games-a.games||a.name.localeCompare(b.name,'zh-Hant'));$('rankPlayers').textContent=rows.filter(x=>x.games).length;$('rankGames').textContent=rows.reduce((a,b)=>a+b.games,0);const publicSession=publicSessionForMeetup(sel.value),allScoreRows=sel.value==='all'?publicGames():((publicSession?.players||[]).flatMap(p=>(p.scores||[]).map(normalizeScore).filter(v=>v!==null).map(score=>({score}))));const vals=allScoreRows.map(x=>x.score);$('rankAvg').textContent=avg(vals)??'—';$('rankBest').textContent=vals.length?Math.max(...vals):'—';$('leaderboardEmpty').textContent='公開歷史目前尚無可排行的成績。';$('leaderboardEmpty').style.display=rows.some(x=>x.games)?'none':'block';let last=null,rank=0;const max=Math.max(1,...rows.map(metricVal));$('leaderboardBody').innerHTML=rows.filter(x=>x.games||sel.value!=='all').map((x,i)=>{const val=metricVal(x);if(last===null||val!==last)rank=i+1;last=val;const progress=x.planned?Math.min(100,Math.round((x.games/x.planned)*100)):100;return `<tr><td class="rank-no">${rank}</td><td class="rank-name">${esc(x.name)}</td><td>${x.games}</td><td class="${metric==='total'?'rank-primary':''}">${x.total}</td><td class="${metric==='avg'?'rank-primary':''}">${x.avg??'—'}</td><td class="${metric==='best'?'rank-primary':''}">${x.best??'—'}</td><td>${x.planned?`<div class="rank-progress"><span style="width:${progress}%"></span></div><div style="font-size:10px;color:var(--muted);margin-top:3px">${x.games}/${x.planned} 局</div>`:'全部公開歷史'}</td></tr>`}).join('')
 }
-function openMeetupLeaderboard(id){setCurrentMeetup(id);switchView('leaderboardView');renderLeaderboard(id)}
+function openMeetupLeaderboard(id){if(!requirePublicMeetup(id,'查看排行榜'))return;setCurrentMeetup(id);switchView('leaderboardView');renderLeaderboard(id)}
 
 
 function rankingRowsForScope(scope){
   if(scope==='all'){
     const map=new Map();
-    for(const g of allGames()){
+    for(const g of publicGames()){
       const k=nameKey(g.player);if(!map.has(k))map.set(k,{name:g.player,scores:[]});map.get(k).scores.push(g.score)
     }
     return [...map.values()].map(x=>({name:x.name,games:x.scores.length,total:x.scores.reduce((a,b)=>a+b,0),avg:avg(x.scores),best:x.scores.length?Math.max(...x.scores):null,planned:null}))
   }
-  const m=meetups.find(x=>x.id===scope);if(!m)return [];
-  const sess=linkedSession(m),map=new Map();
+  const m=publicMeetupById(scope);if(!m)return [];
+  const sess=publicSessionForMeetup(scope),map=new Map();
   for(const name of meetupParticipantNames(m))map.set(nameKey(name),{name,scores:[]});
   if(sess)for(const p of sess.players||[]){const k=nameKey(p.name);if(!map.has(k))map.set(k,{name:p.name,scores:[]});map.get(k).scores.push(...(p.scores||[]).map(normalizeScore).filter(v=>v!==null))}
   return [...map.values()].map(x=>({name:x.name,games:x.scores.length,total:x.scores.reduce((a,b)=>a+b,0),avg:avg(x.scores),best:x.scores.length?Math.max(...x.scores):null,planned:Number(m.plannedGames)||6}))
 }
 function shareMetricValue(row,metric){return metric==='avg'?(row.avg??-1):metric==='best'?(row.best??-1):row.total}
 function renderShareOptions(preferredScope=''){
-  const sel=$('shareMeetup');if(!sel)return;const prev=preferredScope||sel.value||validMeetupContextId(currentMeetupId)||'all';
-  sel.innerHTML='<option value="all">全部歷史</option>'+[...meetups].sort((a,b)=>String(b.date).localeCompare(String(a.date))).map(m=>`<option value="${esc(m.id)}">${esc(fmtDate(m.date))} · ${esc(m.title)}</option>`).join('');
-  sel.value=[...sel.options].some(o=>o.value===prev)?prev:(validMeetupContextId(currentMeetupId)||'all');updateShareControls(false)
+  const sel=$('shareMeetup');if(!sel)return;const prev=preferredScope||sel.value||validMeetupContextId(currentMeetupId)||'all',published=publicMeetupRecords();
+  sel.innerHTML='<option value="all">全部公開歷史</option>'+published.map(m=>`<option value="${esc(m.id)}">${esc(fmtDate(m.date))} · ${esc(m.title)}</option>`).join('');
+  sel.value=[...sel.options].some(o=>o.value===prev)?prev:'all';updateShareControls(false)
 }
 function updateShareControls(redraw=true){
   const type=$('shareCardType')?.value||'ranking',scope=$('shareMeetup')?.value||'all';const awardsMode=type==='awards',summaryMode=type==='summary',meetupCardMode=type==='meetupCard';
   const rankOnly=type==='ranking';$('shareMetricField')?.classList.toggle('share-field-hidden',!rankOnly);$('shareTopNField')?.classList.toggle('share-field-hidden',!rankOnly);
   if($('shareTypeNote'))$('shareTypeNote').textContent=type==='ranking'?'排行榜卡可依總分、平均或最高單局排序。':type==='meetupCard'?'球聚完整成績卡顯示該場所有玩家、每一局分數與個人總和。':type==='summary'?'球聚總覽卡整合 KPI、前三名與主要獎項。':'獎項卡顯示自動獎項與自訂獎項；需選擇單一球聚。';
-  if((awardsMode||summaryMode||meetupCardMode)&&scope==='all'&&meetups.length){$('shareMeetup').value=currentMeetupId&&meetups.some(m=>m.id===currentMeetupId)?currentMeetupId:[...meetups].sort((a,b)=>String(b.date).localeCompare(String(a.date)))[0].id}
+  const published=publicMeetupRecords();if((awardsMode||summaryMode||meetupCardMode)&&scope==='all'&&published.length){$('shareMeetup').value=currentMeetupId&&published.some(m=>m.id===currentMeetupId)?currentMeetupId:published[0].id}
   if(redraw)drawShareCard()
 }
 function roundedRect(ctx,x,y,w,h,r){const rr=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+rr,y);ctx.arcTo(x+w,y,x+w,y+h,rr);ctx.arcTo(x+w,y+h,x,y+h,rr);ctx.arcTo(x,y+h,x,y,rr);ctx.arcTo(x,y,x+w,y,rr);ctx.closePath()}
 function canvasText(ctx,text,x,y,maxWidth){let t=String(text??'');if(ctx.measureText(t).width<=maxWidth){ctx.fillText(t,x,y);return}while(t.length>1&&ctx.measureText(t+'…').width>maxWidth)t=t.slice(0,-1);ctx.fillText(t+'…',x,y)}
-function shareScopeData(){const scope=$('shareMeetup').value||'all',m=meetups.find(x=>x.id===scope);const rows=rankingRowsForScope(scope).filter(x=>x.games),allScoreRows=scope==='all'?allGames():((linkedSession(m||{})?.players||[]).flatMap(p=>(p.scores||[]).map(normalizeScore).filter(v=>v!==null).map(score=>({score}))));const vals=allScoreRows.map(x=>x.score);return {scope,m,rows,vals,overallAvg:avg(vals),overallBest:vals.length?Math.max(...vals):null}}
+function shareScopeData(){const scope=$('shareMeetup').value||'all',m=publicMeetupById(scope),session=publicSessionForMeetup(scope);const rows=rankingRowsForScope(scope).filter(x=>x.games),allScoreRows=scope==='all'?publicGames():((session?.players||[]).flatMap(p=>(p.scores||[]).map(normalizeScore).filter(v=>v!==null).map(score=>({score}))));const vals=allScoreRows.map(x=>x.score);return {scope,m,session,rows,vals,overallAvg:avg(vals),overallBest:vals.length?Math.max(...vals):null}}
 function drawShareHeader(ctx,W,title,meta){ctx.fillStyle='#172033';ctx.fillRect(0,0,W,250);ctx.fillStyle='#fff';ctx.font='800 62px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText('BowlMeet',72,92);ctx.font='800 42px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,title,72,158,W-144);ctx.fillStyle='#cbd5e1';ctx.font='500 24px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,meta,72,205,W-144)}
 function drawShareStats(ctx,stats,y=286){stats.forEach((it,i)=>{const x=72+i*236,w=210,h=126;ctx.fillStyle='#fff';roundedRect(ctx,x,y,w,h,22);ctx.fill();ctx.strokeStyle='#e4e8ef';ctx.lineWidth=2;ctx.stroke();ctx.fillStyle='#697386';ctx.font='600 20px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText(it[0],x+22,y+36);ctx.fillStyle='#172033';ctx.font='850 40px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,it[1],x+22,y+91,w-44)})}
 function shareFooter(ctx,W,H,label){ctx.fillStyle='#697386';ctx.font='500 20px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText(`${label} · ${new Date().toLocaleString('zh-TW')}`,72,H-62);ctx.fillStyle='#0f62fe';ctx.font='800 20px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.textAlign='right';ctx.fillText('BowlMeet '+APP_VERSION,W-72,H-62);ctx.textAlign='left'}
 function drawRankingShareCard(ctx,W,H,data,title,meta){const metric=$('shareMetric').value||'total',topN=Number($('shareTopN').value)||5;let rows=[...data.rows];rows.sort((a,b)=>shareMetricValue(b,metric)-shareMetricValue(a,metric)||b.games-a.games||a.name.localeCompare(b.name,'zh-Hant'));rows=rows.slice(0,topN);drawShareHeader(ctx,W,title,meta);drawShareStats(ctx,[['球員',String(rows.length)],['局數',String(data.vals.length)],['平均',String(data.overallAvg??'—')],['最高',String(data.overallBest??'—')]]);const tableX=72,tableY=454,tableW=936,rowH=topN>=8?72:topN>=5?84:96;ctx.fillStyle='#fff';roundedRect(ctx,tableX,tableY,tableW,72+Math.max(rows.length,1)*rowH,24);ctx.fill();ctx.strokeStyle='#e4e8ef';ctx.lineWidth=2;ctx.stroke();ctx.fillStyle='#f8fafc';roundedRect(ctx,tableX,tableY,tableW,72,24);ctx.fill();ctx.fillStyle='#5b6472';ctx.font='700 21px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText('排名',tableX+28,tableY+45);ctx.fillText('球員',tableX+145,tableY+45);ctx.fillText('局數',tableX+520,tableY+45);ctx.fillText('總分',tableX+635,tableY+45);ctx.fillText('平均',tableX+755,tableY+45);ctx.fillText('最高',tableX+855,tableY+45);if(!rows.length){ctx.fillStyle='#8a93a3';ctx.font='500 28px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText('目前沒有可分享的成績',tableX+250,tableY+150)}rows.forEach((r,i)=>{const y=tableY+72+i*rowH;if(i>0){ctx.strokeStyle='#eef1f5';ctx.beginPath();ctx.moveTo(tableX+22,y);ctx.lineTo(tableX+tableW-22,y);ctx.stroke()}ctx.fillStyle=i===0?'#0f62fe':'#172033';ctx.font='900 33px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText(String(i+1),tableX+38,y+58);ctx.fillStyle='#172033';ctx.font='800 28px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,r.name,tableX+145,y+57,340);ctx.font='700 25px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText(String(r.games),tableX+535,y+57);ctx.fillText(String(r.total),tableX+635,y+57);ctx.fillText(String(r.avg??'—'),tableX+755,y+57);ctx.fillText(String(r.best??'—'),tableX+855,y+57)});shareFooter(ctx,W,H,`排行榜 · ${metric==='avg'?'平均分':metric==='best'?'最高單局':'總分'}`)}
 function drawAwardsShareCard(ctx,W,H,data,title,meta){if(!data.m){drawShareHeader(ctx,W,title,'請選擇單一球聚');shareFooter(ctx,W,H,'獎項卡');return}const result=computeAwards(data.m.id),custom=Array.isArray(data.m.customAwards)?data.m.customAwards:[],items=[...result.awards.filter(a=>a.winners.length).map(a=>({title:a.title,winner:a.winners.join('、'),value:a.value,detail:a.detail})),...custom.map(a=>({title:a.title,winner:a.winner,value:'自訂獎項',detail:a.note||''}))].slice(0,8);drawShareHeader(ctx,W,title,meta);drawShareStats(ctx,[['參加',String(result.rows.length)],['自動獎項',String(result.awards.filter(a=>a.winners.length).length)],['自訂獎項',String(custom.length)],['PB 刷新',String(result.pbBreakers.length)]]);const startY=454,cardW=448,cardH=176,gap=40;items.forEach((a,i)=>{const col=i%2,row=Math.floor(i/2),x=72+col*(cardW+gap),y=startY+row*(cardH+22);ctx.fillStyle='#fff';roundedRect(ctx,x,y,cardW,cardH,22);ctx.fill();ctx.strokeStyle='#e4e8ef';ctx.lineWidth=2;ctx.stroke();ctx.fillStyle='#0f62fe';ctx.fillRect(x,y,6,cardH);ctx.fillStyle='#697386';ctx.font='700 20px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,a.title,x+28,y+38,cardW-56);ctx.fillStyle='#172033';ctx.font='850 30px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,a.winner||'—',x+28,y+82,cardW-56);ctx.fillStyle='#0f62fe';ctx.font='800 22px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,a.value||'',x+28,y+120,cardW-56);ctx.fillStyle='#697386';ctx.font='500 17px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,a.detail||'',x+28,y+151,cardW-56)});if(!items.length){ctx.fillStyle='#8a93a3';ctx.font='500 30px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText('這場球聚目前尚無可顯示的獎項',220,560)}shareFooter(ctx,W,H,'球聚獎項')}
-function meetupFullShareRows(m){
+function meetupFullShareRows(m,sess=publicSessionForMeetup(m?.id)){
   if(!m)return [];
-  const sess=linkedSession(m),byName=new Map();
+  const byName=new Map();
   for(const name of meetupParticipantNames(m)){const k=nameKey(name);if(k&&!byName.has(k))byName.set(k,{name,scores:Array(6).fill(null)})}
   for(const p of sess?.players||[]){const k=nameKey(p.name);if(!k)continue;const row=byName.get(k)||{name:p.name,scores:Array(6).fill(null)};row.name=p.name||row.name;row.scores=Array.from({length:6},(_,i)=>normalizeScore((p.scores||[])[i]));byName.set(k,row)}
   return [...byName.values()]
 }
 function drawMeetupFullShareCard(ctx,W,H,data,title,meta){
   const m=data.m;if(!m){drawShareHeader(ctx,W,title,'請選擇單一球聚');shareFooter(ctx,W,H,'球聚完整成績卡');return}
-  const rows=meetupFullShareRows(m),planned=Math.max(1,Math.min(6,Number(m.plannedGames)||6)),visibleScores=rows.flatMap(r=>r.scores.slice(0,planned).filter(v=>v!==null)),playerCount=rows.length,gameCount=visibleScores.length;
+  const rows=meetupFullShareRows(m,data.session),planned=Math.max(1,Math.min(6,Number(m.plannedGames)||6)),visibleScores=rows.flatMap(r=>r.scores.slice(0,planned).filter(v=>v!==null)),playerCount=rows.length,gameCount=visibleScores.length;
   drawShareHeader(ctx,W,title,meta);
   drawShareStats(ctx,[['玩家',String(playerCount)],['已記局數',String(gameCount)],['平均',String(avg(visibleScores)??'—')],['最高',String(visibleScores.length?Math.max(...visibleScores):'—')]]);
   const x=54,y=454,w=972,headerH=62,rowCount=Math.max(rows.length,1),availableH=760,rowH=Math.max(48,Math.min(66,Math.floor(availableH/rowCount))),tableH=headerH+rowH*rowCount;
@@ -2603,7 +2616,7 @@ function drawShareCard(){
   const ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height,type=$('shareCardType')?.value||'ranking',data=shareScopeData(),m=data.m;
   const autoTitle=type==='meetupCard'&&m?(fmtDate(m.date)+' 球聚卡'):(m?.title||(type==='awards'?'球聚獎項':'BowlMeet 球聚成績'));
   const title=$('shareCardTitle').value.trim()||autoTitle;
-  const meta=m?((m.title||'球聚')+' · '+(m.venue||'未填球館')+(m.lanes?' · 球道 '+m.lanes:'')):'全部歷史成績';
+  const meta=m?((m.title||'球聚')+' · '+(m.venue||'未填球館')+(m.lanes?' · 球道 '+m.lanes:'')):'全部公開歷史成績';
   ctx.clearRect(0,0,W,H);ctx.fillStyle='#f5f7fa';ctx.fillRect(0,0,W,H);
   if(type==='awards')drawAwardsShareCard(ctx,W,H,data,title,meta);
   else if(type==='summary')drawSummaryShareCard(ctx,W,H,data,title,meta);
@@ -2613,8 +2626,8 @@ function drawShareCard(){
   lastShareBlob=null;return canvas
 }
 function shareCanvasBlob(){return new Promise((resolve,reject)=>{const c=drawShareCard();if(!c){reject(new Error('無法產生成績卡'));return}c.toBlob(b=>b?resolve(b):reject(new Error('圖片產生失敗')),'image/png',0.95)})}
-async function downloadShareCard(){try{const b=await shareCanvasBlob();const a=document.createElement('a');a.href=URL.createObjectURL(b);const m=meetups.find(x=>x.id===$('shareMeetup').value);const t=$('shareCardType')?.value||'ranking',label=t==='awards'?'獎項卡':t==='summary'?'總覽卡':t==='meetupCard'?'球聚卡':'排行榜卡';a.download='BowlMeet_'+(m?.date||today())+'_'+label+'.png';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1200)}catch(e){alert(e.message)}}
-async function nativeShareCard(){try{const b=await shareCanvasBlob();const m=meetups.find(x=>x.id===$('shareMeetup').value),t=$('shareCardType')?.value||'ranking',label=t==='awards'?'獎項卡':t==='summary'?'總覽卡':t==='meetupCard'?'球聚卡':'排行榜卡',file=new File([b],'BowlMeet_'+(m?.date||today())+'_'+label+'.png',{type:'image/png'});if(navigator.share&&navigator.canShare?.({files:[file]})){await navigator.share({title:m?.title||'BowlMeet 球聚成績',text:'BowlMeet 球聚成績卡',files:[file]})}else if(navigator.share){await navigator.share({title:m?.title||'BowlMeet 球聚成績',text:'BowlMeet 球聚成績卡'});await downloadShareCard()}else{await downloadShareCard();alert('此瀏覽器不支援原生分享，已改為下載 PNG。')}}catch(e){if(e?.name!=='AbortError'){console.error(e);alert('分享失敗，請改用「下載 PNG」。')}}}
+async function downloadShareCard(){try{const b=await shareCanvasBlob();const a=document.createElement('a');a.href=URL.createObjectURL(b);const m=publicMeetupById($('shareMeetup').value);const t=$('shareCardType')?.value||'ranking',label=t==='awards'?'獎項卡':t==='summary'?'總覽卡':t==='meetupCard'?'球聚卡':'排行榜卡';a.download='BowlMeet_'+(m?.date||today())+'_'+label+'.png';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1200)}catch(e){alert(e.message)}}
+async function nativeShareCard(){try{const b=await shareCanvasBlob();const m=publicMeetupById($('shareMeetup').value),t=$('shareCardType')?.value||'ranking',label=t==='awards'?'獎項卡':t==='summary'?'總覽卡':t==='meetupCard'?'球聚卡':'排行榜卡',file=new File([b],'BowlMeet_'+(m?.date||today())+'_'+label+'.png',{type:'image/png'});if(navigator.share&&navigator.canShare?.({files:[file]})){await navigator.share({title:m?.title||'BowlMeet 公開球聚成績',text:'BowlMeet 公開球聚成績卡',files:[file]})}else if(navigator.share){await navigator.share({title:m?.title||'BowlMeet 公開球聚成績',text:'BowlMeet 公開球聚成績卡'});await downloadShareCard()}else{await downloadShareCard();alert('此瀏覽器不支援原生分享，已改為下載 PNG。')}}catch(e){if(e?.name!=='AbortError'){console.error(e);alert('分享失敗，請改用「下載 PNG」。')}}}
 function updatePwaState(){const dot=$('pwaDot'),label=$('pwaState'),help=$('pwaHelp');if(!dot||!label)return;dot.className='pwa-dot '+(navigator.onLine?'online':'offline');const standalone=window.matchMedia?.('(display-mode: standalone)').matches||navigator.standalone===true;if(standalone){label.textContent='已以 App 模式執行';$('installAppBtn').textContent='已安裝';$('installAppBtn').classList.add('ready');help.textContent='目前為獨立 App 視窗。主要資料仍儲存在此裝置。'}else if(location.protocol==='file:'){label.textContent='目前為本機 HTML 模式';help.textContent='一般功能可使用；要安裝 PWA，請把 PWA 套件放到 HTTPS 網站或 localhost。iPhone 使用 Safari「分享 → 加入主畫面」。'}else{label.textContent=navigator.onLine?'PWA 已就緒':'離線模式';help.textContent='Android / Chrome / Edge 可到「設定 → App / PWA」安裝。iPhone 請用 Safari「分享 → 加入主畫面」。'}}
 async function installPwa(){const standalone=window.matchMedia?.('(display-mode: standalone)').matches||navigator.standalone===true;if(standalone){alert('目前已在 App 模式執行。');return}if(deferredInstallPrompt){deferredInstallPrompt.prompt();const choice=await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;updatePwaState();if(choice.outcome!=='accepted')return}else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){alert('iPhone / iPad：請用 Safari 開啟後，按「分享」→「加入主畫面」。')}else if(location.protocol==='file:'){alert('PWA 安裝需要 HTTPS 或 localhost。請部署目前版本的 BowlMeet PWA 後再安裝。')}else{alert('目前瀏覽器沒有提供自動安裝提示。可從瀏覽器選單選擇「安裝應用程式」或「加入主畫面」。')}}
 function setUpdateUi(text,detail='',ready=false){
@@ -2786,11 +2799,11 @@ $('importFile').addEventListener('change',async e=>{const f=e.target.files[0];if
 $('saveMeetupBtn').addEventListener('click',()=>saveMeetup(false));$('saveStartMeetupBtn').addEventListener('click',()=>saveMeetup(true));$('cancelMeetupEditBtn').addEventListener('click',resetMeetupForm);$('selectAllRosterBtn').addEventListener('click',()=>{const boxes=[...$('meetupRosterPicker').querySelectorAll('input[type=checkbox]')],all=boxes.length&&boxes.every(x=>x.checked);boxes.forEach(x=>x.checked=!all)});$('addManualPlayersBtn').addEventListener('click',addManualMeetupPlayers);$('meetupManualPlayers').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addManualMeetupPlayers()}});$('meetupManualPlayerChips').addEventListener('click',e=>{const b=e.target.closest('[data-remove-manual-player]');if(!b)return;manualMeetupPlayers.splice(Number(b.dataset.removeManualPlayer),1);renderManualMeetupPlayers()});$('recentPlayerChips').addEventListener('click',e=>{const b=e.target.closest('[data-quick-player]');if(b)toggleQuickMeetupPlayer(b.dataset.quickPlayer)});$('reuseRecentPlayersBtn').addEventListener('click',reuseRecentMeetupPlayers);
 $('meetupList').addEventListener('click',e=>{const b=e.target.closest('button[data-mact]');if(!b)return;const id=b.dataset.id,act=b.dataset.mact;if(act==='live')openLiveMeetup(id);else if(act==='start')startMeetup(id);else if(act==='rank')openMeetupLeaderboard(id);else if(act==='awards')openMeetupAwards(id);else if(act==='edit')editMeetup(id);else if(act==='done')setMeetupStatus(id,'done');else if(act==='review')openPostGameReview(id);else if(act==='ongoing')setMeetupStatus(id,'ongoing');else if(act==='del')deleteMeetup(id)});
 $('saveRosterBtn').addEventListener('click',saveRoster);$('cancelRosterEditBtn').addEventListener('click',resetRosterForm);$('rosterSearch').addEventListener('input',renderRoster);$('rosterList').addEventListener('click',e=>{const b=e.target.closest('[data-ract]');if(!b)return;const name=b.dataset.name||'',id=b.dataset.id||'',key=b.dataset.key||'';if(b.dataset.ract==='hub'&&key)openPlayerHub(key);else if(b.dataset.ract==='edit')editRoster(id,name);else if(b.dataset.ract==='del'&&id)deleteRoster(id)});
-$('quickAddRosterBtn').addEventListener('click',quickAddRoster);$('leaderboardMeetup').addEventListener('change',e=>{const id=e.target.value;if(id&&id!=='all'){setCurrentMeetup(id);syncMeetupDerivedSelectors(id)}renderLeaderboard()});$('leaderboardMetric').addEventListener('change',renderLeaderboard);$('leaderboardCurrentBtn').addEventListener('click',()=>{if(!currentMeetupId){alert('目前沒有選擇球聚活動。');return}syncMeetupDerivedSelectors(currentMeetupId);renderLeaderboard(currentMeetupId)});
+$('quickAddRosterBtn').addEventListener('click',quickAddRoster);$('leaderboardMeetup').addEventListener('change',e=>{const id=e.target.value;if(id&&id!=='all'){setCurrentMeetup(id);syncMeetupDerivedSelectors(id)}renderLeaderboard()});$('leaderboardMetric').addEventListener('change',renderLeaderboard);$('leaderboardCurrentBtn').addEventListener('click',()=>{if(!currentMeetupId){alert('目前沒有選擇球聚活動。');return}if(!requirePublicMeetup(currentMeetupId,'查看排行榜'))return;syncMeetupDerivedSelectors(currentMeetupId);renderLeaderboard(currentMeetupId)});
 $('playerAnalyticsBackBtn').addEventListener('click',closePlayerAnalytics);$('playerAnalyticsPlayer').addEventListener('change',e=>{prepareAnalyticsContextChange();if(setPlayerContext(e.target.value,{view:'analytics'})){playerNavigation().scroll.analytics=0;renderStats();requestAnimationFrame(()=>$('playerAnalyticsPanel')?.scrollIntoView({behavior:'auto',block:'start'}))}else restoreAnalyticsPresentation()});$('playerAnalyticsRange').addEventListener('change',e=>{playerContext.analyticsRange=e.target.value||'all';prepareAnalyticsContextChange();renderStats()});$('playerAnalyticsSectionNav').addEventListener('click',e=>{const b=e.target.closest('[data-analytics-jump]');if(!b)return;const target=$(b.dataset.analyticsJump);if(target){target.scrollIntoView({behavior:playerReducedMotion()?'auto':'smooth',block:'start'});target.setAttribute('tabindex','-1');requestAnimationFrame(()=>target.focus({preventScroll:true}))}});
 $('playerHubBackBtn').addEventListener('click',closePlayerHub);$('playerHubAnalyticsBtn').addEventListener('click',()=>openPlayerAnalytics(playerContext.key));$('playerHubHistoryBtn').addEventListener('click',openPlayerHistory);$('playerHubLatestSessionBtn').addEventListener('click',e=>{const id=e.currentTarget.dataset.sessionId;if(id)openPlayerSessionDetail(id,{returnTarget:'playerHub'})});$('playerHubEditBtn').addEventListener('click',()=>{const row=playerRow(playerContext.key);if(row&&row.source!=='PUBLIC')editRoster(row.meta?.id||'',row.name)});
 $('playerHistoryBackBtn').addEventListener('click',closePlayerHistory);$('playerHistorySearch').addEventListener('input',e=>{playerContext.history.search=e.target.value;renderPlayerHubHistory()});$('playerHistoryRange').addEventListener('change',e=>{playerContext.history.range=e.target.value||'all';renderPlayerHubHistory()});$('playerHistorySort').addEventListener('change',e=>{playerContext.history.sort=e.target.value||'newest';renderPlayerHubHistory()});$('playerHistoryList').addEventListener('click',e=>{const b=e.target.closest('[data-player-session]');if(b)openPlayerSessionDetail(b.dataset.playerSession,{returnTarget:'playerHistory'})});$('playerSessionCloseBtn').addEventListener('click',closePlayerSessionDetail);$('playerSessionPrevBtn').addEventListener('click',e=>{const id=e.currentTarget.dataset.sessionId;if(id)openPlayerSessionDetail(id,{returnTarget:playerNavigation().sessionReturnTarget,preserveOrigin:true})});$('playerSessionNextBtn').addEventListener('click',e=>{const id=e.currentTarget.dataset.sessionId;if(id)openPlayerSessionDetail(id,{returnTarget:playerNavigation().sessionReturnTarget,preserveOrigin:true})});$('playerSessionDialog').addEventListener('cancel',e=>{e.preventDefault();closePlayerSessionDetail()});$('playerSessionDialog').addEventListener('click',e=>{if(e.target===$('playerSessionDialog'))closePlayerSessionDetail()});$('playerSessionDialog').addEventListener('keydown',e=>{if(e.key==='ArrowLeft'&&!$('playerSessionPrevBtn').disabled){e.preventDefault();$('playerSessionPrevBtn').click()}else if(e.key==='ArrowRight'&&!$('playerSessionNextBtn').disabled){e.preventDefault();$('playerSessionNextBtn').click()}});
-$('awardMeetup').addEventListener('change',e=>{const id=e.target.value;if(id){setCurrentMeetup(id);syncMeetupDerivedSelectors(id)}renderAwards()});$('awardCurrentBtn').addEventListener('click',()=>{if(!currentMeetupId){alert('目前沒有選擇球聚活動。');return}renderAwardOptions();$('awardMeetup').value=currentMeetupId;syncMeetupDerivedSelectors(currentMeetupId);renderAwards()});$('awardShareBtn').addEventListener('click',()=>{const id=$('awardMeetup').value;if(!id)return;setCurrentMeetup(id);switchView('shareView');renderShareOptions(id);$('shareMeetup').value=id;$('shareCardType').value='awards';syncMeetupDerivedSelectors(id);updateShareControls(true)});$('addCustomAwardBtn').addEventListener('click',addCustomAward);$('customAwardList').addEventListener('click',e=>{const b=e.target.closest('[data-del-custom-award]');if(b&&confirm('確定移除這個自訂獎項？'))deleteCustomAward(b.dataset.delCustomAward)});
+$('awardMeetup').addEventListener('change',e=>{const id=e.target.value;if(id){setCurrentMeetup(id);syncMeetupDerivedSelectors(id)}renderAwards()});$('awardCurrentBtn').addEventListener('click',()=>{if(!currentMeetupId){alert('目前沒有選擇球聚活動。');return}renderAwardOptions();$('awardMeetup').value=currentMeetupId;syncMeetupDerivedSelectors(currentMeetupId);renderAwards()});$('awardShareBtn').addEventListener('click',()=>{const id=$('awardMeetup').value;if(!id||!requirePublicMeetup(id,'分享獎項'))return;setCurrentMeetup(id);switchView('shareView');renderShareOptions(id);$('shareMeetup').value=id;$('shareCardType').value='awards';syncMeetupDerivedSelectors(id);updateShareControls(true)});$('addCustomAwardBtn').addEventListener('click',addCustomAward);$('customAwardList').addEventListener('click',e=>{const b=e.target.closest('[data-del-custom-award]');if(b&&confirm('確定移除這個自訂獎項？'))deleteCustomAward(b.dataset.delCustomAward)});
 
 $('postReviewCloseBtn').addEventListener('click',closePostGameReview);$('postReviewDoneBtn').addEventListener('click',closePostGameReview);$('postReviewShareBtn').addEventListener('click',openPostReviewShare);$('postReviewHistoryBtn').addEventListener('click',openPostReviewHistory);$('postGameReviewDialog').addEventListener('cancel',e=>{e.preventDefault();closePostGameReview()});
 $('liveMeetupSelect').addEventListener('change',e=>{if(e.target.value)selectLiveMeetup(e.target.value,true);else{setCurrentMeetup('');renderLive()}});
@@ -2804,7 +2817,7 @@ $('liveScoreList').addEventListener('change',e=>{const input=e.target.closest('.
 $('liveScoreList').addEventListener('keydown',e=>{const input=e.target.closest('.live-roll-input');if(input&&e.key==='Enter'){e.preventDefault();saveLiveRoll(input,true)}});
 $('liveScoreList').addEventListener('click',e=>{const b=e.target.closest('[data-clear-live-game]');if(b)clearLiveGame(b.dataset.clearLiveGame)});
 $('liveFullScoreBtn').addEventListener('click',()=>{const m=meetups.find(x=>x.id===currentMeetupId);if(!m)return;const sess=ensureLiveSession(m);loadSession(sess.id)});
-$('liveShareBtn').addEventListener('click',()=>{if(!currentMeetupId)return;const id=currentMeetupId;switchView('shareView');renderShareOptions(id);syncMeetupDerivedSelectors(id);drawShareCard()});
+$('liveShareBtn').addEventListener('click',()=>{if(!currentMeetupId||!requirePublicMeetup(currentMeetupId,'分享成績'))return;const id=currentMeetupId;switchView('shareView');renderShareOptions(id);syncMeetupDerivedSelectors(id);drawShareCard()});
 
 $('saveSyncConfigBtn').addEventListener('click',saveSyncServiceConfig);$('testSyncServiceBtn').addEventListener('click',testSyncService);$('createSyncRoomBtn').addEventListener('click',createSyncRoom);$('joinSyncRoomBtn').addEventListener('click',joinSyncRoom);$('syncNowBtn').addEventListener('click',()=>syncNow(true,'manual'));$('leaveSyncRoomBtn').addEventListener('click',leaveSyncRoom);$('copySyncInviteBtn').addEventListener('click',async()=>{if(await copyText(inviteText()))alert('邀請資訊已複製。')});$('syncAutoToggle').addEventListener('change',e=>{setSyncConfig({auto:e.target.checked});startSyncPolling();renderSync()});
 $('settingsPublicAutoToggle').addEventListener('change',e=>{setGroupConfig({auto:e.target.checked});startGroupPolling();renderPublicSyncState()});
