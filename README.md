@@ -667,7 +667,7 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - DEV4-01 — Player Navigation State Polish ✅ Architecture / Integration Complete
 - DEV4-02 — Player Hub Quick Actions & Compact UX ✅ Integration Complete
 - DEV4-03 — Player History Session Navigation Polish ✅ Integration Complete
-- DEV4-04 — Analytics Return / Player Switch Context Polish
+- DEV4-04 — Analytics Return / Player Switch Context Polish ✅ Integration Complete
 - DEV4-05 — Mobile Interaction & Accessibility Polish
 - DEV4-06 — PUBLIC Guard / Regression / RC Readiness
 
@@ -702,6 +702,17 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - Dialog backdrop / Escape close use the same controlled return path; desktop Left / Right arrow keys switch sessions.
 - Mobile Session Detail navigation is sticky with safe-area support.
 - No new history/session data source, no Backup/IndexedDB/Supabase schema change.
+
+### DEV4-04 Result
+- Analytics now shows the active player and LOCAL / MIXED / PUBLIC source directly in the analysis header.
+- Player switching stays inside Analytics, preserves the selected analytics range, and resets only the Analytics scroll position.
+- Old-player presentation is hidden before a player/range context change and restored only after the new render completes, preventing stale metric flashes.
+- Analytics back always returns to the same switched player's Player Hub; the Hub still retains its original parent return target.
+- Added compact section navigation for Trend / PB / Recent / Frame / History to reduce long-page navigation cost.
+- Mobile Analytics keeps player/range context and section navigation sticky while scrolling, with compact two-column controls.
+- Analytics range remains independent from Player History range.
+- PUBLIC-only analytics remains read-only and continues to show unavailable frame metrics as insufficient data rather than inferred zeroes.
+- No analytics data store, Backup/IndexedDB format, Roster metadata, or Supabase schema change.
 
 ### Guardrails
 - Keep Unified History as the single score/history source.
