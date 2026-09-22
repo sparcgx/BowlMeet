@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.5-dev.2</title>
+<title>保齡球球聚｜BowlMeet v0.4.5-dev.3</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -365,7 +365,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 .post-review-dialog{border:0;padding:0;background:transparent;width:min(820px,calc(100vw - 28px));max-width:820px}.post-review-dialog::backdrop{background:rgba(15,23,42,.48);backdrop-filter:blur(3px)}.post-review-card{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 24px 70px rgba(15,23,42,.22);padding:20px;max-height:min(86vh,820px);overflow:auto}.post-review-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}.post-review-head h2{margin:4px 0 0;font-size:22px}.post-review-head p{margin:6px 0 0;color:var(--muted);font-size:12px}.post-review-close{border:1px solid var(--line);background:#fff;border-radius:10px;width:36px;height:36px;font-size:20px}.post-review-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:16px}.post-review-kpi{border:1px solid var(--line);background:#fafbfc;border-radius:13px;padding:12px}.post-review-kpi span{display:block;font-size:10px;color:var(--muted);font-weight:750}.post-review-kpi strong{display:block;font-size:22px;margin-top:4px}.post-review-best-sub{font-size:9px;color:var(--muted);margin-top:2px}.post-review-table-wrap{margin-top:14px;border:1px solid var(--line);border-radius:13px;overflow:auto}.post-review-table{width:100%;border-collapse:collapse;min-width:560px}.post-review-table th,.post-review-table td{padding:10px 11px;border-bottom:1px solid var(--line);text-align:right;font-size:12px}.post-review-table th{background:#fafbfc;color:#5b6474;font-size:10px}.post-review-table th:first-child,.post-review-table td:first-child{text-align:left}.post-review-table tr:last-child td{border-bottom:0}.post-review-player{font-weight:850}.post-review-empty{padding:24px;text-align:center;color:var(--muted);font-size:12px}.post-review-actions{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:16px}.post-review-note{margin-top:11px;padding:10px 12px;border-radius:11px;background:#f7f9fc;color:var(--muted);font-size:10px;line-height:1.55}
 @media(max-width:680px){.post-review-card{padding:15px}.post-review-kpis{grid-template-columns:repeat(2,1fr)}.post-review-kpi:last-child{grid-column:1/-1}.post-review-actions .btn{flex:1 1 46%}.post-review-head h2{font-size:19px}}
 
-/* v0.4.5-dev.2 Player Analytics Integration */
+/* v0.4.5-dev.3 Player Hub & History */
 .history-mode-tabs{display:inline-flex;gap:4px;padding:4px;margin:0 0 12px;border:1px solid var(--line);border-radius:12px;background:#fff}
 .history-mode{border:0;background:transparent;color:var(--muted);font-size:12px;font-weight:850;border-radius:9px;padding:8px 16px}
 .history-mode.active{background:#172033;color:#fff}.history-mode span{font-size:10px;margin-left:4px;opacity:.78}
@@ -383,16 +383,39 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 @media(max-width:680px){.history-mode-tabs{display:flex;width:100%}.history-mode{flex:1}.player-directory-kpis{grid-template-columns:repeat(3,1fr)}.player-directory-row{grid-template-columns:1fr 1fr}.player-directory-row.header{display:none}.player-directory-row .roster-actions{grid-column:1/-1}.player-directory-row>div:nth-child(2)::before{content:'局數 ';color:var(--muted)}.player-directory-row>div:nth-child(3)::before{content:'平均 ';color:var(--muted)}.player-directory-row>div:nth-child(4)::before{content:'PB ';color:var(--muted)}.player-directory-row>div:nth-child(5)::before{content:'近5 ';color:var(--muted)}}
 
 
-/* v0.4.5-dev.2 Player Analytics Integration */
+/* v0.4.5-dev.3 Player Hub & History */
 .player-analytics-integrated{min-width:0}.player-analytics-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 12px}.player-analytics-nav .pill{margin:0}.player-analytics-integrated .analytics-shell{margin-top:0}
 @media(max-width:680px){.player-analytics-nav{align-items:stretch;flex-direction:column}.player-analytics-nav .btn{width:100%}}
+
+
+/* v0.4.5-dev.3 Player Hub & History */
+.player-link{border:0;background:transparent;color:var(--primary);font:inherit;font-weight:850;padding:0;cursor:pointer;text-align:left}
+.player-link:hover{text-decoration:underline}
+.player-hub-nav,.player-history-nav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 12px}
+.player-hub-card{padding:18px}.player-hub-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+.player-hub-head h2{margin:2px 0 4px;font-size:23px}.player-hub-sub{color:var(--muted);font-size:11px}
+.player-source-badge{display:inline-flex;padding:5px 9px;border-radius:999px;font-size:10px;font-weight:900;background:#eef1f5;color:#566173}
+.player-source-badge.public{background:#fff1e8;color:#a84b00}.player-source-badge.mixed{background:#f1efff;color:#6650a4}.player-source-badge.local{background:#eaf7ef;color:#14804a}
+.player-hub-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:15px}
+.player-hub-kpi{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fafbfc}
+.player-hub-kpi span{display:block;color:var(--muted);font-size:10px;font-weight:750}.player-hub-kpi strong{display:block;font-size:23px;margin-top:3px}.player-hub-kpi small{display:block;color:var(--muted);font-size:9px;margin-top:2px}
+.player-hub-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.player-hub-actions .primary{min-width:150px}
+.player-history-toolbar{display:grid;grid-template-columns:minmax(180px,1fr) 130px 130px;gap:8px;margin:12px 0}
+.player-history-list{display:grid;gap:9px}.player-history-session{border:1px solid var(--line);border-radius:13px;padding:13px;background:#fff}
+.player-history-session-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.player-history-session h3{font-size:14px;margin:0}.player-history-session-meta{font-size:10px;color:var(--muted);margin-top:3px}
+.player-history-scores{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.player-history-score-chip{padding:6px 9px;border-radius:9px;background:#f4f6f9;font-size:12px;font-weight:850}
+.player-history-empty{padding:28px;text-align:center;color:var(--muted)}
+.player-session-dialog{border:0;border-radius:18px;padding:0;max-width:620px;width:min(92vw,620px);box-shadow:0 26px 80px rgba(17,24,39,.28)}
+.player-session-dialog::backdrop{background:rgba(17,24,39,.42)}.player-session-dialog-card{padding:18px}.player-session-dialog-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.player-session-dialog-head h2{margin:0;font-size:19px}.player-session-dialog-scores{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}
+@media(max-width:900px){.player-hub-kpis{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:680px){.player-hub-nav,.player-history-nav{align-items:stretch;flex-direction:column}.player-hub-nav .btn,.player-history-nav .btn{width:100%}.player-hub-head{flex-direction:column}.player-hub-kpis{grid-template-columns:1fr 1fr}.player-history-toolbar{grid-template-columns:1fr}.player-hub-actions{display:grid;grid-template-columns:1fr 1fr}.player-hub-actions .btn{width:100%}.player-hub-actions .primary{min-width:0}.player-history-session-head{flex-direction:column}}
 
 </style>
 </head>
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.5-dev.2 · Player Analytics Integration</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.5-dev.3 · Player Hub & History</p></div></div>
 </div></header>
 <main>
   <nav class="tabs" aria-label="功能切換">
@@ -961,6 +984,50 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
 
   
+
+    <div id="playerHubPanel" class="history-mode-panel player-hub-integrated" hidden>
+      <div class="player-hub-nav"><button class="btn" id="playerHubBackBtn" type="button">← 返回</button><span class="pill">成績紀錄 · Player Hub</span></div>
+      <section class="card player-hub-card">
+        <div class="player-hub-head">
+          <div><span class="history-eyebrow">PLAYER HUB</span><h2 id="playerHubName">—</h2><div class="player-hub-sub" id="playerHubLastPlayed">尚無正式成績</div></div>
+          <span class="player-source-badge local" id="playerHubSource">本機球員</span>
+        </div>
+        <div class="player-hub-kpis">
+          <div class="player-hub-kpi"><span>總局數</span><strong id="playerHubGames">—</strong><small>Unified History</small></div>
+          <div class="player-hub-kpi"><span>生涯平均</span><strong id="playerHubAvg">—</strong><small>有效正式局</small></div>
+          <div class="player-hub-kpi"><span>PB</span><strong id="playerHubPb">—</strong><small>最高單局</small></div>
+          <div class="player-hub-kpi"><span>最近 5 局</span><strong id="playerHubRecent5">—</strong><small>不足 5 局取實際局數</small></div>
+          <div class="player-hub-kpi"><span>最近球聚</span><strong id="playerHubRecentMeetup">—</strong><small id="playerHubRecentVenue">尚無紀錄</small></div>
+        </div>
+        <div class="player-hub-actions">
+          <button class="btn primary" id="playerHubAnalyticsBtn" type="button">查看分析</button>
+          <button class="btn" id="playerHubHistoryBtn" type="button">歷史紀錄</button>
+          <button class="btn" id="playerHubEditBtn" type="button">編輯球員資料</button>
+        </div>
+      </section>
+    </div>
+
+    <div id="playerHistoryPanel" class="history-mode-panel player-history-integrated" hidden>
+      <div class="player-history-nav"><button class="btn" id="playerHistoryBackBtn" type="button">← 返回球員</button><span class="pill" id="playerHistoryTitle">球員歷史</span></div>
+      <section class="card panel">
+        <div class="player-history-toolbar">
+          <input id="playerHistorySearch" type="search" placeholder="搜尋日期、球聚、球館、球道…" />
+          <select id="playerHistoryRange"><option value="all">全部歷史</option><option value="10">最近 10 局</option><option value="20">最近 20 局</option><option value="50">最近 50 局</option><option value="year">今年</option></select>
+          <select id="playerHistorySort"><option value="newest">最新優先</option><option value="oldest">最舊優先</option></select>
+        </div>
+        <div class="history-filter-summary" id="playerHistorySummary">—</div>
+        <div id="playerHistoryList" class="player-history-list" style="margin-top:12px"></div>
+        <div id="playerHistoryEmpty" class="player-history-empty" hidden>尚無歷史成績。</div>
+      </section>
+    </div>
+
+    <dialog id="playerSessionDialog" class="player-session-dialog">
+      <div class="player-session-dialog-card">
+        <div class="player-session-dialog-head"><div><span class="history-eyebrow">SESSION DETAIL</span><h2 id="playerSessionTitle">單場紀錄</h2><div class="player-hub-sub" id="playerSessionMeta"></div></div><button class="btn small" id="playerSessionCloseBtn" type="button">關閉</button></div>
+        <div id="playerSessionScores" class="player-session-dialog-scores"></div>
+      </div>
+    </dialog>
+
     <div id="playerAnalyticsPanel" class="history-mode-panel player-analytics-integrated" hidden>
 
     <section class="card analytics-shell">
@@ -1064,7 +1131,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
       <div class="card safety-card"><div class="cap">主要資料庫</div><div class="num" id="safetyEngine">初始化…</div><div class="sub" id="safetyEngineSub">正在檢查 IndexedDB</div></div>
       <div class="card safety-card"><div class="cap">安全快照</div><div class="num" id="snapshotCount">0</div><div class="sub">最多保留最近 10 個</div></div>
       <div class="card safety-card"><div class="cap">最近快照</div><div class="num" id="lastSnapshotTime">—</div><div class="sub" id="lastSnapshotReason">尚無快照</div></div>
-      <div class="card safety-card"><div class="cap">資料 Schema</div><div class="num">v2</div><div class="sub">App v0.4.5-dev.2 · Local-first</div></div>
+      <div class="card safety-card"><div class="cap">資料 Schema</div><div class="num">v2</div><div class="sub">App v0.4.5-dev.3 · Local-first</div></div>
     </section>
     <div class="safety-layout">
       <section class="card safety-panel">
@@ -1148,7 +1215,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.5-dev.2 · Player Analytics Integration</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.5-dev.3 · Player Hub & History</div>
 </main>
 </div>
 <script>
@@ -1187,7 +1254,8 @@ const GROUP_POLL_MS=10000;
 const SNAPSHOT_LIMIT=10;
 let photoFile=null; let photoRotation=0; let ocrCandidates=[]; let lastGrid=null; let pendingImportAudit=null;
 const $=id=>document.getElementById(id);
-let sessions=[]; let legacy=[]; let meetups=[]; let roster=[]; let editingId=''; let currentMeetupId=''; let deferredInstallPrompt=null; let lastShareBlob=null; let liveGameNo=1; let liveMetric='total'; let liveSaveTimer=null; let manualMeetupPlayers=[]; let historySource='all'; let historyMode='scores'; let playerDirectoryDetail=false; let postReviewMeetupId='';
+let sessions=[]; let legacy=[]; let meetups=[]; let roster=[]; let editingId=''; let currentMeetupId=''; let deferredInstallPrompt=null; let lastShareBlob=null; let liveGameNo=1; let liveMetric='total'; let liveSaveTimer=null; let manualMeetupPlayers=[]; let historySource='all'; let historyMode='scores'; let playerDirectoryDetail=false; let playerDirectoryView='list'; let postReviewMeetupId='';
+let playerContext={key:'',rosterId:'',playerName:'',source:'LOCAL',originView:'players',hubOrigin:'players',originSessionId:'',view:'hub',analyticsRange:'all',history:{search:'',sort:'newest',range:'all',scrollTop:0,sessionId:''}};
 let appDb=null; let dbReady=false; let dbMode='初始化中'; let dbPersistTimer=null; let pendingRestorePayload=null; let pwaRegistration=null; let pendingServiceWorker=null; let reloadingForUpdate=false;
 let syncTimer=null; let syncPushTimer=null; let syncBusy=false; let syncDirty=false; let syncApplyingRemote=false; let syncRemotePresence={}; let syncLastError='';
 let personalData={profile:null,claims:[],games:[],revision:0,lastSyncAt:0,autoSync:true,updatedAt:0}; let personalTimer=null; let personalPushTimer=null; let personalBusy=false; let personalDirty=false; let personalLastError='';
