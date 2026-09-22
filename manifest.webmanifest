@@ -1,7 +1,7 @@
 {
   "name": "保齡球球聚｜BowlMeet",
   "short_name": "BowlMeet",
-  "description": "BowlMeet（保齡球球聚）v0.4.4-R1-HF1：修正現場 10 格記分輸入後橫向位置與焦點回到第一格的問題；保留 v0.4.4-R1 全部穩定功能。",
+  "description": "BowlMeet（保齡球球聚）v0.4.4-R1-HF2：修正從歷史成績同步球員名冊，支援 Unified History 的本機與公開成績，並保留 HF1 格位輸入修正。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
