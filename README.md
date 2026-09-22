@@ -51,7 +51,14 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 - Preview localStorage / IndexedDB / Cache ✅ Isolated
 - 正式 `main` 維持 `v0.4.4-R1-HF1` ✅ 未變更
 - 正式 PUBLIC revision 23 / 2 sessions / 2 meetups ✅ 未由 dev.1 改寫
-- 狀態：**Implementation Complete / Automated Regression PASS / Manual Device Acceptance Pending**
+- 真實 Preview Cloud `V45D22` 快照：5 位歷史球員 / 30 局正式分數 ✅
+- 球員頁無需同步即可直接由 Unified History 產生 ✅ PASS
+- 真實快照基準：千淯 8 局 / AVG 147 / PB 184；志強 8 / 122 / 166；軒豪 8 / 119 / 152；雅 3 / 164 / 188；毅雯 3 / 78 / 82
+- Branch / Preview JavaScript syntax ✅ PASS
+- Branch / Preview Duplicate ID ✅ 0
+- Branch / Preview Missing DOM reference ✅ 0
+- 正式 `main` 仍為 `v0.4.4-R1-HF1` ✅ 未變更
+- 狀態：**Device Preview & Automated Live Regression PASS / Manual Device Acceptance Pending**
 
 ## GitHub Pages 部署
 
