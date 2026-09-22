@@ -816,6 +816,22 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - No application code, APP_VERSION, Session / Backup / Roster metadata, Supabase schema, Stable branch, `main`, or formal PUBLIC change is included in R3.
 - Next governed stage: `v0.4.5-RC.1｜Release Candidate Integration & Freeze Gate`; no additional dev.4 feature scope.
 
+## v0.4.5-RC.1｜Release Candidate Integration & Freeze Gate
+
+**Status: Automated Freeze Gate 22/22 PASS — RC Device Acceptance Pending**
+
+- Promoted only the R3-approved artifact into the dedicated `v0.4.5-RC.1` branch.
+- APP_VERSION, titles, manifests, deployment checks, and PWA cache names advanced to `0.4.5-RC.1`.
+- Created isolated RC Preview at `/preview/v0.4.5-RC.1/`.
+- RC Preview local isolation: IndexedDB `bowlmeet.preview.v045rc1.local`, localStorage `bowlmeet.preview.v045rc1.*`, cache `bowlmeet-preview-v045rc1-*`.
+- RC Preview retains the validated Cloud test environment `V45D41`; no Supabase schema or patch change.
+- Executable application logic is byte-equivalent to the accepted R2 logic after version and isolation constants are normalized.
+- Automated Freeze Gate: 22 PASS / 0 FAIL.
+- R2 manual device acceptance remains inherited as 10 PASS / 0 FAIL.
+- RC-specific device smoke acceptance remains required before Freeze certification.
+- `main`, Stable branches, and formal PUBLIC remain unchanged.
+- Re-runnable gate: `node tools/v0.4.5-rc1-freeze-gate.mjs`.
+
 ### Guardrails
 - Keep Unified History as the single score/history source.
 - Do not add a second Player / History / Analytics data store.

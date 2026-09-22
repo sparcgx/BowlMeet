@@ -1,7 +1,7 @@
 {
   "name": "保齡球球聚｜BowlMeet",
   "short_name": "BowlMeet",
-  "description": "BowlMeet（保齡球球聚）v0.4.5-dev.4-R2：Cross-Module Sync Regression & Context Safety；排行榜、獎項與分享成績共用有效的目前球聚 Context，不新增第二套資料。",
+  "description": "BowlMeet（保齡球球聚）v0.4.5-RC.1：Release Candidate Integration & Freeze Gate；整合已通過驗收的 Player Navigation、Unified History、PUBLIC Guard 與跨模組球聚 Context。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
