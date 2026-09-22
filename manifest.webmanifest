@@ -1,7 +1,7 @@
 {
   "name": "保齡球球聚｜BowlMeet",
   "short_name": "BowlMeet",
-  "description": "BowlMeet（保齡球球聚）v0.4.5-dev.1：將球員資料整合進成績紀錄，歷史球員直接由 Unified History 產生，Roster 僅保存暱稱、備註等附加資料。",
+  "description": "BowlMeet（保齡球球聚）v0.4.5-dev.2：成績紀錄整合球員目錄與球員分析，移除獨立個人分析主選單；歷史、球員與分析使用同一 Unified History。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
