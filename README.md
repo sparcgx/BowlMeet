@@ -1,4 +1,4 @@
-# BowlMeet v0.4.4-R1-HF1 — Frame Input Focus & Scroll Hotfix
+# BowlMeet v0.4.5-dev.1 — Unified History & Player Directory
 
 BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，建立玩家並進行標準 10 格即時計分。
 
@@ -13,6 +13,40 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 - 公開控制狀態會納入本機安全快照與完整備份。
 - 跨版本防復活由 Supabase `bowling_group_push` 保留 `recordControls` tombstone；`supabase_v044_public_record_control_patch.sql` 已於 2026-09-22 套用至 BowlMeet Supabase。
 - v0.4.3.3-R1 仍為 Stable / Freeze Baseline；本版在 `v0.4.4-dev.1` 分支開發。
+
+## v0.4.5-dev.1 Unified History & Player Directory
+
+- 開發基線：`stable/v0.4.4-R1-HF1`。
+- 移除獨立「球員名冊」主選單。
+- 「成績紀錄」新增二級頁籤：**成績 / 球員**。
+- 球員頁直接由 Unified History（本機＋公開、Session ID 去重）與 Legacy 成績衍生，不需要手動同步。
+- Roster 不再作為歷史球員來源，只保留暱稱、備註、常用等附加資料。
+- 新成績、公開匯入與舊資料 migration 不再自動複製姓名到 Roster。
+- 歷史球員沒有 Roster metadata 仍會出現在球員頁。
+- 移除 Roster metadata 不會移除球員，也不會刪除歷史成績。
+- 手動建立、尚無成績的常用球員仍會出現在球員頁。
+- 球員總覽顯示局數、平均、PB、最近 5 局與資料狀態。
+- Public-only 球員可以直接進個人分析；總分型統計與 PB 使用 Unified History。
+- Strike / Spare / Open 逐格分析可讀取 Unified History 中有完整 bowlingFrames 的 Session。
+- 舊 `switchView('rosterView')` 保留相容 alias，會導向「成績紀錄 → 球員」。
+- 完整備份仍保存 Roster metadata；History / Session 資料模型不變。
+
+### v0.4.5-dev.1 Automated Gate
+
+- JavaScript syntax ✅ PASS
+- Static HTML duplicate ID ✅ 0
+- Literal DOM reference missing ✅ 0
+- 獨立球員名冊主選單移除 ✅ PASS
+- 成績 / 球員二級切換 ✅ PASS
+- PUBLIC-only 歷史球員自動出現 ✅ PASS
+- Local + Public + Legacy 球員整合 ✅ PASS
+- 無正式分數的純歷史姓名不誤列 ✅ PASS
+- Roster metadata 與歷史統計合併 ✅ PASS
+- Metadata 移除後歷史球員仍存在 ✅ PASS
+- Public-only 個人分析 ✅ PASS
+- Public-only 連續 3 局 PB ✅ PASS
+- 歷史姓名自動寫入 Roster 行為 ✅ 已移除
+- 狀態：**Implementation Complete / Automated Regression PASS / Device Preview Pending**
 
 ## GitHub Pages 部署
 
