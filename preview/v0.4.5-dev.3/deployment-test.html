@@ -33,7 +33,7 @@
  const set=(id,text,cls)=>{const e=document.getElementById(id);e.textContent=text;e.className='status '+cls};
  set('js','正常執行','ok');
  set('secure',window.isSecureContext?'安全 HTTPS':'非安全環境',window.isSecureContext?'ok':'bad');
- try{localStorage.setItem('bowlmeet.deploy.test','1');localStorage.removeItem('bowlmeet.deploy.test');set('ls','可用','ok')}catch(e){set('ls','不可用','bad')}
+ try{localStorage.setItem('bowlmeet.preview.v045d3.deploy.test','1');localStorage.removeItem('bowlmeet.preview.v045d3.deploy.test');set('ls','可用','ok')}catch(e){set('ls','不可用','bad')}
  set('idb','indexedDB' in window?'可用':'不可用','indexedDB' in window?'ok':'bad');
  set('sw','serviceWorker' in navigator?'支援':'不支援','serviceWorker' in navigator?'ok':'bad');
  const standalone=(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
