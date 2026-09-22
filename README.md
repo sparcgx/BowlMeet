@@ -661,7 +661,7 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 
 ## v0.4.5-dev.4 Player Experience & Session Navigation Polish
 
-**Status: Automated RC Gate Complete — Manual Device Acceptance Pending**
+**Status: Manual Acceptance Passed — DEV4-06-R1 Cross-Module Sync Fix Pending Targeted Retest**
 
 ### Scope
 - DEV4-01 — Player Navigation State Polish ✅ Architecture / Integration Complete
@@ -754,6 +754,27 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 8. iPhone PWA：頂部/底部 safe area 正常，Session Dialog 可捲動且返回焦點正常。
 9. PUBLIC Preview：取消公開/重新公開只影響 V45D41，不影響正式 PUBLIC。
 10. 重新整理 Preview：正式 main / PUBLIC / 本機正式 Storage 均不被 Preview 污染。
+
+### DEV4-06-R1 Result
+- Manual DEV4 acceptance was reported OK, then a cross-module integration defect was found: 排行榜 / 獎項 / 分享成績 did not consistently follow the same active meetup context.
+- Fixed the three modules to share the canonical current Meetup context instead of preserving unrelated selector state.
+- Selecting a single meetup in 排行榜, 獎項, or 分享成績 now updates the current meetup and synchronizes the other two module selectors.
+- Entering 排行榜 / 獎項 / 分享成績 from the current meetup now opens on that same meetup.
+- 現場「分享成績」、球聚獎項「分享獎項卡」、Post-game Review「分享球聚卡」、History「分享」 now explicitly carry the source Meetup ID into Share.
+- “全部歷史” remains available for Ranking / Share without clearing the current live meetup context.
+- APP_VERSION advanced to `0.4.5-dev.4-R1`; no data schema or storage format change.
+- Isolated Preview remains `V45D41` / PIN `045023`; Preview payload appVersion advanced to `0.4.5-dev.4-R1`.
+- Formal PUBLIC remains revision 23 / appVersion `0.4.4-R1`; formal main root remains `v0.4.4-R1-HF1`.
+- Static regression after the fix: JavaScript Syntax PASS, Duplicate ID 0, Missing DOM Ref 0.
+- RC promotion remains blocked until the targeted cross-module retest passes.
+
+### Targeted Retest — DEV4-06-R1
+1. 現場球聚輸入並完成一局後，開啟排行榜：應自動顯示同一球聚與最新完成局分數。
+2. 從排行榜切到獎項：應維持同一球聚，冠軍／平均王／單局王依同一批成績計算。
+3. 從獎項按「分享獎項卡」：分享頁應維持同一球聚。
+4. 從現場按「分享成績」：分享頁應直接選中目前球聚，而不是全部歷史或上一場球聚。
+5. 在分享成績切換另一場單一球聚後，再開排行榜／獎項：兩者應跟著該球聚。
+6. 排行榜或分享選「全部歷史」時，不應清除目前現場球聚；再按「目前球聚」應能立即回到目前場次。
 
 ### Guardrails
 - Keep Unified History as the single score/history source.
