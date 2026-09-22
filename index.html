@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.4-R1-HF1</title>
+<title>保齡球球聚｜BowlMeet v0.4.5-dev.1</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -364,12 +364,30 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 
 .post-review-dialog{border:0;padding:0;background:transparent;width:min(820px,calc(100vw - 28px));max-width:820px}.post-review-dialog::backdrop{background:rgba(15,23,42,.48);backdrop-filter:blur(3px)}.post-review-card{background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 24px 70px rgba(15,23,42,.22);padding:20px;max-height:min(86vh,820px);overflow:auto}.post-review-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}.post-review-head h2{margin:4px 0 0;font-size:22px}.post-review-head p{margin:6px 0 0;color:var(--muted);font-size:12px}.post-review-close{border:1px solid var(--line);background:#fff;border-radius:10px;width:36px;height:36px;font-size:20px}.post-review-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:16px}.post-review-kpi{border:1px solid var(--line);background:#fafbfc;border-radius:13px;padding:12px}.post-review-kpi span{display:block;font-size:10px;color:var(--muted);font-weight:750}.post-review-kpi strong{display:block;font-size:22px;margin-top:4px}.post-review-best-sub{font-size:9px;color:var(--muted);margin-top:2px}.post-review-table-wrap{margin-top:14px;border:1px solid var(--line);border-radius:13px;overflow:auto}.post-review-table{width:100%;border-collapse:collapse;min-width:560px}.post-review-table th,.post-review-table td{padding:10px 11px;border-bottom:1px solid var(--line);text-align:right;font-size:12px}.post-review-table th{background:#fafbfc;color:#5b6474;font-size:10px}.post-review-table th:first-child,.post-review-table td:first-child{text-align:left}.post-review-table tr:last-child td{border-bottom:0}.post-review-player{font-weight:850}.post-review-empty{padding:24px;text-align:center;color:var(--muted);font-size:12px}.post-review-actions{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:16px}.post-review-note{margin-top:11px;padding:10px 12px;border-radius:11px;background:#f7f9fc;color:var(--muted);font-size:10px;line-height:1.55}
 @media(max-width:680px){.post-review-card{padding:15px}.post-review-kpis{grid-template-columns:repeat(2,1fr)}.post-review-kpi:last-child{grid-column:1/-1}.post-review-actions .btn{flex:1 1 46%}.post-review-head h2{font-size:19px}}
+
+/* v0.4.5-dev.1 Unified History & Player Directory */
+.history-mode-tabs{display:inline-flex;gap:4px;padding:4px;margin:0 0 12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.history-mode{border:0;background:transparent;color:var(--muted);font-size:12px;font-weight:850;border-radius:9px;padding:8px 16px}
+.history-mode.active{background:#172033;color:#fff}.history-mode span{font-size:10px;margin-left:4px;opacity:.78}
+.history-mode-panel[hidden]{display:none!important}
+.player-directory-head{padding:17px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px}
+.player-directory-head h2{margin:3px 0 4px;font-size:20px}.player-directory-head p{margin:0;color:var(--muted);font-size:12px;line-height:1.6;max-width:720px}
+.player-directory-kpis{display:grid;grid-template-columns:repeat(3,minmax(78px,1fr));gap:7px;min-width:280px}
+.player-directory-kpis>div{border:1px solid var(--line);border-radius:10px;background:#fafbfc;padding:9px 10px}
+.player-directory-kpis span{display:block;color:var(--muted);font-size:9px;font-weight:800}.player-directory-kpis strong{display:block;font-size:18px;margin-top:2px}
+.player-directory-layout{display:grid;grid-template-columns:320px minmax(0,1fr);gap:14px}.player-directory-card{min-width:0}
+.player-status{display:inline-flex;padding:3px 7px;border-radius:999px;font-size:9px;font-weight:850;background:#eef1f5;color:#5b6472}.player-status.history{background:#eef4ff;color:#0b57d0}.player-status.saved{background:#eaf7ef;color:#14804a}.player-status.both{background:#f1efff;color:#6650a4}
+.player-directory-row{grid-template-columns:minmax(145px,1.25fr) 66px 66px 66px 74px minmax(90px,.8fr) auto}
+.player-directory-row .recent{font-weight:850}.player-directory-sub{font-size:10px;color:var(--muted);margin-top:2px}
+@media(max-width:980px){.player-directory-layout{grid-template-columns:1fr}.player-directory-head{flex-direction:column}.player-directory-kpis{width:100%;min-width:0}}
+@media(max-width:680px){.history-mode-tabs{display:flex;width:100%}.history-mode{flex:1}.player-directory-kpis{grid-template-columns:repeat(3,1fr)}.player-directory-row{grid-template-columns:1fr 1fr}.player-directory-row.header{display:none}.player-directory-row .roster-actions{grid-column:1/-1}.player-directory-row>div:nth-child(2)::before{content:'局數 ';color:var(--muted)}.player-directory-row>div:nth-child(3)::before{content:'平均 ';color:var(--muted)}.player-directory-row>div:nth-child(4)::before{content:'PB ';color:var(--muted)}.player-directory-row>div:nth-child(5)::before{content:'近5 ';color:var(--muted)}}
+
 </style>
 </head>
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.4-R1-HF1 · Frame Input Focus & Scroll Hotfix</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.5-dev.1 · Unified History & Player Directory</p></div></div>
 </div></header>
 <main>
   <nav class="tabs" aria-label="功能切換">
@@ -379,7 +397,6 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     <button class="tab" data-view="historyView">成績紀錄</button>
     <button class="tab" data-view="leaderboardView">排行榜</button>
     <button class="tab" data-view="photoView">拍照匯入</button>
-    <button class="tab" data-view="rosterView">球員名冊</button>
     <button class="tab" data-view="awardsView">獎項</button>
     <button class="tab" data-view="statsView">個人分析</button>
     <button class="tab" data-view="shareView">分享成績</button>
@@ -436,7 +453,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
             <div class="field"><label for="meetupTitle">活動名稱</label><input id="meetupTitle" maxlength="40" placeholder="可不填，系統自動命名" /></div>
             <div class="field"><label for="meetupStatus">狀態</label><select id="meetupStatus"><option value="planned">預定</option><option value="ongoing">進行中</option><option value="done">已完成</option></select></div>
             <div class="field full"><label for="meetupNotes">備註</label><textarea id="meetupNotes" maxlength="240" placeholder="可選填"></textarea></div>
-            <div class="field full"><label>從球員名冊加入</label><div class="roster-picker"><div class="roster-picker-head"><span>已有名冊</span><button class="btn small" type="button" id="selectAllRosterBtn">全選</button></div><div class="pick-grid" id="meetupRosterPicker"></div></div></div>
+            <div class="field full"><label>從常用球員加入</label><div class="roster-picker"><div class="roster-picker-head"><span>已儲存球員資料</span><button class="btn small" type="button" id="selectAllRosterBtn">全選</button></div><div class="pick-grid" id="meetupRosterPicker"></div></div></div>
           </div>
         </details>
       </section>
@@ -790,18 +807,6 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
   </section>
 
 
-  <section id="rosterView" class="view">
-    <div class="roster-layout">
-      <aside class="card roster-card">
-        <h2 id="rosterFormTitle">新增球員</h2><p class="section-desc">名冊只保存常用球員資料；刪除名冊不會刪除歷史成績。</p>
-        <input id="rosterEditId" type="hidden" />
-        <div class="roster-form"><div class="field"><label for="rosterName">姓名</label><input id="rosterName" maxlength="30" placeholder="例如：志強" /></div><div class="field"><label for="rosterAlias">暱稱／顯示名稱</label><input id="rosterAlias" maxlength="30" placeholder="可留白" /></div><div class="field"><label for="rosterNote">備註</label><textarea id="rosterNote" rows="3" maxlength="120" placeholder="球路、慣用球、群組備註…"></textarea></div><div class="form-actions"><button class="btn primary" id="saveRosterBtn" type="button">加入名冊</button><button class="btn" id="cancelRosterEditBtn" type="button" hidden>取消</button></div></div>
-        <div class="legacy-note" style="margin-top:12px">首次升級 v0.3.x 時，會把歷史成績中的姓名自動加入名冊。</div>
-      </aside>
-      <section class="card roster-card"><div class="roster-toolbar"><input id="rosterSearch" type="search" placeholder="搜尋姓名、暱稱、備註…" /><button class="btn" id="syncRosterBtn" type="button">從歷史成績同步</button></div><div class="roster-list" id="rosterList"></div><div class="empty" id="rosterEmpty">尚無球員名冊。</div></section>
-    </div>
-  </section>
-
   <section id="leaderboardView" class="view">
     <section class="card leaderboard-card">
       <h2>球聚排行榜</h2><p class="section-desc">可查看單一球聚或全部歷史成績。排名指標可切換總分、平均與最高單局。</p>
@@ -853,6 +858,12 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
   </section>
 
   <section id="historyView" class="view">
+    <div class="history-mode-tabs" role="tablist" aria-label="成績紀錄內容">
+      <button class="history-mode active" type="button" data-history-mode="scores">成績</button>
+      <button class="history-mode" type="button" data-history-mode="players">球員 <span id="historyPlayerTabCount">0</span></button>
+    </div>
+    <div id="historyScoresPanel" class="history-mode-panel">
+
     <div class="unified-history-shell">
       <section class="card unified-history-head">
         <div>
@@ -907,6 +918,44 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
         <div><strong>我的紀錄＋已公開</strong><span>相同 Session ID 自動去重；取消公開後可從本機紀錄重新發布。</span></div>
       </section>
     </div>
+  
+    </div>
+
+    <div id="historyPlayersPanel" class="history-mode-panel" hidden>
+      <section class="card player-directory-head">
+        <div>
+          <span class="history-eyebrow">PLAYER DIRECTORY</span>
+          <h2>球員</h2>
+          <p>歷史球員直接由成績紀錄產生；暱稱、備註等附加資料才保存於球員資料，不需要再同步名冊。</p>
+        </div>
+        <div class="player-directory-kpis">
+          <div><span>球員</span><strong id="directoryPlayerCount">0</strong></div>
+          <div><span>有成績</span><strong id="directoryHistoryCount">0</strong></div>
+          <div><span>有附加資料</span><strong id="directorySavedCount">0</strong></div>
+        </div>
+      </section>
+
+      <div class="player-directory-layout">
+        <aside class="card roster-card player-meta-card">
+          <h2 id="rosterFormTitle">新增球員資料</h2>
+          <p class="section-desc">可先建立常用球員，或替歷史球員補上暱稱與備註。移除這些資料不會刪除任何歷史成績。</p>
+          <input id="rosterEditId" type="hidden" />
+          <div class="roster-form">
+            <div class="field"><label for="rosterName">姓名</label><input id="rosterName" maxlength="30" placeholder="例如：志強" /></div>
+            <div class="field"><label for="rosterAlias">暱稱／顯示名稱</label><input id="rosterAlias" maxlength="30" placeholder="可留白" /></div>
+            <div class="field"><label for="rosterNote">備註</label><textarea id="rosterNote" rows="3" maxlength="120" placeholder="球路、慣用球、群組備註…"></textarea></div>
+            <div class="form-actions"><button class="btn primary" id="saveRosterBtn" type="button">儲存球員資料</button><button class="btn" id="cancelRosterEditBtn" type="button" hidden>取消</button></div>
+          </div>
+          <div class="legacy-note player-meta-note" style="margin-top:12px">歷史成績是事實資料；球員資料只保存暱稱、備註與常用設定。兩者分離，避免刪除資料時影響成績。</div>
+        </aside>
+        <section class="card roster-card player-directory-card">
+          <div class="roster-toolbar"><input id="rosterSearch" type="search" placeholder="搜尋球員、暱稱、備註…" /><span class="pill" id="directoryVisibleCount">0 位</span></div>
+          <div class="roster-list" id="rosterList"></div>
+          <div class="empty" id="rosterEmpty">尚無球員。完成至少一局正式成績後，球員會自動出現在這裡。</div>
+        </section>
+      </div>
+    </div>
+
   </section>
 
   <section id="statsView" class="view">
@@ -1010,7 +1059,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
       <div class="card safety-card"><div class="cap">主要資料庫</div><div class="num" id="safetyEngine">初始化…</div><div class="sub" id="safetyEngineSub">正在檢查 IndexedDB</div></div>
       <div class="card safety-card"><div class="cap">安全快照</div><div class="num" id="snapshotCount">0</div><div class="sub">最多保留最近 10 個</div></div>
       <div class="card safety-card"><div class="cap">最近快照</div><div class="num" id="lastSnapshotTime">—</div><div class="sub" id="lastSnapshotReason">尚無快照</div></div>
-      <div class="card safety-card"><div class="cap">資料 Schema</div><div class="num">v2</div><div class="sub">App v0.4.4-R1-HF1 · Local-first</div></div>
+      <div class="card safety-card"><div class="cap">資料 Schema</div><div class="num">v2</div><div class="sub">App v0.4.5-dev.1 · Local-first</div></div>
     </section>
     <div class="safety-layout">
       <section class="card safety-panel">
@@ -1026,7 +1075,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
       </section>
       <section class="card safety-panel backup-restore-panel">
         <h2>備份與還原</h2>
-        <p>完整備份會匯出球聚、球員名冊、計分卡與個人成績資料。還原支援「智慧合併」、「只新增」與「完全取代」，套用前會自動建立安全快照。</p>
+        <p>完整備份會匯出球聚、球員附加資料、計分卡與個人成績資料。還原支援「智慧合併」、「只新增」與「完全取代」，套用前會自動建立安全快照。</p>
         <div class="safety-actions backup-restore-actions">
           <button class="btn primary" id="exportBtn" type="button">匯出完整備份</button>
           <button class="btn" id="importBtn" type="button">選擇備份並還原</button>
@@ -1094,7 +1143,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.4-R1-HF1 · Frame Input Focus & Scroll Hotfix</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.5-dev.1 · Unified History & Player Directory</div>
 </main>
 </div>
 <script>
@@ -1118,7 +1167,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.4-R1-HF1';
+const APP_VERSION='0.4.5-dev.1';
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
 const BUILTIN_CLOUD=true;
@@ -1133,7 +1182,7 @@ const GROUP_POLL_MS=10000;
 const SNAPSHOT_LIMIT=10;
 let photoFile=null; let photoRotation=0; let ocrCandidates=[]; let lastGrid=null; let pendingImportAudit=null;
 const $=id=>document.getElementById(id);
-let sessions=[]; let legacy=[]; let meetups=[]; let roster=[]; let editingId=''; let currentMeetupId=''; let deferredInstallPrompt=null; let lastShareBlob=null; let liveGameNo=1; let liveMetric='total'; let liveSaveTimer=null; let manualMeetupPlayers=[]; let historySource='all'; let postReviewMeetupId='';
+let sessions=[]; let legacy=[]; let meetups=[]; let roster=[]; let editingId=''; let currentMeetupId=''; let deferredInstallPrompt=null; let lastShareBlob=null; let liveGameNo=1; let liveMetric='total'; let liveSaveTimer=null; let manualMeetupPlayers=[]; let historySource='all'; let historyMode='scores'; let postReviewMeetupId='';
 let appDb=null; let dbReady=false; let dbMode='初始化中'; let dbPersistTimer=null; let pendingRestorePayload=null; let pwaRegistration=null; let pendingServiceWorker=null; let reloadingForUpdate=false;
 let syncTimer=null; let syncPushTimer=null; let syncBusy=false; let syncDirty=false; let syncApplyingRemote=false; let syncRemotePresence={}; let syncLastError='';
 let personalData={profile:null,claims:[],games:[],revision:0,lastSyncAt:0,autoSync:true,updatedAt:0}; let personalTimer=null; let personalPushTimer=null; let personalBusy=false; let personalDirty=false; let personalLastError='';
@@ -1258,8 +1307,7 @@ function migrateV3(){
   for(const s of sessions){
     if(!s.meetupId){const m={id:uid(),title:`${fmtDate(s.date)||'歷史'} 球聚`,date:s.date||today(),venue:String(s.venue||''),lanes:String(s.lane||''),plannedGames:6,status:'done',notes:'由 v0.2.x 計分卡自動建立',participantIds:[],participantNames:(s.players||[]).map(p=>String(p.name||'')).filter(Boolean),createdAt:s.createdAt||Date.now(),updatedAt:Date.now()};meetups.push(m);s.meetupId=m.id;meetupChanged=true;sessionChanged=true}
   }
-  const names=[];sessions.forEach(s=>(s.players||[]).forEach(p=>names.push(p.name)));legacy.forEach(r=>names.push(r.player));const rosterChanged=syncRosterNames(names);
-  if(meetupChanged)persistMeetups();if(sessionChanged)persist();if(rosterChanged)persistRoster();
+  if(meetupChanged)persistMeetups();if(sessionChanged)persist();
   if(currentMeetupId&&!meetups.some(m=>m.id===currentMeetupId))setCurrentMeetup('');
 }
 function makePlayer(name='',scores=[],scoreUpdatedAt=[]){const now=Date.now(),vals=Array.from({length:6},(_,i)=>normalizeScore(scores[i]));return {id:uid(),name,scores:vals,scoreUpdatedAt:Array.from({length:6},(_,i)=>Number(scoreUpdatedAt[i])||(vals[i]!==null?now:0)),bowlingFrames:Array(6).fill(null),frameUpdatedAt:Array(6).fill(0),updatedAt:now}}
@@ -1321,7 +1369,7 @@ async function saveSession(){
   const existing=sessions.find(s=>s.id===(editingId||''));const targetMeetup=currentMeetupId||(existing&&existing.meetupId)||'';if(!syncAllowWrite(targetMeetup,'儲存完整記分表'))return;const now=Date.now();const data={id:editingId||uid(),date:$('date').value,venue:$('venue').value.trim(),lane:$('lane').value.trim(),players:mergePlayerClocks(v.players,existing?.players||[]),meetupId:targetMeetup,importAudit:pendingImportAudit||(existing&&existing.importAudit)||null,updatedAt:now};
   const idx=sessions.findIndex(s=>s.id===data.id),isUpdate=idx>=0;
   if(isUpdate){data.createdAt=sessions[idx].createdAt||now;sessions[idx]=data}else{data.createdAt=now;sessions.push(data);editingId=data.id}
-  persist();syncRosterNames(v.players.map(p=>p.name));
+  persist();
   if(data.meetupId){const m=meetups.find(x=>x.id===data.meetupId);if(m){m.date=data.date;m.venue=data.venue;m.lanes=data.lane;if(m.status==='planned')m.status='ongoing';m.participantNames=[...new Set([...(m.participantNames||[]),...v.players.map(p=>p.name).filter(Boolean)])];m.participantIds=[...new Set([...(m.participantIds||[]),...v.players.map(p=>roster.find(r=>nameKey(r.name)===nameKey(p.name))?.id).filter(Boolean)])];m.updatedAt=now;persistMeetups()}}
   localStorage.setItem(SETTINGS,JSON.stringify({venue:data.venue}));updateEditStatus();saveDraft();syncPersonalFromClaims(true);renderAll();
   btn.disabled=true;btn.textContent='儲存公開歷史…';
@@ -1358,7 +1406,7 @@ function openPostGameReview(meetupId){
   const d=$('postGameReviewDialog');if(d.showModal)d.showModal();else d.setAttribute('open','')
 }
 function openPostReviewShare(){const id=postReviewMeetupId;if(!id)return;closePostGameReview();switchView('shareView');$('shareMeetup').value=id;$('shareCardType').value='meetupCard';updateShareControls(true)}
-function openPostReviewHistory(){const id=postReviewMeetupId,data=postGameReviewData(id);closePostGameReview();historySource='all';switchView('historyView');renderHistory();if(data?.session)setTimeout(()=>document.querySelector(`[data-id="${CSS.escape(data.session.id)}"]`)?.closest('.session')?.scrollIntoView({behavior:'smooth',block:'center'}),80)}
+function openPostReviewHistory(){const id=postReviewMeetupId,data=postGameReviewData(id);closePostGameReview();historySource='all';historyMode='scores';switchView('historyView');renderHistory();if(data?.session)setTimeout(()=>document.querySelector(`[data-id="${CSS.escape(data.session.id)}"]`)?.closest('.session')?.scrollIntoView({behavior:'smooth',block:'center'}),80)}
 function unifiedHistoryRecords(){
   const remote=normalizeGroupPayload(groupRemote),remoteSessions=remote.sessions||[],remoteMeetups=remote.meetups||[],stateMap=new Map(effectivePublicRecordControls(remote).map(x=>[x.id,x.state]));
   const remoteById=new Map(remoteSessions.map(s=>[s.id,s])),localById=new Map(sessions.map(s=>[s.id,s]));
@@ -1424,7 +1472,7 @@ async function importPublicSession(id){
   try{
     const rm=remote.meetups.find(m=>m.id===rs.meetupId);if(rm){const old=meetups.find(m=>m.id===rm.id);if(!old)meetups.push(normalizeMeetupRecord(rm));else if(itemStamp(rm)>itemStamp(old))meetups=meetups.map(m=>m.id===rm.id?normalizeMeetupRecord(rm):m)}
     sessions=mergeGroupSessions(sessions,[rs]);localStorage.setItem(MEETUPKEY,JSON.stringify(meetups));localStorage.setItem(V2KEY,JSON.stringify(sessions));
-    const names=(rs.players||[]).map(p=>p.name).filter(Boolean);syncRosterNames(names);queueDbStatePersist('public-session-import');syncPersonalFromClaims(true);renderAll();flash('公開計分卡已匯入本機。')
+    queueDbStatePersist('public-session-import');syncPersonalFromClaims(true);renderAll();flash('公開計分卡已匯入本機。')
   }finally{groupApplyingRemote=false}
 }
 function shareHistorySession(id){
@@ -1461,16 +1509,14 @@ function renderHistory(){
   }).join('')
 }
 
+function renderHistoryMode(){
+  const players=historyMode==='players';document.querySelectorAll('[data-history-mode]').forEach(b=>b.classList.toggle('active',b.dataset.historyMode===historyMode));
+  if($('historyScoresPanel'))$('historyScoresPanel').hidden=players;if($('historyPlayersPanel'))$('historyPlayersPanel').hidden=!players;if(players)renderRoster()
+}
+function setHistoryMode(mode){historyMode=mode==='players'?'players':'scores';renderHistoryMode()}
 function mean1(nums){return nums.length?Math.round((nums.reduce((a,b)=>a+b,0)/nums.length)*10)/10:null}
-function analyticsPlayerNames(){
-  const seen=new Map();
-  for(const r of roster){const n=String(r.name||'').trim();if(n&&!seen.has(nameKey(n)))seen.set(nameKey(n),{name:n,alias:r.alias||''})}
-  for(const g of allGames()){const n=String(g.player||'').trim();if(n&&!seen.has(nameKey(n)))seen.set(nameKey(n),{name:n,alias:''})}
-  return [...seen.values()].sort((a,b)=>a.name.localeCompare(b.name,'zh-Hant'));
-}
-function playerCareerGames(name){
-  return allGames().filter(g=>nameKey(g.player)===nameKey(name)).sort((a,b)=>String(a.date).localeCompare(String(b.date))||a.createdAt-b.createdAt||(a.gameNo||0)-(b.gameNo||0));
-}
+function analyticsPlayerNames(){return playerDirectoryRows().map(r=>({name:r.name,alias:r.meta?.alias||''}))}
+function playerCareerGames(name){return unifiedPlayerGames().filter(g=>nameKey(g.player)===nameKey(name)).sort((a,b)=>String(a.date).localeCompare(String(b.date))||a.createdAt-b.createdAt||(a.gameNo||0)-(b.gameNo||0))}
 function filterAnalyticsGames(games,range){
   if(range==='year'){const y=today().slice(0,4);return games.filter(g=>String(g.date||'').startsWith(y))}
   const n=Number(range);return Number.isFinite(n)&&n>0?games.slice(-n):games;
@@ -1478,8 +1524,8 @@ function filterAnalyticsGames(games,range){
 function seriesPB(name){
   let best3=null,best3Info='需同張計分卡連續 3 局';
   let best6=null,best6Info='需完整 6 局';
-  for(const s of sessions){
-    const p=(s.players||[]).find(x=>nameKey(x.name)===nameKey(name));if(!p)continue;
+  for(const row of unifiedHistoryRecords()){
+    const s=row.session,p=(s.players||[]).find(x=>nameKey(x.name)===nameKey(name));if(!p)continue;
     const scores=Array.from({length:6},(_,i)=>normalizeScore((p.scores||[])[i]));
     for(let i=0;i<=3;i++){
       const tri=scores.slice(i,i+3);if(tri.length===3&&tri.every(v=>v!==null)){const total=tri.reduce((a,b)=>a+b,0);if(best3===null||total>best3){best3=total;best3Info=`${fmtDate(s.date)} · 第 ${i+1}～${i+3} 局`}}
@@ -1518,7 +1564,7 @@ function playerFrameAnalytics(name,games){
   let coveredGames=0,frames=0,strikes=0,spares=0,opens=0;
   for(const g of games||[]){
     if(!g.sessionId||!g.gameNo)continue;
-    const s=sessions.find(x=>x.id===g.sessionId);if(!s)continue;
+    const s=unifiedHistoryRecords().find(x=>x.id===g.sessionId)?.session;if(!s)continue;
     const p=(s.players||[]).find(x=>nameKey(x.name)===nameKey(name));if(!p)continue;
     const game=normalizeBowlingGames(p.bowlingFrames)[Number(g.gameNo)-1],calc=bowlingGameCalc(game);
     if(!calc.complete)continue;
@@ -1906,7 +1952,7 @@ async function importGroupHistory(){
   await createSnapshot('匯入公開歷史前');groupApplyingRemote=true;try{
     meetups=mergeGroupMeetups(meetups,remote.meetups);sessions=mergeGroupSessions(sessions,remote.sessions);
     localStorage.setItem(MEETUPKEY,JSON.stringify(meetups));localStorage.setItem(V2KEY,JSON.stringify(sessions));
-    const names=[];for(const s of remote.sessions)for(const p of s.players||[])if(p.name)names.push(p.name);syncRosterNames(names);queueDbStatePersist('public-history-import');syncPersonalFromClaims(true);renderAll();flash('公開歷史已合併到本機。')
+    queueDbStatePersist('public-history-import');syncPersonalFromClaims(true);renderAll();flash('公開歷史已合併到本機。')
   }finally{groupApplyingRemote=false}
 }
 
@@ -2028,7 +2074,7 @@ function meetupParticipantNames(m){const byId=(m.participantIds||[]).map(id=>ros
 function recentQuickPlayerNames(limit=10){
   const names=[],ordered=[...meetups].sort((a,b)=>(Number(b.updatedAt)||Number(b.createdAt)||0)-(Number(a.updatedAt)||Number(a.createdAt)||0));
   for(const m of ordered)names.push(...meetupParticipantNames(m));
-  for(const g of [...allGames()].sort((a,b)=>(Number(b.createdAt)||0)-(Number(a.createdAt)||0)))names.push(g.player);
+  for(const row of [...playerDirectoryRows()].sort((a,b)=>String(b.lastDate||'').localeCompare(String(a.lastDate||''))))if(row.games)names.push(row.name);
   for(const r of roster.filter(x=>x.active!==false))names.push(r.name);
   return uniqueNames(names).slice(0,limit);
 }
@@ -2047,7 +2093,7 @@ function resetMeetupForm(){
 }
 function renderMeetupRosterPicker(selected=[]){
   const chosen=new Set(selected);const active=roster.filter(r=>r.active!==false).sort((a,b)=>a.name.localeCompare(b.name,'zh-Hant'));
-  $('meetupRosterPicker').innerHTML=active.length?active.map(r=>`<label class="pick-person"><input type="checkbox" value="${esc(r.id)}" ${chosen.has(r.id)?'checked':''}/><span>${esc(r.alias||r.name)}</span></label>`).join(''):'<div class="empty" style="grid-column:1/-1;padding:14px">名冊尚無球員，可直接在下方「自行輸入名字」。</div>';
+  $('meetupRosterPicker').innerHTML=active.length?active.map(r=>`<label class="pick-person"><input type="checkbox" value="${esc(r.id)}" ${chosen.has(r.id)?'checked':''}/><span>${esc(r.alias||r.name)}</span></label>`).join(''):'<div class="empty" style="grid-column:1/-1;padding:14px">尚無已儲存的常用球員，可直接輸入名字。</div>';
 }
 function saveMeetup(start=false){
   const editId=$('meetupEditId').value;if(editId&&!syncAllowWrite(editId,'編輯球聚活動'))return;
@@ -2070,12 +2116,30 @@ function renderMeetups(){
   $('meetupCount').textContent=meetups.length;$('meetupRosterCount').textContent=roster.length;$('meetupOngoing').textContent=meetups.filter(m=>m.status==='ongoing').length;$('meetupDone').textContent=meetups.filter(m=>m.status==='done').length;$('meetupListCount').textContent=`${meetups.length} 場`;$('meetupEmpty').style.display=meetups.length?'none':'block';
   const list=[...meetups].sort((a,b)=>String(b.date).localeCompare(String(a.date))||b.createdAt-a.createdAt);$('meetupList').innerHTML=list.map(m=>{const names=meetupParticipantNames(m),s=linkedSession(m),sm=s?sessionSummary(s):null;return `<article class="card meetup-card ${m.id===currentMeetupId?'current':''}"><div class="meetup-top"><div><div class="meetup-name">${esc(m.title||'未命名球聚')}</div><div class="meetup-meta">${esc(fmtDate(m.date))} · ${esc(m.venue||'未填球館')}${m.lanes?` · 球道 ${esc(m.lanes)}`:''}<br>${names.length} 位球員 · 預計 ${m.plannedGames||6} 局${sm?` · 已記 ${sm.games} 局 · 平均 ${sm.avg??'—'}`:' · 尚未記分'}</div></div><span class="status-badge ${m.status||'planned'}">${statusLabel(m.status)}</span></div><div class="meetup-actions"><button class="btn small primary" data-mact="live" data-id="${esc(m.id)}">${s?'現場記分':'開始球聚'}</button><button class="btn small" data-mact="start" data-id="${esc(m.id)}">完整記分</button><button class="btn small" data-mact="rank" data-id="${esc(m.id)}">排行榜</button><button class="btn small" data-mact="awards" data-id="${esc(m.id)}">獎項</button><button class="btn small" data-mact="edit" data-id="${esc(m.id)}">編輯</button>${m.status!=='done'?`<button class="btn small" data-mact="done" data-id="${esc(m.id)}">標記完成</button>`:`<button class="btn small" data-mact="review" data-id="${esc(m.id)}">賽後摘要</button><button class="btn small" data-mact="ongoing" data-id="${esc(m.id)}">重新開啟</button>`}<button class="btn small danger" data-mact="del" data-id="${esc(m.id)}">刪除</button></div></article>`}).join('');renderCurrentMeetup();renderMeetupRosterPicker($('meetupEditId').value?(meetups.find(m=>m.id===$('meetupEditId').value)?.participantIds||[]):[])
 }
-function rosterStats(name){const scores=allGames().filter(g=>nameKey(g.player)===nameKey(name)).map(g=>g.score);return {games:scores.length,avg:avg(scores),best:scores.length?Math.max(...scores):null}}
-function resetRosterForm(){$('rosterEditId').value='';$('rosterName').value='';$('rosterAlias').value='';$('rosterNote').value='';$('rosterFormTitle').textContent='新增球員';$('saveRosterBtn').textContent='加入名冊';$('cancelRosterEditBtn').hidden=true}
+function unifiedPlayerGames(){
+  const out=[];
+  for(const r of legacy){const score=normalizeScore(r.score);if(score!==null)out.push({date:r.date||'',player:String(r.player||'未命名'),score,venue:String(r.venue||''),lane:'',source:'legacy',gameNo:Number(r.gameNo)||null,sessionId:'',meetupId:'',meetupTitle:'',createdAt:Number(r.createdAt)||0})}
+  for(const row of unifiedHistoryRecords()){const s=row.session,m=row.meetup;for(const p of s.players||[])for(let i=0;i<(p.scores||[]).length;i++){const score=normalizeScore(p.scores[i]);if(score!==null)out.push({date:s.date||'',player:String(p.name||'未命名'),score,venue:s.venue||'',lane:s.lane||'',source:row.local&&row.public?'both':row.local?'local':'public',gameNo:i+1,sessionId:s.id,meetupId:s.meetupId||'',meetupTitle:m?.title||'',createdAt:Number(s.createdAt)||0})}}
+  return out;
+}
+function playerDirectoryRows(){
+  const map=new Map(),ensure=name=>{const n=String(name||'').trim(),k=nameKey(n);if(!n||!k)return null;if(!map.has(k))map.set(k,{key:k,name:n,meta:null,games:[]});return map.get(k)};
+  for(const r of roster){const row=ensure(r.name);if(row){row.name=r.name;row.meta=r}}
+  for(const g of unifiedPlayerGames()){const row=ensure(g.player);if(row)row.games.push(g)}
+  return [...map.values()].map(row=>{const games=[...row.games].sort((a,b)=>String(a.date).localeCompare(String(b.date))||a.createdAt-b.createdAt||(a.gameNo||0)-(b.gameNo||0)),scores=games.map(g=>g.score),last=games.at(-1)||null,recent5=scores.length?avg(scores.slice(-5)):null;return {...row,gamesData:games,games:scores.length,avg:avg(scores),best:scores.length?Math.max(...scores):null,recent5,lastDate:last?.date||''}}).sort((a,b)=>a.name.localeCompare(b.name,'zh-Hant'));
+}
+function rosterStats(name){const row=playerDirectoryRows().find(r=>r.key===nameKey(name));return {games:row?.games||0,avg:row?.avg??null,best:row?.best??null}}
+function resetRosterForm(){$('rosterEditId').value='';$('rosterName').value='';$('rosterAlias').value='';$('rosterNote').value='';$('rosterFormTitle').textContent='新增球員資料';$('saveRosterBtn').textContent='儲存球員資料';$('cancelRosterEditBtn').hidden=true}
 function saveRoster(){const name=$('rosterName').value.trim();if(!name){alert('請輸入球員姓名。');return}const id=$('rosterEditId').value;const dup=roster.find(r=>nameKey(r.name)===nameKey(name)&&r.id!==id);if(dup){alert('名冊已有相同姓名。');return}const old=roster.find(r=>r.id===id);const data={id:id||uid(),name,alias:$('rosterAlias').value.trim(),note:$('rosterNote').value.trim(),active:old?.active!==false,createdAt:old?.createdAt||Date.now(),updatedAt:Date.now()};const ix=roster.findIndex(r=>r.id===data.id);if(ix>=0)roster[ix]=data;else roster.push(data);persistRoster();resetRosterForm();renderAll()}
-function editRoster(id){const r=roster.find(x=>x.id===id);if(!r)return;$('rosterEditId').value=r.id;$('rosterName').value=r.name;$('rosterAlias').value=r.alias||'';$('rosterNote').value=r.note||'';$('rosterFormTitle').textContent='編輯球員';$('saveRosterBtn').textContent='儲存修改';$('cancelRosterEditBtn').hidden=false;switchView('rosterView');window.scrollTo({top:0,behavior:'smooth'})}
-function deleteRoster(id){const r=roster.find(x=>x.id===id);if(!r)return;if(!confirm(`確定從名冊移除「${r.name}」？歷史成績不會刪除。`))return;roster=roster.filter(x=>x.id!==id);meetups.forEach(m=>m.participantIds=(m.participantIds||[]).filter(x=>x!==id));persistRoster();persistMeetups();renderAll()}
-function renderRoster(){const q=$('rosterSearch').value.trim().toLowerCase();const list=roster.filter(r=>!q||[r.name,r.alias,r.note].join(' ').toLowerCase().includes(q)).sort((a,b)=>a.name.localeCompare(b.name,'zh-Hant'));$('rosterEmpty').style.display=list.length?'none':'block';$('rosterList').innerHTML=list.length?`<div class="roster-row header"><div>球員</div><div>局數</div><div>平均</div><div>最高</div><div>備註</div><div>操作</div></div>`+list.map(r=>{const st=rosterStats(r.name);return `<div class="roster-row"><div><div class="roster-name">${esc(r.alias||r.name)}</div>${r.alias?`<div style="color:var(--muted)">${esc(r.name)}</div>`:''}</div><div>${st.games}</div><div>${st.avg??'—'}</div><div>${st.best??'—'}</div><div class="roster-note" title="${esc(r.note||'')}">${esc(r.note||'—')}</div><div class="roster-actions"><button class="btn small" data-ract="analytics" data-id="${esc(r.id)}">分析</button><button class="btn small" data-ract="edit" data-id="${esc(r.id)}">編輯</button><button class="btn small danger" data-ract="del" data-id="${esc(r.id)}">移除</button></div></div>`}).join(''):'';renderMeetupRosterPicker($('meetupEditId').value?(meetups.find(m=>m.id===$('meetupEditId').value)?.participantIds||[]):[])}
+function editRoster(id,name=''){const r=id?roster.find(x=>x.id===id):roster.find(x=>nameKey(x.name)===nameKey(name));const playerName=r?.name||String(name||'').trim();if(!playerName)return;$('rosterEditId').value=r?.id||'';$('rosterName').value=playerName;$('rosterAlias').value=r?.alias||'';$('rosterNote').value=r?.note||'';$('rosterFormTitle').textContent=r?'編輯球員資料':'新增球員資料';$('saveRosterBtn').textContent='儲存球員資料';$('cancelRosterEditBtn').hidden=false;historyMode='players';switchView('historyView');requestAnimationFrame(()=>$('rosterName')?.scrollIntoView({behavior:'smooth',block:'center'}))}
+function deleteRoster(id){const r=roster.find(x=>x.id===id);if(!r)return;if(!confirm(`確定移除「${r.name}」的球員附加資料？\n\n歷史成績與球員本身仍會保留。`))return;roster=roster.filter(x=>x.id!==id);meetups.forEach(m=>m.participantIds=(m.participantIds||[]).filter(x=>x!==id));persistRoster();persistMeetups();renderAll()}
+function renderRoster(){
+  const q=$('rosterSearch')?.value.trim().toLowerCase()||'',all=playerDirectoryRows(),list=all.filter(r=>!q||[r.name,r.meta?.alias,r.meta?.note].join(' ').toLowerCase().includes(q));
+  if($('directoryPlayerCount'))$('directoryPlayerCount').textContent=all.length;if($('directoryHistoryCount'))$('directoryHistoryCount').textContent=all.filter(r=>r.games>0).length;if($('directorySavedCount'))$('directorySavedCount').textContent=all.filter(r=>r.meta).length;if($('directoryVisibleCount'))$('directoryVisibleCount').textContent=list.length+' 位';if($('historyPlayerTabCount'))$('historyPlayerTabCount').textContent=all.length;
+  $('rosterEmpty').style.display=list.length?'none':'block';
+  $('rosterList').innerHTML=list.length?`<div class="roster-row header player-directory-row"><div>球員</div><div>局數</div><div>平均</div><div>PB</div><div>近 5 局</div><div>狀態</div><div>操作</div></div>`+list.map(r=>{const meta=r.meta,status=r.games&&meta?'both':r.games?'history':'saved',statusText=r.games&&meta?'歷史＋資料':r.games?'歷史球員':'手動球員';return `<div class="roster-row player-directory-row"><div><div class="roster-name">${esc(meta?.alias||r.name)}</div>${meta?.alias?`<div class="player-directory-sub">${esc(r.name)}</div>`:''}<div class="player-directory-sub">${r.lastDate?'最近 '+esc(fmtDate(r.lastDate)):'尚無正式成績'}</div></div><div>${r.games}</div><div>${r.avg??'—'}</div><div>${r.best??'—'}</div><div class="recent">${r.recent5??'—'}</div><div><span class="player-status ${status}">${statusText}</span></div><div class="roster-actions">${r.games?`<button class="btn small" data-ract="analytics" data-name="${esc(r.name)}">分析</button>`:''}<button class="btn small" data-ract="edit" data-id="${esc(meta?.id||'')}" data-name="${esc(r.name)}">${meta?'編輯資料':'加資料'}</button>${meta?`<button class="btn small danger" data-ract="del" data-id="${esc(meta.id)}">移除資料</button>`:''}</div></div>`}).join(''):'';
+  renderMeetupRosterPicker($('meetupEditId').value?(meetups.find(m=>m.id===$('meetupEditId').value)?.participantIds||[]):[])
+}
 function renderRosterQuickSelect(){const sel=$('rosterQuickSelect');if(!sel)return;const used=new Set(currentPlayersFromTable().map(p=>nameKey(p.name)));const opts=roster.filter(r=>r.active!==false&&!used.has(nameKey(r.name))).sort((a,b)=>a.name.localeCompare(b.name,'zh-Hant'));sel.innerHTML='<option value="">從名冊選球員…</option>'+opts.map(r=>`<option value="${esc(r.id)}">${esc(r.alias||r.name)}</option>`).join('')}
 function quickAddRoster(){const id=$('rosterQuickSelect').value,r=roster.find(x=>x.id===id);if(!r)return;const rows=currentPlayersFromTable();if(rows.length>=12){flash('最多 12 位球員。','err');return}if(rows.some(p=>nameKey(p.name)===nameKey(r.name))){flash('這位球員已在本次記分。','err');return}const blankIx=rows.findIndex(p=>!p.name&&!p.scores.some(v=>v!==null));if(blankIx>=0)rows[blankIx]=makePlayer(r.name,[]);else rows.push(makePlayer(r.name,[]));renderScoreRows(rows);renderRosterQuickSelect()}
 
@@ -2331,7 +2395,7 @@ function renderPersonal(){
   const rows=[...personalData.games].sort((a,b)=>String(b.date).localeCompare(String(a.date))||b.gameNo-a.gameNo||b.updatedAt-a.updatedAt);$('personalHistoryCount').textContent=`${rows.length} 局`;$('personalHistoryEmpty').style.display=rows.length?'none':'block';$('personalHistoryBody').innerHTML=rows.map(g=>`<tr><td>${esc(fmtDate(g.date))}</td><td>${esc(g.meetupTitle||'球聚')}</td><td>${esc(g.venue||'—')}</td><td>${esc(g.lane||'—')}</td><td>G${esc(g.gameNo)}</td><td class="personal-score">${esc(g.score)}</td><td>${esc(g.sourcePlayerName||'—')}</td></tr>`).join('')
 }
 
-function renderAll(){renderKpis();renderHistory();renderStats();renderMeetups();renderRoster();renderLeaderboard();renderAwards();renderRosterQuickSelect();renderQuickPlayerSuggestions();refreshSheetCalcs();renderShareOptions();renderSafety();renderSync();renderFieldSettings();renderPersonal();if(document.getElementById('meetupView')?.classList.contains('active'))renderLive()}
+function renderAll(){renderKpis();renderHistory();renderStats();renderMeetups();renderRoster();renderHistoryMode();renderLeaderboard();renderAwards();renderRosterQuickSelect();renderQuickPlayerSuggestions();refreshSheetCalcs();renderShareOptions();renderSafety();renderSync();renderFieldSettings();renderPersonal();if(document.getElementById('meetupView')?.classList.contains('active'))renderLive()}
 
 function mirrorLiveSessionToCurrentScore(sess){
   if(!sess)return;
@@ -2356,7 +2420,7 @@ function openCurrentScoreFromActiveMeetup(){
 function loadSession(id){const s=sessions.find(x=>x.id===id);if(!s)return;editingId=s.id;setCurrentMeetup(s.meetupId||'');pendingImportAudit=s.importAudit||null;$('date').value=s.date||today();$('venue').value=s.venue||'';$('lane').value=s.lane||'';renderScoreRows((s.players||[]).map(p=>({id:p.id||uid(),name:p.name||'',scores:p.scores||[]})));updateEditStatus();saveDraft();switchView('scoreView');window.scrollTo({top:0,behavior:'smooth'})}
 function deleteSession(id){const s=sessions.find(x=>x.id===id);if(!s)return;const publicCopy=(normalizeGroupPayload(groupRemote).sessions||[]).some(x=>x.id===id),msg=publicCopy?`確定刪除 ${fmtDate(s.date)} 的本機計分卡？\n\n公開歷史中的版本仍會保留。`:`確定刪除 ${fmtDate(s.date)} 的這張計分卡？`;if(!confirm(msg))return;sessions=sessions.filter(x=>x.id!==id);persist();if(editingId===id)newSheet(false);renderAll()}
 function switchView(id){
-  const requested=id,viewId=id==='liveView'?'meetupView':id==='groupView'?'historyView':id;if(requested==='groupView')historySource='public';
+  const requested=id,viewId=id==='liveView'?'meetupView':(id==='groupView'||id==='rosterView')?'historyView':id;if(requested==='groupView'){historySource='public';historyMode='scores'}if(requested==='rosterView')historyMode='players';
   if(viewId==='scoreView'&&currentMeetupId)openCurrentScoreFromActiveMeetup();
   document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===viewId));
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.view===viewId));
@@ -2365,7 +2429,7 @@ function switchView(id){
   if(viewId==='meetupView')renderLive();
   if(viewId==='syncView')renderSync();
   if(viewId==='personalView')renderPersonal();
-  if(viewId==='historyView')renderHistory();
+  if(viewId==='historyView'){renderHistory();renderHistoryMode()}
   if(window.matchMedia?.('(max-width:680px)').matches){
     const active=[...document.querySelectorAll('.tab[data-view]')].find(t=>t.dataset.view===viewId);
     active?.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
@@ -2379,7 +2443,7 @@ $('saveSessionBtn').addEventListener('click',saveSession);
 $('newSessionBtn').addEventListener('click',()=>newSheet(true));
 $('clearSheetBtn').addEventListener('click',()=>{if(confirm('確定清空目前輸入？')){editingId='';$('lane').value='';renderScoreRows(defaultPlayers());updateEditStatus();saveDraft()}});
 ['venue','date','lane'].forEach(id=>$(id).addEventListener('input',saveDraft));
-$('historySearch').addEventListener('input',renderHistory);$('historySort').addEventListener('change',renderHistory);['historyDateFrom','historyDateTo','historyPlayerFilter','historyVenueFilter','historyLaneFilter','historyPublicFilter'].forEach(id=>$(id).addEventListener('change',renderHistory));$('historyResetFiltersBtn').addEventListener('click',resetHistoryFilters);document.querySelector('.history-source-tabs').addEventListener('click',e=>{const b=e.target.closest('[data-history-source]');if(!b)return;historySource=b.dataset.historySource||'all';renderHistory()});$('historyRefreshPublicBtn').addEventListener('click',()=>groupSyncNow(true,true,'history-refresh'));
+$('historySearch').addEventListener('input',renderHistory);$('historySort').addEventListener('change',renderHistory);['historyDateFrom','historyDateTo','historyPlayerFilter','historyVenueFilter','historyLaneFilter','historyPublicFilter'].forEach(id=>$(id).addEventListener('change',renderHistory));$('historyResetFiltersBtn').addEventListener('click',resetHistoryFilters);document.querySelector('.history-source-tabs').addEventListener('click',e=>{const b=e.target.closest('[data-history-source]');if(!b)return;historySource=b.dataset.historySource||'all';renderHistory()});document.querySelector('.history-mode-tabs').addEventListener('click',e=>{const b=e.target.closest('[data-history-mode]');if(b)setHistoryMode(b.dataset.historyMode)});$('historyRefreshPublicBtn').addEventListener('click',()=>groupSyncNow(true,true,'history-refresh'));
 $('sessionList').addEventListener('click',async e=>{const b=e.target.closest('button[data-act]');if(!b)return;const act=b.dataset.act,id=b.dataset.id;if(act==='edit')loadSession(id);else if(act==='del')deleteSession(id);else if(act==='share')shareHistorySession(id);else if(act==='import-public')await importPublicSession(id);else if(act==='unpublish-public')await setPublicVisibility(id,'removed');else if(act==='republish-public')await setPublicVisibility(id,'published')});
 $('exportBtn').addEventListener('click',exportFullBackup);
 $('importBtn').addEventListener('click',()=>$('importFile').click());
@@ -2388,7 +2452,7 @@ $('importFile').addEventListener('change',async e=>{const f=e.target.files[0];if
 
 $('saveMeetupBtn').addEventListener('click',()=>saveMeetup(false));$('saveStartMeetupBtn').addEventListener('click',()=>saveMeetup(true));$('cancelMeetupEditBtn').addEventListener('click',resetMeetupForm);$('selectAllRosterBtn').addEventListener('click',()=>{const boxes=[...$('meetupRosterPicker').querySelectorAll('input[type=checkbox]')],all=boxes.length&&boxes.every(x=>x.checked);boxes.forEach(x=>x.checked=!all)});$('addManualPlayersBtn').addEventListener('click',addManualMeetupPlayers);$('meetupManualPlayers').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addManualMeetupPlayers()}});$('meetupManualPlayerChips').addEventListener('click',e=>{const b=e.target.closest('[data-remove-manual-player]');if(!b)return;manualMeetupPlayers.splice(Number(b.dataset.removeManualPlayer),1);renderManualMeetupPlayers()});$('recentPlayerChips').addEventListener('click',e=>{const b=e.target.closest('[data-quick-player]');if(b)toggleQuickMeetupPlayer(b.dataset.quickPlayer)});$('reuseRecentPlayersBtn').addEventListener('click',reuseRecentMeetupPlayers);
 $('meetupList').addEventListener('click',e=>{const b=e.target.closest('button[data-mact]');if(!b)return;const id=b.dataset.id,act=b.dataset.mact;if(act==='live')openLiveMeetup(id);else if(act==='start')startMeetup(id);else if(act==='rank')openMeetupLeaderboard(id);else if(act==='awards')openMeetupAwards(id);else if(act==='edit')editMeetup(id);else if(act==='done')setMeetupStatus(id,'done');else if(act==='review')openPostGameReview(id);else if(act==='ongoing')setMeetupStatus(id,'ongoing');else if(act==='del')deleteMeetup(id)});
-$('saveRosterBtn').addEventListener('click',saveRoster);$('cancelRosterEditBtn').addEventListener('click',resetRosterForm);$('rosterSearch').addEventListener('input',renderRoster);$('syncRosterBtn').addEventListener('click',()=>{const before=roster.length;syncRosterNames(allGames().map(g=>g.player));renderAll();alert(roster.length>before?`已新增 ${roster.length-before} 位歷史球員。`:'名冊已包含所有歷史球員。')});$('rosterList').addEventListener('click',e=>{const b=e.target.closest('button[data-ract]');if(!b)return;const r=roster.find(x=>x.id===b.dataset.id);if(b.dataset.ract==='analytics'&&r)openPlayerAnalytics(r.name);else if(b.dataset.ract==='edit')editRoster(b.dataset.id);else if(b.dataset.ract==='del')deleteRoster(b.dataset.id)});
+$('saveRosterBtn').addEventListener('click',saveRoster);$('cancelRosterEditBtn').addEventListener('click',resetRosterForm);$('rosterSearch').addEventListener('input',renderRoster);$('rosterList').addEventListener('click',e=>{const b=e.target.closest('button[data-ract]');if(!b)return;const name=b.dataset.name||'',id=b.dataset.id||'';if(b.dataset.ract==='analytics'&&name)openPlayerAnalytics(name);else if(b.dataset.ract==='edit')editRoster(id,name);else if(b.dataset.ract==='del'&&id)deleteRoster(id)});
 $('quickAddRosterBtn').addEventListener('click',quickAddRoster);$('leaderboardMeetup').addEventListener('change',renderLeaderboard);$('leaderboardMetric').addEventListener('change',renderLeaderboard);$('leaderboardCurrentBtn').addEventListener('click',()=>{if(!currentMeetupId){alert('目前沒有選擇球聚活動。');return}$('leaderboardMeetup').value=currentMeetupId;renderLeaderboard()});
 $('playerAnalyticsPlayer').addEventListener('change',renderStats);$('playerAnalyticsRange').addEventListener('change',renderStats);
 $('awardMeetup').addEventListener('change',renderAwards);$('awardCurrentBtn').addEventListener('click',()=>{if(!currentMeetupId){alert('目前沒有選擇球聚活動。');return}renderAwardOptions();$('awardMeetup').value=currentMeetupId;renderAwards()});$('awardShareBtn').addEventListener('click',()=>{const id=$('awardMeetup').value;if(!id)return;switchView('shareView');$('shareMeetup').value=id;$('shareCardType').value='awards';updateShareControls(true)});$('addCustomAwardBtn').addEventListener('click',addCustomAward);$('customAwardList').addEventListener('click',e=>{const b=e.target.closest('[data-del-custom-award]');if(b&&confirm('確定移除這個自訂獎項？'))deleteCustomAward(b.dataset.delCustomAward)});
@@ -2410,7 +2474,7 @@ $('liveShareBtn').addEventListener('click',()=>{if(!currentMeetupId)return;switc
 $('saveSyncConfigBtn').addEventListener('click',saveSyncServiceConfig);$('testSyncServiceBtn').addEventListener('click',testSyncService);$('createSyncRoomBtn').addEventListener('click',createSyncRoom);$('joinSyncRoomBtn').addEventListener('click',joinSyncRoom);$('syncNowBtn').addEventListener('click',()=>syncNow(true,'manual'));$('leaveSyncRoomBtn').addEventListener('click',leaveSyncRoom);$('copySyncInviteBtn').addEventListener('click',async()=>{if(await copyText(inviteText()))alert('邀請資訊已複製。')});$('syncAutoToggle').addEventListener('change',e=>{setSyncConfig({auto:e.target.checked});startSyncPolling();renderSync()});
 $('settingsPublicAutoToggle').addEventListener('change',e=>{setGroupConfig({auto:e.target.checked});startGroupPolling();renderPublicSyncState()});
 $('settingsPersonalAutoToggle').addEventListener('change',e=>{personalData.autoSync=e.target.checked;persistPersonalLocal(false,'settings-personal-auto');startPersonalPolling();renderPersonal();renderFieldSettings()});
-$('settingsOpenPublicBtn').addEventListener('click',()=>{historySource='public';switchView('historyView');renderHistory()});
+$('settingsOpenPublicBtn').addEventListener('click',()=>{historySource='public';historyMode='scores';switchView('historyView');renderHistory()});
 $('settingsOpenPersonalBtn').addEventListener('click',()=>switchView('personalView'));
 $('settingsOpenSafetyBtn').addEventListener('click',()=>switchView('safetyView'));$('settingsCheckUpdateBtn').addEventListener('click',checkPwaUpdate);
 
