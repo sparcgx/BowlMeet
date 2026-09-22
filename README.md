@@ -95,6 +95,15 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - 無任何可同步球員時顯示「目前沒有可加入名冊的歷史成績球員」，不再誤報「已包含所有歷史球員」。
 - 不修改計分資料、Session schema 或正式 PUBLIC payload。
 
+### HF2 Device Preview
+
+- Preview：`/preview/v0.4.4-R1-HF2/` ✅ Ready
+- Preview Cloud：`V44H22`，已複製目前 PUBLIC 公開歷史快照供名冊同步驗證
+- Preview localStorage / IndexedDB / Cache ✅ Isolated
+- 正式 `main` 仍為 `v0.4.4-R1-HF1` ✅ 未變更
+- 正式 PUBLIC ✅ 未由 HF2 Preview 寫入
+- 狀態：**HF2 Automated Regression PASS / Manual Device Acceptance Pending**
+
 ### HF2 Automated Gate
 
 - JavaScript syntax ✅ PASS
