@@ -1,7 +1,7 @@
 {
   "name": "保齡球球聚｜BowlMeet v0.4.5-dev.3 Preview",
-  "short_name": "BowlMeet D3",
-  "description": "BowlMeet v0.4.5-dev.3 Preview：Player Hub、Unified Player History、Analytics Context 與返回導航整合；PUBLIC-only 維持唯讀。",
+  "short_name": "BowlMeet dev.3",
+  "description": "BowlMeet v0.4.5-dev.3 Preview：Player Hub、Unified Player History、Analytics Context 與返回導航整合測試版；使用獨立 Preview Storage / Cloud / Cache。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
