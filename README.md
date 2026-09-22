@@ -831,6 +831,8 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - RC-specific device smoke acceptance remains required before Freeze certification.
 - `main`, Stable branches, and formal PUBLIC remain unchanged.
 - Re-runnable gate: `node tools/v0.4.5-rc1-freeze-gate.mjs`.
+- RC application candidate Commit: `0faf86a59e206b4f6fbfecdca666bb12248c58cd`.
+- Freeze evidence: `release-evidence/v0.4.5-RC.1_Integration_Freeze_Gate.md` and `.json`.
 
 ### Guardrails
 - Keep Unified History as the single score/history source.
