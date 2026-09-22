@@ -2193,18 +2193,126 @@ function renderMeetups(){
   $('meetupCount').textContent=meetups.length;$('meetupRosterCount').textContent=roster.length;$('meetupOngoing').textContent=meetups.filter(m=>m.status==='ongoing').length;$('meetupDone').textContent=meetups.filter(m=>m.status==='done').length;$('meetupListCount').textContent=`${meetups.length} 場`;$('meetupEmpty').style.display=meetups.length?'none':'block';
   const list=[...meetups].sort((a,b)=>String(b.date).localeCompare(String(a.date))||b.createdAt-a.createdAt);$('meetupList').innerHTML=list.map(m=>{const names=meetupParticipantNames(m),s=linkedSession(m),sm=s?sessionSummary(s):null;return `<article class="card meetup-card ${m.id===currentMeetupId?'current':''}"><div class="meetup-top"><div><div class="meetup-name">${esc(m.title||'未命名球聚')}</div><div class="meetup-meta">${esc(fmtDate(m.date))} · ${esc(m.venue||'未填球館')}${m.lanes?` · 球道 ${esc(m.lanes)}`:''}<br>${names.length} 位球員 · 預計 ${m.plannedGames||6} 局${sm?` · 已記 ${sm.games} 局 · 平均 ${sm.avg??'—'}`:' · 尚未記分'}</div></div><span class="status-badge ${m.status||'planned'}">${statusLabel(m.status)}</span></div><div class="meetup-actions"><button class="btn small primary" data-mact="live" data-id="${esc(m.id)}">${s?'現場記分':'開始球聚'}</button><button class="btn small" data-mact="start" data-id="${esc(m.id)}">完整記分</button><button class="btn small" data-mact="rank" data-id="${esc(m.id)}">排行榜</button><button class="btn small" data-mact="awards" data-id="${esc(m.id)}">獎項</button><button class="btn small" data-mact="edit" data-id="${esc(m.id)}">編輯</button>${m.status!=='done'?`<button class="btn small" data-mact="done" data-id="${esc(m.id)}">標記完成</button>`:`<button class="btn small" data-mact="review" data-id="${esc(m.id)}">賽後摘要</button><button class="btn small" data-mact="ongoing" data-id="${esc(m.id)}">重新開啟</button>`}<button class="btn small danger" data-mact="del" data-id="${esc(m.id)}">刪除</button></div></article>`}).join('');renderCurrentMeetup();renderMeetupRosterPicker($('meetupEditId').value?(meetups.find(m=>m.id===$('meetupEditId').value)?.participantIds||[]):[])
 }
+function playerIdentity(name){
+  const playerName=String(name||'').trim(),nk=nameKey(playerName),meta=roster.find(r=>nameKey(r.name)===nk)||null;
+  return {key:meta?'roster:'+meta.id:'name:'+nk,rosterId:meta?.id||'',playerName:meta?.name||playerName,meta};
+}
 function unifiedPlayerGames(){
   const out=[];
-  for(const r of legacy){const score=normalizeScore(r.score);if(score!==null)out.push({date:r.date||'',player:String(r.player||'未命名'),score,venue:String(r.venue||''),lane:'',source:'legacy',gameNo:Number(r.gameNo)||null,sessionId:'',meetupId:'',meetupTitle:'',createdAt:Number(r.createdAt)||0})}
-  for(const row of unifiedHistoryRecords()){const s=row.session,m=row.meetup;for(const p of s.players||[])for(let i=0;i<(p.scores||[]).length;i++){const score=normalizeScore(p.scores[i]);if(score!==null)out.push({date:s.date||'',player:String(p.name||'未命名'),score,venue:s.venue||'',lane:s.lane||'',source:row.local&&row.public?'both':row.local?'local':'public',gameNo:i+1,sessionId:s.id,meetupId:s.meetupId||'',meetupTitle:m?.title||'',createdAt:Number(s.createdAt)||0})}}
+  for(const r of legacy){
+    const score=normalizeScore(r.score);if(score===null)continue;
+    const id=playerIdentity(String(r.player||'未命名'));
+    out.push({date:r.date||'',player:id.playerName,playerKey:id.key,rosterId:id.rosterId,score,venue:String(r.venue||''),lane:'',source:'legacy',gameNo:Number(r.gameNo)||null,sessionId:'',meetupId:'',meetupTitle:'',createdAt:Number(r.createdAt)||0});
+  }
+  for(const row of unifiedHistoryRecords()){
+    const s=row.session,m=row.meetup;
+    for(const p of s.players||[]){
+      const id=playerIdentity(String(p.name||'未命名'));
+      for(let i=0;i<(p.scores||[]).length;i++){
+        const score=normalizeScore(p.scores[i]);if(score===null)continue;
+        out.push({date:s.date||'',player:id.playerName,playerKey:id.key,rosterId:id.rosterId,score,venue:s.venue||'',lane:s.lane||'',source:row.local&&row.public?'both':row.local?'local':'public',gameNo:i+1,sessionId:s.id,meetupId:s.meetupId||'',meetupTitle:m?.title||'',createdAt:Number(s.createdAt)||0});
+      }
+    }
+  }
   return out;
 }
 function playerDirectoryRows(){
-  const map=new Map(),ensure=name=>{const n=String(name||'').trim(),k=nameKey(n);if(!n||!k)return null;if(!map.has(k))map.set(k,{key:k,name:n,meta:null,games:[]});return map.get(k)};
-  for(const r of roster){const row=ensure(r.name);if(row){row.name=r.name;row.meta=r}}
+  const map=new Map();
+  const ensure=name=>{
+    const id=playerIdentity(name);if(!id.playerName||!id.key)return null;
+    if(!map.has(id.key))map.set(id.key,{key:id.key,name:id.playerName,meta:id.meta,games:[]});
+    const row=map.get(id.key);if(id.meta){row.name=id.meta.name;row.meta=id.meta}return row;
+  };
+  for(const r of roster)ensure(r.name);
   for(const g of unifiedPlayerGames()){const row=ensure(g.player);if(row)row.games.push(g)}
-  return [...map.values()].map(row=>{const games=[...row.games].sort((a,b)=>String(a.date).localeCompare(String(b.date))||a.createdAt-b.createdAt||(a.gameNo||0)-(b.gameNo||0)),scores=games.map(g=>g.score),last=games.at(-1)||null,recent5=scores.length?avg(scores.slice(-5)):null;return {...row,gamesData:games,games:scores.length,avg:avg(scores),best:scores.length?Math.max(...scores):null,recent5,lastDate:last?.date||''}}).sort((a,b)=>a.name.localeCompare(b.name,'zh-Hant'));
+  return [...map.values()].map(row=>{
+    const games=[...row.games].sort((a,b)=>String(a.date).localeCompare(String(b.date))||a.createdAt-b.createdAt||(a.gameNo||0)-(b.gameNo||0));
+    const scores=games.map(g=>g.score),last=games.at(-1)||null,recent5=scores.length?avg(scores.slice(-5)):null;
+    const hasLocal=!!row.meta||games.some(g=>g.source==='local'||g.source==='both'||g.source==='legacy');
+    const hasPublic=games.some(g=>g.source==='public'||g.source==='both');
+    const source=hasLocal&&hasPublic?'MIXED':hasPublic?'PUBLIC':'LOCAL';
+    return {...row,gamesData:games,games:scores.length,avg:avg(scores),best:scores.length?Math.max(...scores):null,recent5,lastDate:last?.date||'',source};
+  }).sort((a,b)=>{const ad=a.lastDate||'',bd=b.lastDate||'';if(ad!==bd)return bd.localeCompare(ad);if((a.games>0)!==(b.games>0))return a.games>0?-1:1;return a.name.localeCompare(b.name,'zh-Hant')});
 }
+function playerRow(ref){
+  const rows=playerDirectoryRows();if(!ref)return null;
+  if(typeof ref==='string')return rows.find(r=>r.key===ref)||rows.find(r=>nameKey(r.name)===nameKey(ref))||null;
+  return rows.find(r=>r.key===ref.key)||rows.find(r=>ref.playerName&&nameKey(r.name)===nameKey(ref.playerName))||null;
+}
+function setPlayerContext(ref,options={}){
+  const row=playerRow(ref);if(!row)return false;const changed=playerContext.key!==row.key;
+  playerContext.key=row.key;playerContext.rosterId=row.meta?.id||'';playerContext.playerName=row.name;playerContext.source=row.source||'LOCAL';
+  if(options.originView)playerContext.originView=options.originView;if(options.hubOrigin)playerContext.hubOrigin=options.hubOrigin;if(Object.prototype.hasOwnProperty.call(options,'originSessionId'))playerContext.originSessionId=options.originSessionId||'';
+  if(options.view)playerContext.view=options.view;
+  if(changed)playerContext.history={search:'',sort:'newest',range:'all',scrollTop:0,sessionId:''};
+  return true;
+}
+function ensurePlayerContext(){
+  if(playerRow(playerContext.key))return true;
+  const rows=playerDirectoryRows(),first=rows.find(r=>r.games>0)||rows[0];
+  return first?setPlayerContext(first,{view:playerContext.view||'hub'}):false;
+}
+function playerSourceText(source){return source==='PUBLIC'?'公開球員':source==='MIXED'?'本機＋公開':'本機球員'}
+function playerCareerGames(ref){
+  const row=playerRow(ref)||playerRow(playerContext.key);if(!row)return [];
+  return unifiedPlayerGames().filter(g=>g.playerKey===row.key).sort((a,b)=>String(a.date).localeCompare(String(b.date))||a.createdAt-b.createdAt||(a.gameNo||0)-(b.gameNo||0));
+}
+function renderPlayerHub(){
+  if(!ensurePlayerContext())return;const row=playerRow(playerContext.key);if(!row)return;
+  const games=playerCareerGames(row),scores=games.map(g=>g.score),last=games.at(-1)||null;
+  $('playerHubName').textContent=row.meta?.alias||row.name;
+  $('playerHubSource').textContent=playerSourceText(row.source);$('playerHubSource').className='player-source-badge '+row.source.toLowerCase();
+  $('playerHubGames').textContent=scores.length||'—';$('playerHubAvg').textContent=scores.length?mean1(scores):'—';$('playerHubPb').textContent=scores.length?Math.max(...scores):'—';$('playerHubRecent5').textContent=scores.length?mean1(scores.slice(-5)):'—';
+  $('playerHubLastPlayed').textContent=last?'最近 '+fmtDate(last.date)+' · '+(last.meetupTitle||last.venue||'歷史紀錄'):'尚無正式成績';
+  $('playerHubRecentMeetup').textContent=last?fmtDate(last.date).slice(5):'—';$('playerHubRecentVenue').textContent=last?(last.meetupTitle||last.venue||'歷史紀錄'):'尚無紀錄';
+  $('playerHubAnalyticsBtn').disabled=!scores.length;$('playerHubHistoryBtn').disabled=!scores.length;
+  $('playerHubEditBtn').hidden=row.source==='PUBLIC';$('playerHubEditBtn').textContent=row.meta?'編輯球員資料':'新增球員資料';
+}
+function openPlayerHub(ref,options={}){
+  if(!setPlayerContext(ref,{view:'hub',originView:options.origin||'players',hubOrigin:options.origin||'players',originSessionId:options.sessionId||''}))return;
+  historyMode='players';playerDirectoryDetail=true;playerDirectoryView='hub';switchView('historyView');renderHistoryMode();
+  requestAnimationFrame(()=>$('playerHubPanel')?.scrollIntoView({behavior:'smooth',block:'start'}));
+}
+function closePlayerHub(){
+  const origin=playerContext.hubOrigin,sessionId=playerContext.originSessionId;playerDirectoryDetail=false;playerDirectoryView='list';
+  if(origin==='session'&&sessionId){
+    historyMode='scores';switchView('historyView');renderHistory();
+    requestAnimationFrame(()=>document.querySelector('[data-id="'+CSS.escape(sessionId)+'"]')?.closest('.session')?.scrollIntoView({behavior:'smooth',block:'center'}));return;
+  }
+  historyMode='players';renderHistoryMode();requestAnimationFrame(()=>$('historyPlayersPanel')?.scrollIntoView({behavior:'smooth',block:'start'}));
+}
+function playerHistoryFilteredGames(){
+  let games=playerCareerGames(playerContext.key),range=playerContext.history.range||'all';
+  games=filterAnalyticsGames(games,range);
+  const q=(playerContext.history.search||'').trim().toLowerCase();if(q)games=games.filter(g=>[g.date,g.meetupTitle,g.venue,g.lane,g.score].join(' ').toLowerCase().includes(q));
+  if((playerContext.history.sort||'newest')==='newest')games=[...games].reverse();return games;
+}
+function renderPlayerHubHistory(){
+  if(!ensurePlayerContext())return;const row=playerRow(playerContext.key),games=playerHistoryFilteredGames(),groups=new Map();
+  $('playerHistoryTitle').textContent=(row?.meta?.alias||row?.name||'球員')+' · 歷史紀錄';
+  $('playerHistorySearch').value=playerContext.history.search||'';$('playerHistoryRange').value=playerContext.history.range||'all';$('playerHistorySort').value=playerContext.history.sort||'newest';
+  for(const g of games){const key=g.sessionId||('legacy:'+g.date+':'+g.venue);if(!groups.has(key))groups.set(key,{key,sessionId:g.sessionId,date:g.date,title:g.meetupTitle||g.venue||'歷史紀錄',venue:g.venue,lane:g.lane,scores:[]});groups.get(key).scores.push(g)}
+  const list=[...groups.values()];$('playerHistorySummary').textContent=games.length+' 局 · '+list.length+' 場 · '+playerSourceText(row?.source||'LOCAL');$('playerHistoryEmpty').hidden=!!list.length;
+  $('playerHistoryList').innerHTML=list.map(x=>{
+    const detail=x.sessionId?'<button class="btn small" type="button" data-player-session="'+esc(x.sessionId)+'">查看本場</button>':'';
+    const meta=(x.venue&&x.title!==x.venue?esc(x.venue)+' · ':'')+(x.lane?'球道 '+esc(x.lane):'未填球道');
+    const chips=x.scores.sort((a,b)=>(a.gameNo||0)-(b.gameNo||0)).map(g=>'<span class="player-history-score-chip">'+(g.gameNo?'第 '+g.gameNo+' 局 · ':'')+g.score+'</span>').join('');
+    return '<article class="player-history-session"><div class="player-history-session-head"><div><h3>'+esc(fmtDate(x.date))+' · '+esc(x.title)+'</h3><div class="player-history-session-meta">'+meta+'</div></div>'+detail+'</div><div class="player-history-scores">'+chips+'</div></article>';
+  }).join('');
+}
+function openPlayerHistory(){if(!ensurePlayerContext())return;playerContext.view='history';playerDirectoryDetail=true;playerDirectoryView='history';historyMode='players';renderHistoryMode();requestAnimationFrame(()=>$('playerHistoryPanel')?.scrollIntoView({behavior:'smooth',block:'start'}))}
+function closePlayerHistory(){playerContext.view='hub';playerDirectoryView='hub';renderHistoryMode();requestAnimationFrame(()=>$('playerHubPanel')?.scrollIntoView({behavior:'smooth',block:'start'}))}
+function openPlayerSessionDetail(sessionId){
+  const rec=unifiedHistoryRecords().find(x=>x.id===sessionId),ctx=playerRow(playerContext.key);if(!rec||!ctx){flash('這筆紀錄目前已不存在。','err');renderPlayerHubHistory();return}
+  const s=rec.session,p=(s.players||[]).find(x=>playerIdentity(x.name).key===ctx.key);if(!p){flash('這位球員已不在該場紀錄中。','err');renderPlayerHubHistory();return}
+  playerContext.history.scrollTop=window.scrollY||0;playerContext.history.sessionId=sessionId;
+  const scores=(p.scores||[]).map(normalizeScore).map((v,i)=>({v,i})).filter(x=>x.v!==null);
+  $('playerSessionTitle').textContent=fmtDate(s.date)+' · '+(rec.meetup?.title||s.venue||'球聚');$('playerSessionMeta').textContent=(ctx.meta?.alias||ctx.name)+' · '+(s.venue||'未填球館')+(s.lane?' · 球道 '+s.lane:'');
+  $('playerSessionScores').innerHTML=scores.map(x=>'<span class="player-history-score-chip">第 '+(x.i+1)+' 局 · '+x.v+'</span>').join('');
+  const d=$('playerSessionDialog');if(d.showModal)d.showModal();else d.setAttribute('open','');
+}
+function closePlayerSessionDetail(){const d=$('playerSessionDialog');if(d.open&&d.close)d.close();else d.removeAttribute('open');requestAnimationFrame(()=>window.scrollTo({top:playerContext.history.scrollTop||0,behavior:'auto'}))}
+
 function rosterStats(name){const row=playerDirectoryRows().find(r=>r.key===nameKey(name));return {games:row?.games||0,avg:row?.avg??null,best:row?.best??null}}
 function resetRosterForm(){$('rosterEditId').value='';$('rosterName').value='';$('rosterAlias').value='';$('rosterNote').value='';$('rosterFormTitle').textContent='新增球員資料';$('saveRosterBtn').textContent='儲存球員資料';$('cancelRosterEditBtn').hidden=true}
 function saveRoster(){const name=$('rosterName').value.trim();if(!name){alert('請輸入球員姓名。');return}const id=$('rosterEditId').value;const dup=roster.find(r=>nameKey(r.name)===nameKey(name)&&r.id!==id);if(dup){alert('已有相同姓名的球員資料。');return}const old=roster.find(r=>r.id===id);const data={id:id||uid(),name,alias:$('rosterAlias').value.trim(),note:$('rosterNote').value.trim(),active:old?.active!==false,createdAt:old?.createdAt||Date.now(),updatedAt:Date.now()};const ix=roster.findIndex(r=>r.id===data.id);if(ix>=0)roster[ix]=data;else roster.push(data);persistRoster();resetRosterForm();renderAll()}
