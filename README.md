@@ -661,7 +661,7 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 
 ## v0.4.5-dev.4 Player Experience & Session Navigation Polish
 
-**Status: Manual Acceptance Passed — DEV4-06-R1 Cross-Module Sync Fix Pending Targeted Retest**
+**Status: DEV4-06-R1 Automated Targeted Retest PASS — Manual Cross-Module Retest Pending**
 
 ### Scope
 - DEV4-01 — Player Navigation State Polish ✅ Architecture / Integration Complete
@@ -767,6 +767,7 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - Formal PUBLIC remains revision 23 / appVersion `0.4.4-R1`; formal main root remains `v0.4.4-R1-HF1`.
 - Static regression after the fix: JavaScript Syntax PASS, Duplicate ID 0, Missing DOM Ref 0.
 - RC promotion remains blocked until the targeted cross-module retest passes.
+- Automated targeted contract retest: PASS — canonical Meetup context, Ranking/Awards/Share selector synchronization, source Meetup carry-over, and `全部歷史` non-destructive behavior all verified; manual cross-module device retest remains.
 
 ### Targeted Retest — DEV4-06-R1
 1. 現場球聚輸入並完成一局後，開啟排行榜：應自動顯示同一球聚與最新完成局分數。
