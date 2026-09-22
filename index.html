@@ -412,6 +412,37 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 @media(max-width:900px){.player-hub-kpis{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:680px){.player-hub-nav,.player-history-nav{align-items:center;flex-direction:row}.player-hub-nav .btn,.player-history-nav .btn{width:auto}.player-hub-nav .pill{font-size:9px}.player-hub-card{padding:12px}.player-hub-head{align-items:flex-start}.player-hub-head h2{font-size:21px}.player-hub-edit{padding:7px 9px}.player-hub-sub{max-width:58vw}.player-hub-kpis{grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}.player-hub-kpi{padding:8px 9px}.player-hub-kpi strong{font-size:20px}.player-hub-recent{padding:8px 9px}.player-hub-recent>div{grid-template-columns:auto auto;gap:4px 7px}.player-hub-recent small{grid-column:1/-1}.player-hub-recent .btn{white-space:nowrap}.player-history-toolbar{grid-template-columns:1fr}.player-hub-actions{position:sticky;bottom:max(8px,env(safe-area-inset-bottom));z-index:8;padding:7px;margin:10px -4px -4px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:12px}.player-history-session-head{flex-direction:column}.player-session-dialog{width:min(96vw,620px);max-height:88dvh}.player-session-dialog-card{padding:14px}.player-session-dialog-nav{position:sticky;bottom:0;background:#fff;padding-bottom:max(2px,env(safe-area-inset-bottom))}.player-session-dialog-nav .btn{padding-left:8px;padding-right:8px}}
 
+
+/* DEV4-05 Mobile Interaction & Accessibility Polish */
+:where(.player-hub-integrated,.player-history-integrated,.player-analytics-integrated,.player-session-dialog) :where(button,input,select):focus-visible,
+.player-link:focus-visible{outline:3px solid rgba(15,98,254,.28);outline-offset:2px;border-color:var(--primary)}
+.player-link:focus-visible{border-radius:4px}
+.player-session-dialog-card{max-height:min(82dvh,720px);overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.player-session-dialog-head>div{min-width:0}.player-session-dialog-head .player-hub-sub{white-space:normal;overflow:visible;text-overflow:clip}
+.player-session-dialog-nav .btn{min-height:44px}
+.player-history-session .btn,.player-hub-actions .btn,.player-hub-recent .btn{touch-action:manipulation}
+@media(max-width:680px){
+  :root{--player-mobile-header-offset:calc(68px + env(safe-area-inset-top))}
+  .topbar-inner{padding-top:calc(10px + env(safe-area-inset-top));padding-left:calc(12px + env(safe-area-inset-left));padding-right:calc(12px + env(safe-area-inset-right))}
+  .player-hub-integrated .btn,.player-history-integrated .btn,.player-analytics-integrated .btn,.player-session-dialog .btn{min-height:44px}
+  .player-hub-edit,.player-hub-recent .btn{min-width:44px}
+  .player-history-toolbar input,.player-history-toolbar select,.player-analytics-integrated .analytics-controls select{min-height:44px!important;font-size:16px!important}
+  .player-history-toolbar{gap:7px}.player-history-session{padding:11px}.player-history-session-head .btn{width:100%;margin-top:2px}
+  .player-history-score-chip{min-height:34px;display:inline-flex;align-items:center}
+  .player-hub-actions{bottom:max(8px,env(safe-area-inset-bottom));box-shadow:0 8px 24px rgba(17,24,39,.10)}
+  .player-analytics-integrated .analytics-controls{top:var(--player-mobile-header-offset)}
+  .player-analytics-integrated .analytics-section-nav{top:calc(var(--player-mobile-header-offset) + 67px)}
+  .player-analytics-integrated [id^="analytics"]{scroll-margin-top:calc(var(--player-mobile-header-offset) + 118px)}
+  .player-session-dialog{margin:auto;width:calc(100vw - 16px);max-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 16px)}
+  .player-session-dialog-card{max-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 16px);padding:13px;padding-bottom:max(13px,env(safe-area-inset-bottom))}
+  .player-session-dialog-head{position:sticky;top:-13px;z-index:3;background:#fff;padding:13px 0 8px}
+  .player-session-dialog-head .btn{flex:0 0 auto}
+  .player-session-dialog-nav{z-index:3;margin-left:-2px;margin-right:-2px;padding-top:9px;padding-bottom:max(5px,env(safe-area-inset-bottom))}
+  .player-session-dialog-nav .btn{min-width:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .player-hub-integrated *,.player-history-integrated *,.player-analytics-integrated *,.player-session-dialog *{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+}
 </style>
 </head>
 <body>
@@ -988,7 +1019,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
   
 
     <div id="playerHubPanel" class="history-mode-panel player-hub-integrated" hidden>
-      <div class="player-hub-nav"><button class="btn" id="playerHubBackBtn" type="button">← 返回</button><span class="pill">Player Hub</span></div>
+      <div class="player-hub-nav" aria-label="Player Hub 導航"><button class="btn" id="playerHubBackBtn" type="button">← 返回</button><span class="pill">Player Hub</span></div>
       <section class="card player-hub-card">
         <div class="player-hub-head">
           <div class="player-hub-identity"><span class="history-eyebrow">PLAYER HUB</span><div class="player-hub-name-row"><h2 id="playerHubName">—</h2><span class="player-source-badge local" id="playerHubSource">本機球員</span></div><div class="player-hub-sub" id="playerHubLastPlayed">尚無正式成績</div></div>
@@ -1012,27 +1043,27 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
 
     <div id="playerHistoryPanel" class="history-mode-panel player-history-integrated" hidden>
-      <div class="player-history-nav"><button class="btn" id="playerHistoryBackBtn" type="button">← 返回球員</button><span class="pill" id="playerHistoryTitle">球員歷史</span></div>
+      <div class="player-history-nav" aria-label="球員歷史導航"><button class="btn" id="playerHistoryBackBtn" type="button">← 返回球員</button><span class="pill" id="playerHistoryTitle">球員歷史</span></div>
       <section class="card panel">
         <div class="player-history-toolbar">
-          <input id="playerHistorySearch" type="search" placeholder="搜尋日期、球聚、球館、球道…" />
-          <select id="playerHistoryRange"><option value="all">全部歷史</option><option value="10">最近 10 局</option><option value="20">最近 20 局</option><option value="50">最近 50 局</option><option value="year">今年</option></select>
-          <select id="playerHistorySort"><option value="newest">最新優先</option><option value="oldest">最舊優先</option></select>
+          <input id="playerHistorySearch" type="search" aria-label="搜尋球員歷史" autocomplete="off" placeholder="搜尋日期、球聚、球館、球道…" />
+          <select id="playerHistoryRange" aria-label="球員歷史範圍"><option value="all">全部歷史</option><option value="10">最近 10 局</option><option value="20">最近 20 局</option><option value="50">最近 50 局</option><option value="year">今年</option></select>
+          <select id="playerHistorySort" aria-label="球員歷史排序"><option value="newest">最新優先</option><option value="oldest">最舊優先</option></select>
         </div>
-        <div class="history-filter-summary" id="playerHistorySummary">—</div>
+        <div class="history-filter-summary" id="playerHistorySummary" role="status" aria-live="polite">—</div>
         <div id="playerHistoryList" class="player-history-list" style="margin-top:12px"></div>
-        <div id="playerHistoryEmpty" class="player-history-empty" hidden>尚無歷史成績。</div>
+        <div id="playerHistoryEmpty" class="player-history-empty" role="status" hidden>尚無歷史成績。</div>
       </section>
     </div>
 
-    <dialog id="playerSessionDialog" class="player-session-dialog">
+    <dialog id="playerSessionDialog" class="player-session-dialog" aria-labelledby="playerSessionTitle" aria-describedby="playerSessionMeta">
       <div class="player-session-dialog-card">
         <div class="player-session-dialog-head"><div><span class="history-eyebrow">SESSION DETAIL</span><h2 id="playerSessionTitle">單場紀錄</h2><div class="player-hub-sub" id="playerSessionMeta"></div></div><button class="btn small" id="playerSessionCloseBtn" type="button">返回</button></div>
         <div id="playerSessionSummary" class="player-session-summary" aria-label="本場摘要"></div>
         <div id="playerSessionScores" class="player-session-dialog-scores"></div>
         <div class="player-session-dialog-nav" aria-label="切換球聚紀錄">
           <button class="btn" id="playerSessionPrevBtn" type="button">← 上一場</button>
-          <span id="playerSessionPosition" class="player-session-position">—</span>
+          <span id="playerSessionPosition" class="player-session-position" role="status" aria-live="polite">—</span>
           <button class="btn" id="playerSessionNextBtn" type="button">下一場 →</button>
         </div>
       </div>
@@ -1041,7 +1072,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     <div id="playerAnalyticsPanel" class="history-mode-panel player-analytics-integrated" hidden>
 
     <section class="card analytics-shell">
-      <div class="player-analytics-nav"><button class="btn" id="playerAnalyticsBackBtn" type="button">← Player Hub</button><span class="pill" id="playerAnalyticsContext">球員分析</span></div>
+      <div class="player-analytics-nav"><button class="btn" id="playerAnalyticsBackBtn" type="button">← Player Hub</button><span class="pill" id="playerAnalyticsContext" role="status" aria-live="polite">球員分析</span></div>
       <div class="analytics-head">
         <div><h2 id="playerAnalyticsTitle">球員分析</h2><p>Unified History 即時計算；切換球員或範圍不會改動原始成績。</p></div>
         <div class="analytics-controls" id="playerAnalyticsContextBar">
@@ -1068,7 +1099,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
       </div>
     </section>
 
-    <div id="playerAnalyticsEmpty" class="card analytics-empty">尚無可分析的球員成績。先在「本次記分」儲存至少一局成績。</div>
+    <div id="playerAnalyticsEmpty" class="card analytics-empty" role="status">尚無可分析的球員成績。先在「本次記分」儲存至少一局成績。</div>
     <div id="playerAnalyticsContent">
       <div class="analytics-layout">
         <section class="card analytics-card analytics-wide" id="analyticsTrendSection">
@@ -1273,6 +1304,7 @@ let photoFile=null; let photoRotation=0; let ocrCandidates=[]; let lastGrid=null
 const $=id=>document.getElementById(id);
 let sessions=[]; let legacy=[]; let meetups=[]; let roster=[]; let editingId=''; let currentMeetupId=''; let deferredInstallPrompt=null; let lastShareBlob=null; let liveGameNo=1; let liveMetric='total'; let liveSaveTimer=null; let manualMeetupPlayers=[]; let historySource='all'; let historyMode='scores'; let playerDirectoryDetail=false; let playerDirectoryView='list'; let postReviewMeetupId='';
 let playerContext={key:'',rosterId:'',playerName:'',source:'LOCAL',originView:'players',hubOrigin:'players',originSessionId:'',view:'hub',analyticsRange:'all',history:{search:'',sort:'newest',range:'all',scrollTop:0,sessionId:''},navigation:{current:'players',previous:'',returnTarget:'players',hubReturnTarget:'players',sessionReturnTarget:'playerHistory',preserveScroll:true,scroll:{players:0,playerHub:0,playerHistory:0,analytics:0,scoreHistory:0}}};
+let playerSessionFocusReturn=null;
 let appDb=null; let dbReady=false; let dbMode='初始化中'; let dbPersistTimer=null; let pendingRestorePayload=null; let pwaRegistration=null; let pendingServiceWorker=null; let reloadingForUpdate=false;
 let syncTimer=null; let syncPushTimer=null; let syncBusy=false; let syncDirty=false; let syncApplyingRemote=false; let syncRemotePresence={}; let syncLastError='';
 let personalData={profile:null,claims:[],games:[],revision:0,lastSyncAt:0,autoSync:true,updatedAt:0}; let personalTimer=null; let personalPushTimer=null; let personalBusy=false; let personalDirty=false; let personalLastError='';
@@ -2305,6 +2337,11 @@ function restorePlayerNavigationScroll(target,options={}){
   const top=Number.isFinite(options.scrollTop)?options.scrollTop:(nav.scroll[target]||0);
   requestAnimationFrame(()=>window.scrollTo({top,behavior:options.behavior||'auto'}));
 }
+function playerReducedMotion(){return !!globalThis.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches}
+function focusPlayerNavigationTarget(target){
+  const ids={playerHub:'playerHubBackBtn',playerHistory:'playerHistoryBackBtn',analytics:'playerAnalyticsBackBtn'};
+  const el=$(ids[target]||'');if(!el)return;requestAnimationFrame(()=>{try{el.focus({preventScroll:true})}catch{el.focus()}})
+}
 function navigatePlayerContext(target,options={}){
   const nav=playerNavigation(),from=nav.current||'players';
   if(options.capture!==false)capturePlayerNavigationScroll(from);
@@ -2319,6 +2356,7 @@ function navigatePlayerContext(target,options={}){
   switchView('historyView');
   if(target==='scoreHistory')renderHistory();else renderHistoryMode();
   restorePlayerNavigationScroll(target,{top:options.top===true,scrollTop:options.scrollTop,behavior:options.behavior});
+  if(options.focus!==false&&['playerHub','playerHistory','analytics'].includes(target))focusPlayerNavigationTarget(target);
 }
 function returnPlayerContext(fallback='players'){
   const nav=playerNavigation(),target=nav.returnTarget||fallback;
@@ -2394,9 +2432,9 @@ function openPlayerSessionDetail(sessionId,options={}){
   $('playerSessionNextBtn').disabled=!next;$('playerSessionNextBtn').dataset.sessionId=next?.sessionId||'';
   $('playerSessionPosition').textContent=ix>=0?(ix+1)+' / '+seq.length+' 場':'目前這場';
   $('playerSessionCloseBtn').textContent=returnTarget==='playerHub'?'返回 Player Hub':'返回歷史';
-  const d=$('playerSessionDialog');if(!d.open){if(d.showModal)d.showModal();else d.setAttribute('open','')}
+  const d=$('playerSessionDialog');if(!d.open){playerSessionFocusReturn=document.activeElement;if(d.showModal)d.showModal();else d.setAttribute('open','');requestAnimationFrame(()=>$('playerSessionCloseBtn')?.focus())}
 }
-function closePlayerSessionDetail(){const d=$('playerSessionDialog');if(d.open&&d.close)d.close();else d.removeAttribute('open');const nav=playerNavigation(),target=nav.sessionReturnTarget||'playerHistory';nav.previous='sessionDetail';nav.current=target;if(target!=='playerHistory'){navigatePlayerContext(target,{capture:false});if(target==='playerHub')playerNavigation().returnTarget=playerNavigation().hubReturnTarget||'players';return}restorePlayerNavigationScroll('playerHistory',{scrollTop:playerContext.history.scrollTop||nav.scroll.playerHistory||0})}
+function closePlayerSessionDetail(){const d=$('playerSessionDialog');if(d.open&&d.close)d.close();else d.removeAttribute('open');const nav=playerNavigation(),target=nav.sessionReturnTarget||'playerHistory',focusReturn=playerSessionFocusReturn;playerSessionFocusReturn=null;nav.previous='sessionDetail';nav.current=target;if(target!=='playerHistory'){navigatePlayerContext(target,{capture:false,focus:false});if(target==='playerHub')playerNavigation().returnTarget=playerNavigation().hubReturnTarget||'players';requestAnimationFrame(()=>{const el=focusReturn?.isConnected?focusReturn:$('playerHubLatestSessionBtn');if(el&&!el.hidden&&!el.disabled)try{el.focus({preventScroll:true})}catch{el.focus()}});return}restorePlayerNavigationScroll('playerHistory',{scrollTop:playerContext.history.scrollTop||nav.scroll.playerHistory||0});requestAnimationFrame(()=>{let el=focusReturn?.isConnected?focusReturn:null;if(!el&&playerContext.history.sessionId)el=document.querySelector('[data-player-session="'+CSS.escape(playerContext.history.sessionId)+'"]');if(!el)el=$('playerHistoryBackBtn');if(el)try{el.focus({preventScroll:true})}catch{el.focus()}})}
 
 function rosterStats(ref){const row=playerRow(ref);return {games:row?.games||0,avg:row?.avg??null,best:row?.best??null}}
 function resetRosterForm(){$('rosterEditId').value='';$('rosterName').value='';$('rosterAlias').value='';$('rosterNote').value='';$('rosterFormTitle').textContent='新增球員資料';$('saveRosterBtn').textContent='儲存球員資料';$('cancelRosterEditBtn').hidden=true}
@@ -2738,7 +2776,7 @@ $('saveMeetupBtn').addEventListener('click',()=>saveMeetup(false));$('saveStartM
 $('meetupList').addEventListener('click',e=>{const b=e.target.closest('button[data-mact]');if(!b)return;const id=b.dataset.id,act=b.dataset.mact;if(act==='live')openLiveMeetup(id);else if(act==='start')startMeetup(id);else if(act==='rank')openMeetupLeaderboard(id);else if(act==='awards')openMeetupAwards(id);else if(act==='edit')editMeetup(id);else if(act==='done')setMeetupStatus(id,'done');else if(act==='review')openPostGameReview(id);else if(act==='ongoing')setMeetupStatus(id,'ongoing');else if(act==='del')deleteMeetup(id)});
 $('saveRosterBtn').addEventListener('click',saveRoster);$('cancelRosterEditBtn').addEventListener('click',resetRosterForm);$('rosterSearch').addEventListener('input',renderRoster);$('rosterList').addEventListener('click',e=>{const b=e.target.closest('[data-ract]');if(!b)return;const name=b.dataset.name||'',id=b.dataset.id||'',key=b.dataset.key||'';if(b.dataset.ract==='hub'&&key)openPlayerHub(key);else if(b.dataset.ract==='edit')editRoster(id,name);else if(b.dataset.ract==='del'&&id)deleteRoster(id)});
 $('quickAddRosterBtn').addEventListener('click',quickAddRoster);$('leaderboardMeetup').addEventListener('change',renderLeaderboard);$('leaderboardMetric').addEventListener('change',renderLeaderboard);$('leaderboardCurrentBtn').addEventListener('click',()=>{if(!currentMeetupId){alert('目前沒有選擇球聚活動。');return}$('leaderboardMeetup').value=currentMeetupId;renderLeaderboard()});
-$('playerAnalyticsBackBtn').addEventListener('click',closePlayerAnalytics);$('playerAnalyticsPlayer').addEventListener('change',e=>{prepareAnalyticsContextChange();if(setPlayerContext(e.target.value,{view:'analytics'})){playerNavigation().scroll.analytics=0;renderStats();requestAnimationFrame(()=>$('playerAnalyticsPanel')?.scrollIntoView({behavior:'auto',block:'start'}))}else restoreAnalyticsPresentation()});$('playerAnalyticsRange').addEventListener('change',e=>{playerContext.analyticsRange=e.target.value||'all';prepareAnalyticsContextChange();renderStats()});$('playerAnalyticsSectionNav').addEventListener('click',e=>{const b=e.target.closest('[data-analytics-jump]');if(!b)return;const target=$(b.dataset.analyticsJump);if(target)target.scrollIntoView({behavior:'smooth',block:'start'})});
+$('playerAnalyticsBackBtn').addEventListener('click',closePlayerAnalytics);$('playerAnalyticsPlayer').addEventListener('change',e=>{prepareAnalyticsContextChange();if(setPlayerContext(e.target.value,{view:'analytics'})){playerNavigation().scroll.analytics=0;renderStats();requestAnimationFrame(()=>$('playerAnalyticsPanel')?.scrollIntoView({behavior:'auto',block:'start'}))}else restoreAnalyticsPresentation()});$('playerAnalyticsRange').addEventListener('change',e=>{playerContext.analyticsRange=e.target.value||'all';prepareAnalyticsContextChange();renderStats()});$('playerAnalyticsSectionNav').addEventListener('click',e=>{const b=e.target.closest('[data-analytics-jump]');if(!b)return;const target=$(b.dataset.analyticsJump);if(target){target.scrollIntoView({behavior:playerReducedMotion()?'auto':'smooth',block:'start'});target.setAttribute('tabindex','-1');requestAnimationFrame(()=>target.focus({preventScroll:true}))}});
 $('playerHubBackBtn').addEventListener('click',closePlayerHub);$('playerHubAnalyticsBtn').addEventListener('click',()=>openPlayerAnalytics(playerContext.key));$('playerHubHistoryBtn').addEventListener('click',openPlayerHistory);$('playerHubLatestSessionBtn').addEventListener('click',e=>{const id=e.currentTarget.dataset.sessionId;if(id)openPlayerSessionDetail(id,{returnTarget:'playerHub'})});$('playerHubEditBtn').addEventListener('click',()=>{const row=playerRow(playerContext.key);if(row&&row.source!=='PUBLIC')editRoster(row.meta?.id||'',row.name)});
 $('playerHistoryBackBtn').addEventListener('click',closePlayerHistory);$('playerHistorySearch').addEventListener('input',e=>{playerContext.history.search=e.target.value;renderPlayerHubHistory()});$('playerHistoryRange').addEventListener('change',e=>{playerContext.history.range=e.target.value||'all';renderPlayerHubHistory()});$('playerHistorySort').addEventListener('change',e=>{playerContext.history.sort=e.target.value||'newest';renderPlayerHubHistory()});$('playerHistoryList').addEventListener('click',e=>{const b=e.target.closest('[data-player-session]');if(b)openPlayerSessionDetail(b.dataset.playerSession,{returnTarget:'playerHistory'})});$('playerSessionCloseBtn').addEventListener('click',closePlayerSessionDetail);$('playerSessionPrevBtn').addEventListener('click',e=>{const id=e.currentTarget.dataset.sessionId;if(id)openPlayerSessionDetail(id,{returnTarget:playerNavigation().sessionReturnTarget,preserveOrigin:true})});$('playerSessionNextBtn').addEventListener('click',e=>{const id=e.currentTarget.dataset.sessionId;if(id)openPlayerSessionDetail(id,{returnTarget:playerNavigation().sessionReturnTarget,preserveOrigin:true})});$('playerSessionDialog').addEventListener('cancel',e=>{e.preventDefault();closePlayerSessionDetail()});$('playerSessionDialog').addEventListener('click',e=>{if(e.target===$('playerSessionDialog'))closePlayerSessionDetail()});$('playerSessionDialog').addEventListener('keydown',e=>{if(e.key==='ArrowLeft'&&!$('playerSessionPrevBtn').disabled){e.preventDefault();$('playerSessionPrevBtn').click()}else if(e.key==='ArrowRight'&&!$('playerSessionNextBtn').disabled){e.preventDefault();$('playerSessionNextBtn').click()}});
 $('awardMeetup').addEventListener('change',renderAwards);$('awardCurrentBtn').addEventListener('click',()=>{if(!currentMeetupId){alert('目前沒有選擇球聚活動。');return}renderAwardOptions();$('awardMeetup').value=currentMeetupId;renderAwards()});$('awardShareBtn').addEventListener('click',()=>{const id=$('awardMeetup').value;if(!id)return;switchView('shareView');$('shareMeetup').value=id;$('shareCardType').value='awards';updateShareControls(true)});$('addCustomAwardBtn').addEventListener('click',addCustomAward);$('customAwardList').addEventListener('click',e=>{const b=e.target.closest('[data-del-custom-award]');if(b&&confirm('確定移除這個自訂獎項？'))deleteCustomAward(b.dataset.delCustomAward)});
