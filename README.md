@@ -664,12 +664,21 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 **Status: Development Started — branched from v0.4.5-dev.3 Validation Complete**
 
 ### Scope
-- DEV4-01 — Player Navigation State Polish
+- DEV4-01 — Player Navigation State Polish ✅ Architecture / Integration Complete
 - DEV4-02 — Player Hub Quick Actions & Compact UX
 - DEV4-03 — Player History Session Navigation Polish
 - DEV4-04 — Analytics Return / Player Switch Context Polish
 - DEV4-05 — Mobile Interaction & Accessibility Polish
 - DEV4-06 — PUBLIC Guard / Regression / RC Readiness
+
+### DEV4-01 Result
+- Added one canonical Player navigation state for Players / Player Hub / Player History / Analytics / Session Detail / Unified Score History.
+- Player Hub now remembers whether it was entered from the player list or a score-history session.
+- Analytics and Player History return to the same Player Hub and preserve the Hub parent return target.
+- Session Detail returns to the same Player History position without resetting player, search, range, or sort state.
+- Player History scroll position is captured before Session Detail opens and restored after close.
+- Missing origin session falls back safely to the player list.
+- Navigation state remains UI/session-only; no Backup, Roster, IndexedDB schema, or Supabase schema changes.
 
 ### Guardrails
 - Keep Unified History as the single score/history source.
