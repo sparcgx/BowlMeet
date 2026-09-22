@@ -46,7 +46,12 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 - Public-only 個人分析 ✅ PASS
 - Public-only 連續 3 局 PB ✅ PASS
 - 歷史姓名自動寫入 Roster 行為 ✅ 已移除
-- 狀態：**Implementation Complete / Automated Regression PASS / Device Preview Pending**
+- Device Preview：`/preview/v0.4.5-dev.1/` ✅ Ready
+- Preview Cloud：`V45D22`，已複製目前 PUBLIC 歷史快照
+- Preview localStorage / IndexedDB / Cache ✅ Isolated
+- 正式 `main` 維持 `v0.4.4-R1-HF1` ✅ 未變更
+- 正式 PUBLIC revision 23 / 2 sessions / 2 meetups ✅ 未由 dev.1 改寫
+- 狀態：**Implementation Complete / Automated Regression PASS / Manual Device Acceptance Pending**
 
 ## GitHub Pages 部署
 
