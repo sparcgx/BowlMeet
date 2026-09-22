@@ -408,9 +408,9 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 .player-history-scores{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.player-history-score-chip{padding:6px 9px;border-radius:9px;background:#f4f6f9;font-size:12px;font-weight:850}
 .player-history-empty{padding:28px;text-align:center;color:var(--muted)}
 .player-session-dialog{border:0;border-radius:18px;padding:0;max-width:620px;width:min(92vw,620px);box-shadow:0 26px 80px rgba(17,24,39,.28)}
-.player-session-dialog::backdrop{background:rgba(17,24,39,.42)}.player-session-dialog-card{padding:18px}.player-session-dialog-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.player-session-dialog-head h2{margin:0;font-size:19px}.player-session-dialog-scores{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}
+.player-session-dialog::backdrop{background:rgba(17,24,39,.42)}.player-session-dialog-card{padding:18px}.player-session-dialog-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.player-session-dialog-head h2{margin:0;font-size:19px}.player-session-summary{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.player-session-summary span{display:inline-flex;align-items:center;gap:4px;padding:6px 9px;border:1px solid var(--line);border-radius:9px;background:#fafbfc;font-size:10px;color:var(--muted)}.player-session-summary strong{font-size:12px;color:var(--text)}.player-session-dialog-scores{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.player-session-dialog-nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}.player-session-dialog-nav .btn:last-child{justify-self:stretch}.player-session-position{font-size:10px;font-weight:850;color:var(--muted);white-space:nowrap;text-align:center}.player-history-session[data-active-session="true"]{border-color:var(--primary);box-shadow:0 0 0 2px rgba(48,104,212,.08)}
 @media(max-width:900px){.player-hub-kpis{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:680px){.player-hub-nav,.player-history-nav{align-items:center;flex-direction:row}.player-hub-nav .btn,.player-history-nav .btn{width:auto}.player-hub-nav .pill{font-size:9px}.player-hub-card{padding:12px}.player-hub-head{align-items:flex-start}.player-hub-head h2{font-size:21px}.player-hub-edit{padding:7px 9px}.player-hub-sub{max-width:58vw}.player-hub-kpis{grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}.player-hub-kpi{padding:8px 9px}.player-hub-kpi strong{font-size:20px}.player-hub-recent{padding:8px 9px}.player-hub-recent>div{grid-template-columns:auto auto;gap:4px 7px}.player-hub-recent small{grid-column:1/-1}.player-hub-recent .btn{white-space:nowrap}.player-history-toolbar{grid-template-columns:1fr}.player-hub-actions{position:sticky;bottom:max(8px,env(safe-area-inset-bottom));z-index:8;padding:7px;margin:10px -4px -4px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:12px}.player-history-session-head{flex-direction:column}}
+@media(max-width:680px){.player-hub-nav,.player-history-nav{align-items:center;flex-direction:row}.player-hub-nav .btn,.player-history-nav .btn{width:auto}.player-hub-nav .pill{font-size:9px}.player-hub-card{padding:12px}.player-hub-head{align-items:flex-start}.player-hub-head h2{font-size:21px}.player-hub-edit{padding:7px 9px}.player-hub-sub{max-width:58vw}.player-hub-kpis{grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}.player-hub-kpi{padding:8px 9px}.player-hub-kpi strong{font-size:20px}.player-hub-recent{padding:8px 9px}.player-hub-recent>div{grid-template-columns:auto auto;gap:4px 7px}.player-hub-recent small{grid-column:1/-1}.player-hub-recent .btn{white-space:nowrap}.player-history-toolbar{grid-template-columns:1fr}.player-hub-actions{position:sticky;bottom:max(8px,env(safe-area-inset-bottom));z-index:8;padding:7px;margin:10px -4px -4px;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:12px}.player-history-session-head{flex-direction:column}.player-session-dialog{width:min(96vw,620px);max-height:88dvh}.player-session-dialog-card{padding:14px}.player-session-dialog-nav{position:sticky;bottom:0;background:#fff;padding-bottom:max(2px,env(safe-area-inset-bottom))}.player-session-dialog-nav .btn{padding-left:8px;padding-right:8px}}
 
 </style>
 </head>
@@ -1027,8 +1027,14 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 
     <dialog id="playerSessionDialog" class="player-session-dialog">
       <div class="player-session-dialog-card">
-        <div class="player-session-dialog-head"><div><span class="history-eyebrow">SESSION DETAIL</span><h2 id="playerSessionTitle">單場紀錄</h2><div class="player-hub-sub" id="playerSessionMeta"></div></div><button class="btn small" id="playerSessionCloseBtn" type="button">關閉</button></div>
+        <div class="player-session-dialog-head"><div><span class="history-eyebrow">SESSION DETAIL</span><h2 id="playerSessionTitle">單場紀錄</h2><div class="player-hub-sub" id="playerSessionMeta"></div></div><button class="btn small" id="playerSessionCloseBtn" type="button">返回</button></div>
+        <div id="playerSessionSummary" class="player-session-summary" aria-label="本場摘要"></div>
         <div id="playerSessionScores" class="player-session-dialog-scores"></div>
+        <div class="player-session-dialog-nav" aria-label="切換球聚紀錄">
+          <button class="btn" id="playerSessionPrevBtn" type="button">← 上一場</button>
+          <span id="playerSessionPosition" class="player-session-position">—</span>
+          <button class="btn" id="playerSessionNextBtn" type="button">下一場 →</button>
+        </div>
       </div>
     </dialog>
 
@@ -2333,17 +2339,26 @@ function playerHistoryFilteredGames(){
   const q=(playerContext.history.search||'').trim().toLowerCase();if(q)games=games.filter(g=>[g.date,g.meetupTitle,g.venue,g.lane,g.score].join(' ').toLowerCase().includes(q));
   if((playerContext.history.sort||'newest')==='newest')games=[...games].reverse();return games;
 }
+function playerHistorySessionGroups(options={}){
+  let games=options.all?playerCareerGames(playerContext.key):playerHistoryFilteredGames(),groups=new Map();
+  if(options.all)games=[...games].reverse();
+  for(const g of games){const key=g.sessionId||('legacy:'+g.date+':'+g.venue);if(!groups.has(key))groups.set(key,{key,sessionId:g.sessionId,date:g.date,title:g.meetupTitle||g.venue||'歷史紀錄',venue:g.venue,lane:g.lane,scores:[]});groups.get(key).scores.push(g)}
+  return [...groups.values()];
+}
+function playerSessionSequence(returnTarget='playerHistory'){
+  return playerHistorySessionGroups({all:returnTarget!=='playerHistory'}).filter(x=>x.sessionId);
+}
 function renderPlayerHubHistory(){
-  if(!ensurePlayerContext())return;const row=playerRow(playerContext.key),games=playerHistoryFilteredGames(),groups=new Map();
+  if(!ensurePlayerContext())return;const row=playerRow(playerContext.key),games=playerHistoryFilteredGames(),list=playerHistorySessionGroups();
   $('playerHistoryTitle').textContent=(row?.meta?.alias||row?.name||'球員')+' · 歷史紀錄';
   $('playerHistorySearch').value=playerContext.history.search||'';$('playerHistoryRange').value=playerContext.history.range||'all';$('playerHistorySort').value=playerContext.history.sort||'newest';
-  for(const g of games){const key=g.sessionId||('legacy:'+g.date+':'+g.venue);if(!groups.has(key))groups.set(key,{key,sessionId:g.sessionId,date:g.date,title:g.meetupTitle||g.venue||'歷史紀錄',venue:g.venue,lane:g.lane,scores:[]});groups.get(key).scores.push(g)}
-  const list=[...groups.values()];$('playerHistorySummary').textContent=games.length+' 局 · '+list.length+' 場 · '+playerSourceText(row?.source||'LOCAL');$('playerHistoryEmpty').hidden=!!list.length;
+  $('playerHistorySummary').textContent=games.length+' 局 · '+list.length+' 場 · '+playerSourceText(row?.source||'LOCAL');$('playerHistoryEmpty').hidden=!!list.length;
   $('playerHistoryList').innerHTML=list.map(x=>{
     const detail=x.sessionId?'<button class="btn small" type="button" data-player-session="'+esc(x.sessionId)+'">查看本場</button>':'';
     const meta=(x.venue&&x.title!==x.venue?esc(x.venue)+' · ':'')+(x.lane?'球道 '+esc(x.lane):'未填球道');
     const chips=x.scores.sort((a,b)=>(a.gameNo||0)-(b.gameNo||0)).map(g=>'<span class="player-history-score-chip">'+(g.gameNo?'第 '+g.gameNo+' 局 · ':'')+g.score+'</span>').join('');
-    return '<article class="player-history-session"><div class="player-history-session-head"><div><h3>'+esc(fmtDate(x.date))+' · '+esc(x.title)+'</h3><div class="player-history-session-meta">'+meta+'</div></div>'+detail+'</div><div class="player-history-scores">'+chips+'</div></article>';
+    const active=x.sessionId&&x.sessionId===playerContext.history.sessionId?' data-active-session="true"':'';
+    return '<article class="player-history-session"'+active+'><div class="player-history-session-head"><div><h3>'+esc(fmtDate(x.date))+' · '+esc(x.title)+'</h3><div class="player-history-session-meta">'+meta+'</div></div>'+detail+'</div><div class="player-history-scores">'+chips+'</div></article>';
   }).join('');
 }
 function openPlayerHistory(){if(!ensurePlayerContext())return;navigatePlayerContext('playerHistory',{returnTarget:'playerHub',top:true})}
@@ -2351,12 +2366,19 @@ function closePlayerHistory(){returnPlayerContext('playerHub')}
 function openPlayerSessionDetail(sessionId,options={}){
   const rec=unifiedHistoryRecords().find(x=>x.id===sessionId),ctx=playerRow(playerContext.key);if(!rec||!ctx){flash('這筆紀錄目前已不存在。','err');renderPlayerHubHistory();return}
   const s=rec.session,p=(s.players||[]).find(x=>playerIdentity(x.name).key===ctx.key);if(!p){flash('這位球員已不在該場紀錄中。','err');renderPlayerHubHistory();return}
-  const nav=playerNavigation(),returnTarget=options.returnTarget||'playerHistory';capturePlayerNavigationScroll(returnTarget);if(returnTarget==='playerHistory')playerContext.history.scrollTop=nav.scroll.playerHistory||window.scrollY||0;playerContext.history.sessionId=sessionId;
-  nav.previous=nav.current;nav.current='sessionDetail';nav.sessionReturnTarget=returnTarget;
-  const scores=(p.scores||[]).map(normalizeScore).map((v,i)=>({v,i})).filter(x=>x.v!==null);
+  const nav=playerNavigation(),returnTarget=options.returnTarget||nav.sessionReturnTarget||'playerHistory';
+  if(!options.preserveOrigin){capturePlayerNavigationScroll(returnTarget);if(returnTarget==='playerHistory')playerContext.history.scrollTop=nav.scroll.playerHistory||window.scrollY||0}
+  playerContext.history.sessionId=sessionId;nav.previous=nav.current;nav.current='sessionDetail';nav.sessionReturnTarget=returnTarget;
+  const scores=(p.scores||[]).map(normalizeScore).map((v,i)=>({v,i})).filter(x=>x.v!==null),values=scores.map(x=>x.v);
   $('playerSessionTitle').textContent=fmtDate(s.date)+' · '+(rec.meetup?.title||s.venue||'球聚');$('playerSessionMeta').textContent=(ctx.meta?.alias||ctx.name)+' · '+(s.venue||'未填球館')+(s.lane?' · 球道 '+s.lane:'');
+  $('playerSessionSummary').innerHTML='<span>局數 <strong>'+values.length+'</strong></span><span>平均 <strong>'+(values.length?mean1(values):'—')+'</strong></span><span>本場最高 <strong>'+(values.length?Math.max(...values):'—')+'</strong></span>';
   $('playerSessionScores').innerHTML=scores.map(x=>'<span class="player-history-score-chip">第 '+(x.i+1)+' 局 · '+x.v+'</span>').join('');
-  const d=$('playerSessionDialog');if(d.showModal)d.showModal();else d.setAttribute('open','');
+  const seq=playerSessionSequence(returnTarget),ix=seq.findIndex(x=>x.sessionId===sessionId),prev=ix>0?seq[ix-1]:null,next=ix>=0&&ix<seq.length-1?seq[ix+1]:null;
+  $('playerSessionPrevBtn').disabled=!prev;$('playerSessionPrevBtn').dataset.sessionId=prev?.sessionId||'';
+  $('playerSessionNextBtn').disabled=!next;$('playerSessionNextBtn').dataset.sessionId=next?.sessionId||'';
+  $('playerSessionPosition').textContent=ix>=0?(ix+1)+' / '+seq.length+' 場':'目前這場';
+  $('playerSessionCloseBtn').textContent=returnTarget==='playerHub'?'返回 Player Hub':'返回歷史';
+  const d=$('playerSessionDialog');if(!d.open){if(d.showModal)d.showModal();else d.setAttribute('open','')}
 }
 function closePlayerSessionDetail(){const d=$('playerSessionDialog');if(d.open&&d.close)d.close();else d.removeAttribute('open');const nav=playerNavigation(),target=nav.sessionReturnTarget||'playerHistory';nav.previous='sessionDetail';nav.current=target;if(target!=='playerHistory'){navigatePlayerContext(target,{capture:false});if(target==='playerHub')playerNavigation().returnTarget=playerNavigation().hubReturnTarget||'players';return}restorePlayerNavigationScroll('playerHistory',{scrollTop:playerContext.history.scrollTop||nav.scroll.playerHistory||0})}
 
@@ -2702,7 +2724,7 @@ $('saveRosterBtn').addEventListener('click',saveRoster);$('cancelRosterEditBtn')
 $('quickAddRosterBtn').addEventListener('click',quickAddRoster);$('leaderboardMeetup').addEventListener('change',renderLeaderboard);$('leaderboardMetric').addEventListener('change',renderLeaderboard);$('leaderboardCurrentBtn').addEventListener('click',()=>{if(!currentMeetupId){alert('目前沒有選擇球聚活動。');return}$('leaderboardMeetup').value=currentMeetupId;renderLeaderboard()});
 $('playerAnalyticsBackBtn').addEventListener('click',closePlayerAnalytics);$('playerAnalyticsPlayer').addEventListener('change',e=>{setPlayerContext(e.target.value,{view:'analytics'});renderStats()});$('playerAnalyticsRange').addEventListener('change',e=>{playerContext.analyticsRange=e.target.value||'all';renderStats()});
 $('playerHubBackBtn').addEventListener('click',closePlayerHub);$('playerHubAnalyticsBtn').addEventListener('click',()=>openPlayerAnalytics(playerContext.key));$('playerHubHistoryBtn').addEventListener('click',openPlayerHistory);$('playerHubLatestSessionBtn').addEventListener('click',e=>{const id=e.currentTarget.dataset.sessionId;if(id)openPlayerSessionDetail(id,{returnTarget:'playerHub'})});$('playerHubEditBtn').addEventListener('click',()=>{const row=playerRow(playerContext.key);if(row&&row.source!=='PUBLIC')editRoster(row.meta?.id||'',row.name)});
-$('playerHistoryBackBtn').addEventListener('click',closePlayerHistory);$('playerHistorySearch').addEventListener('input',e=>{playerContext.history.search=e.target.value;renderPlayerHubHistory()});$('playerHistoryRange').addEventListener('change',e=>{playerContext.history.range=e.target.value||'all';renderPlayerHubHistory()});$('playerHistorySort').addEventListener('change',e=>{playerContext.history.sort=e.target.value||'newest';renderPlayerHubHistory()});$('playerHistoryList').addEventListener('click',e=>{const b=e.target.closest('[data-player-session]');if(b)openPlayerSessionDetail(b.dataset.playerSession)});$('playerSessionCloseBtn').addEventListener('click',closePlayerSessionDetail);$('playerSessionDialog').addEventListener('cancel',e=>{e.preventDefault();closePlayerSessionDetail()});
+$('playerHistoryBackBtn').addEventListener('click',closePlayerHistory);$('playerHistorySearch').addEventListener('input',e=>{playerContext.history.search=e.target.value;renderPlayerHubHistory()});$('playerHistoryRange').addEventListener('change',e=>{playerContext.history.range=e.target.value||'all';renderPlayerHubHistory()});$('playerHistorySort').addEventListener('change',e=>{playerContext.history.sort=e.target.value||'newest';renderPlayerHubHistory()});$('playerHistoryList').addEventListener('click',e=>{const b=e.target.closest('[data-player-session]');if(b)openPlayerSessionDetail(b.dataset.playerSession,{returnTarget:'playerHistory'})});$('playerSessionCloseBtn').addEventListener('click',closePlayerSessionDetail);$('playerSessionPrevBtn').addEventListener('click',e=>{const id=e.currentTarget.dataset.sessionId;if(id)openPlayerSessionDetail(id,{returnTarget:playerNavigation().sessionReturnTarget,preserveOrigin:true})});$('playerSessionNextBtn').addEventListener('click',e=>{const id=e.currentTarget.dataset.sessionId;if(id)openPlayerSessionDetail(id,{returnTarget:playerNavigation().sessionReturnTarget,preserveOrigin:true})});$('playerSessionDialog').addEventListener('cancel',e=>{e.preventDefault();closePlayerSessionDetail()});$('playerSessionDialog').addEventListener('click',e=>{if(e.target===$('playerSessionDialog'))closePlayerSessionDetail()});$('playerSessionDialog').addEventListener('keydown',e=>{if(e.key==='ArrowLeft'&&!$('playerSessionPrevBtn').disabled){e.preventDefault();$('playerSessionPrevBtn').click()}else if(e.key==='ArrowRight'&&!$('playerSessionNextBtn').disabled){e.preventDefault();$('playerSessionNextBtn').click()}});
 $('awardMeetup').addEventListener('change',renderAwards);$('awardCurrentBtn').addEventListener('click',()=>{if(!currentMeetupId){alert('目前沒有選擇球聚活動。');return}renderAwardOptions();$('awardMeetup').value=currentMeetupId;renderAwards()});$('awardShareBtn').addEventListener('click',()=>{const id=$('awardMeetup').value;if(!id)return;switchView('shareView');$('shareMeetup').value=id;$('shareCardType').value='awards';updateShareControls(true)});$('addCustomAwardBtn').addEventListener('click',addCustomAward);$('customAwardList').addEventListener('click',e=>{const b=e.target.closest('[data-del-custom-award]');if(b&&confirm('確定移除這個自訂獎項？'))deleteCustomAward(b.dataset.delCustomAward)});
 
 $('postReviewCloseBtn').addEventListener('click',closePostGameReview);$('postReviewDoneBtn').addEventListener('click',closePostGameReview);$('postReviewShareBtn').addEventListener('click',openPostReviewShare);$('postReviewHistoryBtn').addEventListener('click',openPostReviewHistory);$('postGameReviewDialog').addEventListener('cancel',e=>{e.preventDefault();closePostGameReview()});
