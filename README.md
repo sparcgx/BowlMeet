@@ -1,4 +1,4 @@
-# BowlMeet v0.4.5-dev.1 — Unified History & Player Directory
+# BowlMeet v0.4.5-dev.2 — Player Analytics Integration
 
 BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，建立玩家並進行標準 10 格即時計分。
 
@@ -13,6 +13,33 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 - 公開控制狀態會納入本機安全快照與完整備份。
 - 跨版本防復活由 Supabase `bowling_group_push` 保留 `recordControls` tombstone；`supabase_v044_public_record_control_patch.sql` 已於 2026-09-22 套用至 BowlMeet Supabase。
 - v0.4.3.3-R1 仍為 Stable / Freeze Baseline；本版在 `v0.4.4-dev.1` 分支開發。
+
+## v0.4.5-dev.2 Player Analytics Integration
+
+- 開發基線：`v0.4.5-dev.1`（Validation Complete）。
+- 移除頂層「個人分析」主選單。
+- 球員分析正式整合到「成績紀錄 → 球員」流程。
+- 操作路徑改為：球員總覽 → 分析 → 返回球員。
+- 分析畫面沿用既有 KPI、PB、趨勢、近期狀態、逐格表現與個人歷史。
+- 球員切換與分析範圍仍可在分析頁直接調整。
+- 舊 `switchView('statsView')` 保留相容 alias，會導向「成績紀錄 → 球員分析」。
+- 不建立第二套分析資料；沿用 dev.1 的 Unified History / Player Directory。
+- 不修改 Session / Roster metadata / Backup / Supabase 正式資料模型。
+
+### v0.4.5-dev.2 Automated Gate
+
+- JavaScript syntax ✅ PASS
+- Static HTML duplicate ID ✅ 0
+- Literal DOM reference missing ✅ 0
+- 頂層「個人分析」主選單移除 ✅ PASS
+- 獨立 `statsView` 移除 ✅ PASS
+- 球員分析內嵌 History ✅ PASS
+- 球員總覽 → 分析 ✅ PASS
+- 分析 → 返回球員 ✅ PASS
+- 成績 / 球員模式切換不互相污染 ✅ PASS
+- Legacy `statsView` route alias ✅ PASS
+- Public-only 球員分析資料來源維持 Unified History ✅ PASS
+- 狀態：**Implementation Complete / Automated Regression PASS / Device Preview Pending**
 
 ## v0.4.5-dev.1 Manual Device Acceptance
 
