@@ -666,7 +666,7 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 ### Scope
 - DEV4-01 — Player Navigation State Polish ✅ Architecture / Integration Complete
 - DEV4-02 — Player Hub Quick Actions & Compact UX ✅ Integration Complete
-- DEV4-03 — Player History Session Navigation Polish
+- DEV4-03 — Player History Session Navigation Polish ✅ Integration Complete
 - DEV4-04 — Analytics Return / Player Switch Context Polish
 - DEV4-05 — Mobile Interaction & Accessibility Polish
 - DEV4-06 — PUBLIC Guard / Regression / RC Readiness
@@ -690,6 +690,18 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - Player Hub back label now reflects its real parent: 球員 or 成績紀錄.
 - Mobile Hub uses a compact 2×2 KPI layout and sticky two-action bar with safe-area support.
 - No Player / History / Analytics data duplication and no storage/schema format changes.
+
+### DEV4-03 Result
+- Player History and Session Detail now share one grouped-session sequence derived from the current player history filters.
+- Added previous / next session navigation inside Session Detail without closing and reopening the history page.
+- Session position shows the current place in the active sequence (for example 2 / 5 場).
+- Session Detail now includes compact game count, session average, and session-high summary.
+- Returning from Session Detail preserves player, search, range, sort, and original Player History scroll position.
+- Direct “查看最近一場” from Player Hub uses the same Session Detail but returns directly to Player Hub.
+- Session Detail close label reflects the actual parent: 返回歷史 or 返回 Player Hub.
+- Dialog backdrop / Escape close use the same controlled return path; desktop Left / Right arrow keys switch sessions.
+- Mobile Session Detail navigation is sticky with safe-area support.
+- No new history/session data source, no Backup/IndexedDB/Supabase schema change.
 
 ### Guardrails
 - Keep Unified History as the single score/history source.
