@@ -1255,7 +1255,7 @@ const SNAPSHOT_LIMIT=10;
 let photoFile=null; let photoRotation=0; let ocrCandidates=[]; let lastGrid=null; let pendingImportAudit=null;
 const $=id=>document.getElementById(id);
 let sessions=[]; let legacy=[]; let meetups=[]; let roster=[]; let editingId=''; let currentMeetupId=''; let deferredInstallPrompt=null; let lastShareBlob=null; let liveGameNo=1; let liveMetric='total'; let liveSaveTimer=null; let manualMeetupPlayers=[]; let historySource='all'; let historyMode='scores'; let playerDirectoryDetail=false; let playerDirectoryView='list'; let postReviewMeetupId='';
-let playerContext={key:'',rosterId:'',playerName:'',source:'LOCAL',originView:'players',hubOrigin:'players',originSessionId:'',view:'hub',analyticsRange:'all',history:{search:'',sort:'newest',range:'all',scrollTop:0,sessionId:''}};
+let playerContext={key:'',rosterId:'',playerName:'',source:'LOCAL',originView:'players',hubOrigin:'players',originSessionId:'',view:'hub',analyticsRange:'all',history:{search:'',sort:'newest',range:'all',scrollTop:0,sessionId:''},navigation:{current:'players',previous:'',returnTarget:'players',sessionReturnTarget:'playerHistory',preserveScroll:true,scroll:{players:0,playerHub:0,playerHistory:0,analytics:0,scoreHistory:0}}};
 let appDb=null; let dbReady=false; let dbMode='初始化中'; let dbPersistTimer=null; let pendingRestorePayload=null; let pwaRegistration=null; let pendingServiceWorker=null; let reloadingForUpdate=false;
 let syncTimer=null; let syncPushTimer=null; let syncBusy=false; let syncDirty=false; let syncApplyingRemote=false; let syncRemotePresence={}; let syncLastError='';
 let personalData={profile:null,claims:[],games:[],revision:0,lastSyncAt:0,autoSync:true,updatedAt:0}; let personalTimer=null; let personalPushTimer=null; let personalBusy=false; let personalDirty=false; let personalLastError='';
@@ -1594,11 +1594,8 @@ function renderHistoryMode(){
   if(detail&&playerDirectoryView==='history')renderPlayerHubHistory();
   if(detail&&playerDirectoryView==='analytics')renderStats();
 }
-function setHistoryMode(mode){historyMode=mode==='players'?'players':'scores';playerDirectoryDetail=false;playerDirectoryView='list';renderHistoryMode()}
-function closePlayerAnalytics(){
-  historyMode='players';playerDirectoryDetail=true;playerDirectoryView='hub';playerContext.view='hub';renderHistoryMode();
-  requestAnimationFrame(()=>$('playerHubPanel')?.scrollIntoView({behavior:'smooth',block:'start'}));
-}
+function setHistoryMode(mode){capturePlayerNavigationScroll(playerNavigation().current);historyMode=mode==='players'?'players':'scores';playerDirectoryDetail=false;playerDirectoryView='list';const nav=playerNavigation();nav.previous=nav.current;nav.current=historyMode==='players'?'players':'scoreHistory';nav.returnTarget=nav.current;renderHistoryMode();restorePlayerNavigationScroll(nav.current)}
+function closePlayerAnalytics(){returnPlayerContext('playerHub')}
 function mean1(nums){return nums.length?Math.round((nums.reduce((a,b)=>a+b,0)/nums.length)*10)/10:null}
 function analyticsPlayerNames(){return playerDirectoryRows().map(r=>({key:r.key,name:r.name,alias:r.meta?.alias||''}))}
 function playerCareerGames(ref){let key='';if(ref&&typeof ref==='object')key=String(ref.key||'');else if(typeof ref==='string'){key=(ref.startsWith('roster:')||ref.startsWith('name:'))?ref:playerIdentity(ref).key}if(!key)return [];return unifiedPlayerGames().filter(g=>g.playerKey===key).sort((a,b)=>String(a.date).localeCompare(String(b.date))||a.createdAt-b.createdAt||(a.gameNo||0)-(b.gameNo||0))}
@@ -1710,8 +1707,7 @@ function renderStats(){
 }
 function openPlayerAnalytics(ref){
   if(ref&&!setPlayerContext(ref,{view:'analytics'}))return;if(!ensurePlayerContext())return;
-  historyMode='players';playerDirectoryDetail=true;playerDirectoryView='analytics';playerContext.view='analytics';switchView('historyView');renderHistoryMode();
-  requestAnimationFrame(()=>$('playerAnalyticsPanel')?.scrollIntoView({behavior:'smooth',block:'start'}));
+  navigatePlayerContext('analytics',{returnTarget:'playerHub',top:true});
 }
 function blankOcrRows(n=6){return Array.from({length:n},()=>({name:'',scores:Array(6).fill(null),nameConf:100,scoreConf:Array(6).fill(100),nameOriginal:'',scoreOriginal:Array(6).fill(null),nameRawText:'',scoreRawText:Array(6).fill(''),nameCrop:'',scoreCrops:Array(6).fill(''),nameVerified:false,scoreVerified:Array(6).fill(false),nameModified:false,scoreModified:Array(6).fill(false),namePasses:0,scorePasses:Array(6).fill(0)}))}
 function hydrateCandidate(r={}){return {name:String(r.name||''),scores:Array.from({length:6},(_,i)=>normalizeScore((r.scores||[])[i])),nameConf:Number.isFinite(r.nameConf)?r.nameConf:100,scoreConf:Array.from({length:6},(_,i)=>Number.isFinite((r.scoreConf||[])[i])?(r.scoreConf||[])[i]:100),nameOriginal:String(typeof r.nameOriginal==='undefined'?(r.name||''):r.nameOriginal),scoreOriginal:Array.from({length:6},(_,i)=>normalizeScore((r.scoreOriginal||r.scores||[])[i])),nameRawText:String(r.nameRawText||''),scoreRawText:Array.from({length:6},(_,i)=>String((r.scoreRawText||[])[i]||'')),nameCrop:String(r.nameCrop||''),scoreCrops:Array.from({length:6},(_,i)=>String((r.scoreCrops||[])[i]||'')),nameVerified:!!r.nameVerified,scoreVerified:Array.from({length:6},(_,i)=>!!(r.scoreVerified||[])[i]),nameModified:!!r.nameModified,scoreModified:Array.from({length:6},(_,i)=>!!(r.scoreModified||[])[i]),namePasses:Number(r.namePasses)||0,scorePasses:Array.from({length:6},(_,i)=>Number((r.scorePasses||[])[i])||0)}}
@@ -2266,6 +2262,44 @@ function ensurePlayerContext(){
   const rows=playerDirectoryRows(),first=rows.find(r=>r.games>0)||rows[0];
   return first?setPlayerContext(first,{view:playerContext.view||'hub'}):false;
 }
+function playerNavigation(){
+  if(!playerContext.navigation||typeof playerContext.navigation!=='object')playerContext.navigation={};
+  const nav=playerContext.navigation;
+  nav.current=nav.current||'players';nav.previous=nav.previous||'';nav.returnTarget=nav.returnTarget||'players';nav.sessionReturnTarget=nav.sessionReturnTarget||'playerHistory';nav.preserveScroll=nav.preserveScroll!==false;
+  nav.scroll=nav.scroll&&typeof nav.scroll==='object'?nav.scroll:{};
+  for(const key of ['players','playerHub','playerHistory','analytics','scoreHistory'])if(!Number.isFinite(nav.scroll[key]))nav.scroll[key]=0;
+  return nav;
+}
+function capturePlayerNavigationScroll(target){
+  const nav=playerNavigation(),key=target||nav.current;if(Object.prototype.hasOwnProperty.call(nav.scroll,key))nav.scroll[key]=window.scrollY||0;
+  if(key==='playerHistory')playerContext.history.scrollTop=nav.scroll.playerHistory||0;
+}
+function restorePlayerNavigationScroll(target,options={}){
+  const nav=playerNavigation();if(nav.preserveScroll===false||options.top===true){window.scrollTo({top:0,behavior:'auto'});return}
+  const top=Number.isFinite(options.scrollTop)?options.scrollTop:(nav.scroll[target]||0);
+  requestAnimationFrame(()=>window.scrollTo({top,behavior:options.behavior||'auto'}));
+}
+function navigatePlayerContext(target,options={}){
+  const nav=playerNavigation(),from=nav.current||'players';
+  if(options.capture!==false)capturePlayerNavigationScroll(from);
+  nav.previous=from;nav.current=target;
+  if(options.returnTarget)nav.returnTarget=options.returnTarget;
+  if(options.sessionReturnTarget)nav.sessionReturnTarget=options.sessionReturnTarget;
+  if(target==='players'){historyMode='players';playerDirectoryDetail=false;playerDirectoryView='list';playerContext.view='hub'}
+  else if(target==='scoreHistory'){historyMode='scores';playerDirectoryDetail=false;playerDirectoryView='list'}
+  else if(target==='playerHub'){historyMode='players';playerDirectoryDetail=true;playerDirectoryView='hub';playerContext.view='hub'}
+  else if(target==='playerHistory'){historyMode='players';playerDirectoryDetail=true;playerDirectoryView='history';playerContext.view='history'}
+  else if(target==='analytics'){historyMode='players';playerDirectoryDetail=true;playerDirectoryView='analytics';playerContext.view='analytics'}
+  switchView('historyView');
+  if(target==='scoreHistory')renderHistory();else renderHistoryMode();
+  restorePlayerNavigationScroll(target,{top:options.top===true,scrollTop:options.scrollTop,behavior:options.behavior});
+}
+function returnPlayerContext(fallback='players'){
+  const nav=playerNavigation(),target=nav.returnTarget||fallback;
+  if(target==='playerHub'&&!playerRow(playerContext.key)){navigatePlayerContext('players',{capture:false});return}
+  if(target==='scoreHistory'&&playerContext.originSessionId&&!unifiedHistoryRecords().some(x=>x.id===playerContext.originSessionId)){navigatePlayerContext('players',{capture:false});return}
+  navigatePlayerContext(target,{capture:true});
+}
 function playerSourceText(source){return source==='PUBLIC'?'公開球員':source==='MIXED'?'本機＋公開':'本機球員'}
 function renderPlayerHub(){
   if(!ensurePlayerContext())return;const row=playerRow(playerContext.key);if(!row)return;
@@ -2279,18 +2313,13 @@ function renderPlayerHub(){
   $('playerHubEditBtn').hidden=row.source==='PUBLIC';$('playerHubEditBtn').textContent=row.meta?'編輯球員資料':'新增球員資料';
 }
 function openPlayerHub(ref,options={}){
-  if(!setPlayerContext(ref,{view:'hub',originView:options.origin||'players',hubOrigin:options.origin||'players',originSessionId:options.sessionId||''}))return;
-  historyMode='players';playerDirectoryDetail=true;playerDirectoryView='hub';switchView('historyView');renderHistoryMode();
-  requestAnimationFrame(()=>$('playerHubPanel')?.scrollIntoView({behavior:'smooth',block:'start'}));
+  const origin=options.origin||'players',returnTarget=origin==='session'?'scoreHistory':'players';
+  capturePlayerNavigationScroll(returnTarget);
+  if(!setPlayerContext(ref,{view:'hub',originView:origin,hubOrigin:origin,originSessionId:options.sessionId||''}))return;
+  const nav=playerNavigation();nav.current=returnTarget;nav.returnTarget=returnTarget;
+  navigatePlayerContext('playerHub',{returnTarget,top:true,capture:false});
 }
-function closePlayerHub(){
-  const origin=playerContext.hubOrigin,sessionId=playerContext.originSessionId;playerDirectoryDetail=false;playerDirectoryView='list';
-  if(origin==='session'&&sessionId){
-    historyMode='scores';switchView('historyView');renderHistory();
-    requestAnimationFrame(()=>document.querySelector('[data-id="'+CSS.escape(sessionId)+'"]')?.closest('.session')?.scrollIntoView({behavior:'smooth',block:'center'}));return;
-  }
-  historyMode='players';renderHistoryMode();requestAnimationFrame(()=>$('historyPlayersPanel')?.scrollIntoView({behavior:'smooth',block:'start'}));
-}
+function closePlayerHub(){returnPlayerContext('players')}
 function playerHistoryFilteredGames(){
   let games=playerCareerGames(playerContext.key),range=playerContext.history.range||'all';
   games=filterAnalyticsGames(games,range);
@@ -2310,18 +2339,19 @@ function renderPlayerHubHistory(){
     return '<article class="player-history-session"><div class="player-history-session-head"><div><h3>'+esc(fmtDate(x.date))+' · '+esc(x.title)+'</h3><div class="player-history-session-meta">'+meta+'</div></div>'+detail+'</div><div class="player-history-scores">'+chips+'</div></article>';
   }).join('');
 }
-function openPlayerHistory(){if(!ensurePlayerContext())return;playerContext.view='history';playerDirectoryDetail=true;playerDirectoryView='history';historyMode='players';renderHistoryMode();requestAnimationFrame(()=>$('playerHistoryPanel')?.scrollIntoView({behavior:'smooth',block:'start'}))}
-function closePlayerHistory(){playerContext.view='hub';playerDirectoryView='hub';renderHistoryMode();requestAnimationFrame(()=>$('playerHubPanel')?.scrollIntoView({behavior:'smooth',block:'start'}))}
+function openPlayerHistory(){if(!ensurePlayerContext())return;navigatePlayerContext('playerHistory',{returnTarget:'playerHub',top:true})}
+function closePlayerHistory(){returnPlayerContext('playerHub')}
 function openPlayerSessionDetail(sessionId){
   const rec=unifiedHistoryRecords().find(x=>x.id===sessionId),ctx=playerRow(playerContext.key);if(!rec||!ctx){flash('這筆紀錄目前已不存在。','err');renderPlayerHubHistory();return}
   const s=rec.session,p=(s.players||[]).find(x=>playerIdentity(x.name).key===ctx.key);if(!p){flash('這位球員已不在該場紀錄中。','err');renderPlayerHubHistory();return}
-  playerContext.history.scrollTop=window.scrollY||0;playerContext.history.sessionId=sessionId;
+  capturePlayerNavigationScroll('playerHistory');playerContext.history.scrollTop=playerNavigation().scroll.playerHistory||window.scrollY||0;playerContext.history.sessionId=sessionId;
+  const nav=playerNavigation();nav.previous=nav.current;nav.current='sessionDetail';nav.sessionReturnTarget='playerHistory';
   const scores=(p.scores||[]).map(normalizeScore).map((v,i)=>({v,i})).filter(x=>x.v!==null);
   $('playerSessionTitle').textContent=fmtDate(s.date)+' · '+(rec.meetup?.title||s.venue||'球聚');$('playerSessionMeta').textContent=(ctx.meta?.alias||ctx.name)+' · '+(s.venue||'未填球館')+(s.lane?' · 球道 '+s.lane:'');
   $('playerSessionScores').innerHTML=scores.map(x=>'<span class="player-history-score-chip">第 '+(x.i+1)+' 局 · '+x.v+'</span>').join('');
   const d=$('playerSessionDialog');if(d.showModal)d.showModal();else d.setAttribute('open','');
 }
-function closePlayerSessionDetail(){const d=$('playerSessionDialog');if(d.open&&d.close)d.close();else d.removeAttribute('open');requestAnimationFrame(()=>window.scrollTo({top:playerContext.history.scrollTop||0,behavior:'auto'}))}
+function closePlayerSessionDetail(){const d=$('playerSessionDialog');if(d.open&&d.close)d.close();else d.removeAttribute('open');const nav=playerNavigation();nav.previous='sessionDetail';nav.current=nav.sessionReturnTarget||'playerHistory';if(nav.current!=='playerHistory'){navigatePlayerContext(nav.current,{capture:false});return}restorePlayerNavigationScroll('playerHistory',{scrollTop:playerContext.history.scrollTop||nav.scroll.playerHistory||0})}
 
 function rosterStats(ref){const row=playerRow(ref);return {games:row?.games||0,avg:row?.avg??null,best:row?.best??null}}
 function resetRosterForm(){$('rosterEditId').value='';$('rosterName').value='';$('rosterAlias').value='';$('rosterNote').value='';$('rosterFormTitle').textContent='新增球員資料';$('saveRosterBtn').textContent='儲存球員資料';$('cancelRosterEditBtn').hidden=true}
