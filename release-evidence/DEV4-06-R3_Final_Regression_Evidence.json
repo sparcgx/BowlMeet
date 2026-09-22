@@ -1,0 +1,61 @@
+{
+  "gate": "DEV4-06-R3｜Final Regression Evidence & Release Gate",
+  "testedCommit": "6f8462d89545948bffd35b520d793858565efd72",
+  "testedVersion": "0.4.5-dev.4-R2",
+  "generatedAt": "2026-09-22T07:11:31.194Z",
+  "automatedSummary": {
+    "total": 20,
+    "pass": 20,
+    "fail": 0
+  },
+  "manualAcceptance": {
+    "status": "PASS",
+    "confirmedBy": "User",
+    "confirmedDate": "2026-09-22",
+    "total": 10,
+    "pass": 10,
+    "fail": 0,
+    "matrix": "DEV4-06-R2 10-item device regression"
+  },
+  "releaseDecision": "RC_CANDIDATE_READY",
+  "scopeSafety": {
+    "applicationCodeChangedInR3": false,
+    "appVersionChangedInR3": false,
+    "dataFormatChanged": false,
+    "supabaseSchemaChanged": false,
+    "mainChanged": false,
+    "stableChanged": false,
+    "formalPublicChanged": false
+  },
+  "artifactHashes": {
+    "index.html": "2cfc9990947716acce1a0a23a8e70756fd75b2858371695b1f73c73118dc99c0",
+    "preview/v0.4.5-dev.4/index.html": "623a2985095deb3199670bbb638c00df66ce429057c9e03270f4d76018f391ea",
+    "manifest.webmanifest": "0253987b2d9e8a9fbf3a206e7311b9921305ccbe95d4426248f23905c34341fe",
+    "preview/v0.4.5-dev.4/manifest.webmanifest": "6dfe5c1a71b9fee5a105cb75b06dc10a469601c56e965362963c1c190e07777d",
+    "sw.js": "97d2139a81de41091cde9f71de7e76b9814381076e635113240031b32095ebac",
+    "preview/v0.4.5-dev.4/sw.js": "e05f94924de74a7b0aa1e1fce9e537ea92bb8ce8810349f45fcd4ba00095e0e6"
+  },
+  "automatedChecks": [
+    "root-js-syntax",
+    "root-duplicate-id",
+    "root-dom-ref",
+    "root-duplicate-function",
+    "preview-js-syntax",
+    "preview-duplicate-id",
+    "preview-dom-ref",
+    "preview-duplicate-function",
+    "root-service-worker",
+    "preview-service-worker",
+    "root-manifest",
+    "preview-manifest",
+    "root-version",
+    "preview-version",
+    "root-context-contract",
+    "preview-context-contract",
+    "preview-storage-isolation",
+    "preview-cache-isolation",
+    "supabase-schema",
+    "git-diff-check"
+  ],
+  "nextStage": "v0.4.5-RC.1｜Release Candidate Integration & Freeze Gate"
+}

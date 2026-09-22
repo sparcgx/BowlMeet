@@ -1,6 +1,6 @@
 const PREVIEW_CACHE_PREFIX='bowlmeet-preview-v045d4-';
-const CACHE=PREVIEW_CACHE_PREFIX+'shell';
-const RUNTIME=PREVIEW_CACHE_PREFIX+'runtime';
+const CACHE=PREVIEW_CACHE_PREFIX+'r2-shell';
+const RUNTIME=PREVIEW_CACHE_PREFIX+'r2-runtime';
 const APP_SHELL=['./','./index.html','./manifest.webmanifest','../../icons/icon-192.png','../../icons/icon-512.png','../../icons/icon-maskable-512.png'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(APP_SHELL)))});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith(PREVIEW_CACHE_PREFIX)&&k!==CACHE&&k!==RUNTIME).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});

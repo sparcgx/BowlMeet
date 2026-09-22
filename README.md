@@ -1,6 +1,59 @@
-# BowlMeet v0.4.4-R1-HF1 — Frame Input Focus & Scroll Hotfix
+# BowlMeet v0.4.5 — Stable / PUBLIC
+
+`v0.4.5` 已由 Freeze Certified `v0.4.5-RC.1` 正式升版，並通過 Stable Promotion & PUBLIC Release Gate。正式應用維持既有 `PUBLIC` Cloud、Storage 與資料格式；本次 promotion 不執行 Supabase migration，也不改寫既有 PUBLIC 資料。
+
+## v0.4.5 Stable Release
+
+- 認證來源：`v0.4.5-RC.1`，Automated 22/22、R2 Manual 10/10、RC Device 8/8，合計 40/40 PASS。
+- 正式版本：`APP_VERSION = 0.4.5`。
+- PWA Cache：`bowlmeet-v0.4.5-stable-*`。
+- 正式 Cloud：沿用 `PUBLIC`；Preview `V45D41` 保持隔離與唯讀保存。
+- Session / Backup / Roster / Personal Data / Public tombstone 格式不變。
+- Supabase schema 與 production patch 維持 promotion 前 `main` 基線，未部署 migration。
+- 發佈治理：經 `release/v0.4.5` PR 合併至 `main`，並建立 `stable/v0.4.5` recovery branch。
+
+## Development history
 
 BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，建立玩家並進行標準 10 格即時計分。
+
+## v0.4.5-dev.3 Player Hub & History
+
+- 開發基線：`v0.4.5-dev.2`（Validation Complete）。
+- 新增 runtime-only Unified Player Context；不寫入 Session / Backup / Roster metadata / Supabase schema。
+- 「成績紀錄 → 球員」升級為 Player Hub，整合總局數、AVG、PB、最近 5 局、最近球聚。
+- Player Hub 可進入既有 Analytics 或 Unified Player History；不建立第二套歷史或分析資料。
+- Unified History 的球員名稱可直接進 Player Hub；返回會回原球員／原成績位置。
+- Analytics 球員切換改由 Player Context 驅動，分析範圍保留 all / 5 / 10 / 20 / 50 / year。
+- PUBLIC-only Player Hub / History / Analytics 維持唯讀；Roster 寫入亦加入 guard。
+- Legacy `switchView('statsView')` 繼續相容。
+- 正式 `main` 與正式 PUBLIC 不在本 branch 修改。
+
+### v0.4.5-dev.3 Automated Gate
+
+- JavaScript syntax ✅ PASS
+- Static HTML duplicate ID ✅ 0
+- Literal DOM reference missing ✅ 0
+- Duplicate function declaration ✅ 0
+- Unified Player Context fixture regression ✅ PASS
+- LOCAL / PUBLIC / MIXED identity state ✅ PASS
+- Analytics year / recent-N range regression ✅ PASS
+- Player Hub → Analytics → 返回 Player Hub ✅ Contract PASS
+- Player Hub → History → Session → 返回 ✅ Contract PASS
+- PUBLIC-only Player Hub / Roster action guard ✅ PASS
+- Legacy `switchView('statsView')` alias ✅ PASS
+- Supabase schema SHA 與 dev.2 相同 ✅ `33689e39edcee5b25250a83ec472fa30dce379c9`
+- Supabase Performance Advisor ✅ 0 findings
+- Device Preview：`/preview/v0.4.5-dev.3/` ✅ Pages deployment success
+- Preview Cloud：`V45D31`，由 dev.2 Preview `V45D23` 複製測試快照
+- Preview IndexedDB：`bowlmeet.preview.v045d3.local` ✅ Isolated
+- Preview Cache：`bowlmeet-preview-v045d3-` ✅ Isolated
+- Preview localStorage：`bowlmeet.preview.v045d3.*` ✅ Isolated
+- 真實快照回歸：千淯 8 / AVG 146.5 / PB 184；志強 8 / 122.0 / 166；軒豪 8 / 118.8 / 152；雅 3 / 163.7 / 188；毅雯 3 / 78.0 / 82
+- 正式 `main` APP_VERSION ✅ `0.4.4-R1-HF1`
+- 正式 PUBLIC ✅ revision 23 未變更
+- 狀態：**Device Preview & Automated Live Regression PASS / Manual Device Acceptance Pending**
+
+
 
 ## v0.4.4-dev.1 開發重點
 
@@ -13,6 +66,100 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 - 公開控制狀態會納入本機安全快照與完整備份。
 - 跨版本防復活由 Supabase `bowling_group_push` 保留 `recordControls` tombstone；`supabase_v044_public_record_control_patch.sql` 已於 2026-09-22 套用至 BowlMeet Supabase。
 - v0.4.3.3-R1 仍為 Stable / Freeze Baseline；本版在 `v0.4.4-dev.1` 分支開發。
+
+## v0.4.5-dev.2 Player Analytics Integration
+
+- 開發基線：`v0.4.5-dev.1`（Validation Complete）。
+- 移除頂層「個人分析」主選單。
+- 球員分析正式整合到「成績紀錄 → 球員」流程。
+- 操作路徑改為：球員總覽 → 分析 → 返回球員。
+- 分析畫面沿用既有 KPI、PB、趨勢、近期狀態、逐格表現與個人歷史。
+- 球員切換與分析範圍仍可在分析頁直接調整。
+- 舊 `switchView('statsView')` 保留相容 alias，會導向「成績紀錄 → 球員分析」。
+- 不建立第二套分析資料；沿用 dev.1 的 Unified History / Player Directory。
+- 不修改 Session / Roster metadata / Backup / Supabase 正式資料模型。
+
+### v0.4.5-dev.2 Automated Gate
+
+- JavaScript syntax ✅ PASS
+- Static HTML duplicate ID ✅ 0
+- Literal DOM reference missing ✅ 0
+- 頂層「個人分析」主選單移除 ✅ PASS
+- 獨立 `statsView` 移除 ✅ PASS
+- 球員分析內嵌 History ✅ PASS
+- 球員總覽 → 分析 ✅ PASS
+- 分析 → 返回球員 ✅ PASS
+- 成績 / 球員模式切換不互相污染 ✅ PASS
+- Legacy `statsView` route alias ✅ PASS
+- Public-only 球員分析資料來源維持 Unified History ✅ PASS
+- Device Preview：`/preview/v0.4.5-dev.2/` ✅ Ready
+- Preview Cloud：`V45D23`，已複製目前 PUBLIC 歷史快照
+- Preview localStorage / IndexedDB / Cache ✅ Isolated
+- 真實快照球員分析：千淯 8 局 / AVG 146.5 / PB 184；志強 8 / 122.0 / 166；軒豪 8 / 118.8 / 152；雅 3 / 163.7 / 188；毅雯 3 / 78.0 / 82
+- 球員總覽 → 分析 → 返回球員 ✅ Automated State Regression PASS
+- 正式 `main` 仍為 `v0.4.4-R1-HF1` ✅ 未變更
+- 正式 PUBLIC revision 23 ✅ 未由 dev.2 改寫
+- 狀態：**Device Preview & Automated Live Regression PASS / Manual Device Acceptance Pending**
+
+## v0.4.5-dev.1 Manual Device Acceptance
+
+- 獨立「球員名冊」主選單已移除 ✅ PASS
+- 成績紀錄內「成績 / 球員」切換 ✅ PASS
+- 歷史球員不需同步即可自動出現 ✅ PASS
+- PUBLIC-only 球員可直接顯示 ✅ PASS
+- 球員局數 / AVG / PB 顯示正常 ✅ PASS
+- 球員分析可直接開啟 ✅ PASS
+- 新增暱稱 / 備註等 Metadata ✅ PASS
+- Metadata 移除後歷史球員仍保留 ✅ PASS
+- 關閉 / 重新開啟 Preview 後資料一致 ✅ PASS
+- Preview / Stable / PUBLIC 資料隔離 ✅ PASS
+- 結論：**v0.4.5-dev.1 Validation Complete**
+
+## v0.4.5-dev.1 Unified History & Player Directory
+
+- 開發基線：`stable/v0.4.4-R1-HF1`。
+- 移除獨立「球員名冊」主選單。
+- 「成績紀錄」新增二級頁籤：**成績 / 球員**。
+- 球員頁直接由 Unified History（本機＋公開、Session ID 去重）與 Legacy 成績衍生，不需要手動同步。
+- Roster 不再作為歷史球員來源，只保留暱稱、備註、常用等附加資料。
+- 新成績、公開匯入與舊資料 migration 不再自動複製姓名到 Roster。
+- 歷史球員沒有 Roster metadata 仍會出現在球員頁。
+- 移除 Roster metadata 不會移除球員，也不會刪除歷史成績。
+- 手動建立、尚無成績的常用球員仍會出現在球員頁。
+- 球員總覽顯示局數、平均、PB、最近 5 局與資料狀態。
+- Public-only 球員可以直接進個人分析；總分型統計與 PB 使用 Unified History。
+- Strike / Spare / Open 逐格分析可讀取 Unified History 中有完整 bowlingFrames 的 Session。
+- 舊 `switchView('rosterView')` 保留相容 alias，會導向「成績紀錄 → 球員」。
+- 完整備份仍保存 Roster metadata；History / Session 資料模型不變。
+
+### v0.4.5-dev.1 Automated Gate
+
+- JavaScript syntax ✅ PASS
+- Static HTML duplicate ID ✅ 0
+- Literal DOM reference missing ✅ 0
+- 獨立球員名冊主選單移除 ✅ PASS
+- 成績 / 球員二級切換 ✅ PASS
+- PUBLIC-only 歷史球員自動出現 ✅ PASS
+- Local + Public + Legacy 球員整合 ✅ PASS
+- 無正式分數的純歷史姓名不誤列 ✅ PASS
+- Roster metadata 與歷史統計合併 ✅ PASS
+- Metadata 移除後歷史球員仍存在 ✅ PASS
+- Public-only 個人分析 ✅ PASS
+- Public-only 連續 3 局 PB ✅ PASS
+- 歷史姓名自動寫入 Roster 行為 ✅ 已移除
+- Device Preview：`/preview/v0.4.5-dev.1/` ✅ Ready
+- Preview Cloud：`V45D22`，已複製目前 PUBLIC 歷史快照
+- Preview localStorage / IndexedDB / Cache ✅ Isolated
+- 正式 `main` 維持 `v0.4.4-R1-HF1` ✅ 未變更
+- 正式 PUBLIC revision 23 / 2 sessions / 2 meetups ✅ 未由 dev.1 改寫
+- 真實 Preview Cloud `V45D22` 快照：5 位歷史球員 / 30 局正式分數 ✅
+- 球員頁無需同步即可直接由 Unified History 產生 ✅ PASS
+- 真實快照基準：千淯 8 局 / AVG 147 / PB 184；志強 8 / 122 / 166；軒豪 8 / 119 / 152；雅 3 / 164 / 188；毅雯 3 / 78 / 82
+- Branch / Preview JavaScript syntax ✅ PASS
+- Branch / Preview Duplicate ID ✅ 0
+- Branch / Preview Missing DOM reference ✅ 0
+- 正式 `main` 仍為 `v0.4.4-R1-HF1` ✅ 未變更
+- 狀態：**Device Preview & Live Regression PASS / dev.1 Validation Complete**
 
 ## GitHub Pages 部署
 
@@ -524,3 +671,190 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - 移除已廢棄的獨立公開歷史 UI renderer 與不存在的 Group History DOM 參照；保留公開雲端 Pull / Push / Merge 底層。
 - 清理使用者可見的舊版 v0.4.1 PWA / Data Safety 文字。
 - 更新 manifest、deployment-test 與 README，使說明符合目前 Field-First、Unified Score History 與 Settings 架構。
+
+
+## v0.4.5-dev.4 Player Experience & Session Navigation Polish
+
+**Status: DEV4-06-R3 Final Regression Evidence & Release Gate — 20/20 Automated PASS + 10/10 Manual PASS / RC Candidate Ready**
+
+### Scope
+- DEV4-01 — Player Navigation State Polish ✅ Architecture / Integration Complete
+- DEV4-02 — Player Hub Quick Actions & Compact UX ✅ Integration Complete
+- DEV4-03 — Player History Session Navigation Polish ✅ Integration Complete
+- DEV4-04 — Analytics Return / Player Switch Context Polish ✅ Integration Complete
+- DEV4-05 — Mobile Interaction & Accessibility Polish ✅ Integration Complete
+- DEV4-06 — PUBLIC Guard / Regression / RC Readiness ✅ Automated Gate Complete
+
+### DEV4-01 Result
+- Added one canonical Player navigation state for Players / Player Hub / Player History / Analytics / Session Detail / Unified Score History.
+- Player Hub now remembers whether it was entered from the player list or a score-history session.
+- Analytics and Player History return to the same Player Hub and preserve the Hub parent return target.
+- Session Detail returns to the same Player History position without resetting player, search, range, or sort state.
+- Player History scroll position is captured before Session Detail opens and restored after close.
+- Missing origin session falls back safely to the player list.
+- Navigation state remains UI/session-only; no Backup, Roster, IndexedDB schema, or Supabase schema changes.
+
+### DEV4-02 Result
+- Reduced Player Hub KPI cards from five to four core metrics: games, career average, PB, and recent-5 average.
+- Moved latest meetup into one compact context strip instead of a full KPI card.
+- Added direct “查看最近一場” quick action when a valid session exists.
+- Direct latest-session detail returns to the same Player Hub instead of detouring through Player History.
+- Consolidated primary actions to “分析” and “歷史紀錄”; player metadata editing is a compact secondary action.
+- PUBLIC-only players still hide local player metadata editing while retaining read-only analytics/history/session viewing.
+- Player Hub back label now reflects its real parent: 球員 or 成績紀錄.
+- Mobile Hub uses a compact 2×2 KPI layout and sticky two-action bar with safe-area support.
+- No Player / History / Analytics data duplication and no storage/schema format changes.
+
+### DEV4-03 Result
+- Player History and Session Detail now share one grouped-session sequence derived from the current player history filters.
+- Added previous / next session navigation inside Session Detail without closing and reopening the history page.
+- Session position shows the current place in the active sequence (for example 2 / 5 場).
+- Session Detail now includes compact game count, session average, and session-high summary.
+- Returning from Session Detail preserves player, search, range, sort, and original Player History scroll position.
+- Direct “查看最近一場” from Player Hub uses the same Session Detail but returns directly to Player Hub.
+- Session Detail close label reflects the actual parent: 返回歷史 or 返回 Player Hub.
+- Dialog backdrop / Escape close use the same controlled return path; desktop Left / Right arrow keys switch sessions.
+- Mobile Session Detail navigation is sticky with safe-area support.
+- No new history/session data source, no Backup/IndexedDB/Supabase schema change.
+
+### DEV4-04 Result
+- Analytics now shows the active player and LOCAL / MIXED / PUBLIC source directly in the analysis header.
+- Player switching stays inside Analytics, preserves the selected analytics range, and resets only the Analytics scroll position.
+- Old-player presentation is hidden before a player/range context change and restored only after the new render completes, preventing stale metric flashes.
+- Analytics back always returns to the same switched player's Player Hub; the Hub still retains its original parent return target.
+- Added compact section navigation for Trend / PB / Recent / Frame / History to reduce long-page navigation cost.
+- Mobile Analytics keeps player/range context and section navigation sticky while scrolling, with compact two-column controls.
+- Analytics range remains independent from Player History range.
+- PUBLIC-only analytics remains read-only and continues to show unavailable frame metrics as insufficient data rather than inferred zeroes.
+- No analytics data store, Backup/IndexedDB format, Roster metadata, or Supabase schema change.
+
+### DEV4-05 Result
+- Player Hub / History / Analytics / Session Detail mobile controls now use a minimum 44px touch target for primary interactive buttons.
+- Player History search/range/sort and Analytics player/range controls use 16px mobile input text to avoid unintended iOS form zoom.
+- Added safe-area-aware top/bottom spacing for iPhone PWA use and corrected Analytics sticky offsets so controls do not sit underneath the app header.
+- Session Detail is now a contained mobile scroll surface with sticky header/navigation, overscroll containment, and safe-area bottom padding.
+- Added visible keyboard focus treatment across Player surfaces plus controlled focus transfer between Player Hub, History, Analytics, and Session Detail.
+- Session Detail restores focus to its originating action when possible after close.
+- Player History filter summary, Session position, and Analytics player context expose polite live-region updates; History filters now have accessible labels.
+- Analytics section jumps move keyboard focus to the selected section and respect prefers-reduced-motion.
+- Added reduced-motion handling for Player workflow transitions without changing data or navigation state.
+- No Player / History / Analytics data source, Backup/IndexedDB format, Roster metadata, or Supabase schema change.
+
+### DEV4-06 Result
+- Re-ran root and isolated Preview JavaScript/static DOM regression: Syntax PASS, Duplicate ID 0, Missing DOM Ref 0.
+- Confirmed PUBLIC-only Player Hub/Roster local-mutation controls remain hidden and action-layer guards reject PUBLIC-only roster edits.
+- Session edit/delete still resolve only from the local session store; PUBLIC-only sessions remain view/import/public-control surfaces rather than local editable records.
+- Unified History continues to deduplicate LOCAL + PUBLIC by Session ID before Player History / Analytics consumption.
+- Legacy statsView compatibility remains active.
+- Created isolated dev.4 Device Preview at `/preview/v0.4.5-dev.4/`.
+- Preview isolation: Cloud `V45D41`, PIN `045023`, IndexedDB `bowlmeet.preview.v045d4.local`, localStorage prefix `bowlmeet.preview.v045d4.*`, Cache prefix `bowlmeet-preview-v045d4-`.
+- Seeded V45D41 from validated dev.3 fixture: 2 sessions / 2 meetups / 2 record controls; appVersion is `0.4.5-dev.4`.
+- Preview RPC pull succeeds with the Preview PIN and rejects an incorrect PIN.
+- Formal PUBLIC remains revision 23 with 2 sessions / 2 meetups / 2 record controls and appVersion `0.4.4-R1`.
+- Formal main remains `v0.4.4-R1-HF1`.
+- Supabase schema/patch blobs are byte-identical to dev.3; no schema migration was introduced.
+- Supabase Performance Advisor: 0 findings.
+- Supabase Security Advisor reports the existing PIN-RPC architecture warnings (RLS tables intentionally have no direct policies; callable SECURITY DEFINER RPCs validate room/player/group PINs). These are baseline architecture findings, not a dev.4 schema change; no security schema change is included in this UX branch.
+- RC promotion is blocked only on Manual Device Acceptance for the dev.4 Player workflow.
+
+### Manual Device Acceptance — DEV4
+1. 球員列表 → Player Hub → 返回：回原球員列表位置。
+2. 成績紀錄 → 球員 → Player Hub → 返回：回原成績紀錄來源。
+3. Hub → 分析 → 切換球員/範圍 → 返回：回切換後球員 Hub，無舊 KPI 閃現。
+4. Hub → 歷史 → 查看本場 → 上一場/下一場 → 返回：搜尋、範圍、排序、捲動位置保留。
+5. Hub → 查看最近一場 → 返回：直接回同一 Player Hub。
+6. PUBLIC-only 球員：分析/歷史/單場可讀；本機球員資料編輯不可用。
+7. iPhone 直向：按鈕易點、輸入不自動放大、sticky 區域不互相遮擋、Dialog 不超出安全區。
+8. iPhone PWA：頂部/底部 safe area 正常，Session Dialog 可捲動且返回焦點正常。
+9. PUBLIC Preview：取消公開/重新公開只影響 V45D41，不影響正式 PUBLIC。
+10. 重新整理 Preview：正式 main / PUBLIC / 本機正式 Storage 均不被 Preview 污染。
+
+### DEV4-06-R1 Result
+- Manual DEV4 acceptance was reported OK, then a cross-module integration defect was found: 排行榜 / 獎項 / 分享成績 did not consistently follow the same active meetup context.
+- Fixed the three modules to share the canonical current Meetup context instead of preserving unrelated selector state.
+- Selecting a single meetup in 排行榜, 獎項, or 分享成績 now updates the current meetup and synchronizes the other two module selectors.
+- Entering 排行榜 / 獎項 / 分享成績 from the current meetup now opens on that same meetup.
+- 現場「分享成績」、球聚獎項「分享獎項卡」、Post-game Review「分享球聚卡」、History「分享」 now explicitly carry the source Meetup ID into Share.
+- “全部歷史” remains available for Ranking / Share without clearing the current live meetup context.
+- APP_VERSION advanced to `0.4.5-dev.4-R1`; no data schema or storage format change.
+- Isolated Preview remains `V45D41` / PIN `045023`; Preview payload appVersion advanced to `0.4.5-dev.4-R1`.
+- Formal PUBLIC remains revision 23 / appVersion `0.4.4-R1`; formal main root remains `v0.4.4-R1-HF1`.
+- Static regression after the fix: JavaScript Syntax PASS, Duplicate ID 0, Missing DOM Ref 0.
+- RC promotion remains blocked until the targeted cross-module retest passes.
+- Automated targeted contract retest: PASS — canonical Meetup context, Ranking/Awards/Share selector synchronization, source Meetup carry-over, and `全部歷史` non-destructive behavior all verified; manual cross-module device retest remains.
+
+### Targeted Retest — DEV4-06-R1
+1. 現場球聚輸入並完成一局後，開啟排行榜：應自動顯示同一球聚與最新完成局分數。
+2. 從排行榜切到獎項：應維持同一球聚，冠軍／平均王／單局王依同一批成績計算。
+3. 從獎項按「分享獎項卡」：分享頁應維持同一球聚。
+4. 從現場按「分享成績」：分享頁應直接選中目前球聚，而不是全部歷史或上一場球聚。
+5. 在分享成績切換另一場單一球聚後，再開排行榜／獎項：兩者應跟著該球聚。
+6. 排行榜或分享選「全部歷史」時，不應清除目前現場球聚；再按「目前球聚」應能立即回到目前場次。
+
+### DEV4-06-R2｜Cross-Module Sync Regression & Context Safety
+- Hardened the canonical Meetup context so only an existing Meetup ID can be persisted as `activeMeetupId`.
+- Startup, restore, sync, or deletion paths now clear a stale / deleted active Meetup ID before cross-module rendering.
+- Leaderboard and Share always fall back to a valid current Meetup or `全部歷史`; they no longer enter an empty selector state when a stale ID is encountered.
+- Awards falls back to the valid current Meetup or the newest available Meetup.
+- Selecting `全部歷史` in Leaderboard or Share remains display-only and does not clear the canonical current Meetup.
+- APP_VERSION advanced to `0.4.5-dev.4-R2`; no Session / Backup / Roster metadata / Supabase schema change.
+- Isolated Preview remains Cloud `V45D41`, IndexedDB `bowlmeet.preview.v045d4.local`, localStorage `bowlmeet.preview.v045d4.*`; PWA cache revision advanced to the R2 shell/runtime.
+- Formal root `main`, Stable branch, and formal PUBLIC remain unchanged.
+- Root / Preview JavaScript Syntax ✅ PASS
+- Root / Preview Static Duplicate ID ✅ 0
+- Root / Preview Literal DOM Reference Missing ✅ 0
+- Root / Preview Duplicate Function Declaration ✅ 0
+- Canonical Meetup validation / selector synchronization / stale Context cleanup contract ✅ PASS
+- Manifest JSON / `git diff --check` ✅ PASS
+- Supabase schema and patch files ✅ unchanged from dev.3
+
+### Regression Matrix — DEV4-06-R2
+1. 排行榜選單一球聚後，獎項與分享同步相同 Meetup ID。
+2. 獎項選單一球聚後，排行榜與分享同步相同 Meetup ID。
+3. 分享選單一球聚後，排行榜與獎項同步相同 Meetup ID。
+4. 排行榜／分享選「全部歷史」後，`activeMeetupId` 與目前現場球聚保持不變。
+5. 按「目前球聚」可從全部歷史立即返回 canonical Meetup。
+6. 現場、獎項、Post-game Review、成績紀錄分享均攜帶來源 Meetup ID 與正確卡片類型。
+7. 重新整理後，有效 `activeMeetupId` 可恢復並同步三個模組。
+8. 無效／已刪除 `activeMeetupId` 會清除；排行榜與分享回到「全部歷史」，獎項回到有效球聚。
+9. Root 與 isolated Preview：JavaScript Syntax、Duplicate ID、Missing DOM Ref、Context Contract 均須 PASS。
+10. Preview Storage / Cloud / Cache 仍與正式 Stable / PUBLIC 隔離。
+
+### DEV4-06-R3｜Final Regression Evidence & Release Gate
+- Locked the tested artifact to remote Commit `6f8462d89545948bffd35b520d793858565efd72` (`v0.4.5-dev.4-R2`).
+- User device acceptance completed on 2026-09-22: DEV4-06-R2 10-item regression matrix ✅ 10/10 PASS.
+- Re-runnable automated gate: `node tools/dev4-06-r3-release-gate.mjs`.
+- Automated Release Gate ✅ 20/20 PASS / 0 FAIL.
+- Final evidence: `release-evidence/DEV4-06-R3_Final_Regression_Evidence.md` and `.json`.
+- Release decision: `RC_CANDIDATE_READY`.
+- No application code, APP_VERSION, Session / Backup / Roster metadata, Supabase schema, Stable branch, `main`, or formal PUBLIC change is included in R3.
+- Next governed stage: `v0.4.5-RC.1｜Release Candidate Integration & Freeze Gate`; no additional dev.4 feature scope.
+
+## v0.4.5-RC.1｜Release Candidate Integration & Freeze Gate
+
+**Status: FREEZE CERTIFIED — Automated 22/22 PASS + Inherited Manual 10/10 PASS + RC Device 8/8 PASS**
+
+- Promoted only the R3-approved artifact into the dedicated `v0.4.5-RC.1` branch.
+- APP_VERSION, titles, manifests, deployment checks, and PWA cache names advanced to `0.4.5-RC.1`.
+- Created isolated RC Preview at `/preview/v0.4.5-RC.1/`.
+- RC Preview local isolation: IndexedDB `bowlmeet.preview.v045rc1.local`, localStorage `bowlmeet.preview.v045rc1.*`, cache `bowlmeet-preview-v045rc1-*`.
+- RC Preview retains the validated Cloud test environment `V45D41`; no Supabase schema or patch change.
+- Executable application logic is byte-equivalent to the accepted R2 logic after version and isolation constants are normalized.
+- Automated Freeze Gate: 22 PASS / 0 FAIL.
+- R2 manual device acceptance remains inherited as 10 PASS / 0 FAIL.
+- RC-specific device smoke acceptance completed on 2026-09-22: 8 PASS / 0 FAIL.
+- Freeze decision: `FREEZE_CERTIFIED`; P0 / P1 / P2 blockers = 0.
+- This RC.1 branch is now frozen. Future changes require a new version or an explicitly scoped hotfix branch.
+- `main`, Stable branches, and formal PUBLIC remain unchanged.
+- Re-runnable gate: `node tools/v0.4.5-rc1-freeze-gate.mjs`.
+- RC application candidate Commit: `0faf86a59e206b4f6fbfecdca666bb12248c58cd`.
+- Freeze evidence: `release-evidence/v0.4.5-RC.1_Integration_Freeze_Gate.md` and `.json`.
+
+### Guardrails
+- Keep Unified History as the single score/history source.
+- Do not add a second Player / History / Analytics data store.
+- No Supabase schema change.
+- No Session / Backup / Roster metadata format change unless explicitly required.
+- PUBLIC-only players remain read-only.
+- Formal root main and formal PUBLIC are not modified by this development branch.
+- Preserve legacy statsView compatibility until RC regression is complete.

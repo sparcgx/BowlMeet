@@ -1,0 +1,66 @@
+{
+  "gate": "v0.4.5-RC.1｜Release Candidate Integration & Freeze Gate",
+  "sourceEvidenceCommit": "e0237facdd3b9ad5d76003615d58af063dbf86de",
+  "candidateCommit": "0faf86a59e206b4f6fbfecdca666bb12248c58cd",
+  "testedVersion": "0.4.5-RC.1",
+  "generatedAt": "2026-09-22T07:31:10.639Z",
+  "automatedSummary": {
+    "total": 22,
+    "pass": 22,
+    "fail": 0
+  },
+  "inheritedManualAcceptance": {
+    "status": "PASS",
+    "confirmedBy": "User",
+    "confirmedDate": "2026-09-22",
+    "total": 10,
+    "pass": 10,
+    "fail": 0,
+    "matrix": "DEV4-06-R2 10-item device regression"
+  },
+  "rcDeviceAcceptance": {
+    "status": "PASS",
+    "confirmedBy": "User",
+    "confirmedDate": "2026-09-22",
+    "total": 8,
+    "pass": 8,
+    "fail": 0
+  },
+  "combinedSummary": {
+    "total": 40,
+    "pass": 40,
+    "fail": 0
+  },
+  "releaseDecision": "FREEZE_CERTIFIED",
+  "blockers": {
+    "p0": 0,
+    "p1": 0,
+    "p2": 0
+  },
+  "scopeSafety": {
+    "applicationLogicChanged": false,
+    "versionAndIsolationMetadataChanged": true,
+    "dataFormatChanged": false,
+    "supabaseSchemaChanged": false,
+    "mainChanged": false,
+    "stableChanged": false,
+    "formalPublicChanged": false
+  },
+  "previewIsolation": {
+    "cloud": "V45D41",
+    "indexedDb": "bowlmeet.preview.v045rc1.local",
+    "localStoragePrefix": "bowlmeet.preview.v045rc1.",
+    "cachePrefix": "bowlmeet-preview-v045rc1-"
+  },
+  "artifactHashes": {
+    "index.html": "6c9caa2a24911ff6738434ceeebe5a4591a783db584ad5b702e407c28891427d",
+    "preview/v0.4.5-RC.1/index.html": "a9958e336869771daddf5e0924efd8f241ceb5ea5e017c4ff09a9d22067063f2",
+    "manifest.webmanifest": "6d3dfded3665d589d37ccededd936592269833bf2c283e49e4ea481d8856cccc",
+    "preview/v0.4.5-RC.1/manifest.webmanifest": "49bb8b007c952c0abdb108ed5ad77e79209434aa96ebb2f877c72c21e2b2e8ba",
+    "sw.js": "45656d115dc48ec4930704b4513e2a9eb2a8a3db64daf2fec24b6378cb04f6f0",
+    "preview/v0.4.5-RC.1/sw.js": "f3184795cd32bb38759129a0a128a0ca2ac070d81401b77a3c955e738f05fe9e"
+  },
+  "freezeCertifiedDate": "2026-09-22",
+  "immutability": "Frozen RC; future changes require a new version or explicitly scoped hotfix branch",
+  "nextDecision": "Explicit promotion decision for Stable, main, and formal PUBLIC"
+}

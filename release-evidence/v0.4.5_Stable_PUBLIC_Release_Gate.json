@@ -1,0 +1,45 @@
+{
+  "gate": "v0.4.5｜Stable Promotion & PUBLIC Release Gate",
+  "generatedAt": "2026-09-22T09:45:19.738Z",
+  "certifiedRcCommit": "03e7da4d4d77e283e4f3b8544e36ebc71af4204f",
+  "frozenCandidateCommit": "0faf86a59e206b4f6fbfecdca666bb12248c58cd",
+  "testedVersion": "0.4.5",
+  "automatedSummary": { "total": 25, "pass": 25, "fail": 0 },
+  "inheritedCertifiedEvidence": {
+    "automated": { "total": 22, "pass": 22, "fail": 0 },
+    "manualR2": { "total": 10, "pass": 10, "fail": 0 },
+    "rcDevice": { "total": 8, "pass": 8, "fail": 0 },
+    "combined": { "total": 40, "pass": 40, "fail": 0 }
+  },
+  "releaseDecision": "PROMOTION_READY",
+  "blockers": { "p0": 0, "p1": 0, "p2": 0 },
+  "scopeSafety": {
+    "applicationLogicChangedFromCertifiedRc": false,
+    "versionAndCacheMetadataChanged": true,
+    "dataFormatChanged": false,
+    "supabaseMigrationExecuted": false,
+    "publicPayloadWritten": false,
+    "frozenRcModified": false
+  },
+  "prePromotionPublic": {
+    "checkedAt": "2026-09-22T09:42:01Z",
+    "revision": 23,
+    "meetups": 2,
+    "sessions": 2,
+    "recordControls": 2
+  },
+  "productionSqlBlobs": {
+    "supabase_schema.sql": "9d211151b01f8dd0e1a597829e77805ca0e60786",
+    "supabase_v044_public_record_control_patch.sql": "712b29e3c4ad910187b634427b031224f4b8f70b"
+  },
+  "artifactHashes": {
+    "index.html": "ee8478f126f49910506056afc8f22a0fe1b783368c842aaf129b22a10e4a885a",
+    "manifest.webmanifest": "b6d7c4cb41f7171a3ab6e24f67e48c8ce6d72ead61870a76b38ecc7d7728e46f",
+    "sw.js": "dfb7a7ab25de9c1e268925c4232e15744754e9aea15462c32218de00e18c9a9f",
+    "preview/v0.4.5-RC.1/index.html": "a9958e336869771daddf5e0924efd8f241ceb5ea5e017c4ff09a9d22067063f2",
+    "preview/v0.4.5-RC.1/manifest.webmanifest": "49bb8b007c952c0abdb108ed5ad77e79209434aa96ebb2f877c72c21e2b2e8ba",
+    "preview/v0.4.5-RC.1/sw.js": "f3184795cd32bb38759129a0a128a0ca2ac070d81401b77a3c955e738f05fe9e"
+  },
+  "requiredPromotionPath": ["release/v0.4.5", "pull request", "main", "stable/v0.4.5"],
+  "postPromotionRequirement": "PUBLIC revision and counts must remain unchanged"
+}
