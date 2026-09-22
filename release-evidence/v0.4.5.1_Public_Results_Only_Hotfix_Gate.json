@@ -1,0 +1,43 @@
+{
+  "gate": "v0.4.5.1｜Public Results Only Hotfix Gate",
+  "stableSourceCommit": "057a3aa4109f1efd8054c124805a1e0a96913d7d",
+  "testedVersion": "0.4.5.1",
+  "generatedAt": "2026-09-22T14:00:00Z",
+  "automatedSummary": { "total": 29, "pass": 29, "fail": 0 },
+  "releaseDecision": "PROMOTION_READY",
+  "blockers": { "p0": 0, "p1": 0, "p2": 0 },
+  "behavior": {
+    "leaderboardSource": "published PUBLIC sessions only",
+    "shareSource": "published PUBLIC sessions only",
+    "localOnlyExcluded": true,
+    "pendingSyncExcluded": true,
+    "removedPublicExcluded": true,
+    "unpublishedEntryGuard": true
+  },
+  "scopeSafety": {
+    "newScoreStoreCreated": false,
+    "dataFormatChanged": false,
+    "supabaseSchemaChanged": false,
+    "supabaseMigrationExecuted": false,
+    "publicPayloadWritten": false,
+    "stableV045Modified": false,
+    "frozenRcModified": false
+  },
+  "prePromotionPublic": {
+    "revision": 24,
+    "meetups": 3,
+    "sessions": 2,
+    "recordControls": 2,
+    "mutation": "NONE"
+  },
+  "productionSqlBlobs": {
+    "supabase_schema.sql": "9d211151b01f8dd0e1a597829e77805ca0e60786",
+    "supabase_v044_public_record_control_patch.sql": "712b29e3c4ad910187b634427b031224f4b8f70b"
+  },
+  "artifactHashes": {
+    "index.html": "aa58df6e663def2474cfc7f5999ac015f6dde8dc58ab466d912bfe7a828b0de5",
+    "manifest.webmanifest": "8442cf8c6cc8013017330bf08bcc1bbebce8e8e9791387dc417cbc5f18311f79",
+    "sw.js": "2f7dddd42ad3f3d15ef1e701d89d55c753dce0d3915d26135bbf9b0e75a85546"
+  },
+  "promotionPath": ["hotfix/v0.4.5.1-public-results-only", "pull request", "main", "stable/v0.4.5.1"]
+}

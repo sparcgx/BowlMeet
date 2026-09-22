@@ -1,7 +1,7 @@
 {
   "name": "保齡球球聚｜BowlMeet",
   "short_name": "BowlMeet",
-  "description": "BowlMeet（保齡球球聚）v0.4.5 Stable：整合已通過驗收的 Player Navigation、Unified History、PUBLIC Guard 與跨模組球聚 Context。",
+  "description": "BowlMeet（保齡球球聚）v0.4.5.1：排行榜與分享成績只讀取已發布的公開歷史，排除本機未公開與已取消公開紀錄。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
