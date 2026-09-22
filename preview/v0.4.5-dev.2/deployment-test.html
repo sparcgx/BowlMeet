@@ -17,6 +17,7 @@
 <section class="card"><p><strong>Manual Device Acceptance：</strong>HF1 實機測試已 PASS；第 1～10 格連續輸入、後段格位水平捲動、Enter 前進、Strike 跳格與第 10 格操作均正常，不再跳回第 1 格。</p></section>
 <section class="card"><p><strong>Unified Player Directory：</strong>不再需要「從歷史成績同步」。球員頁直接由 Unified History 與 Legacy 成績產生；暱稱／備註等附加資料才寫入 Roster。</p></section>
 <section class="card"><p><strong>Preview Isolation：</strong>dev.2 使用獨立 localStorage / IndexedDB、獨立雲端群組 <code>V45D23</code> 與 <code>bowlmeet-preview-v045d2-*</code> Cache，不讀寫正式 PUBLIC 或 dev.1 Preview。</p></section>
+<section class="card"><p><strong>Automated Live Regression：</strong>V45D23 已載入正式公開歷史快照；球員總覽 → 分析 → 返回球員、Legacy statsView alias、Public-only 球員分析與既有 AVG / PB 統計均已 PASS。正式 main 與 PUBLIC 未變更。</p></section>
 <section class="card" id="checks">
 <div class="row"><span class="label">JavaScript</span><span class="status bad" id="js">未執行</span></div>
 <div class="row"><span class="label">HTTPS / Secure Context</span><span class="status" id="secure">檢查中</span></div>
