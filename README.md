@@ -1,4 +1,4 @@
-# BowlMeet v0.4.4-R1-HF1 — Frame Input Focus & Scroll Hotfix
+# BowlMeet v0.4.4-R1-HF2 — Roster History Sync Hotfix
 
 BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，建立玩家並進行標準 10 格即時計分。
 
@@ -82,6 +82,34 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - PUBLIC tombstone 與 legacy repush 防復活已再次通過 transaction + ROLLBACK。
 - 正式 main 根目錄仍維持 v0.4.3.3-R1；v0.4.4-R1 尚未合併至正式站。
 - 最後 Gate：R1 Preview 實機驗收。
+
+## v0.4.4-R1-HF2 Roster History Sync Hotfix
+
+- Hotfix base：`stable/v0.4.4-R1-HF1`
+- 修正「從歷史成績同步」只讀本機 `allGames()`，導致 PUBLIC / Unified History 球員無法真正加入名冊。
+- 同步前在有網路時先 Pull 最新公開歷史。
+- 來源改為 Unified History（本機＋公開、Session ID 去重、尊重取消公開）＋ Legacy 成績。
+- 只加入至少有一局正式分數的球員。
+- 姓名以 `nameKey()` 去重。
+- 寫入後立即 `persistRoster()`，清除名冊搜尋條件並重新 render。
+- 無任何可同步球員時顯示「目前沒有可加入名冊的歷史成績球員」，不再誤報「已包含所有歷史球員」。
+- 不修改計分資料、Session schema 或正式 PUBLIC payload。
+
+### HF2 Automated Gate
+
+- JavaScript syntax ✅ PASS
+- Duplicate static ID ✅ 0
+- Missing DOM reference ✅ 0
+- Local Session 成績球員 ✅ PASS
+- PUBLIC-only Unified History 球員 ✅ PASS
+- Legacy 成績球員 ✅ PASS
+- 無正式分數玩家不加入 ✅ PASS
+- 大小寫姓名去重 ✅ PASS
+- 寫入 roster + persistRoster ✅ PASS
+- 清除搜尋並立即 render ✅ PASS
+- 第二次同步不重複新增 ✅ PASS
+- 空歷史正確提示 ✅ PASS
+- 狀態：**Hotfix Implementation Complete / Manual Device Acceptance Pending**
 
 ## v0.4.4-R1-HF1 Final Freeze & Stable Promotion
 
