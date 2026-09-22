@@ -1,7 +1,7 @@
 {
   "name": "保齡球球聚｜BowlMeet",
   "short_name": "BowlMeet",
-  "description": "BowlMeet（保齡球球聚）v0.4.5-dev.3：Player Hub 整合 Unified History、球員歷史、分析與返回導航；PUBLIC-only 維持唯讀，不新增第二套資料。",
+  "description": "BowlMeet（保齡球球聚）v0.4.5-dev.4：Player Experience & Session Navigation Polish；精簡 Player Hub、球員歷史、單場紀錄與分析之間的操作與返回導航，不新增第二套資料。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
