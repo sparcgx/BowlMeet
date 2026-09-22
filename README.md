@@ -665,7 +665,7 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 
 ### Scope
 - DEV4-01 — Player Navigation State Polish ✅ Architecture / Integration Complete
-- DEV4-02 — Player Hub Quick Actions & Compact UX
+- DEV4-02 — Player Hub Quick Actions & Compact UX ✅ Integration Complete
 - DEV4-03 — Player History Session Navigation Polish
 - DEV4-04 — Analytics Return / Player Switch Context Polish
 - DEV4-05 — Mobile Interaction & Accessibility Polish
@@ -679,6 +679,17 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - Player History scroll position is captured before Session Detail opens and restored after close.
 - Missing origin session falls back safely to the player list.
 - Navigation state remains UI/session-only; no Backup, Roster, IndexedDB schema, or Supabase schema changes.
+
+### DEV4-02 Result
+- Reduced Player Hub KPI cards from five to four core metrics: games, career average, PB, and recent-5 average.
+- Moved latest meetup into one compact context strip instead of a full KPI card.
+- Added direct “查看最近一場” quick action when a valid session exists.
+- Direct latest-session detail returns to the same Player Hub instead of detouring through Player History.
+- Consolidated primary actions to “分析” and “歷史紀錄”; player metadata editing is a compact secondary action.
+- PUBLIC-only players still hide local player metadata editing while retaining read-only analytics/history/session viewing.
+- Player Hub back label now reflects its real parent: 球員 or 成績紀錄.
+- Mobile Hub uses a compact 2×2 KPI layout and sticky two-action bar with safe-area support.
+- No Player / History / Analytics data duplication and no storage/schema format changes.
 
 ### Guardrails
 - Keep Unified History as the single score/history source.
