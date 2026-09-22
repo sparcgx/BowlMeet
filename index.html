@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.4-R1-HF1</title>
+<title>保齡球球聚｜BowlMeet v0.4.4-R1-HF2</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -369,7 +369,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.4-R1-HF1 · Frame Input Focus & Scroll Hotfix</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.4-R1-HF2 · Roster History Sync Hotfix</p></div></div>
 </div></header>
 <main>
   <nav class="tabs" aria-label="功能切換">
@@ -1094,7 +1094,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.4-R1-HF1 · Frame Input Focus & Scroll Hotfix</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.4-R1-HF2 · Roster History Sync Hotfix</div>
 </main>
 </div>
 <script>
@@ -1118,7 +1118,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.4-R1-HF1';
+const APP_VERSION='0.4.4-R1-HF2';
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
 const BUILTIN_CLOUD=true;
@@ -1253,6 +1253,28 @@ function persistRoster(){localStorage.setItem(ROSTERKEY,JSON.stringify(roster));
 function setCurrentMeetup(id=''){currentMeetupId=id||'';if(currentMeetupId)localStorage.setItem(ACTIVEKEY,currentMeetupId);else localStorage.removeItem(ACTIVEKEY);queueDbStatePersist('active-meetup');renderCurrentMeetup();renderRosterQuickSelect()}
 function nameKey(v){return String(v||'').trim().toLocaleLowerCase('zh-Hant')}
 function syncRosterNames(names){let changed=false;for(const raw of names){const name=String(raw||'').trim();if(!name||roster.some(r=>nameKey(r.name)===nameKey(name)))continue;roster.push({id:uid(),name,alias:'',note:'',active:true,createdAt:Date.now(),updatedAt:Date.now()});changed=true}if(changed)persistRoster();return changed}
+function historyRosterNames(){
+  const names=[],seen=new Set(),add=raw=>{const name=String(raw||'').trim(),key=nameKey(name);if(!name||!key||seen.has(key))return;seen.add(key);names.push(name)};
+  for(const r of legacy){if(normalizeScore(r?.score)!==null)add(r?.player)}
+  for(const row of unifiedHistoryRecords()){
+    for(const p of row.session?.players||[]){
+      const hasOfficial=(p.scores||[]).some(v=>normalizeScore(v)!==null);
+      if(hasOfficial)add(p.name)
+    }
+  }
+  return names
+}
+async function syncRosterFromHistory(){
+  const btn=$('syncRosterBtn'),oldText=btn?.textContent||'從歷史成績同步';if(btn){btn.disabled=true;btn.textContent='同步中…'}
+  try{
+    if(navigator.onLine&&syncConfigured())await groupSyncNow(false,true,'roster-history-sync');
+    const names=historyRosterNames();
+    if(!names.length){$('rosterSearch').value='';renderRoster();alert('目前沒有可加入名冊的歷史成績球員。');return}
+    const before=roster.length;syncRosterNames(names);const added=roster.length-before;
+    $('rosterSearch').value='';renderAll();
+    alert(added>0?`已從歷史成績新增 ${added} 位球員到名冊。`:'名冊已包含目前歷史成績中的所有球員。')
+  }finally{if(btn){btn.disabled=false;btn.textContent=oldText}}
+}
 function migrateV3(){
   let meetupChanged=false,sessionChanged=false;
   for(const s of sessions){
@@ -2388,7 +2410,7 @@ $('importFile').addEventListener('change',async e=>{const f=e.target.files[0];if
 
 $('saveMeetupBtn').addEventListener('click',()=>saveMeetup(false));$('saveStartMeetupBtn').addEventListener('click',()=>saveMeetup(true));$('cancelMeetupEditBtn').addEventListener('click',resetMeetupForm);$('selectAllRosterBtn').addEventListener('click',()=>{const boxes=[...$('meetupRosterPicker').querySelectorAll('input[type=checkbox]')],all=boxes.length&&boxes.every(x=>x.checked);boxes.forEach(x=>x.checked=!all)});$('addManualPlayersBtn').addEventListener('click',addManualMeetupPlayers);$('meetupManualPlayers').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addManualMeetupPlayers()}});$('meetupManualPlayerChips').addEventListener('click',e=>{const b=e.target.closest('[data-remove-manual-player]');if(!b)return;manualMeetupPlayers.splice(Number(b.dataset.removeManualPlayer),1);renderManualMeetupPlayers()});$('recentPlayerChips').addEventListener('click',e=>{const b=e.target.closest('[data-quick-player]');if(b)toggleQuickMeetupPlayer(b.dataset.quickPlayer)});$('reuseRecentPlayersBtn').addEventListener('click',reuseRecentMeetupPlayers);
 $('meetupList').addEventListener('click',e=>{const b=e.target.closest('button[data-mact]');if(!b)return;const id=b.dataset.id,act=b.dataset.mact;if(act==='live')openLiveMeetup(id);else if(act==='start')startMeetup(id);else if(act==='rank')openMeetupLeaderboard(id);else if(act==='awards')openMeetupAwards(id);else if(act==='edit')editMeetup(id);else if(act==='done')setMeetupStatus(id,'done');else if(act==='review')openPostGameReview(id);else if(act==='ongoing')setMeetupStatus(id,'ongoing');else if(act==='del')deleteMeetup(id)});
-$('saveRosterBtn').addEventListener('click',saveRoster);$('cancelRosterEditBtn').addEventListener('click',resetRosterForm);$('rosterSearch').addEventListener('input',renderRoster);$('syncRosterBtn').addEventListener('click',()=>{const before=roster.length;syncRosterNames(allGames().map(g=>g.player));renderAll();alert(roster.length>before?`已新增 ${roster.length-before} 位歷史球員。`:'名冊已包含所有歷史球員。')});$('rosterList').addEventListener('click',e=>{const b=e.target.closest('button[data-ract]');if(!b)return;const r=roster.find(x=>x.id===b.dataset.id);if(b.dataset.ract==='analytics'&&r)openPlayerAnalytics(r.name);else if(b.dataset.ract==='edit')editRoster(b.dataset.id);else if(b.dataset.ract==='del')deleteRoster(b.dataset.id)});
+$('saveRosterBtn').addEventListener('click',saveRoster);$('cancelRosterEditBtn').addEventListener('click',resetRosterForm);$('rosterSearch').addEventListener('input',renderRoster);$('syncRosterBtn').addEventListener('click',syncRosterFromHistory);$('rosterList').addEventListener('click',e=>{const b=e.target.closest('button[data-ract]');if(!b)return;const r=roster.find(x=>x.id===b.dataset.id);if(b.dataset.ract==='analytics'&&r)openPlayerAnalytics(r.name);else if(b.dataset.ract==='edit')editRoster(b.dataset.id);else if(b.dataset.ract==='del')deleteRoster(b.dataset.id)});
 $('quickAddRosterBtn').addEventListener('click',quickAddRoster);$('leaderboardMeetup').addEventListener('change',renderLeaderboard);$('leaderboardMetric').addEventListener('change',renderLeaderboard);$('leaderboardCurrentBtn').addEventListener('click',()=>{if(!currentMeetupId){alert('目前沒有選擇球聚活動。');return}$('leaderboardMeetup').value=currentMeetupId;renderLeaderboard()});
 $('playerAnalyticsPlayer').addEventListener('change',renderStats);$('playerAnalyticsRange').addEventListener('change',renderStats);
 $('awardMeetup').addEventListener('change',renderAwards);$('awardCurrentBtn').addEventListener('click',()=>{if(!currentMeetupId){alert('目前沒有選擇球聚活動。');return}renderAwardOptions();$('awardMeetup').value=currentMeetupId;renderAwards()});$('awardShareBtn').addEventListener('click',()=>{const id=$('awardMeetup').value;if(!id)return;switchView('shareView');$('shareMeetup').value=id;$('shareCardType').value='awards';updateShareControls(true)});$('addCustomAwardBtn').addEventListener('click',addCustomAward);$('customAwardList').addEventListener('click',e=>{const b=e.target.closest('[data-del-custom-award]');if(b&&confirm('確定移除這個自訂獎項？'))deleteCustomAward(b.dataset.delCustomAward)});
