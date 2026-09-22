@@ -19,10 +19,19 @@
     "matrix": "DEV4-06-R2 10-item device regression"
   },
   "rcDeviceAcceptance": {
-    "status": "PENDING",
-    "requiredChecks": 8
+    "status": "PASS",
+    "confirmedBy": "User",
+    "confirmedDate": "2026-09-22",
+    "total": 8,
+    "pass": 8,
+    "fail": 0
   },
-  "releaseDecision": "CONDITIONAL_PASS_DEVICE_ACCEPTANCE_PENDING",
+  "combinedSummary": {
+    "total": 40,
+    "pass": 40,
+    "fail": 0
+  },
+  "releaseDecision": "FREEZE_CERTIFIED",
   "blockers": {
     "p0": 0,
     "p1": 0,
@@ -51,5 +60,7 @@
     "sw.js": "45656d115dc48ec4930704b4513e2a9eb2a8a3db64daf2fec24b6378cb04f6f0",
     "preview/v0.4.5-RC.1/sw.js": "f3184795cd32bb38759129a0a128a0ca2ac070d81401b77a3c955e738f05fe9e"
   },
-  "nextDecision": "Freeze certification after RC-specific 8-item device smoke acceptance"
+  "freezeCertifiedDate": "2026-09-22",
+  "immutability": "Frozen RC; future changes require a new version or explicitly scoped hotfix branch",
+  "nextDecision": "Explicit promotion decision for Stable, main, and formal PUBLIC"
 }

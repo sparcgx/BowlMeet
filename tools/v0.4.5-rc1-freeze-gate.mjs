@@ -146,8 +146,8 @@ const evidence = {
   generatedAt: new Date().toISOString(),
   automatedSummary: { total: results.length, pass: results.length - failed.length, fail: failed.length },
   inheritedManualAcceptance: { status: 'PASS', confirmedBy: 'User', confirmedDate: '2026-09-22', matrix: 'DEV4-06-R2 10-item device regression' },
-  rcDeviceAcceptance: { status: 'PENDING', scope: 'RC version, PWA cache, isolated storage, startup and cross-module smoke test' },
-  releaseDecision: failed.length ? 'HOLD' : 'DEVICE_ACCEPTANCE_PENDING',
+  rcDeviceAcceptance: { status: 'PASS', confirmedBy: 'User', confirmedDate: '2026-09-22', total: 8, pass: 8, fail: 0, scope: 'RC version, PWA cache, isolated storage, startup and cross-module smoke test' },
+  releaseDecision: failed.length ? 'HOLD' : 'FREEZE_CERTIFIED',
   artifactHashes: Object.fromEntries(Object.entries(files).map(([name, file]) => [name, { file, sha256: sha256(file) }])),
   results,
 };

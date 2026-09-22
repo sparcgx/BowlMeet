@@ -818,7 +818,7 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 
 ## v0.4.5-RC.1｜Release Candidate Integration & Freeze Gate
 
-**Status: Automated Freeze Gate 22/22 PASS — RC Device Acceptance Pending**
+**Status: FREEZE CERTIFIED — Automated 22/22 PASS + Inherited Manual 10/10 PASS + RC Device 8/8 PASS**
 
 - Promoted only the R3-approved artifact into the dedicated `v0.4.5-RC.1` branch.
 - APP_VERSION, titles, manifests, deployment checks, and PWA cache names advanced to `0.4.5-RC.1`.
@@ -828,7 +828,9 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - Executable application logic is byte-equivalent to the accepted R2 logic after version and isolation constants are normalized.
 - Automated Freeze Gate: 22 PASS / 0 FAIL.
 - R2 manual device acceptance remains inherited as 10 PASS / 0 FAIL.
-- RC-specific device smoke acceptance remains required before Freeze certification.
+- RC-specific device smoke acceptance completed on 2026-09-22: 8 PASS / 0 FAIL.
+- Freeze decision: `FREEZE_CERTIFIED`; P0 / P1 / P2 blockers = 0.
+- This RC.1 branch is now frozen. Future changes require a new version or an explicitly scoped hotfix branch.
 - `main`, Stable branches, and formal PUBLIC remain unchanged.
 - Re-runnable gate: `node tools/v0.4.5-rc1-freeze-gate.mjs`.
 - RC application candidate Commit: `0faf86a59e206b4f6fbfecdca666bb12248c58cd`.
