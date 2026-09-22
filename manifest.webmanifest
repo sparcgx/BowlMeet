@@ -1,7 +1,7 @@
 {
   "name": "保齡球球聚｜BowlMeet",
   "short_name": "BowlMeet",
-  "description": "BowlMeet（保齡球球聚）v0.4.4-R1-HF1：修正現場 10 格記分輸入後橫向位置與焦點回到第一格的問題；保留 v0.4.4-R1 全部穩定功能。",
+  "description": "BowlMeet（保齡球球聚）v0.4.5-dev.1：將球員資料整合進成績紀錄，歷史球員直接由 Unified History 產生，Roster 僅保存暱稱、備註等附加資料。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
