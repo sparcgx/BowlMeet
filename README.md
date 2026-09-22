@@ -668,7 +668,7 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - DEV4-02 — Player Hub Quick Actions & Compact UX ✅ Integration Complete
 - DEV4-03 — Player History Session Navigation Polish ✅ Integration Complete
 - DEV4-04 — Analytics Return / Player Switch Context Polish ✅ Integration Complete
-- DEV4-05 — Mobile Interaction & Accessibility Polish
+- DEV4-05 — Mobile Interaction & Accessibility Polish ✅ Integration Complete
 - DEV4-06 — PUBLIC Guard / Regression / RC Readiness
 
 ### DEV4-01 Result
@@ -713,6 +713,18 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - Analytics range remains independent from Player History range.
 - PUBLIC-only analytics remains read-only and continues to show unavailable frame metrics as insufficient data rather than inferred zeroes.
 - No analytics data store, Backup/IndexedDB format, Roster metadata, or Supabase schema change.
+
+### DEV4-05 Result
+- Player Hub / History / Analytics / Session Detail mobile controls now use a minimum 44px touch target for primary interactive buttons.
+- Player History search/range/sort and Analytics player/range controls use 16px mobile input text to avoid unintended iOS form zoom.
+- Added safe-area-aware top/bottom spacing for iPhone PWA use and corrected Analytics sticky offsets so controls do not sit underneath the app header.
+- Session Detail is now a contained mobile scroll surface with sticky header/navigation, overscroll containment, and safe-area bottom padding.
+- Added visible keyboard focus treatment across Player surfaces plus controlled focus transfer between Player Hub, History, Analytics, and Session Detail.
+- Session Detail restores focus to its originating action when possible after close.
+- Player History filter summary, Session position, and Analytics player context expose polite live-region updates; History filters now have accessible labels.
+- Analytics section jumps move keyboard focus to the selected section and respect prefers-reduced-motion.
+- Added reduced-motion handling for Player workflow transitions without changing data or navigation state.
+- No Player / History / Analytics data source, Backup/IndexedDB format, Roster metadata, or Supabase schema change.
 
 ### Guardrails
 - Keep Unified History as the single score/history source.
