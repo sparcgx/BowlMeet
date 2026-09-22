@@ -1601,7 +1601,7 @@ function closePlayerAnalytics(){
 }
 function mean1(nums){return nums.length?Math.round((nums.reduce((a,b)=>a+b,0)/nums.length)*10)/10:null}
 function analyticsPlayerNames(){return playerDirectoryRows().map(r=>({key:r.key,name:r.name,alias:r.meta?.alias||''}))}
-function playerCareerGames(name){return unifiedPlayerGames().filter(g=>nameKey(g.player)===nameKey(name)).sort((a,b)=>String(a.date).localeCompare(String(b.date))||a.createdAt-b.createdAt||(a.gameNo||0)-(b.gameNo||0))}
+function playerCareerGames(ref){let key='';if(ref&&typeof ref==='object')key=String(ref.key||'');else if(typeof ref==='string'){key=(ref.startsWith('roster:')||ref.startsWith('name:'))?ref:playerIdentity(ref).key}if(!key)return [];return unifiedPlayerGames().filter(g=>g.playerKey===key).sort((a,b)=>String(a.date).localeCompare(String(b.date))||a.createdAt-b.createdAt||(a.gameNo||0)-(b.gameNo||0))}
 function filterAnalyticsGames(games,range){
   if(range==='year'){const y=today().slice(0,4);return games.filter(g=>String(g.date||'').startsWith(y))}
   const n=Number(range);return Number.isFinite(n)&&n>0?games.slice(-n):games;
@@ -2323,7 +2323,7 @@ function openPlayerSessionDetail(sessionId){
 }
 function closePlayerSessionDetail(){const d=$('playerSessionDialog');if(d.open&&d.close)d.close();else d.removeAttribute('open');requestAnimationFrame(()=>window.scrollTo({top:playerContext.history.scrollTop||0,behavior:'auto'}))}
 
-function rosterStats(name){const row=playerDirectoryRows().find(r=>r.key===nameKey(name));return {games:row?.games||0,avg:row?.avg??null,best:row?.best??null}}
+function rosterStats(ref){const row=playerRow(ref);return {games:row?.games||0,avg:row?.avg??null,best:row?.best??null}}
 function resetRosterForm(){$('rosterEditId').value='';$('rosterName').value='';$('rosterAlias').value='';$('rosterNote').value='';$('rosterFormTitle').textContent='新增球員資料';$('saveRosterBtn').textContent='儲存球員資料';$('cancelRosterEditBtn').hidden=true}
 function saveRoster(){const name=$('rosterName').value.trim();if(!name){alert('請輸入球員姓名。');return}const id=$('rosterEditId').value;if(!id){const publicOnly=playerDirectoryRows().find(r=>nameKey(r.name)===nameKey(name)&&r.source==='PUBLIC');if(publicOnly){alert('這位球員目前只有公開歷史，Player Hub 為唯讀。若要本機管理，請先匯入相關本機紀錄。');return}}const dup=roster.find(r=>nameKey(r.name)===nameKey(name)&&r.id!==id);if(dup){alert('已有相同姓名的球員資料。');return}const old=roster.find(r=>r.id===id);const data={id:id||uid(),name,alias:$('rosterAlias').value.trim(),note:$('rosterNote').value.trim(),active:old?.active!==false,createdAt:old?.createdAt||Date.now(),updatedAt:Date.now()};const ix=roster.findIndex(r=>r.id===data.id);if(ix>=0)roster[ix]=data;else roster.push(data);persistRoster();resetRosterForm();renderAll()}
 function editRoster(id,name=''){const r=id?roster.find(x=>x.id===id):roster.find(x=>nameKey(x.name)===nameKey(name));const playerName=r?.name||String(name||'').trim();if(!playerName)return;$('rosterEditId').value=r?.id||'';$('rosterName').value=playerName;$('rosterAlias').value=r?.alias||'';$('rosterNote').value=r?.note||'';$('rosterFormTitle').textContent=r?'編輯球員資料':'新增球員資料';$('saveRosterBtn').textContent='儲存球員資料';$('cancelRosterEditBtn').hidden=false;historyMode='players';switchView('historyView');requestAnimationFrame(()=>$('rosterName')?.scrollIntoView({behavior:'smooth',block:'center'}))}
