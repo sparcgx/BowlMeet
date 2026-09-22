@@ -105,8 +105,9 @@ check('preview-cache-isolation', 'Preview cache isolation', read(files.previewSw
 
 const normalizeRcPreview = value => value
   .replaceAll('0.4.5-RC.1', '0.4.5-dev.4-R2')
-  .replaceAll('v045rc1', 'v045d4');
-check('rc-preview-functional-parity', 'RC Preview functional parity with accepted R2', normalizeRcPreview(preview) === devPreview, 'Only version and isolated namespace tokens differ from accepted R2 Preview');
+  .replaceAll('v045rc1', 'v045d4')
+  .replace(/[ \t]+$/gm, '');
+check('rc-preview-functional-parity', 'RC Preview functional parity with accepted R2', normalizeRcPreview(preview) === normalizeRcPreview(devPreview), 'Only version, isolated namespace tokens, and whitespace normalization differ from accepted R2 Preview');
 
 const logicStart = 'function safeJsonParse';
 const rcScript = inlineScripts(root).join('\n');
