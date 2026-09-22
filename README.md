@@ -661,7 +661,7 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 
 ## v0.4.5-dev.4 Player Experience & Session Navigation Polish
 
-**Status: DEV4-06-R1 Automated Targeted Retest PASS — Manual Cross-Module Retest Pending**
+**Status: DEV4-06-R2 Cross-Module Sync Regression & Context Safety — Automated Regression PASS / Manual Device Acceptance Pending**
 
 ### Scope
 - DEV4-01 — Player Navigation State Polish ✅ Architecture / Integration Complete
@@ -776,6 +776,35 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 4. 從現場按「分享成績」：分享頁應直接選中目前球聚，而不是全部歷史或上一場球聚。
 5. 在分享成績切換另一場單一球聚後，再開排行榜／獎項：兩者應跟著該球聚。
 6. 排行榜或分享選「全部歷史」時，不應清除目前現場球聚；再按「目前球聚」應能立即回到目前場次。
+
+### DEV4-06-R2｜Cross-Module Sync Regression & Context Safety
+- Hardened the canonical Meetup context so only an existing Meetup ID can be persisted as `activeMeetupId`.
+- Startup, restore, sync, or deletion paths now clear a stale / deleted active Meetup ID before cross-module rendering.
+- Leaderboard and Share always fall back to a valid current Meetup or `全部歷史`; they no longer enter an empty selector state when a stale ID is encountered.
+- Awards falls back to the valid current Meetup or the newest available Meetup.
+- Selecting `全部歷史` in Leaderboard or Share remains display-only and does not clear the canonical current Meetup.
+- APP_VERSION advanced to `0.4.5-dev.4-R2`; no Session / Backup / Roster metadata / Supabase schema change.
+- Isolated Preview remains Cloud `V45D41`, IndexedDB `bowlmeet.preview.v045d4.local`, localStorage `bowlmeet.preview.v045d4.*`; PWA cache revision advanced to the R2 shell/runtime.
+- Formal root `main`, Stable branch, and formal PUBLIC remain unchanged.
+- Root / Preview JavaScript Syntax ✅ PASS
+- Root / Preview Static Duplicate ID ✅ 0
+- Root / Preview Literal DOM Reference Missing ✅ 0
+- Root / Preview Duplicate Function Declaration ✅ 0
+- Canonical Meetup validation / selector synchronization / stale Context cleanup contract ✅ PASS
+- Manifest JSON / `git diff --check` ✅ PASS
+- Supabase schema and patch files ✅ unchanged from dev.3
+
+### Regression Matrix — DEV4-06-R2
+1. 排行榜選單一球聚後，獎項與分享同步相同 Meetup ID。
+2. 獎項選單一球聚後，排行榜與分享同步相同 Meetup ID。
+3. 分享選單一球聚後，排行榜與獎項同步相同 Meetup ID。
+4. 排行榜／分享選「全部歷史」後，`activeMeetupId` 與目前現場球聚保持不變。
+5. 按「目前球聚」可從全部歷史立即返回 canonical Meetup。
+6. 現場、獎項、Post-game Review、成績紀錄分享均攜帶來源 Meetup ID 與正確卡片類型。
+7. 重新整理後，有效 `activeMeetupId` 可恢復並同步三個模組。
+8. 無效／已刪除 `activeMeetupId` 會清除；排行榜與分享回到「全部歷史」，獎項回到有效球聚。
+9. Root 與 isolated Preview：JavaScript Syntax、Duplicate ID、Missing DOM Ref、Context Contract 均須 PASS。
+10. Preview Storage / Cloud / Cache 仍與正式 Stable / PUBLIC 隔離。
 
 ### Guardrails
 - Keep Unified History as the single score/history source.

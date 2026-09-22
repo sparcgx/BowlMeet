@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.5-dev.4-R1 Preview</title>
+<title>保齡球球聚｜BowlMeet v0.4.5-dev.4-R2 Preview</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1179,7 +1179,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
       <div class="card safety-card"><div class="cap">主要資料庫</div><div class="num" id="safetyEngine">初始化…</div><div class="sub" id="safetyEngineSub">正在檢查 IndexedDB</div></div>
       <div class="card safety-card"><div class="cap">安全快照</div><div class="num" id="snapshotCount">0</div><div class="sub">最多保留最近 10 個</div></div>
       <div class="card safety-card"><div class="cap">最近快照</div><div class="num" id="lastSnapshotTime">—</div><div class="sub" id="lastSnapshotReason">尚無快照</div></div>
-      <div class="card safety-card"><div class="cap">資料 Schema</div><div class="num">v2</div><div class="sub">App v0.4.5-dev.4-R1 · Local-first</div></div>
+      <div class="card safety-card"><div class="cap">資料 Schema</div><div class="num">v2</div><div class="sub">App v0.4.5-dev.4-R2 · Local-first</div></div>
     </section>
     <div class="safety-layout">
       <section class="card safety-panel">
@@ -1285,9 +1285,9 @@ const GROUPKEY='bowlmeet.preview.v045d4.group.v042';
 const PUBLIC_CONTROL_KEY='bowlmeet.preview.v045d4.publicControl.v044';
 const PUBLIC_HISTORY_CODE='V45D41';
 const PUBLIC_HISTORY_PIN='045023';
-const PUBLIC_HISTORY_NAME='BowlMeet v0.4.5-dev.4-R1 Preview';
+const PUBLIC_HISTORY_NAME='BowlMeet v0.4.5-dev.4-R2 Preview';
 const GROUPSECRETKEY='bowlmeet.preview.v045d4.groupAuth.v042';
-const APP_VERSION='0.4.5-dev.4-R1';
+const APP_VERSION='0.4.5-dev.4-R2';
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
 const BUILTIN_CLOUD=true;
@@ -1421,12 +1421,17 @@ function load(){
 function persist(){localStorage.setItem(V2KEY,JSON.stringify(sessions));queueDbStatePersist('sessions');scheduleCloudPush('sessions');scheduleGroupPush('sessions')}
 function persistMeetups(){localStorage.setItem(MEETUPKEY,JSON.stringify(meetups));queueDbStatePersist('meetups');scheduleCloudPush('meetups');scheduleGroupPush('meetups')}
 function persistRoster(){localStorage.setItem(ROSTERKEY,JSON.stringify(roster));queueDbStatePersist('roster')}
+function validMeetupContextId(id=''){const value=String(id||'');return value&&meetups.some(m=>m.id===value)?value:''}
+function validateCurrentMeetupContext(){
+  const valid=validMeetupContextId(currentMeetupId);if(valid===currentMeetupId)return valid;
+  currentMeetupId='';localStorage.removeItem(ACTIVEKEY);queueDbStatePersist('invalid-active-meetup-cleared');return ''
+}
 function syncMeetupDerivedSelectors(id=''){
-  const meetupId=String(id||'');if(!meetupId||!meetups.some(m=>m.id===meetupId))return false;
+  const meetupId=validMeetupContextId(id);if(!meetupId)return false;
   ['leaderboardMeetup','awardMeetup','shareMeetup'].forEach(key=>{const el=$(key);if(el&&[...el.options].some(o=>o.value===meetupId))el.value=meetupId});
   return true
 }
-function setCurrentMeetup(id=''){currentMeetupId=id||'';if(currentMeetupId)localStorage.setItem(ACTIVEKEY,currentMeetupId);else localStorage.removeItem(ACTIVEKEY);queueDbStatePersist('active-meetup');renderCurrentMeetup();renderRosterQuickSelect();syncMeetupDerivedSelectors(currentMeetupId)}
+function setCurrentMeetup(id=''){currentMeetupId=validMeetupContextId(id);if(currentMeetupId)localStorage.setItem(ACTIVEKEY,currentMeetupId);else localStorage.removeItem(ACTIVEKEY);queueDbStatePersist('active-meetup');renderCurrentMeetup();renderRosterQuickSelect();syncMeetupDerivedSelectors(currentMeetupId)}
 function nameKey(v){return String(v||'').trim().toLocaleLowerCase('zh-Hant')}
 function migrateV3(){
   let meetupChanged=false,sessionChanged=false;
@@ -2501,7 +2506,7 @@ function computeAwards(meetupId){
   return {meetup:m,rows,awards,club200,pbBreakers}
 }
 function renderAwardOptions(){
-  const sel=$('awardMeetup');if(!sel)return;const prev=sel.value||currentMeetupId||'';const list=[...meetups].sort((a,b)=>String(b.date).localeCompare(String(a.date))||b.createdAt-a.createdAt);sel.innerHTML=list.length?list.map(m=>`<option value="${esc(m.id)}">${esc(fmtDate(m.date))} · ${esc(m.title)}</option>`).join(''):'<option value="">尚無球聚</option>';sel.value=[...sel.options].some(o=>o.value===prev)?prev:(list[0]?.id||'')
+  const sel=$('awardMeetup');if(!sel)return;const prev=sel.value||validMeetupContextId(currentMeetupId)||'';const list=[...meetups].sort((a,b)=>String(b.date).localeCompare(String(a.date))||b.createdAt-a.createdAt);sel.innerHTML=list.length?list.map(m=>`<option value="${esc(m.id)}">${esc(fmtDate(m.date))} · ${esc(m.title)}</option>`).join(''):'<option value="">尚無球聚</option>';sel.value=[...sel.options].some(o=>o.value===prev)?prev:(validMeetupContextId(currentMeetupId)||list[0]?.id||'')
 }
 function renderAwards(){
   renderAwardOptions();const id=$('awardMeetup')?.value||'',result=computeAwards(id),m=result.meetup;const custom=Array.isArray(m?.customAwards)?m.customAwards:[];
@@ -2519,7 +2524,7 @@ function rankingRows(){
   const m=meetups.find(x=>x.id===scope);if(!m)return [];const s=linkedSession(m),map=new Map();for(const name of meetupParticipantNames(m))map.set(nameKey(name),{name,scores:[]});if(s)for(const p of s.players||[]){const k=nameKey(p.name);if(!map.has(k))map.set(k,{name:p.name,scores:[]});map.get(k).scores.push(...(p.scores||[]).map(normalizeScore).filter(v=>v!==null))}return [...map.values()].map(x=>({name:x.name,games:x.scores.length,total:x.scores.reduce((a,b)=>a+b,0),avg:avg(x.scores),best:x.scores.length?Math.max(...x.scores):null,planned:Number(m.plannedGames)||6}))
 }
 function renderLeaderboard(preferredScope=''){
-  const sel=$('leaderboardMeetup');const prev=preferredScope||sel.value||'all';sel.innerHTML='<option value="all">全部歷史</option>'+[...meetups].sort((a,b)=>String(b.date).localeCompare(String(a.date))).map(m=>`<option value="${esc(m.id)}">${esc(fmtDate(m.date))} · ${esc(m.title)}</option>`).join('');sel.value=[...sel.options].some(o=>o.value===prev)?prev:(currentMeetupId||'all');
+  const sel=$('leaderboardMeetup');const prev=preferredScope||sel.value||'all';sel.innerHTML='<option value="all">全部歷史</option>'+[...meetups].sort((a,b)=>String(b.date).localeCompare(String(a.date))).map(m=>`<option value="${esc(m.id)}">${esc(fmtDate(m.date))} · ${esc(m.title)}</option>`).join('');sel.value=[...sel.options].some(o=>o.value===prev)?prev:(validMeetupContextId(currentMeetupId)||'all');
   const metric=$('leaderboardMetric').value||'total';let rows=rankingRows();const metricVal=x=>metric==='avg'?(x.avg??-1):metric==='best'?(x.best??-1):x.total;rows.sort((a,b)=>metricVal(b)-metricVal(a)||b.games-a.games||a.name.localeCompare(b.name,'zh-Hant'));$('rankPlayers').textContent=rows.filter(x=>x.games).length;$('rankGames').textContent=rows.reduce((a,b)=>a+b.games,0);const scores=[];rows.forEach(x=>{if(x.games&&x.avg!==null)for(let i=0;i<x.games;i++){} });const allScoreRows=sel.value==='all'?allGames():((linkedSession(meetups.find(m=>m.id===sel.value)||{})?.players||[]).flatMap(p=>(p.scores||[]).map(normalizeScore).filter(v=>v!==null).map(score=>({score}))));const vals=allScoreRows.map(x=>x.score);$('rankAvg').textContent=avg(vals)??'—';$('rankBest').textContent=vals.length?Math.max(...vals):'—';$('leaderboardEmpty').style.display=rows.some(x=>x.games)?'none':'block';let last=null,rank=0;const max=Math.max(1,...rows.map(metricVal));$('leaderboardBody').innerHTML=rows.filter(x=>x.games||sel.value!=='all').map((x,i)=>{const val=metricVal(x);if(last===null||val!==last)rank=i+1;last=val;const progress=x.planned?Math.min(100,Math.round((x.games/x.planned)*100)):100;return `<tr><td class="rank-no">${rank}</td><td class="rank-name">${esc(x.name)}</td><td>${x.games}</td><td class="${metric==='total'?'rank-primary':''}">${x.total}</td><td class="${metric==='avg'?'rank-primary':''}">${x.avg??'—'}</td><td class="${metric==='best'?'rank-primary':''}">${x.best??'—'}</td><td>${x.planned?`<div class="rank-progress"><span style="width:${progress}%"></span></div><div style="font-size:10px;color:var(--muted);margin-top:3px">${x.games}/${x.planned} 局</div>`:'全部歷史'}</td></tr>`}).join('')
 }
 function openMeetupLeaderboard(id){setCurrentMeetup(id);switchView('leaderboardView');renderLeaderboard(id)}
@@ -2541,9 +2546,9 @@ function rankingRowsForScope(scope){
 }
 function shareMetricValue(row,metric){return metric==='avg'?(row.avg??-1):metric==='best'?(row.best??-1):row.total}
 function renderShareOptions(preferredScope=''){
-  const sel=$('shareMeetup');if(!sel)return;const prev=preferredScope||sel.value||currentMeetupId||'all';
+  const sel=$('shareMeetup');if(!sel)return;const prev=preferredScope||sel.value||validMeetupContextId(currentMeetupId)||'all';
   sel.innerHTML='<option value="all">全部歷史</option>'+[...meetups].sort((a,b)=>String(b.date).localeCompare(String(a.date))).map(m=>`<option value="${esc(m.id)}">${esc(fmtDate(m.date))} · ${esc(m.title)}</option>`).join('');
-  sel.value=[...sel.options].some(o=>o.value===prev)?prev:(currentMeetupId||'all');updateShareControls(false)
+  sel.value=[...sel.options].some(o=>o.value===prev)?prev:(validMeetupContextId(currentMeetupId)||'all');updateShareControls(false)
 }
 function updateShareControls(redraw=true){
   const type=$('shareCardType')?.value||'ranking',scope=$('shareMeetup')?.value||'all';const awardsMode=type==='awards',summaryMode=type==='summary',meetupCardMode=type==='meetupCard';
@@ -2719,7 +2724,7 @@ function renderPersonal(){
   const rows=[...personalData.games].sort((a,b)=>String(b.date).localeCompare(String(a.date))||b.gameNo-a.gameNo||b.updatedAt-a.updatedAt);$('personalHistoryCount').textContent=`${rows.length} 局`;$('personalHistoryEmpty').style.display=rows.length?'none':'block';$('personalHistoryBody').innerHTML=rows.map(g=>`<tr><td>${esc(fmtDate(g.date))}</td><td>${esc(g.meetupTitle||'球聚')}</td><td>${esc(g.venue||'—')}</td><td>${esc(g.lane||'—')}</td><td>G${esc(g.gameNo)}</td><td class="personal-score">${esc(g.score)}</td><td>${esc(g.sourcePlayerName||'—')}</td></tr>`).join('')
 }
 
-function renderAll(){renderKpis();renderHistory();renderStats();renderMeetups();renderRoster();renderHistoryMode();renderLeaderboard();renderAwards();renderRosterQuickSelect();renderQuickPlayerSuggestions();refreshSheetCalcs();renderShareOptions();renderSafety();renderSync();renderFieldSettings();renderPersonal();if(document.getElementById('meetupView')?.classList.contains('active'))renderLive()}
+function renderAll(){validateCurrentMeetupContext();renderKpis();renderHistory();renderStats();renderMeetups();renderRoster();renderHistoryMode();renderLeaderboard();renderAwards();renderRosterQuickSelect();renderQuickPlayerSuggestions();refreshSheetCalcs();renderShareOptions();renderSafety();renderSync();renderFieldSettings();renderPersonal();if(document.getElementById('meetupView')?.classList.contains('active'))renderLive()}
 
 function mirrorLiveSessionToCurrentScore(sess){
   if(!sess)return;
