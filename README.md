@@ -661,7 +661,7 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 
 ## v0.4.5-dev.4 Player Experience & Session Navigation Polish
 
-**Status: Development Started — branched from v0.4.5-dev.3 Validation Complete**
+**Status: Automated RC Gate Complete — Manual Device Acceptance Pending**
 
 ### Scope
 - DEV4-01 — Player Navigation State Polish ✅ Architecture / Integration Complete
@@ -669,7 +669,7 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - DEV4-03 — Player History Session Navigation Polish ✅ Integration Complete
 - DEV4-04 — Analytics Return / Player Switch Context Polish ✅ Integration Complete
 - DEV4-05 — Mobile Interaction & Accessibility Polish ✅ Integration Complete
-- DEV4-06 — PUBLIC Guard / Regression / RC Readiness
+- DEV4-06 — PUBLIC Guard / Regression / RC Readiness ✅ Automated Gate Complete
 
 ### DEV4-01 Result
 - Added one canonical Player navigation state for Players / Player Hub / Player History / Analytics / Session Detail / Unified Score History.
@@ -725,6 +725,35 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - Analytics section jumps move keyboard focus to the selected section and respect prefers-reduced-motion.
 - Added reduced-motion handling for Player workflow transitions without changing data or navigation state.
 - No Player / History / Analytics data source, Backup/IndexedDB format, Roster metadata, or Supabase schema change.
+
+### DEV4-06 Result
+- Re-ran root and isolated Preview JavaScript/static DOM regression: Syntax PASS, Duplicate ID 0, Missing DOM Ref 0.
+- Confirmed PUBLIC-only Player Hub/Roster local-mutation controls remain hidden and action-layer guards reject PUBLIC-only roster edits.
+- Session edit/delete still resolve only from the local session store; PUBLIC-only sessions remain view/import/public-control surfaces rather than local editable records.
+- Unified History continues to deduplicate LOCAL + PUBLIC by Session ID before Player History / Analytics consumption.
+- Legacy statsView compatibility remains active.
+- Created isolated dev.4 Device Preview at `/preview/v0.4.5-dev.4/`.
+- Preview isolation: Cloud `V45D41`, PIN `045023`, IndexedDB `bowlmeet.preview.v045d4.local`, localStorage prefix `bowlmeet.preview.v045d4.*`, Cache prefix `bowlmeet-preview-v045d4-`.
+- Seeded V45D41 from validated dev.3 fixture: 2 sessions / 2 meetups / 2 record controls; appVersion is `0.4.5-dev.4`.
+- Preview RPC pull succeeds with the Preview PIN and rejects an incorrect PIN.
+- Formal PUBLIC remains revision 23 with 2 sessions / 2 meetups / 2 record controls and appVersion `0.4.4-R1`.
+- Formal main remains `v0.4.4-R1-HF1`.
+- Supabase schema/patch blobs are byte-identical to dev.3; no schema migration was introduced.
+- Supabase Performance Advisor: 0 findings.
+- Supabase Security Advisor reports the existing PIN-RPC architecture warnings (RLS tables intentionally have no direct policies; callable SECURITY DEFINER RPCs validate room/player/group PINs). These are baseline architecture findings, not a dev.4 schema change; no security schema change is included in this UX branch.
+- RC promotion is blocked only on Manual Device Acceptance for the dev.4 Player workflow.
+
+### Manual Device Acceptance — DEV4
+1. 球員列表 → Player Hub → 返回：回原球員列表位置。
+2. 成績紀錄 → 球員 → Player Hub → 返回：回原成績紀錄來源。
+3. Hub → 分析 → 切換球員/範圍 → 返回：回切換後球員 Hub，無舊 KPI 閃現。
+4. Hub → 歷史 → 查看本場 → 上一場/下一場 → 返回：搜尋、範圍、排序、捲動位置保留。
+5. Hub → 查看最近一場 → 返回：直接回同一 Player Hub。
+6. PUBLIC-only 球員：分析/歷史/單場可讀；本機球員資料編輯不可用。
+7. iPhone 直向：按鈕易點、輸入不自動放大、sticky 區域不互相遮擋、Dialog 不超出安全區。
+8. iPhone PWA：頂部/底部 safe area 正常，Session Dialog 可捲動且返回焦點正常。
+9. PUBLIC Preview：取消公開/重新公開只影響 V45D41，不影響正式 PUBLIC。
+10. 重新整理 Preview：正式 main / PUBLIC / 本機正式 Storage 均不被 Preview 污染。
 
 ### Guardrails
 - Keep Unified History as the single score/history source.
