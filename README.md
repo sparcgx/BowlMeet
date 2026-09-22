@@ -39,7 +39,14 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 - 成績 / 球員模式切換不互相污染 ✅ PASS
 - Legacy `statsView` route alias ✅ PASS
 - Public-only 球員分析資料來源維持 Unified History ✅ PASS
-- 狀態：**Implementation Complete / Automated Regression PASS / Device Preview Pending**
+- Device Preview：`/preview/v0.4.5-dev.2/` ✅ Ready
+- Preview Cloud：`V45D23`，已複製目前 PUBLIC 歷史快照
+- Preview localStorage / IndexedDB / Cache ✅ Isolated
+- 真實快照球員分析：千淯 8 局 / AVG 146.5 / PB 184；志強 8 / 122.0 / 166；軒豪 8 / 118.8 / 152；雅 3 / 163.7 / 188；毅雯 3 / 78.0 / 82
+- 球員總覽 → 分析 → 返回球員 ✅ Automated State Regression PASS
+- 正式 `main` 仍為 `v0.4.4-R1-HF1` ✅ 未變更
+- 正式 PUBLIC revision 23 ✅ 未由 dev.2 改寫
+- 狀態：**Device Preview & Automated Live Regression PASS / Manual Device Acceptance Pending**
 
 ## v0.4.5-dev.1 Manual Device Acceptance
 
