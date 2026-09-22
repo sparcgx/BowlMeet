@@ -657,3 +657,25 @@ R1 不新增日常功能，目標是把 v0.4.4-dev.1 ～ dev.4 已實機通過�
 - 移除已廢棄的獨立公開歷史 UI renderer 與不存在的 Group History DOM 參照；保留公開雲端 Pull / Push / Merge 底層。
 - 清理使用者可見的舊版 v0.4.1 PWA / Data Safety 文字。
 - 更新 manifest、deployment-test 與 README，使說明符合目前 Field-First、Unified Score History 與 Settings 架構。
+
+
+## v0.4.5-dev.4 Player Experience & Session Navigation Polish
+
+**Status: Development Started — branched from v0.4.5-dev.3 Validation Complete**
+
+### Scope
+- DEV4-01 — Player Navigation State Polish
+- DEV4-02 — Player Hub Quick Actions & Compact UX
+- DEV4-03 — Player History Session Navigation Polish
+- DEV4-04 — Analytics Return / Player Switch Context Polish
+- DEV4-05 — Mobile Interaction & Accessibility Polish
+- DEV4-06 — PUBLIC Guard / Regression / RC Readiness
+
+### Guardrails
+- Keep Unified History as the single score/history source.
+- Do not add a second Player / History / Analytics data store.
+- No Supabase schema change.
+- No Session / Backup / Roster metadata format change unless explicitly required.
+- PUBLIC-only players remain read-only.
+- Formal root main and formal PUBLIC are not modified by this development branch.
+- Preserve legacy statsView compatibility until RC regression is complete.
