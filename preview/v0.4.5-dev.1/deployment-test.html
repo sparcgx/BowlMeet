@@ -18,6 +18,7 @@
 <section class="card"><p><strong>Unified Player Directory：</strong>不再需要「從歷史成績同步」。球員頁直接由 Unified History 與 Legacy 成績產生；暱稱／備註等附加資料才寫入 Roster。</p></section>
 <section class="card"><p><strong>Preview Isolation：</strong>dev.1 使用獨立 localStorage / IndexedDB、獨立雲端群組 <code>V45D22</code> 與 <code>bowlmeet-preview-v045d1-*</code> Cache，不讀寫正式 PUBLIC 或既有 Stable。</p></section>
 <section class="card"><p><strong>Automated Regression：</strong>Unified History 球員衍生、PUBLIC-only 球員、Roster metadata 分離、metadata 移除後歷史保留、Public Analytics、History Filter、Perfect Game、未完成第 10 格與 HF1 格位輸入修正均已 PASS。</p></section>
+<section class="card"><p><strong>Automated Live Regression：</strong>HF1 正式公開歷史快照已複製至 <code>V45D22</code>；球員頁可在沒有手動同步的情況下直接產生 5 位歷史球員，局數／平均／PB 與資料庫基準一致。Public-only 球員分析、Metadata 分離與 Preview 隔離均已 PASS。</p></section>
 <section class="card" id="checks">
 <div class="row"><span class="label">JavaScript</span><span class="status bad" id="js">未執行</span></div>
 <div class="row"><span class="label">HTTPS / Secure Context</span><span class="status" id="secure">檢查中</span></div>
