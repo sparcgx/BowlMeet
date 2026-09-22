@@ -17,6 +17,7 @@
 <section class="card"><p><strong>Manual Device Acceptance：</strong>HF1 實機測試已 PASS；第 1～10 格連續輸入、後段格位水平捲動、Enter 前進、Strike 跳格與第 10 格操作均正常，不再跳回第 1 格。</p></section>
 <section class="card"><p><strong>Roster History Sync Hotfix：</strong>「從歷史成績同步」會讀取 Unified History 的本機＋公開成績與 Legacy 成績，將有正式分數的球員真正寫入名冊並立即顯示。</p></section>
 <section class="card"><p><strong>Preview Isolation：</strong>HF2 使用獨立 localStorage / IndexedDB、獨立雲端群組 <code>V44H22</code> 與 <code>bowlmeet-preview-v044r1hf2-*</code> Cache，不讀寫正式 PUBLIC 或 HF1 Preview。</p></section>
+<section class="card"><p><strong>Automated Regression：</strong>本機 Session、PUBLIC-only Unified History、Legacy 成績、姓名去重、roster 寫入、persist、清除搜尋、立即 render、第二次同步不重複新增與空歷史提示均已 PASS。</p></section>
 <section class="card" id="checks">
 <div class="row"><span class="label">JavaScript</span><span class="status bad" id="js">未執行</span></div>
 <div class="row"><span class="label">HTTPS / Secure Context</span><span class="status" id="secure">檢查中</span></div>
