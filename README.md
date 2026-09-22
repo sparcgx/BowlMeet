@@ -1,6 +1,19 @@
-# BowlMeet v0.4.5-dev.2 — Player Analytics Integration
+# BowlMeet v0.4.5-dev.3 — Player Hub & History
 
 BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，建立玩家並進行標準 10 格即時計分。
+
+## v0.4.5-dev.3 Player Hub & History
+
+- 開發基線：`v0.4.5-dev.2`（Validation Complete）。
+- 新增 runtime-only Unified Player Context；不寫入 Session / Backup / Roster metadata / Supabase schema。
+- 「成績紀錄 → 球員」升級為 Player Hub，整合總局數、AVG、PB、最近 5 局、最近球聚。
+- Player Hub 可進入既有 Analytics 或 Unified Player History；不建立第二套歷史或分析資料。
+- Unified History 的球員名稱可直接進 Player Hub；返回會回原球員／原成績位置。
+- Analytics 球員切換改由 Player Context 驅動，分析範圍保留 all / 5 / 10 / 20 / 50 / year。
+- PUBLIC-only Player Hub / History / Analytics 維持唯讀；Roster 寫入亦加入 guard。
+- Legacy `switchView('statsView')` 繼續相容。
+- 正式 `main` 與正式 PUBLIC 不在本 branch 修改。
+
 
 ## v0.4.4-dev.1 開發重點
 
