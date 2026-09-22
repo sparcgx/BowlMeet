@@ -14,6 +14,20 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 - 跨版本防復活由 Supabase `bowling_group_push` 保留 `recordControls` tombstone；`supabase_v044_public_record_control_patch.sql` 已於 2026-09-22 套用至 BowlMeet Supabase。
 - v0.4.3.3-R1 仍為 Stable / Freeze Baseline；本版在 `v0.4.4-dev.1` 分支開發。
 
+## v0.4.5-dev.1 Manual Device Acceptance
+
+- 獨立「球員名冊」主選單已移除 ✅ PASS
+- 成績紀錄內「成績 / 球員」切換 ✅ PASS
+- 歷史球員不需同步即可自動出現 ✅ PASS
+- PUBLIC-only 球員可直接顯示 ✅ PASS
+- 球員局數 / AVG / PB 顯示正常 ✅ PASS
+- 球員分析可直接開啟 ✅ PASS
+- 新增暱稱 / 備註等 Metadata ✅ PASS
+- Metadata 移除後歷史球員仍保留 ✅ PASS
+- 關閉 / 重新開啟 Preview 後資料一致 ✅ PASS
+- Preview / Stable / PUBLIC 資料隔離 ✅ PASS
+- 結論：**v0.4.5-dev.1 Validation Complete**
+
 ## v0.4.5-dev.1 Unified History & Player Directory
 
 - 開發基線：`stable/v0.4.4-R1-HF1`。
@@ -58,7 +72,7 @@ BowlMeet 採 **Field-First**：打開 App 後直接進入「球聚現場」，�
 - Branch / Preview Duplicate ID ✅ 0
 - Branch / Preview Missing DOM reference ✅ 0
 - 正式 `main` 仍為 `v0.4.4-R1-HF1` ✅ 未變更
-- 狀態：**Device Preview & Automated Live Regression PASS / Manual Device Acceptance Pending**
+- 狀態：**Device Preview & Live Regression PASS / dev.1 Validation Complete**
 
 ## GitHub Pages 部署
 
