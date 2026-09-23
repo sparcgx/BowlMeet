@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.6-dev.1</title>
+<title>保齡球球聚｜BowlMeet v0.4.6-dev.2</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -445,7 +445,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 }
 
 /* =========================================================
-   v0.4.6-dev.1 | Liquid Glass UI Foundation
+   v0.4.6-dev.2 | Liquid Glass UI Foundation
    UI-only: no scoring / data / cloud / schema behavior change
    ========================================================= */
 :root{
@@ -709,6 +709,182 @@ dialog::backdrop,
   .topbar,.tabs,.card,.panel,.sheet-card,.btn{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 }
 
+
+/* =========================================================
+   v0.4.6-dev.2 | Navigation & Mobile Glass Dock
+   ========================================================= */
+.mobile-glass-dock,.mobile-more-sheet,.mobile-more-backdrop{display:none}
+
+@media(max-width:680px){
+  body{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
+  main{padding-bottom:calc(118px + env(safe-area-inset-bottom))!important}
+  .tabs{display:none!important}
+
+  .mobile-glass-dock{
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    position:fixed;
+    left:12px;
+    right:12px;
+    bottom:max(10px,env(safe-area-inset-bottom));
+    z-index:70;
+    min-height:68px;
+    padding:7px;
+    border:1px solid rgba(255,255,255,.78);
+    border-radius:24px;
+    background:rgba(248,250,252,.68);
+    -webkit-backdrop-filter:blur(28px) saturate(180%);
+    backdrop-filter:blur(28px) saturate(180%);
+    box-shadow:
+      0 18px 48px rgba(15,23,42,.18),
+      inset 0 1px 0 rgba(255,255,255,.88);
+  }
+  .dock-item{
+    appearance:none;
+    border:0;
+    min-width:0;
+    min-height:54px;
+    padding:5px 3px 4px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:3px;
+    border-radius:18px;
+    background:transparent;
+    color:#687386;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:.01em;
+    transition:background .16s ease,color .16s ease,transform .16s ease,box-shadow .16s ease;
+  }
+  .dock-item:active{transform:scale(.95)}
+  .dock-item.active{
+    color:#0b57d0;
+    background:rgba(255,255,255,.84);
+    box-shadow:
+      0 7px 18px rgba(15,23,42,.10),
+      inset 0 1px 0 rgba(255,255,255,.95);
+  }
+  .dock-icon{
+    width:27px;
+    height:27px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+    font-size:18px;
+    line-height:1;
+    font-weight:900;
+  }
+  .dock-item.active .dock-icon{
+    background:rgba(10,102,232,.10);
+  }
+  .dock-dots{font-size:13px;letter-spacing:1px}
+  .dock-more.has-secondary-active{
+    color:#0b57d0;
+    background:rgba(255,255,255,.84);
+    box-shadow:0 7px 18px rgba(15,23,42,.10),inset 0 1px 0 rgba(255,255,255,.95);
+  }
+
+  .mobile-more-backdrop{
+    position:fixed;
+    inset:0;
+    z-index:78;
+    background:rgba(15,23,42,.20);
+    -webkit-backdrop-filter:blur(10px);
+    backdrop-filter:blur(10px);
+  }
+  .mobile-more-backdrop.show{display:block}
+
+  .mobile-more-sheet{
+    display:block;
+    position:fixed;
+    left:10px;
+    right:10px;
+    bottom:calc(88px + env(safe-area-inset-bottom));
+    z-index:80;
+    padding:10px 12px 14px;
+    border:1px solid rgba(255,255,255,.82);
+    border-radius:26px;
+    background:rgba(249,250,252,.86);
+    -webkit-backdrop-filter:blur(30px) saturate(180%);
+    backdrop-filter:blur(30px) saturate(180%);
+    box-shadow:0 28px 70px rgba(15,23,42,.24),inset 0 1px 0 rgba(255,255,255,.94);
+    transform:translateY(24px) scale(.985);
+    opacity:0;
+    pointer-events:none;
+    visibility:hidden;
+    transition:transform .18s ease,opacity .18s ease,visibility .18s ease;
+  }
+  .mobile-more-sheet.open{
+    transform:translateY(0) scale(1);
+    opacity:1;
+    pointer-events:auto;
+    visibility:visible;
+  }
+  .mobile-more-handle{
+    width:38px;
+    height:4px;
+    margin:0 auto 10px;
+    border-radius:999px;
+    background:rgba(100,116,139,.28);
+  }
+  .mobile-more-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    padding:2px 2px 12px;
+  }
+  .mobile-more-head strong{display:block;font-size:16px}
+  .mobile-more-head span{display:block;margin-top:3px;color:var(--muted);font-size:10px}
+  .mobile-more-close{
+    border:1px solid rgba(255,255,255,.78);
+    width:34px;height:34px;border-radius:50%;
+    background:rgba(255,255,255,.72);
+    color:#667085;font-size:21px;line-height:1;
+  }
+  .mobile-more-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:8px;
+  }
+  .mobile-more-item{
+    appearance:none;
+    border:1px solid rgba(255,255,255,.78);
+    min-height:76px;
+    padding:10px 6px;
+    border-radius:18px;
+    background:rgba(255,255,255,.62);
+    color:#344054;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.84);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    font-size:11px;
+  }
+  .mobile-more-item>span{
+    width:30px;height:30px;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(15,98,254,.08);
+    color:#0b57d0;font-size:17px;font-weight:900;
+  }
+  .mobile-more-item strong{font-size:10px}
+  .mobile-more-item.active{
+    border-color:rgba(10,102,232,.22);
+    background:rgba(238,245,255,.92);
+    color:#0b57d0;
+  }
+
+  @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+    .mobile-glass-dock,.mobile-more-sheet{background:#fff}
+    .mobile-more-backdrop{background:rgba(15,23,42,.28)}
+  }
+}
+
 </style>
 </head>
 <body>
@@ -729,6 +905,40 @@ dialog::backdrop,
     <button class="tab" data-view="safetyView">資料安全</button>
     <button class="tab" data-view="syncView">設定</button>
   </nav>
+  <nav class="mobile-glass-dock" aria-label="手機主要導覽">
+    <button class="dock-item active" type="button" data-dock-view="meetupView" aria-label="球聚現場">
+      <span class="dock-icon" aria-hidden="true">●</span><span>現場</span>
+    </button>
+    <button class="dock-item" type="button" data-dock-view="scoreView" aria-label="本次計分">
+      <span class="dock-icon" aria-hidden="true">◫</span><span>計分</span>
+    </button>
+    <button class="dock-item" type="button" data-dock-view="personalView" aria-label="我的成績">
+      <span class="dock-icon" aria-hidden="true">◎</span><span>我的</span>
+    </button>
+    <button class="dock-item" type="button" data-dock-view="leaderboardView" aria-label="排行榜">
+      <span class="dock-icon" aria-hidden="true">▲</span><span>排行</span>
+    </button>
+    <button class="dock-item dock-more" type="button" id="mobileDockMoreBtn" aria-label="更多功能" aria-expanded="false">
+      <span class="dock-icon dock-dots" aria-hidden="true">•••</span><span>更多</span>
+    </button>
+  </nav>
+
+  <div class="mobile-more-backdrop" id="mobileMoreBackdrop" hidden></div>
+  <section class="mobile-more-sheet" id="mobileMoreSheet" aria-label="更多功能" aria-hidden="true">
+    <div class="mobile-more-handle" aria-hidden="true"></div>
+    <div class="mobile-more-head">
+      <div><strong>更多功能</strong><span>次要功能集中於此，不干擾現場操作。</span></div>
+      <button class="mobile-more-close" id="mobileMoreCloseBtn" type="button" aria-label="關閉更多功能">×</button>
+    </div>
+    <div class="mobile-more-grid">
+      <button type="button" class="mobile-more-item" data-dock-view="historyView"><span>▤</span><strong>成績紀錄</strong></button>
+      <button type="button" class="mobile-more-item" data-dock-view="photoView"><span>▣</span><strong>拍照匯入</strong></button>
+      <button type="button" class="mobile-more-item" data-dock-view="awardsView"><span>★</span><strong>獎項</strong></button>
+      <button type="button" class="mobile-more-item" data-dock-view="shareView"><span>↗</span><strong>分享成績</strong></button>
+      <button type="button" class="mobile-more-item" data-dock-view="safetyView"><span>◆</span><strong>資料安全</strong></button>
+      <button type="button" class="mobile-more-item" data-dock-view="syncView"><span>⚙</span><strong>設定</strong></button>
+    </div>
+  </section>
 
   <section id="meetupView" class="view active">
     <div class="live-workstation">
@@ -1553,7 +1763,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.6-dev.1';
+const APP_VERSION='0.4.6-dev.2';
 document.querySelectorAll('[data-app-version]').forEach(el=>{el.textContent='v'+APP_VERSION});
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
@@ -3036,6 +3246,10 @@ function switchView(id){
   if(viewId==='scoreView'&&currentMeetupId)openCurrentScoreFromActiveMeetup();
   document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===viewId));
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.view===viewId));
+  document.querySelectorAll('[data-dock-view]').forEach(t=>t.classList.toggle('active',t.dataset.dockView===viewId));
+  const primaryDockViews=new Set(['meetupView','scoreView','personalView','leaderboardView']);
+  const dockMore=document.getElementById('mobileDockMoreBtn');
+  dockMore?.classList.toggle('has-secondary-active',!primaryDockViews.has(viewId));
   if(viewId==='shareView')renderShare(currentMeetupId||'');
   if(viewId==='leaderboardView')renderLeaderboard(currentMeetupId||'all');
   if(viewId==='awardsView'){renderAwardOptions();if(currentMeetupId&&[...$('awardMeetup').options].some(o=>o.value===currentMeetupId))$('awardMeetup').value=currentMeetupId;renderAwards()}
@@ -3051,6 +3265,26 @@ function switchView(id){
 }
 
 document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>switchView(t.dataset.view)));
+
+function setMobileMoreOpen(open){
+  const sheet=document.getElementById('mobileMoreSheet');
+  const backdrop=document.getElementById('mobileMoreBackdrop');
+  const trigger=document.getElementById('mobileDockMoreBtn');
+  if(!sheet||!backdrop||!trigger)return;
+  sheet.classList.toggle('open',open);
+  sheet.setAttribute('aria-hidden',open?'false':'true');
+  backdrop.hidden=!open;
+  backdrop.classList.toggle('show',open);
+  trigger.setAttribute('aria-expanded',open?'true':'false');
+}
+document.querySelectorAll('[data-dock-view]').forEach(t=>t.addEventListener('click',()=>{
+  switchView(t.dataset.dockView);
+  setMobileMoreOpen(false);
+}));
+document.getElementById('mobileDockMoreBtn')?.addEventListener('click',()=>setMobileMoreOpen(!document.getElementById('mobileMoreSheet')?.classList.contains('open')));
+document.getElementById('mobileMoreCloseBtn')?.addEventListener('click',()=>setMobileMoreOpen(false));
+document.getElementById('mobileMoreBackdrop')?.addEventListener('click',()=>setMobileMoreOpen(false));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')setMobileMoreOpen(false)});
 $('addPlayerBtn').addEventListener('click',()=>{const rows=currentPlayersFromTable();if(rows.length>=12){flash('最多 12 位球員。','err');return}rows.push(makePlayer());renderScoreRows(rows)});
 $('saveSessionBtn').addEventListener('click',saveSession);
 $('newSessionBtn').addEventListener('click',()=>newSheet(true));
