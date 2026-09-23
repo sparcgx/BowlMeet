@@ -1,0 +1,41 @@
+{
+  "gate": "v0.4.6 Stable Promotion & PUBLIC Release Gate",
+  "release_candidate": "v0.4.6-RC.1",
+  "release_branch": "release/v0.4.6",
+  "stable_version": "v0.4.6",
+  "decision": "PROMOTION_READY",
+  "inherited_rc_evidence": {
+    "regression": "104/104 PASS",
+    "package": "19/19 PASS",
+    "combined": "123/123 PASS"
+  },
+  "stable_candidate_gate": {
+    "total": 31,
+    "pass": 31,
+    "fail": 0
+  },
+  "pre_promotion_public": {
+    "group_code": "PUBLIC",
+    "revision": 25,
+    "meetups": 3,
+    "sessions": 2,
+    "record_controls": 2,
+    "payload_md5": "36dca07fd5b20cffd594f578a8d5b009"
+  },
+  "supabase": {
+    "project_id": "wkchnffhvxiwbydowwie",
+    "project_status": "ACTIVE_HEALTHY",
+    "performance_advisor_findings": 0,
+    "schema_migration_for_v046": "NONE",
+    "public_payload_mutation_during_release": "NONE",
+    "security_advisor_baseline": "Existing RLS-no-policy INFO and anon/authenticated SECURITY DEFINER RPC warnings; unchanged by v0.4.6."
+  },
+  "freeze_guarantees": [
+    "No scoring algorithm change after RC.1",
+    "No Supabase SQL/schema migration",
+    "Production PUBLIC code remains PUBLIC",
+    "Existing production IndexedDB/localStorage namespaces remain unchanged",
+    "RC Preview remains isolated and frozen",
+    "Liquid Glass stylesheet content unchanged from RC.1"
+  ]
+}

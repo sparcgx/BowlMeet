@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.5.2</title>
+<title>保齡球球聚｜BowlMeet v0.4.6</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -443,12 +443,708 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 @media(prefers-reduced-motion:reduce){
   .player-hub-integrated *,.player-history-integrated *,.player-analytics-integrated *,.player-session-dialog *{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
 }
+
+/* =========================================================
+   v0.4.6 | Liquid Glass UI Foundation
+   UI-only: no scoring / data / cloud / schema behavior change
+   ========================================================= */
+:root{
+  --bg:#eef3f8;
+  --card:rgba(255,255,255,.72);
+  --text:#18202d;
+  --muted:#667085;
+  --line:rgba(255,255,255,.58);
+  --line-strong:rgba(100,116,139,.18);
+  --primary:#0a66e8;
+  --primary-soft:rgba(10,102,232,.10);
+  --glass:rgba(255,255,255,.64);
+  --glass-strong:rgba(255,255,255,.82);
+  --glass-soft:rgba(248,250,252,.52);
+  --glass-border:rgba(255,255,255,.70);
+  --glass-shadow:0 18px 46px rgba(15,23,42,.09);
+  --glass-shadow-soft:0 8px 26px rgba(15,23,42,.065);
+  --glass-blur:24px;
+  --radius:20px;
+}
+html{
+  background:#e9eff6;
+}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 12% 0%,rgba(136,190,255,.28),transparent 32rem),
+    radial-gradient(circle at 92% 8%,rgba(197,178,255,.22),transparent 30rem),
+    radial-gradient(circle at 48% 92%,rgba(178,225,255,.19),transparent 34rem),
+    linear-gradient(145deg,#f7f9fc 0%,#eef3f8 44%,#f7f8fb 100%);
+  background-attachment:fixed;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:linear-gradient(120deg,rgba(255,255,255,.40),rgba(255,255,255,.08) 42%,rgba(255,255,255,.28));
+}
+.topbar{
+  background:rgba(255,255,255,.58)!important;
+  border-bottom:1px solid rgba(255,255,255,.58)!important;
+  -webkit-backdrop-filter:blur(28px) saturate(170%);
+  backdrop-filter:blur(28px) saturate(170%);
+  box-shadow:0 1px 0 rgba(100,116,139,.06),0 10px 30px rgba(15,23,42,.045);
+}
+.ball{
+  box-shadow:
+    inset -8px -8px 14px rgba(255,255,255,.08),
+    0 8px 22px rgba(15,23,42,.16);
+}
+.tabs{
+  position:sticky;
+  top:74px;
+  z-index:32;
+  width:max-content;
+  max-width:100%;
+  margin:0 auto 18px;
+  padding:6px;
+  border:1px solid var(--glass-border);
+  border-radius:18px;
+  background:rgba(255,255,255,.54);
+  -webkit-backdrop-filter:blur(22px) saturate(165%);
+  backdrop-filter:blur(22px) saturate(165%);
+  box-shadow:var(--glass-shadow-soft);
+}
+.tab{
+  border-color:transparent!important;
+  background:transparent!important;
+  color:#526071;
+  transition:background .18s ease,color .18s ease,box-shadow .18s ease,transform .18s ease;
+}
+.tab:hover{
+  background:rgba(255,255,255,.56)!important;
+}
+.tab.active{
+  color:#111827!important;
+  background:rgba(255,255,255,.92)!important;
+  border-color:rgba(255,255,255,.84)!important;
+  box-shadow:0 6px 18px rgba(15,23,42,.09),inset 0 1px 0 rgba(255,255,255,.9);
+}
+.card,
+.panel,
+.sheet-card,
+.photo-box,
+.ocr-review,
+.live-top,
+.live-score-panel,
+.live-rank-panel,
+.meetup-create,
+.meetup-side,
+.roster-card,
+.leaderboard-card,
+.analytics-shell,
+.analytics-card,
+.share-controls,
+.share-preview-card,
+.sync-panel,
+.group-panel,
+.safety-card,
+.awards-head,
+.award-card,
+.custom-award-panel,
+.award-rules-panel,
+.personal-panel,
+.settings-hero,
+.settings-panel,
+.player-hub-card,
+.player-directory-head{
+  background:var(--glass)!important;
+  border:1px solid var(--glass-border)!important;
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(155%);
+  backdrop-filter:blur(var(--glass-blur)) saturate(155%);
+  box-shadow:var(--glass-shadow-soft)!important;
+}
+.card:hover{
+  border-color:rgba(255,255,255,.88)!important;
+}
+.btn{
+  border:1px solid rgba(255,255,255,.72);
+  background:rgba(255,255,255,.66);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+  transition:transform .16s ease,background .16s ease,box-shadow .16s ease;
+}
+.btn:hover{
+  background:rgba(255,255,255,.88);
+  box-shadow:0 6px 16px rgba(15,23,42,.07),inset 0 1px 0 rgba(255,255,255,.9);
+}
+.btn:active{transform:scale(.985)}
+.btn.primary{
+  color:#fff;
+  border-color:rgba(10,102,232,.76);
+  background:linear-gradient(180deg,rgba(27,123,248,.96),rgba(10,102,232,.96));
+  box-shadow:0 8px 20px rgba(10,102,232,.18),inset 0 1px 0 rgba(255,255,255,.25);
+}
+.field input,.field select,.field textarea,
+.toolbar input,.toolbar select,
+.group-toolbar input,.group-toolbar select,
+.verify-input,.raw-text{
+  border-color:rgba(148,163,184,.22)!important;
+  background:rgba(255,255,255,.72)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.70);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+}
+.field input:focus,.field select:focus,.field textarea:focus,
+.toolbar input:focus,.toolbar select:focus,
+.verify-input:focus,.raw-text:focus{
+  border-color:rgba(10,102,232,.45)!important;
+  box-shadow:0 0 0 4px rgba(10,102,232,.10)!important;
+}
+.pill,.ocr-chip,.mode-badge,.player-status,.player-source-badge{
+  border:1px solid rgba(255,255,255,.54);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+}
+.score-table-wrap,
+.rank-table-wrap,
+.live-rank-table-wrap,
+.player-history-wrap,
+.personal-history-wrap{
+  background:rgba(255,255,255,.92)!important;
+  border-color:rgba(148,163,184,.20)!important;
+  box-shadow:0 8px 24px rgba(15,23,42,.045);
+}
+.score-table th,.score-table td,
+.rank-table th,.rank-table td,
+.live-rank-table th,.live-rank-table td{
+  border-color:rgba(148,163,184,.20)!important;
+}
+.score-table th,
+.score-table th.name-head,
+.rank-table th,
+.live-rank-table th{
+  background:rgba(248,250,252,.96)!important;
+}
+.score-table td.name-cell,
+.score-in,
+.row-op{
+  background:rgba(255,255,255,.98)!important;
+}
+.sum,.avg{background:#f8fafc!important}
+.total{background:#f1f6ff!important}
+.score-in:focus{
+  background:#eef5ff!important;
+}
+.session,.group-session,.player-history-session,
+.roster-row,.sync-device,.sync-log,
+.player-hub-recent,.player-hub-kpi,
+.player-directory-kpis>div,
+.history-filter-panel{
+  background:rgba(255,255,255,.62)!important;
+  border-color:rgba(255,255,255,.66)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.48);
+}
+dialog,
+.player-session-dialog,
+.post-review-dialog{
+  background:transparent!important;
+}
+dialog::backdrop,
+.player-session-dialog::backdrop,
+.post-review-dialog::backdrop{
+  background:rgba(35,46,62,.30)!important;
+  -webkit-backdrop-filter:blur(14px) saturate(120%);
+  backdrop-filter:blur(14px) saturate(120%);
+}
+.player-session-dialog-card,
+.post-review-card,
+.restore-dialog-card{
+  background:rgba(255,255,255,.84)!important;
+  border:1px solid rgba(255,255,255,.78)!important;
+  -webkit-backdrop-filter:blur(30px) saturate(165%);
+  backdrop-filter:blur(30px) saturate(165%);
+  box-shadow:0 30px 90px rgba(15,23,42,.20)!important;
+}
+.footer-note{
+  color:#7a8493;
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .topbar,.tabs,.card,.panel,.sheet-card,.btn,
+  .player-session-dialog-card,.post-review-card,.restore-dialog-card{
+    background:#fff!important;
+  }
+}
+@media(max-width:680px){
+  body{
+    background:
+      radial-gradient(circle at 15% 0%,rgba(136,190,255,.25),transparent 22rem),
+      radial-gradient(circle at 95% 18%,rgba(197,178,255,.18),transparent 22rem),
+      linear-gradient(160deg,#f7f9fc,#edf2f7 56%,#f8f9fb);
+    background-attachment:fixed;
+  }
+  .topbar{
+    background:rgba(255,255,255,.66)!important;
+  }
+  .tabs{
+    top:64px;
+    width:100%;
+    margin:0 0 12px;
+    padding:5px;
+    border-radius:16px;
+    background:rgba(255,255,255,.58);
+    box-shadow:0 10px 26px rgba(15,23,42,.07);
+  }
+  .tab{
+    min-height:40px;
+    padding:8px 13px;
+  }
+  .card,.panel,.sheet-card,
+  .live-top,.live-score-panel,.live-rank-panel,
+  .player-hub-card,.settings-panel{
+    border-radius:17px!important;
+  }
+}
+@media(prefers-reduced-transparency:reduce){
+  :root{--glass:#fff;--glass-strong:#fff;--glass-soft:#f8fafc}
+  .topbar,.tabs,.card,.panel,.sheet-card,.btn{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+}
+
+
+/* =========================================================
+   v0.4.6 | Navigation & Mobile Glass Dock
+   ========================================================= */
+.mobile-glass-dock,.mobile-more-sheet,.mobile-more-backdrop{display:none}
+
+@media(max-width:680px){
+  body{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
+  main{padding-bottom:calc(118px + env(safe-area-inset-bottom))!important}
+  .tabs{display:none!important}
+
+  .mobile-glass-dock{
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    position:fixed;
+    left:12px;
+    right:12px;
+    bottom:max(10px,env(safe-area-inset-bottom));
+    z-index:70;
+    min-height:68px;
+    padding:7px;
+    border:1px solid rgba(255,255,255,.78);
+    border-radius:24px;
+    background:rgba(248,250,252,.68);
+    -webkit-backdrop-filter:blur(28px) saturate(180%);
+    backdrop-filter:blur(28px) saturate(180%);
+    box-shadow:
+      0 18px 48px rgba(15,23,42,.18),
+      inset 0 1px 0 rgba(255,255,255,.88);
+  }
+  .dock-item{
+    appearance:none;
+    border:0;
+    min-width:0;
+    min-height:54px;
+    padding:5px 3px 4px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:3px;
+    border-radius:18px;
+    background:transparent;
+    color:#687386;
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:.01em;
+    transition:background .16s ease,color .16s ease,transform .16s ease,box-shadow .16s ease;
+  }
+  .dock-item:active{transform:scale(.95)}
+  .dock-item.active{
+    color:#0b57d0;
+    background:rgba(255,255,255,.84);
+    box-shadow:
+      0 7px 18px rgba(15,23,42,.10),
+      inset 0 1px 0 rgba(255,255,255,.95);
+  }
+  .dock-icon{
+    width:27px;
+    height:27px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+    font-size:18px;
+    line-height:1;
+    font-weight:900;
+  }
+  .dock-item.active .dock-icon{
+    background:rgba(10,102,232,.10);
+  }
+  .dock-dots{font-size:13px;letter-spacing:1px}
+  .dock-more.has-secondary-active{
+    color:#0b57d0;
+    background:rgba(255,255,255,.84);
+    box-shadow:0 7px 18px rgba(15,23,42,.10),inset 0 1px 0 rgba(255,255,255,.95);
+  }
+
+  .mobile-more-backdrop{
+    position:fixed;
+    inset:0;
+    z-index:78;
+    background:rgba(15,23,42,.20);
+    -webkit-backdrop-filter:blur(10px);
+    backdrop-filter:blur(10px);
+  }
+  .mobile-more-backdrop.show{display:block}
+
+  .mobile-more-sheet{
+    display:block;
+    position:fixed;
+    left:10px;
+    right:10px;
+    bottom:calc(88px + env(safe-area-inset-bottom));
+    z-index:80;
+    padding:10px 12px 14px;
+    border:1px solid rgba(255,255,255,.82);
+    border-radius:26px;
+    background:rgba(249,250,252,.86);
+    -webkit-backdrop-filter:blur(30px) saturate(180%);
+    backdrop-filter:blur(30px) saturate(180%);
+    box-shadow:0 28px 70px rgba(15,23,42,.24),inset 0 1px 0 rgba(255,255,255,.94);
+    transform:translateY(24px) scale(.985);
+    opacity:0;
+    pointer-events:none;
+    visibility:hidden;
+    transition:transform .18s ease,opacity .18s ease,visibility .18s ease;
+  }
+  .mobile-more-sheet.open{
+    transform:translateY(0) scale(1);
+    opacity:1;
+    pointer-events:auto;
+    visibility:visible;
+  }
+  .mobile-more-handle{
+    width:38px;
+    height:4px;
+    margin:0 auto 10px;
+    border-radius:999px;
+    background:rgba(100,116,139,.28);
+  }
+  .mobile-more-head{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+    padding:2px 2px 12px;
+  }
+  .mobile-more-head strong{display:block;font-size:16px}
+  .mobile-more-head span{display:block;margin-top:3px;color:var(--muted);font-size:10px}
+  .mobile-more-close{
+    border:1px solid rgba(255,255,255,.78);
+    width:34px;height:34px;border-radius:50%;
+    background:rgba(255,255,255,.72);
+    color:#667085;font-size:21px;line-height:1;
+  }
+  .mobile-more-grid{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:8px;
+  }
+  .mobile-more-item{
+    appearance:none;
+    border:1px solid rgba(255,255,255,.78);
+    min-height:76px;
+    padding:10px 6px;
+    border-radius:18px;
+    background:rgba(255,255,255,.62);
+    color:#344054;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.84);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    font-size:11px;
+  }
+  .mobile-more-item>span{
+    width:30px;height:30px;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(15,98,254,.08);
+    color:#0b57d0;font-size:17px;font-weight:900;
+  }
+  .mobile-more-item strong{font-size:10px}
+  .mobile-more-item.active{
+    border-color:rgba(10,102,232,.22);
+    background:rgba(238,245,255,.92);
+    color:#0b57d0;
+  }
+
+  @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+    .mobile-glass-dock,.mobile-more-sheet{background:#fff}
+    .mobile-more-backdrop{background:rgba(15,23,42,.28)}
+  }
+}
+
+
+/* =========================================================
+   v0.4.6 | Live Scoring + Leaderboard Glass UI
+   UI-only: scoring algorithms and data contracts unchanged
+   ========================================================= */
+
+/* Live scoring: glass shell + high-contrast input core */
+.live-top{
+  border-radius:24px!important;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.78),rgba(247,250,255,.58))!important;
+  box-shadow:0 18px 46px rgba(15,23,42,.08)!important;
+}
+.live-kpi{
+  border:1px solid rgba(255,255,255,.76)!important;
+  border-radius:16px!important;
+  background:rgba(255,255,255,.62)!important;
+  -webkit-backdrop-filter:blur(16px) saturate(150%);
+  backdrop-filter:blur(16px) saturate(150%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.86),0 7px 18px rgba(15,23,42,.045);
+}
+.live-kpi strong{letter-spacing:-.035em}
+.live-progress{
+  height:10px!important;
+  background:rgba(148,163,184,.16)!important;
+  box-shadow:inset 0 1px 2px rgba(15,23,42,.05);
+}
+.live-progress span{
+  background:linear-gradient(90deg,#2b7df4,#0a66e8)!important;
+  box-shadow:0 0 14px rgba(10,102,232,.20);
+}
+
+.live-score-panel{
+  border-radius:24px!important;
+  background:rgba(255,255,255,.60)!important;
+}
+.live-rank-panel{
+  border-radius:24px!important;
+  background:
+    radial-gradient(circle at 90% 0%,rgba(121,181,255,.16),transparent 22rem),
+    rgba(255,255,255,.60)!important;
+}
+.live-section-head{
+  padding-bottom:10px;
+  border-bottom:1px solid rgba(148,163,184,.12);
+}
+.live-round-badge{
+  min-width:80px!important;
+  background:rgba(20,28,42,.92)!important;
+  border:1px solid rgba(255,255,255,.20);
+  box-shadow:0 7px 18px rgba(15,23,42,.14),inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+.live-score-list{gap:10px!important}
+.live-score-row{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.76)!important;
+  border-radius:18px!important;
+  padding:11px!important;
+  background:rgba(255,255,255,.66)!important;
+  -webkit-backdrop-filter:blur(16px) saturate(145%);
+  backdrop-filter:blur(16px) saturate(145%);
+  box-shadow:0 7px 20px rgba(15,23,42,.05),inset 0 1px 0 rgba(255,255,255,.88);
+  transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease;
+}
+.live-score-row:focus-within{
+  border-color:rgba(10,102,232,.32)!important;
+  box-shadow:0 12px 28px rgba(15,23,42,.07),0 0 0 3px rgba(10,102,232,.07);
+}
+.live-score-row.complete{
+  background:rgba(241,252,246,.76)!important;
+  border-color:rgba(109,190,145,.34)!important;
+}
+.live-score-row.complete:after{
+  content:"";
+  position:absolute;
+  left:0;top:0;bottom:0;width:3px;
+  background:#35a56f;
+}
+.live-rank{
+  width:38px!important;height:38px!important;
+  border-radius:13px!important;
+  background:rgba(239,243,248,.82)!important;
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
+}
+.live-rank.top{
+  background:rgba(230,240,255,.92)!important;
+  color:#075ec9!important;
+  box-shadow:0 5px 14px rgba(10,102,232,.08),inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+.live-chip{
+  border:1px solid rgba(148,163,184,.17)!important;
+  border-radius:10px!important;
+  background:rgba(248,250,252,.78)!important;
+}
+.live-chip.current{
+  border-color:rgba(10,102,232,.30)!important;
+  background:rgba(233,242,255,.94)!important;
+  box-shadow:0 0 0 2px rgba(10,102,232,.06);
+}
+.live-entry input{
+  height:54px!important;
+  border:1px solid rgba(100,116,139,.24)!important;
+  border-radius:14px!important;
+  background:#fff!important;
+  color:#111827;
+  box-shadow:0 4px 14px rgba(15,23,42,.06),inset 0 1px 0 rgba(255,255,255,.9);
+}
+.live-entry input:focus{
+  border-color:#0a66e8!important;
+  box-shadow:0 0 0 4px rgba(10,102,232,.11),0 6px 18px rgba(15,23,42,.06)!important;
+}
+.live-entry .clear-live{
+  height:54px!important;
+  border-color:rgba(148,163,184,.18)!important;
+  background:rgba(255,255,255,.74)!important;
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+}
+
+/* Inline live ranking */
+.live-rank-table-wrap{
+  border:1px solid rgba(255,255,255,.72)!important;
+  border-radius:18px!important;
+  background:rgba(255,255,255,.76)!important;
+  box-shadow:0 8px 24px rgba(15,23,42,.045);
+}
+.live-rank-table th{
+  background:rgba(248,250,252,.92)!important;
+}
+.live-rank-table tbody tr{
+  transition:background .15s ease;
+}
+.live-rank-table tbody tr:hover{background:rgba(241,246,253,.76)}
+.live-rank-table tbody tr:nth-child(1){
+  background:linear-gradient(90deg,rgba(255,246,210,.76),rgba(255,255,255,.82));
+}
+.live-rank-table tbody tr:nth-child(2){
+  background:linear-gradient(90deg,rgba(237,242,248,.82),rgba(255,255,255,.82));
+}
+.live-rank-table tbody tr:nth-child(3){
+  background:linear-gradient(90deg,rgba(249,235,224,.76),rgba(255,255,255,.82));
+}
+.live-rank-table tbody tr:nth-child(-n+3) .pos{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:32px;
+  height:32px;
+  border-radius:11px;
+  background:rgba(255,255,255,.72);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+/* Full leaderboard */
+.leaderboard-card{
+  border-radius:24px!important;
+  background:
+    radial-gradient(circle at 88% 0%,rgba(137,190,255,.17),transparent 26rem),
+    rgba(255,255,255,.62)!important;
+}
+.leaderboard-controls{
+  padding:10px;
+  border:1px solid rgba(255,255,255,.68);
+  border-radius:16px;
+  background:rgba(255,255,255,.40);
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+}
+.leaderboard-summary .mini-kpi{
+  border:1px solid rgba(255,255,255,.76)!important;
+  border-radius:16px!important;
+  background:rgba(255,255,255,.64)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.86),0 7px 18px rgba(15,23,42,.04);
+}
+.rank-table-wrap{
+  border:1px solid rgba(255,255,255,.74)!important;
+  border-radius:18px!important;
+  background:rgba(255,255,255,.84)!important;
+  box-shadow:0 10px 28px rgba(15,23,42,.05);
+}
+.rank-table th{
+  background:rgba(247,249,252,.94)!important;
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+}
+.rank-table tbody tr{transition:background .15s ease,transform .15s ease}
+.rank-table tbody tr:hover{background:rgba(238,245,255,.64)}
+.rank-table tbody tr:nth-child(1){
+  background:linear-gradient(90deg,rgba(255,246,207,.80),rgba(255,255,255,.88));
+}
+.rank-table tbody tr:nth-child(2){
+  background:linear-gradient(90deg,rgba(237,242,248,.86),rgba(255,255,255,.88));
+}
+.rank-table tbody tr:nth-child(3){
+  background:linear-gradient(90deg,rgba(249,235,224,.80),rgba(255,255,255,.88));
+}
+.rank-table tbody tr:nth-child(-n+3) .rank-no{
+  display:inline-flex;
+  min-width:34px;
+  height:34px;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  background:rgba(255,255,255,.74);
+  box-shadow:0 4px 12px rgba(15,23,42,.05),inset 0 1px 0 rgba(255,255,255,.92);
+}
+.rank-progress{
+  height:7px!important;
+  background:rgba(148,163,184,.15)!important;
+}
+.rank-progress>span{
+  background:linear-gradient(90deg,#54a0ff,#0a66e8)!important;
+  box-shadow:0 0 10px rgba(10,102,232,.16);
+}
+
+@media(max-width:680px){
+  .live-top,.live-score-panel,.live-rank-panel,.leaderboard-card{
+    border-radius:20px!important;
+  }
+  .live-kpis{gap:7px!important}
+  .live-kpi{padding:10px!important;border-radius:14px!important}
+  .live-score-row{
+    border-radius:16px!important;
+    padding:10px!important;
+  }
+  .live-person strong{font-size:15px}
+  .live-entry input{
+    height:58px!important;
+    font-size:27px!important;
+  }
+  .live-entry .clear-live{height:58px!important}
+  .live-chip{min-width:36px!important}
+  .leaderboard-controls{
+    padding:8px;
+    border-radius:14px;
+  }
+  .leaderboard-summary{gap:7px!important}
+  .leaderboard-summary .mini-kpi{
+    border-radius:14px!important;
+    padding:10px!important;
+  }
+}
+@media(prefers-reduced-transparency:reduce){
+  .live-score-row,.live-kpi,.leaderboard-card,.leaderboard-controls,.leaderboard-summary .mini-kpi{
+    background:#fff!important;
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+  }
+}
+
 </style>
-</head>
+<link rel="stylesheet" href="./assets/liquid-glass-dev4.css" />\n</head>
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · 正式版</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · Stable</p></div></div>
 </div></header>
 <main>
   <nav class="tabs" aria-label="功能切換">
@@ -463,6 +1159,40 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     <button class="tab" data-view="safetyView">資料安全</button>
     <button class="tab" data-view="syncView">設定</button>
   </nav>
+  <nav class="mobile-glass-dock" aria-label="手機主要導覽">
+    <button class="dock-item active" type="button" data-dock-view="meetupView" aria-label="球聚現場">
+      <span class="dock-icon" aria-hidden="true">●</span><span>現場</span>
+    </button>
+    <button class="dock-item" type="button" data-dock-view="scoreView" aria-label="本次計分">
+      <span class="dock-icon" aria-hidden="true">◫</span><span>計分</span>
+    </button>
+    <button class="dock-item" type="button" data-dock-view="personalView" aria-label="我的成績">
+      <span class="dock-icon" aria-hidden="true">◎</span><span>我的</span>
+    </button>
+    <button class="dock-item" type="button" data-dock-view="leaderboardView" aria-label="排行榜">
+      <span class="dock-icon" aria-hidden="true">▲</span><span>排行</span>
+    </button>
+    <button class="dock-item dock-more" type="button" id="mobileDockMoreBtn" aria-label="更多功能" aria-expanded="false">
+      <span class="dock-icon dock-dots" aria-hidden="true">•••</span><span>更多</span>
+    </button>
+  </nav>
+
+  <div class="mobile-more-backdrop" id="mobileMoreBackdrop" hidden></div>
+  <section class="mobile-more-sheet" id="mobileMoreSheet" aria-label="更多功能" aria-hidden="true">
+    <div class="mobile-more-handle" aria-hidden="true"></div>
+    <div class="mobile-more-head">
+      <div><strong>更多功能</strong><span>次要功能集中於此，不干擾現場操作。</span></div>
+      <button class="mobile-more-close" id="mobileMoreCloseBtn" type="button" aria-label="關閉更多功能">×</button>
+    </div>
+    <div class="mobile-more-grid">
+      <button type="button" class="mobile-more-item" data-dock-view="historyView"><span>▤</span><strong>成績紀錄</strong></button>
+      <button type="button" class="mobile-more-item" data-dock-view="photoView"><span>▣</span><strong>拍照匯入</strong></button>
+      <button type="button" class="mobile-more-item" data-dock-view="awardsView"><span>★</span><strong>獎項</strong></button>
+      <button type="button" class="mobile-more-item" data-dock-view="shareView"><span>↗</span><strong>分享成績</strong></button>
+      <button type="button" class="mobile-more-item" data-dock-view="safetyView"><span>◆</span><strong>資料安全</strong></button>
+      <button type="button" class="mobile-more-item" data-dock-view="syncView"><span>⚙</span><strong>設定</strong></button>
+    </div>
+  </section>
 
   <section id="meetupView" class="view active">
     <div class="live-workstation">
@@ -1263,7 +1993,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · <span data-app-version></span> · 正式版</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · <span data-app-version></span> · Stable</div>
 </main>
 </div>
 <script>
@@ -1287,7 +2017,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.5.2';
+const APP_VERSION='0.4.6';
 document.querySelectorAll('[data-app-version]').forEach(el=>{el.textContent='v'+APP_VERSION});
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
@@ -2770,6 +3500,10 @@ function switchView(id){
   if(viewId==='scoreView'&&currentMeetupId)openCurrentScoreFromActiveMeetup();
   document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===viewId));
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.view===viewId));
+  document.querySelectorAll('[data-dock-view]').forEach(t=>t.classList.toggle('active',t.dataset.dockView===viewId));
+  const primaryDockViews=new Set(['meetupView','scoreView','personalView','leaderboardView']);
+  const dockMore=document.getElementById('mobileDockMoreBtn');
+  dockMore?.classList.toggle('has-secondary-active',!primaryDockViews.has(viewId));
   if(viewId==='shareView')renderShare(currentMeetupId||'');
   if(viewId==='leaderboardView')renderLeaderboard(currentMeetupId||'all');
   if(viewId==='awardsView'){renderAwardOptions();if(currentMeetupId&&[...$('awardMeetup').options].some(o=>o.value===currentMeetupId))$('awardMeetup').value=currentMeetupId;renderAwards()}
@@ -2785,6 +3519,26 @@ function switchView(id){
 }
 
 document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>switchView(t.dataset.view)));
+
+function setMobileMoreOpen(open){
+  const sheet=document.getElementById('mobileMoreSheet');
+  const backdrop=document.getElementById('mobileMoreBackdrop');
+  const trigger=document.getElementById('mobileDockMoreBtn');
+  if(!sheet||!backdrop||!trigger)return;
+  sheet.classList.toggle('open',open);
+  sheet.setAttribute('aria-hidden',open?'false':'true');
+  backdrop.hidden=!open;
+  backdrop.classList.toggle('show',open);
+  trigger.setAttribute('aria-expanded',open?'true':'false');
+}
+document.querySelectorAll('[data-dock-view]').forEach(t=>t.addEventListener('click',()=>{
+  switchView(t.dataset.dockView);
+  setMobileMoreOpen(false);
+}));
+document.getElementById('mobileDockMoreBtn')?.addEventListener('click',()=>setMobileMoreOpen(!document.getElementById('mobileMoreSheet')?.classList.contains('open')));
+document.getElementById('mobileMoreCloseBtn')?.addEventListener('click',()=>setMobileMoreOpen(false));
+document.getElementById('mobileMoreBackdrop')?.addEventListener('click',()=>setMobileMoreOpen(false));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')setMobileMoreOpen(false)});
 $('addPlayerBtn').addEventListener('click',()=>{const rows=currentPlayersFromTable();if(rows.length>=12){flash('最多 12 位球員。','err');return}rows.push(makePlayer());renderScoreRows(rows)});
 $('saveSessionBtn').addEventListener('click',saveSession);
 $('newSessionBtn').addEventListener('click',()=>newSheet(true));

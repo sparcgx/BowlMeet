@@ -1,0 +1,54 @@
+{
+  "gate": "v0.4.6-RC.1 Full Liquid Glass Regression & Release Candidate Gate",
+  "source_branch": "v0.4.6-dev.4",
+  "stable_baseline": "stable/v0.4.5.2",
+  "result": "PASS",
+  "summary": {
+    "total": 104,
+    "pass": 104,
+    "fail": 0
+  },
+  "suites": {
+    "Version/Data Contract/Context/Public/Navigation/Live/Glass/Accessibility/Freeze/Tooling": {
+      "total": 59,
+      "pass": 59,
+      "fail": 0
+    },
+    "DOM/Dock/Version Hygiene/CSS/Scoring/Public Only": {
+      "total": 45,
+      "pass": 45,
+      "fail": 0
+    }
+  },
+  "changed_files_vs_stable": [
+    "index.html",
+    "assets/liquid-glass-dev4.css"
+  ],
+  "schema_changes": false,
+  "sql_changes": false,
+  "scoring_logic_changes": false,
+  "data_contract_changes": false,
+  "public_only_regression": false,
+  "context_sync_regression": false,
+  "pwa_package_metadata_updated": true,
+  "known_baseline_notes": [
+    "goMeetupBtn is a pre-existing dynamic banner id pattern also present in stable/v0.4.5.2; RC introduced no new duplicate literal ids."
+  ],
+  "freeze_scope": [
+    "Liquid Glass design tokens and glass materials",
+    "Desktop glass navigation",
+    "Mobile Glass Dock + More Sheet",
+    "Live Scoring + Leaderboard glass presentation",
+    "History + Player Hub + Share glass presentation"
+  ],
+  "protected_behaviors": [
+    "10-frame scoring and bowling normalization",
+    "current meetup Context Sync",
+    "leaderboard/awards/share synchronization",
+    "PUBLIC-only published score behavior",
+    "backup/snapshot/restore",
+    "IndexedDB + localStorage contracts",
+    "Supabase schema and SQL patches"
+  ],
+  "release_candidate": "v0.4.6-RC.1"
+}
