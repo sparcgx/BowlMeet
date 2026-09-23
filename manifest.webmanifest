@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.6-RC.1",
-  "short_name": "BowlMeet RC.1",
-  "description": "BowlMeet v0.4.6-RC.1：Liquid Glass UI Release Candidate。保留 v0.4.5.2 計分、PUBLIC-only、Context Sync、備份與資料契約。",
+  "name": "保齡球球聚｜BowlMeet v0.4.6",
+  "short_name": "BowlMeet",
+  "description": "BowlMeet v0.4.6：Liquid Glass UI Stable Release。保留 v0.4.5.2 計分、PUBLIC-only、Context Sync、備份與資料契約。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
