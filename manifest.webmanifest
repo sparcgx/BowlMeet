@@ -1,7 +1,7 @@
 {
   "name": "保齡球球聚｜BowlMeet",
   "short_name": "BowlMeet",
-  "description": "BowlMeet（保齡球球聚）v0.4.5.1：排行榜與分享成績只讀取已發布的公開歷史，排除本機未公開與已取消公開紀錄。",
+  "description": "BowlMeet（保齡球球聚）v0.4.5.2：統一版本顯示；排行榜與分享成績只讀取已發布的公開歷史。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",

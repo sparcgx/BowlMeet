@@ -1,4 +1,8 @@
-# BowlMeet v0.4.5.1 — Public Results Only Hotfix
+# BowlMeet v0.4.5.2 — Version Display Consistency Fix
+
+`v0.4.5.2` 修正正式站頁首、設定與頁尾殘留的舊版標示。所有可見版本均由 `APP_VERSION` 統一產生，PWA 快取亦換版；`v0.4.5.1` 的公開成績限定維持不變。
+
+## v0.4.5.1 — Public Results Only Hotfix
 
 `v0.4.5.1` 將「排行榜」與「分享成績」鎖定為單一公開歷史資料源：只使用 `groupRemote` 中仍為 published 的 Session；本機未公開、等待同步與已取消公開的成績不列入排行榜，也不能產生分享卡。
 
