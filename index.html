@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.6-dev.2</title>
+<title>保齡球球聚｜BowlMeet v0.4.6-dev.3</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -445,7 +445,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 }
 
 /* =========================================================
-   v0.4.6-dev.2 | Liquid Glass UI Foundation
+   v0.4.6-dev.3 | Liquid Glass UI Foundation
    UI-only: no scoring / data / cloud / schema behavior change
    ========================================================= */
 :root{
@@ -711,7 +711,7 @@ dialog::backdrop,
 
 
 /* =========================================================
-   v0.4.6-dev.2 | Navigation & Mobile Glass Dock
+   v0.4.6-dev.3 | Navigation & Mobile Glass Dock
    ========================================================= */
 .mobile-glass-dock,.mobile-more-sheet,.mobile-more-backdrop{display:none}
 
@@ -882,6 +882,260 @@ dialog::backdrop,
   @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
     .mobile-glass-dock,.mobile-more-sheet{background:#fff}
     .mobile-more-backdrop{background:rgba(15,23,42,.28)}
+  }
+}
+
+
+/* =========================================================
+   v0.4.6-dev.3 | Live Scoring + Leaderboard Glass UI
+   UI-only: scoring algorithms and data contracts unchanged
+   ========================================================= */
+
+/* Live scoring: glass shell + high-contrast input core */
+.live-top{
+  border-radius:24px!important;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.78),rgba(247,250,255,.58))!important;
+  box-shadow:0 18px 46px rgba(15,23,42,.08)!important;
+}
+.live-kpi{
+  border:1px solid rgba(255,255,255,.76)!important;
+  border-radius:16px!important;
+  background:rgba(255,255,255,.62)!important;
+  -webkit-backdrop-filter:blur(16px) saturate(150%);
+  backdrop-filter:blur(16px) saturate(150%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.86),0 7px 18px rgba(15,23,42,.045);
+}
+.live-kpi strong{letter-spacing:-.035em}
+.live-progress{
+  height:10px!important;
+  background:rgba(148,163,184,.16)!important;
+  box-shadow:inset 0 1px 2px rgba(15,23,42,.05);
+}
+.live-progress span{
+  background:linear-gradient(90deg,#2b7df4,#0a66e8)!important;
+  box-shadow:0 0 14px rgba(10,102,232,.20);
+}
+
+.live-score-panel{
+  border-radius:24px!important;
+  background:rgba(255,255,255,.60)!important;
+}
+.live-rank-panel{
+  border-radius:24px!important;
+  background:
+    radial-gradient(circle at 90% 0%,rgba(121,181,255,.16),transparent 22rem),
+    rgba(255,255,255,.60)!important;
+}
+.live-section-head{
+  padding-bottom:10px;
+  border-bottom:1px solid rgba(148,163,184,.12);
+}
+.live-round-badge{
+  min-width:80px!important;
+  background:rgba(20,28,42,.92)!important;
+  border:1px solid rgba(255,255,255,.20);
+  box-shadow:0 7px 18px rgba(15,23,42,.14),inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+.live-score-list{gap:10px!important}
+.live-score-row{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.76)!important;
+  border-radius:18px!important;
+  padding:11px!important;
+  background:rgba(255,255,255,.66)!important;
+  -webkit-backdrop-filter:blur(16px) saturate(145%);
+  backdrop-filter:blur(16px) saturate(145%);
+  box-shadow:0 7px 20px rgba(15,23,42,.05),inset 0 1px 0 rgba(255,255,255,.88);
+  transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease;
+}
+.live-score-row:focus-within{
+  border-color:rgba(10,102,232,.32)!important;
+  box-shadow:0 12px 28px rgba(15,23,42,.07),0 0 0 3px rgba(10,102,232,.07);
+}
+.live-score-row.complete{
+  background:rgba(241,252,246,.76)!important;
+  border-color:rgba(109,190,145,.34)!important;
+}
+.live-score-row.complete:after{
+  content:"";
+  position:absolute;
+  left:0;top:0;bottom:0;width:3px;
+  background:#35a56f;
+}
+.live-rank{
+  width:38px!important;height:38px!important;
+  border-radius:13px!important;
+  background:rgba(239,243,248,.82)!important;
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
+}
+.live-rank.top{
+  background:rgba(230,240,255,.92)!important;
+  color:#075ec9!important;
+  box-shadow:0 5px 14px rgba(10,102,232,.08),inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+.live-chip{
+  border:1px solid rgba(148,163,184,.17)!important;
+  border-radius:10px!important;
+  background:rgba(248,250,252,.78)!important;
+}
+.live-chip.current{
+  border-color:rgba(10,102,232,.30)!important;
+  background:rgba(233,242,255,.94)!important;
+  box-shadow:0 0 0 2px rgba(10,102,232,.06);
+}
+.live-entry input{
+  height:54px!important;
+  border:1px solid rgba(100,116,139,.24)!important;
+  border-radius:14px!important;
+  background:#fff!important;
+  color:#111827;
+  box-shadow:0 4px 14px rgba(15,23,42,.06),inset 0 1px 0 rgba(255,255,255,.9);
+}
+.live-entry input:focus{
+  border-color:#0a66e8!important;
+  box-shadow:0 0 0 4px rgba(10,102,232,.11),0 6px 18px rgba(15,23,42,.06)!important;
+}
+.live-entry .clear-live{
+  height:54px!important;
+  border-color:rgba(148,163,184,.18)!important;
+  background:rgba(255,255,255,.74)!important;
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+}
+
+/* Inline live ranking */
+.live-rank-table-wrap{
+  border:1px solid rgba(255,255,255,.72)!important;
+  border-radius:18px!important;
+  background:rgba(255,255,255,.76)!important;
+  box-shadow:0 8px 24px rgba(15,23,42,.045);
+}
+.live-rank-table th{
+  background:rgba(248,250,252,.92)!important;
+}
+.live-rank-table tbody tr{
+  transition:background .15s ease;
+}
+.live-rank-table tbody tr:hover{background:rgba(241,246,253,.76)}
+.live-rank-table tbody tr:nth-child(1){
+  background:linear-gradient(90deg,rgba(255,246,210,.76),rgba(255,255,255,.82));
+}
+.live-rank-table tbody tr:nth-child(2){
+  background:linear-gradient(90deg,rgba(237,242,248,.82),rgba(255,255,255,.82));
+}
+.live-rank-table tbody tr:nth-child(3){
+  background:linear-gradient(90deg,rgba(249,235,224,.76),rgba(255,255,255,.82));
+}
+.live-rank-table tbody tr:nth-child(-n+3) .pos{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:32px;
+  height:32px;
+  border-radius:11px;
+  background:rgba(255,255,255,.72);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9);
+}
+
+/* Full leaderboard */
+.leaderboard-card{
+  border-radius:24px!important;
+  background:
+    radial-gradient(circle at 88% 0%,rgba(137,190,255,.17),transparent 26rem),
+    rgba(255,255,255,.62)!important;
+}
+.leaderboard-controls{
+  padding:10px;
+  border:1px solid rgba(255,255,255,.68);
+  border-radius:16px;
+  background:rgba(255,255,255,.40);
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+}
+.leaderboard-summary .mini-kpi{
+  border:1px solid rgba(255,255,255,.76)!important;
+  border-radius:16px!important;
+  background:rgba(255,255,255,.64)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.86),0 7px 18px rgba(15,23,42,.04);
+}
+.rank-table-wrap{
+  border:1px solid rgba(255,255,255,.74)!important;
+  border-radius:18px!important;
+  background:rgba(255,255,255,.84)!important;
+  box-shadow:0 10px 28px rgba(15,23,42,.05);
+}
+.rank-table th{
+  background:rgba(247,249,252,.94)!important;
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+}
+.rank-table tbody tr{transition:background .15s ease,transform .15s ease}
+.rank-table tbody tr:hover{background:rgba(238,245,255,.64)}
+.rank-table tbody tr:nth-child(1){
+  background:linear-gradient(90deg,rgba(255,246,207,.80),rgba(255,255,255,.88));
+}
+.rank-table tbody tr:nth-child(2){
+  background:linear-gradient(90deg,rgba(237,242,248,.86),rgba(255,255,255,.88));
+}
+.rank-table tbody tr:nth-child(3){
+  background:linear-gradient(90deg,rgba(249,235,224,.80),rgba(255,255,255,.88));
+}
+.rank-table tbody tr:nth-child(-n+3) .rank-no{
+  display:inline-flex;
+  min-width:34px;
+  height:34px;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  background:rgba(255,255,255,.74);
+  box-shadow:0 4px 12px rgba(15,23,42,.05),inset 0 1px 0 rgba(255,255,255,.92);
+}
+.rank-progress{
+  height:7px!important;
+  background:rgba(148,163,184,.15)!important;
+}
+.rank-progress>span{
+  background:linear-gradient(90deg,#54a0ff,#0a66e8)!important;
+  box-shadow:0 0 10px rgba(10,102,232,.16);
+}
+
+@media(max-width:680px){
+  .live-top,.live-score-panel,.live-rank-panel,.leaderboard-card{
+    border-radius:20px!important;
+  }
+  .live-kpis{gap:7px!important}
+  .live-kpi{padding:10px!important;border-radius:14px!important}
+  .live-score-row{
+    border-radius:16px!important;
+    padding:10px!important;
+  }
+  .live-person strong{font-size:15px}
+  .live-entry input{
+    height:58px!important;
+    font-size:27px!important;
+  }
+  .live-entry .clear-live{height:58px!important}
+  .live-chip{min-width:36px!important}
+  .leaderboard-controls{
+    padding:8px;
+    border-radius:14px;
+  }
+  .leaderboard-summary{gap:7px!important}
+  .leaderboard-summary .mini-kpi{
+    border-radius:14px!important;
+    padding:10px!important;
+  }
+}
+@media(prefers-reduced-transparency:reduce){
+  .live-score-row,.live-kpi,.leaderboard-card,.leaderboard-controls,.leaderboard-summary .mini-kpi{
+    background:#fff!important;
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
   }
 }
 
@@ -1763,7 +2017,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.6-dev.2';
+const APP_VERSION='0.4.6-dev.3';
 document.querySelectorAll('[data-app-version]').forEach(el=>{el.textContent='v'+APP_VERSION});
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
