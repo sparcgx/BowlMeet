@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.5.2</title>
+<title>保齡球球聚｜BowlMeet v0.4.6-dev.1</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -443,12 +443,278 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 @media(prefers-reduced-motion:reduce){
   .player-hub-integrated *,.player-history-integrated *,.player-analytics-integrated *,.player-session-dialog *{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
 }
+
+/* =========================================================
+   v0.4.6-dev.1 | Liquid Glass UI Foundation
+   UI-only: no scoring / data / cloud / schema behavior change
+   ========================================================= */
+:root{
+  --bg:#eef3f8;
+  --card:rgba(255,255,255,.72);
+  --text:#18202d;
+  --muted:#667085;
+  --line:rgba(255,255,255,.58);
+  --line-strong:rgba(100,116,139,.18);
+  --primary:#0a66e8;
+  --primary-soft:rgba(10,102,232,.10);
+  --glass:rgba(255,255,255,.64);
+  --glass-strong:rgba(255,255,255,.82);
+  --glass-soft:rgba(248,250,252,.52);
+  --glass-border:rgba(255,255,255,.70);
+  --glass-shadow:0 18px 46px rgba(15,23,42,.09);
+  --glass-shadow-soft:0 8px 26px rgba(15,23,42,.065);
+  --glass-blur:24px;
+  --radius:20px;
+}
+html{
+  background:#e9eff6;
+}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 12% 0%,rgba(136,190,255,.28),transparent 32rem),
+    radial-gradient(circle at 92% 8%,rgba(197,178,255,.22),transparent 30rem),
+    radial-gradient(circle at 48% 92%,rgba(178,225,255,.19),transparent 34rem),
+    linear-gradient(145deg,#f7f9fc 0%,#eef3f8 44%,#f7f8fb 100%);
+  background-attachment:fixed;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:linear-gradient(120deg,rgba(255,255,255,.40),rgba(255,255,255,.08) 42%,rgba(255,255,255,.28));
+}
+.topbar{
+  background:rgba(255,255,255,.58)!important;
+  border-bottom:1px solid rgba(255,255,255,.58)!important;
+  -webkit-backdrop-filter:blur(28px) saturate(170%);
+  backdrop-filter:blur(28px) saturate(170%);
+  box-shadow:0 1px 0 rgba(100,116,139,.06),0 10px 30px rgba(15,23,42,.045);
+}
+.ball{
+  box-shadow:
+    inset -8px -8px 14px rgba(255,255,255,.08),
+    0 8px 22px rgba(15,23,42,.16);
+}
+.tabs{
+  position:sticky;
+  top:74px;
+  z-index:32;
+  width:max-content;
+  max-width:100%;
+  margin:0 auto 18px;
+  padding:6px;
+  border:1px solid var(--glass-border);
+  border-radius:18px;
+  background:rgba(255,255,255,.54);
+  -webkit-backdrop-filter:blur(22px) saturate(165%);
+  backdrop-filter:blur(22px) saturate(165%);
+  box-shadow:var(--glass-shadow-soft);
+}
+.tab{
+  border-color:transparent!important;
+  background:transparent!important;
+  color:#526071;
+  transition:background .18s ease,color .18s ease,box-shadow .18s ease,transform .18s ease;
+}
+.tab:hover{
+  background:rgba(255,255,255,.56)!important;
+}
+.tab.active{
+  color:#111827!important;
+  background:rgba(255,255,255,.92)!important;
+  border-color:rgba(255,255,255,.84)!important;
+  box-shadow:0 6px 18px rgba(15,23,42,.09),inset 0 1px 0 rgba(255,255,255,.9);
+}
+.card,
+.panel,
+.sheet-card,
+.photo-box,
+.ocr-review,
+.live-top,
+.live-score-panel,
+.live-rank-panel,
+.meetup-create,
+.meetup-side,
+.roster-card,
+.leaderboard-card,
+.analytics-shell,
+.analytics-card,
+.share-controls,
+.share-preview-card,
+.sync-panel,
+.group-panel,
+.safety-card,
+.awards-head,
+.award-card,
+.custom-award-panel,
+.award-rules-panel,
+.personal-panel,
+.settings-hero,
+.settings-panel,
+.player-hub-card,
+.player-directory-head{
+  background:var(--glass)!important;
+  border:1px solid var(--glass-border)!important;
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(155%);
+  backdrop-filter:blur(var(--glass-blur)) saturate(155%);
+  box-shadow:var(--glass-shadow-soft)!important;
+}
+.card:hover{
+  border-color:rgba(255,255,255,.88)!important;
+}
+.btn{
+  border:1px solid rgba(255,255,255,.72);
+  background:rgba(255,255,255,.66);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.7);
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+  transition:transform .16s ease,background .16s ease,box-shadow .16s ease;
+}
+.btn:hover{
+  background:rgba(255,255,255,.88);
+  box-shadow:0 6px 16px rgba(15,23,42,.07),inset 0 1px 0 rgba(255,255,255,.9);
+}
+.btn:active{transform:scale(.985)}
+.btn.primary{
+  color:#fff;
+  border-color:rgba(10,102,232,.76);
+  background:linear-gradient(180deg,rgba(27,123,248,.96),rgba(10,102,232,.96));
+  box-shadow:0 8px 20px rgba(10,102,232,.18),inset 0 1px 0 rgba(255,255,255,.25);
+}
+.field input,.field select,.field textarea,
+.toolbar input,.toolbar select,
+.group-toolbar input,.group-toolbar select,
+.verify-input,.raw-text{
+  border-color:rgba(148,163,184,.22)!important;
+  background:rgba(255,255,255,.72)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.70);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+}
+.field input:focus,.field select:focus,.field textarea:focus,
+.toolbar input:focus,.toolbar select:focus,
+.verify-input:focus,.raw-text:focus{
+  border-color:rgba(10,102,232,.45)!important;
+  box-shadow:0 0 0 4px rgba(10,102,232,.10)!important;
+}
+.pill,.ocr-chip,.mode-badge,.player-status,.player-source-badge{
+  border:1px solid rgba(255,255,255,.54);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+}
+.score-table-wrap,
+.rank-table-wrap,
+.live-rank-table-wrap,
+.player-history-wrap,
+.personal-history-wrap{
+  background:rgba(255,255,255,.92)!important;
+  border-color:rgba(148,163,184,.20)!important;
+  box-shadow:0 8px 24px rgba(15,23,42,.045);
+}
+.score-table th,.score-table td,
+.rank-table th,.rank-table td,
+.live-rank-table th,.live-rank-table td{
+  border-color:rgba(148,163,184,.20)!important;
+}
+.score-table th,
+.score-table th.name-head,
+.rank-table th,
+.live-rank-table th{
+  background:rgba(248,250,252,.96)!important;
+}
+.score-table td.name-cell,
+.score-in,
+.row-op{
+  background:rgba(255,255,255,.98)!important;
+}
+.sum,.avg{background:#f8fafc!important}
+.total{background:#f1f6ff!important}
+.score-in:focus{
+  background:#eef5ff!important;
+}
+.session,.group-session,.player-history-session,
+.roster-row,.sync-device,.sync-log,
+.player-hub-recent,.player-hub-kpi,
+.player-directory-kpis>div,
+.history-filter-panel{
+  background:rgba(255,255,255,.62)!important;
+  border-color:rgba(255,255,255,.66)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.48);
+}
+dialog,
+.player-session-dialog,
+.post-review-dialog{
+  background:transparent!important;
+}
+dialog::backdrop,
+.player-session-dialog::backdrop,
+.post-review-dialog::backdrop{
+  background:rgba(35,46,62,.30)!important;
+  -webkit-backdrop-filter:blur(14px) saturate(120%);
+  backdrop-filter:blur(14px) saturate(120%);
+}
+.player-session-dialog-card,
+.post-review-card,
+.restore-dialog-card{
+  background:rgba(255,255,255,.84)!important;
+  border:1px solid rgba(255,255,255,.78)!important;
+  -webkit-backdrop-filter:blur(30px) saturate(165%);
+  backdrop-filter:blur(30px) saturate(165%);
+  box-shadow:0 30px 90px rgba(15,23,42,.20)!important;
+}
+.footer-note{
+  color:#7a8493;
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .topbar,.tabs,.card,.panel,.sheet-card,.btn,
+  .player-session-dialog-card,.post-review-card,.restore-dialog-card{
+    background:#fff!important;
+  }
+}
+@media(max-width:680px){
+  body{
+    background:
+      radial-gradient(circle at 15% 0%,rgba(136,190,255,.25),transparent 22rem),
+      radial-gradient(circle at 95% 18%,rgba(197,178,255,.18),transparent 22rem),
+      linear-gradient(160deg,#f7f9fc,#edf2f7 56%,#f8f9fb);
+    background-attachment:fixed;
+  }
+  .topbar{
+    background:rgba(255,255,255,.66)!important;
+  }
+  .tabs{
+    top:64px;
+    width:100%;
+    margin:0 0 12px;
+    padding:5px;
+    border-radius:16px;
+    background:rgba(255,255,255,.58);
+    box-shadow:0 10px 26px rgba(15,23,42,.07);
+  }
+  .tab{
+    min-height:40px;
+    padding:8px 13px;
+  }
+  .card,.panel,.sheet-card,
+  .live-top,.live-score-panel,.live-rank-panel,
+  .player-hub-card,.settings-panel{
+    border-radius:17px!important;
+  }
+}
+@media(prefers-reduced-transparency:reduce){
+  :root{--glass:#fff;--glass-strong:#fff;--glass-soft:#f8fafc}
+  .topbar,.tabs,.card,.panel,.sheet-card,.btn{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+}
+
 </style>
 </head>
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · 正式版</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · Liquid Glass Preview</p></div></div>
 </div></header>
 <main>
   <nav class="tabs" aria-label="功能切換">
@@ -1263,7 +1529,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · <span data-app-version></span> · 正式版</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · <span data-app-version></span> · Liquid Glass Preview</div>
 </main>
 </div>
 <script>
@@ -1287,7 +1553,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.5.2';
+const APP_VERSION='0.4.6-dev.1';
 document.querySelectorAll('[data-app-version]').forEach(el=>{el.textContent='v'+APP_VERSION});
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
