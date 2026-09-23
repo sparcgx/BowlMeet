@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.5.1</title>
+<title>保齡球球聚｜BowlMeet v0.4.5.2</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -448,7 +448,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet v0.4.5-dev.4 · Player Experience & Session Navigation Polish</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · 正式版</p></div></div>
 </div></header>
 <main>
   <nav class="tabs" aria-label="功能切換">
@@ -593,7 +593,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
           <h2>設定</h2>
           <p>日常使用以「球聚現場」為主。雲端、裝置與相容性功能集中在這裡，不干擾現場記分流程。</p>
         </div>
-        <span class="pill">v0.4.4-R1-HF1</span>
+        <span class="pill" data-app-version></span>
       </section>
 
       <div class="settings-grid">
@@ -642,7 +642,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
             <div class="pwa-status" id="pwaHelp">正在檢查 PWA 狀態。</div>
           </div>
           <div class="settings-system-list">
-            <div><span>目前版本</span><strong>v0.4.4-R1-HF1</strong></div>
+            <div><span>目前版本</span><strong data-app-version></strong></div>
             <div><span>啟動首頁</span><strong>球聚現場</strong></div>
           </div>
           <div class="settings-actions"><button class="btn primary install-btn" id="installAppBtn" type="button">安裝 App</button><button class="btn" id="settingsCheckUpdateBtn" type="button">檢查更新</button></div>
@@ -652,7 +652,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
         <section class="card settings-panel">
           <div class="settings-panel-head"><div><h2>資料與系統</h2><p>備份、還原、快照與完整性檢查集中在「資料安全」。</p></div></div>
           <div class="settings-system-list">
-            <div><span>目前版本</span><strong>v0.4.4-R1-HF1</strong></div>
+            <div><span>目前版本</span><strong data-app-version></strong></div>
             <div><span>主要作業模式</span><strong>球聚現場</strong></div>
             <div><span>本機資料</span><strong>IndexedDB + localStorage</strong></div>
           </div>
@@ -1179,7 +1179,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
       <div class="card safety-card"><div class="cap">主要資料庫</div><div class="num" id="safetyEngine">初始化…</div><div class="sub" id="safetyEngineSub">正在檢查 IndexedDB</div></div>
       <div class="card safety-card"><div class="cap">安全快照</div><div class="num" id="snapshotCount">0</div><div class="sub">最多保留最近 10 個</div></div>
       <div class="card safety-card"><div class="cap">最近快照</div><div class="num" id="lastSnapshotTime">—</div><div class="sub" id="lastSnapshotReason">尚無快照</div></div>
-      <div class="card safety-card"><div class="cap">資料 Schema</div><div class="num">v2</div><div class="sub">App v0.4.5.1 · Local-first</div></div>
+      <div class="card safety-card"><div class="cap">資料 Schema</div><div class="num">v2</div><div class="sub">App <span data-app-version></span> · Local-first</div></div>
     </section>
     <div class="safety-layout">
       <section class="card safety-panel">
@@ -1263,7 +1263,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · v0.4.5-dev.4 · Player Experience & Session Navigation Polish</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · <span data-app-version></span> · 正式版</div>
 </main>
 </div>
 <script>
@@ -1287,7 +1287,8 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.5.1';
+const APP_VERSION='0.4.5.2';
+document.querySelectorAll('[data-app-version]').forEach(el=>{el.textContent='v'+APP_VERSION});
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
 const BUILTIN_CLOUD=true;
