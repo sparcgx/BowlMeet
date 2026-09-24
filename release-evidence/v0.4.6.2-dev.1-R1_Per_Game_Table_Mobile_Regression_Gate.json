@@ -36,7 +36,9 @@
     "storageIsolation": true,
     "indexedDbIsolation": true,
     "cloudIsolation": true,
-    "serviceWorkerIsolation": true
+    "serviceWorkerIsolation": true,
+    "cacheRevision": "fix1",
+    "serviceWorkerCachePrefix": "bowlmeet-preview-v0462d1r1-fix1-"
   },
   "safety": {
     "dbVersion": 2,
@@ -46,10 +48,15 @@
     "publicPayloadMigration": false
   },
   "deviceManual": {
-    "status": "PENDING",
+    "status": "RETEST_REQUIRED",
     "checks": 10,
     "pass": 0,
-    "fail": 0
+    "fail": 0,
+    "retestRequired": [
+      6,
+      7,
+      8
+    ]
   },
   "validationComplete": false,
   "repair1": {
