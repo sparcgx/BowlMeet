@@ -63,7 +63,9 @@ PASS R1-path compatibility Preview PR #23 merged
 PASS isolated R2 Preview PR #25 merged
 PASS isolated R2 Preview path = preview/v0.4.6.2-dev.1-R2/
 PASS main vs stable differences remain preview-only
-PASS production root not included in Preview publishes
+PASS production root not included in Preview publish
+PASS main production index.html / sw.js match stable/v0.4.6.1
+PASS published R2 Preview files match R2 branch blobses
 
 REPRODUCIBLE GATE
 node tools/v0.4.6.2-dev.1-r2-cleanup-gate.mjs
