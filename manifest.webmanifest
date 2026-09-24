@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.6.2-dev.1",
+  "name": "保齡球球聚｜BowlMeet v0.4.6.2-RC.1",
   "short_name": "BowlMeet",
-  "description": "BowlMeet v0.4.6.2-dev.1：公開成績每局 1～6 分數展開表、總分／平均與手機水平滑動；沿用既有 PUBLIC、同步與備份契約。",
+  "description": "BowlMeet v0.4.6.2-RC.1：公開成績每局 1～6 展開表、公開狀態控制修正與 PWA Cache Hardening Release Candidate；PUBLIC、同步與備份契約維持相容。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
