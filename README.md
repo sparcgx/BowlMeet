@@ -13,7 +13,7 @@
 - 舊 v0.4.6.1 PR #8 / #9 / #11 / #12 / #15 已依 stable/v0.4.6.1 完整取代關閉
 - 新增可重跑 Gate：`node tools/v0.4.6.2-dev.1-r2-cleanup-gate.mjs`
 
-R2 靜態／差異 Regression：**40/40 PASS**。
+R2 靜態／差異 Regression：**42/42 PASS**。
 - `DB_VERSION = 2`
 - `PUBLIC_HISTORY_CODE = PUBLIC`
 - `DB_NAME = bowlingMeetup.local`
