@@ -1,0 +1,24 @@
+{
+  "version": "v0.4.6.1-dev.2-R1",
+  "title": "Preset Device Preview & Mobile Regression Gate",
+  "date": "2026-09-24",
+  "base": "v0.4.6.1-dev.2",
+  "stableBase": "stable/v0.4.6",
+  "automated": {
+    "pass": 35,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "preview": {
+    "path": "preview/v0.4.6.1-dev.2-R1/",
+    "localStoragePrefix": "bowlmeet.preview.v0461d2r1.",
+    "indexedDB": "bowlmeet.preview.v0461d2r1.local",
+    "cloudGroupCode": "V461D21",
+    "serviceWorkerCachePrefix": "bowlmeet-preview-v0461d2r1-"
+  },
+  "deviceManual": {
+    "status": "PENDING",
+    "checks": 12
+  },
+  "validationComplete": false
+}
