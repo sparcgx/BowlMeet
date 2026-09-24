@@ -54,10 +54,12 @@
     "serviceWorkerIsolation": true
   },
   "rcDeviceSmoke": {
-    "status": "PENDING",
+    "status": "PASS",
     "checks": 8,
-    "pass": 0,
-    "fail": 0
+    "pass": 8,
+    "fail": 0,
+    "confirmedByUser": true
   },
-  "releaseCandidateValidationComplete": false
+  "releaseCandidateValidationComplete": true,
+  "releaseCandidateStatus": "VALIDATION_COMPLETE"
 }
