@@ -1,0 +1,82 @@
+BowlMeet v0.4.6.1-dev.1-R1
+Layout Settings Device Preview & Regression Gate
+Date: 2026-09-24
+Base: v0.4.6.1-dev.1
+Stable ancestry: stable/v0.4.6
+
+AUTOMATED GATE: 27 PASS / 0 FAIL
+
+PASS 01 Root JavaScript syntax
+PASS 02 Root static duplicate ID = 0
+PASS 03 Root literal DOM reference missing = 0
+PASS 04 Root duplicate function declaration = 0
+PASS 05 Preview JavaScript syntax
+PASS 06 Preview static duplicate ID = 0
+PASS 07 Preview literal DOM reference missing = 0
+PASS 08 Preview duplicate function declaration = 0
+PASS 09 APP_VERSION remains v0.4.6.1-dev.1 on development root
+PASS 10 Layout preference key exists
+PASS 11 Five layout controls exist
+PASS 12 Apply / Reset controls exist
+PASS 13 Default layout = 100% / standard / standard / standard / standard
+PASS 14 Layout preferences excluded from captureState backup
+PASS 15 Layout preferences excluded from mirrorStateToLocalStorage restore path
+PASS 16 Scoring / PUBLIC / leaderboard / share / player / group / sync / backup functions unchanged vs dev.1
+PASS 17 Preview functional bodies unchanged vs R1 root
+PASS 18 Preview localStorage namespace isolated
+PASS 19 Preview IndexedDB namespace isolated
+PASS 20 Preview Cloud group code isolated: V461D11
+PASS 21 Preview manifest isolated
+PASS 22 Preview Service Worker cache isolated
+PASS 23 Root mobile Glass Dock scale guard present
+PASS 24 Preview mobile Glass Dock scale guard present
+PASS 25 Liquid Glass layout panel integration present
+PASS 26 Reduced-transparency fallback retained
+PASS 27 Preview Service Worker includes Liquid Glass asset
+
+R1 HARDENING
+- Mobile 90/100/110/120% scaling no longer scales the fixed Glass Dock.
+- On mobile, topbar and .view content scale independently; Dock / More sheet keep certified v0.4.6 size.
+- Preview namespaces:
+  localStorage prefix: bowlmeet.preview.v0461d1r1.*
+  IndexedDB: bowlmeet.preview.v0461d1r1.local
+  PUBLIC preview code: V461D11
+  Service Worker cache: bowlmeet-preview-v0461d1r1-*
+- Formal PUBLIC is not the Preview group code.
+- No Supabase schema migration included.
+- No production root deployment included in this branch.
+
+PRIORITY DEVICE ACCEPTANCE: PASS (6/6)
+FULL DEVICE MANUAL ACCEPTANCE: PARTIAL (12/24)
+Required device checks:
+01 Default v0.4.6 Liquid Glass appearance
+02 Scale 90%
+03 Scale 100%
+04 Scale 110%
+05 Scale 120%
+06 Density compact
+07 Density standard
+08 Density spacious
+09 Width standard
+10 Width wide
+11 Width full
+12 Leaderboard standard/compact
+13 Score area standard/large
+14 Frame 1-10 input
+15 Horizontal scroll / focus retention
+16 Mobile Glass Dock navigation
+17 More sheet navigation
+18 Save layout preference
+19 Close/reopen PWA persistence
+20 Reset to v0.4.6 defaults
+21 Public-only leaderboard visibility
+22 Public-only share visibility
+23 Backup/restore unaffected
+24 PWA safe update / cache refresh
+
+STATUS
+Automated Regression: PASS (27/27)
+Device Preview Package: READY
+Priority Device Acceptance: PASS (6/6)
+Full Manual Device Acceptance: 12 PASS / 12 PENDING
+Validation Complete: NOT YET

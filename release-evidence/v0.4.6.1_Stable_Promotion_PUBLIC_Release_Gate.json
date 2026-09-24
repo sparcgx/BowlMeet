@@ -1,0 +1,54 @@
+{
+  "version": "v0.4.6.1",
+  "title": "Stable Promotion & PUBLIC Release Gate",
+  "date": "2026-09-25",
+  "base": "v0.4.6.1-RC.1",
+  "previousStable": "stable/v0.4.6",
+  "stablePromotion": {
+    "pass": 82,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "certifiedInput": {
+    "rcAutomated": {
+      "pass": 125,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "rcDeviceSmoke": {
+      "pass": 8,
+      "fail": 0,
+      "status": "PASS",
+      "confirmedByUser": true
+    },
+    "dev2R1Device": {
+      "pass": 12,
+      "fail": 0,
+      "status": "PASS",
+      "confirmedByUser": true
+    },
+    "rcValidationComplete": true
+  },
+  "promotionDelta": {
+    "appVersion": "0.4.6.1",
+    "visibleStatus": "Stable",
+    "functionBodiesChanged": 0
+  },
+  "dataSafety": {
+    "dbVersion": 2,
+    "dbName": "bowlingMeetup.local",
+    "layoutPreferenceKey": "bowlingMeetup.layoutPreferences.v1",
+    "supabaseMigration": false,
+    "indexedDbMigration": false,
+    "publicPayloadMigration": false,
+    "releaseTimePublicRewrite": false
+  },
+  "publicReleaseGate": {
+    "status": "PASS",
+    "productionCode": "PUBLIC",
+    "publicOnlyLeaderboardPreserved": true,
+    "publicOnlySharePreserved": true,
+    "previewCloudCodeAbsent": true
+  },
+  "readyForMainPromotion": true
+}

@@ -1,3 +1,73 @@
+# BowlMeet v0.4.6.1 — Stable / PUBLIC
+
+正式基線：`v0.4.6.1-RC.1`，已完成 Full Automated **125/125 PASS**、RC Device Smoke **8/8 PASS**，且 dev.2-R1 Device Acceptance **12/12 PASS**。
+
+本次 Stable Promotion 不新增功能，只將已驗證 RC 升為正式版本。
+
+- APP_VERSION：`0.4.6.1`
+- 顯示狀態：`Stable`
+- PWA Cache：`bowlmeet-v0.4.6.1-stable-*`
+- 版面設定：90 / 100 / 110 / 120%、密度、寬度、排行榜、計分區
+- 快速版面：標準／緊湊／現場大字
+- Mobile Optimization：Glass Dock 保持固定尺寸，≤420px 版面最佳化
+- Layout Preferences 維持 `bowlingMeetup.layoutPreferences.v1`
+- IndexedDB `DB_VERSION = 2`
+- PUBLIC code 維持 `PUBLIC`
+- 排行榜與分享維持 Public-only
+- 無 Supabase migration
+- 無 IndexedDB migration
+- 無 PUBLIC payload migration／release-time rewrite
+
+# BowlMeet v0.4.6.1-RC.1 — Full Regression & Release Candidate Gate
+
+基線：`v0.4.6.1-dev.2`，其 R1 已完成 Automated **35/35 PASS** 與 Device **12/12 PASS**。
+
+RC.1 不新增功能，僅進行候選版升版、PWA Cache 換版、完整跨模組回歸與 Release Gate。
+
+- APP_VERSION：`0.4.6.1-RC.1`
+- PWA Cache：`bowlmeet-v0.4.6.1-RC.1-*`
+- 版面設定與 Preset 資料格式維持 `bowlingMeetup.layoutPreferences.v1`
+- IndexedDB `DB_VERSION = 2`
+- 正式 PUBLIC code 維持 `PUBLIC`
+- 無 Supabase migration
+- 無 IndexedDB migration
+- 無 PUBLIC payload migration
+- 計分、排行榜、分享、Player Hub、同步、Backup / Restore 契約不得變更
+
+# BowlMeet v0.4.6.1-dev.2 — Layout Presets & Mobile Optimization
+
+基線：`v0.4.6.1-dev.1-R2`（功能程式承接 dev.1/R1；R2 僅新增驗收 Evidence）。
+
+本版新增三組一鍵快速版面，點選後會立即套用並儲存在既有 `bowlingMeetup.layoutPreferences.v1`；不新增資料 schema。
+
+- **標準**：100%／標準密度／標準寬度／標準排行榜／標準計分區。
+- **緊湊**：90%／緊湊密度／寬版／緊湊排行榜／標準計分區。
+- **現場大字**：110%／寬鬆密度／標準寬度／標準排行榜／加大計分區。
+- 快速預設與進階自訂可互相切換；符合預設組合時會自動標示目前預設。
+- 手機維持固定 Glass Dock 不跟隨 90～120% 縮放。
+- 420px 以下縮小 Dock 外框、按鈕與 More Sheet 佔用空間；版面自訂欄位改為單欄。
+- 現場大字模式進一步提高球員名稱、格分、局總分與手機計分輸入可讀性。
+- 保留 reduced-transparency fallback。
+
+資料隔離：Session、Meetup、Roster、Personal、Backup、Supabase schema、PUBLIC payload、PUBLIC-only 排行榜／分享邏輯均不變。
+
+# BowlMeet v0.4.6.1-dev.1 — Layout Settings Foundation
+
+開發基線：`stable/v0.4.6`（Liquid Glass Stable）。
+
+本版重新以 v0.4.6 主線實作「設定 → 版面設定」，不沿用 v0.4.5.3-dev.1 的舊基線程式碼。
+
+- 介面大小：90% / 100% / 110% / 120%
+- 內容密度：緊湊 / 標準 / 寬鬆
+- 內容寬度：標準 / 寬版 / 滿版
+- 排行榜顯示：標準 / 緊湊
+- 計分區大小：標準 / 加大
+- 即時預覽、套用設定、恢復 v0.4.6 預設版面
+- 設定以 `bowlingMeetup.layoutPreferences.v1` 儲存在目前裝置
+- Liquid Glass、Mobile Glass Dock、History / Player Hub / Share Glass 保持 v0.4.6 架構
+
+資料隔離：不修改 Session、Meetup、Roster、Personal Data、Backup、Supabase schema、PUBLIC payload、PUBLIC revision 或 PUBLIC-only 排行榜／分享邏輯。
+
 # BowlMeet v0.4.5.2 — Version Display Consistency Fix
 
 `v0.4.5.2` 修正正式站頁首、設定與頁尾殘留的舊版標示。所有可見版本均由 `APP_VERSION` 統一產生，PWA 快取亦換版；`v0.4.5.1` 的公開成績限定維持不變。
