@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.6.1-dev.1",
+  "name": "保齡球球聚｜BowlMeet v0.4.6.1-dev.2",
   "short_name": "BowlMeet",
-  "description": "BowlMeet v0.4.6.1-dev.1：以 v0.4.6 Liquid Glass Stable 為基線新增本機版面設定；資料與 PUBLIC 契約不變。",
+  "description": "BowlMeet v0.4.6.1-dev.2：新增標準／緊湊／現場大字快速版面與小螢幕 Mobile Optimization；資料與 PUBLIC 契約不變。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
