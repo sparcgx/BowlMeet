@@ -60,7 +60,7 @@ GOVERNANCE
 PASS superseded v0.4.6.1 PRs #8 #9 #11 #12 #15 closed
 PASS v0.4.6.2 PRs #18 #19 retained
 PASS R1-path compatibility Preview PR #23 merged
-PASS isolated R2 Preview PR #25 merged
+PASS isolated R2 Preview PR #25 / #26 merged (preview-only)
 PASS isolated R2 Preview path = preview/v0.4.6.2-dev.1-R2/
 PASS main vs stable differences remain preview-only
 PASS production root not included in Preview publish
