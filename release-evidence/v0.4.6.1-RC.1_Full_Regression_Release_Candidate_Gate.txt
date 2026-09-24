@@ -48,7 +48,7 @@ RC PREVIEW ISOLATION
 - Production PUBLIC write target is not used by Preview
 - Production DB namespace is not used by Preview
 
-RC DEVICE SMOKE: PENDING (8)
+RC DEVICE SMOKE: PASS (8/8)
 1. RC.1 version / Release Candidate label displayed
 2. Standard / Compact / Field Large presets switch correctly
 3. Custom layout and reset remain correct
@@ -62,5 +62,5 @@ STATUS
 Full Automated Regression: PASS (125/125)
 Inherited Device Acceptance: PASS (12/12)
 RC Preview Package: READY
-RC Device Smoke: PENDING (8)
-Release Candidate Validation Complete: NOT YET
+RC Device Smoke: PASS (8/8)
+Release Candidate Validation Complete: YES
