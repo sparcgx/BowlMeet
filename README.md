@@ -21,7 +21,7 @@ R2 最終靜態／差異 Regression：**44/44 PASS**。
 - 無 Supabase / IndexedDB / PUBLIC payload migration
 - 正式 root `index.html` 僅 4 行預期的公開狀態文案／reason 變更
 - `main` 相對 `stable/v0.4.6.1` 的差異仍全部位於 `preview/`
-- Isolated R2 Preview 已由 PR #25 發布
+- Isolated R2 Preview 已由 Preview-only PR #25 / #26 發布（正式 root 未變）
 
 > R2 尚未 Stable Promotion；目前只差 4 項實機 Device Acceptance。
 
