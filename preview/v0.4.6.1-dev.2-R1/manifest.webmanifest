@@ -1,0 +1,18 @@
+{
+  "name":"保齡球球聚｜BowlMeet v0.4.6.1-dev.2-R1 Preview",
+  "short_name":"BowlMeet 0.4.6.1",
+  "description":"Preset Device Preview & Mobile Regression Gate。三組快速版面與小螢幕最佳化，使用獨立 Storage / IndexedDB / Cloud code / Cache。",
+  "lang":"zh-Hant",
+  "start_url":"./index.html",
+  "scope":"./",
+  "display":"standalone",
+  "background_color":"#eef3f8",
+  "theme_color":"#ffffff",
+  "orientation":"any",
+  "categories":["sports","utilities"],
+  "icons":[
+    {"src":"../../icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
+    {"src":"../../icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any"},
+    {"src":"../../icons/icon-maskable-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}
+  ]
+}
