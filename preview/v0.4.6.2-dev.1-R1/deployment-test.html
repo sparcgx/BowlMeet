@@ -10,11 +10,11 @@
 </head>
 <body><main class="wrap">
 <section class="card"><span class="pill">BowlMeet v0.4.6.2-dev.1-R1</span><h1>iPhone Safari Deployment Test</h1><p>此頁用來確認目前不是檔案預覽器，而是真正以 HTTPS 網頁方式執行。</p></section>
-<section class="card"><p><strong>dev.3 驗收重點：</strong>從「成績紀錄 → 球員」進入 Player Hub，可查看分析與球員歷史；返回需保留 Player Context，舊 statsView route 仍相容。</p></section>
+<section class="card"><p><strong>R2 驗收重點：</strong>首次公開／重新公開文案分流、Preview Cache Hardening、PWA metadata 與驗收頁殘留清理；不改 PUBLIC 資料契約。</p></section>
 <section class="card"><p><strong>Public Record Control 前置：</strong>Supabase 已套用 <code>supabase_v044_public_record_control_patch.sql</code>；跨裝置 tombstone 與 R1 legacy repush 防復活測試已通過。</p></section>
-<section class="card"><p><strong>版本狀態：</strong>v0.4.6.2-dev.1-R1 以 v0.4.6 Liquid Glass Stable 為基線，新增本機版面設定；排行榜與分享仍只使用公開歷史。</p></section>
-<section class="card"><p><strong>Frame Focus Hotfix：</strong>輸入第 2～10 格後不得回到第 1 格；一般儲存保持目前水平位置，Enter 仍前進到下一個可輸入球。</p></section>
-<section class="card"><p><strong>Manual Device Acceptance：</strong>HF1 實機測試已 PASS；第 1～10 格連續輸入、後段格位水平捲動、Enter 前進、Strike 跳格與第 10 格操作均正常，不再跳回第 1 格。</p></section>
+<section class="card"><p><strong>版本狀態：</strong>v0.4.6.2-dev.1-R1 Preview（R2 cleanup branch） 以 stable/v0.4.6.1 為正式基線，新增公開成績每局展開表與手機水平滑動。</p></section>
+<section class="card"><p><strong>每局公開成績表：</strong>固定顯示球員／1～6／總分／平均；未完成局數顯示「—」，手機表格由內層容器水平滑動。</p></section>
+<section class="card"><p><strong>Manual Device Acceptance：</strong>R1 已完成 10/10 PASS；#6 匯入我的紀錄、#7 公開狀態控制、#8 iPhone 水平滑動均已實機通過。</p></section>
 <section class="card"><p><strong>Unified Player Directory：</strong>不再需要「從歷史成績同步」。球員頁直接由 Unified History 與 Legacy 成績產生；暱稱／備註等附加資料才寫入 Roster。</p></section>
 <section class="card" id="checks">
 <div class="row"><span class="label">JavaScript</span><span class="status bad" id="js">未執行</span></div>
@@ -27,7 +27,7 @@
 <section class="card"><div class="meta" id="meta"></div></section>
 <a class="btn" href="./index.html">開啟 BowlMeet</a>
 <section class="card"><p><strong>R1 Preview 隔離：</strong>Storage / IndexedDB / Layout Preferences / Cloud group code / Service Worker Cache 均使用 v0462d1r1 命名空間；正式 PUBLIC 不作為此頁寫入目標。</p></section>
-<section class="card"><p><strong>Fix1：</strong>已修正本機紀錄公開控制顯示，以及 iPhone Safari 每局表格橫向滑動 containment。請重新整理後重測 6／7／8。</p></section>
+<section class="card"><p><strong>R2 Cache Hardening：</strong>會清除同一 R1 Preview namespace 的舊 cache，且只從目前 Preview shell/runtime 讀取離線資源，避免 Fix1 前舊資源再次命中。</p></section>
 </main>
 <script>
 (()=>{
