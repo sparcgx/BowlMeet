@@ -1,3 +1,27 @@
+# BowlMeet v0.4.6.2-dev.1-R2 — Post-R1 Cleanup & Cache Hardening
+
+基線：`v0.4.6.2-dev.1-R1`（Device Manual 10/10 PASS）。
+
+本版不新增資料功能，集中清理 R1 後續風險：
+- 首次「公開」與「重新公開」文案／同步 reason 正確分流
+- Preview Service Worker 清除整個 R1 Preview 舊 cache namespace
+- Preview 快取讀取只限目前 shell/runtime，不再使用全域 `caches.match()`
+- Production Service Worker 只管理 production cache，不再刪除 Preview cache
+- Production 快取讀取同樣限定目前 shell/runtime
+- 修正 v0.4.6.2 PWA manifest 舊版 Stable／Layout Presets 描述
+- 清理 deployment-test.html 的 dev.3／HF1／6-8 待重測殘留文字
+- 舊 v0.4.6.1 PR #8 / #9 / #11 / #12 / #15 已依 stable/v0.4.6.1 完整取代關閉
+- 新增可重跑 Gate：`node tools/v0.4.6.2-dev.1-r2-cleanup-gate.mjs`
+
+R2 靜態／差異 Regression：**40/40 PASS**。
+- `DB_VERSION = 2`
+- `PUBLIC_HISTORY_CODE = PUBLIC`
+- `DB_NAME = bowlingMeetup.local`
+- 無 Supabase / IndexedDB / PUBLIC payload migration
+- Root 與 Preview `index.html` 各只有 4 行預期公開狀態文案／reason 變更
+
+> R2 尚未 Stable Promotion；正式資料與 PUBLIC 契約保持不變。
+
 # BowlMeet v0.4.6.2-dev.1 — Per-Game Public Score Table Foundation
 
 基線：`stable/v0.4.6.1`。
