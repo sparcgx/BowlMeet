@@ -259,10 +259,18 @@ html[data-layout-preset="field"] .live-game-total strong{font-size:27px}
 
 
 /* v0.4.6.2-dev.1 | Per-Game Public Score Table */
+.unified-history-panel,.session-list,.session{min-width:0;max-width:100%}
 .history-score-table-wrap{
+  display:block;
+  width:100%;
+  max-width:100%;
+  min-width:0;
   margin-top:10px;
-  overflow-x:auto;
+  overflow-x:scroll;
+  overflow-y:hidden;
   -webkit-overflow-scrolling:touch;
+  touch-action:pan-x pan-y;
+  overscroll-behavior-inline:contain;
   border:1px solid rgba(255,255,255,.76);
   border-radius:14px;
   background:rgba(255,255,255,.54);
