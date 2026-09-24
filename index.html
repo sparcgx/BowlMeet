@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.5.2</title>
+<title>保齡球球聚｜BowlMeet v0.4.5.3-dev.1</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -443,12 +443,94 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 @media(prefers-reduced-motion:reduce){
   .player-hub-integrated *,.player-history-integrated *,.player-analytics-integrated *,.player-session-dialog *{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
 }
+
+/* v0.4.5.3-dev.1 Layout Settings Foundation */
+.layout-settings-panel{grid-column:1/-1}
+.layout-settings-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.layout-settings-grid .field{min-width:0}
+.layout-settings-preview{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;padding:10px 11px;border:1px solid var(--line);border-radius:11px;background:#fafbfc}
+.layout-settings-preview strong{display:block;font-size:11px}
+.layout-settings-preview span{display:block;margin-top:3px;font-size:10px;line-height:1.45;color:var(--muted)}
+.layout-preview-chip{display:inline-flex;align-items:center;justify-content:center;min-width:74px;border-radius:999px;padding:5px 8px;background:var(--primary-soft);color:var(--primary);font-size:10px;font-weight:850;white-space:nowrap}
+.layout-settings-status{margin-top:9px;font-size:10px;color:var(--muted);line-height:1.45}
+.layout-settings-status.saved{color:var(--success);font-weight:750}
+
+/* Interface scale */
+html[data-layout-scale="90"] .app{zoom:.90}
+html[data-layout-scale="100"] .app{zoom:1}
+html[data-layout-scale="110"] .app{zoom:1.10}
+html[data-layout-scale="120"] .app{zoom:1.20}
+
+/* Content width */
+html[data-layout-width="standard"] main,
+html[data-layout-width="standard"] .topbar-inner{max-width:1320px}
+html[data-layout-width="wide"] main,
+html[data-layout-width="wide"] .topbar-inner{max-width:1560px}
+html[data-layout-width="full"] main,
+html[data-layout-width="full"] .topbar-inner{max-width:none;width:100%}
+
+/* Density */
+html[data-layout-density="compact"] main{padding:12px 14px 44px}
+html[data-layout-density="compact"] .settings-shell,
+html[data-layout-density="compact"] .live-workstation,
+html[data-layout-density="compact"] .meetup-list,
+html[data-layout-density="compact"] .session-list{gap:9px}
+html[data-layout-density="compact"] .settings-panel,
+html[data-layout-density="compact"] .live-quick-setup,
+html[data-layout-density="compact"] .live-top,
+html[data-layout-density="compact"] .live-score-panel,
+html[data-layout-density="compact"] .live-rank-panel,
+html[data-layout-density="compact"] .sheet-card,
+html[data-layout-density="compact"] .panel{padding:12px}
+html[data-layout-density="compact"] .btn{padding:7px 10px}
+html[data-layout-density="compact"] .field input,
+html[data-layout-density="compact"] .field select,
+html[data-layout-density="compact"] .field textarea{padding:8px 9px}
+
+html[data-layout-density="spacious"] main{padding:24px 22px 64px}
+html[data-layout-density="spacious"] .settings-shell,
+html[data-layout-density="spacious"] .live-workstation,
+html[data-layout-density="spacious"] .meetup-list,
+html[data-layout-density="spacious"] .session-list{gap:18px}
+html[data-layout-density="spacious"] .settings-panel,
+html[data-layout-density="spacious"] .live-quick-setup,
+html[data-layout-density="spacious"] .live-top,
+html[data-layout-density="spacious"] .live-score-panel,
+html[data-layout-density="spacious"] .live-rank-panel,
+html[data-layout-density="spacious"] .sheet-card,
+html[data-layout-density="spacious"] .panel{padding:20px}
+html[data-layout-density="spacious"] .btn{padding:11px 15px}
+html[data-layout-density="spacious"] .field input,
+html[data-layout-density="spacious"] .field select,
+html[data-layout-density="spacious"] .field textarea{padding:12px 13px}
+
+/* Leaderboard density */
+html[data-layout-leaderboard="compact"] .rank-table th,
+html[data-layout-leaderboard="compact"] .rank-table td{padding:7px 8px;font-size:10px}
+html[data-layout-leaderboard="compact"] .rank-no{font-size:15px}
+html[data-layout-leaderboard="compact"] .rank-name{font-size:12px}
+html[data-layout-leaderboard="compact"] .rank-primary{font-size:14px}
+html[data-layout-leaderboard="compact"] .live-rank-table th,
+html[data-layout-leaderboard="compact"] .live-rank-table td{padding:6px 7px;font-size:10px}
+
+/* Score input size */
+html[data-layout-score-size="large"] .live-roll-input{height:42px;font-size:18px}
+html[data-layout-score-size="large"] .live-frames{grid-template-columns:repeat(9,minmax(96px,1fr)) minmax(126px,1.2fr);min-width:1030px}
+html[data-layout-score-size="large"] .score-in{width:82px;padding:16px 7px;font-size:20px}
+
+@media(max-width:980px){.layout-settings-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:680px){
+  .layout-settings-grid{grid-template-columns:1fr 1fr}
+  .layout-settings-preview{align-items:flex-start;flex-direction:column}
+  .layout-settings-panel .settings-actions .btn{flex:1 1 100%}
+}
+
 </style>
 </head>
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · 正式版</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · 開發版</p></div></div>
 </div></header>
 <main>
   <nav class="tabs" aria-label="功能切換">
@@ -633,6 +715,26 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
             <button class="btn" id="settingsOpenPublicBtn" type="button">查看公開紀錄</button>
             <button class="btn" id="settingsOpenPersonalBtn" type="button">管理我的身分</button>
           </div>
+        </section>
+
+        <section class="card settings-panel layout-settings-panel">
+          <div class="settings-panel-head">
+            <div><h2>版面設定</h2><p>只調整目前裝置的顯示方式，不影響球聚、公開成績、排行榜資料來源或同步內容。</p></div>
+            <span class="layout-preview-chip" id="layoutPreviewChip">預設版面</span>
+          </div>
+          <div class="layout-settings-grid">
+            <div class="field"><label for="layoutScaleSelect">介面大小</label><select id="layoutScaleSelect"><option value="90">90%</option><option value="100">100%</option><option value="110">110%</option><option value="120">120%</option></select></div>
+            <div class="field"><label for="layoutDensitySelect">內容密度</label><select id="layoutDensitySelect"><option value="compact">緊湊</option><option value="standard">標準</option><option value="spacious">寬鬆</option></select></div>
+            <div class="field"><label for="layoutWidthSelect">內容寬度</label><select id="layoutWidthSelect"><option value="standard">標準</option><option value="wide">寬版</option><option value="full">滿版</option></select></div>
+            <div class="field"><label for="layoutLeaderboardSelect">排行榜顯示</label><select id="layoutLeaderboardSelect"><option value="standard">標準</option><option value="compact">緊湊</option></select></div>
+            <div class="field"><label for="layoutScoreSizeSelect">計分區大小</label><select id="layoutScoreSizeSelect"><option value="standard">標準</option><option value="large">加大</option></select></div>
+          </div>
+          <div class="layout-settings-preview">
+            <div><strong>即時預覽</strong><span id="layoutPreviewSummary">100% · 標準 · 標準寬度 · 標準排行榜 · 標準計分區</span></div>
+            <span class="layout-preview-chip">本機限定</span>
+          </div>
+          <div class="settings-actions"><button class="btn primary" id="layoutApplyBtn" type="button">套用設定</button><button class="btn" id="layoutResetBtn" type="button">恢復預設</button></div>
+          <div class="layout-settings-status" id="layoutSettingsStatus">調整選項會立即預覽；按「套用設定」後才會保存到這台裝置。</div>
         </section>
 
         <section class="card settings-panel settings-app-panel">
@@ -1263,7 +1365,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · <span data-app-version></span> · 正式版</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · <span data-app-version></span> · 開發版</div>
 </main>
 </div>
 <script>
@@ -1287,7 +1389,9 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.5.2';
+const APP_VERSION='0.4.5.3-dev.1';
+const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
+const LAYOUT_DEFAULTS=Object.freeze({scale:'100',density:'standard',width:'standard',leaderboard:'standard',scoreSize:'standard'});
 document.querySelectorAll('[data-app-version]').forEach(el=>{el.textContent='v'+APP_VERSION});
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
@@ -1303,6 +1407,69 @@ const GROUP_POLL_MS=10000;
 const SNAPSHOT_LIMIT=10;
 let photoFile=null; let photoRotation=0; let ocrCandidates=[]; let lastGrid=null; let pendingImportAudit=null;
 const $=id=>document.getElementById(id);
+
+const LAYOUT_ALLOWED={scale:new Set(['90','100','110','120']),density:new Set(['compact','standard','spacious']),width:new Set(['standard','wide','full']),leaderboard:new Set(['standard','compact']),scoreSize:new Set(['standard','large'])};
+function normalizeLayoutPreferences(raw={}){
+  const out={...LAYOUT_DEFAULTS};
+  for(const key of Object.keys(out)){const value=String(raw?.[key]??'');if(LAYOUT_ALLOWED[key].has(value))out[key]=value}
+  return out;
+}
+function readLayoutPreferences(){return normalizeLayoutPreferences(safeJsonParse(localStorage.getItem(LAYOUT_PREFS_KEY),{})||{})}
+function collectLayoutPreferences(){
+  return normalizeLayoutPreferences({
+    scale:$('layoutScaleSelect')?.value,
+    density:$('layoutDensitySelect')?.value,
+    width:$('layoutWidthSelect')?.value,
+    leaderboard:$('layoutLeaderboardSelect')?.value,
+    scoreSize:$('layoutScoreSizeSelect')?.value
+  });
+}
+function applyLayoutPreferences(prefs){
+  const p=normalizeLayoutPreferences(prefs),root=document.documentElement;
+  root.dataset.layoutScale=p.scale;
+  root.dataset.layoutDensity=p.density;
+  root.dataset.layoutWidth=p.width;
+  root.dataset.layoutLeaderboard=p.leaderboard;
+  root.dataset.layoutScoreSize=p.scoreSize;
+  return p;
+}
+function layoutPreferenceSummary(p){
+  const density={compact:'緊湊',standard:'標準',spacious:'寬鬆'}[p.density]||'標準';
+  const width={standard:'標準寬度',wide:'寬版',full:'滿版'}[p.width]||'標準寬度';
+  const leaderboard=p.leaderboard==='compact'?'緊湊排行榜':'標準排行榜';
+  const score=p.scoreSize==='large'?'加大計分區':'標準計分區';
+  return `${p.scale}% · ${density} · ${width} · ${leaderboard} · ${score}`;
+}
+function renderLayoutSettingsControls(prefs){
+  const p=normalizeLayoutPreferences(prefs);
+  if($('layoutScaleSelect'))$('layoutScaleSelect').value=p.scale;
+  if($('layoutDensitySelect'))$('layoutDensitySelect').value=p.density;
+  if($('layoutWidthSelect'))$('layoutWidthSelect').value=p.width;
+  if($('layoutLeaderboardSelect'))$('layoutLeaderboardSelect').value=p.leaderboard;
+  if($('layoutScoreSizeSelect'))$('layoutScoreSizeSelect').value=p.scoreSize;
+  if($('layoutPreviewSummary'))$('layoutPreviewSummary').textContent=layoutPreferenceSummary(p);
+  if($('layoutPreviewChip'))$('layoutPreviewChip').textContent=JSON.stringify(p)===JSON.stringify(LAYOUT_DEFAULTS)?'預設版面':'自訂版面';
+  return p;
+}
+function setLayoutSettingsStatus(text,saved=false){
+  const el=$('layoutSettingsStatus');if(!el)return;el.textContent=text;el.classList.toggle('saved',!!saved);
+}
+function previewLayoutPreferences(){
+  const p=collectLayoutPreferences();applyLayoutPreferences(p);renderLayoutSettingsControls(p);setLayoutSettingsStatus('目前為即時預覽；按「套用設定」後才會保存到這台裝置。',false);
+}
+function saveLayoutPreferences(){
+  const p=collectLayoutPreferences();localStorage.setItem(LAYOUT_PREFS_KEY,JSON.stringify(p));applyLayoutPreferences(p);renderLayoutSettingsControls(p);setLayoutSettingsStatus('版面設定已儲存於目前裝置。',true);
+}
+function resetLayoutPreferences(){
+  localStorage.removeItem(LAYOUT_PREFS_KEY);applyLayoutPreferences(LAYOUT_DEFAULTS);renderLayoutSettingsControls(LAYOUT_DEFAULTS);setLayoutSettingsStatus('已恢復 v0.4.5.2 預設版面。',true);
+}
+function initLayoutSettings(){
+  const saved=readLayoutPreferences();applyLayoutPreferences(saved);renderLayoutSettingsControls(saved);
+  ['layoutScaleSelect','layoutDensitySelect','layoutWidthSelect','layoutLeaderboardSelect','layoutScoreSizeSelect'].forEach(id=>$(id)?.addEventListener('change',previewLayoutPreferences));
+  $('layoutApplyBtn')?.addEventListener('click',saveLayoutPreferences);
+  $('layoutResetBtn')?.addEventListener('click',resetLayoutPreferences);
+}
+
 let sessions=[]; let legacy=[]; let meetups=[]; let roster=[]; let editingId=''; let currentMeetupId=''; let deferredInstallPrompt=null; let lastShareBlob=null; let liveGameNo=1; let liveMetric='total'; let liveSaveTimer=null; let manualMeetupPlayers=[]; let historySource='all'; let historyMode='scores'; let playerDirectoryDetail=false; let playerDirectoryView='list'; let postReviewMeetupId='';
 let playerContext={key:'',rosterId:'',playerName:'',source:'LOCAL',originView:'players',hubOrigin:'players',originSessionId:'',view:'hub',analyticsRange:'all',history:{search:'',sort:'newest',range:'all',scrollTop:0,sessionId:''},navigation:{current:'players',previous:'',returnTarget:'players',hubReturnTarget:'players',sessionReturnTarget:'playerHistory',preserveScroll:true,scroll:{players:0,playerHub:0,playerHistory:0,analytics:0,scoreHistory:0}}};
 let playerSessionFocusReturn=null;
@@ -2842,7 +3009,7 @@ $('photoInput').addEventListener('change',e=>setPhoto(e.target.files&&e.target.f
 $('rotateLeftBtn').addEventListener('click',()=>rotatePhoto(-90));$('rotateRightBtn').addEventListener('click',()=>rotatePhoto(90));$('ocrBtn').addEventListener('click',runOcr);$('clearPhotoBtn').addEventListener('click',clearPhoto);$('ocrQuality').addEventListener('change',()=>{if($('photoPreview').src)previewTemplateGrid()});$('ocrMode').addEventListener('change',()=>{previewTemplateGrid();if($('ocrMode').value==='general')$('templateStatus').textContent='一般 OCR 模式：不使用固定表格欄位定位。';else previewTemplateGrid()});$('showGridGuide').addEventListener('change',()=>previewTemplateGrid());$('reparseBtn').addEventListener('click',()=>{renderOcrRows(parseOcrText($('ocrRawText').value));$('verifyFilter').value='pending';renderVerificationCenter();setOcrStatus('已重新解析；請完成待確認欄位。',100)});$('applyOcrBtn').addEventListener('click',applyOcrToSheet);
 renderOcrRows(blankOcrRows());updateStages();
 
-$('date').value=today();$('meetupDate').value=today();load();resetMeetupForm();resetRosterForm();if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll();initPwa();initSync();initGroup();startPersonalPolling();switchView('meetupView',{scroll:false});initDataSafety().then(()=>{if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll()});
+$('date').value=today();$('meetupDate').value=today();load();initLayoutSettings();resetMeetupForm();resetRosterForm();if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll();initPwa();initSync();initGroup();startPersonalPolling();switchView('meetupView',{scroll:false});initDataSafety().then(()=>{if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll()});
 })();
 </script>
 </body>
