@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.6</title>
+<title>保齡球球聚｜BowlMeet v0.4.6.1-dev.1</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1144,7 +1144,7 @@ dialog::backdrop,
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · Stable</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · 開發版</p></div></div>
 </div></header>
 <main>
   <nav class="tabs" aria-label="功能切換">
@@ -1363,6 +1363,29 @@ dialog::backdrop,
             <button class="btn" id="settingsOpenPublicBtn" type="button">查看公開紀錄</button>
             <button class="btn" id="settingsOpenPersonalBtn" type="button">管理我的身分</button>
           </div>
+        </section>
+
+        <section class="card settings-panel layout-settings-panel">
+          <div class="settings-panel-head">
+            <div><h2>版面設定</h2><p>調整目前裝置的 Liquid Glass 顯示方式；不會修改球聚、公開成績、同步或備份資料。</p></div>
+            <span class="layout-preview-chip" id="layoutPreviewChip">預設版面</span>
+          </div>
+          <div class="layout-settings-grid">
+            <div class="field"><label for="layoutScaleSelect">介面大小</label><select id="layoutScaleSelect"><option value="90">90%</option><option value="100">100%</option><option value="110">110%</option><option value="120">120%</option></select></div>
+            <div class="field"><label for="layoutDensitySelect">內容密度</label><select id="layoutDensitySelect"><option value="compact">緊湊</option><option value="standard">標準</option><option value="spacious">寬鬆</option></select></div>
+            <div class="field"><label for="layoutWidthSelect">內容寬度</label><select id="layoutWidthSelect"><option value="standard">標準</option><option value="wide">寬版</option><option value="full">滿版</option></select></div>
+            <div class="field"><label for="layoutLeaderboardSelect">排行榜顯示</label><select id="layoutLeaderboardSelect"><option value="standard">標準</option><option value="compact">緊湊</option></select></div>
+            <div class="field"><label for="layoutScoreSizeSelect">計分區大小</label><select id="layoutScoreSizeSelect"><option value="standard">標準</option><option value="large">加大</option></select></div>
+          </div>
+          <div class="layout-settings-preview">
+            <div><strong>即時預覽</strong><span id="layoutPreviewSummary">100% · 標準 · 標準寬度 · 標準排行榜 · 標準計分區</span></div>
+            <span class="layout-local-badge">本機限定</span>
+          </div>
+          <div class="settings-actions">
+            <button class="btn primary" id="layoutApplyBtn" type="button">套用設定</button>
+            <button class="btn" id="layoutResetBtn" type="button">恢復預設</button>
+          </div>
+          <div class="layout-settings-status" id="layoutSettingsStatus">調整後立即預覽；按「套用設定」才會保存到目前裝置。</div>
         </section>
 
         <section class="card settings-panel settings-app-panel">
@@ -1993,7 +2016,7 @@ dialog::backdrop,
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · <span data-app-version></span> · Stable</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · <span data-app-version></span> · 開發版</div>
 </main>
 </div>
 <script>
@@ -2017,7 +2040,9 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.6';
+const APP_VERSION='0.4.6.1-dev.1';
+const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
+const LAYOUT_DEFAULTS=Object.freeze({scale:'100',density:'standard',width:'standard',leaderboard:'standard',scoreSize:'standard'});
 document.querySelectorAll('[data-app-version]').forEach(el=>{el.textContent='v'+APP_VERSION});
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
@@ -2048,6 +2073,94 @@ function avg(nums){return nums.length?Math.round(nums.reduce((a,b)=>a+b,0)/nums.
 function flash(text,type='ok'){const el=$('message');el.textContent=text;el.className='message show '+type;clearTimeout(flash.t);flash.t=setTimeout(()=>el.className='message',2400)}
 
 function safeJsonParse(raw,fallback=null){try{return JSON.parse(raw)}catch{return fallback}}
+
+const LAYOUT_ALLOWED={
+  scale:new Set(['90','100','110','120']),
+  density:new Set(['compact','standard','spacious']),
+  width:new Set(['standard','wide','full']),
+  leaderboard:new Set(['standard','compact']),
+  scoreSize:new Set(['standard','large'])
+};
+function normalizeLayoutPreferences(raw={}){
+  const out={...LAYOUT_DEFAULTS};
+  for(const key of Object.keys(out)){
+    const value=String(raw?.[key]??'');
+    if(LAYOUT_ALLOWED[key].has(value))out[key]=value;
+  }
+  return out;
+}
+function readLayoutPreferences(){
+  return normalizeLayoutPreferences(safeJsonParse(localStorage.getItem(LAYOUT_PREFS_KEY),{})||{});
+}
+function collectLayoutPreferences(){
+  return normalizeLayoutPreferences({
+    scale:$('layoutScaleSelect')?.value,
+    density:$('layoutDensitySelect')?.value,
+    width:$('layoutWidthSelect')?.value,
+    leaderboard:$('layoutLeaderboardSelect')?.value,
+    scoreSize:$('layoutScoreSizeSelect')?.value
+  });
+}
+function applyLayoutPreferences(prefs){
+  const p=normalizeLayoutPreferences(prefs),root=document.documentElement;
+  root.dataset.layoutScale=p.scale;
+  root.dataset.layoutDensity=p.density;
+  root.dataset.layoutWidth=p.width;
+  root.dataset.layoutLeaderboard=p.leaderboard;
+  root.dataset.layoutScoreSize=p.scoreSize;
+  return p;
+}
+function layoutPreferenceSummary(p){
+  const density={compact:'緊湊',standard:'標準',spacious:'寬鬆'}[p.density]||'標準';
+  const width={standard:'標準寬度',wide:'寬版',full:'滿版'}[p.width]||'標準寬度';
+  const leaderboard=p.leaderboard==='compact'?'緊湊排行榜':'標準排行榜';
+  const score=p.scoreSize==='large'?'加大計分區':'標準計分區';
+  return `${p.scale}% · ${density} · ${width} · ${leaderboard} · ${score}`;
+}
+function renderLayoutSettingsControls(prefs){
+  const p=normalizeLayoutPreferences(prefs);
+  if($('layoutScaleSelect'))$('layoutScaleSelect').value=p.scale;
+  if($('layoutDensitySelect'))$('layoutDensitySelect').value=p.density;
+  if($('layoutWidthSelect'))$('layoutWidthSelect').value=p.width;
+  if($('layoutLeaderboardSelect'))$('layoutLeaderboardSelect').value=p.leaderboard;
+  if($('layoutScoreSizeSelect'))$('layoutScoreSizeSelect').value=p.scoreSize;
+  if($('layoutPreviewSummary'))$('layoutPreviewSummary').textContent=layoutPreferenceSummary(p);
+  if($('layoutPreviewChip'))$('layoutPreviewChip').textContent=JSON.stringify(p)===JSON.stringify(LAYOUT_DEFAULTS)?'預設版面':'自訂版面';
+  return p;
+}
+function setLayoutSettingsStatus(text,saved=false){
+  const el=$('layoutSettingsStatus');if(!el)return;
+  el.textContent=text;el.classList.toggle('saved',!!saved);
+}
+function previewLayoutPreferences(){
+  const p=collectLayoutPreferences();
+  applyLayoutPreferences(p);
+  renderLayoutSettingsControls(p);
+  setLayoutSettingsStatus('目前為即時預覽；按「套用設定」才會保存到目前裝置。',false);
+}
+function saveLayoutPreferences(){
+  const p=collectLayoutPreferences();
+  localStorage.setItem(LAYOUT_PREFS_KEY,JSON.stringify(p));
+  applyLayoutPreferences(p);
+  renderLayoutSettingsControls(p);
+  setLayoutSettingsStatus('版面設定已儲存於目前裝置。',true);
+}
+function resetLayoutPreferences(){
+  localStorage.removeItem(LAYOUT_PREFS_KEY);
+  applyLayoutPreferences(LAYOUT_DEFAULTS);
+  renderLayoutSettingsControls(LAYOUT_DEFAULTS);
+  setLayoutSettingsStatus('已恢復 v0.4.6 預設 Liquid Glass 版面。',true);
+}
+function initLayoutSettings(){
+  const saved=readLayoutPreferences();
+  applyLayoutPreferences(saved);
+  renderLayoutSettingsControls(saved);
+  ['layoutScaleSelect','layoutDensitySelect','layoutWidthSelect','layoutLeaderboardSelect','layoutScoreSizeSelect']
+    .forEach(id=>$(id)?.addEventListener('change',previewLayoutPreferences));
+  $('layoutApplyBtn')?.addEventListener('click',saveLayoutPreferences);
+  $('layoutResetBtn')?.addEventListener('click',resetLayoutPreferences);
+}
+
 function captureState(){
   return {schema:3,appVersion:APP_VERSION,updatedAt:Date.now(),sessions:JSON.parse(JSON.stringify(sessions||[])),legacyRecords:JSON.parse(JSON.stringify(legacy||[])),meetups:JSON.parse(JSON.stringify(meetups||[])),roster:JSON.parse(JSON.stringify(roster||[])),personalData:JSON.parse(JSON.stringify(normalizePersonalData(personalData))),activeMeetupId:currentMeetupId||'',draft:safeJsonParse(localStorage.getItem(DRAFTKEY),'')||null,settings:safeJsonParse(localStorage.getItem(SETTINGS),'')||{},liveState:safeJsonParse(localStorage.getItem(LIVEKEY),'')||{},publicControl:getPublicControl()};
 }
@@ -3596,7 +3709,7 @@ $('photoInput').addEventListener('change',e=>setPhoto(e.target.files&&e.target.f
 $('rotateLeftBtn').addEventListener('click',()=>rotatePhoto(-90));$('rotateRightBtn').addEventListener('click',()=>rotatePhoto(90));$('ocrBtn').addEventListener('click',runOcr);$('clearPhotoBtn').addEventListener('click',clearPhoto);$('ocrQuality').addEventListener('change',()=>{if($('photoPreview').src)previewTemplateGrid()});$('ocrMode').addEventListener('change',()=>{previewTemplateGrid();if($('ocrMode').value==='general')$('templateStatus').textContent='一般 OCR 模式：不使用固定表格欄位定位。';else previewTemplateGrid()});$('showGridGuide').addEventListener('change',()=>previewTemplateGrid());$('reparseBtn').addEventListener('click',()=>{renderOcrRows(parseOcrText($('ocrRawText').value));$('verifyFilter').value='pending';renderVerificationCenter();setOcrStatus('已重新解析；請完成待確認欄位。',100)});$('applyOcrBtn').addEventListener('click',applyOcrToSheet);
 renderOcrRows(blankOcrRows());updateStages();
 
-$('date').value=today();$('meetupDate').value=today();load();resetMeetupForm();resetRosterForm();if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll();initPwa();initSync();initGroup();startPersonalPolling();switchView('meetupView',{scroll:false});initDataSafety().then(()=>{if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll()});
+$('date').value=today();$('meetupDate').value=today();load();initLayoutSettings();resetMeetupForm();resetRosterForm();if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll();initPwa();initSync();initGroup();startPersonalPolling();switchView('meetupView',{scroll:false});initDataSafety().then(()=>{if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll()});
 })();
 </script>
 </body>
