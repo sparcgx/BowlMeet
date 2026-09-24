@@ -2525,12 +2525,12 @@ async function setPublicVisibility(id,state){
   if(state==='published'&&!local){alert('這台裝置沒有本機原始成績，無法重新公開。請先匯入本機。');return}
   const warning=state==='removed'
     ?(local?'確定取消公開這張成績？\n\n只會移除公開版本，本機原始成績、平均、局數與分析資料都會保留。':'確定從公開歷史移除這張成績？\n\n這台裝置目前沒有本機副本，移除後請從其他仍保有本機資料的裝置重新發布。')
-    :'確定重新公開這張本機成績？';
+    :(published?'確定重新公開這張本機成績？':'確定公開這張本機成績？');
   if(!confirm(warning))return;
   setPublicRecordState(id,state);groupDirty=true;clearTimeout(groupPushTimer);renderHistory();
-  if(!navigator.onLine){groupLastError=state==='removed'?'離線 · 取消公開等待同步':'離線 · 重新公開等待同步';renderPublicSyncState();flash('已記錄操作，恢復連線後再同步公開狀態。');return}
-  const ok=await groupSyncNow(false,false,state==='removed'?'public-remove':'public-republish');
-  if(ok)flash(state==='removed'?(local?'已取消公開；本機成績完整保留。':'已從公開歷史移除。'):'已重新公開。');
+  if(!navigator.onLine){groupLastError=state==='removed'?'離線 · 取消公開等待同步':(published?'離線 · 重新公開等待同步':'離線 · 公開等待同步');renderPublicSyncState();flash('已記錄操作，恢復連線後再同步公開狀態。');return}
+  const ok=await groupSyncNow(false,false,state==='removed'?'public-remove':(published?'public-republish':'public-publish'));
+  if(ok)flash(state==='removed'?(local?'已取消公開；本機成績完整保留。':'已從公開歷史移除。'):(published?'已重新公開。':'已公開。'));
   else flash('公開狀態同步失敗，稍後會自動重試。','err')
 }
 function renderHistory(){
