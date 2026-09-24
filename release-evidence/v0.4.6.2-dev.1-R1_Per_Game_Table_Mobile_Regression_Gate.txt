@@ -61,24 +61,17 @@ MIGRATION
 - IndexedDB migration: NONE
 - PUBLIC payload migration: NONE
 
-DEVICE MANUAL ACCEPTANCE: PENDING (10)
-1. Public/history table header shows Player / 1 / 2 / 3 / 4 / 5 / 6 / Total / Average
-2. Scores 1–6 display in correct columns
-3. Missing game score displays —
-4. Total / Average values are correct
-5. Public-only record table renders correctly
-6. Import My Record works
-7. Cancel Public / Republish works
-8. Mobile horizontal scroll works
-9. Mobile sticky player column remains visible while scrolling
-10. PWA close/reopen and preview cache refresh work
-
-STATUS
-Automated Regression: PASS (76/76)
-Device Preview Package: READY
-Manual Device Acceptance: PENDING (10)
-Validation Complete: NOT YET
-
+DEVICE MANUAL ACCEPTANCE: 10 PASS / 0 FAIL
+PASS 1. Public/history table header shows Player / 1 / 2 / 3 / 4 / 5 / 6 / Total / Average
+PASS 2. Scores 1–6 display in correct columns
+PASS 3. Missing game score displays —
+PASS 4. Total / Average values are correct
+PASS 5. Public-only record table renders correctly
+PASS 6. Import My Record works
+PASS 7. Publish / Cancel Public / Republish state controls work
+PASS 8. Mobile horizontal scroll works
+PASS 9. Mobile sticky player column remains visible while scrolling
+PASS 10. PWA close/reopen and preview cache refresh work
 
 DEVICE ISSUE REPAIR 1
 Reported on iPhone:
@@ -97,5 +90,17 @@ FIX
 - Table wrapper now uses width/max-width/min-width containment, overflow-x: scroll, iOS momentum scrolling, touch-action pan and inline overscroll containment.
 
 REPAIR REGRESSION: 72 PASS / 0 FAIL
-Manual checks #6, #7 and #8: RETEST REQUIRED
-Validation Complete: NOT YET
+REPAIR 1 MANUAL RETEST: 3 PASS / 0 FAIL
+PASS #6 Import My Record
+PASS #7 Publish / Unpublish / Republish
+PASS #8 Mobile horizontal scroll
+
+STATUS
+Automated Regression: PASS (76/76)
+Repair 1 Regression: PASS (72/72)
+Device Preview Package: PASS
+Manual Device Acceptance: PASS (10/10)
+Repair 1: PASS
+Validation Complete: YES
+Stable Promotion: NOT EXECUTED
+Production main/stable baseline: UNCHANGED
