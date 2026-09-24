@@ -1,0 +1,66 @@
+BowlMeet v0.4.6.1-RC.1
+Full Regression & Release Candidate Gate
+Date: 2026-09-24
+Base: v0.4.6.1-dev.2
+Stable ancestry: stable/v0.4.6
+
+FULL AUTOMATED GATE: 125 PASS / 0 FAIL
+- RC Root Full Regression: 100 PASS / 0 FAIL
+- RC Isolated Preview Regression: 25 PASS / 0 FAIL
+
+INHERITED CERTIFIED BASE
+- v0.4.6.1-dev.2 Automated: 28/28 PASS
+- v0.4.6.1-dev.2-R1 Automated: 35/35 PASS
+- v0.4.6.1-dev.2-R1 Device: 12/12 PASS
+- v0.4.6.1-dev.2-R1 Validation Complete: YES
+
+RC.1 DELTA
+- APP_VERSION -> 0.4.6.1-RC.1
+- Header/Footer -> Release Candidate
+- Manifest -> v0.4.6.1-RC.1
+- Service Worker cache -> RC.1 cache namespace
+- Deployment Test -> RC.1
+- README -> RC Gate documentation
+- No application function body changes vs dev.2
+
+FULL REGRESSION COVERAGE
+Static / Version / Delta / Layout / Presets / Mobile / Scoring /
+Meetup / Player Hub / PUBLIC / Leaderboard / Awards / Share /
+Backup / Restore / Snapshot / Integrity / Sync / Personal / Group / PWA
+
+DATA & PUBLIC SAFETY
+- DB_VERSION = 2
+- DB_NAME = bowlingMeetup.local
+- PUBLIC_HISTORY_CODE = PUBLIC
+- layoutPreferences key = bowlingMeetup.layoutPreferences.v1
+- Layout preferences excluded from backup, restore and PUBLIC/group payload
+- Supabase migration: NONE
+- IndexedDB migration: NONE
+- PUBLIC payload migration: NONE
+
+RC PREVIEW ISOLATION
+- Path: preview/v0.4.6.1-RC.1/
+- localStorage namespace isolated
+- IndexedDB namespace isolated
+- Cloud group code isolated
+- Service Worker cache isolated
+- Preview function bodies match RC root
+- Production PUBLIC write target is not used by Preview
+- Production DB namespace is not used by Preview
+
+RC DEVICE SMOKE: PENDING (8)
+1. RC.1 version / Release Candidate label displayed
+2. Standard / Compact / Field Large presets switch correctly
+3. Custom layout and reset remain correct
+4. Mobile Glass Dock / More Sheet work normally
+5. Field Large 10-frame scoring remains usable
+6. PUBLIC-only leaderboard / share remains correct
+7. Backup / restore remains correct and layout prefs stay local-only
+8. PWA close/reopen + RC.1 cache/update refresh works
+
+STATUS
+Full Automated Regression: PASS (125/125)
+Inherited Device Acceptance: PASS (12/12)
+RC Preview Package: READY
+RC Device Smoke: PENDING (8)
+Release Candidate Validation Complete: NOT YET
