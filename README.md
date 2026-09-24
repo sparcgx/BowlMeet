@@ -1,3 +1,18 @@
+# BowlMeet v0.4.5.3-dev.1 — Layout Settings Foundation
+
+開發基線：`stable/v0.4.5.2`。
+
+本版新增「設定 → 版面設定」，只影響目前裝置的顯示偏好：
+- 介面大小：90% / 100% / 110% / 120%
+- 內容密度：緊湊 / 標準 / 寬鬆
+- 內容寬度：標準 / 寬版 / 滿版
+- 排行榜顯示：標準 / 緊湊
+- 計分區大小：標準 / 加大
+- 支援即時預覽、套用與恢復預設
+- 設定使用獨立 LocalStorage key `bowlingMeetup.layoutPreferences.v1`
+
+資料隔離：不修改 Session、Meetup、Roster、Personal Data、Backup、Supabase schema、PUBLIC payload 或排行榜／分享的公開成績限定邏輯。PUBLIC revision 維持 24，不執行 migration。
+
 # BowlMeet v0.4.5.2 — Version Display Consistency Fix
 
 `v0.4.5.2` 修正正式站頁首、設定與頁尾殘留的舊版標示。所有可見版本均由 `APP_VERSION` 統一產生，PWA 快取亦換版；`v0.4.5.1` 的公開成績限定維持不變。
