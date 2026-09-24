@@ -1,0 +1,72 @@
+BowlMeet v0.4.6.1-dev.2-R1
+Preset Device Preview & Mobile Regression Gate
+Date: 2026-09-24
+Base: v0.4.6.1-dev.2
+Stable ancestry: stable/v0.4.6
+
+AUTOMATED GATE: 35 PASS / 0 FAIL
+
+STATIC / SCRIPT
+PASS Root JavaScript syntax
+PASS Preview JavaScript syntax
+PASS Root duplicate static IDs = 0
+PASS Preview duplicate static IDs = 0
+PASS Root missing literal DOM refs = 0
+PASS Preview missing literal DOM refs = 0
+PASS Root duplicate function declarations = 0
+PASS Preview duplicate function declarations = 0
+
+PRESETS
+PASS Standard preset exact
+PASS Compact preset exact
+PASS Field Large preset exact
+PASS One-click preset persists locally
+PASS aria-pressed preset state
+PASS Advanced custom controls retained
+
+MOBILE
+PASS <=420px single-column layout settings
+PASS Fixed Glass Dock excluded from 90/100/110/120% content scaling
+PASS <=420px More Sheet footprint optimization
+PASS Field preset mobile input = 52px / 22px
+PASS Reduced-transparency fallback retained
+PASS Mobile navigation logic unchanged
+
+PREVIEW ISOLATION
+PASS Root non-layout functions unchanged vs dev.2
+PASS Preview function bodies match root
+PASS Preview localStorage isolated: bowlmeet.preview.v0461d2r1.*
+PASS Preview IndexedDB isolated: bowlmeet.preview.v0461d2r1.local
+PASS Preview Cloud group isolated: V461D21
+PASS Preview Service Worker cache isolated: bowlmeet-preview-v0461d2r1-*
+PASS Preview manifest aligned
+PASS Preview CSS matches dev.2 root asset
+
+DATA / PUBLIC
+PASS Layout preferences excluded from backup captureState
+PASS Layout preferences excluded from restore mirror
+PASS Layout preferences excluded from PUBLIC payload
+PASS PUBLIC leaderboard gate unchanged
+PASS Leaderboard render unchanged
+PASS DB_VERSION remains 2
+
+DEVICE MANUAL ACCEPTANCE: PENDING
+Required priority checks:
+01 Standard preset
+02 Compact preset
+03 Field Large preset
+04 Switch presets repeatedly and verify active state
+05 Advanced custom value after preset changes to Custom
+06 Close/reopen PWA and confirm selected preset persists
+07 <=420px Glass Dock does not overlap page content
+08 <=420px More Sheet opens/closes and remains reachable
+09 Field Large 10-frame scoring readability and input
+10 PUBLIC-only leaderboard/share unchanged
+11 Backup/restore does not include layout preference
+12 PWA cache/update refresh to dev.2-R1 preview
+
+STATUS
+Automated Regression: PASS (35/35)
+Device Preview Package: READY
+Manual Device Acceptance: PENDING
+Validation Complete: NOT YET
