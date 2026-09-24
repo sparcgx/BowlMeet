@@ -78,3 +78,24 @@ Automated Regression: PASS (76/76)
 Device Preview Package: READY
 Manual Device Acceptance: PENDING (10)
 Validation Complete: NOT YET
+
+
+DEVICE ISSUE REPAIR 1
+Reported on iPhone:
+- #6 Import My Record not visible
+- #7 Unpublish / Republish not visible
+- #8 Horizontal scrolling not working
+
+ROOT CAUSE
+- #6/#7: current card was local-only; action visibility is state-dependent and Preview lacked an obvious path to publish a local-only record.
+- #8: 720px inner grid min-content width propagated through parent containers on iPhone Safari, so the card expanded/clipped instead of the table wrapper owning the horizontal scroll.
+
+FIX
+- Local-only history cards now expose a Publish action using the existing published-state handler.
+- Published -> Unpublish, Removed -> Republish, Public-only -> Import My Record.
+- Added min-width containment to unified history panel / session list / session.
+- Table wrapper now uses width/max-width/min-width containment, overflow-x: scroll, iOS momentum scrolling, touch-action pan and inline overscroll containment.
+
+REPAIR REGRESSION: 72 PASS / 0 FAIL
+Manual checks #6, #7 and #8: RETEST REQUIRED
+Validation Complete: NOT YET
