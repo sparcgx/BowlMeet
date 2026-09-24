@@ -1,3 +1,20 @@
+# BowlMeet v0.4.6.1-dev.2 — Layout Presets & Mobile Optimization
+
+基線：`v0.4.6.1-dev.1-R2`（功能程式承接 dev.1/R1；R2 僅新增驗收 Evidence）。
+
+本版新增三組一鍵快速版面，點選後會立即套用並儲存在既有 `bowlingMeetup.layoutPreferences.v1`；不新增資料 schema。
+
+- **標準**：100%／標準密度／標準寬度／標準排行榜／標準計分區。
+- **緊湊**：90%／緊湊密度／寬版／緊湊排行榜／標準計分區。
+- **現場大字**：110%／寬鬆密度／標準寬度／標準排行榜／加大計分區。
+- 快速預設與進階自訂可互相切換；符合預設組合時會自動標示目前預設。
+- 手機維持固定 Glass Dock 不跟隨 90～120% 縮放。
+- 420px 以下縮小 Dock 外框、按鈕與 More Sheet 佔用空間；版面自訂欄位改為單欄。
+- 現場大字模式進一步提高球員名稱、格分、局總分與手機計分輸入可讀性。
+- 保留 reduced-transparency fallback。
+
+資料隔離：Session、Meetup、Roster、Personal、Backup、Supabase schema、PUBLIC payload、PUBLIC-only 排行榜／分享邏輯均不變。
+
 # BowlMeet v0.4.6.1-dev.1 — Layout Settings Foundation
 
 開發基線：`stable/v0.4.6`（Liquid Glass Stable）。
