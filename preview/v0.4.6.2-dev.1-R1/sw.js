@@ -1,4 +1,4 @@
-const PREVIEW_CACHE_PREFIX='bowlmeet-preview-v0462d1r1-';
+const PREVIEW_CACHE_PREFIX='bowlmeet-preview-v0462d1r1-fix1-';
 const CACHE=PREVIEW_CACHE_PREFIX+'shell';
 const RUNTIME=PREVIEW_CACHE_PREFIX+'runtime';
 const APP_SHELL=['./','./index.html','./manifest.webmanifest','./assets/liquid-glass-dev4.css','../../icons/icon-192.png','../../icons/icon-512.png','../../icons/icon-maskable-512.png'];
