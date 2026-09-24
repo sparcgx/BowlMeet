@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.6.1</title>
+<title>保齡球球聚｜BowlMeet v0.4.6.2-dev.1</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1144,7 +1144,7 @@ dialog::backdrop,
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · Stable</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · 開發版</p></div></div>
 </div></header>
 <main>
   <nav class="tabs" aria-label="功能切換">
@@ -2027,7 +2027,7 @@ dialog::backdrop,
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · <span data-app-version></span> · Stable</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · <span data-app-version></span> · 開發版</div>
 </main>
 </div>
 <script>
@@ -2051,7 +2051,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.6.1';
+const APP_VERSION='0.4.6.2-dev.1';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const LAYOUT_DEFAULTS=Object.freeze({scale:'100',density:'standard',width:'standard',leaderboard:'standard',scoreSize:'standard'});
 const LAYOUT_PRESETS=Object.freeze({
@@ -2540,12 +2540,20 @@ function renderHistory(){
   $('historySourceNote').textContent=historySource==='local'?'只顯示目前裝置可編輯的本機紀錄。':historySource==='public'?'只顯示公開雲端紀錄；尚未在本機的項目可個別匯入。':'顯示本機與公開紀錄；相同 Session ID 自動合併，不重複顯示。';
   const state=$('historyPublicState');if(state){state.textContent=groupBusy?'同步中…':groupLastError?'公開待重試':navigator.onLine?'公開已連線':'離線';state.className='group-status '+(!groupLastError&&navigator.onLine?'online':'warn')}
   $('sessionEmpty').style.display=list.length?'none':'block';
-  $('sessionList').innerHTML=list.map(r=>{const s=r.session,sm=sessionSummary(s),m=r.meetup,rows=(s.players||[]).map(p=>{const pc=playerCalc(p),pid=playerIdentity(p.name);return '<div class="mv"><button type="button" class="player-link" data-player-hub="'+esc(pid.key)+'" data-origin-session="'+esc(s.id)+'">'+esc(p.name)+'</button></div><div>'+pc.count+' 局</div><div>'+pc.total+'</div><div>'+(pc.avg??'—')+'</div>'}).join('');
+  $('sessionList').innerHTML=list.map(r=>{
+    const s=r.session,sm=sessionSummary(s),m=r.meetup;
+    const rows=(s.players||[]).map(p=>{
+      const pc=playerCalc(p),pid=playerIdentity(p.name);
+      const scores=Array.from({length:6},(_,i)=>normalizeScore((p.scores||[])[i]));
+      return '<div class="history-score-name"><button type="button" class="player-link" data-player-hub="'+esc(pid.key)+'" data-origin-session="'+esc(s.id)+'">'+esc(p.name)+'</button></div>'
+        +scores.map(v=>'<div class="history-game-score">'+(v===null?'—':v)+'</div>').join('')
+        +'<div class="history-score-total">'+pc.total+'</div><div class="history-score-average">'+(pc.avg??'—')+'</div>';
+    }).join('');
     const sourceTag=r.local&&r.public?'<span class="session-source-tag both">我的紀錄＋已公開</span>':r.local&&r.publicRemoved?'<span class="session-source-tag removed">我的紀錄 · 已取消公開</span>':r.local?'<span class="session-source-tag local">我的紀錄</span>':'<span class="session-source-tag public">公開</span>';
     const canShare=r.local&&s.meetupId&&meetups.some(x=>x.id===s.meetupId);let actions='';
     if(r.local){actions=`<button class="btn small" data-act="edit" data-id="${esc(s.id)}">編輯</button>`+(canShare?`<button class="btn small" data-act="share" data-id="${esc(s.id)}">分享</button>`:'')+(r.public?`<button class="btn small" data-act="unpublish-public" data-id="${esc(s.id)}">取消公開</button>`:r.publicRemoved?`<button class="btn small primary" data-act="republish-public" data-id="${esc(s.id)}">重新公開</button>`:'')+`<button class="btn small danger" data-act="del" data-id="${esc(s.id)}">${r.public?'刪除本機':'刪除'}</button>`}
     else{actions=`<button class="btn small primary" data-act="import-public" data-id="${esc(s.id)}">匯入我的紀錄</button>`+(r.public?`<button class="btn small danger" data-act="unpublish-public" data-id="${esc(s.id)}">取消公開</button>`:'')}
-    return `<article class="session ${r.local?'':'public-only'}"><div class="session-head"><div><div class="session-title">${esc(fmtDate(s.date))} · ${esc(m?.title||s.venue||'未填球館')}</div><div class="session-meta">${s.venue&&m?.title?esc(s.venue)+' · ':''}${s.lane?`球道 ${esc(s.lane)} · `:''}${sm.games} 局 · 平均 ${sm.avg??'—'}${sm.best!==null?` · 最高 ${sm.best} (${esc(sm.bestName)})`:''}${s.importAudit?'<span class="audit-chip">照片驗證匯入</span>':''}</div><div class="session-source-tags">${sourceTag}</div></div><div class="session-actions">${actions}</div></div><div class="mini-grid"><div class="mh">球員</div><div class="mh">局數</div><div class="mh">總分</div><div class="mh">平均</div>${rows}</div></article>`
+    return `<article class="session ${r.local?'':'public-only'}"><div class="session-head"><div><div class="session-title">${esc(fmtDate(s.date))} · ${esc(m?.title||s.venue||'未填球館')}</div><div class="session-meta">${s.venue&&m?.title?esc(s.venue)+' · ':''}${s.lane?`球道 ${esc(s.lane)} · `:''}${sm.games} 局 · 平均 ${sm.avg??'—'}${sm.best!==null?` · 最高 ${sm.best} (${esc(sm.bestName)})`:''}${s.importAudit?'<span class="audit-chip">照片驗證匯入</span>':''}</div><div class="session-source-tags">${sourceTag}</div></div><div class="session-actions">${actions}</div></div><div class="history-score-table-wrap" role="region" aria-label="每局成績，可左右滑動"><div class="history-score-grid"><div class="history-score-head history-score-name">球員</div><div class="history-score-head">1</div><div class="history-score-head">2</div><div class="history-score-head">3</div><div class="history-score-head">4</div><div class="history-score-head">5</div><div class="history-score-head">6</div><div class="history-score-head">總分</div><div class="history-score-head">平均</div>${rows}</div></div></article>`
   }).join('')
 }
 
