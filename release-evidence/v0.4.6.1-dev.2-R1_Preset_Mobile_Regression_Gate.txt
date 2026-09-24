@@ -50,7 +50,7 @@ PASS PUBLIC leaderboard gate unchanged
 PASS Leaderboard render unchanged
 PASS DB_VERSION remains 2
 
-DEVICE MANUAL ACCEPTANCE: PENDING
+DEVICE MANUAL ACCEPTANCE: PASS (12/12)
 Required priority checks:
 01 Standard preset
 02 Compact preset
@@ -68,5 +68,5 @@ Required priority checks:
 STATUS
 Automated Regression: PASS (35/35)
 Device Preview Package: READY
-Manual Device Acceptance: PENDING
-Validation Complete: NOT YET
+Manual Device Acceptance: PASS (12/12)
+Validation Complete: YES
