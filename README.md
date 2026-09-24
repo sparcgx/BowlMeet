@@ -13,7 +13,7 @@
 
 資料隔離：不修改 Session、Meetup、Roster、Personal Data、Backup、Supabase schema、PUBLIC payload 或排行榜／分享的公開成績限定邏輯。PUBLIC revision 維持 24，不執行 migration。
 
-# BowlMeet v0.4.5.2 — Version Display Consistency Fix
+## v0.4.5.2 — Version Display Consistency Fix
 
 `v0.4.5.2` 修正正式站頁首、設定與頁尾殘留的舊版標示。所有可見版本均由 `APP_VERSION` 統一產生，PWA 快取亦換版；`v0.4.5.1` 的公開成績限定維持不變。
 
