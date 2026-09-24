@@ -1,0 +1,28 @@
+{
+  "version": "v0.4.6.1-dev.1-R1",
+  "title": "Layout Settings Device Preview & Regression Gate",
+  "date": "2026-09-24",
+  "base": "v0.4.6.1-dev.1",
+  "stableBase": "stable/v0.4.6",
+  "automated": {
+    "pass": 27,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "preview": {
+    "path": "preview/v0.4.6.1-dev.1-R1/",
+    "localStoragePrefix": "bowlmeet.preview.v0461d1r1.",
+    "indexedDB": "bowlmeet.preview.v0461d1r1.local",
+    "cloudGroupCode": "V461D11",
+    "serviceWorkerCachePrefix": "bowlmeet-preview-v0461d1r1-"
+  },
+  "hardening": [
+    "mobile fixed Glass Dock excluded from interface scale",
+    "layout preferences excluded from backup/restore state"
+  ],
+  "manualDeviceAcceptance": {
+    "status": "PENDING",
+    "checks": 24
+  },
+  "validationComplete": false
+}
