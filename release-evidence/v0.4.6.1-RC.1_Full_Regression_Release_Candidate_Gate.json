@@ -1,0 +1,63 @@
+{
+  "version": "v0.4.6.1-RC.1",
+  "title": "Full Regression & Release Candidate Gate",
+  "date": "2026-09-24",
+  "base": "v0.4.6.1-dev.2",
+  "stableBase": "stable/v0.4.6",
+  "automated": {
+    "root": {
+      "pass": 100,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "preview": {
+      "pass": 25,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "total": {
+      "pass": 125,
+      "fail": 0,
+      "status": "PASS"
+    }
+  },
+  "inherited": {
+    "dev2Automated": {
+      "pass": 28,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "dev2R1Automated": {
+      "pass": 35,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "dev2R1Device": {
+      "pass": 12,
+      "fail": 0,
+      "status": "PASS",
+      "confirmedByUser": true
+    },
+    "validationComplete": true
+  },
+  "rcDelta": {
+    "functionBodiesChanged": 0,
+    "dbVersion": 2,
+    "publicCode": "PUBLIC",
+    "migrations": 0
+  },
+  "preview": {
+    "path": "preview/v0.4.6.1-RC.1/",
+    "storageIsolation": true,
+    "indexedDbIsolation": true,
+    "cloudIsolation": true,
+    "serviceWorkerIsolation": true
+  },
+  "rcDeviceSmoke": {
+    "status": "PENDING",
+    "checks": 8,
+    "pass": 0,
+    "fail": 0
+  },
+  "releaseCandidateValidationComplete": false
+}
