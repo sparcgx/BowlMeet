@@ -1,3 +1,19 @@
+# BowlMeet v0.4.6.1-RC.1 — Full Regression & Release Candidate Gate
+
+基線：`v0.4.6.1-dev.2`，其 R1 已完成 Automated **35/35 PASS** 與 Device **12/12 PASS**。
+
+RC.1 不新增功能，僅進行候選版升版、PWA Cache 換版、完整跨模組回歸與 Release Gate。
+
+- APP_VERSION：`0.4.6.1-RC.1`
+- PWA Cache：`bowlmeet-v0.4.6.1-RC.1-*`
+- 版面設定與 Preset 資料格式維持 `bowlingMeetup.layoutPreferences.v1`
+- IndexedDB `DB_VERSION = 2`
+- 正式 PUBLIC code 維持 `PUBLIC`
+- 無 Supabase migration
+- 無 IndexedDB migration
+- 無 PUBLIC payload migration
+- 計分、排行榜、分享、Player Hub、同步、Backup / Restore 契約不得變更
+
 # BowlMeet v0.4.6.1-dev.2 — Layout Presets & Mobile Optimization
 
 基線：`v0.4.6.1-dev.1-R2`（功能程式承接 dev.1/R1；R2 僅新增驗收 Evidence）。
