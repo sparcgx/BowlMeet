@@ -1,6 +1,6 @@
 const PRODUCTION_CACHE_ROOT='bowlmeet-v';
-const CACHE='bowlmeet-v0.4.6.2-dev.1-pergame-shell';
-const RUNTIME='bowlmeet-v0.4.6.2-dev.1-pergame-runtime';
+const CACHE='bowlmeet-v0.4.6.2-rc1-shell';
+const RUNTIME='bowlmeet-v0.4.6.2-rc1-runtime';
 const APP_SHELL=['./','./index.html','./manifest.webmanifest','./assets/liquid-glass-dev4.css','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-maskable-512.png'];
 
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(APP_SHELL)))});
