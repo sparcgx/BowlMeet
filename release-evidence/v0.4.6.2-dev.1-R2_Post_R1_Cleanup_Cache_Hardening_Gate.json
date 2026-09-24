@@ -62,7 +62,16 @@
     "priorPreviewRepairPr": 23,
     "priorPreviewRepairMerged": true,
     "isolatedR2PreviewPr": 26,
-    "isolatedR2PreviewMerged": true
+    "isolatedR2PreviewMerged": true,
+    "previewPublishPrs": [
+      23,
+      25,
+      26
+    ],
+    "previewPublishMerged": true,
+    "previewPublishRetries": true,
+    "previewFilesMatchR2Branch": true,
+    "mainProductionRootMatchesStable": true
   },
   "deviceManual": {
     "status": "PENDING",
