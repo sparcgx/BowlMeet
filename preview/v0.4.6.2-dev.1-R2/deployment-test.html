@@ -27,7 +27,7 @@
 <section class="card"><div class="meta" id="meta"></div></section>
 <a class="btn" href="./index.html">開啟 BowlMeet</a>
 <section class="card"><p><strong>R2 Preview 隔離：</strong>Storage / IndexedDB / Layout Preferences / Cloud group code / Service Worker Cache 均使用 v0462d1r2 命名空間；正式 PUBLIC 不作為此頁寫入目標。</p></section>
-<section class="card"><p><strong>R2 Cache Hardening：</strong>會清除同一 R1 Preview namespace 的舊 cache，且只從目前 Preview shell/runtime 讀取離線資源，避免 Fix1 前舊資源再次命中。</p></section>
+<section class="card"><p><strong>R2 Cache Hardening：</strong>會清除同一 R2 Preview namespace 的舊 cache，且只從目前 Preview shell/runtime 讀取離線資源；R2 使用獨立路徑與命名空間，不會讀取 R1 Preview cache。</p></section>
 </main>
 <script>
 (()=>{
