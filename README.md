@@ -3,24 +3,27 @@
 基線：`v0.4.6.2-dev.1-R1`（Device Manual 10/10 PASS）。
 
 本版不新增資料功能，集中清理 R1 後續風險：
-- 首次「公開」與「重新公開」文案／同步 reason 正確分流
-- Preview Service Worker 清除整個 R1 Preview 舊 cache namespace
-- Preview 快取讀取只限目前 shell/runtime，不再使用全域 `caches.match()`
-- Production Service Worker 只管理 production cache，不再刪除 Preview cache
-- Production 快取讀取同樣限定目前 shell/runtime
+- 首次「公開」與「重新公開」確認文字、離線狀態、同步 reason、成功訊息正確分流
+- R1 相容 Preview 修正舊 cache namespace 清理與 current-cache-only matching
+- Production Service Worker 只管理 production cache，不再刪除或讀取 Preview cache
+- 建立獨立 R2 Device Preview：`preview/v0.4.6.2-dev.1-R2/`
+- R2 Preview 使用獨立 Cloud code `V462D12`、PIN `046212`、IndexedDB、Layout key 與 Cache namespace
 - 修正 v0.4.6.2 PWA manifest 舊版 Stable／Layout Presets 描述
 - 清理 deployment-test.html 的 dev.3／HF1／6-8 待重測殘留文字
+- R1 Evidence 改為精確描述 production root 與 main Preview-only commits
 - 舊 v0.4.6.1 PR #8 / #9 / #11 / #12 / #15 已依 stable/v0.4.6.1 完整取代關閉
 - 新增可重跑 Gate：`node tools/v0.4.6.2-dev.1-r2-cleanup-gate.mjs`
 
-R2 靜態／差異 Regression：**42/42 PASS**。
+R2 最終靜態／差異 Regression：**44/44 PASS**。
 - `DB_VERSION = 2`
 - `PUBLIC_HISTORY_CODE = PUBLIC`
 - `DB_NAME = bowlingMeetup.local`
 - 無 Supabase / IndexedDB / PUBLIC payload migration
-- Root 與 Preview `index.html` 各只有 4 行預期公開狀態文案／reason 變更
+- 正式 root `index.html` 僅 4 行預期的公開狀態文案／reason 變更
+- `main` 相對 `stable/v0.4.6.1` 的差異仍全部位於 `preview/`
+- Isolated R2 Preview 已由 PR #25 發布
 
-> R2 尚未 Stable Promotion；正式資料與 PUBLIC 契約保持不變。
+> R2 尚未 Stable Promotion；目前只差 4 項實機 Device Acceptance。
 
 # BowlMeet v0.4.6.2-dev.1 — Per-Game Public Score Table Foundation
 
