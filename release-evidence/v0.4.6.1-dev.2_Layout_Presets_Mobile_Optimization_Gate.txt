@@ -1,0 +1,64 @@
+BowlMeet v0.4.6.1-dev.2
+Layout Presets & Mobile Optimization
+Date: 2026-09-24
+Base: v0.4.6.1-dev.1-R2
+Stable ancestry: stable/v0.4.6
+
+AUTOMATED GATE: 28 PASS / 0 FAIL
+
+PRESETS
+PASS Standard = 100 / standard / standard / standard / standard
+PASS Compact = 90 / compact / wide / compact leaderboard / standard score
+PASS Field Large = 110 / spacious / standard width / standard leaderboard / large score
+PASS One-click preset persists to existing bowlingMeetup.layoutPreferences.v1
+PASS Preset state and aria-pressed update
+PASS Custom controls remain compatible
+
+MOBILE OPTIMIZATION
+PASS Certified fixed Glass Dock remains excluded from interface scaling
+PASS <=420px Dock footprint reduced
+PASS <=420px More Sheet footprint reduced
+PASS <=420px layout controls become single-column
+PASS Field preset improves live scoring readability
+PASS Reduced-transparency fallback retained
+
+DATA / LOGIC SAFETY
+PASS Existing layoutPreferences.v1 key retained
+PASS Layout preferences excluded from backup captureState
+PASS Layout preferences excluded from restore mirror
+PASS Layout preferences excluded from PUBLIC payload
+PASS DB_VERSION remains 2
+PASS PUBLIC code remains PUBLIC
+PASS Leaderboard logic unchanged
+PASS Public share gate unchanged
+PASS Mobile Dock navigation logic unchanged
+PASS All non-layout functions unchanged vs v0.4.6.1-dev.1-R2
+
+PWA
+PASS Manifest version v0.4.6.1-dev.2
+PASS Cache bowlmeet-v0.4.6.1-dev.2-presets-shell
+PASS Cache bowlmeet-v0.4.6.1-dev.2-presets-runtime
+
+STATIC
+PASS JavaScript syntax
+PASS Duplicate static IDs = 0
+PASS Missing literal DOM refs = 0
+PASS Duplicate function declarations = 0
+
+CHANGED APPLICATION FILES
+- index.html
+- assets/liquid-glass-dev4.css
+- manifest.webmanifest
+- sw.js
+- deployment-test.html
+- README.md
+
+MIGRATION
+- Supabase migration: NONE
+- IndexedDB migration: NONE
+- PUBLIC payload migration: NONE
+- layoutPreferences schema migration: NONE
+
+NOTE
+v0.4.6.1-dev.1-R2 had 12 physical-device acceptance items still pending.
+dev.2 inherits that validation history; this 28/28 gate certifies the dev.2 code/contract delta only.
