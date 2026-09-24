@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.6.1-dev.2",
+  "name": "保齡球球聚｜BowlMeet v0.4.6.1-RC.1",
   "short_name": "BowlMeet",
-  "description": "BowlMeet v0.4.6.1-dev.2：新增標準／緊湊／現場大字快速版面與小螢幕 Mobile Optimization；資料與 PUBLIC 契約不變。",
+  "description": "BowlMeet v0.4.6.1-RC.1：Release Candidate：版面預設、Mobile Optimization 與資料／PUBLIC 契約進入完整回歸驗證。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
