@@ -1,3 +1,20 @@
+# BowlMeet v0.4.6.1-dev.1 — Layout Settings Foundation
+
+開發基線：`stable/v0.4.6`（Liquid Glass Stable）。
+
+本版重新以 v0.4.6 主線實作「設定 → 版面設定」，不沿用 v0.4.5.3-dev.1 的舊基線程式碼。
+
+- 介面大小：90% / 100% / 110% / 120%
+- 內容密度：緊湊 / 標準 / 寬鬆
+- 內容寬度：標準 / 寬版 / 滿版
+- 排行榜顯示：標準 / 緊湊
+- 計分區大小：標準 / 加大
+- 即時預覽、套用設定、恢復 v0.4.6 預設版面
+- 設定以 `bowlingMeetup.layoutPreferences.v1` 儲存在目前裝置
+- Liquid Glass、Mobile Glass Dock、History / Player Hub / Share Glass 保持 v0.4.6 架構
+
+資料隔離：不修改 Session、Meetup、Roster、Personal Data、Backup、Supabase schema、PUBLIC payload、PUBLIC revision 或 PUBLIC-only 排行榜／分享邏輯。
+
 # BowlMeet v0.4.5.2 — Version Display Consistency Fix
 
 `v0.4.5.2` 修正正式站頁首、設定與頁尾殘留的舊版標示。所有可見版本均由 `APP_VERSION` 統一產生，PWA 快取亦換版；`v0.4.5.1` 的公開成績限定維持不變。
