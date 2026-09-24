@@ -1,3 +1,22 @@
+# BowlMeet v0.4.6.2-dev.1 — Per-Game Public Score Table Foundation
+
+基線：`stable/v0.4.6.1`。
+
+本版只調整「成績紀錄／公開歷史」卡片的成績呈現，不修改資料結構或雲端契約。
+
+- 表格欄位改為：**球員 / 1 / 2 / 3 / 4 / 5 / 6 / 總分 / 平均**
+- 不足 6 局的欄位顯示 `—`
+- 總分／平均沿用既有 `playerCalc()`
+- 公開紀錄與本機紀錄共用相同歷史卡 renderer，視覺一致
+- 手機版表格可左右滑動
+- 手機版球員欄 sticky，滑動時保留玩家識別
+- 不修改排行榜、分享、獎項、同步、Backup / Restore
+- `DB_VERSION = 2`
+- `PUBLIC_HISTORY_CODE = PUBLIC`
+- 無 Supabase migration
+- 無 IndexedDB migration
+- 無 PUBLIC payload migration
+
 # BowlMeet v0.4.6.1 — Stable / PUBLIC
 
 正式基線：`v0.4.6.1-RC.1`，已完成 Full Automated **125/125 PASS**、RC Device Smoke **8/8 PASS**，且 dev.2-R1 Device Acceptance **12/12 PASS**。
