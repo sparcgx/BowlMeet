@@ -1,3 +1,23 @@
+# BowlMeet v0.4.6.1 — Stable / PUBLIC
+
+正式基線：`v0.4.6.1-RC.1`，已完成 Full Automated **125/125 PASS**、RC Device Smoke **8/8 PASS**，且 dev.2-R1 Device Acceptance **12/12 PASS**。
+
+本次 Stable Promotion 不新增功能，只將已驗證 RC 升為正式版本。
+
+- APP_VERSION：`0.4.6.1`
+- 顯示狀態：`Stable`
+- PWA Cache：`bowlmeet-v0.4.6.1-stable-*`
+- 版面設定：90 / 100 / 110 / 120%、密度、寬度、排行榜、計分區
+- 快速版面：標準／緊湊／現場大字
+- Mobile Optimization：Glass Dock 保持固定尺寸，≤420px 版面最佳化
+- Layout Preferences 維持 `bowlingMeetup.layoutPreferences.v1`
+- IndexedDB `DB_VERSION = 2`
+- PUBLIC code 維持 `PUBLIC`
+- 排行榜與分享維持 Public-only
+- 無 Supabase migration
+- 無 IndexedDB migration
+- 無 PUBLIC payload migration／release-time rewrite
+
 # BowlMeet v0.4.6.1-RC.1 — Full Regression & Release Candidate Gate
 
 基線：`v0.4.6.1-dev.2`，其 R1 已完成 Automated **35/35 PASS** 與 Device **12/12 PASS**。
