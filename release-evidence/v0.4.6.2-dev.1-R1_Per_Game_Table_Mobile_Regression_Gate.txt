@@ -103,4 +103,4 @@ Manual Device Acceptance: PASS (10/10)
 Repair 1: PASS
 Validation Complete: YES
 Stable Promotion: NOT EXECUTED
-Production main/stable baseline: UNCHANGED
+Production root vs stable/v0.4.6.1: ALIGNED (main may contain preview-only commits)
