@@ -21,8 +21,17 @@
     "layout preferences excluded from backup/restore state"
   ],
   "manualDeviceAcceptance": {
-    "status": "PENDING",
-    "checks": 24
+    "status": "PARTIAL_PASS",
+    "checks": 24,
+    "pass": 12,
+    "pending": 12
   },
-  "validationComplete": false
+  "validationComplete": false,
+  "priorityDeviceAcceptance": {
+    "status": "PASS",
+    "pass": 6,
+    "fail": 0,
+    "total": 6,
+    "confirmedByUser": true
+  }
 }
