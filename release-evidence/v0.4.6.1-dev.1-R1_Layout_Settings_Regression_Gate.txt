@@ -46,7 +46,8 @@ R1 HARDENING
 - No Supabase schema migration included.
 - No production root deployment included in this branch.
 
-DEVICE MANUAL ACCEPTANCE: PENDING
+PRIORITY DEVICE ACCEPTANCE: PASS (6/6)
+FULL DEVICE MANUAL ACCEPTANCE: PARTIAL (12/24)
 Required device checks:
 01 Default v0.4.6 Liquid Glass appearance
 02 Scale 90%
@@ -76,5 +77,6 @@ Required device checks:
 STATUS
 Automated Regression: PASS (27/27)
 Device Preview Package: READY
-Manual Device Acceptance: PENDING
+Priority Device Acceptance: PASS (6/6)
+Full Manual Device Acceptance: 12 PASS / 12 PENDING
 Validation Complete: NOT YET
