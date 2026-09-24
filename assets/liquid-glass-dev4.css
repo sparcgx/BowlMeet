@@ -256,3 +256,71 @@ html[data-layout-preset="field"] .live-game-total strong{font-size:27px}
 @media(prefers-reduced-transparency:reduce){
   .layout-preset-btn,.layout-device-hint{background:#fff!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 }
+
+
+/* v0.4.6.2-dev.1 | Per-Game Public Score Table */
+.history-score-table-wrap{
+  margin-top:10px;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  border:1px solid rgba(255,255,255,.76);
+  border-radius:14px;
+  background:rgba(255,255,255,.54);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.86);
+}
+.history-score-grid{
+  display:grid;
+  grid-template-columns:minmax(132px,1.35fr) repeat(6,minmax(60px,.58fr)) minmax(76px,.72fr) minmax(76px,.72fr);
+  min-width:760px;
+}
+.history-score-grid>div{
+  min-width:0;
+  padding:9px 10px;
+  border-right:1px solid rgba(148,163,184,.14);
+  border-bottom:1px solid rgba(148,163,184,.14);
+  font-size:12px;
+  line-height:1.35;
+  text-align:center;
+  background:rgba(255,255,255,.60);
+}
+.history-score-grid>div:nth-child(9n){border-right:0}
+.history-score-grid>div:nth-last-child(-n+9){border-bottom:0}
+.history-score-head{
+  background:rgba(248,250,252,.92)!important;
+  color:#5c6678;
+  font-weight:800;
+}
+.history-score-name{text-align:left!important;font-weight:800}
+.history-game-score{font-variant-numeric:tabular-nums}
+.history-score-total,.history-score-average{
+  font-weight:850;
+  font-variant-numeric:tabular-nums;
+}
+.history-score-total{color:#172033}
+.history-score-average{color:#344054}
+
+@media(max-width:680px){
+  .history-score-table-wrap{
+    margin-left:-2px;
+    margin-right:-2px;
+    scrollbar-width:thin;
+  }
+  .history-score-grid{min-width:720px}
+  .history-score-grid>div{padding:9px 8px}
+  .history-score-grid>.history-score-name{
+    position:sticky;
+    left:0;
+    z-index:2;
+    background:rgba(255,255,255,.96);
+    box-shadow:6px 0 10px rgba(15,23,42,.035);
+  }
+  .history-score-grid>.history-score-head.history-score-name{
+    z-index:3;
+    background:rgba(248,250,252,.98)!important;
+  }
+}
+
+@media(prefers-reduced-transparency:reduce){
+  .history-score-table-wrap,.history-score-grid>div{background:#fff!important}
+  .history-score-head{background:#f8fafc!important}
+}
