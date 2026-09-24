@@ -1,0 +1,34 @@
+BowlMeet v0.4.6.1-dev.1-R2
+Full Device Acceptance & Validation Complete Gate
+Date: 2026-09-24
+Base: v0.4.6.1-dev.1-R1
+Stable ancestry: stable/v0.4.6
+
+R1 AUTOMATED REGRESSION: 27 PASS / 0 FAIL
+R2 CONTRACT REGRESSION: 33 PASS / 0 FAIL
+PRIORITY DEVICE ACCEPTANCE: 6 PASS / 0 FAIL
+FULL DEVICE ACCEPTANCE: 12 PASS / 12 PENDING
+
+Critical Regression: 0
+Data Migration: 0
+Supabase Schema Change: 0
+Production PUBLIC Code Change: 0
+
+Validation Complete: BLOCKED
+Reason: 12 physical-device checks still require user confirmation.
+
+Pending device checks:
+01 Default v0.4.6 Liquid Glass visual baseline
+09 Width standard
+10 Width wide
+11 Width full
+12 Leaderboard standard / compact
+15 Horizontal scroll / focus retention
+16 Mobile Glass Dock navigation
+17 More Sheet open / close / navigation
+21 PUBLIC-only leaderboard visibility
+22 PUBLIC-only share visibility
+23 Backup / restore unaffected
+24 PWA safe update / cache refresh
+
+All 12 pending items have PASSING code/data contracts in R2 Contract Regression.
