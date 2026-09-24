@@ -5,7 +5,7 @@
   "base": "v0.4.6.2-dev.1-R1",
   "stableBase": "stable/v0.4.6.1",
   "automated": {
-    "pass": 42,
+    "pass": 44,
     "fail": 0,
     "status": "PASS"
   },
@@ -45,7 +45,12 @@
     "cacheRoot": "bowlmeet-preview-v0462d1r2-",
     "publishPr": 26,
     "publishMerged": true,
-    "publishMergeCommit": "ca6ed73e9bdcd334fdb1dc8558da9549aacca13d"
+    "publishMergeCommit": "ca6ed73e9bdcd334fdb1dc8558da9549aacca13d",
+    "publishPrs": [
+      25,
+      26
+    ],
+    "latestPublishMergeCommit": "ca6ed73e9bdcd334fdb1dc8558da9549aacca13d"
   },
   "governance": {
     "closedSupersededPrs": [
@@ -71,7 +76,12 @@
     "previewPublishMerged": true,
     "previewPublishRetries": true,
     "previewFilesMatchR2Branch": true,
-    "mainProductionRootMatchesStable": true
+    "mainProductionRootMatchesStable": true,
+    "isolatedR2PreviewPrs": [
+      25,
+      26
+    ],
+    "mainVsStablePreviewOnly": true
   },
   "deviceManual": {
     "status": "PENDING",
