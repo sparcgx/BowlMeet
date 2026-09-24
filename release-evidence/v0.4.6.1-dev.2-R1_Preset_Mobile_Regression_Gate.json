@@ -17,8 +17,12 @@
     "serviceWorkerCachePrefix": "bowlmeet-preview-v0461d2r1-"
   },
   "deviceManual": {
-    "status": "PENDING",
-    "checks": 12
+    "status": "PASS",
+    "checks": 12,
+    "pass": 12,
+    "fail": 0,
+    "confirmedByUser": true
   },
-  "validationComplete": false
+  "validationComplete": true,
+  "validationStatus": "COMPLETE"
 }
