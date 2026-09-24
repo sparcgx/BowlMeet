@@ -48,18 +48,16 @@
     "publicPayloadMigration": false
   },
   "deviceManual": {
-    "status": "RETEST_REQUIRED",
+    "status": "PASS",
     "checks": 10,
-    "pass": 0,
+    "pass": 10,
     "fail": 0,
-    "retestRequired": [
-      6,
-      7,
-      8
-    ]
+    "retestRequired": []
   },
-  "validationComplete": false,
+  "validationComplete": true,
+  "stablePromotionExecuted": false,
   "repair1": {
+    "status": "PASS",
     "reportedIssues": [
       6,
       7,
@@ -70,6 +68,16 @@
       "fail": 0,
       "status": "PASS"
     },
+    "manualRetest": {
+      "pass": 3,
+      "fail": 0,
+      "status": "PASS",
+      "checks": [
+        6,
+        7,
+        8
+      ]
+    },
     "fixes": {
       "localOnlyPublishControl": true,
       "publicUnpublishControl": true,
@@ -77,10 +85,6 @@
       "publicOnlyImportControl": true,
       "iphoneHorizontalScrollContainment": true
     },
-    "manualRetestRequired": [
-      6,
-      7,
-      8
-    ]
+    "manualRetestRequired": []
   }
 }
