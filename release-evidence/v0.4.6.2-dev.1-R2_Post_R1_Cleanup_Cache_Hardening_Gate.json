@@ -1,0 +1,71 @@
+{
+  "version": "v0.4.6.2-dev.1-R2",
+  "title": "Post-R1 Cleanup & Cache Hardening",
+  "date": "2026-09-25",
+  "base": "v0.4.6.2-dev.1-R1",
+  "stableBase": "stable/v0.4.6.1",
+  "automated": {
+    "pass": 40,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "changes": {
+    "firstPublishCopySplit": true,
+    "firstPublishSyncReasonSplit": true,
+    "previewCacheRootCleanup": true,
+    "previewScopedCacheMatch": true,
+    "productionScopedCacheManagement": true,
+    "productionScopedCacheMatch": true,
+    "manifestMetadataCleanup": true,
+    "deploymentTestCleanup": true,
+    "r1EvidenceWordingClarified": true,
+    "reproducibleGateScript": "tools/v0.4.6.2-dev.1-r2-cleanup-gate.mjs"
+  },
+  "safety": {
+    "appVersion": "0.4.6.2-dev.1",
+    "dbVersion": 2,
+    "dbName": "bowlingMeetup.local",
+    "publicCode": "PUBLIC",
+    "publicPin": "042042",
+    "layoutPreferencesKey": "bowlingMeetup.layoutPreferences.v1",
+    "supabaseMigration": false,
+    "indexedDbMigration": false,
+    "publicPayloadMigration": false,
+    "cssChanged": false
+  },
+  "delta": {
+    "rootIndexExpectedLineEdits": 4,
+    "previewIndexExpectedLineEdits": 4,
+    "sqlFilesChanged": 0
+  },
+  "governance": {
+    "closedSupersededPrs": [
+      8,
+      9,
+      11,
+      12,
+      15
+    ],
+    "activeDevelopmentPrs": [
+      18,
+      19
+    ],
+    "previewPublishPr": 23,
+    "previewPublishMerged": true,
+    "previewPublishCommit": "f8c8496b92a891ca98414e767757ba6a969a87d1"
+  },
+  "deviceManual": {
+    "status": "PENDING",
+    "checks": 4,
+    "pass": 0,
+    "fail": 0,
+    "items": [
+      "首次公開確認文字顯示「公開」，成功後顯示「已公開」",
+      "取消公開後重新公開仍顯示「重新公開／已重新公開」",
+      "iPhone Safari 重新整理 Preview 後不再回到 Fix1 前舊 UI",
+      "PWA 關閉重開後維持 R2 Preview 最新 UI 與水平滑動"
+    ]
+  },
+  "validationComplete": false,
+  "stablePromotionExecuted": false
+}
