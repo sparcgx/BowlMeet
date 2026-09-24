@@ -51,5 +51,29 @@
     "pass": 0,
     "fail": 0
   },
-  "validationComplete": false
+  "validationComplete": false,
+  "repair1": {
+    "reportedIssues": [
+      6,
+      7,
+      8
+    ],
+    "automated": {
+      "pass": 72,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "fixes": {
+      "localOnlyPublishControl": true,
+      "publicUnpublishControl": true,
+      "removedRepublishControl": true,
+      "publicOnlyImportControl": true,
+      "iphoneHorizontalScrollContainment": true
+    },
+    "manualRetestRequired": [
+      6,
+      7,
+      8
+    ]
+  }
 }
