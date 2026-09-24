@@ -5,7 +5,7 @@
   "base": "v0.4.6.2-dev.1-R1",
   "stableBase": "stable/v0.4.6.1",
   "automated": {
-    "pass": 40,
+    "pass": 42,
     "fail": 0,
     "status": "PASS"
   },
@@ -18,7 +18,8 @@
     "productionScopedCacheMatch": true,
     "manifestMetadataCleanup": true,
     "deploymentTestCleanup": true,
-    "r1EvidenceWordingClarified": true,
+    "immutableR1ArtifactsPreserved": true,
+    "isolatedR2Preview": true,
     "reproducibleGateScript": "tools/v0.4.6.2-dev.1-r2-cleanup-gate.mjs"
   },
   "safety": {
@@ -31,12 +32,20 @@
     "supabaseMigration": false,
     "indexedDbMigration": false,
     "publicPayloadMigration": false,
-    "cssChanged": false
-  },
-  "delta": {
-    "rootIndexExpectedLineEdits": 4,
-    "previewIndexExpectedLineEdits": 4,
+    "productionCssChanged": false,
     "sqlFilesChanged": 0
+  },
+  "preview": {
+    "path": "preview/v0.4.6.2-dev.1-R2/",
+    "appVersion": "0.4.6.2-dev.1-R2",
+    "publicCode": "V462D12",
+    "publicPin": "046212",
+    "dbName": "bowlmeet.preview.v0462d1r2.local",
+    "layoutPreferencesKey": "bowlmeet.preview.v0462d1r2.layoutPreferences.v1",
+    "cacheRoot": "bowlmeet-preview-v0462d1r2-",
+    "publishPr": 26,
+    "publishMerged": true,
+    "publishMergeCommit": "ca6ed73e9bdcd334fdb1dc8558da9549aacca13d"
   },
   "governance": {
     "closedSupersededPrs": [
@@ -46,13 +55,14 @@
       12,
       15
     ],
-    "activeDevelopmentPrs": [
+    "retainedDevelopmentPrs": [
       18,
       19
     ],
-    "previewPublishPr": 23,
-    "previewPublishMerged": true,
-    "previewPublishCommit": "f8c8496b92a891ca98414e767757ba6a969a87d1"
+    "priorPreviewRepairPr": 23,
+    "priorPreviewRepairMerged": true,
+    "isolatedR2PreviewPr": 26,
+    "isolatedR2PreviewMerged": true
   },
   "deviceManual": {
     "status": "PENDING",
@@ -62,7 +72,7 @@
     "items": [
       "首次公開確認文字顯示「公開」，成功後顯示「已公開」",
       "取消公開後重新公開仍顯示「重新公開／已重新公開」",
-      "iPhone Safari 重新整理 Preview 後不再回到 Fix1 前舊 UI",
+      "iPhone Safari 重新整理 R2 Preview 後不再回到 R1/Fix1 舊 UI",
       "PWA 關閉重開後維持 R2 Preview 最新 UI 與水平滑動"
     ]
   },
