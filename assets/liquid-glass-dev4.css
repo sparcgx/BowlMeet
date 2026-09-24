@@ -159,6 +159,19 @@ html[data-layout-score-size="large"] .score-in{width:82px;padding:16px 7px;font-
 
 @media(max-width:980px){.layout-settings-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:680px){
+  /* Keep the fixed Glass Dock at its certified v0.4.6 size; scale page content only. */
+  html[data-layout-scale="90"] .app,
+  html[data-layout-scale="100"] .app,
+  html[data-layout-scale="110"] .app,
+  html[data-layout-scale="120"] .app{zoom:1!important}
+  html[data-layout-scale="90"] .topbar-inner,
+  html[data-layout-scale="90"] .view{zoom:.90}
+  html[data-layout-scale="100"] .topbar-inner,
+  html[data-layout-scale="100"] .view{zoom:1}
+  html[data-layout-scale="110"] .topbar-inner,
+  html[data-layout-scale="110"] .view{zoom:1.10}
+  html[data-layout-scale="120"] .topbar-inner,
+  html[data-layout-scale="120"] .view{zoom:1.20}
   .layout-settings-panel{border-radius:19px!important}
   .layout-settings-grid{grid-template-columns:1fr 1fr}
   .layout-settings-preview{align-items:flex-start;flex-direction:column;border-radius:14px}
