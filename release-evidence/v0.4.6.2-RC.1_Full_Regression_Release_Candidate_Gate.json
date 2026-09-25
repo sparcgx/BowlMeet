@@ -1,0 +1,82 @@
+{
+  "version": "v0.4.6.2-RC.1",
+  "title": "Full Regression & Release Candidate Gate",
+  "date": "2026-09-25",
+  "base": "v0.4.6.2-dev.1-R2",
+  "stableBase": "stable/v0.4.6.1",
+  "automated": {
+    "pass": 103,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "previewCloudConfiguration": {
+    "originalInvalidGroupCode": "V462RC1",
+    "rule": "^[A-Z2-9]{6}$",
+    "fixedGroupCode": "V46RC2",
+    "pin": "046221",
+    "gate": {
+      "pass": 12,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "publishPr": 29
+  },
+  "rcRepair": {
+    "switchToLocalAfterUnpublish": true,
+    "setUnpublishedFilter": true,
+    "republishUsesPublicControlTombstone": true,
+    "clearUnpublishedFilterAfterRepublish": true,
+    "deviceRetestStatus": "PASS"
+  },
+  "delta": {
+    "missingFunctions": 0,
+    "addedFunctions": 0,
+    "functionBodyDrift": 0,
+    "cssChanged": false
+  },
+  "safety": {
+    "dbVersion": 2,
+    "dbName": "bowlingMeetup.local",
+    "publicHistoryCode": "PUBLIC",
+    "publicHistoryPin": "042042",
+    "layoutPreferencesKey": "bowlingMeetup.layoutPreferences.v1",
+    "supabaseMigration": false,
+    "indexedDbMigration": false,
+    "publicPayloadMigration": false,
+    "leaderboardPublicOnly": true,
+    "sharePublicOnly": true,
+    "awardsPublicOnly": true
+  },
+  "preview": {
+    "path": "preview/v0.4.6.2-RC.1/",
+    "appVersion": "0.4.6.2-RC.1",
+    "groupCode": "V46RC2",
+    "pin": "046221",
+    "dbName": "bowlmeet.preview.v0462rc1.local",
+    "layoutPreferencesKey": "bowlmeet.preview.v0462rc1.layoutPreferences.v1",
+    "cacheRoot": "bowlmeet-preview-v0462rc1-",
+    "cachePrefix": "bowlmeet-preview-v0462rc1-rc1fix1-",
+    "publishPrs": [
+      28,
+      29
+    ],
+    "published": true
+  },
+  "deviceSmoke": {
+    "status": "PASS",
+    "checks": 6,
+    "pass": 6,
+    "fail": 0,
+    "confirmedByUser": true,
+    "passed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  "releaseCandidateValidationComplete": true,
+  "stablePromotionExecuted": false
+}

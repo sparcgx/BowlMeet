@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.6.1",
+  "name": "保齡球球聚｜BowlMeet v0.4.6.2",
   "short_name": "BowlMeet",
-  "description": "BowlMeet v0.4.6.1：BowlMeet v0.4.6.1 Stable：版面預設與 Mobile Optimization 正式發布；資料與 PUBLIC 契約維持相容。",
+  "description": "BowlMeet v0.4.6.2 Stable：公開成績每局 1～6 展開表、公開／取消公開／重新公開控制、Public-only 排行榜／分享／獎項與 PWA Cache Hardening；維持既有 PUBLIC、同步與備份契約。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
@@ -9,10 +9,28 @@
   "background_color": "#eef3f8",
   "theme_color": "#ffffff",
   "orientation": "any",
-  "categories": ["sports","utilities"],
+  "categories": [
+    "sports",
+    "utilities"
+  ],
   "icons": [
-    {"src":"./icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
-    {"src":"./icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any"},
-    {"src":"./icons/icon-maskable-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }

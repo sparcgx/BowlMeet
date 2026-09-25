@@ -1,0 +1,84 @@
+BowlMeet v0.4.6.2-dev.1-R2
+Post-R1 Cleanup & Cache Hardening
+Date: 2026-09-25
+Base: v0.4.6.2-dev.1-R1
+Stable ancestry: stable/v0.4.6.1
+
+AUTOMATED GATE: 44 PASS / 0 FAIL
+
+PUBLIC STATUS COPY
+PASS first publish confirm = 公開
+PASS first publish offline state = 公開等待同步
+PASS first publish sync reason = public-publish
+PASS first publish success = 已公開
+PASS republish path remains 重新公開 / 已重新公開
+PASS root and isolated R2 preview logic aligned
+
+CACHE HARDENING
+PASS R1 compatibility Preview removes pre-fix1 namespace caches
+PASS R1 compatibility Preview reads only current shell/runtime caches
+PASS isolated R2 Preview uses separate v0462d1r2 namespace
+PASS isolated R2 Preview reads only current shell/runtime caches
+PASS Preview no global caches.match()
+PASS Production SW deletes only production bowlmeet-v* caches
+PASS Production SW preserves Preview cache namespaces
+PASS Production reads only current shell/runtime caches
+PASS Production no global caches.match()
+
+METADATA / CLEANUP
+PASS manifest describes v0.4.6.2 per-game public table
+PASS false Stable wording removed
+PASS stale Layout Presets release copy removed
+PASS root deployment-test stale dev.3/HF1 wording removed
+PASS isolated R2 deployment-test contains current R2 scope
+PASS old 6/7/8 retest instruction removed
+PASS R1 evidence wording clarified: production root vs main preview-only commits
+
+ISOLATION
+PASS R2 Preview APP_VERSION = 0.4.6.2-dev.1-R2
+PASS R2 Preview Cloud code = V462D12
+PASS R2 Preview PIN = 046212
+PASS R2 Preview DB = bowlmeet.preview.v0462d1r2.local
+PASS R2 Preview layout key = bowlmeet.preview.v0462d1r2.layoutPreferences.v1
+PASS R2 Preview does not use R1 storage namespace
+
+DOMAIN SAFETY
+PASS production APP_VERSION remains 0.4.6.2-dev.1
+PASS DB_VERSION remains 2
+PASS DB_NAME remains bowlingMeetup.local
+PASS PUBLIC_HISTORY_CODE remains PUBLIC
+PASS PUBLIC_HISTORY_PIN remains 042042
+PASS layoutPreferences key unchanged
+PASS no SQL files changed
+PASS no production CSS changed
+PASS no Supabase migration
+PASS no IndexedDB migration
+PASS no PUBLIC payload migration
+PASS production root index only four expected line edits
+
+GOVERNANCE
+PASS superseded v0.4.6.1 PRs #8 #9 #11 #12 #15 closed
+PASS v0.4.6.2 PRs #18 #19 retained
+PASS R1-path compatibility Preview PR #23 merged
+PASS isolated R2 Preview PR #25 / #26 merged (preview-only)
+PASS isolated R2 Preview path = preview/v0.4.6.2-dev.1-R2/
+PASS main vs stable differences remain preview-only
+PASS production root not included in Preview publish
+PASS main production index.html / sw.js match stable/v0.4.6.1
+PASS published R2 Preview files match R2 branch blobses
+
+REPRODUCIBLE GATE
+node tools/v0.4.6.2-dev.1-r2-cleanup-gate.mjs
+
+DEVICE MANUAL ACCEPTANCE: PENDING (4)
+1. First Publish: confirm text uses 公開 and success uses 已公開
+2. Republish: after cancel-public, confirm/success still use 重新公開
+3. iPhone Safari refresh on isolated R2 Preview stays on current R2 UI
+4. PWA close/reopen retains isolated R2 Preview and horizontal scrolling
+
+STATUS
+Automated Regression: PASS (44/44)
+Isolated R2 Preview Publish: PASS (PR #25 merged)
+Device Manual Acceptance: PENDING (4)
+Validation Complete: NOT YET
+Stable Promotion: NOT EXECUTED

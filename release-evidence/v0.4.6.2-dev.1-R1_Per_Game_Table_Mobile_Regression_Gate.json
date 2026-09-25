@@ -1,0 +1,90 @@
+{
+  "version": "v0.4.6.2-dev.1-R1",
+  "title": "Per-Game Table Device Preview & Mobile Regression Gate",
+  "date": "2026-09-25",
+  "base": "v0.4.6.2-dev.1",
+  "stableBase": "stable/v0.4.6.1",
+  "automated": {
+    "pass": 76,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "table": {
+    "columns": [
+      "球員",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "總分",
+      "平均"
+    ],
+    "missingScore": "—",
+    "totalFromPlayerCalc": true,
+    "averageFromPlayerCalc": true
+  },
+  "mobile": {
+    "horizontalScroll": true,
+    "stickyPlayerColumn": true,
+    "minWidth": 720,
+    "reducedTransparencyFallback": true
+  },
+  "preview": {
+    "path": "preview/v0.4.6.2-dev.1-R1/",
+    "storageIsolation": true,
+    "indexedDbIsolation": true,
+    "cloudIsolation": true,
+    "serviceWorkerIsolation": true,
+    "cacheRevision": "fix1",
+    "serviceWorkerCachePrefix": "bowlmeet-preview-v0462d1r1-fix1-"
+  },
+  "safety": {
+    "dbVersion": 2,
+    "publicCode": "PUBLIC",
+    "supabaseMigration": false,
+    "indexedDbMigration": false,
+    "publicPayloadMigration": false
+  },
+  "deviceManual": {
+    "status": "PASS",
+    "checks": 10,
+    "pass": 10,
+    "fail": 0,
+    "retestRequired": []
+  },
+  "validationComplete": true,
+  "stablePromotionExecuted": false,
+  "repair1": {
+    "status": "PASS",
+    "reportedIssues": [
+      6,
+      7,
+      8
+    ],
+    "automated": {
+      "pass": 72,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "manualRetest": {
+      "pass": 3,
+      "fail": 0,
+      "status": "PASS",
+      "checks": [
+        6,
+        7,
+        8
+      ]
+    },
+    "fixes": {
+      "localOnlyPublishControl": true,
+      "publicUnpublishControl": true,
+      "removedRepublishControl": true,
+      "publicOnlyImportControl": true,
+      "iphoneHorizontalScrollContainment": true
+    },
+    "manualRetestRequired": []
+  }
+}
