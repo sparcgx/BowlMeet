@@ -9,6 +9,9 @@
 - `THEME_PREFS_KEY = bowlingMeetup.themePreferences.v1`；`LAYOUT_PREFS_KEY` 沿用 `bowlingMeetup.layoutPreferences.v1`。
 - Theme / Layout 只屬於 Local UI Preferences，不進 PUBLIC / Sync / Backup / Restore / Snapshot payload。
 - `DB_VERSION = 2`、`PUBLIC_HISTORY_CODE = PUBLIC` 保持不變。
+- Theme Center Static Gate：**39/39 PASS / 0 FAIL**。
+- JavaScript Parse / CSS Brace / PWA Manifest / Service Worker Cache / Local-only Data Isolation：**PASS**。
+- iPhone / PWA Manual Device Acceptance：**PENDING**（10 項）。
 - 舊 dev.1 已封存：`archive/v0.4.7.0-dev.1-pre-v0.4.6.7-refresh-20260926`。
 
 # BowlMeet v0.4.6.7-dev.1 — Preview Deployment
