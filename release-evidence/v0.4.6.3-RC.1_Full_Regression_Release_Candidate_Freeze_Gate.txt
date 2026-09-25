@@ -1,0 +1,146 @@
+BowlMeet v0.4.6.3-RC.1｜Full Regression & Release Candidate Freeze Gate
+
+Base: v0.4.6.3-dev.3-R2 @ a432b1de75729a8b67db04b630b0be2ddbf9dae3
+Functional delta from R2: NONE
+Allowed RC source delta: APP_VERSION + CSS cache query + release evidence only
+Data migration: NONE
+DB_VERSION: 2 (unchanged)
+Production Service Worker: v0.4.6.2.1 Stable cache retained
+Production manifest: v0.4.6.2.1 Stable metadata retained
+
+Included features/fixes:
+- Dynamic Score Grid (frozen current 1-6 game data model)
+- Share Card dynamic game-column sync
+- Awards PUBLIC score source fix
+- Score History / Ranking navigation position swap
+- Cross-module meetup context sync
+- Public-only ranking/share behavior
+- Backup/Restore, Snapshot, Player Claim, Live Meetup, Photo Verification retained
+
+Automated / source regression checks:
+001. PASS | RC APP_VERSION
+002. PASS | RC CSS cache query
+003. PASS | Single APP_VERSION declaration
+004. PASS | RC functional source frozen vs R2
+005. PASS | Liquid Glass CSS unchanged from R2
+006. PASS | DB name unchanged
+007. PASS | DB_VERSION remains 2
+008. PASS | Session storage key unchanged
+009. PASS | Meetup storage key unchanged
+010. PASS | Roster storage key unchanged
+011. PASS | Active meetup key unchanged
+012. PASS | Player Claim key unchanged
+013. PASS | Public control key unchanged
+014. PASS | Layout preferences key unchanged
+015. PASS | PUBLIC code unchanged
+016. PASS | PUBLIC PIN unchanged
+017. PASS | No 8/10/12 storage expansion
+018. PASS | normalizeSessionRecord unchanged from R2
+019. PASS | normalizeBowlingGames unchanged from R2
+020. PASS | normalizeMeetupRecord unchanged from R2
+021. PASS | normalizePersonalData unchanged from R2
+022. PASS | Session model still max 6
+023. PASS | Meetup planned games still max 6
+024. PASS | Shared score game-count helper retained
+025. PASS | Game-count helper max 6
+026. PASS | History uses shared game-count helper
+027. PASS | History dynamic CSS columns retained
+028. PASS | History dynamic min width retained
+029. PASS | History missing score dash retained
+030. PASS | History horizontal-scroll ARIA retained
+031. PASS | History wrapper horizontal scrolling retained
+032. PASS | Sticky player column retained
+033. PASS | Semantic row-end class retained
+034. PASS | Semantic last-row class retained
+035. PASS | Dynamic grid behavior: 1 game
+036. PASS | Dynamic grid behavior: 3 games
+037. PASS | Dynamic grid behavior: sparse through game 4
+038. PASS | Dynamic grid behavior: 6 games
+039. PASS | Dynamic grid behavior: empty minimum
+040. PASS | Dynamic grid behavior: hard cap 6
+041. PASS | Public history excludes removed records
+042. PASS | Public meetups derive from public history
+043. PASS | Public session lookup retained
+044. PASS | Ranking all uses publicGames
+045. PASS | Ranking meetup uses public session
+046. PASS | Leaderboard options use public meetups
+047. PASS | Leaderboard current requires public meetup
+048. PASS | Award options use public meetups
+049. PASS | Awards UI uses PUBLIC calculation
+050. PASS | Award rows public source supported
+051. PASS | Award PB public source supported
+052. PASS | Custom awards local edit guard retained
+053. PASS | Remote-only custom awards read-only retained
+054. PASS | Awards current requires public meetup
+055. PASS | Award share defaults to public calculation
+056. PASS | Share scope reads public meetup
+057. PASS | Share scope reads public session
+058. PASS | Share ranking uses public ranking rows
+059. PASS | Meetup card uses shared game count
+060. PASS | Meetup card slices dynamic score count
+061. PASS | Meetup card dynamic header retained
+062. PASS | Meetup card missing score dash retained
+063. PASS | Share options use public meetups
+064. PASS | Share note states public-only
+065. PASS | Shared context selectors include leaderboard
+066. PASS | Shared context selectors include awards
+067. PASS | Shared context selectors include share
+068. PASS | Leaderboard selection sync retained
+069. PASS | Award selection sync retained
+070. PASS | Share selection sync retained
+071. PASS | Desktop ranking before score history
+072. PASS | Mobile primary dock has score history
+073. PASS | Mobile primary dock excludes ranking
+074. PASS | Mobile More has ranking
+075. PASS | Mobile More excludes score history
+076. PASS | Full backup function retained
+077. PASS | Restore parse function retained
+078. PASS | Restore apply function retained
+079. PASS | Snapshot create function retained
+080. PASS | Snapshot restore function retained
+081. PASS | Restore failure preserves data wording
+082. PASS | Snapshot limit retained
+083. PASS | Personal data normalization retained
+084. PASS | Personal claim function retained
+085. PASS | Personal unclaim function retained
+086. PASS | Personal sync function retained
+087. PASS | renderMeetups retained
+088. PASS | renderLive retained
+089. PASS | saveLiveRoll retained
+090. PASS | finishLiveRound retained
+091. PASS | endLiveMeetup retained
+092. PASS | renderVerificationCenter retained
+093. PASS | applyOcrToSheet retained
+094. PASS | Service worker registration retained
+095. PASS | Production SW still Stable shell
+096. PASS | Production SW still Stable runtime
+097. PASS | Production SW excludes RC cache
+098. PASS | Production manifest remains Stable v0.4.6.2.1
+099. PASS | Production manifest start_url unchanged
+100. PASS | Main application JavaScript parses
+101. PASS | dev.2 iPhone Safari/PWA validation recorded | User-confirmed PASS
+102. PASS | dev.2 dynamic 1/3/6 grid validation recorded | User-confirmed PASS
+103. PASS | dev.2 share-card sync validation recorded | User-confirmed PASS
+104. PASS | dev.3-R2 navigation device validation recorded | User-confirmed PASS
+105. PASS | Awards PUBLIC source fix included in RC baseline
+
+Automated Result: 105/105 PASS
+
+RC Freeze status:
+- Functional source: FROZEN against dev.3-R2
+- Database/schema: FROZEN / unchanged
+- PUBLIC/PIN: FROZEN / unchanged
+- Production cache: isolated / unchanged
+- RC Preview must use isolated RC cache
+
+Manual RC acceptance required before Stable Promotion:
+1. Open RC Preview in iPhone Safari/PWA.
+2. Verify public score grid 1/3/6 games + horizontal scroll/sticky player.
+3. Verify Ranking uses public scores.
+4. Verify Awards populate from public scores.
+5. Verify Meetup Full Share Card and Awards Card match public data.
+6. Verify mobile navigation: Score History on primary Dock; Ranking under More.
+7. Reload twice and confirm RC.1 remains loaded with no old Preview/Stable cache mix.
+
+Stable Promotion rule:
+- Do not promote to v0.4.6.3 Stable until manual RC acceptance PASS.
