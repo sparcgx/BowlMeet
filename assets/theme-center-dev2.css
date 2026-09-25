@@ -758,3 +758,25 @@ html[data-theme="dark-night"] .player-directory-kpis>div{
     -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
   }
 }
+
+
+/* Final residual selector coverage */
+html[data-theme] .topbar,
+html[data-theme] .tabs,
+html[data-theme] .card,
+html[data-theme] .panel,
+html[data-theme] .sheet-card,
+html[data-theme] .btn,
+html[data-theme] .player-session-dialog-card,
+html[data-theme] .post-review-card,
+html[data-theme] .restore-dialog-card{
+  border-color:var(--border-default)!important;
+}
+html[data-theme] .live-section-head{color:var(--text-primary)!important}
+html[data-theme] .history-score-head{
+  background:var(--surface-subtle)!important;color:var(--text-secondary)!important;border-color:var(--border-default)!important;
+}
+html[data-theme] .history-score-total,
+html[data-theme] .history-score-average{
+  background:var(--surface-subtle)!important;color:var(--text-primary)!important;border-color:var(--border-default)!important;
+}
