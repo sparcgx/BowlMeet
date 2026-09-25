@@ -2161,7 +2161,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.6.7-dev.1-R2';
+const APP_VERSION='0.4.6.7-dev.1-R3';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const LAYOUT_DEFAULTS=Object.freeze({scale:'100',density:'standard',width:'standard',leaderboard:'standard',scoreSize:'standard'});
 const LAYOUT_PRESETS=Object.freeze({
@@ -2655,17 +2655,40 @@ async function setPublicVisibility(id,state){
     ?(local?'確定取消公開這張成績？\n\n只會移除公開版本，本機原始成績、平均、局數與分析資料都會保留。':'確定從公開歷史移除這張成績？\n\n這台裝置目前沒有本機副本，移除後請從其他仍保有本機資料的裝置重新發布。')
     :(isRepublish?'確定重新公開這張本機成績？':'確定公開這張本機成績？');
   if(!confirm(warning))return;
+  const viewState={
+    source:historySource,
+    publicFilter:$('historyPublicFilter')?.value||'all',
+    search:$('historySearch')?.value||'',
+    sort:$('historySort')?.value||'newest',
+    dateFrom:$('historyDateFrom')?.value||'',
+    dateTo:$('historyDateTo')?.value||'',
+    player:$('historyPlayerFilter')?.value||'',
+    venue:$('historyVenueFilter')?.value||'',
+    lane:$('historyLaneFilter')?.value||''
+  };
   setPublicRecordState(id,state);
-  if(state==='removed'&&local){
-    historySource='local';
-    const publicFilter=$('historyPublicFilter');if(publicFilter)publicFilter.value='unpublished';
-  }else if(state==='published'&&isRepublish){
-    const publicFilter=$('historyPublicFilter');if(publicFilter&&publicFilter.value==='unpublished')publicFilter.value='all';
-  }
+  historySource=viewState.source;
+  if($('historyPublicFilter'))$('historyPublicFilter').value=viewState.publicFilter;
+  if($('historySearch'))$('historySearch').value=viewState.search;
+  if($('historySort'))$('historySort').value=viewState.sort;
+  if($('historyDateFrom'))$('historyDateFrom').value=viewState.dateFrom;
+  if($('historyDateTo'))$('historyDateTo').value=viewState.dateTo;
+  if($('historyPlayerFilter'))$('historyPlayerFilter').value=viewState.player;
+  if($('historyVenueFilter'))$('historyVenueFilter').value=viewState.venue;
+  if($('historyLaneFilter'))$('historyLaneFilter').value=viewState.lane;
   groupDirty=true;clearTimeout(groupPushTimer);renderHistory();
-  if(!navigator.onLine){groupLastError=state==='removed'?'離線 · 取消公開等待同步':(isRepublish?'離線 · 重新公開等待同步':'離線 · 公開等待同步');renderPublicSyncState();flash('已記錄操作，恢復連線後再同步公開狀態。');return}
+  if(!navigator.onLine){
+    groupLastError=state==='removed'?'離線 · 取消公開等待同步':(isRepublish?'離線 · 重新公開等待同步':'離線 · 公開等待同步');
+    renderPublicSyncState();
+    flash('已記錄操作，恢復連線後再同步公開狀態。');
+    return
+  }
   const ok=await groupSyncNow(false,false,state==='removed'?'public-remove':(isRepublish?'public-republish':'public-publish'));
-  if(ok)flash(state==='removed'?(local?'已取消公開；已切到「我的紀錄」，可直接重新公開。':'已從公開歷史移除。'):(isRepublish?'已重新公開。':'已公開。'));
+  if(ok)flash(
+    state==='removed'
+      ?(local?'已取消公開；目前列表與篩選保持不變。':'已從公開歷史移除；目前列表與篩選保持不變。')
+      :(isRepublish?'已重新公開；目前列表與篩選保持不變。':'已公開；目前列表與篩選保持不變。')
+  );
   else flash('公開狀態同步失敗，稍後會自動重試。','err')
 }
 function sessionScoreGameCount(s){let max=0;for(const p of (s?.players||[])){const scores=Array.isArray(p?.scores)?p.scores:[];for(let i=0;i<Math.min(6,scores.length);i++){if(normalizeScore(scores[i])!==null)max=Math.max(max,i+1)}}return Math.max(1,Math.min(6,max||1))}
