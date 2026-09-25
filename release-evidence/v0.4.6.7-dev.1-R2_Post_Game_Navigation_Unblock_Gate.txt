@@ -1,0 +1,47 @@
+BowlMeet v0.4.6.7-dev.1-R2｜Post-Game Navigation Unblock
+
+Defect:
+- Clicking 結束球聚 completed the meetup and then immediately opened Post-game Review as a modal.
+- The modal correctly captured touch input, but that made the bottom navigation unavailable.
+
+Fix:
+- Completion no longer auto-opens Post-game Review.
+- Completion reset force-closes any existing Post-game Review dialog.
+- Non-blocking success feedback tells the user where to open the review.
+- 過往球聚／管理 retains the 賽後摘要 button.
+- R1 live hard reset and dynamic game flow remain unchanged.
+
+Checks:
+01. PASS | R2 version
+02. PASS | Completion reset closes post-game dialog
+03. PASS | End completion no longer auto-opens modal
+04. PASS | End completion shows non-blocking feedback
+05. PASS | Manual done no longer auto-opens modal
+06. PASS | Manual done shows non-blocking feedback
+07. PASS | Past meetup still has review button
+08. PASS | Post-game review function retained
+09. PASS | Post-game review close function retained
+10. PASS | Hard reset helper retained
+11. PASS | Score DOM hard clear retained
+12. PASS | Ranking DOM hard clear retained
+13. PASS | Safari hidden hardening retained
+14. PASS | Dynamic game controls retained
+15. PASS | Dynamic next-game growth retained
+16. PASS | Smart Next retained
+17. PASS | Auto-save timings retained
+18. PASS | Bottom dock remains present
+19. PASS | DB_VERSION unchanged
+20. PASS | PUBLIC PIN unchanged
+21. PASS | Main JavaScript parses
+22. PASS | rankingRowsForScope unchanged from R1
+23. PASS | renderAwards unchanged from R1
+24. PASS | shareScopeData unchanged from R1
+25. PASS | backupBeforePwaUpdate unchanged from R1
+26. PASS | applyPwaUpdate unchanged from R1
+27. PASS | finishPwaUpdateReload unchanged from R1
+28. PASS | applyRestorePayload unchanged from R1
+29. PASS | saveLiveRoll unchanged from R1
+30. PASS | liveSmartNextInput unchanged from R1
+31. PASS | adjustLiveRoundCount unchanged from R1
+
+Result: 31/31 PASS
