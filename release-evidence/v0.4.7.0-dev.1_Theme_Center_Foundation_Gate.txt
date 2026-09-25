@@ -1,0 +1,79 @@
+BowlMeet v0.4.7.0-dev.1
+Theme Center Foundation
+Date: 2026-09-26
+Base: v0.4.6.2-dev.1-R1
+Stable ancestry: stable/v0.4.6.1
+
+AUTOMATED FOUNDATION GATE: 97 PASS / 0 FAIL
+
+THEME CENTER
+PASS Theme Center integrated into 版面設計
+PASS 預設（原主題）
+PASS 高階動態透明
+PASS 清新藍白
+PASS 柔霧紫光
+PASS 夜幕深色
+PASS 高對比簡潔
+PASS Theme cards update aria-pressed state
+PASS Theme current chip
+PASS Motion effect toggle
+PASS Transparency effect toggle
+PASS Reset to original theme
+PASS Theme selection applies and persists immediately
+PASS Browser theme-color updates per theme
+PASS Dark theme uses dark color-scheme
+
+STORAGE / ISOLATION
+PASS Existing layout key remains bowlingMeetup.layoutPreferences.v1
+PASS New theme key is bowlingMeetup.themePreferences.v1
+PASS Theme Preferences excluded from backup capture
+PASS Theme Preferences excluded from restore mirror
+PASS Theme Preferences excluded from PUBLIC / Group payload
+PASS No DB migration
+PASS No Supabase migration
+PASS No PUBLIC payload migration
+PASS DB_VERSION remains 2
+PASS PUBLIC_HISTORY_CODE remains PUBLIC
+
+VISUAL SAFETY
+PASS Default theme has no CSS override selector and preserves original visual baseline
+PASS Liquid theme includes soft animated background + glass surfaces
+PASS Clear Blue theme
+PASS Soft Violet theme
+PASS Dark Night theme including score table readability
+PASS High Contrast theme including score table readability
+PASS Motion-off safety
+PASS Transparency-off safety
+PASS prefers-reduced-motion fallback
+PASS prefers-reduced-transparency fallback
+PASS Mobile Theme Center horizontal cards
+
+REGRESSION
+PASS JavaScript syntax
+PASS Duplicate IDs = 0
+PASS Missing literal DOM references = 0
+PASS Duplicate function declarations = 0
+PASS Unexpected existing function changes = 0
+PASS renderHistory unchanged
+PASS Per-game score table retained
+PASS Local Publish / Public Import controls retained
+PASS iPhone horizontal scrolling containment retained
+PASS Leaderboard / Awards / Share unchanged
+PASS PUBLIC query/gate functions unchanged
+PASS Backup / Restore / Snapshot / Integrity unchanged
+PASS Sync / Personal / Group sync unchanged
+PASS Existing Layout Settings / Presets unchanged
+
+PWA
+PASS APP_VERSION = 0.4.7.0-dev.1
+PASS Manifest aligned
+PASS Deployment test aligned
+PASS Service Worker shell cache rotated
+PASS Service Worker runtime cache rotated
+
+STATUS
+Automated Foundation Gate: PASS (97/97)
+Critical Regression: 0
+Unexpected Function Drift: 0
+Device Preview: NOT YET
+Validation Complete: NOT YET
