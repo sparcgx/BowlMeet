@@ -1141,7 +1141,7 @@ dialog::backdrop,
 }
 
 </style>
-<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0465rc1" />
+<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0465rc1r1" />
 <style id="history-score-critical">
 /* v0.4.6.3-dev.1 | Dynamic score grid + Safari/PWA fallback */
 .history-score-table-wrap{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
@@ -2080,7 +2080,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.6.5-RC.1';
+const APP_VERSION='0.4.6.5-RC.1-R1';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const LAYOUT_DEFAULTS=Object.freeze({scale:'100',density:'standard',width:'standard',leaderboard:'standard',scoreSize:'standard'});
 const LAYOUT_PRESETS=Object.freeze({
@@ -2106,7 +2106,7 @@ const $=id=>document.getElementById(id);
 let sessions=[]; let legacy=[]; let meetups=[]; let roster=[]; let editingId=''; let currentMeetupId=''; let deferredInstallPrompt=null; let lastShareBlob=null; let liveGameNo=1; let liveMetric='total'; let liveSaveTimer=null; let manualMeetupPlayers=[]; let historySource='all'; let historyMode='scores'; let playerDirectoryDetail=false; let playerDirectoryView='list'; let postReviewMeetupId='';
 let playerContext={key:'',rosterId:'',playerName:'',source:'LOCAL',originView:'players',hubOrigin:'players',originSessionId:'',view:'hub',analyticsRange:'all',history:{search:'',sort:'newest',range:'all',scrollTop:0,sessionId:''},navigation:{current:'players',previous:'',returnTarget:'players',hubReturnTarget:'players',sessionReturnTarget:'playerHistory',preserveScroll:true,scroll:{players:0,playerHub:0,playerHistory:0,analytics:0,scoreHistory:0}}};
 let playerSessionFocusReturn=null;
-let appDb=null; let dbReady=false; let dbMode='初始化中'; let dbPersistTimer=null; let pendingRestorePayload=null; let pwaRegistration=null; let pendingServiceWorker=null; let reloadingForUpdate=false; let pwaUpdateBackupReady=false; let pwaUpdateBackupFile='';
+let appDb=null; let dbReady=false; let dbMode='初始化中'; let dbPersistTimer=null; let pendingRestorePayload=null; let pwaRegistration=null; let pendingServiceWorker=null; let reloadingForUpdate=false; let pwaUpdateReloadTimer=null; let pwaUpdateReloadStarted=false; let pwaUpdateBackupReady=false; let pwaUpdateBackupFile='';
 let syncTimer=null; let syncPushTimer=null; let syncBusy=false; let syncDirty=false; let syncApplyingRemote=false; let syncRemotePresence={}; let syncLastError='';
 let personalData={profile:null,claims:[],games:[],revision:0,lastSyncAt:0,autoSync:true,updatedAt:0}; let personalTimer=null; let personalPushTimer=null; let personalBusy=false; let personalDirty=false; let personalLastError='';
 let groupRemote={schema:1,groupName:'',meetups:[],sessions:[],updatedAt:0}; let groupTimer=null; let groupPushTimer=null; let groupBusy=false; let groupDirty=false; let groupApplyingRemote=false; let groupLastError='';
@@ -3613,6 +3613,14 @@ async function backupBeforePwaUpdate(){
 }
 function watchRegistration(reg){pwaRegistration=reg;if(reg.waiting)markPendingPwaUpdate(reg.waiting);reg.addEventListener('updatefound',()=>{const w=reg.installing;if(!w)return;setUpdateUi('正在下載更新','Service Worker 安裝中…',false);w.addEventListener('statechange',()=>{if(w.state==='installed'){if(navigator.serviceWorker.controller)markPendingPwaUpdate(w);else setUpdateUi('PWA 已就緒','首次安裝完成。',false)}})})}
 async function checkPwaUpdate(){if(!pwaRegistration){setUpdateUi('目前無法檢查','請使用 HTTPS / localhost 的 PWA 套件。',false);return}setUpdateUi('正在檢查更新','請稍候…',false);try{await pwaRegistration.update();setTimeout(()=>{if(!pendingServiceWorker&&!pwaRegistration?.installing)setUpdateUi('目前已是最新','沒有偵測到等待中的新版。',false)},400)}catch(e){setUpdateUi('更新檢查失敗',String(e?.message||e),false)}}
+function finishPwaUpdateReload(reason='controllerchange'){
+  if(!reloadingForUpdate||pwaUpdateReloadStarted)return;
+  pwaUpdateReloadStarted=true;
+  if(pwaUpdateReloadTimer){clearTimeout(pwaUpdateReloadTimer);pwaUpdateReloadTimer=null}
+  reloadingForUpdate=false;
+  setPwaUpdateDialogStatus(reason==='fallback'?'iOS 更新接手稍慢，正在快速重新載入…':'新版已接手，正在重新載入…',false);
+  location.reload()
+}
 async function applyPwaUpdate(){
   if(!pendingServiceWorker){setUpdateUi('沒有等待中的更新','先按「檢查更新」。',false);return}
   if(!pwaUpdateBackupReady){openPwaUpdateDialog();setPwaUpdateDialogStatus('請先按「備份資料」，完成後才能更新。',false);return}
@@ -3623,12 +3631,21 @@ async function applyPwaUpdate(){
     await persistDbStateNow('pre-pwa-update',state);
     const snap=await createSnapshot('PWA 更新前最後快照',{state,skipPersist:true,skipRender:true});
     if(dbReady&&!snap)throw new Error('最後安全快照建立失敗');
-    reloadingForUpdate=true;pendingServiceWorker.postMessage({type:'SKIP_WAITING'});setPwaUpdateDialogStatus('新版正在套用，App 即將重新載入。',false);setUpdateUi('正在套用新版','App 即將重新載入。',false)
+    reloadingForUpdate=true;pwaUpdateReloadStarted=false;
+    if(pwaUpdateReloadTimer){clearTimeout(pwaUpdateReloadTimer);pwaUpdateReloadTimer=null}
+    pendingServiceWorker.postMessage({type:'SKIP_WAITING'});
+    pwaUpdateReloadTimer=setTimeout(()=>finishPwaUpdateReload('fallback'),1000);
+    setPwaUpdateDialogStatus('新版正在套用，App 即將重新載入。',false);setUpdateUi('正在套用新版','等待新版接手；iOS 若未即時回應，約 1 秒後會自動重新載入。',false)
   }catch(e){
-    console.error(e);reloadingForUpdate=false;if($('pwaUpdateBackupBtn'))$('pwaUpdateBackupBtn').disabled=false;setPwaUpdateDialogStatus('安全更新失敗，目前版本仍保留。可重新備份後再試。',false);setUpdateUi('安全更新失敗','目前版本仍保留，資料未被清除。',true)
+    console.error(e);
+    if(pwaUpdateReloadTimer){clearTimeout(pwaUpdateReloadTimer);pwaUpdateReloadTimer=null}
+    reloadingForUpdate=false;pwaUpdateReloadStarted=false;
+    if($('pwaUpdateBackupBtn'))$('pwaUpdateBackupBtn').disabled=false;
+    setPwaUpdateDialogStatus('安全更新失敗，目前版本仍保留。可重新備份後再試。',false);
+    setUpdateUi('安全更新失敗','目前版本仍保留，資料未被清除。',true)
   }
 }
-function initPwa(){window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;$('installAppBtn').classList.add('ready');$('installAppBtn').textContent='安裝 App'});window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;updatePwaState()});window.addEventListener('online',updatePwaState);window.addEventListener('offline',updatePwaState);if('serviceWorker'in navigator&&location.protocol!=='file:'){navigator.serviceWorker.addEventListener('controllerchange',()=>{if(reloadingForUpdate)location.reload()});navigator.serviceWorker.register('./sw.js').then(reg=>{watchRegistration(reg);if(!reg.waiting)setUpdateUi('PWA 更新保護已啟用','偵測到新版時會跳出視窗，必須先備份再更新。',false)}).catch(e=>{console.warn('Service Worker 註冊失敗',e);setUpdateUi('PWA 註冊失敗',String(e?.message||e),false)})}else setUpdateUi(location.protocol==='file:'?'本機 HTML 模式':'瀏覽器不支援 Service Worker','PWA 安全更新需要 HTTPS / localhost。',false);updatePwaState()}
+function initPwa(){window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;$('installAppBtn').classList.add('ready');$('installAppBtn').textContent='安裝 App'});window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;updatePwaState()});window.addEventListener('online',updatePwaState);window.addEventListener('offline',updatePwaState);if('serviceWorker'in navigator&&location.protocol!=='file:'){navigator.serviceWorker.addEventListener('controllerchange',()=>{if(reloadingForUpdate)finishPwaUpdateReload('controllerchange')});navigator.serviceWorker.register('./sw.js').then(reg=>{watchRegistration(reg);if(!reg.waiting)setUpdateUi('PWA 更新保護已啟用','偵測到新版時會跳出視窗，必須先備份再更新。',false)}).catch(e=>{console.warn('Service Worker 註冊失敗',e);setUpdateUi('PWA 註冊失敗',String(e?.message||e),false)})}else setUpdateUi(location.protocol==='file:'?'本機 HTML 模式':'瀏覽器不支援 Service Worker','PWA 安全更新需要 HTTPS / localhost。',false);updatePwaState()}
 function renderShare(preferredScope=''){renderShareOptions(preferredScope);drawShareCard()}
 
 

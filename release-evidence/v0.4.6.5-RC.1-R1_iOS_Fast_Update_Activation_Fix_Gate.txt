@@ -1,0 +1,79 @@
+BowlMeet v0.4.6.5-RC.1-R1｜iOS Fast Update Activation Fix
+
+Base: v0.4.6.5-RC.1 @ bdbe1fcaac500e3013401cd07603955d35ee0da9
+Scope: iOS Safari/PWA post-SKIP_WAITING activation latency only.
+
+Fix:
+- Keep controllerchange as the preferred reload path.
+- Add a 1000ms fallback reload after SKIP_WAITING for iOS/WebKit cases where controllerchange is delayed.
+- Use one finishPwaUpdateReload() helper for both controllerchange and fallback.
+- Add duplicate-reload guard so only one reload can occur.
+- Clear fallback timer when controllerchange wins.
+- Clear timer/guard on update failure.
+
+Safety retained:
+- Mandatory backup gate.
+- Full JSON backup.
+- User backup snapshot.
+- Final pre-activation snapshot.
+- Single-state/single-persist performance optimization.
+- Service Worker SKIP_WAITING handler.
+
+Frozen:
+- DB_VERSION=2
+- PUBLIC/PIN unchanged
+- Supabase/IndexedDB schema unchanged
+- Dynamic Grid/Ranking/Awards/Share unchanged
+- Score model 1-6 unchanged
+
+Checks:
+01. PASS | R1 APP_VERSION
+02. PASS | R1 CSS query
+03. PASS | Reload timer state added
+04. PASS | Reload guard state added
+05. PASS | finishPwaUpdateReload helper exists
+06. PASS | helper blocks duplicate reload
+07. PASS | helper marks reload started
+08. PASS | helper clears fallback timer
+09. PASS | helper disables reloading flag
+10. PASS | helper performs location.reload
+11. PASS | Apply remains async
+12. PASS | Apply resets duplicate guard
+13. PASS | Apply clears old timer
+14. PASS | Apply still sends SKIP_WAITING
+15. PASS | Apply fallback is 1000ms
+16. PASS | Apply explains iOS fallback
+17. PASS | Apply catch clears timer
+18. PASS | Apply catch resets guard
+19. PASS | controllerchange uses common reload helper
+20. PASS | Old direct controllerchange reload removed
+21. PASS | backupBeforePwaUpdate unchanged from RC.1
+22. PASS | persistDbStateNow unchanged from RC.1
+23. PASS | createSnapshot unchanged from RC.1
+24. PASS | exportFullBackup unchanged from RC.1
+25. PASS | checkPwaUpdate unchanged from RC.1
+26. PASS | watchRegistration unchanged from RC.1
+27. PASS | Apply backup gate retained
+28. PASS | Apply final snapshot retained
+29. PASS | Apply single captureState
+30. PASS | Apply single persist
+31. PASS | Apply snapshot skips duplicate persist
+32. PASS | Apply snapshot skips render
+33. PASS | SW unchanged from RC.1
+34. PASS | SW handles SKIP_WAITING
+35. PASS | renderHistory unchanged from RC.1
+36. PASS | rankingRowsForScope unchanged from RC.1
+37. PASS | renderAwards unchanged from RC.1
+38. PASS | shareScopeData unchanged from RC.1
+39. PASS | drawMeetupFullShareCard unchanged from RC.1
+40. PASS | normalizeSessionRecord unchanged from RC.1
+41. PASS | normalizeMeetupRecord unchanged from RC.1
+42. PASS | applyRestorePayload unchanged from RC.1
+43. PASS | DB_VERSION remains 2
+44. PASS | PUBLIC code unchanged
+45. PASS | PUBLIC PIN unchanged
+46. PASS | Score model remains max 6
+47. PASS | Mandatory backup copy retained
+48. PASS | Main JavaScript parses
+
+Result: 48/48 PASS

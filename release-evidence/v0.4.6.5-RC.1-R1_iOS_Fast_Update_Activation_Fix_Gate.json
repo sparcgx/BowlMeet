@@ -1,0 +1,276 @@
+{
+  "version": "0.4.6.5-RC.1-R1",
+  "title": "iOS Fast Update Activation Fix",
+  "base": {
+    "ref": "v0.4.6.5-RC.1",
+    "commit": "bdbe1fcaac500e3013401cd07603955d35ee0da9"
+  },
+  "scope": "post-SKIP_WAITING activation latency on iOS/WebKit",
+  "fix": {
+    "preferred": "controllerchange",
+    "fallback_ms": 1000,
+    "duplicate_reload_guard": true,
+    "shared_reload_helper": true
+  },
+  "safety_retained": [
+    "mandatory backup gate",
+    "full JSON backup",
+    "user backup snapshot",
+    "final snapshot",
+    "single-state/single-persist optimization",
+    "SW SKIP_WAITING handler"
+  ],
+  "invariants": {
+    "db_version": 2,
+    "public_pin": "UNCHANGED",
+    "supabase_schema": "UNCHANGED",
+    "indexeddb_schema": "UNCHANGED",
+    "score_model": "1-6"
+  },
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "R1 APP_VERSION"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "R1 CSS query"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "Reload timer state added"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "Reload guard state added"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "finishPwaUpdateReload helper exists"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "helper blocks duplicate reload"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "helper marks reload started"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "helper clears fallback timer"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "helper disables reloading flag"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "helper performs location.reload"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "Apply remains async"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "Apply resets duplicate guard"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "Apply clears old timer"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "Apply still sends SKIP_WAITING"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "Apply fallback is 1000ms"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "Apply explains iOS fallback"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "Apply catch clears timer"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "Apply catch resets guard"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "controllerchange uses common reload helper"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "Old direct controllerchange reload removed"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "backupBeforePwaUpdate unchanged from RC.1"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "persistDbStateNow unchanged from RC.1"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "createSnapshot unchanged from RC.1"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "exportFullBackup unchanged from RC.1"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "checkPwaUpdate unchanged from RC.1"
+    },
+    {
+      "id": 26,
+      "status": "PASS",
+      "name": "watchRegistration unchanged from RC.1"
+    },
+    {
+      "id": 27,
+      "status": "PASS",
+      "name": "Apply backup gate retained"
+    },
+    {
+      "id": 28,
+      "status": "PASS",
+      "name": "Apply final snapshot retained"
+    },
+    {
+      "id": 29,
+      "status": "PASS",
+      "name": "Apply single captureState"
+    },
+    {
+      "id": 30,
+      "status": "PASS",
+      "name": "Apply single persist"
+    },
+    {
+      "id": 31,
+      "status": "PASS",
+      "name": "Apply snapshot skips duplicate persist"
+    },
+    {
+      "id": 32,
+      "status": "PASS",
+      "name": "Apply snapshot skips render"
+    },
+    {
+      "id": 33,
+      "status": "PASS",
+      "name": "SW unchanged from RC.1"
+    },
+    {
+      "id": 34,
+      "status": "PASS",
+      "name": "SW handles SKIP_WAITING"
+    },
+    {
+      "id": 35,
+      "status": "PASS",
+      "name": "renderHistory unchanged from RC.1"
+    },
+    {
+      "id": 36,
+      "status": "PASS",
+      "name": "rankingRowsForScope unchanged from RC.1"
+    },
+    {
+      "id": 37,
+      "status": "PASS",
+      "name": "renderAwards unchanged from RC.1"
+    },
+    {
+      "id": 38,
+      "status": "PASS",
+      "name": "shareScopeData unchanged from RC.1"
+    },
+    {
+      "id": 39,
+      "status": "PASS",
+      "name": "drawMeetupFullShareCard unchanged from RC.1"
+    },
+    {
+      "id": 40,
+      "status": "PASS",
+      "name": "normalizeSessionRecord unchanged from RC.1"
+    },
+    {
+      "id": 41,
+      "status": "PASS",
+      "name": "normalizeMeetupRecord unchanged from RC.1"
+    },
+    {
+      "id": 42,
+      "status": "PASS",
+      "name": "applyRestorePayload unchanged from RC.1"
+    },
+    {
+      "id": 43,
+      "status": "PASS",
+      "name": "DB_VERSION remains 2"
+    },
+    {
+      "id": 44,
+      "status": "PASS",
+      "name": "PUBLIC code unchanged"
+    },
+    {
+      "id": 45,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 46,
+      "status": "PASS",
+      "name": "Score model remains max 6"
+    },
+    {
+      "id": 47,
+      "status": "PASS",
+      "name": "Mandatory backup copy retained"
+    },
+    {
+      "id": 48,
+      "status": "PASS",
+      "name": "Main JavaScript parses"
+    }
+  ],
+  "result": {
+    "pass": 48,
+    "fail": 0
+  }
+}
