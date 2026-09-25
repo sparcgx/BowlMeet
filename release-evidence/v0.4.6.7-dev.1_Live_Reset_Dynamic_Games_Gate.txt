@@ -1,0 +1,74 @@
+BowlMeet v0.4.6.7-dev.1｜Live Completion Reset & Dynamic Game Flow
+
+Base: stable/v0.4.6.6 @ 7d04ab6e7d3181fac53d742fdd5b736433c42d17
+
+Completion reset fix:
+- Completing a meetup cancels pending live-score commits.
+- Active meetup context is cleared.
+- Stale hidden live selector value is cleared and is no longer reused by renderLive().
+- Quick-player input and per-meetup live preference are cleared.
+- Saved scores/history remain intact; Post-game Review still opens.
+
+Dynamic games:
+- New meetup default: 動態（現場自動增加）.
+- Fixed 1-6 modes remain available.
+- Dynamic mode starts with 1 game and grows through the live flow up to 6.
+- Next at the dynamic edge automatically creates the next game.
+- Live +局 / -局 controls adjust game count.
+- A game count cannot be reduced below a round that already contains score/frame data.
+
+Frozen:
+- DB_VERSION=2.
+- Maximum score storage remains 6 games.
+- PUBLIC/PIN unchanged.
+- Ranking/Awards/Share unchanged.
+- Backup/Restore/PWA Safe Update unchanged.
+
+Checks:
+01. PASS | APP_VERSION dev.1
+02. PASS | Dynamic setup option exists
+03. PASS | Fixed 1-6 options retained
+04. PASS | Dynamic meetup flag normalized
+05. PASS | Legacy meetup default stays fixed 6
+06. PASS | New meetup defaults to dynamic
+07. PASS | Save meetup stores dynamicGames
+08. PASS | Edit meetup restores auto mode
+09. PASS | LIVE_GAME_MAX remains 6
+10. PASS | Live planned helper exists
+11. PASS | Highest used round helper exists
+12. PASS | Dynamic next round auto grows
+13. PASS | Dynamic add control exists
+14. PASS | Dynamic remove control exists
+15. PASS | Add round handler exists
+16. PASS | Remove round handler exists
+17. PASS | Cannot shrink below used score
+18. PASS | Round badge shows dynamic count
+19. PASS | Dynamic KPI label exists
+20. PASS | Dynamic next button label exists
+21. PASS | Completion clear cancels pending commit
+22. PASS | Completion clear resets write state
+23. PASS | Completion clear resets last commit
+24. PASS | Completion clear clears selector
+25. PASS | Completion clear clears quick player
+26. PASS | Completion clear clears current context
+27. PASS | renderLive no longer preserves stale select DOM value
+28. PASS | renderLive explicitly blanks selector without current context
+29. PASS | Completed session remains retained
+30. PASS | DB_VERSION unchanged
+31. PASS | PUBLIC PIN unchanged
+32. PASS | Score storage max remains 6
+33. PASS | Smart Next retained
+34. PASS | Auto commit 120/420/520 retained
+35. PASS | Input safety flush retained
+36. PASS | Repeat Enter guard retained
+37. PASS | IndexedDB warning retained
+38. PASS | Main JavaScript parses
+39. PASS | rankingRowsForScope unchanged from Stable
+40. PASS | renderAwards unchanged from Stable
+41. PASS | shareScopeData unchanged from Stable
+42. PASS | backupBeforePwaUpdate unchanged from Stable
+43. PASS | applyPwaUpdate unchanged from Stable
+44. PASS | finishPwaUpdateReload unchanged from Stable
+45. PASS | applyRestorePayload unchanged from Stable
+
+Result: 45/45 PASS
