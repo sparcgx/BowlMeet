@@ -9,21 +9,24 @@
     "fail": 0,
     "status": "PASS"
   },
-  "r2DeviceFinding": {
-    "firstPublish": {
+  "previewCloudConfiguration": {
+    "originalInvalidGroupCode": "V462RC1",
+    "rule": "^[A-Z2-9]{6}$",
+    "fixedGroupCode": "V46RC2",
+    "pin": "046221",
+    "gate": {
+      "pass": 12,
+      "fail": 0,
       "status": "PASS"
     },
-    "republishVisibility": {
-      "status": "FAIL",
-      "rootCause": "Public-source filter hid the record immediately after unpublish."
-    },
-    "repairedInRc1": true
+    "publishPr": 29
   },
   "rcRepair": {
     "switchToLocalAfterUnpublish": true,
     "setUnpublishedFilter": true,
     "republishUsesPublicControlTombstone": true,
-    "clearUnpublishedFilterAfterRepublish": true
+    "clearUnpublishedFilterAfterRepublish": true,
+    "deviceRetestStatus": "PASS"
   },
   "delta": {
     "missingFunctions": 0,
@@ -39,7 +42,10 @@
     "layoutPreferencesKey": "bowlingMeetup.layoutPreferences.v1",
     "supabaseMigration": false,
     "indexedDbMigration": false,
-    "publicPayloadMigration": false
+    "publicPayloadMigration": false,
+    "leaderboardPublicOnly": true,
+    "sharePublicOnly": true,
+    "awardsPublicOnly": true
   },
   "preview": {
     "path": "preview/v0.4.6.2-RC.1/",
@@ -49,43 +55,28 @@
     "dbName": "bowlmeet.preview.v0462rc1.local",
     "layoutPreferencesKey": "bowlmeet.preview.v0462rc1.layoutPreferences.v1",
     "cacheRoot": "bowlmeet-preview-v0462rc1-",
-    "publishPr": 28,
-    "published": true,
-    "cachePrefix": "bowlmeet-preview-v0462rc1-rc1fix1-"
+    "cachePrefix": "bowlmeet-preview-v0462rc1-rc1fix1-",
+    "publishPrs": [
+      28,
+      29
+    ],
+    "published": true
   },
   "deviceSmoke": {
-    "status": "RETEST_REQUIRED",
+    "status": "PASS",
     "checks": 6,
-    "pass": 3,
+    "pass": 6,
     "fail": 0,
-    "retest": [
+    "confirmedByUser": true,
+    "passed": [
       1,
       2,
-      3
-    ],
-    "passed": [
+      3,
       4,
       5,
       6
-    ],
-    "notes": {
-      "1": "Pre-fix attempt blocked by invalid 7-character Preview Cloud group code; retest after V46RC2 fix.",
-      "4": "PASS",
-      "5": "PASS: leaderboard, share, and awards all use public results.",
-      "6": "PASS"
-    }
+    ]
   },
-  "releaseCandidateValidationComplete": false,
-  "stablePromotionExecuted": false,
-  "previewCloudConfigFix": {
-    "rootCause": "RC Preview group code V462RC1 had 7 characters; Supabase bowling_group_create requires ^[A-Z2-9]{6}$.",
-    "fixedGroupCode": "V46RC2",
-    "gate": {
-      "pass": 12,
-      "fail": 0,
-      "status": "PASS"
-    },
-    "reproducibleGate": "tools/v0.4.6.2-rc1-preview-config-gate.mjs",
-    "publishPr": 29
-  }
+  "releaseCandidateValidationComplete": true,
+  "stablePromotionExecuted": false
 }
