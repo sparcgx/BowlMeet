@@ -1,0 +1,51 @@
+BowlMeet v0.4.6.7-dev.1-R1｜Live UI Hard Reset
+
+Defect:
+- Completed meetup Context was cleared, but Safari could still show stale 10-frame scoring and live ranking content.
+- .live-main has an explicit display:grid rule, so hidden presentation required explicit hardening.
+
+Fix:
+- #liveMain[hidden] / #liveContent[hidden] => display:none!important.
+- Clear liveScoreList DOM.
+- Clear liveRankBody DOM.
+- Reset players/round/completion/AVG/best/progress KPIs.
+- Reset live round navigation and dynamic +/- controls.
+- Run reset both when completion is committed and whenever renderLive has no active meetup.
+- Saved score/session/history/Post-game Review remain intact.
+
+Checks:
+01. PASS | R1 version
+02. PASS | Safari hidden rule for liveMain
+03. PASS | Presentation reset helper exists
+04. PASS | Score DOM actually cleared
+05. PASS | Rank DOM actually cleared
+06. PASS | Rank count resets to 0
+07. PASS | Players KPI resets
+08. PASS | Round KPI resets
+09. PASS | Round done resets
+10. PASS | Average resets
+11. PASS | Best resets
+12. PASS | Progress resets
+13. PASS | Round badge resets
+14. PASS | Live main hidden in reset
+15. PASS | Live empty shown in reset
+16. PASS | Completion calls reset
+17. PASS | No-meetup render calls reset
+18. PASS | Post-render completion hard reset
+19. PASS | Dynamic games helper retained
+20. PASS | Dynamic add/remove controls retained
+21. PASS | Dynamic score shrink guard retained
+22. PASS | Smart Next retained
+23. PASS | Auto-save timings retained
+24. PASS | DB_VERSION unchanged
+25. PASS | PUBLIC PIN unchanged
+26. PASS | Main JavaScript parses
+27. PASS | rankingRowsForScope unchanged from dev.1
+28. PASS | renderAwards unchanged from dev.1
+29. PASS | shareScopeData unchanged from dev.1
+30. PASS | backupBeforePwaUpdate unchanged from dev.1
+31. PASS | applyPwaUpdate unchanged from dev.1
+32. PASS | finishPwaUpdateReload unchanged from dev.1
+33. PASS | applyRestorePayload unchanged from dev.1
+
+Result: 33/33 PASS
