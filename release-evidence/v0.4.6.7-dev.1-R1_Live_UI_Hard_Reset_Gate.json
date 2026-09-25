@@ -1,0 +1,187 @@
+{
+  "version": "0.4.6.7-dev.1-R1",
+  "title": "Live UI Hard Reset",
+  "base": {
+    "ref": "v0.4.6.7-dev.1"
+  },
+  "defect": "After meetup completion, Safari could continue displaying stale live-score and live-ranking DOM even after hidden/context reset.",
+  "fix": [
+    "force #liveMain/#liveContent hidden state with display:none!important",
+    "clear liveScoreList and liveRankBody DOM",
+    "reset live ranking count and all live KPIs",
+    "reset progress, round badge, nav buttons and dynamic +/- controls",
+    "invoke hard reset in completion path and no-active-meetup render path",
+    "preserve saved session/history/post-game review"
+  ],
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "R1 version"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "Safari hidden rule for liveMain"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "Presentation reset helper exists"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "Score DOM actually cleared"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "Rank DOM actually cleared"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "Rank count resets to 0"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "Players KPI resets"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "Round KPI resets"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "Round done resets"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "Average resets"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "Best resets"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "Progress resets"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "Round badge resets"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "Live main hidden in reset"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "Live empty shown in reset"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "Completion calls reset"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "No-meetup render calls reset"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "Post-render completion hard reset"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "Dynamic games helper retained"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "Dynamic add/remove controls retained"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "Dynamic score shrink guard retained"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "Smart Next retained"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "Auto-save timings retained"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "DB_VERSION unchanged"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 26,
+      "status": "PASS",
+      "name": "Main JavaScript parses"
+    },
+    {
+      "id": 27,
+      "status": "PASS",
+      "name": "rankingRowsForScope unchanged from dev.1"
+    },
+    {
+      "id": 28,
+      "status": "PASS",
+      "name": "renderAwards unchanged from dev.1"
+    },
+    {
+      "id": 29,
+      "status": "PASS",
+      "name": "shareScopeData unchanged from dev.1"
+    },
+    {
+      "id": 30,
+      "status": "PASS",
+      "name": "backupBeforePwaUpdate unchanged from dev.1"
+    },
+    {
+      "id": 31,
+      "status": "PASS",
+      "name": "applyPwaUpdate unchanged from dev.1"
+    },
+    {
+      "id": 32,
+      "status": "PASS",
+      "name": "finishPwaUpdateReload unchanged from dev.1"
+    },
+    {
+      "id": 33,
+      "status": "PASS",
+      "name": "applyRestorePayload unchanged from dev.1"
+    }
+  ],
+  "result": {
+    "pass": 33,
+    "fail": 0
+  }
+}
