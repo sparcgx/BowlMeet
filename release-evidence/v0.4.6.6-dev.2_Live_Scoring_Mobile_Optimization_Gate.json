@@ -1,0 +1,267 @@
+{
+  "version": "0.4.6.6-dev.2",
+  "title": "Live Scoring Interaction & Mobile Layout Optimization",
+  "base": {
+    "ref": "v0.4.6.6-dev.1-R1",
+    "commit": "c8881c9d8c2b2fe4f83b6926e5329619f4c2d336"
+  },
+  "interaction": {
+    "enterkeyhint": "next",
+    "auto_commit_ms": {
+      "10": 120,
+      "0-9": 420,
+      "blank": 520
+    },
+    "smart_next": [
+      "same-player-next-roll",
+      "next-player-same-frame",
+      "next-frame-first-player"
+    ],
+    "change_fallback": "save-no-force-advance"
+  },
+  "mobile": {
+    "frame_strip_min_width_px": 820,
+    "roll_height_px": 40,
+    "rank_max_height_px": 240,
+    "focus_highlight": true,
+    "compact_vertical_layout": true
+  },
+  "invariants": {
+    "db_version": 2,
+    "public_pin": "UNCHANGED",
+    "schemas": "UNCHANGED",
+    "pwa_safe_update": "UNCHANGED",
+    "score_model": "1-6"
+  },
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "APP_VERSION dev.2"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "CSS query dev.2"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "Auto-commit timer state"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "Auto-commit key state"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "iOS enterkeyhint next"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "Smart next helper exists"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "Smart next keeps same frame roll first"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "Smart next advances next player same frame"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "Smart next advances next frame after players"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "Auto commit helper exists"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "10 gets fast delay"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "Single digit debounce 420ms"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "Blank clear debounce retained"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "Input event schedules commit"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "Change remains no-force-advance fallback"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "Enter immediate smart advance"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "Focus frame highlight"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "Focus helper centers frame"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "Restore uses smart next"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "Current summary terminology"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "Clear action shortened"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "Mobile frame min width reduced to 820"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "Mobile roll touch height 40"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "Mobile frame scroll snap"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "Mobile compact top"
+    },
+    {
+      "id": 26,
+      "status": "PASS",
+      "name": "Mobile compact KPI"
+    },
+    {
+      "id": 27,
+      "status": "PASS",
+      "name": "Mobile scoring instructions hidden"
+    },
+    {
+      "id": 28,
+      "status": "PASS",
+      "name": "Mobile rank table bounded"
+    },
+    {
+      "id": 29,
+      "status": "PASS",
+      "name": "R1 mobile summary Dock retained"
+    },
+    {
+      "id": 30,
+      "status": "PASS",
+      "name": "R1 personal in More retained"
+    },
+    {
+      "id": 31,
+      "status": "PASS",
+      "name": "renderMeetups unchanged from R1"
+    },
+    {
+      "id": 32,
+      "status": "PASS",
+      "name": "renderCurrentMeetup unchanged from R1"
+    },
+    {
+      "id": 33,
+      "status": "PASS",
+      "name": "rankingRowsForScope unchanged from R1"
+    },
+    {
+      "id": 34,
+      "status": "PASS",
+      "name": "renderAwards unchanged from R1"
+    },
+    {
+      "id": 35,
+      "status": "PASS",
+      "name": "shareScopeData unchanged from R1"
+    },
+    {
+      "id": 36,
+      "status": "PASS",
+      "name": "backupBeforePwaUpdate unchanged from R1"
+    },
+    {
+      "id": 37,
+      "status": "PASS",
+      "name": "applyPwaUpdate unchanged from R1"
+    },
+    {
+      "id": 38,
+      "status": "PASS",
+      "name": "finishPwaUpdateReload unchanged from R1"
+    },
+    {
+      "id": 39,
+      "status": "PASS",
+      "name": "normalizeSessionRecord unchanged from R1"
+    },
+    {
+      "id": 40,
+      "status": "PASS",
+      "name": "sessionScoreGameCount unchanged from R1"
+    },
+    {
+      "id": 41,
+      "status": "PASS",
+      "name": "DB_VERSION remains 2"
+    },
+    {
+      "id": 42,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 43,
+      "status": "PASS",
+      "name": "Score model remains max 6"
+    },
+    {
+      "id": 44,
+      "status": "PASS",
+      "name": "iOS update fallback retained"
+    },
+    {
+      "id": 45,
+      "status": "PASS",
+      "name": "Main JavaScript parses"
+    }
+  ],
+  "result": {
+    "pass": 45,
+    "fail": 0
+  }
+}
