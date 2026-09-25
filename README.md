@@ -8,11 +8,12 @@
 - Republish 狀態改由 Public Control tombstone `removed` 判定，不再依賴遠端 Session 是否存在。
 - Full Automated Regression：**103/103 PASS**。
 - R2 → RC function delta：0 missing / 0 added / 0 body drift。
-- RC Preview：`preview/v0.4.6.2-RC.1/`，Cloud `V462RC1`、PIN `046221`、獨立 IndexedDB / Layout / Cache。
+- RC Preview：`preview/v0.4.6.2-RC.1/`，Cloud `V46RC2`、PIN `046221`、獨立 IndexedDB / Layout / Cache。
 - Preview-only PR #28 已合併；正式 root 未包含在 Preview publish。
 - DB_VERSION 2、PUBLIC code / payload、Backup / Restore、同步資料格式維持不變。
 - Supabase / IndexedDB / PUBLIC payload migration：NONE。
-- RC Device Smoke：6 項待實機確認。
+- RC Device Smoke：#4 / #5 / #6 已 PASS；#1 / #2 / #3 於 Preview Cloud Code Fix 後待重測。
+- RC Preview Cloud Code 原 `V462RC1` 為 7 碼，違反 Supabase 6 碼規則；已修正為 `V46RC2`，Preview Config Gate 12/12 PASS，PR #29 已發布。
 - Stable Promotion：尚未執行。
 
 # BowlMeet v0.4.6.2-dev.1-R2 — Post-R1 Cleanup & Cache Hardening
