@@ -1,0 +1,214 @@
+{
+  "version": "0.4.6.4-dev.1",
+  "title": "PWA Safe Update Prompt & Backup Gate",
+  "base": {
+    "ref": "stable/v0.4.6.3",
+    "commit": "57b1f4215705c9b4f942bfa896289b7982cf94ff"
+  },
+  "scope": "PWA update UX / safety gate only",
+  "behavior": [
+    "auto update prompt",
+    "mandatory backup step",
+    "snapshot + full JSON backup",
+    "update locked before backup",
+    "final snapshot before SKIP_WAITING"
+  ],
+  "invariants": {
+    "db_version": 2,
+    "public_pin": "UNCHANGED",
+    "supabase": "UNCHANGED",
+    "indexeddb_schema": "UNCHANGED",
+    "score_model": "1-6"
+  },
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "APP_VERSION dev.1"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "CSS query dev.1"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "Update dialog exists"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "Backup button exists"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "Actual update button exists disabled"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "Later button exists"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "Two-step labels exist"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "Settings copy requires backup first"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "Settings action opens update dialog"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "Backup action listener"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "Update action listener"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "Waiting SW auto-opens prompt"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "Waiting SW resets backup gate"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "Backup creates state persistence"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "Backup creates snapshot"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "Backup downloads full JSON"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "Backup unlocks update"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "Update blocked before backup"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "Update keeps final automatic snapshot"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "Update persists DB before SW activation"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "Update sends SKIP_WAITING only after gate"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "Controller change reload retained"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "Export backup still downloads JSON"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "Export backup now returns filename"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "renderHistory unchanged from stable"
+    },
+    {
+      "id": 26,
+      "status": "PASS",
+      "name": "rankingRowsForScope unchanged from stable"
+    },
+    {
+      "id": 27,
+      "status": "PASS",
+      "name": "renderAwards unchanged from stable"
+    },
+    {
+      "id": 28,
+      "status": "PASS",
+      "name": "shareScopeData unchanged from stable"
+    },
+    {
+      "id": 29,
+      "status": "PASS",
+      "name": "drawMeetupFullShareCard unchanged from stable"
+    },
+    {
+      "id": 30,
+      "status": "PASS",
+      "name": "normalizeSessionRecord unchanged from stable"
+    },
+    {
+      "id": 31,
+      "status": "PASS",
+      "name": "normalizeMeetupRecord unchanged from stable"
+    },
+    {
+      "id": 32,
+      "status": "PASS",
+      "name": "applyRestorePayload unchanged from stable"
+    },
+    {
+      "id": 33,
+      "status": "PASS",
+      "name": "DB_VERSION remains 2"
+    },
+    {
+      "id": 34,
+      "status": "PASS",
+      "name": "PUBLIC code unchanged"
+    },
+    {
+      "id": 35,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 36,
+      "status": "PASS",
+      "name": "Stable score model remains max 6"
+    },
+    {
+      "id": 37,
+      "status": "PASS",
+      "name": "Main JavaScript parses"
+    }
+  ],
+  "result": {
+    "pass": 37,
+    "fail": 0
+  }
+}

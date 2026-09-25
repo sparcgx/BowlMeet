@@ -1,0 +1,60 @@
+BowlMeet v0.4.6.4-dev.1｜PWA Safe Update Prompt & Backup Gate
+
+Base: stable/v0.4.6.3 @ 57b1f4215705c9b4f942bfa896289b7982cf94ff
+Feature scope: PWA update UX / safety gate only
+
+New behavior:
+- Waiting/new Service Worker automatically opens a small update dialog.
+- Update dialog requires Step 1: Backup Data before Step 2: Update to New Version.
+- Backup step persists current DB state, creates an IndexedDB safety snapshot, and downloads a full JSON backup.
+- Update button remains locked until backup step succeeds.
+- Applying the update creates one additional final safety snapshot before SKIP_WAITING.
+- Controller change reload behavior remains unchanged.
+
+Frozen areas:
+- DB_VERSION = 2
+- PUBLIC/PIN unchanged
+- Supabase / IndexedDB schema unchanged
+- Dynamic Score Grid / Ranking / Awards / Share logic unchanged
+- Current score model remains 1-6 games
+
+Checks:
+01. PASS | APP_VERSION dev.1
+02. PASS | CSS query dev.1
+03. PASS | Update dialog exists
+04. PASS | Backup button exists
+05. PASS | Actual update button exists disabled
+06. PASS | Later button exists
+07. PASS | Two-step labels exist
+08. PASS | Settings copy requires backup first
+09. PASS | Settings action opens update dialog
+10. PASS | Backup action listener
+11. PASS | Update action listener
+12. PASS | Waiting SW auto-opens prompt
+13. PASS | Waiting SW resets backup gate
+14. PASS | Backup creates state persistence
+15. PASS | Backup creates snapshot
+16. PASS | Backup downloads full JSON
+17. PASS | Backup unlocks update
+18. PASS | Update blocked before backup
+19. PASS | Update keeps final automatic snapshot
+20. PASS | Update persists DB before SW activation
+21. PASS | Update sends SKIP_WAITING only after gate
+22. PASS | Controller change reload retained
+23. PASS | Export backup still downloads JSON
+24. PASS | Export backup now returns filename
+25. PASS | renderHistory unchanged from stable
+26. PASS | rankingRowsForScope unchanged from stable
+27. PASS | renderAwards unchanged from stable
+28. PASS | shareScopeData unchanged from stable
+29. PASS | drawMeetupFullShareCard unchanged from stable
+30. PASS | normalizeSessionRecord unchanged from stable
+31. PASS | normalizeMeetupRecord unchanged from stable
+32. PASS | applyRestorePayload unchanged from stable
+33. PASS | DB_VERSION remains 2
+34. PASS | PUBLIC code unchanged
+35. PASS | PUBLIC PIN unchanged
+36. PASS | Stable score model remains max 6
+37. PASS | Main JavaScript parses
+
+Result: 37/37 PASS
