@@ -1,0 +1,434 @@
+{
+  "version": "0.4.6.3",
+  "title": "Stable Promotion & Final Freeze",
+  "promoted_from": {
+    "ref": "v0.4.6.3-RC.1",
+    "commit": "a9c3d13c57b11567540fd618da6f56e113d9a8c5"
+  },
+  "rc_manual_acceptance": "PASS",
+  "functional_delta_from_rc": "NONE",
+  "release_delta": [
+    "APP_VERSION",
+    "release label",
+    "CSS cache identity",
+    "production service worker cache",
+    "manifest metadata",
+    "freeze evidence"
+  ],
+  "invariants": {
+    "db_name": "bowlingMeetup.local",
+    "db_version": 2,
+    "public_code": "PUBLIC",
+    "public_pin": "UNCHANGED",
+    "supabase_schema": "UNCHANGED",
+    "indexeddb_schema": "UNCHANGED",
+    "score_model": "1-6 games",
+    "migration": "NONE"
+  },
+  "stable_cache": {
+    "shell": "bowlmeet-v0.4.6.3-stable-shell",
+    "runtime": "bowlmeet-v0.4.6.3-stable-runtime",
+    "css": "./assets/liquid-glass-dev4.css?v=0463"
+  },
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "Stable APP_VERSION"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "Stable CSS query"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "Stable UI label"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "RC label removed"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "RC CSS query removed"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "Stable index differs from RC only by release identity"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "normalizeSessionRecord frozen from RC.1"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "normalizeBowlingGames frozen from RC.1"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "normalizeMeetupRecord frozen from RC.1"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "normalizePersonalData frozen from RC.1"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "sessionScoreGameCount frozen from RC.1"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "renderHistory frozen from RC.1"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "publicHistoryRecords frozen from RC.1"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "publicMeetupRecords frozen from RC.1"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "publicSessionForMeetup frozen from RC.1"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "rankingRowsForScope frozen from RC.1"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "renderLeaderboard frozen from RC.1"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "meetupAwardRows frozen from RC.1"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "priorPbForPlayer frozen from RC.1"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "computeAwards frozen from RC.1"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "renderAwardOptions frozen from RC.1"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "renderAwards frozen from RC.1"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "shareScopeData frozen from RC.1"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "renderShareOptions frozen from RC.1"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "drawMeetupFullShareCard frozen from RC.1"
+    },
+    {
+      "id": 26,
+      "status": "PASS",
+      "name": "drawAwardsShareCard frozen from RC.1"
+    },
+    {
+      "id": 27,
+      "status": "PASS",
+      "name": "syncMeetupDerivedSelectors frozen from RC.1"
+    },
+    {
+      "id": 28,
+      "status": "PASS",
+      "name": "exportFullBackup frozen from RC.1"
+    },
+    {
+      "id": 29,
+      "status": "PASS",
+      "name": "parseRestorePayload frozen from RC.1"
+    },
+    {
+      "id": 30,
+      "status": "PASS",
+      "name": "applyRestorePayload frozen from RC.1"
+    },
+    {
+      "id": 31,
+      "status": "PASS",
+      "name": "createSnapshot frozen from RC.1"
+    },
+    {
+      "id": 32,
+      "status": "PASS",
+      "name": "restoreSnapshot frozen from RC.1"
+    },
+    {
+      "id": 33,
+      "status": "PASS",
+      "name": "claimSelectedPlayer frozen from RC.1"
+    },
+    {
+      "id": 34,
+      "status": "PASS",
+      "name": "removePersonalClaim frozen from RC.1"
+    },
+    {
+      "id": 35,
+      "status": "PASS",
+      "name": "syncPersonalNow frozen from RC.1"
+    },
+    {
+      "id": 36,
+      "status": "PASS",
+      "name": "renderMeetups frozen from RC.1"
+    },
+    {
+      "id": 37,
+      "status": "PASS",
+      "name": "renderLive frozen from RC.1"
+    },
+    {
+      "id": 38,
+      "status": "PASS",
+      "name": "saveLiveRoll frozen from RC.1"
+    },
+    {
+      "id": 39,
+      "status": "PASS",
+      "name": "finishLiveRound frozen from RC.1"
+    },
+    {
+      "id": 40,
+      "status": "PASS",
+      "name": "endLiveMeetup frozen from RC.1"
+    },
+    {
+      "id": 41,
+      "status": "PASS",
+      "name": "renderVerificationCenter frozen from RC.1"
+    },
+    {
+      "id": 42,
+      "status": "PASS",
+      "name": "applyOcrToSheet frozen from RC.1"
+    },
+    {
+      "id": 43,
+      "status": "PASS",
+      "name": "DB_NAME unchanged"
+    },
+    {
+      "id": 44,
+      "status": "PASS",
+      "name": "DB_VERSION remains 2"
+    },
+    {
+      "id": 45,
+      "status": "PASS",
+      "name": "PUBLIC code unchanged"
+    },
+    {
+      "id": 46,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 47,
+      "status": "PASS",
+      "name": "Session key unchanged"
+    },
+    {
+      "id": 48,
+      "status": "PASS",
+      "name": "Meetup key unchanged"
+    },
+    {
+      "id": 49,
+      "status": "PASS",
+      "name": "Player Claim key unchanged"
+    },
+    {
+      "id": 50,
+      "status": "PASS",
+      "name": "Public control key unchanged"
+    },
+    {
+      "id": 51,
+      "status": "PASS",
+      "name": "Layout preferences key unchanged"
+    },
+    {
+      "id": 52,
+      "status": "PASS",
+      "name": "Score model remains max 6"
+    },
+    {
+      "id": 53,
+      "status": "PASS",
+      "name": "Awards page uses PUBLIC source"
+    },
+    {
+      "id": 54,
+      "status": "PASS",
+      "name": "Ranking uses publicGames"
+    },
+    {
+      "id": 55,
+      "status": "PASS",
+      "name": "Share uses public session"
+    },
+    {
+      "id": 56,
+      "status": "PASS",
+      "name": "Share card uses dynamic game count"
+    },
+    {
+      "id": 57,
+      "status": "PASS",
+      "name": "History uses dynamic game count"
+    },
+    {
+      "id": 58,
+      "status": "PASS",
+      "name": "Missing score dash retained"
+    },
+    {
+      "id": 59,
+      "status": "PASS",
+      "name": "Public-only share note retained"
+    },
+    {
+      "id": 60,
+      "status": "PASS",
+      "name": "Mobile Score History primary dock retained"
+    },
+    {
+      "id": 61,
+      "status": "PASS",
+      "name": "Ranking remains under Mobile More"
+    },
+    {
+      "id": 62,
+      "status": "PASS",
+      "name": "Stable SW shell cache v0.4.6.3"
+    },
+    {
+      "id": 63,
+      "status": "PASS",
+      "name": "Stable SW runtime cache v0.4.6.3"
+    },
+    {
+      "id": 64,
+      "status": "PASS",
+      "name": "Stable SW CSS cache v0463"
+    },
+    {
+      "id": 65,
+      "status": "PASS",
+      "name": "Old Stable cache names removed"
+    },
+    {
+      "id": 66,
+      "status": "PASS",
+      "name": "Stable SW production cache root retained"
+    },
+    {
+      "id": 67,
+      "status": "PASS",
+      "name": "Stable SW cleanup remains production-scoped"
+    },
+    {
+      "id": 68,
+      "status": "PASS",
+      "name": "Manifest name v0.4.6.3"
+    },
+    {
+      "id": 69,
+      "status": "PASS",
+      "name": "Manifest stable description v0.4.6.3"
+    },
+    {
+      "id": 70,
+      "status": "PASS",
+      "name": "Manifest scope unchanged"
+    },
+    {
+      "id": 71,
+      "status": "PASS",
+      "name": "Manifest start_url unchanged"
+    },
+    {
+      "id": 72,
+      "status": "PASS",
+      "name": "Manifest icon count unchanged"
+    },
+    {
+      "id": 73,
+      "status": "PASS",
+      "name": "Liquid Glass CSS exactly RC.1"
+    },
+    {
+      "id": 74,
+      "status": "PASS",
+      "name": "RC.1 automated gate prerequisite",
+      "detail": "105/105 PASS"
+    },
+    {
+      "id": 75,
+      "status": "PASS",
+      "name": "RC.1 manual acceptance prerequisite",
+      "detail": "User-confirmed PASS"
+    },
+    {
+      "id": 76,
+      "status": "PASS",
+      "name": "R2 navigation manual prerequisite",
+      "detail": "User-confirmed PASS"
+    },
+    {
+      "id": 77,
+      "status": "PASS",
+      "name": "Earlier iPhone Safari/PWA dynamic grid prerequisite",
+      "detail": "User-confirmed PASS"
+    },
+    {
+      "id": 78,
+      "status": "PASS",
+      "name": "Stable application JavaScript parses"
+    }
+  ],
+  "result": {
+    "pass": 78,
+    "fail": 0
+  },
+  "freeze": "IMMUTABLE_STABLE_BASELINE"
+}

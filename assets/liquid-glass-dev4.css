@@ -258,7 +258,7 @@ html[data-layout-preset="field"] .live-game-total strong{font-size:27px}
 }
 
 
-/* v0.4.6.2-dev.1 | Per-Game Public Score Table */
+/* v0.4.6.3-dev.1 | Dynamic Grid Foundation */
 .unified-history-panel,.session-list,.session{min-width:0;max-width:100%}
 .history-score-table-wrap{
   display:block;
@@ -278,8 +278,8 @@ html[data-layout-preset="field"] .live-game-total strong{font-size:27px}
 }
 .history-score-grid{
   display:grid;
-  grid-template-columns:minmax(132px,1.35fr) repeat(6,minmax(60px,.58fr)) minmax(76px,.72fr) minmax(76px,.72fr);
-  min-width:760px;
+  grid-template-columns:var(--history-grid-columns,minmax(132px,1.35fr) repeat(6,minmax(60px,.58fr)) minmax(76px,.72fr) minmax(76px,.72fr));
+  min-width:var(--history-grid-min-width,760px);
 }
 .history-score-grid>div{
   min-width:0;
@@ -291,8 +291,8 @@ html[data-layout-preset="field"] .live-game-total strong{font-size:27px}
   text-align:center;
   background:rgba(255,255,255,.60);
 }
-.history-score-grid>div:nth-child(9n){border-right:0}
-.history-score-grid>div:nth-last-child(-n+9){border-bottom:0}
+.history-score-grid>.history-score-row-end{border-right:0}
+.history-score-grid>.history-score-last-row{border-bottom:0}
 .history-score-head{
   background:rgba(248,250,252,.92)!important;
   color:#5c6678;
@@ -313,7 +313,7 @@ html[data-layout-preset="field"] .live-game-total strong{font-size:27px}
     margin-right:-2px;
     scrollbar-width:thin;
   }
-  .history-score-grid{min-width:720px}
+  .history-score-grid{min-width:var(--history-grid-min-width,720px)}
   .history-score-grid>div{padding:9px 8px}
   .history-score-grid>.history-score-name{
     position:sticky;

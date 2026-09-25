@@ -1,0 +1,117 @@
+BowlMeet v0.4.6.3｜Stable Promotion & Final Freeze
+
+Promoted from: v0.4.6.3-RC.1 @ a9c3d13c57b11567540fd618da6f56e113d9a8c5
+Promotion base main: 7088d1ef41a188d58423c02f78c8d2057a297eaa
+Manual RC acceptance: PASS (user-confirmed)
+Functional delta from RC.1: NONE
+Release-only delta: APP_VERSION / release label / CSS cache identity / production SW cache / manifest metadata / evidence
+
+Stable contents:
+- Dynamic Score Grid (current frozen 1-6 game model)
+- Share Card dynamic game-column synchronization
+- Awards PUBLIC score source fix
+- Public Score / Ranking navigation position swap
+- Cross-module Meetup Context synchronization
+- Public-only Ranking / Awards / Share data rules
+
+Frozen invariants:
+- DB_NAME: bowlingMeetup.local
+- DB_VERSION: 2
+- PUBLIC code/PIN: unchanged
+- Supabase schema: unchanged
+- IndexedDB schema: unchanged
+- Player Claim contract: unchanged
+- Backup/Restore/Snapshot contracts: unchanged
+- 8/10/12 stored-game expansion: NOT INCLUDED
+
+Stable PWA:
+- CACHE: bowlmeet-v0.4.6.3-stable-shell
+- RUNTIME: bowlmeet-v0.4.6.3-stable-runtime
+- CSS shell asset: liquid-glass-dev4.css?v=0463
+
+Final Promotion Checks:
+001. PASS | Stable APP_VERSION
+002. PASS | Stable CSS query
+003. PASS | Stable UI label
+004. PASS | RC label removed
+005. PASS | RC CSS query removed
+006. PASS | Stable index differs from RC only by release identity
+007. PASS | normalizeSessionRecord frozen from RC.1
+008. PASS | normalizeBowlingGames frozen from RC.1
+009. PASS | normalizeMeetupRecord frozen from RC.1
+010. PASS | normalizePersonalData frozen from RC.1
+011. PASS | sessionScoreGameCount frozen from RC.1
+012. PASS | renderHistory frozen from RC.1
+013. PASS | publicHistoryRecords frozen from RC.1
+014. PASS | publicMeetupRecords frozen from RC.1
+015. PASS | publicSessionForMeetup frozen from RC.1
+016. PASS | rankingRowsForScope frozen from RC.1
+017. PASS | renderLeaderboard frozen from RC.1
+018. PASS | meetupAwardRows frozen from RC.1
+019. PASS | priorPbForPlayer frozen from RC.1
+020. PASS | computeAwards frozen from RC.1
+021. PASS | renderAwardOptions frozen from RC.1
+022. PASS | renderAwards frozen from RC.1
+023. PASS | shareScopeData frozen from RC.1
+024. PASS | renderShareOptions frozen from RC.1
+025. PASS | drawMeetupFullShareCard frozen from RC.1
+026. PASS | drawAwardsShareCard frozen from RC.1
+027. PASS | syncMeetupDerivedSelectors frozen from RC.1
+028. PASS | exportFullBackup frozen from RC.1
+029. PASS | parseRestorePayload frozen from RC.1
+030. PASS | applyRestorePayload frozen from RC.1
+031. PASS | createSnapshot frozen from RC.1
+032. PASS | restoreSnapshot frozen from RC.1
+033. PASS | claimSelectedPlayer frozen from RC.1
+034. PASS | removePersonalClaim frozen from RC.1
+035. PASS | syncPersonalNow frozen from RC.1
+036. PASS | renderMeetups frozen from RC.1
+037. PASS | renderLive frozen from RC.1
+038. PASS | saveLiveRoll frozen from RC.1
+039. PASS | finishLiveRound frozen from RC.1
+040. PASS | endLiveMeetup frozen from RC.1
+041. PASS | renderVerificationCenter frozen from RC.1
+042. PASS | applyOcrToSheet frozen from RC.1
+043. PASS | DB_NAME unchanged
+044. PASS | DB_VERSION remains 2
+045. PASS | PUBLIC code unchanged
+046. PASS | PUBLIC PIN unchanged
+047. PASS | Session key unchanged
+048. PASS | Meetup key unchanged
+049. PASS | Player Claim key unchanged
+050. PASS | Public control key unchanged
+051. PASS | Layout preferences key unchanged
+052. PASS | Score model remains max 6
+053. PASS | Awards page uses PUBLIC source
+054. PASS | Ranking uses publicGames
+055. PASS | Share uses public session
+056. PASS | Share card uses dynamic game count
+057. PASS | History uses dynamic game count
+058. PASS | Missing score dash retained
+059. PASS | Public-only share note retained
+060. PASS | Mobile Score History primary dock retained
+061. PASS | Ranking remains under Mobile More
+062. PASS | Stable SW shell cache v0.4.6.3
+063. PASS | Stable SW runtime cache v0.4.6.3
+064. PASS | Stable SW CSS cache v0463
+065. PASS | Old Stable cache names removed
+066. PASS | Stable SW production cache root retained
+067. PASS | Stable SW cleanup remains production-scoped
+068. PASS | Manifest name v0.4.6.3
+069. PASS | Manifest stable description v0.4.6.3
+070. PASS | Manifest scope unchanged
+071. PASS | Manifest start_url unchanged
+072. PASS | Manifest icon count unchanged
+073. PASS | Liquid Glass CSS exactly RC.1
+074. PASS | RC.1 automated gate prerequisite | 105/105 PASS
+075. PASS | RC.1 manual acceptance prerequisite | User-confirmed PASS
+076. PASS | R2 navigation manual prerequisite | User-confirmed PASS
+077. PASS | Earlier iPhone Safari/PWA dynamic grid prerequisite | User-confirmed PASS
+078. PASS | Stable application JavaScript parses
+
+Final Result: 78/78 PASS
+
+Freeze rule:
+- v0.4.6.3 Stable is immutable after promotion.
+- Future feature work must branch from stable/v0.4.6.3.
+- Only explicit hotfix/recovery work may patch this stable line.
