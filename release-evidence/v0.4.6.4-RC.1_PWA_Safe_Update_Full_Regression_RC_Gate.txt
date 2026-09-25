@@ -1,0 +1,183 @@
+BowlMeet v0.4.6.4-RC.1｜PWA Safe Update Full Regression & Release Candidate Gate
+
+Base: v0.4.6.4-dev.1 @ fd059ca91cedbd211b5af94d8fc55bf4da4a480b
+Functional delta from dev.1: NONE
+Allowed RC delta: APP_VERSION + CSS cache query + RC label + release evidence only
+Manual dev.1 safe-update validation: PASS (user-confirmed)
+
+PWA Safe Update chain:
+- Waiting/new Service Worker -> automatic update dialog.
+- Update button locked before backup.
+- Backup step persists current state, creates IndexedDB snapshot, downloads full JSON backup.
+- Backup success unlocks Update.
+- Update step creates final snapshot and persists DB again.
+- App sends SKIP_WAITING only after backup gate.
+- Service Worker handles SKIP_WAITING with self.skipWaiting().
+- controllerchange reloads App only during approved update.
+
+Regression scope:
+- Dynamic Score Grid 1-6
+- PUBLIC Ranking
+- PUBLIC Awards
+- PUBLIC Share Cards
+- Navigation swap
+- Backup/Restore/Snapshot
+- Player Claim / Live / Photo verification core
+- DB/PUBLIC/PIN/storage contracts
+
+Checks:
+001. PASS | RC APP_VERSION
+002. PASS | RC CSS query
+003. PASS | RC footer label
+004. PASS | Single APP_VERSION
+005. PASS | RC index only release-identity delta from dev.1
+006. PASS | Liquid Glass CSS unchanged from dev.1
+007. PASS | PWA update dialog exists
+008. PASS | Update dialog title detected new version
+009. PASS | Backup step button exists
+010. PASS | Update step button starts disabled
+011. PASS | Later button exists
+012. PASS | Step 1 label
+013. PASS | Step 2 label
+014. PASS | Dialog explains JSON backup + snapshot
+015. PASS | Settings explains mandatory backup
+016. PASS | Waiting worker stored
+017. PASS | New waiting worker resets backup gate
+018. PASS | New waiting worker updates UI
+019. PASS | New waiting worker auto-opens dialog
+020. PASS | Existing reg.waiting prompts immediately
+021. PASS | updatefound listener retained
+022. PASS | installed waiting SW prompts
+023. PASS | First installation does not show upgrade gate
+024. PASS | Backup gate default false
+025. PASS | Reset gate sets false
+026. PASS | Reset gate disables update
+027. PASS | Backup persists DB first
+028. PASS | Backup creates user safety snapshot
+029. PASS | Backup verifies snapshot when DB ready
+030. PASS | Backup downloads full backup
+031. PASS | Full backup MIME JSON
+032. PASS | Full backup filename versioned
+033. PASS | Full backup returns filename
+034. PASS | Successful backup unlocks gate
+035. PASS | Successful backup records filename
+036. PASS | Backup failure keeps gate locked
+037. PASS | Backup failure message says update not allowed
+038. PASS | Apply blocks without waiting SW
+039. PASS | Apply blocks without successful backup
+040. PASS | Blocked apply reopens dialog
+041. PASS | Blocked apply tells user backup first
+042. PASS | Apply disables backup button
+043. PASS | Apply disables update button
+044. PASS | Apply creates final safety snapshot
+045. PASS | Apply persists DB before activation
+046. PASS | Reload flag set before activation
+047. PASS | SKIP_WAITING sent only in apply flow
+048. PASS | Apply failure resets reload flag
+049. PASS | Apply failure preserves current version wording
+050. PASS | SW has message listener
+051. PASS | SW listens for SKIP_WAITING
+052. PASS | SW calls self.skipWaiting
+053. PASS | Exactly one SKIP_WAITING handler
+054. PASS | Controller change listener retained
+055. PASS | Controller change reload conditional
+056. PASS | Registration watches update
+057. PASS | RC source SW still references v0.4.6.3 stable shell
+058. PASS | RC source SW still references v0.4.6.3 stable runtime
+059. PASS | RC source SW does not pre-promote v0.4.6.4 cache
+060. PASS | RC source manifest remains production v0.4.6.3
+061. PASS | DB_NAME unchanged
+062. PASS | DB_VERSION remains 2
+063. PASS | PUBLIC code unchanged
+064. PASS | PUBLIC PIN unchanged
+065. PASS | Session key unchanged
+066. PASS | Meetup key unchanged
+067. PASS | Roster key unchanged
+068. PASS | Player Claim key unchanged
+069. PASS | Public control key unchanged
+070. PASS | Layout prefs key unchanged
+071. PASS | Snapshot limit remains 10
+072. PASS | normalizeSessionRecord frozen from dev.1
+073. PASS | normalizeBowlingGames frozen from dev.1
+074. PASS | normalizeMeetupRecord frozen from dev.1
+075. PASS | normalizePersonalData frozen from dev.1
+076. PASS | sessionScoreGameCount frozen from dev.1
+077. PASS | renderHistory frozen from dev.1
+078. PASS | publicHistoryRecords frozen from dev.1
+079. PASS | publicMeetupRecords frozen from dev.1
+080. PASS | publicSessionForMeetup frozen from dev.1
+081. PASS | rankingRowsForScope frozen from dev.1
+082. PASS | renderLeaderboard frozen from dev.1
+083. PASS | meetupAwardRows frozen from dev.1
+084. PASS | priorPbForPlayer frozen from dev.1
+085. PASS | computeAwards frozen from dev.1
+086. PASS | renderAwardOptions frozen from dev.1
+087. PASS | renderAwards frozen from dev.1
+088. PASS | shareScopeData frozen from dev.1
+089. PASS | renderShareOptions frozen from dev.1
+090. PASS | drawMeetupFullShareCard frozen from dev.1
+091. PASS | drawAwardsShareCard frozen from dev.1
+092. PASS | syncMeetupDerivedSelectors frozen from dev.1
+093. PASS | exportFullBackup frozen from dev.1
+094. PASS | createSnapshot frozen from dev.1
+095. PASS | persistDbStateNow frozen from dev.1
+096. PASS | parseRestorePayload frozen from dev.1
+097. PASS | applyRestorePayload frozen from dev.1
+098. PASS | restoreSnapshot frozen from dev.1
+099. PASS | claimSelectedPlayer frozen from dev.1
+100. PASS | removePersonalClaim frozen from dev.1
+101. PASS | syncPersonalNow frozen from dev.1
+102. PASS | renderMeetups frozen from dev.1
+103. PASS | renderLive frozen from dev.1
+104. PASS | saveLiveRoll frozen from dev.1
+105. PASS | finishLiveRound frozen from dev.1
+106. PASS | endLiveMeetup frozen from dev.1
+107. PASS | renderVerificationCenter frozen from dev.1
+108. PASS | applyOcrToSheet frozen from dev.1
+109. PASS | setUpdateUi frozen from dev.1
+110. PASS | setPwaUpdateDialogStatus frozen from dev.1
+111. PASS | resetPwaUpdateBackupGate frozen from dev.1
+112. PASS | openPwaUpdateDialog frozen from dev.1
+113. PASS | closePwaUpdateDialog frozen from dev.1
+114. PASS | markPendingPwaUpdate frozen from dev.1
+115. PASS | backupBeforePwaUpdate frozen from dev.1
+116. PASS | watchRegistration frozen from dev.1
+117. PASS | checkPwaUpdate frozen from dev.1
+118. PASS | applyPwaUpdate frozen from dev.1
+119. PASS | initPwa frozen from dev.1
+120. PASS | Score model max 6
+121. PASS | History uses dynamic game count
+122. PASS | History missing score dash
+123. PASS | History horizontal scroll retained
+124. PASS | Sticky player column retained
+125. PASS | Ranking uses public games
+126. PASS | Ranking meetup uses public session
+127. PASS | Awards UI uses public source
+128. PASS | Awards options use public meetups
+129. PASS | Share scope uses public session
+130. PASS | Share full card uses dynamic game count
+131. PASS | Share full card slices visible columns
+132. PASS | Public-only share note retained
+133. PASS | Desktop ranking before score history
+134. PASS | Mobile primary dock contains score history
+135. PASS | Mobile primary dock excludes ranking
+136. PASS | Mobile More contains ranking
+137. PASS | Dynamic grid fixture 1-game
+138. PASS | Dynamic grid fixture 3-game
+139. PASS | Dynamic grid fixture sparse game 4
+140. PASS | Dynamic grid fixture 6-game
+141. PASS | Dynamic grid fixture empty min
+142. PASS | Dynamic grid fixture hard cap 6
+143. PASS | dev.1 safe-update simulated flow manual acceptance | User-confirmed PASS
+144. PASS | dev.1 backup gate manual acceptance | User-confirmed PASS
+145. PASS | dev.1 update unlock after backup manual acceptance | User-confirmed PASS
+146. PASS | v0.4.6.3 RC/stable functional acceptance chain retained | Previously user-confirmed PASS
+147. PASS | Main application JavaScript parses
+
+Automated Result: 147/147 PASS
+
+RC status:
+- Functional source frozen against dev.1.
+- Production root remains v0.4.6.3 until Stable Promotion.
+- RC Preview must use isolated cache/scope.
+- Manual RC device acceptance required before v0.4.6.4 Stable.
