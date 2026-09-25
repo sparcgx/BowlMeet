@@ -61,5 +61,21 @@
     "behindStable": 0
   },
   "archiveBranch": "archive/v0.4.7.0-dev.1-pre-v0.4.6.7-refresh-20260926",
-  "nextGate": "iPhone / PWA / desktop visual & interaction acceptance"
+  "nextGate": "iPhone / PWA / desktop Theme Center visual & interaction acceptance",
+  "preview": {
+    "status": "PUBLISHED",
+    "path": "/preview/v0.4.7.0-dev.1/",
+    "pullRequest": 60,
+    "mergeCommit": "fbeb7108c9cc6e4c18ad1fd8e28c699c65c353ad",
+    "isolationGate": {
+      "pass": 15,
+      "fail": 0,
+      "total": 15
+    },
+    "cloudEnabled": false,
+    "localStorageNamespace": "bowlmeet.preview.v0470d1.*",
+    "indexedDb": "bowlmeet.preview.v0470d1.local",
+    "cacheNamespace": "bowlmeet-preview-v0470d1-*",
+    "productionRootUnchanged": true
+  }
 }
