@@ -1,0 +1,71 @@
+BowlMeet v0.4.6.6-dev.1｜Field Workflow Simplification & Layout Consolidation
+
+Base: stable/v0.4.6.5 @ ce820a37cfdbceffb13b4d808d623804b968f445
+Scope: field-first UI/operation consolidation only; no data-model change.
+
+Workflow changes:
+- Mobile primary Dock: 現場 / 我的 / 成績 / 更多；remove duplicate 計分 entry.
+- 本次計分 renamed 本次總表 and moved to More on mobile; still accessible from live header.
+- Active meetup automatically collapses the Quick Start form.
+- Edit action reopens the meetup form only when needed.
+- Duplicate current-meetup strip is hidden during an active meetup.
+- Live header consolidates 本次總表 / 分享 / 編輯 / 結束.
+- Three visible round-navigation sets consolidated to one visible score-panel navigator.
+- Live KPIs reduced visually from five to three; progress bar remains.
+- Past meetup cards reduced to one primary action + 更多 menu.
+- ScoreView clarified as 本次總表／手動補登, not the primary live scoring path.
+
+Frozen:
+- DB_VERSION=2
+- PUBLIC/PIN unchanged
+- Supabase/IndexedDB schema unchanged
+- PWA safe update/performance/iOS fallback unchanged
+- Dynamic Grid/Ranking/Awards/Share logic unchanged
+- Score model remains 1-6 games
+
+Checks:
+01. PASS | APP_VERSION dev.1
+02. PASS | CSS cache dev.1
+03. PASS | Desktop label renamed 本次總表
+04. PASS | Mobile primary score dock removed
+05. PASS | Mobile More has 本次總表
+06. PASS | Mobile dock primary set matches visible dock
+07. PASS | Live title simplified
+08. PASS | Live top has 本次總表
+09. PASS | Live top has edit action
+10. PASS | Live top has end action
+11. PASS | Duplicate top round controls hidden
+12. PASS | Duplicate mobile round bar hidden
+13. PASS | Single visible score-panel round nav retained
+14. PASS | Quick add player compact wording
+15. PASS | KPI visible count reduced with secondary classes
+16. PASS | Active meetup auto hides quick setup
+17. PASS | Active meetup hides duplicate current strip
+18. PASS | Editing meetup can reopen setup
+19. PASS | Reset closes editing state
+20. PASS | Current meetup toggles active layout
+21. PASS | Live edit button wired
+22. PASS | Past meetup primary action compact
+23. PASS | Past meetup menu includes 本次總表
+24. PASS | Past meetup menu retains leaderboard
+25. PASS | Past meetup menu retains awards
+26. PASS | Past meetup menu retains edit
+27. PASS | Past meetup menu retains delete
+28. PASS | Completed meetup primary becomes review
+29. PASS | Score view clarified as secondary/manual
+30. PASS | normalizeSessionRecord unchanged from stable
+31. PASS | sessionScoreGameCount unchanged from stable
+32. PASS | rankingRowsForScope unchanged from stable
+33. PASS | renderAwards unchanged from stable
+34. PASS | shareScopeData unchanged from stable
+35. PASS | drawMeetupFullShareCard unchanged from stable
+36. PASS | backupBeforePwaUpdate unchanged from stable
+37. PASS | applyPwaUpdate unchanged from stable
+38. PASS | finishPwaUpdateReload unchanged from stable
+39. PASS | DB_VERSION remains 2
+40. PASS | PUBLIC PIN unchanged
+41. PASS | Score model max 6
+42. PASS | iOS 1s update fallback retained
+43. PASS | Main JavaScript parses
+
+Result: 43/43 PASS
