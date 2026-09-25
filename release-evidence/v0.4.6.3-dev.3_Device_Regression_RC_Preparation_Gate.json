@@ -1,0 +1,270 @@
+{
+  "version": "0.4.6.3-dev.3",
+  "title": "Device Regression & RC Preparation",
+  "base": {
+    "ref": "v0.4.6.3-dev.2",
+    "commit": "07b36f44b77e2f18b6f2d46f9b829c4eed440e57"
+  },
+  "functional_delta": "NONE",
+  "source_delta": [
+    "APP_VERSION",
+    "CSS cache query",
+    "release evidence"
+  ],
+  "device_prerequisite": {
+    "iphone_safari_pwa": "PASS",
+    "dynamic_grid_1_3_6": "PASS",
+    "share_card_sync": "PASS",
+    "horizontal_scroll_sticky_player": "PASS",
+    "source": "user-confirmed dev.2 acceptance"
+  },
+  "invariants": {
+    "score_model": "1-6 games",
+    "migration": "NONE",
+    "supabase_schema": "UNCHANGED",
+    "indexeddb_schema": "UNCHANGED",
+    "db_version": 2,
+    "public_code": "PUBLIC",
+    "public_pin": "UNCHANGED",
+    "production_sw": "UNCHANGED",
+    "production_manifest": "UNCHANGED"
+  },
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "APP_VERSION bumped to dev.3"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "CSS cache query bumped to v0463d3"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "Single APP_VERSION declaration"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "Shared dynamic-grid helper retained"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "History uses shared dynamic-grid helper"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "Share card uses shared dynamic-grid helper"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "Share card dynamic header retained"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "Share card dynamic row slice retained"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "History horizontal-scroll accessibility retained"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "Sticky history player column retained",
+      "detail": ".history-score-grid>.history-score-name{ position:sticky; left:0; z-index:2; background:rgba(255,255,255,.96); box-shadow:6px 0 10px rgba(15,23,42,.035); }"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "History horizontal overflow retained",
+      "detail": ".history-score-table-wrap{ display:block; width:100%; max-width:100%; min-width:0; margin-top:10px; overflow-x:scroll; overflow-y:hidden; -webkit-overflow-scrolling:touch; touch-action:pan-x pan-y; overscroll-behavior-inline:contain; border:1px solid rgba(255,255,255,.76); border-radius:14px; background:rgba(255,255,255,.54); box-shadow:inset 0 1px 0 rgba(255,255,255,.86); }"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "PUBLIC code unchanged"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "DB_VERSION remains 2"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "Production Service Worker remains Stable cache"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "Production manifest remains Stable v0.4.6.2.1"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "normalizeSessionRecord unchanged from dev.2"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "normalizeMeetupRecord unchanged from dev.2"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "shareScopeData unchanged from dev.2"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "rankingRowsForScope unchanged from dev.2"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "publicSessionForMeetup unchanged from dev.2"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "computeAwards unchanged from dev.2"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "meetupFullShareRows unchanged from dev.2"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "normalizePersonalData unchanged from dev.2"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "exportFullBackup unchanged from dev.2"
+    },
+    {
+      "id": 26,
+      "status": "PASS",
+      "name": "applyRestorePayload unchanged from dev.2"
+    },
+    {
+      "id": 27,
+      "status": "PASS",
+      "name": "sessionScoreGameCount behavior unchanged from dev.2"
+    },
+    {
+      "id": 28,
+      "status": "PASS",
+      "name": "renderHistory behavior unchanged from dev.2"
+    },
+    {
+      "id": 29,
+      "status": "PASS",
+      "name": "drawMeetupFullShareCard behavior unchanged from dev.2"
+    },
+    {
+      "id": 30,
+      "status": "PASS",
+      "name": "Player Claim storage key retained"
+    },
+    {
+      "id": 31,
+      "status": "PASS",
+      "name": "Public control storage key retained"
+    },
+    {
+      "id": 32,
+      "status": "PASS",
+      "name": "Layout prefs storage key retained"
+    },
+    {
+      "id": 33,
+      "status": "PASS",
+      "name": "No 8/10/12 model expansion"
+    },
+    {
+      "id": 34,
+      "status": "PASS",
+      "name": "Only intended index changes vs dev.2"
+    },
+    {
+      "id": 35,
+      "status": "PASS",
+      "name": "Main application JavaScript parses"
+    },
+    {
+      "id": 36,
+      "status": "PASS",
+      "name": "Dynamic grid regression 1-game"
+    },
+    {
+      "id": 37,
+      "status": "PASS",
+      "name": "Dynamic grid regression 3-game"
+    },
+    {
+      "id": 38,
+      "status": "PASS",
+      "name": "Dynamic grid regression sparse-to-4"
+    },
+    {
+      "id": 39,
+      "status": "PASS",
+      "name": "Dynamic grid regression 6-game"
+    },
+    {
+      "id": 40,
+      "status": "PASS",
+      "name": "Dynamic grid regression empty-minimum"
+    },
+    {
+      "id": 41,
+      "status": "PASS",
+      "name": "Dynamic grid regression cap-at-6"
+    },
+    {
+      "id": 42,
+      "status": "PASS",
+      "name": "dev.2 iPhone Safari/PWA prerequisite",
+      "detail": "User-confirmed PASS"
+    },
+    {
+      "id": 43,
+      "status": "PASS",
+      "name": "dev.2 1/3/6 grid prerequisite",
+      "detail": "User-confirmed PASS"
+    },
+    {
+      "id": 44,
+      "status": "PASS",
+      "name": "dev.2 share-card sync prerequisite",
+      "detail": "User-confirmed PASS"
+    },
+    {
+      "id": 45,
+      "status": "PASS",
+      "name": "dev.2 scroll/sticky prerequisite",
+      "detail": "User-confirmed PASS"
+    }
+  ],
+  "result": {
+    "pass": 45,
+    "fail": 0
+  },
+  "rc_readiness": "READY_FOR_FINAL_DEVICE_SMOKE"
+}

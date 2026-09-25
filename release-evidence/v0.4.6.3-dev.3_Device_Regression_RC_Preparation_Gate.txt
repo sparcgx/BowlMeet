@@ -1,0 +1,84 @@
+BowlMeet v0.4.6.3-dev.3｜Device Regression & RC Preparation
+RC Preparation Gate
+
+Base: v0.4.6.3-dev.2 @ 07b36f44b77e2f18b6f2d46f9b829c4eed440e57
+Functional delta: NONE
+Source delta: APP_VERSION + CSS cache query + release evidence only
+Data model: frozen 1-6 games
+Migration: NONE
+Supabase schema: unchanged
+IndexedDB schema: unchanged
+PUBLIC/PIN rules: unchanged
+Production sw.js: unchanged (v0.4.6.2.1 Stable cache)
+Production manifest.webmanifest: unchanged (v0.4.6.2.1 Stable metadata)
+
+Manual prerequisite evidence:
+- v0.4.6.3-dev.2 Preview: PASS
+- iPhone Safari/PWA validation: PASS (user-confirmed)
+- 1/3/6 dynamic columns: PASS (user-confirmed)
+- Meetup full share-card sync: PASS (user-confirmed)
+- Horizontal scroll / sticky player: PASS (user-confirmed)
+
+Checks:
+01. PASS | APP_VERSION bumped to dev.3
+02. PASS | CSS cache query bumped to v0463d3
+03. PASS | Single APP_VERSION declaration
+04. PASS | Shared dynamic-grid helper retained
+05. PASS | History uses shared dynamic-grid helper
+06. PASS | Share card uses shared dynamic-grid helper
+07. PASS | Share card dynamic header retained
+08. PASS | Share card dynamic row slice retained
+09. PASS | History horizontal-scroll accessibility retained
+10. PASS | Sticky history player column retained | .history-score-grid>.history-score-name{ position:sticky; left:0; z-index:2; background:rgba(255,255,255,.96); box-shadow:6px 0 10px rgba(15,23,42,.035); }
+11. PASS | History horizontal overflow retained | .history-score-table-wrap{ display:block; width:100%; max-width:100%; min-width:0; margin-top:10px; overflow-x:scroll; overflow-y:hidden; -webkit-overflow-scrolling:touch; touch-action:pan-x pan-y; overscroll-behavior-inline:contain; border:1px solid rgba(255,255,255,.76); border-radius:14px; background:rgba(255,255,255,.54); box-shadow:inset 0 1px 0 rgba(255,255,255,.86); }
+12. PASS | PUBLIC code unchanged
+13. PASS | PUBLIC PIN unchanged
+14. PASS | DB_VERSION remains 2
+15. PASS | Production Service Worker remains Stable cache
+16. PASS | Production manifest remains Stable v0.4.6.2.1
+17. PASS | normalizeSessionRecord unchanged from dev.2
+18. PASS | normalizeMeetupRecord unchanged from dev.2
+19. PASS | shareScopeData unchanged from dev.2
+20. PASS | rankingRowsForScope unchanged from dev.2
+21. PASS | publicSessionForMeetup unchanged from dev.2
+22. PASS | computeAwards unchanged from dev.2
+23. PASS | meetupFullShareRows unchanged from dev.2
+24. PASS | normalizePersonalData unchanged from dev.2
+25. PASS | exportFullBackup unchanged from dev.2
+26. PASS | applyRestorePayload unchanged from dev.2
+27. PASS | sessionScoreGameCount behavior unchanged from dev.2
+28. PASS | renderHistory behavior unchanged from dev.2
+29. PASS | drawMeetupFullShareCard behavior unchanged from dev.2
+30. PASS | Player Claim storage key retained
+31. PASS | Public control storage key retained
+32. PASS | Layout prefs storage key retained
+33. PASS | No 8/10/12 model expansion
+34. PASS | Only intended index changes vs dev.2
+35. PASS | Main application JavaScript parses
+36. PASS | Dynamic grid regression 1-game
+37. PASS | Dynamic grid regression 3-game
+38. PASS | Dynamic grid regression sparse-to-4
+39. PASS | Dynamic grid regression 6-game
+40. PASS | Dynamic grid regression empty-minimum
+41. PASS | Dynamic grid regression cap-at-6
+42. PASS | dev.2 iPhone Safari/PWA prerequisite | User-confirmed PASS
+43. PASS | dev.2 1/3/6 grid prerequisite | User-confirmed PASS
+44. PASS | dev.2 share-card sync prerequisite | User-confirmed PASS
+45. PASS | dev.2 scroll/sticky prerequisite | User-confirmed PASS
+
+Result: 45/45 PASS
+
+RC readiness:
+- Dynamic Grid Foundation: READY
+- Share Card Sync: READY
+- Public-only share source: RETAINED
+- Backup/Restore: SOURCE UNCHANGED
+- Player Claim: SOURCE UNCHANGED
+- Awards/Ranking context: SOURCE UNCHANGED
+- Production cache: ISOLATED / UNCHANGED
+- Database migration: NONE
+
+Next gate:
+- Publish isolated dev.3 Preview.
+- Perform final device smoke check against dev.3 Preview.
+- If PASS, branch v0.4.6.3-RC.1 from dev.3.
