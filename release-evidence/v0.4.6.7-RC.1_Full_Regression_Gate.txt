@@ -1,0 +1,235 @@
+BowlMeet v0.4.6.7-RC.1｜Completion Reset, Dynamic Games & Public History Full Regression
+
+Base: v0.4.6.7-dev.1-R3
+Manual baseline acceptance: PASS
+Policy: No new features. RC code delta from R3 is APP_VERSION only.
+
+Coverage:
+- v0.4.6.6 live scoring interaction and reliability
+- dynamic game flow and 1-6 game safety
+- R1 completed-meetup context + DOM/KPI hard reset
+- R2 post-game navigation unblock
+- R3 public-history filter stability
+- unified history counts and filters
+- public record controls and cloud sync
+- bowling calculation/session normalization
+- leaderboard, awards and sharing
+- IndexedDB, snapshot, backup and restore
+- PWA safe update
+- critical-function byte comparison to R3
+
+Frozen:
+- Production main remains v0.4.6.6 Stable.
+- DB_VERSION=2.
+- Maximum score storage remains 6 games.
+- PUBLIC/PIN/schema unchanged.
+- Ranking/Awards/Share logic unchanged.
+- Backup/Restore/Snapshot logic unchanged.
+- PWA Safe Update logic unchanged.
+
+Source checks:
+001. PASS | APP_VERSION is RC.1
+002. PASS | DB_VERSION remains 2
+003. PASS | PUBLIC PIN unchanged
+004. PASS | Layout preferences key retained
+005. PASS | Score model remains length 6
+006. PASS | Main JavaScript parses
+007. PASS | Mobile dock retained
+008. PASS | 現場 view retained
+009. PASS | 總表 view retained
+010. PASS | 成績 view retained
+011. PASS | 更多 sheet retained
+012. PASS | iOS enterkeyhint next retained
+013. PASS | 10 auto-commit 120ms retained
+014. PASS | blank auto-commit 520ms retained
+015. PASS | single digit auto-commit 420ms retained
+016. PASS | Smart Next helper retained
+017. PASS | same-player next-roll retained
+018. PASS | next-player same-frame retained
+019. PASS | next-frame progression retained
+020. PASS | focused frame centering retained
+021. PASS | flushLiveRollCommit retained
+022. PASS | commit token retained
+023. PASS | game-context commit guard retained
+024. PASS | duplicate write lock retained
+025. PASS | duplicate fingerprint retained
+026. PASS | repeated Enter guard retained
+027. PASS | 0-10 validation retained
+028. PASS | frame total validation retained
+029. PASS | IndexedDB failure warning retained
+030. PASS | persist failure warning retained
+031. PASS | Dynamic meetup option exists
+032. PASS | Fixed 1-6 options retained
+033. PASS | dynamicGames normalized
+034. PASS | Legacy meetup default remains fixed 6
+035. PASS | New meetup defaults dynamic
+036. PASS | Dynamic mode saved
+037. PASS | Dynamic mode restored on edit
+038. PASS | LIVE_GAME_MAX remains 6
+039. PASS | livePlannedGames helper retained
+040. PASS | liveHighestUsedGame helper retained
+041. PASS | Dynamic +局 control retained
+042. PASS | Dynamic -局 control retained
+043. PASS | Dynamic adjust helper retained
+044. PASS | Cannot shrink below used game
+045. PASS | Dynamic edge auto-grows next game
+046. PASS | Dynamic next button text retained
+047. PASS | Dynamic badge retained
+048. PASS | Dynamic KPI label retained
+049. PASS | Safari hidden hardening retained
+050. PASS | resetLivePresentation helper retained
+051. PASS | Live score DOM clear retained
+052. PASS | Live ranking DOM clear retained
+053. PASS | Rank count reset retained
+054. PASS | Players KPI reset retained
+055. PASS | Round KPI reset retained
+056. PASS | Round-done KPI reset retained
+057. PASS | Average KPI reset retained
+058. PASS | Best KPI reset retained
+059. PASS | Progress reset retained
+060. PASS | Round badge reset retained
+061. PASS | liveMain hidden by reset
+062. PASS | liveContent hidden by reset
+063. PASS | liveEmpty shown by reset
+064. PASS | Completion clears live selector
+065. PASS | Completion clears quick player
+066. PASS | Completion clears current context
+067. PASS | Completion removes live prefs
+068. PASS | No-active-meetup render hard resets
+069. PASS | Completion does not auto-open Post-game Review
+070. PASS | Completion gives non-blocking success feedback
+071. PASS | Completion reset force-closes existing review
+072. PASS | Manual done does not auto-open Post-game Review
+073. PASS | Past meetup still exposes review action
+074. PASS | Post-game review function retained
+075. PASS | Post-game review close retained
+076. PASS | Public visibility preserves source tab
+077. PASS | Public visibility preserves public filter
+078. PASS | Public visibility preserves search
+079. PASS | Public visibility preserves sort
+080. PASS | Public visibility preserves dateFrom
+081. PASS | Public visibility preserves dateTo
+082. PASS | Public visibility preserves player filter
+083. PASS | Public visibility preserves venue filter
+084. PASS | Public visibility preserves lane filter
+085. PASS | Source tab restored after visibility change
+086. PASS | Public filter restored after visibility change
+087. PASS | Search restored after visibility change
+088. PASS | Sort restored after visibility change
+089. PASS | Date filters restored after visibility change
+090. PASS | Player filter restored after visibility change
+091. PASS | Venue filter restored after visibility change
+092. PASS | Lane filter restored after visibility change
+093. PASS | Removed records still labeled publicRemoved
+094. PASS | Removed record source tag retained
+095. PASS | Republish action retained
+096. PASS | Unpublish action retained
+097. PASS | Visibility change no longer forces local tab
+098. PASS | Visibility change no longer forces unpublished filter
+099. PASS | Visibility change no longer forces all filter
+100. PASS | Old switch-to-local feedback removed
+101. PASS | Unified history source tabs retained
+102. PASS | Local source tab retained
+103. PASS | Public source tab retained
+104. PASS | Public-state filter retained
+105. PASS | All-state option retained
+106. PASS | Published option retained
+107. PASS | Unpublished option retained
+108. PASS | Local-only option retained
+109. PASS | Public-only option retained
+110. PASS | Both option retained
+111. PASS | filteredSessions retained
+112. PASS | historyPublicStateMatch retained
+113. PASS | renderHistory retained
+114. PASS | Session count uses filtered list
+115. PASS | Top counts use unified full list
+116. PASS | Public record controls normalize retained
+117. PASS | Public record controls merge retained
+118. PASS | Public record state write retained
+119. PASS | Effective record controls retained
+120. PASS | Public record state helper retained
+121. PASS | Group payload schema 2 retained
+122. PASS | buildGroupPayload retained
+123. PASS | Removed sessions filtered from public payload
+124. PASS | Group pull retained
+125. PASS | Group push retained
+126. PASS | Public sync retained
+127. PASS | Public polling retained
+128. PASS | normalizeBowlingRoll retained
+129. PASS | normalizeBowlingFrame retained
+130. PASS | bowlingFrameValid retained
+131. PASS | bowlingNextRolls retained
+132. PASS | bowlingGameCalc retained
+133. PASS | normalizeBowlingGames retained
+134. PASS | mergeBowlingGames retained
+135. PASS | normalizeSessionRecord retained
+136. PASS | sessionScoreGameCount retained
+137. PASS | mirror live session retained
+138. PASS | personal claim sync retained
+139. PASS | rankingRowsForScope retained
+140. PASS | renderLeaderboard retained
+141. PASS | renderAwards retained
+142. PASS | shareScopeData retained
+143. PASS | drawShareCard retained
+144. PASS | requirePublicMeetup retained
+145. PASS | publicMeetupRecords retained
+146. PASS | publicSessionForMeetup retained
+147. PASS | selector context sync retained
+148. PASS | captureState retained
+149. PASS | openDataDb retained
+150. PASS | persistDbStateNow retained
+151. PASS | createSnapshot retained
+152. PASS | restoreSnapshot retained
+153. PASS | exportFullBackup retained
+154. PASS | parseRestorePayload retained
+155. PASS | applyRestorePayload retained
+156. PASS | Integrity check retained
+157. PASS | localStorage mirror retained
+158. PASS | backupBeforePwaUpdate retained
+159. PASS | applyPwaUpdate retained
+160. PASS | finishPwaUpdateReload retained
+161. PASS | PWA update dialog retained
+162. PASS | PWA backup-ready gate retained
+163. PASS | Pending service worker retained
+164. PASS | Reload guard retained
+165. PASS | renderMeetups unchanged from R3
+166. PASS | renderCurrentMeetup unchanged from R3
+167. PASS | rankingRowsForScope unchanged from R3
+168. PASS | renderLeaderboard unchanged from R3
+169. PASS | renderAwards unchanged from R3
+170. PASS | shareScopeData unchanged from R3
+171. PASS | drawShareCard unchanged from R3
+172. PASS | backupBeforePwaUpdate unchanged from R3
+173. PASS | applyPwaUpdate unchanged from R3
+174. PASS | finishPwaUpdateReload unchanged from R3
+175. PASS | normalizeSessionRecord unchanged from R3
+176. PASS | sessionScoreGameCount unchanged from R3
+177. PASS | bowlingGameCalc unchanged from R3
+178. PASS | saveLiveRoll unchanged from R3
+179. PASS | flushLiveRollCommit unchanged from R3
+180. PASS | liveSmartNextInput unchanged from R3
+181. PASS | applyRestorePayload unchanged from R3
+182. PASS | adjustLiveRoundCount unchanged from R3
+183. PASS | resetLivePresentation unchanged from R3
+184. PASS | clearCompletedMeetupContext unchanged from R3
+185. PASS | completeLiveMeetup unchanged from R3
+186. PASS | setMeetupStatus unchanged from R3
+187. PASS | filteredSessions unchanged from R3
+188. PASS | renderHistory unchanged from R3
+189. PASS | buildGroupPayload unchanged from R3
+190. PASS | mergePublicRecordControls unchanged from R3
+191. PASS | setPublicVisibility unchanged from R3
+192. PASS | RC code delta is APP_VERSION only
+
+Result: 192/192 PASS
+
+Manual RC gate:
+1. Complete a meetup and confirm 10-frame scoring, live ranking and KPIs clear
+2. Immediately use bottom navigation after completion
+3. Open Post-game Review manually from past meetup management
+4. Create dynamic meetup, auto-add next game and test +局/-局 protection
+5. Keep History on 全部, unpublish one record and verify unrelated records remain visible
+6. Republish the same record and verify current filters remain unchanged
+7. Check leaderboard/current total/public history/share consistency
+8. Run backup/restore smoke test
+9. Check PWA safe-update backup gate
