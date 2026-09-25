@@ -1,0 +1,57 @@
+BowlMeet v0.4.6.2
+Stable Promotion & PUBLIC Release Gate
+Date: 2026-09-25
+Certified Source: v0.4.6.2-RC.1
+Previous Stable: stable/v0.4.6.1
+
+CERTIFIED INPUT
+PASS RC Full Automated Regression 103/103
+PASS RC Preview Cloud Configuration 12/12
+PASS RC Device Smoke 6/6
+PASS RC Validation Complete YES
+
+STABLE PROMOTION GATE: 82 PASS / 0 FAIL
+Application / PUBLIC / PWA / Data / Delta: 68/68 PASS
+Governance / Schema / Main-line: 14/14 PASS
+
+PROMOTION DELTA
+PASS APP_VERSION 0.4.6.2
+PASS Visible status Stable
+PASS Manifest v0.4.6.2 Stable
+PASS Service Worker stable cache namespace
+PASS Deployment Test v0.4.6.2 Stable
+PASS Application function body drift vs RC.1 = 0
+PASS CSS drift vs RC.1 = 0
+
+PUBLIC RELEASE GATE
+PASS Production code remains PUBLIC
+PASS Preview Cloud code absent from production root
+PASS Public Record Control / tombstone / Republish preserved
+PASS Leaderboard Public-only
+PASS Share Public-only
+PASS Awards Public-only
+PASS No PUBLIC payload migration
+PASS No release-time PUBLIC rewrite
+PASS No Supabase migration
+
+DATA SAFETY
+PASS DB_VERSION 2
+PASS DB_NAME bowlingMeetup.local
+PASS layoutPreferences key unchanged
+PASS Supabase schema unchanged vs stable/v0.4.6.1
+PASS Public Control patch unchanged vs stable/v0.4.6.1
+PASS IndexedDB migration NONE
+PASS Backup / Restore / Snapshot / Sync contracts unchanged
+
+MAIN-LINE GOVERNANCE
+PASS release/v0.4.6.2 created from current main
+PASS Release branch behind main = 0
+PASS Preview paths in Stable PR diff = 0
+PASS Existing Preview history preserved
+
+STATUS
+Stable Promotion Gate: PASS (82/82)
+Critical Regression: 0
+Application Logic Drift vs RC.1: 0
+PUBLIC Release Gate: PASS
+READY FOR MAIN PROMOTION: YES
