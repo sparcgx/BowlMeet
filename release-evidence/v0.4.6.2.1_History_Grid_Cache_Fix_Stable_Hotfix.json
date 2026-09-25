@@ -1,0 +1,52 @@
+{
+  "version": "v0.4.6.2.1",
+  "title": "History Score Grid Cache Fix Stable Hotfix",
+  "date": "2026-09-25",
+  "base": "stable/v0.4.6.2",
+  "certifiedInput": {
+    "rootFixGate": {
+      "pass": 16,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "isolatedPreviewGate": {
+      "pass": 21,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "deviceAcceptance": {
+      "pass": 2,
+      "fail": 0,
+      "status": "PASS",
+      "confirmedByUser": true
+    }
+  },
+  "hotfixPromotionGate": {
+    "pass": 24,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "fix": {
+    "versionedCssUrl": true,
+    "criticalInlineGridFallback": true,
+    "nineColumnHistoryGrid": true,
+    "mobileHorizontalScroll": true,
+    "stickyPlayerColumn": true
+  },
+  "safety": {
+    "functionBodyDrift": 0,
+    "dbVersion": 2,
+    "dbName": "bowlingMeetup.local",
+    "publicHistoryCode": "PUBLIC",
+    "publicHistoryPin": "042042",
+    "supabaseMigration": false,
+    "indexedDbMigration": false,
+    "publicPayloadMigration": false
+  },
+  "governance": {
+    "releaseBranch": "release/v0.4.6.2.1",
+    "behindMain": 0,
+    "previewPathsInPrDiff": 0,
+    "readyForMainPromotion": true
+  }
+}
