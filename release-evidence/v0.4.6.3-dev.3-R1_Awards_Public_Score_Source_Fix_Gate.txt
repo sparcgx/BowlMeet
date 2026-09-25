@@ -1,0 +1,62 @@
+BowlMeet v0.4.6.3-dev.3-R1｜Awards Public Score Source Fix
+Regression Gate
+
+Base: v0.4.6.3-dev.3 @ f1bb57a782c00bcb0c4c94abe2ec3c5fcc555f52
+Bug: Awards page rendered automatic awards from local session source while Ranking/Share used PUBLIC source.
+Symptom: Public History contained scores but Awards page could show empty results.
+
+Fix:
+- Award meetup selector now lists published/public meetups.
+- Automatic awards use computeAwards(id, 'public').
+- Winner selector is built from PUBLIC award rows.
+- Custom awards remain editable only when the same meetup exists locally.
+- Remote-only public custom awards are view-only.
+- Award share continues to use Public-only data.
+
+Safety:
+- DB_VERSION unchanged (2).
+- Supabase schema unchanged.
+- IndexedDB schema unchanged.
+- PUBLIC/PIN unchanged.
+- Score model unchanged (1-6).
+- Ranking/Share calculation functions unchanged.
+
+Checks:
+01. PASS | APP_VERSION R1
+02. PASS | CSS cache query R1
+03. PASS | Award options use public meetups
+04. PASS | Award options no longer enumerate local meetups
+05. PASS | Awards auto calculation uses PUBLIC
+06. PASS | Awards auto calculation no longer uses local
+07. PASS | Award winner selector uses public result rows
+08. PASS | Custom awards keep local editable source
+09. PASS | Custom award add disabled for remote-only meetup
+10. PASS | Share button enabled from public meetup
+11. PASS | Remote custom award shown read-only
+12. PASS | Current award action requires public meetup
+13. PASS | Award selection does not clear local context for remote-only
+14. PASS | Award share does not clear local context for remote-only
+15. PASS | computeAwards public implementation retained
+16. PASS | meetupAwardRows retained
+17. PASS | publicSessionForMeetup retained
+18. PASS | rankingRowsForScope retained
+19. PASS | shareScopeData retained
+20. PASS | drawAwardsShareCard retained
+21. PASS | addCustomAward retained
+22. PASS | deleteCustomAward retained
+23. PASS | DB_VERSION remains 2
+24. PASS | PUBLIC code unchanged
+25. PASS | PUBLIC PIN unchanged
+26. PASS | No score-model expansion
+27. PASS | Main application JavaScript parses
+28. PASS | Fixture: public rows contain awardable scores
+29. PASS | Fixture: local-empty/public-present regression represented | local session empty; public session scored
+
+Result: 29/29 PASS
+
+Manual test:
+1. Open a meetup whose scores exist in Public History.
+2. Open Awards and select the same meetup.
+3. Confirm Champion/Average/Single-game/etc populate from public scores.
+4. Confirm Share Award Card matches Awards page.
+5. Confirm a remote-only public meetup can be viewed but custom awards cannot be edited.

@@ -1,0 +1,173 @@
+{
+  "version": "0.4.6.3-dev.3-R1",
+  "title": "Awards Public Score Source Fix",
+  "base": {
+    "ref": "v0.4.6.3-dev.3",
+    "commit": "f1bb57a782c00bcb0c4c94abe2ec3c5fcc555f52"
+  },
+  "bug": "Awards UI used local source while public history had score data",
+  "fix": [
+    "award selector -> publicMeetupRecords",
+    "automatic awards -> computeAwards(public)",
+    "local-only custom award editing"
+  ],
+  "invariants": {
+    "db_version": 2,
+    "supabase": "UNCHANGED",
+    "indexeddb": "UNCHANGED",
+    "public_pin": "UNCHANGED",
+    "score_model": "1-6"
+  },
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "APP_VERSION R1"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "CSS cache query R1"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "Award options use public meetups"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "Award options no longer enumerate local meetups"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "Awards auto calculation uses PUBLIC"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "Awards auto calculation no longer uses local"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "Award winner selector uses public result rows"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "Custom awards keep local editable source"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "Custom award add disabled for remote-only meetup"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "Share button enabled from public meetup"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "Remote custom award shown read-only"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "Current award action requires public meetup"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "Award selection does not clear local context for remote-only"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "Award share does not clear local context for remote-only"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "computeAwards public implementation retained"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "meetupAwardRows retained"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "publicSessionForMeetup retained"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "rankingRowsForScope retained"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "shareScopeData retained"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "drawAwardsShareCard retained"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "addCustomAward retained"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "deleteCustomAward retained"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "DB_VERSION remains 2"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "PUBLIC code unchanged"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 26,
+      "status": "PASS",
+      "name": "No score-model expansion"
+    },
+    {
+      "id": 27,
+      "status": "PASS",
+      "name": "Main application JavaScript parses"
+    },
+    {
+      "id": 28,
+      "status": "PASS",
+      "name": "Fixture: public rows contain awardable scores"
+    },
+    {
+      "id": 29,
+      "status": "PASS",
+      "name": "Fixture: local-empty/public-present regression represented",
+      "detail": "local session empty; public session scored"
+    }
+  ],
+  "result": {
+    "pass": 29,
+    "fail": 0
+  }
+}

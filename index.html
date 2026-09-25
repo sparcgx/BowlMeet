@@ -1140,7 +1140,7 @@ dialog::backdrop,
 }
 
 </style>
-<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0463d3" />
+<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0463d3r1" />
 <style id="history-score-critical">
 /* v0.4.6.3-dev.1 | Dynamic score grid + Safari/PWA fallback */
 .history-score-table-wrap{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
@@ -1653,7 +1653,7 @@ dialog::backdrop,
 
   <section id="awardsView" class="view">
     <section class="card awards-head">
-      <div><h2>球聚獎項</h2><p>依單一球聚的實際成績自動產生獎項；自訂獎項會跟著球聚保存，也能加入進階分享卡。</p></div>
+      <div><h2>球聚獎項</h2><p>自動獎項以已公開成績為準；自訂獎項仍跟著本機球聚保存，也能加入進階分享卡。</p></div>
       <div class="awards-controls">
         <div class="field"><label for="awardMeetup">球聚</label><select id="awardMeetup"><option value="">尚無球聚</option></select></div>
         <button class="btn" id="awardCurrentBtn" type="button">目前球聚</button><button class="btn primary" id="awardShareBtn" type="button">分享獎項卡</button>
@@ -2061,7 +2061,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.6.3-dev.3';
+const APP_VERSION='0.4.6.3-dev.3-R1';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const LAYOUT_DEFAULTS=Object.freeze({scale:'100',density:'standard',width:'standard',leaderboard:'standard',scoreSize:'standard'});
 const LAYOUT_PRESETS=Object.freeze({
@@ -3441,17 +3441,19 @@ function computeAwards(meetupId,source='public'){
   ];
   return {meetup:m,rows,awards,club200,pbBreakers}
 }
-function renderAwardOptions(){
-  const sel=$('awardMeetup');if(!sel)return;const prev=sel.value||validMeetupContextId(currentMeetupId)||'';const list=[...meetups].sort((a,b)=>String(b.date).localeCompare(String(a.date))||b.createdAt-a.createdAt);sel.innerHTML=list.length?list.map(m=>`<option value="${esc(m.id)}">${esc(fmtDate(m.date))} · ${esc(m.title)}</option>`).join(''):'<option value="">尚無球聚</option>';sel.value=[...sel.options].some(o=>o.value===prev)?prev:(validMeetupContextId(currentMeetupId)||list[0]?.id||'')
+function renderAwardOptions(preferredScope=''){
+  const sel=$('awardMeetup');if(!sel)return;const published=publicMeetupRecords(),currentPublic=publicMeetupById(currentMeetupId),prev=preferredScope||sel.value||currentPublic?.id||'';
+  sel.innerHTML=published.length?published.map(m=>`<option value="${esc(m.id)}">${esc(fmtDate(m.date))} · ${esc(m.title)}</option>`).join(''):'<option value="">尚無公開球聚</option>';
+  sel.value=[...sel.options].some(o=>o.value===prev)?prev:(currentPublic?.id||published[0]?.id||'')
 }
 function renderAwards(){
-  renderAwardOptions();const id=$('awardMeetup')?.value||'',result=computeAwards(id,'local'),m=result.meetup;const custom=Array.isArray(m?.customAwards)?m.customAwards:[];
+  renderAwardOptions();const id=$('awardMeetup')?.value||'',result=computeAwards(id,'public'),m=result.meetup,localMeetup=meetups.find(x=>x.id===id)||null,customSource=localMeetup||m;const custom=Array.isArray(customSource?.customAwards)?customSource.customAwards:[];
   $('awardAutoCount').textContent=result.awards.filter(a=>a.winners.length).length;$('awardCustomCount').textContent=custom.length;$('award200Count').textContent=result.club200.length;$('awardPbCount').textContent=result.pbBreakers.length;
   $('autoAwardGrid').innerHTML=result.awards.map(a=>`<article class="card award-card ${a.winners.length?'':'empty'}"><div class="award-title">${esc(a.title)}</div><div class="award-winner">${esc(a.winners.length?a.winners.join('、'):'尚無結果')}</div><div class="award-value">${esc(a.value)}</div><div class="award-detail">${esc(a.detail)}</div></article>`).join('');
-  const winnerSel=$('customAwardWinner');winnerSel.innerHTML=m?'<option value="">選擇球員</option>'+result.rows.map(r=>`<option value="${esc(r.name)}">${esc(r.name)}</option>`).join(''):'<option value="">請先選球聚</option>';
-  $('addCustomAwardBtn').disabled=!m;$('awardShareBtn').disabled=!m;$('customAwardList').innerHTML=custom.length?custom.map(a=>`<div class="custom-award-item"><div><strong>${esc(a.title)} · ${esc(a.winner)}</strong><span>${esc(a.note||'無備註')}</span></div><button class="btn small danger" type="button" data-del-custom-award="${esc(a.id)}">移除</button></div>`).join(''):'<div class="snapshot-empty">這場球聚尚無自訂獎項。</div>'
+  const winnerSel=$('customAwardWinner');winnerSel.innerHTML=m?'<option value="">選擇球員</option>'+result.rows.map(r=>`<option value="${esc(r.name)}">${esc(r.name)}</option>`).join(''):'<option value="">請先選公開球聚</option>';
+  $('addCustomAwardBtn').disabled=!localMeetup;$('awardShareBtn').disabled=!m;$('customAwardList').innerHTML=custom.length?custom.map(a=>`<div class="custom-award-item"><div><strong>${esc(a.title)} · ${esc(a.winner)}</strong><span>${esc(a.note||'無備註')}</span></div>${localMeetup?`<button class="btn small danger" type="button" data-del-custom-award="${esc(a.id)}">移除</button>`:'<span class="pill">公開唯讀</span>'}</div>`).join(''):'<div class="snapshot-empty">這場球聚尚無自訂獎項。</div>'
 }
-function openMeetupAwards(id){setCurrentMeetup(id);switchView('awardsView');renderAwardOptions();$('awardMeetup').value=id;syncMeetupDerivedSelectors(id);renderAwards()}
+function openMeetupAwards(id){if(validMeetupContextId(id))setCurrentMeetup(id);switchView('awardsView');renderAwardOptions(id);if(validMeetupContextId(id))syncMeetupDerivedSelectors(id);renderAwards()}
 function addCustomAward(){const id=$('awardMeetup').value,m=meetups.find(x=>x.id===id);if(!m)return;if(!syncAllowWrite(id,'新增獎項'))return;const title=$('customAwardTitle').value.trim(),winner=$('customAwardWinner').value,note=$('customAwardNote').value.trim();if(!title||!winner){alert('請輸入獎項名稱並選擇得獎者。');return}if(!Array.isArray(m.customAwards))m.customAwards=[];m.customAwards.push({id:uid(),title,winner,note,createdAt:Date.now()});m.updatedAt=Date.now();persistMeetups();$('customAwardTitle').value='';$('customAwardWinner').value='';$('customAwardNote').value='';renderAwards();renderShareOptions()}
 function deleteCustomAward(id){const mid=$('awardMeetup').value,m=meetups.find(x=>x.id===mid);if(!m)return;if(!syncAllowWrite(mid,'移除獎項'))return;m.customAwards=(m.customAwards||[]).filter(a=>a.id!==id);m.updatedAt=Date.now();persistMeetups();renderAwards();renderShareOptions()}
 
@@ -3746,7 +3748,7 @@ $('quickAddRosterBtn').addEventListener('click',quickAddRoster);$('leaderboardMe
 $('playerAnalyticsBackBtn').addEventListener('click',closePlayerAnalytics);$('playerAnalyticsPlayer').addEventListener('change',e=>{prepareAnalyticsContextChange();if(setPlayerContext(e.target.value,{view:'analytics'})){playerNavigation().scroll.analytics=0;renderStats();requestAnimationFrame(()=>$('playerAnalyticsPanel')?.scrollIntoView({behavior:'auto',block:'start'}))}else restoreAnalyticsPresentation()});$('playerAnalyticsRange').addEventListener('change',e=>{playerContext.analyticsRange=e.target.value||'all';prepareAnalyticsContextChange();renderStats()});$('playerAnalyticsSectionNav').addEventListener('click',e=>{const b=e.target.closest('[data-analytics-jump]');if(!b)return;const target=$(b.dataset.analyticsJump);if(target){target.scrollIntoView({behavior:playerReducedMotion()?'auto':'smooth',block:'start'});target.setAttribute('tabindex','-1');requestAnimationFrame(()=>target.focus({preventScroll:true}))}});
 $('playerHubBackBtn').addEventListener('click',closePlayerHub);$('playerHubAnalyticsBtn').addEventListener('click',()=>openPlayerAnalytics(playerContext.key));$('playerHubHistoryBtn').addEventListener('click',openPlayerHistory);$('playerHubLatestSessionBtn').addEventListener('click',e=>{const id=e.currentTarget.dataset.sessionId;if(id)openPlayerSessionDetail(id,{returnTarget:'playerHub'})});$('playerHubEditBtn').addEventListener('click',()=>{const row=playerRow(playerContext.key);if(row&&row.source!=='PUBLIC')editRoster(row.meta?.id||'',row.name)});
 $('playerHistoryBackBtn').addEventListener('click',closePlayerHistory);$('playerHistorySearch').addEventListener('input',e=>{playerContext.history.search=e.target.value;renderPlayerHubHistory()});$('playerHistoryRange').addEventListener('change',e=>{playerContext.history.range=e.target.value||'all';renderPlayerHubHistory()});$('playerHistorySort').addEventListener('change',e=>{playerContext.history.sort=e.target.value||'newest';renderPlayerHubHistory()});$('playerHistoryList').addEventListener('click',e=>{const b=e.target.closest('[data-player-session]');if(b)openPlayerSessionDetail(b.dataset.playerSession,{returnTarget:'playerHistory'})});$('playerSessionCloseBtn').addEventListener('click',closePlayerSessionDetail);$('playerSessionPrevBtn').addEventListener('click',e=>{const id=e.currentTarget.dataset.sessionId;if(id)openPlayerSessionDetail(id,{returnTarget:playerNavigation().sessionReturnTarget,preserveOrigin:true})});$('playerSessionNextBtn').addEventListener('click',e=>{const id=e.currentTarget.dataset.sessionId;if(id)openPlayerSessionDetail(id,{returnTarget:playerNavigation().sessionReturnTarget,preserveOrigin:true})});$('playerSessionDialog').addEventListener('cancel',e=>{e.preventDefault();closePlayerSessionDetail()});$('playerSessionDialog').addEventListener('click',e=>{if(e.target===$('playerSessionDialog'))closePlayerSessionDetail()});$('playerSessionDialog').addEventListener('keydown',e=>{if(e.key==='ArrowLeft'&&!$('playerSessionPrevBtn').disabled){e.preventDefault();$('playerSessionPrevBtn').click()}else if(e.key==='ArrowRight'&&!$('playerSessionNextBtn').disabled){e.preventDefault();$('playerSessionNextBtn').click()}});
-$('awardMeetup').addEventListener('change',e=>{const id=e.target.value;if(id){setCurrentMeetup(id);syncMeetupDerivedSelectors(id)}renderAwards()});$('awardCurrentBtn').addEventListener('click',()=>{if(!currentMeetupId){alert('目前沒有選擇球聚活動。');return}renderAwardOptions();$('awardMeetup').value=currentMeetupId;syncMeetupDerivedSelectors(currentMeetupId);renderAwards()});$('awardShareBtn').addEventListener('click',()=>{const id=$('awardMeetup').value;if(!id||!requirePublicMeetup(id,'分享獎項'))return;setCurrentMeetup(id);switchView('shareView');renderShareOptions(id);$('shareMeetup').value=id;$('shareCardType').value='awards';syncMeetupDerivedSelectors(id);updateShareControls(true)});$('addCustomAwardBtn').addEventListener('click',addCustomAward);$('customAwardList').addEventListener('click',e=>{const b=e.target.closest('[data-del-custom-award]');if(b&&confirm('確定移除這個自訂獎項？'))deleteCustomAward(b.dataset.delCustomAward)});
+$('awardMeetup').addEventListener('change',e=>{const id=e.target.value;if(id&&validMeetupContextId(id)){setCurrentMeetup(id);syncMeetupDerivedSelectors(id)}renderAwards()});$('awardCurrentBtn').addEventListener('click',()=>{if(!currentMeetupId){alert('目前沒有選擇球聚活動。');return}if(!requirePublicMeetup(currentMeetupId,'查看獎項'))return;renderAwardOptions(currentMeetupId);syncMeetupDerivedSelectors(currentMeetupId);renderAwards()});$('awardShareBtn').addEventListener('click',()=>{const id=$('awardMeetup').value;if(!id||!requirePublicMeetup(id,'分享獎項'))return;if(validMeetupContextId(id))setCurrentMeetup(id);switchView('shareView');renderShareOptions(id);$('shareMeetup').value=id;$('shareCardType').value='awards';syncMeetupDerivedSelectors(id);updateShareControls(true)});$('addCustomAwardBtn').addEventListener('click',addCustomAward);$('customAwardList').addEventListener('click',e=>{const b=e.target.closest('[data-del-custom-award]');if(b&&confirm('確定移除這個自訂獎項？'))deleteCustomAward(b.dataset.delCustomAward)});
 
 $('postReviewCloseBtn').addEventListener('click',closePostGameReview);$('postReviewDoneBtn').addEventListener('click',closePostGameReview);$('postReviewShareBtn').addEventListener('click',openPostReviewShare);$('postReviewHistoryBtn').addEventListener('click',openPostReviewHistory);$('postGameReviewDialog').addEventListener('cancel',e=>{e.preventDefault();closePostGameReview()});
 $('liveMeetupSelect').addEventListener('change',e=>{if(e.target.value)selectLiveMeetup(e.target.value,true);else{setCurrentMeetup('');renderLive()}});
