@@ -454,3 +454,307 @@ html[data-theme="high-contrast"] .history-source.active{
   html[data-theme] .live-rank-panel,
   html[data-theme] .unified-history-panel{min-width:0;max-width:100%}
 }
+
+
+/* =========================================================
+   dev.2 coverage pass B | Personal / Group / Player / Dock
+   ========================================================= */
+
+/* Remaining common controls */
+html[data-theme] .toolbar input,
+html[data-theme] .toolbar select,
+html[data-theme] .score-roster-tools select,
+html[data-theme] .group-toolbar input,
+html[data-theme] .group-toolbar select,
+html[data-theme] .player-history-toolbar input,
+html[data-theme] .player-history-toolbar select,
+html[data-theme] .layout-settings-grid select,
+html[data-theme] .raw-text{
+  background:var(--surface-control)!important;
+  color:var(--text-primary)!important;
+  border-color:var(--border-default)!important;
+}
+html[data-theme] .toolbar input:focus,
+html[data-theme] .toolbar select:focus,
+html[data-theme] .group-toolbar input:focus,
+html[data-theme] .group-toolbar select:focus,
+html[data-theme] .player-history-toolbar input:focus,
+html[data-theme] .player-history-toolbar select:focus,
+html[data-theme] .raw-text:focus{
+  border-color:var(--border-focus)!important;
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--theme-primary) 18%,transparent)!important;
+}
+html[data-theme] .notice,
+html[data-theme] .mini-kpi,
+html[data-theme] .line-key{
+  background:var(--surface-subtle)!important;
+  color:var(--text-secondary)!important;
+  border-color:var(--border-default)!important;
+}
+
+/* Personal identity / cloud */
+html[data-theme] .personal-profile-card,
+html[data-theme] .personal-claim-item,
+html[data-theme] .personal-cloud-box,
+html[data-theme] .personal-checkbox,
+html[data-theme] .cloud-endpoint,
+html[data-theme] .cloud-advanced,
+html[data-theme] .personal-history-table{
+  background:var(--surface-base)!important;
+  color:var(--text-primary)!important;
+  border-color:var(--border-default)!important;
+}
+html[data-theme] .personal-history-table th{
+  background:var(--surface-subtle)!important;color:var(--text-secondary)!important;border-color:var(--border-default)!important;
+}
+html[data-theme] .personal-status,
+html[data-theme] .cloud-state,
+html[data-theme] .claim-badge{
+  background:var(--surface-disabled)!important;
+  color:var(--text-secondary)!important;
+  border-color:var(--border-default)!important;
+}
+html[data-theme] .personal-status.online,
+html[data-theme] .cloud-state.online{
+  background:var(--status-success-bg)!important;color:var(--status-success)!important;border-color:var(--status-success-border)!important;
+}
+html[data-theme] .personal-status.warn,
+html[data-theme] .cloud-state.warn{
+  background:var(--status-warning-bg)!important;color:var(--status-warning)!important;border-color:var(--status-warning-border)!important;
+}
+html[data-theme] .cloud-dot{background:var(--text-secondary)!important}
+html[data-theme] .cloud-state.online .cloud-dot{background:var(--status-success)!important}
+html[data-theme] .cloud-state.warn .cloud-dot{background:var(--status-warning)!important}
+html[data-theme] .ocr-pass-badge{
+  background:var(--status-success-bg)!important;color:var(--status-success)!important;border-color:var(--status-success-border)!important;
+}
+
+/* Group / shared records */
+html[data-theme] .group-card,
+html[data-theme] .group-code,
+html[data-theme] .group-secret>div,
+html[data-theme] .group-session,
+html[data-theme] .group-readonly{
+  background:var(--surface-base)!important;
+  color:var(--text-primary)!important;
+  border-color:var(--border-default)!important;
+}
+html[data-theme] .group-readonly{background:var(--surface-subtle)!important;color:var(--text-secondary)!important}
+html[data-theme] .group-status{
+  background:var(--surface-disabled)!important;color:var(--text-secondary)!important;border-color:var(--border-default)!important;
+}
+html[data-theme] .group-status.online{
+  background:var(--status-success-bg)!important;color:var(--status-success)!important;border-color:var(--status-success-border)!important;
+}
+html[data-theme] .group-status.warn{
+  background:var(--status-warning-bg)!important;color:var(--status-warning)!important;border-color:var(--status-warning-border)!important;
+}
+html[data-theme] .group-tab:after,
+html[data-theme] .sync-tab:after,
+html[data-theme] .live-tab:after{background:var(--theme-primary)!important;color:var(--theme-primary)!important}
+html[data-theme] .group-tab.active:after,
+html[data-theme] .sync-tab.active:after,
+html[data-theme] .live-tab.active:after{background:var(--border-focus)!important;color:var(--border-focus)!important}
+
+/* Post-game review */
+html[data-theme] .post-review-dialog::backdrop{background:var(--overlay-bg)!important}
+html[data-theme] .post-review-card,
+html[data-theme] .post-review-close{
+  background:var(--surface-raised)!important;color:var(--text-primary)!important;border-color:var(--border-default)!important;
+}
+html[data-theme] .post-review-kpi,
+html[data-theme] .post-review-note{
+  background:var(--surface-subtle)!important;color:var(--text-secondary)!important;border-color:var(--border-default)!important;
+}
+html[data-theme] .post-review-table th{
+  background:var(--surface-subtle)!important;color:var(--text-secondary)!important;border-color:var(--border-default)!important;
+}
+
+/* Player directory / hub / history / analytics */
+html[data-theme] .history-mode.active{
+  background:var(--status-info-bg)!important;color:var(--status-info)!important;border-color:var(--status-info-border)!important;
+}
+html[data-theme] .player-directory-kpis>div,
+html[data-theme] .player-hub-kpi,
+html[data-theme] .player-hub-recent,
+html[data-theme] .player-history-session,
+html[data-theme] .player-session-summary span,
+html[data-theme] .player-hub-actions,
+html[data-theme] .player-session-dialog-nav,
+html[data-theme] .player-analytics-integrated .analytics-controls,
+html[data-theme] .analytics-section-nav,
+html[data-theme] .player-history-toolbar{
+  background:var(--surface-base)!important;
+  color:var(--text-primary)!important;
+  border-color:var(--border-default)!important;
+}
+html[data-theme] .player-session-summary span,
+html[data-theme] .player-analytics-integrated .analytics-controls,
+html[data-theme] .analytics-section-nav,
+html[data-theme] .player-history-toolbar{background:var(--surface-subtle)!important}
+html[data-theme] .player-status,
+html[data-theme] .player-source-badge{
+  background:var(--surface-disabled)!important;color:var(--text-secondary)!important;border-color:var(--border-default)!important;
+}
+html[data-theme] .player-status.history,
+html[data-theme] .player-source-badge.public{
+  background:var(--status-info-bg)!important;color:var(--status-info)!important;border-color:var(--status-info-border)!important;
+}
+html[data-theme] .player-status.saved,
+html[data-theme] .player-source-badge.local{
+  background:var(--status-success-bg)!important;color:var(--status-success)!important;border-color:var(--status-success-border)!important;
+}
+html[data-theme] .player-status.both,
+html[data-theme] .player-source-badge.mixed{
+  background:color-mix(in srgb,var(--surface-selected) 72%,#8b5cf6 28%)!important;
+  color:color-mix(in srgb,var(--text-primary) 62%,#6d4ab8 38%)!important;
+  border-color:color-mix(in srgb,var(--border-default) 70%,#8b5cf6 30%)!important;
+}
+html[data-theme] .player-history-score-chip{
+  background:var(--status-info-bg)!important;color:var(--status-info)!important;border-color:var(--status-info-border)!important;
+}
+html[data-theme] .player-history-session[data-active-session="true"]{
+  background:var(--status-info-bg)!important;border-color:var(--status-info-border)!important;
+}
+html[data-theme] .player-session-dialog::backdrop{background:var(--overlay-bg)!important}
+html[data-theme] .player-session-dialog,
+html[data-theme] .player-session-dialog-card,
+html[data-theme] .player-session-dialog-head{
+  background:var(--surface-raised)!important;color:var(--text-primary)!important;border-color:var(--border-default)!important;
+}
+html[data-theme] :where(.player-hub-integrated,.player-history-integrated,.player-analytics-integrated,.player-session-dialog) :where(button,input,select):focus-visible,
+html[data-theme] .player-link:focus-visible{
+  outline:3px solid var(--border-focus)!important;outline-offset:2px!important;
+}
+
+/* Global glass containers and navigation */
+html[data-theme] .topbar,
+html[data-theme] .tabs{
+  color:var(--text-primary)!important;border-color:var(--border-default)!important;
+}
+html[data-theme] .card:hover{border-color:var(--border-strong)!important}
+html[data-theme] .pill,
+html[data-theme] .layout-preview-chip,
+html[data-theme] .layout-local-badge{
+  background:var(--status-info-bg)!important;color:var(--status-info)!important;border-color:var(--status-info-border)!important;
+}
+html[data-theme] .score-table-wrap,
+html[data-theme] .rank-table-wrap,
+html[data-theme] .live-rank-table-wrap,
+html[data-theme] .player-history-wrap,
+html[data-theme] .personal-history-wrap,
+html[data-theme] .history-score-table-wrap{
+  background:var(--surface-base)!important;border-color:var(--border-default)!important;
+}
+html[data-theme] .history-score-grid>.history-score-name{background:var(--sticky-surface)!important;color:var(--text-primary)!important}
+
+/* Mobile Dock / More sheet */
+html[data-theme] .mobile-glass-dock,
+html[data-theme] .mobile-more-sheet{
+  background:var(--glass-strong)!important;
+  color:var(--text-primary)!important;
+  border-color:var(--border-default)!important;
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(150%);
+  backdrop-filter:blur(var(--glass-blur)) saturate(150%);
+}
+html[data-theme] .dock-item,
+html[data-theme] .mobile-more-item,
+html[data-theme] .mobile-more-close{
+  color:var(--text-secondary)!important;
+}
+html[data-theme] .dock-item.active,
+html[data-theme] .dock-more.has-secondary-active,
+html[data-theme] .mobile-more-item.active{
+  background:var(--status-info-bg)!important;color:var(--status-info)!important;
+}
+html[data-theme] .dock-item.active .dock-icon{color:var(--status-info)!important}
+html[data-theme] .mobile-more-backdrop{background:var(--overlay-bg)!important}
+html[data-theme] .mobile-more-handle{background:var(--border-strong)!important}
+html[data-theme] .mobile-more-item>span{color:inherit!important}
+
+/* Leaderboard */
+html[data-theme] .leaderboard-card,
+html[data-theme] .leaderboard-controls,
+html[data-theme] .leaderboard-summary .mini-kpi{
+  background:var(--surface-base)!important;
+  color:var(--text-primary)!important;
+  border-color:var(--border-default)!important;
+  box-shadow:var(--theme-shadow)!important;
+}
+html[data-theme] .leaderboard-controls{background:var(--surface-subtle)!important}
+html[data-theme] .live-rank-table-wrap,
+html[data-theme] .rank-table-wrap{background:var(--surface-base)!important}
+
+/* Meetup action overflow */
+html[data-theme] .meetup-actions-more[open]>summary,
+html[data-theme] .meetup-actions-menu{
+  background:var(--surface-subtle)!important;color:var(--text-primary)!important;border-color:var(--border-default)!important;
+}
+
+/* Share UI: controls follow theme; exported canvas remains neutral */
+html[data-theme] .share-controls,
+html[data-theme] .share-preview-card,
+html[data-theme] .share-form,
+html[data-theme] .share-preview-head{
+  background:var(--surface-base)!important;color:var(--text-primary)!important;border-color:var(--border-default)!important;
+}
+html[data-theme] .share-preview-head{background:var(--surface-subtle)!important}
+
+/* Layout Settings */
+html[data-theme] .layout-settings-preview,
+html[data-theme] .layout-settings-panel,
+html[data-theme] .layout-device-hint,
+html[data-theme] .layout-preset-btn{
+  color:var(--text-primary)!important;border-color:var(--border-default)!important;
+}
+html[data-theme] .layout-settings-preview{background:var(--surface-subtle)!important}
+html[data-theme] .layout-device-hint,
+html[data-theme] .layout-preset-btn{background:var(--surface-control)!important}
+html[data-theme] .layout-preset-btn.active{
+  background:var(--status-info-bg)!important;color:var(--status-info)!important;border-color:var(--status-info-border)!important;
+}
+
+/* Dialog family */
+html[data-theme] .player-session-dialog-card,
+html[data-theme] .post-review-card,
+html[data-theme] .restore-dialog-card{
+  background:var(--surface-raised)!important;color:var(--text-primary)!important;border-color:var(--border-default)!important;
+}
+html[data-theme] dialog::backdrop,
+html[data-theme] .player-session-dialog::backdrop,
+html[data-theme] .post-review-dialog::backdrop{background:var(--overlay-bg)!important}
+
+/* Dark Night cleanup for legacy glass decoration */
+html[data-theme="dark-night"] body:before{background:linear-gradient(120deg,rgba(255,255,255,.025),rgba(255,255,255,0) 45%,rgba(105,168,255,.03))!important}
+html[data-theme="dark-night"] .mobile-glass-dock,
+html[data-theme="dark-night"] .mobile-more-sheet,
+html[data-theme="dark-night"] .leaderboard-card,
+html[data-theme="dark-night"] .leaderboard-controls,
+html[data-theme="dark-night"] .leaderboard-summary .mini-kpi,
+html[data-theme="dark-night"] .player-hub-recent,
+html[data-theme="dark-night"] .player-hub-kpi,
+html[data-theme="dark-night"] .player-directory-kpis>div{
+  background:var(--surface-base)!important;border-color:var(--border-default)!important;
+}
+
+/* Reduced transparency coverage for the newly covered glass family */
+:root[data-theme-transparency="off"] .mobile-glass-dock,
+:root[data-theme-transparency="off"] .mobile-more-sheet,
+:root[data-theme-transparency="off"] .leaderboard-card,
+:root[data-theme-transparency="off"] .leaderboard-controls,
+:root[data-theme-transparency="off"] .player-session-dialog-card,
+:root[data-theme-transparency="off"] .post-review-card{
+  background:var(--surface-raised)!important;
+  -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+}
+@media(prefers-reduced-transparency:reduce){
+  html[data-theme] .mobile-glass-dock,
+  html[data-theme] .mobile-more-sheet,
+  html[data-theme] .leaderboard-card,
+  html[data-theme] .leaderboard-controls,
+  html[data-theme] .player-session-dialog-card,
+  html[data-theme] .post-review-card{
+    background:var(--surface-raised)!important;
+    -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+  }
+}
