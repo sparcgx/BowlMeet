@@ -1140,7 +1140,7 @@ dialog::backdrop,
 }
 
 </style>
-<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0463d3r1" />
+<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0463d3r2" />
 <style id="history-score-critical">
 /* v0.4.6.3-dev.1 | Dynamic score grid + Safari/PWA fallback */
 .history-score-table-wrap{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
@@ -1161,8 +1161,8 @@ dialog::backdrop,
     <button class="tab active live-tab" data-view="meetupView">球聚現場</button>
     <button class="tab" data-view="scoreView">本次計分</button>
     <button class="tab" data-view="personalView">我的成績</button>
-    <button class="tab" data-view="historyView">成績紀錄</button>
     <button class="tab" data-view="leaderboardView">排行榜</button>
+    <button class="tab" data-view="historyView">成績紀錄</button>
     <button class="tab" data-view="photoView">拍照匯入</button>
     <button class="tab" data-view="awardsView">獎項</button>
     <button class="tab" data-view="shareView">分享成績</button>
@@ -1179,8 +1179,8 @@ dialog::backdrop,
     <button class="dock-item" type="button" data-dock-view="personalView" aria-label="我的成績">
       <span class="dock-icon" aria-hidden="true">◎</span><span>我的</span>
     </button>
-    <button class="dock-item" type="button" data-dock-view="leaderboardView" aria-label="排行榜">
-      <span class="dock-icon" aria-hidden="true">▲</span><span>排行</span>
+    <button class="dock-item" type="button" data-dock-view="historyView" aria-label="成績紀錄">
+      <span class="dock-icon" aria-hidden="true">▤</span><span>成績</span>
     </button>
     <button class="dock-item dock-more" type="button" id="mobileDockMoreBtn" aria-label="更多功能" aria-expanded="false">
       <span class="dock-icon dock-dots" aria-hidden="true">•••</span><span>更多</span>
@@ -1195,7 +1195,7 @@ dialog::backdrop,
       <button class="mobile-more-close" id="mobileMoreCloseBtn" type="button" aria-label="關閉更多功能">×</button>
     </div>
     <div class="mobile-more-grid">
-      <button type="button" class="mobile-more-item" data-dock-view="historyView"><span>▤</span><strong>成績紀錄</strong></button>
+      <button type="button" class="mobile-more-item" data-dock-view="leaderboardView"><span>▲</span><strong>排行榜</strong></button>
       <button type="button" class="mobile-more-item" data-dock-view="photoView"><span>▣</span><strong>拍照匯入</strong></button>
       <button type="button" class="mobile-more-item" data-dock-view="awardsView"><span>★</span><strong>獎項</strong></button>
       <button type="button" class="mobile-more-item" data-dock-view="shareView"><span>↗</span><strong>分享成績</strong></button>
@@ -2061,7 +2061,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.6.3-dev.3-R1';
+const APP_VERSION='0.4.6.3-dev.3-R2';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const LAYOUT_DEFAULTS=Object.freeze({scale:'100',density:'standard',width:'standard',leaderboard:'standard',scoreSize:'standard'});
 const LAYOUT_PRESETS=Object.freeze({

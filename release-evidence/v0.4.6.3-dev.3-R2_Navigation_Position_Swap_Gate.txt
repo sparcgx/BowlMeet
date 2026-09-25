@@ -1,0 +1,43 @@
+BowlMeet v0.4.6.3-dev.3-R2｜Navigation Position Swap
+Navigation Regression Gate
+
+Base: v0.4.6.3-dev.3-R1 @ 692d756f7df719bfc99313b3a5e9385adacd3caa
+Request: swap Public Score/Score History and Ranking navigation positions.
+
+Changes:
+- Desktop tabs: Ranking is placed before Score History.
+- Mobile primary dock: Score History replaces Ranking.
+- Mobile More sheet: Ranking replaces Score History.
+- No view IDs or navigation handlers changed.
+
+Safety:
+- Awards Public Score Source Fix from R1 retained.
+- Dynamic Grid / Share Card Sync retained.
+- PUBLIC/PIN unchanged.
+- DB_VERSION remains 2.
+- Supabase / IndexedDB schemas unchanged.
+
+Checks:
+01. PASS | APP_VERSION R2
+02. PASS | CSS cache R2
+03. PASS | Desktop leaderboard before history
+04. PASS | Mobile primary dock contains history
+05. PASS | Mobile primary dock no longer contains leaderboard
+06. PASS | Mobile history dock label
+07. PASS | Mobile More contains leaderboard
+08. PASS | Mobile More no longer contains history
+09. PASS | renderHistory logic unchanged
+10. PASS | renderLeaderboard logic unchanged
+11. PASS | rankingRowsForScope logic unchanged
+12. PASS | renderAwards logic unchanged
+13. PASS | computeAwards logic unchanged
+14. PASS | shareScopeData logic unchanged
+15. PASS | drawMeetupFullShareCard logic unchanged
+16. PASS | drawAwardsShareCard logic unchanged
+17. PASS | PUBLIC code unchanged
+18. PASS | PUBLIC PIN unchanged
+19. PASS | DB_VERSION remains 2
+20. PASS | No schema migration markers
+21. PASS | Main JavaScript parses
+
+Result: 21/21 PASS

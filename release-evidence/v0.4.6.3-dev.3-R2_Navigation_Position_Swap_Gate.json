@@ -1,0 +1,132 @@
+{
+  "version": "0.4.6.3-dev.3-R2",
+  "title": "Navigation Position Swap",
+  "base": {
+    "ref": "v0.4.6.3-dev.3-R1",
+    "commit": "692d756f7df719bfc99313b3a5e9385adacd3caa"
+  },
+  "changes": {
+    "desktop": "leaderboard before history",
+    "mobile_dock": "history replaces leaderboard",
+    "mobile_more": "leaderboard replaces history"
+  },
+  "invariants": {
+    "db_version": 2,
+    "public": "UNCHANGED",
+    "pin": "UNCHANGED",
+    "supabase": "UNCHANGED",
+    "indexeddb": "UNCHANGED",
+    "award_public_fix": "RETAINED"
+  },
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "APP_VERSION R2"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "CSS cache R2"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "Desktop leaderboard before history"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "Mobile primary dock contains history"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "Mobile primary dock no longer contains leaderboard"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "Mobile history dock label"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "Mobile More contains leaderboard"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "Mobile More no longer contains history"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "renderHistory logic unchanged"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "renderLeaderboard logic unchanged"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "rankingRowsForScope logic unchanged"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "renderAwards logic unchanged"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "computeAwards logic unchanged"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "shareScopeData logic unchanged"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "drawMeetupFullShareCard logic unchanged"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "drawAwardsShareCard logic unchanged"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "PUBLIC code unchanged"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "DB_VERSION remains 2"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "No schema migration markers"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "Main JavaScript parses"
+    }
+  ],
+  "result": {
+    "pass": 21,
+    "fail": 0
+  }
+}
