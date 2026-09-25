@@ -1,3 +1,12 @@
+# BowlMeet v0.4.6.7-dev.1 — Preview Deployment
+
+- 基線：`stable/v0.4.6.6`。
+- 修正完成球聚後現場狀態未清空。
+- 新增動態局數：現場自動增加下一局、＋局／−局，最高維持 6 局。
+- Source Gate：45/45 PASS。
+- Preview：`/preview/v0.4.6.7-dev.1/`。
+- 此段更新同時作為 GitHub Pages Preview 重新部署觸發紀錄。
+
 # BowlMeet v0.4.6.2.1 — Stable Hotfix
 
 基線：`stable/v0.4.6.2`。
