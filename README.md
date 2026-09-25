@@ -1,3 +1,20 @@
+# BowlMeet v0.4.6.2-RC.1 — Full Regression & Release Candidate Gate
+
+基線：`v0.4.6.2-dev.1-R2`。
+
+- R2 實機 #1 First Publish：PASS。
+- R2 實機 #2 Republish Visibility：FAIL；已定位為「公開歷史」來源篩選在取消公開後把紀錄卡排除。
+- RC.1 修正：取消公開後自動切到「我的紀錄／已取消公開」，重新公開按鈕保持可見。
+- Republish 狀態改由 Public Control tombstone `removed` 判定，不再依賴遠端 Session 是否存在。
+- Full Automated Regression：**103/103 PASS**。
+- R2 → RC function delta：0 missing / 0 added / 0 body drift。
+- RC Preview：`preview/v0.4.6.2-RC.1/`，Cloud `V462RC1`、PIN `046221`、獨立 IndexedDB / Layout / Cache。
+- Preview-only PR #28 已合併；正式 root 未包含在 Preview publish。
+- DB_VERSION 2、PUBLIC code / payload、Backup / Restore、同步資料格式維持不變。
+- Supabase / IndexedDB / PUBLIC payload migration：NONE。
+- RC Device Smoke：6 項待實機確認。
+- Stable Promotion：尚未執行。
+
 # BowlMeet v0.4.6.2-dev.1-R2 — Post-R1 Cleanup & Cache Hardening
 
 基線：`v0.4.6.2-dev.1-R1`（Device Manual 10/10 PASS）。
