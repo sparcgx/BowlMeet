@@ -1,0 +1,43 @@
+{
+  "version": "v0.4.6.2-dev.1",
+  "title": "Per-Game Public Score Table Foundation",
+  "date": "2026-09-25",
+  "base": "stable/v0.4.6.1",
+  "automated": {
+    "pass": 53,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "scope": {
+    "columns": [
+      "球員",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "總分",
+      "平均"
+    ],
+    "missingScore": "—",
+    "horizontalScroll": true,
+    "stickyPlayerColumnOnMobile": true,
+    "sharedHistoryRenderer": true
+  },
+  "functionDelta": {
+    "expectedChanged": [
+      "renderHistory"
+    ],
+    "unexpectedChanged": []
+  },
+  "dataSafety": {
+    "dbVersion": 2,
+    "dbName": "bowlingMeetup.local",
+    "publicCode": "PUBLIC",
+    "supabaseMigration": false,
+    "indexedDbMigration": false,
+    "publicPayloadMigration": false
+  },
+  "devicePreviewReady": false
+}

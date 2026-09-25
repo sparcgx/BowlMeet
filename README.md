@@ -1,3 +1,93 @@
+# BowlMeet v0.4.6.2 — Stable / PUBLIC
+
+正式認證來源：`v0.4.6.2-RC.1`。
+
+- Full Automated Regression：**103/103 PASS**
+- Preview Cloud Configuration Gate：**12/12 PASS**
+- RC Device Smoke：**6/6 PASS**
+- Stable Promotion & PUBLIC Release Gate：**PASS**
+- APP_VERSION：`0.4.6.2`
+- PWA Cache：`bowlmeet-v0.4.6.2-stable-*`
+- 公開成績表：球員 / 1～6 / 總分 / 平均
+- 取消公開後保留本機卡片，並可直接重新公開
+- Republish 狀態使用 Public Control tombstone `removed`
+- 排行榜／分享／獎項：**Public-only**
+- iPhone 水平滑動＋sticky 球員欄：**PASS**
+- PWA 關閉重開／Cache refresh：**PASS**
+- `DB_VERSION = 2`
+- `PUBLIC_HISTORY_CODE = PUBLIC`
+- `PUBLIC_HISTORY_PIN = 042042`
+- `LAYOUT_PREFS_KEY = bowlingMeetup.layoutPreferences.v1`
+- Supabase migration：**NONE**
+- IndexedDB migration：**NONE**
+- PUBLIC payload migration／release-time rewrite：**NONE**
+- Backup / Restore / Snapshot / Sync contracts：**UNCHANGED**
+
+# BowlMeet v0.4.6.2-RC.1 — Full Regression & Release Candidate Gate
+
+基線：`v0.4.6.2-dev.1-R2`。
+
+- Full Automated Regression：**103/103 PASS**
+- Preview Cloud Configuration Gate：**12/12 PASS**
+- RC Device Smoke：**6/6 PASS**
+- Release Candidate Validation Complete：**YES**
+- R2 的 Republish Visibility 問題已修正：取消公開後自動切到「我的紀錄／已取消公開」，重新公開按鈕保持可見。
+- Republish 狀態改由 Public Control tombstone `removed` 判斷。
+- RC Preview Cloud Code 已由無效 7 碼 `V462RC1` 修正為合法 6 碼 `V46RC2`；PR #29 已發布。
+- 排行榜／分享／獎項：**Public-only 實機 PASS**
+- 每局成績表水平滑動＋sticky 球員欄：**PASS**
+- PWA 關閉重開／最新 RC cache：**PASS**
+- R2 → RC function delta：0 missing / 0 added / 0 body drift。
+- DB_VERSION 2、PUBLIC code / payload、Backup / Restore、同步資料格式維持不變。
+- Supabase / IndexedDB / PUBLIC payload migration：NONE。
+- Stable Promotion：**尚未執行**。
+
+# BowlMeet v0.4.6.2-dev.1-R2 — Post-R1 Cleanup & Cache Hardening
+
+基線：`v0.4.6.2-dev.1-R1`（Device Manual 10/10 PASS）。
+
+本版不新增資料功能，集中清理 R1 後續風險：
+- 首次「公開」與「重新公開」確認文字、離線狀態、同步 reason、成功訊息正確分流
+- R1 相容 Preview 修正舊 cache namespace 清理與 current-cache-only matching
+- Production Service Worker 只管理 production cache，不再刪除或讀取 Preview cache
+- 建立獨立 R2 Device Preview：`preview/v0.4.6.2-dev.1-R2/`
+- R2 Preview 使用獨立 Cloud code `V462D12`、PIN `046212`、IndexedDB、Layout key 與 Cache namespace
+- 修正 v0.4.6.2 PWA manifest 舊版 Stable／Layout Presets 描述
+- 清理 deployment-test.html 的 dev.3／HF1／6-8 待重測殘留文字
+- R1 Evidence 改為精確描述 production root 與 main Preview-only commits
+- 舊 v0.4.6.1 PR #8 / #9 / #11 / #12 / #15 已依 stable/v0.4.6.1 完整取代關閉
+- 新增可重跑 Gate：`node tools/v0.4.6.2-dev.1-r2-cleanup-gate.mjs`
+
+R2 最終靜態／差異 Regression：**44/44 PASS**。
+- `DB_VERSION = 2`
+- `PUBLIC_HISTORY_CODE = PUBLIC`
+- `DB_NAME = bowlingMeetup.local`
+- 無 Supabase / IndexedDB / PUBLIC payload migration
+- 正式 root `index.html` 僅 4 行預期的公開狀態文案／reason 變更
+- `main` 相對 `stable/v0.4.6.1` 的差異仍全部位於 `preview/`
+- Isolated R2 Preview 已由 Preview-only PR #25 / #26 發布（正式 root 未變）
+
+> R2 尚未 Stable Promotion；目前只差 4 項實機 Device Acceptance。
+
+# BowlMeet v0.4.6.2-dev.1 — Per-Game Public Score Table Foundation
+
+基線：`stable/v0.4.6.1`。
+
+本版只調整「成績紀錄／公開歷史」卡片的成績呈現，不修改資料結構或雲端契約。
+
+- 表格欄位改為：**球員 / 1 / 2 / 3 / 4 / 5 / 6 / 總分 / 平均**
+- 不足 6 局的欄位顯示 `—`
+- 總分／平均沿用既有 `playerCalc()`
+- 公開紀錄與本機紀錄共用相同歷史卡 renderer，視覺一致
+- 手機版表格可左右滑動
+- 手機版球員欄 sticky，滑動時保留玩家識別
+- 不修改排行榜、分享、獎項、同步、Backup / Restore
+- `DB_VERSION = 2`
+- `PUBLIC_HISTORY_CODE = PUBLIC`
+- 無 Supabase migration
+- 無 IndexedDB migration
+- 無 PUBLIC payload migration
+
 # BowlMeet v0.4.6.1 — Stable / PUBLIC
 
 正式基線：`v0.4.6.1-RC.1`，已完成 Full Automated **125/125 PASS**、RC Device Smoke **8/8 PASS**，且 dev.2-R1 Device Acceptance **12/12 PASS**。

@@ -1,0 +1,106 @@
+BowlMeet v0.4.6.2-dev.1-R1
+Per-Game Table Device Preview & Mobile Regression Gate
+Date: 2026-09-25
+Base: v0.4.6.2-dev.1
+Stable ancestry: stable/v0.4.6.1
+
+AUTOMATED GATE: 76 PASS / 0 FAIL
+
+TABLE
+PASS 球員 / 1 / 2 / 3 / 4 / 5 / 6 / 總分 / 平均
+PASS exactly six score slots
+PASS missing scores render —
+PASS total uses existing playerCalc()
+PASS average uses existing playerCalc()
+PASS Player Hub link retained
+PASS Import Public action retained
+PASS Unpublish / Republish actions retained
+PASS Edit / Share / Delete actions retained
+
+MOBILE
+PASS horizontal scrolling
+PASS 9-column responsive grid
+PASS mobile min-width 720px
+PASS sticky player column
+PASS sticky player header layer
+PASS momentum scrolling
+PASS reduced-transparency fallback
+
+DELTA
+PASS Root renderHistory matches dev.1
+PASS No unexpected root function changes
+PASS Non-renderHistory functions aligned with stable/v0.4.6.1
+PASS Preview function bodies match root
+PASS Preview CSS matches root
+
+PREVIEW ISOLATION
+PASS localStorage isolated
+PASS layout preferences isolated
+PASS IndexedDB isolated
+PASS Cloud group code isolated
+PASS production PUBLIC target absent from Preview
+PASS production DB target absent from Preview
+PASS Service Worker cache isolated
+PASS Preview manifest aligned
+
+DOMAIN SAFETY
+PASS playerCalc / sessionSummary unchanged
+PASS PUBLIC history/query/gate functions unchanged
+PASS Leaderboard / Awards / Share unchanged
+PASS Group payload unchanged
+PASS Backup / Restore / Snapshot / Integrity unchanged
+PASS Sync / Personal / Group sync unchanged
+PASS PUBLIC_HISTORY_CODE remains PUBLIC in production root
+PASS DB_VERSION remains 2
+PASS DB_NAME remains bowlingMeetup.local
+PASS layoutPreferences key unchanged
+PASS No layout preferences in PUBLIC payload or backup
+
+MIGRATION
+- Supabase migration: NONE
+- IndexedDB migration: NONE
+- PUBLIC payload migration: NONE
+
+DEVICE MANUAL ACCEPTANCE: 10 PASS / 0 FAIL
+PASS 1. Public/history table header shows Player / 1 / 2 / 3 / 4 / 5 / 6 / Total / Average
+PASS 2. Scores 1–6 display in correct columns
+PASS 3. Missing game score displays —
+PASS 4. Total / Average values are correct
+PASS 5. Public-only record table renders correctly
+PASS 6. Import My Record works
+PASS 7. Publish / Cancel Public / Republish state controls work
+PASS 8. Mobile horizontal scroll works
+PASS 9. Mobile sticky player column remains visible while scrolling
+PASS 10. PWA close/reopen and preview cache refresh work
+
+DEVICE ISSUE REPAIR 1
+Reported on iPhone:
+- #6 Import My Record not visible
+- #7 Unpublish / Republish not visible
+- #8 Horizontal scrolling not working
+
+ROOT CAUSE
+- #6/#7: current card was local-only; action visibility is state-dependent and Preview lacked an obvious path to publish a local-only record.
+- #8: 720px inner grid min-content width propagated through parent containers on iPhone Safari, so the card expanded/clipped instead of the table wrapper owning the horizontal scroll.
+
+FIX
+- Local-only history cards now expose a Publish action using the existing published-state handler.
+- Published -> Unpublish, Removed -> Republish, Public-only -> Import My Record.
+- Added min-width containment to unified history panel / session list / session.
+- Table wrapper now uses width/max-width/min-width containment, overflow-x: scroll, iOS momentum scrolling, touch-action pan and inline overscroll containment.
+
+REPAIR REGRESSION: 72 PASS / 0 FAIL
+REPAIR 1 MANUAL RETEST: 3 PASS / 0 FAIL
+PASS #6 Import My Record
+PASS #7 Publish / Unpublish / Republish
+PASS #8 Mobile horizontal scroll
+
+STATUS
+Automated Regression: PASS (76/76)
+Repair 1 Regression: PASS (72/72)
+Device Preview Package: PASS
+Manual Device Acceptance: PASS (10/10)
+Repair 1: PASS
+Validation Complete: YES
+Stable Promotion: NOT EXECUTED
+Production main/stable baseline: UNCHANGED

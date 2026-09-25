@@ -1,0 +1,63 @@
+BowlMeet v0.4.6.2-dev.1
+Per-Game Public Score Table Foundation
+Date: 2026-09-25
+Base: stable/v0.4.6.1
+
+AUTOMATED GATE: 53 PASS / 0 FAIL
+
+SCOPE
+- History / public score card table expanded to:
+  Player / 1 / 2 / 3 / 4 / 5 / 6 / Total / Average
+- Missing game scores render as —
+- Total and average continue to use existing playerCalc()
+- Local and public history cards share the same expanded renderer
+- Mobile table supports horizontal scrolling
+- Mobile player column remains sticky while scrolling
+
+STATIC / VERSION
+PASS JavaScript syntax
+PASS Duplicate IDs = 0
+PASS Missing literal DOM refs = 0
+PASS Duplicate function declarations = 0
+PASS APP_VERSION = 0.4.6.2-dev.1
+PASS Manifest / Deployment / Service Worker aligned
+
+FUNCTION DELTA
+PASS renderHistory is the only expected application function change
+PASS All other existing function bodies unchanged vs stable/v0.4.6.1
+
+PUBLIC / DATA SAFETY
+PASS playerCalc unchanged
+PASS sessionSummary unchanged
+PASS publicHistoryRecords unchanged
+PASS publicMeetupRecords unchanged
+PASS publicSessionForMeetup unchanged
+PASS publicGames unchanged
+PASS requirePublicMeetup unchanged
+PASS renderLeaderboard unchanged
+PASS renderAwards unchanged
+PASS renderShare unchanged
+PASS drawShareCard unchanged
+PASS shareHistorySession unchanged
+PASS buildGroupPayload unchanged
+PASS captureState unchanged
+PASS mirrorStateToLocalStorage unchanged
+PASS exportFullBackup unchanged
+PASS applyRestorePayload unchanged
+PASS syncNow unchanged
+PASS groupSyncNow unchanged
+PASS syncPersonalNow unchanged
+PASS PUBLIC_HISTORY_CODE remains PUBLIC
+PASS DB_VERSION remains 2
+PASS DB_NAME remains bowlingMeetup.local
+PASS layoutPreferences key unchanged
+PASS No layout preferences in group/PUBLIC payload
+PASS No schema migration
+
+STATUS
+Automated Regression: PASS (53/53)
+Critical Regression: 0
+Supabase Migration: NONE
+IndexedDB Migration: NONE
+PUBLIC Payload Migration: NONE
+Device Preview: NOT YET
