@@ -1,0 +1,70 @@
+BowlMeet v0.4.6.2-RC.1
+Full Regression & Release Candidate Gate
+Date: 2026-09-25
+Base: v0.4.6.2-dev.1-R2
+Stable ancestry: stable/v0.4.6.1
+
+FULL AUTOMATED GATE: 103 PASS / 0 FAIL
+
+R2 DEVICE FINDING
+PASS #1 First Publish
+FAIL #2 Republish button not shown after Cancel Public
+
+ROOT CAUSE
+- Record remained under Public source filter.
+- Cancel Public changes r.public to false.
+- filteredSessions removed the card before Republish could be displayed.
+- Remote Session presence was also not a valid Republish classifier after tombstone removal.
+
+RC.1 REPAIR
+PASS Cancel Public -> switch to Local source
+PASS Cancel Public -> Public State filter becomes Unpublished
+PASS Republish remains visible
+PASS Republish classification uses Public Control tombstone
+PASS Republish -> Unpublished filter returns to All
+PASS First Publish semantics retained
+
+RC DELTA
+PASS APP_VERSION 0.4.6.2-RC.1
+PASS Manifest RC.1
+PASS PWA RC cache namespace
+PASS Deployment Test RC.1
+PASS Isolated RC.1 Preview
+PASS R2 -> RC missing functions 0
+PASS R2 -> RC added functions 0
+PASS R2 -> RC function-body drift 0
+PASS CSS unchanged
+
+DATA / PUBLIC SAFETY
+PASS DB_VERSION 2
+PASS DB_NAME bowlingMeetup.local
+PASS PUBLIC_HISTORY_CODE PUBLIC
+PASS PUBLIC_HISTORY_PIN 042042
+PASS layoutPreferences key unchanged
+PASS Supabase migration NONE
+PASS IndexedDB migration NONE
+PASS PUBLIC payload migration NONE
+
+RC PREVIEW
+Path: preview/v0.4.6.2-RC.1/
+Cloud: V462RC1
+PIN: 046221
+IndexedDB: bowlmeet.preview.v0462rc1.local
+Cache: bowlmeet-preview-v0462rc1-*
+Preview Publish: PR #28 MERGED
+Production root included: NO
+
+RC DEVICE SMOKE: PENDING (6)
+1 First Publish
+2 Cancel Public keeps card visible
+3 Republish button / copy
+4 Mobile horizontal scroll + sticky player
+5 Public-only leaderboard/share
+6 PWA close/reopen latest RC cache
+
+STATUS
+Full Automated Regression: PASS (103/103)
+RC Preview: PUBLISHED
+RC Device Smoke: PENDING
+Release Candidate Validation Complete: NO
+Stable Promotion: NOT EXECUTED
