@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BowlMeet v0.4.6.3-dev.3｜RC Preparation Test</title><meta name="theme-color" content="#ffffff">
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:#172033;background:#f5f7fa}*{box-sizing:border-box}body{margin:0}.wrap{max-width:800px;margin:auto;padding:18px}.card{background:#fff;border:1px solid #e4e8ef;border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 8px 24px rgba(17,24,39,.05)}h1{font-size:22px;margin:0 0 6px}h2{font-size:16px;margin:0 0 10px}p,li{color:#697386;line-height:1.6}.pill{display:inline-block;border-radius:999px;background:#eef4ff;color:#0f62fe;padding:5px 9px;font-size:11px;font-weight:850;margin-bottom:10px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid #eef1f5}.row:last-child{border-bottom:0}.label{font-weight:800}.status{font-weight:900}.ok{color:#14804a}.bad{color:#b42318}.btn{display:block;text-align:center;text-decoration:none;background:#172033;color:white;border-radius:12px;padding:13px 16px;font-weight:850}.meta{font-size:12px;color:#697386;word-break:break-all;white-space:pre-wrap}ol{padding-left:22px;margin:8px 0 0}
+</style></head><body><main class="wrap">
+<section class="card"><span class="pill">v0.4.6.3-dev.3 Preview</span><h1>Device Regression & RC Preparation</h1><p>Source RC Preparation Gate：45/45 PASS。此站為獨立 Preview，不修改正式 v0.4.6.2.1 根目錄。</p></section>
+<section class="card"><h2>Preview 自我檢查</h2>
+<div class="row"><span class="label">JavaScript</span><span class="status bad" id="js">未執行</span></div>
+<div class="row"><span class="label">HTTPS</span><span class="status" id="secure">檢查中</span></div>
+<div class="row"><span class="label">APP_VERSION</span><span class="status" id="version">檢查中</span></div>
+<div class="row"><span class="label">Dynamic Grid</span><span class="status" id="grid">檢查中</span></div>
+<div class="row"><span class="label">Share Card Sync</span><span class="status" id="share">檢查中</span></div>
+<div class="row"><span class="label">CSS Cache v0463d3</span><span class="status" id="css">檢查中</span></div>
+<div class="row"><span class="label">Service Worker API</span><span class="status" id="sw">檢查中</span></div>
+</section>
+<section class="card"><h2>RC 前最後實機 Smoke Test</h2><ol>
+<li>成績紀錄：1 局、3 局、6 局欄數正確。</li>
+<li>手機成績表：可左右滑動，球員欄 Sticky 正常。</li>
+<li>分享成績 → 球聚完整成績卡：局數與成績紀錄一致。</li>
+<li>排行榜、獎項、分享成績：目前球聚 Context 正常連動。</li>
+<li>公開／取消公開：分享與排行榜仍只讀公開成績。</li>
+<li>重新整理 Safari / PWA：版本仍顯示 v0.4.6.3-dev.3，無舊 Preview Cache 混入。</li>
+</ol></section>
+<section class="card"><div class="meta" id="meta"></div></section>
+<a class="btn" href="./index.html?v=0463d3">開啟 v0.4.6.3-dev.3 測試網頁</a>
+</main><script>
+(async()=>{
+ const set=(id,text,cls)=>{const e=document.getElementById(id);e.textContent=text;e.className='status '+cls};
+ set('js','正常執行','ok');set('secure',window.isSecureContext?'安全 HTTPS':'非安全環境',window.isSecureContext?'ok':'bad');
+ set('sw','serviceWorker' in navigator?'支援':'不支援','serviceWorker' in navigator?'ok':'bad');
+ try{
+   const html=await fetch('./index.html?integrity=0463d3',{cache:'no-store'}).then(r=>r.text());
+   const tests={
+    version:html.includes("const APP_VERSION='0.4.6.3-dev.3';"),
+    grid:html.includes('function sessionScoreGameCount(s)')&&html.includes('const gameCount=sessionScoreGameCount(s),gridColumns='),
+    share:html.includes('visibleGameCount=sessionScoreGameCount(data.session)'),
+    css:html.includes('liquid-glass-dev4.css?v=0463d3')
+   };
+   set('version',tests.version?'0.4.6.3-dev.3':'版本不符',tests.version?'ok':'bad');
+   set('grid',tests.grid?'已載入':'檢查失敗',tests.grid?'ok':'bad');
+   set('share',tests.share?'已同步':'檢查失敗',tests.share?'ok':'bad');
+   set('css',tests.css?'已載入':'版本不符',tests.css?'ok':'bad');
+ }catch(e){['version','grid','share','css'].forEach(id=>set(id,'讀取失敗','bad'))}
+ const standalone=(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
+ document.getElementById('meta').textContent='模式：'+(standalone?'PWA / Standalone':'Safari / Browser')+'\nURL：'+location.href+'\nUser Agent：'+navigator.userAgent;
+})();
+</script></body></html>
