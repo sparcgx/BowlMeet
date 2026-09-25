@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BowlMeet v0.4.6.3-dev.3-R2｜Navigation Swap Test</title><meta name="theme-color" content="#ffffff">
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:#172033;background:#f5f7fa}*{box-sizing:border-box}body{margin:0}.wrap{max-width:800px;margin:auto;padding:18px}.card{background:#fff;border:1px solid #e4e8ef;border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 8px 24px rgba(17,24,39,.05)}h1{font-size:22px;margin:0 0 6px}h2{font-size:16px;margin:0 0 10px}p,li{color:#697386;line-height:1.6}.pill{display:inline-block;border-radius:999px;background:#eef4ff;color:#0f62fe;padding:5px 9px;font-size:11px;font-weight:850;margin-bottom:10px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid #eef1f5}.row:last-child{border-bottom:0}.label{font-weight:800}.status{font-weight:900}.ok{color:#14804a}.bad{color:#b42318}.btn{display:block;text-align:center;text-decoration:none;background:#172033;color:#fff;border-radius:12px;padding:13px 16px;font-weight:850}.meta{font-size:12px;color:#697386;word-break:break-all;white-space:pre-wrap}ol{padding-left:22px;margin:8px 0 0}
+</style></head><body><main class="wrap">
+<section class="card"><span class="pill">v0.4.6.3-dev.3-R2 Preview</span><h1>公開成績／排行榜位置對調</h1><p>只調整導覽位置，不變更公開成績、排行榜、獎項或分享資料邏輯。</p></section>
+<section class="card"><h2>自我檢查</h2>
+<div class="row"><span class="label">APP_VERSION</span><span class="status" id="version">檢查中</span></div>
+<div class="row"><span class="label">桌機：排行榜在成績紀錄前</span><span class="status" id="desktop">檢查中</span></div>
+<div class="row"><span class="label">手機主 Dock：成績紀錄</span><span class="status" id="dock">檢查中</span></div>
+<div class="row"><span class="label">手機更多：排行榜</span><span class="status" id="more">檢查中</span></div>
+<div class="row"><span class="label">Awards PUBLIC Fix 保留</span><span class="status" id="awards">檢查中</span></div>
+</section>
+<section class="card"><h2>請確認</h2><ol>
+<li>桌機／寬螢幕：排行榜與成績紀錄順序已互換。</li>
+<li>手機底部 Dock：原本「排行」位置改為「成績」。</li>
+<li>手機「更多」：原本成績紀錄位置改為「排行榜」。</li>
+<li>點擊後仍進入正確頁面，沒有導覽錯位。</li>
+</ol></section>
+<a class="btn" href="./index.html?v=0463d3r2">開啟 R2 完整測試網頁</a>
+<section class="card"><div class="meta" id="meta"></div></section>
+</main><script>
+(async()=>{
+ const set=(id,text,cls)=>{const e=document.getElementById(id);e.textContent=text;e.className='status '+cls};
+ try{
+  const html=await fetch('./index.html?integrity=0463d3r2',{cache:'no-store'}).then(r=>r.text());
+  const tabs=html.slice(html.indexOf('<nav class="tabs"'),html.indexOf('</nav>',html.indexOf('<nav class="tabs"'))+6);
+  const dock=html.slice(html.indexOf('<nav class="mobile-glass-dock"'),html.indexOf('</nav>',html.indexOf('<nav class="mobile-glass-dock"'))+6);
+  const more=html.slice(html.indexOf('<section class="mobile-more-sheet"'),html.indexOf('</section>',html.indexOf('<section class="mobile-more-sheet"'))+10);
+  const tests={
+   version:html.includes("const APP_VERSION='0.4.6.3-dev.3-R2';"),
+   desktop:tabs.indexOf('leaderboardView')<tabs.indexOf('historyView'),
+   dock:dock.includes('data-dock-view="historyView"')&&!dock.includes('data-dock-view="leaderboardView"'),
+   more:more.includes('data-dock-view="leaderboardView"')&&!more.includes('data-dock-view="historyView"'),
+   awards:html.includes("result=computeAwards(id,'public')")
+  };
+  set('version',tests.version?'0.4.6.3-dev.3-R2':'版本不符',tests.version?'ok':'bad');
+  set('desktop',tests.desktop?'PASS':'FAIL',tests.desktop?'ok':'bad');
+  set('dock',tests.dock?'PASS':'FAIL',tests.dock?'ok':'bad');
+  set('more',tests.more?'PASS':'FAIL',tests.more?'ok':'bad');
+  set('awards',tests.awards?'PASS':'FAIL',tests.awards?'ok':'bad');
+ }catch(e){['version','desktop','dock','more','awards'].forEach(id=>set(id,'讀取失敗','bad'))}
+ document.getElementById('meta').textContent='URL：'+location.href+'\nUser Agent：'+navigator.userAgent;
+})();
+</script></body></html>
