@@ -70,5 +70,21 @@
     "prefersReducedTransparency": true
   },
   "shareCanvasNeutralWhite": true,
-  "nextGate": "isolated Preview + iPhone / PWA / desktop cross-module visual acceptance"
+  "nextGate": "iPhone / PWA / desktop cross-module visual acceptance",
+  "preview": {
+    "status": "PUBLISHED",
+    "path": "/preview/v0.4.7.0-dev.2/",
+    "pullRequest": 61,
+    "mergeCommit": "2cfa027db1dfbc5d85cf9b329df67d81487e32db",
+    "isolationGate": {
+      "pass": 16,
+      "fail": 0,
+      "total": 16
+    },
+    "cloudEnabled": false,
+    "localStorageNamespace": "bowlmeet.preview.v0470d2.*",
+    "indexedDb": "bowlmeet.preview.v0470d2.local",
+    "cacheNamespace": "bowlmeet-preview-v0470d2-*",
+    "productionRootUnchanged": true
+  }
 }
