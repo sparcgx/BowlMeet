@@ -1,0 +1,52 @@
+BowlMeet v0.4.7.0-dev.1 | Theme Center Foundation Static Gate
+================================================================
+Baseline: stable/v0.4.6.7
+Baseline Commit: bf6054deeaa0658ab807c3c60ad095d7060d0de7
+
+RESULT
+------
+39 PASS / 0 FAIL
+Decision: STATIC_GATE_PASS
+
+VERIFIED
+--------
+[PASS] JavaScript syntax parses successfully.
+[PASS] All inline CSS style blocks have balanced braces.
+[PASS] 6/6 themes: Default, Liquid Glass, Clear Blue, Soft Violet, Dark Night, High Contrast.
+[PASS] 5/5 design presets: Standard Work, Mobile Browse, Field Large Text, Glass Showcase, Night Mode.
+[PASS] Theme preferences persist only to bowlingMeetup.themePreferences.v1.
+[PASS] Existing layout key bowlingMeetup.layoutPreferences.v1 is preserved.
+[PASS] Card radius / shadow / color intensity controls are present.
+[PASS] Motion and transparency controls are present.
+[PASS] prefers-reduced-motion fallback is present.
+[PASS] prefers-reduced-transparency fallback is present.
+[PASS] backdrop-filter unsupported fallback is present.
+[PASS] DB_VERSION remains 2.
+[PASS] PUBLIC_HISTORY_CODE remains PUBLIC.
+[PASS] PUBLIC_CONTROL_KEY remains bowlingMeetup.publicControl.v044.
+[PASS] Theme preferences are excluded from captureState / Backup / Restore / Snapshot payload.
+[PASS] Core state / IndexedDB / Sync / Group functions checked against stable/v0.4.6.7 remain unchanged.
+[PASS] Duplicate goMeetupBtn count is inherited from stable (3 -> 3), not introduced by Theme Center.
+[PASS] Manifest identifies v0.4.7.0-dev.1 and documents local-only UI scope.
+[PASS] Service Worker uses isolated v0.4.7.0-dev.1 cache namespace.
+[PASS] Index + Service Worker use CSS cache fingerprint v=0470d1.
+
+DEVICE ACCEPTANCE
+-----------------
+Status: PENDING
+
+Required manual checks:
+1. Switch all 6 themes.
+2. Apply all 5 quick presets.
+3. Reload / close PWA / reopen and confirm preference persistence.
+4. Verify Dark Night text, score, forms, tables and dialogs.
+5. Verify High Contrast buttons, borders, focus and score readability.
+6. Turn Motion OFF and verify UI remains functional.
+7. Turn Transparency OFF and verify solid fallback.
+8. Verify mobile layout has no unexpected horizontal overflow.
+9. Smoke test live scoring / rankings / history / share.
+10. Smoke test PUBLIC / Backup workflow remains unchanged.
+
+NOTE
+----
+Static Gate PASS does not replace iPhone/PWA visual and interaction acceptance.
