@@ -1,7 +1,7 @@
 {
   "name": "保齡球球聚｜BowlMeet v0.4.6.2-RC.1 Preview",
   "short_name": "BowlMeet RC.1",
-  "description": "v0.4.6.2-RC.1 isolated device preview：每局公開成績表、公開狀態控制、Cache Hardening 與 Release Candidate regression。",
+  "description": "v0.4.6.2-RC.1 isolated device preview：每局公開成績表、公開狀態控制、Public-only 排行榜／分享／獎項、Cache Hardening 與 Release Candidate regression。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
