@@ -1,0 +1,34 @@
+BowlMeet v0.4.6.2.1
+History Score Grid Cache Fix - Stable Hotfix
+Date: 2026-09-25
+Base: stable/v0.4.6.2
+
+CERTIFIED INPUT
+PASS Root Fix Gate 16/16
+PASS Isolated Preview Gate 21/21
+PASS Device Acceptance 2/2
+
+STABLE HOTFIX PROMOTION GATE: 24 PASS / 0 FAIL
+
+FIX
+PASS Versioned Liquid Glass CSS URL
+PASS Critical inline Grid fallback
+PASS 9-column history score table
+PASS Mobile horizontal scroll
+PASS Sticky player column
+PASS PWA cache rotated
+
+SAFETY
+PASS Function body drift = 0
+PASS DB_VERSION = 2
+PASS DB_NAME = bowlingMeetup.local
+PASS PUBLIC_HISTORY_CODE = PUBLIC
+PASS PUBLIC_HISTORY_PIN = 042042
+PASS Supabase migration NONE
+PASS IndexedDB migration NONE
+PASS PUBLIC payload migration NONE
+
+GOVERNANCE
+PASS release branch behind main = 0
+PASS Preview paths in Stable PR diff = 0
+READY FOR MAIN PROMOTION: YES
