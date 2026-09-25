@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.6.2-dev.1</title>
+<title>保齡球球聚｜BowlMeet v0.4.7.0-dev.1</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1367,9 +1367,49 @@ dialog::backdrop,
 
         <section class="card settings-panel layout-settings-panel">
           <div class="settings-panel-head">
-            <div><h2>版面設定</h2><p>調整目前裝置的 Liquid Glass 顯示方式；不會修改球聚、公開成績、同步或備份資料。</p></div>
+            <div><h2>版面設計</h2><p>主題、快速版面與顯示密度集中在這裡；全部只儲存在目前裝置，不會修改球聚、公開成績、同步或備份資料。</p></div>
             <span class="layout-preview-chip" id="layoutPreviewChip">預設版面</span>
           </div>
+
+          <div class="theme-center-section">
+            <div class="theme-center-head">
+              <div><strong>主題</strong><span>選擇整體視覺風格；可隨時切回原本主題。</span></div>
+              <span class="theme-current-chip" id="themeCurrentChip">預設（原主題）</span>
+            </div>
+            <div class="theme-card-grid" role="group" aria-label="主題選擇">
+              <button class="theme-card" type="button" data-theme-option="default" aria-pressed="false">
+                <span class="theme-swatch swatch-default"><i></i><i></i><i></i></span>
+                <strong>預設</strong><span>原本白色企業風格</span>
+              </button>
+              <button class="theme-card" type="button" data-theme-option="liquid" aria-pressed="false">
+                <span class="theme-swatch swatch-liquid"><i></i><i></i><i></i></span>
+                <strong>高階動態透明</strong><span>玻璃、柔光與動態層次</span>
+              </button>
+              <button class="theme-card" type="button" data-theme-option="clearblue" aria-pressed="false">
+                <span class="theme-swatch swatch-clearblue"><i></i><i></i><i></i></span>
+                <strong>清新藍白</strong><span>清爽、專業、資料易讀</span>
+              </button>
+              <button class="theme-card" type="button" data-theme-option="violet" aria-pressed="false">
+                <span class="theme-swatch swatch-violet"><i></i><i></i><i></i></span>
+                <strong>柔霧紫光</strong><span>淡紫柔霧與輕量色彩</span>
+              </button>
+              <button class="theme-card" type="button" data-theme-option="dark" aria-pressed="false">
+                <span class="theme-swatch swatch-dark"><i></i><i></i><i></i></span>
+                <strong>夜幕深色</strong><span>低光環境與夜間使用</span>
+              </button>
+              <button class="theme-card" type="button" data-theme-option="contrast" aria-pressed="false">
+                <span class="theme-swatch swatch-contrast"><i></i><i></i><i></i></span>
+                <strong>高對比簡潔</strong><span>強化辨識與快速操作</span>
+              </button>
+            </div>
+            <div class="theme-options">
+              <label class="theme-toggle-row"><span><strong>動態效果</strong><small>主題高光與切換動畫</small></span><input id="themeMotionToggle" type="checkbox" checked /></label>
+              <label class="theme-toggle-row"><span><strong>透明效果</strong><small>玻璃模糊與半透明背景</small></span><input id="themeTransparencyToggle" type="checkbox" checked /></label>
+              <button class="btn small" id="themeResetBtn" type="button">恢復原主題</button>
+            </div>
+            <div class="theme-center-status" id="themeCenterStatus">主題設定會立即套用並儲存在目前裝置。</div>
+          </div>
+
           <div class="layout-preset-section">
             <div class="layout-preset-head">
               <div><strong>快速版面</strong><span>一鍵套用並保存；下方仍可進一步自訂。</span></div>
@@ -2051,8 +2091,18 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.6.2-dev.1';
+const APP_VERSION='0.4.7.0-dev.1';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
+const THEME_PREFS_KEY='bowlingMeetup.themePreferences.v1';
+const THEME_DEFAULTS=Object.freeze({theme:'default',motion:true,transparency:true});
+const THEMES=Object.freeze({
+  default:Object.freeze({label:'預設（原主題）',themeColor:'#ffffff'}),
+  liquid:Object.freeze({label:'高階動態透明',themeColor:'#f6f9ff'}),
+  clearblue:Object.freeze({label:'清新藍白',themeColor:'#f3f8ff'}),
+  violet:Object.freeze({label:'柔霧紫光',themeColor:'#faf6ff'}),
+  dark:Object.freeze({label:'夜幕深色',themeColor:'#111827'}),
+  contrast:Object.freeze({label:'高對比簡潔',themeColor:'#ffffff'})
+});
 const LAYOUT_DEFAULTS=Object.freeze({scale:'100',density:'standard',width:'standard',leaderboard:'standard',scoreSize:'standard'});
 const LAYOUT_PRESETS=Object.freeze({
   standard:Object.freeze({label:'標準',prefs:Object.freeze({...LAYOUT_DEFAULTS})}),
@@ -2089,6 +2139,80 @@ function avg(nums){return nums.length?Math.round(nums.reduce((a,b)=>a+b,0)/nums.
 function flash(text,type='ok'){const el=$('message');el.textContent=text;el.className='message show '+type;clearTimeout(flash.t);flash.t=setTimeout(()=>el.className='message',2400)}
 
 function safeJsonParse(raw,fallback=null){try{return JSON.parse(raw)}catch{return fallback}}
+
+function normalizeThemePreferences(raw={}){
+  const theme=THEMES[String(raw?.theme||'')]?String(raw.theme):THEME_DEFAULTS.theme;
+  return {
+    theme,
+    motion:typeof raw?.motion==='boolean'?raw.motion:THEME_DEFAULTS.motion,
+    transparency:typeof raw?.transparency==='boolean'?raw.transparency:THEME_DEFAULTS.transparency
+  };
+}
+function readThemePreferences(){
+  return normalizeThemePreferences(safeJsonParse(localStorage.getItem(THEME_PREFS_KEY),{})||{});
+}
+function applyThemePreferences(prefs){
+  const p=normalizeThemePreferences(prefs),root=document.documentElement;
+  root.dataset.theme=p.theme;
+  root.dataset.themeMotion=p.motion?'on':'off';
+  root.dataset.themeTransparency=p.transparency?'on':'off';
+  root.style.colorScheme=p.theme==='dark'?'dark':'light';
+  const meta=document.querySelector('meta[name="theme-color"]');
+  if(meta)meta.setAttribute('content',THEMES[p.theme]?.themeColor||'#ffffff');
+  return p;
+}
+function renderThemeControls(prefs){
+  const p=normalizeThemePreferences(prefs);
+  document.querySelectorAll('[data-theme-option]').forEach(btn=>{
+    const active=btn.dataset.themeOption===p.theme;
+    btn.classList.toggle('active',active);
+    btn.setAttribute('aria-pressed',active?'true':'false');
+  });
+  if($('themeCurrentChip'))$('themeCurrentChip').textContent=THEMES[p.theme]?.label||THEMES.default.label;
+  if($('themeMotionToggle'))$('themeMotionToggle').checked=p.motion;
+  if($('themeTransparencyToggle'))$('themeTransparencyToggle').checked=p.transparency;
+  return p;
+}
+function setThemeCenterStatus(text,saved=false){
+  const el=$('themeCenterStatus');if(!el)return;
+  el.textContent=text;el.classList.toggle('saved',!!saved);
+}
+function saveThemePreferences(prefs,message='主題設定已儲存在目前裝置。'){
+  const p=normalizeThemePreferences(prefs);
+  localStorage.setItem(THEME_PREFS_KEY,JSON.stringify(p));
+  applyThemePreferences(p);
+  renderThemeControls(p);
+  setThemeCenterStatus(message,true);
+  return p;
+}
+function selectTheme(theme){
+  const current=readThemePreferences();
+  if(!THEMES[theme])return;
+  saveThemePreferences({...current,theme},'已套用「'+THEMES[theme].label+'」。');
+}
+function updateThemeEffects(){
+  const current=readThemePreferences();
+  saveThemePreferences({
+    ...current,
+    motion:$('themeMotionToggle')?.checked!==false,
+    transparency:$('themeTransparencyToggle')?.checked!==false
+  });
+}
+function resetThemePreferences(){
+  localStorage.removeItem(THEME_PREFS_KEY);
+  applyThemePreferences(THEME_DEFAULTS);
+  renderThemeControls(THEME_DEFAULTS);
+  setThemeCenterStatus('已恢復預設（原主題）。',true);
+}
+function initThemeCenter(){
+  const saved=readThemePreferences();
+  applyThemePreferences(saved);
+  renderThemeControls(saved);
+  document.querySelectorAll('[data-theme-option]').forEach(btn=>btn.addEventListener('click',()=>selectTheme(btn.dataset.themeOption)));
+  $('themeMotionToggle')?.addEventListener('change',updateThemeEffects);
+  $('themeTransparencyToggle')?.addEventListener('change',updateThemeEffects);
+  $('themeResetBtn')?.addEventListener('click',resetThemePreferences);
+}
 
 const LAYOUT_ALLOWED={
   scale:new Set(['90','100','110','120']),
@@ -3766,7 +3890,7 @@ $('photoInput').addEventListener('change',e=>setPhoto(e.target.files&&e.target.f
 $('rotateLeftBtn').addEventListener('click',()=>rotatePhoto(-90));$('rotateRightBtn').addEventListener('click',()=>rotatePhoto(90));$('ocrBtn').addEventListener('click',runOcr);$('clearPhotoBtn').addEventListener('click',clearPhoto);$('ocrQuality').addEventListener('change',()=>{if($('photoPreview').src)previewTemplateGrid()});$('ocrMode').addEventListener('change',()=>{previewTemplateGrid();if($('ocrMode').value==='general')$('templateStatus').textContent='一般 OCR 模式：不使用固定表格欄位定位。';else previewTemplateGrid()});$('showGridGuide').addEventListener('change',()=>previewTemplateGrid());$('reparseBtn').addEventListener('click',()=>{renderOcrRows(parseOcrText($('ocrRawText').value));$('verifyFilter').value='pending';renderVerificationCenter();setOcrStatus('已重新解析；請完成待確認欄位。',100)});$('applyOcrBtn').addEventListener('click',applyOcrToSheet);
 renderOcrRows(blankOcrRows());updateStages();
 
-$('date').value=today();$('meetupDate').value=today();load();initLayoutSettings();resetMeetupForm();resetRosterForm();if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll();initPwa();initSync();initGroup();startPersonalPolling();switchView('meetupView',{scroll:false});initDataSafety().then(()=>{if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll()});
+$('date').value=today();$('meetupDate').value=today();load();initThemeCenter();initLayoutSettings();resetMeetupForm();resetRosterForm();if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll();initPwa();initSync();initGroup();startPersonalPolling();switchView('meetupView',{scroll:false});initDataSafety().then(()=>{if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll()});
 })();
 </script>
 </body>
