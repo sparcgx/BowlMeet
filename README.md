@@ -13,6 +13,12 @@
 - JavaScript Parse / CSS Brace / PWA Manifest / Service Worker Cache / Local-only Data Isolation：**PASS**。
 - iPhone / PWA Manual Device Acceptance：**PENDING**（10 項）。
 - 舊 dev.1 已封存：`archive/v0.4.7.0-dev.1-pre-v0.4.6.7-refresh-20260926`。
+- Theme Center Foundation Static Gate：**33 PASS / 0 FAIL**。
+- 隔離 Preview Gate：**15 PASS / 0 FAIL**。
+- Preview-only PR：#60，已合併到 main；只新增 `/preview/v0.4.7.0-dev.1/`。
+- Preview Cloud：OFF；LocalStorage / IndexedDB / PWA Cache 均使用 `v0470d1` 隔離 namespace。
+- 正式 root `index.html` blob 與 `stable/v0.4.6.7` 完全一致；正式版未升級。
+- 下一關：iPhone / PWA / Desktop Theme Center 視覺與互動驗收。
 
 # BowlMeet v0.4.6.7-dev.1 — Preview Deployment
 
