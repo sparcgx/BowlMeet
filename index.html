@@ -2161,7 +2161,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.6.7-dev.1-R1';
+const APP_VERSION='0.4.6.7-dev.1-R2';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const LAYOUT_DEFAULTS=Object.freeze({scale:'100',density:'standard',width:'standard',leaderboard:'standard',scoreSize:'standard'});
 const LAYOUT_PRESETS=Object.freeze({
@@ -3397,6 +3397,7 @@ function clearLiveGame(pid){
 function liveCompletedFrameSlots(p,planned){let count=0;const games=normalizeBowlingGames(p.bowlingFrames);for(let gi=0;gi<planned;gi++){const calc=bowlingGameCalc(games[gi]);if(calc.started)count+=calc.completedFrames;else if(normalizeScore((p.scores||[])[gi])!==null)count+=10}return count}
 
 function clearCompletedMeetupContext(meetupId){
+  closePostGameReview();
   cancelLiveRollCommit();liveRollWriteKey='';liveRollLastCommit={key:'',raw:'',gameNo:0,at:0};
   const prefs=livePrefs();if(meetupId&&Object.prototype.hasOwnProperty.call(prefs,meetupId)){delete prefs[meetupId];localStorage.setItem(LIVEKEY,JSON.stringify(prefs))}
   liveGameNo=1;liveMetric='total';
@@ -3407,7 +3408,7 @@ function clearCompletedMeetupContext(meetupId){
   const draft=safeJsonParse(localStorage.getItem(DRAFTKEY),null);if(draft&&draft.meetupId===meetupId){editingId='';pendingImportAudit=null;localStorage.removeItem(DRAFTKEY);queueDbStatePersist('clear-completed-draft')}
   queueDbStatePersist('complete-meetup-reset');
 }
-function completeLiveMeetup(m){if(!m)return;if(!syncAllowWrite(m.id,'結束球聚'))return;const id=m.id;m.status='done';m.updatedAt=Date.now();persistMeetups();clearCompletedMeetupContext(id);renderAll();renderLive();resetLivePresentation();openPostGameReview(id)}
+function completeLiveMeetup(m){if(!m)return;if(!syncAllowWrite(m.id,'結束球聚'))return;const id=m.id;m.status='done';m.updatedAt=Date.now();persistMeetups();clearCompletedMeetupContext(id);renderAll();renderLive();resetLivePresentation();flash('球聚已完成。可從「過往球聚／管理」開啟賽後摘要。','ok')}
 function finishLiveRound(){
   if(!flushLiveRollCommit())return;
   const m=meetups.find(x=>x.id===currentMeetupId);if(!m)return;const sess=ensureLiveSession(m),rows=liveRowsFor(m,sess),missing=rows.filter(r=>!r.gameComplete);
@@ -3479,7 +3480,7 @@ function startMeetup(id){
   const s=linkedSession(m);if(s){loadSession(s.id);return}
   editingId='';pendingImportAudit=null;$('date').value=m.date||today();$('venue').value=m.venue||'';$('lane').value=m.lanes||'';const names=meetupParticipantNames(m);renderScoreRows((names.length?names:['']).map(n=>makePlayer(n,[])));updateEditStatus();saveDraft();renderAll();switchView('scoreView');window.scrollTo({top:0,behavior:'smooth'})
 }
-function setMeetupStatus(id,status){const m=meetups.find(x=>x.id===id);if(!m)return;if(!syncAllowWrite(id,'變更球聚狀態'))return;m.status=status;m.updatedAt=Date.now();persistMeetups();if(status==='done'&&currentMeetupId===id)clearCompletedMeetupContext(id);renderAll();if(document.getElementById('meetupView')?.classList.contains('active'))renderLive();if(status==='done')openPostGameReview(id)}
+function setMeetupStatus(id,status){const m=meetups.find(x=>x.id===id);if(!m)return;if(!syncAllowWrite(id,'變更球聚狀態'))return;m.status=status;m.updatedAt=Date.now();persistMeetups();if(status==='done'&&currentMeetupId===id)clearCompletedMeetupContext(id);renderAll();if(document.getElementById('meetupView')?.classList.contains('active'))renderLive();if(status==='done')flash('球聚已標記完成。可從「過往球聚／管理」開啟賽後摘要。','ok')}
 function deleteMeetup(id){const m=meetups.find(x=>x.id===id);if(!m)return;const sc=getSyncConfig();if(sc.enabled&&sc.meetupId===id){alert('此球聚目前綁定多人同步房間。請先到「多人同步」離開房間，再刪除球聚。');return}if(!syncAllowWrite(id,'刪除球聚'))return;const s=linkedSession(m);if(s&&!confirm(`「${m.title}」已有成績。刪除活動只會解除活動連結，不會刪除成績，確定？`))return;if(!s&&!confirm(`確定刪除「${m.title}」？`))return;if(s){s.meetupId='';persist()}meetups=meetups.filter(x=>x.id!==id);persistMeetups();if(currentMeetupId===id)setCurrentMeetup('');renderAll()}
 function renderCurrentMeetup(){const box=$('currentMeetupCard'),banner=$('activeMeetupBanner'),view=$('meetupView');if(!box||!banner)return;const m=meetups.find(x=>x.id===currentMeetupId);view?.classList.toggle('has-active-meetup',!!m);if(!m){view?.classList.remove('editing-meetup');box.innerHTML='<div class="eyebrow">目前球聚</div><div class="name">尚未選擇</div><div class="meta">輸入玩家後開始現場記分。</div>';banner.classList.add('unlinked');banner.innerHTML='<div><strong>未連結球聚活動</strong><div>可直接在「球聚現場」建立一場。</div></div><button class="btn small" id="goMeetupBtn" type="button">球聚現場</button>';banner.querySelector('#goMeetupBtn').addEventListener('click',()=>switchView('meetupView'));return}const names=meetupParticipantNames(m);box.innerHTML=`<div class="eyebrow">目前球聚 · ${statusLabel(m.status)}</div><div class="name">${esc(m.title)}</div><div class="meta">${esc(fmtDate(m.date))} · ${esc(m.venue||'未填球館')}${m.lanes?` · 球道 ${esc(m.lanes)}`:''} · ${names.length} 人</div>`;banner.classList.remove('unlinked');banner.innerHTML=`<div><strong>${esc(m.title)}</strong><div>${esc(fmtDate(m.date))} · ${esc(m.venue||'未填球館')} · ${m.dynamicGames?'動態局數':'預計 '+(m.plannedGames||6)+' 局'}</div></div><button class="btn small" id="goMeetupBtn" type="button">活動資料</button>`;banner.querySelector('#goMeetupBtn').addEventListener('click',()=>editMeetup(m.id))}
 function renderMeetups(){
