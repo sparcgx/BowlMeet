@@ -1,0 +1,63 @@
+{
+  "version": "v0.4.6.2-RC.1",
+  "title": "Full Regression & Release Candidate Gate",
+  "date": "2026-09-25",
+  "base": "v0.4.6.2-dev.1-R2",
+  "stableBase": "stable/v0.4.6.1",
+  "automated": {
+    "pass": 103,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "r2DeviceFinding": {
+    "firstPublish": {
+      "status": "PASS"
+    },
+    "republishVisibility": {
+      "status": "FAIL",
+      "rootCause": "Public-source filter hid the record immediately after unpublish."
+    },
+    "repairedInRc1": true
+  },
+  "rcRepair": {
+    "switchToLocalAfterUnpublish": true,
+    "setUnpublishedFilter": true,
+    "republishUsesPublicControlTombstone": true,
+    "clearUnpublishedFilterAfterRepublish": true
+  },
+  "delta": {
+    "missingFunctions": 0,
+    "addedFunctions": 0,
+    "functionBodyDrift": 0,
+    "cssChanged": false
+  },
+  "safety": {
+    "dbVersion": 2,
+    "dbName": "bowlingMeetup.local",
+    "publicHistoryCode": "PUBLIC",
+    "publicHistoryPin": "042042",
+    "layoutPreferencesKey": "bowlingMeetup.layoutPreferences.v1",
+    "supabaseMigration": false,
+    "indexedDbMigration": false,
+    "publicPayloadMigration": false
+  },
+  "preview": {
+    "path": "preview/v0.4.6.2-RC.1/",
+    "appVersion": "0.4.6.2-RC.1",
+    "groupCode": "V462RC1",
+    "pin": "046221",
+    "dbName": "bowlmeet.preview.v0462rc1.local",
+    "layoutPreferencesKey": "bowlmeet.preview.v0462rc1.layoutPreferences.v1",
+    "cacheRoot": "bowlmeet-preview-v0462rc1-",
+    "publishPr": 28,
+    "published": true
+  },
+  "deviceSmoke": {
+    "status": "PENDING",
+    "checks": 6,
+    "pass": 0,
+    "fail": 0
+  },
+  "releaseCandidateValidationComplete": false,
+  "stablePromotionExecuted": false
+}
