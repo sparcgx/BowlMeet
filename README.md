@@ -1,3 +1,22 @@
+# BowlMeet v0.4.6.2.1 — Stable Hotfix
+
+基線：`stable/v0.4.6.2`。
+
+- 修正 iPhone Safari / PWA「成績紀錄」每局表格欄位垂直掉成單欄。
+- 根因：新版 HTML 與舊版 Liquid Glass CSS Cache 不同步。
+- CSS URL 加入版本指紋，強制重新抓取。
+- HTML 加入 Critical Grid fallback，即使外部 CSS cache 異常仍維持 9 欄。
+- 表格欄位：球員 / 1 / 2 / 3 / 4 / 5 / 6 / 總分 / 平均。
+- 手機水平滑動與 sticky 球員欄維持正常。
+- Root Fix Gate：**16/16 PASS**
+- Isolated Preview Gate：**21/21 PASS**
+- Device Acceptance：**2/2 PASS**
+- Stable Hotfix Promotion Gate：**24/24 PASS**
+- Function-body drift：**0**
+- `DB_VERSION = 2`
+- `PUBLIC_HISTORY_CODE = PUBLIC`
+- Supabase / IndexedDB / PUBLIC payload migration：**NONE**
+
 # BowlMeet v0.4.6.2 — Stable / PUBLIC
 
 正式認證來源：`v0.4.6.2-RC.1`。
