@@ -1,3 +1,33 @@
+# BowlMeet v0.4.7.0-dev.1 — Theme Center Foundation
+
+基線：`v0.4.6.2-dev.1-R1`（Per-Game Table + iPhone Repair 已完成 Validation Complete）。
+
+本版把既有「版面設定」正式升級為「版面設計」，加入 Theme Center。主題設定只存在目前裝置，與球聚、公開成績、同步、備份資料完全隔離。
+
+## Theme Center
+- **預設**：原本白色企業風格；完全保留既有視覺基線。
+- **高階動態透明**：Liquid Glass、柔光背景、動態層次。
+- **清新藍白**：淡藍資訊層級、清爽資料表。
+- **柔霧紫光**：淡紫柔霧、低彩度層次。
+- **夜幕深色**：低光環境、深藍灰高可讀性。
+- **高對比簡潔**：黑白高對比、強化快速操作。
+
+## Local-only effects
+- 動態效果：開 / 關
+- 透明效果：開 / 關
+- `prefers-reduced-motion` 與 `prefers-reduced-transparency` fallback
+- 主題會更新瀏覽器 `theme-color` 與 dark/light `color-scheme`
+
+## Storage
+- Layout：`bowlingMeetup.layoutPreferences.v1`（既有，不變）
+- Theme：`bowlingMeetup.themePreferences.v1`（新增，本機限定）
+- Theme Preferences 不進入 Backup / Restore / PUBLIC / Group payload
+- `DB_VERSION = 2`
+- `PUBLIC_HISTORY_CODE = PUBLIC`
+- 無 Supabase migration
+- 無 IndexedDB migration
+- 無 PUBLIC payload migration
+
 # BowlMeet v0.4.6.2-dev.1 — Per-Game Public Score Table Foundation
 
 基線：`stable/v0.4.6.1`。
