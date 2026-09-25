@@ -1,0 +1,89 @@
+BowlMeet v0.4.6.6｜Stable Promotion & Release Freeze
+
+Base: v0.4.6.6-RC.1
+RC Source Regression Gate: 116/116 PASS
+RC Manual Acceptance: PASS
+
+Promotion changes only:
+- APP_VERSION -> 0.4.6.6
+- HTML title -> v0.4.6.6
+- manifest.webmanifest -> v0.4.6.6 Stable metadata
+- Service Worker production cache -> v0.4.6.6
+- Liquid Glass CSS cache-buster -> 0466
+
+Frozen:
+- No live scoring logic changes after RC.1.
+- DB_VERSION=2 unchanged.
+- PUBLIC/PIN/schema unchanged.
+- Ranking/Awards/Share logic unchanged.
+- Backup/Restore/Snapshot logic unchanged.
+- PWA safe-update workflow logic unchanged.
+- Score model remains 1-6 games.
+
+Checks:
+01. PASS | Stable APP_VERSION 0.4.6.6
+02. PASS | HTML title promoted to v0.4.6.6
+03. PASS | Stable CSS cache-buster 0466
+04. PASS | Manifest JSON valid
+05. PASS | Manifest name promoted
+06. PASS | Manifest stable description promoted
+07. PASS | Manifest start_url unchanged
+08. PASS | Manifest scope unchanged
+09. PASS | Manifest display standalone unchanged
+10. PASS | Manifest icons retained
+11. PASS | SW shell cache promoted
+12. PASS | SW runtime cache promoted
+13. PASS | SW CSS cache-buster promoted
+14. PASS | SW production cache root retained
+15. PASS | SW skip waiting retained
+16. PASS | SW client claim retained
+17. PASS | SW navigate network-first retained
+18. PASS | Main JavaScript parses
+19. PASS | Service Worker JavaScript parses
+20. PASS | DB_VERSION remains 2
+21. PASS | PUBLIC PIN unchanged
+22. PASS | Layout preferences key unchanged
+23. PASS | Score model remains 1-6 games
+24. PASS | iOS enterkeyhint next retained
+25. PASS | 10 auto-commit 120ms retained
+26. PASS | Blank auto-commit 520ms retained
+27. PASS | Single digit auto-commit 420ms retained
+28. PASS | Smart Next retained
+29. PASS | Pending input flush retained
+30. PASS | Stale token protection retained
+31. PASS | Stale game protection retained
+32. PASS | Repeated Enter protection retained
+33. PASS | Duplicate write lock retained
+34. PASS | Invalid total protection retained
+35. PASS | IndexedDB failure warning retained
+36. PASS | Leaderboard logic retained
+37. PASS | Awards logic retained
+38. PASS | Share scope retained
+39. PASS | Snapshot support retained
+40. PASS | Restore support retained
+41. PASS | Full backup support retained
+42. PASS | PWA backup gate retained
+43. PASS | PWA apply update retained
+44. PASS | PWA reload fallback retained
+45. PASS | renderMeetups unchanged from RC.1
+46. PASS | renderCurrentMeetup unchanged from RC.1
+47. PASS | rankingRowsForScope unchanged from RC.1
+48. PASS | renderLeaderboard unchanged from RC.1
+49. PASS | renderAwards unchanged from RC.1
+50. PASS | shareScopeData unchanged from RC.1
+51. PASS | drawShareCard unchanged from RC.1
+52. PASS | backupBeforePwaUpdate unchanged from RC.1
+53. PASS | applyPwaUpdate unchanged from RC.1
+54. PASS | finishPwaUpdateReload unchanged from RC.1
+55. PASS | normalizeSessionRecord unchanged from RC.1
+56. PASS | sessionScoreGameCount unchanged from RC.1
+57. PASS | bowlingGameCalc unchanged from RC.1
+58. PASS | saveLiveRoll unchanged from RC.1
+59. PASS | flushLiveRollCommit unchanged from RC.1
+60. PASS | liveSmartNextInput unchanged from RC.1
+61. PASS | applyRestorePayload unchanged from RC.1
+62. PASS | Stable index delta is release metadata only
+63. PASS | Stable SW delta is cache-version only
+64. PASS | Liquid Glass CSS file unchanged from RC.1
+
+Result: 64/64 PASS
