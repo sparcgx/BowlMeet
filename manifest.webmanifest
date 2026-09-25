@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.6.2",
+  "name": "保齡球球聚｜BowlMeet v0.4.6.2.1",
   "short_name": "BowlMeet",
-  "description": "BowlMeet v0.4.6.2 Stable：公開成績每局 1～6 展開表、公開／取消公開／重新公開控制、Public-only 排行榜／分享／獎項與 PWA Cache Hardening；維持既有 PUBLIC、同步與備份契約。",
+  "description": "BowlMeet v0.4.6.2.1 Stable Hotfix：修正 iPhone Safari / PWA 成績紀錄每局表格欄位垂直錯位與舊 CSS Cache 不同步；PUBLIC、資料庫與同步契約維持不變。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
