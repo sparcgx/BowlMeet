@@ -1,0 +1,74 @@
+{
+  "version": "v0.4.6.2",
+  "title": "Stable Promotion & PUBLIC Release Gate",
+  "date": "2026-09-25",
+  "certifiedSource": "v0.4.6.2-RC.1",
+  "previousStable": "stable/v0.4.6.1",
+  "certifiedInput": {
+    "rcAutomated": {
+      "pass": 103,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "rcPreviewCloudConfiguration": {
+      "pass": 12,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "rcDeviceSmoke": {
+      "pass": 6,
+      "fail": 0,
+      "status": "PASS",
+      "confirmedByUser": true
+    },
+    "rcValidationComplete": true
+  },
+  "stablePromotion": {
+    "pass": 82,
+    "fail": 0,
+    "status": "PASS",
+    "applicationGate": {
+      "pass": 68,
+      "fail": 0
+    },
+    "governanceSchemaGate": {
+      "pass": 14,
+      "fail": 0
+    }
+  },
+  "promotionDelta": {
+    "appVersion": "0.4.6.2",
+    "visibleStatus": "Stable",
+    "cachePrefix": "bowlmeet-v0.4.6.2-stable-",
+    "functionBodiesChanged": 0,
+    "cssChanged": false
+  },
+  "publicReleaseGate": {
+    "status": "PASS",
+    "productionCode": "PUBLIC",
+    "previewCloudCodeAbsent": true,
+    "publicRecordControlPreserved": true,
+    "publicOnlyLeaderboard": true,
+    "publicOnlyShare": true,
+    "publicOnlyAwards": true,
+    "publicPayloadMigration": false,
+    "releaseTimePublicRewrite": false,
+    "supabaseMigration": false
+  },
+  "dataSafety": {
+    "dbVersion": 2,
+    "dbName": "bowlingMeetup.local",
+    "layoutPreferenceKey": "bowlingMeetup.layoutPreferences.v1",
+    "supabaseSchemaChanged": false,
+    "publicControlPatchChanged": false,
+    "indexedDbMigration": false,
+    "backupRestoreContractsChanged": false
+  },
+  "governance": {
+    "releaseBranch": "release/v0.4.6.2",
+    "behindMain": 0,
+    "previewPathsInPrDiff": 0,
+    "existingPreviewHistoryPreserved": true
+  },
+  "readyForMainPromotion": true
+}
