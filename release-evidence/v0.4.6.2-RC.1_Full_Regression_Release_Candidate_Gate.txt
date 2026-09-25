@@ -5,17 +5,8 @@ Base: v0.4.6.2-dev.1-R2
 Stable ancestry: stable/v0.4.6.1
 
 FULL AUTOMATED GATE: 103 PASS / 0 FAIL
-PREVIEW CLOUD CONFIGURATION FIX GATE: 12 PASS / 0 FAIL
-
-R2 DEVICE FINDING
-PASS #1 RETEST First Publish after valid Preview Cloud Code fix
-FAIL #2 Republish button not shown after Cancel Public
-
-ROOT CAUSE
-- Record remained under Public source filter.
-- Cancel Public changes r.public to false.
-- filteredSessions removed the card before Republish could be displayed.
-- Remote Session presence was also not a valid Republish classifier after tombstone removal.
+PREVIEW CLOUD CONFIGURATION GATE: 12 PASS / 0 FAIL
+RC DEVICE SMOKE: 6 PASS / 0 FAIL
 
 RC.1 REPAIR
 PASS Cancel Public -> switch to Local source
@@ -24,6 +15,14 @@ PASS Republish remains visible
 PASS Republish classification uses Public Control tombstone
 PASS Republish -> Unpublished filter returns to All
 PASS First Publish semantics retained
+
+PREVIEW CLOUD FIX
+Original invalid code: V462RC1
+Rule: ^[A-Z2-9]{6}$
+Fixed code: V46RC2
+PIN: 046221
+Fix Publish: PR #29 MERGED
+PASS Preview Cloud Configuration 12/12
 
 RC DELTA
 PASS APP_VERSION 0.4.6.2-RC.1
@@ -45,28 +44,21 @@ PASS layoutPreferences key unchanged
 PASS Supabase migration NONE
 PASS IndexedDB migration NONE
 PASS PUBLIC payload migration NONE
+PASS Leaderboard Public-only
+PASS Share Public-only
+PASS Awards Public-only
 
-RC PREVIEW
-Path: preview/v0.4.6.2-RC.1/
-Cloud: V46RC2
-PIN: 046221
-IndexedDB: bowlmeet.preview.v0462rc1.local
-Cache: bowlmeet-preview-v0462rc1-*
-Fix1 Cache: bowlmeet-preview-v0462rc1-rc1fix1-*
-Preview Publish: PR #28 MERGED
-Production root included: NO
-
-RC DEVICE SMOKE: 3 PASS / 3 RETEST REQUIRED
-1 First Publish
-2 RETEST Cancel Public keeps card visible
-3 RETEST Republish button / copy
-4 PASS Mobile horizontal scroll + sticky player
-5 PASS Public-only leaderboard/share/awards
-6 PASS PWA close/reopen latest RC cache
+RC DEVICE SMOKE
+PASS 1 First Publish
+PASS 2 Cancel Public keeps card visible
+PASS 3 Republish button / copy
+PASS 4 Mobile horizontal scroll + sticky player
+PASS 5 Public-only leaderboard / share / awards
+PASS 6 PWA close/reopen latest RC cache
 
 STATUS
 Full Automated Regression: PASS (103/103)
-RC Preview: PUBLISHED
-RC Device Smoke: 3 PASS / 3 RETEST REQUIRED
-Release Candidate Validation Complete: NO
+Preview Cloud Configuration: PASS (12/12)
+RC Device Smoke: PASS (6/6)
+Release Candidate Validation Complete: YES
 Stable Promotion: NOT EXECUTED
