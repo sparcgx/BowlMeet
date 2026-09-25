@@ -1,0 +1,45 @@
+BowlMeet v0.4.6.6-dev.1-R1｜Summary & Personal Navigation Swap
+
+Base: v0.4.6.6-dev.1 @ c3150059952876ef0287083017bf02261a936afb
+Scope: navigation position swap only.
+
+Changes:
+- Desktop: 我的成績 placed before 本次總表.
+- Mobile primary dock: 現場 / 總表 / 成績 / 更多.
+- Mobile More: 我的成績 replaces 本次總表.
+- primaryDockViews updated from personalView to scoreView.
+
+Unchanged:
+- Field workflow simplification
+- Live scoring / meetup logic
+- Ranking / awards / share
+- PWA safe update
+- DB/PUBLIC/PIN/schema
+
+Checks:
+01. PASS | R1 APP_VERSION
+02. PASS | R1 cache identity
+03. PASS | Desktop personal before summary
+04. PASS | Mobile dock has summary
+05. PASS | Mobile dock summary label
+06. PASS | Mobile dock excludes personal
+07. PASS | Mobile More has personal
+08. PASS | Mobile More personal label
+09. PASS | Mobile More excludes summary
+10. PASS | Primary dock set updated
+11. PASS | renderMeetups unchanged from dev.1
+12. PASS | renderCurrentMeetup unchanged from dev.1
+13. PASS | renderLive unchanged from dev.1
+14. PASS | renderScores unchanged from dev.1
+15. PASS | renderHistory unchanged from dev.1
+16. PASS | rankingRowsForScope unchanged from dev.1
+17. PASS | renderAwards unchanged from dev.1
+18. PASS | shareScopeData unchanged from dev.1
+19. PASS | backupBeforePwaUpdate unchanged from dev.1
+20. PASS | applyPwaUpdate unchanged from dev.1
+21. PASS | DB_VERSION unchanged
+22. PASS | PUBLIC PIN unchanged
+23. PASS | Score model max 6
+24. PASS | JavaScript parses
+
+Result: 24/24 PASS
