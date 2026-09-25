@@ -1,0 +1,59 @@
+BowlMeet v0.4.6.7-dev.1-R3｜Public History Filter Stability
+
+Defect:
+- 取消公開單筆成績後，自動切換成「我的紀錄」＋「已取消公開」。
+- 其他紀錄因此只被篩選隱藏；上方統計仍基於完整集合，因此看起來像資料消失。
+
+Fix:
+- 保留原本來源分頁。
+- 保留公開狀態、搜尋、排序、日期、玩家、球館、球道篩選。
+- 僅更新目標 Session 的公開狀態。
+- Unified History 計數與 filteredSessions 邏輯保持不變。
+
+Checks:
+01. PASS | R3 version
+02. PASS | Async prefix remains exactly once
+03. PASS | No forced historySource local after visibility change
+04. PASS | No forced unpublished filter after visibility change
+05. PASS | No forced all filter after republish
+06. PASS | History source captured
+07. PASS | Public filter captured
+08. PASS | Search captured
+09. PASS | Sort captured
+10. PASS | Date range captured
+11. PASS | Player filter captured
+12. PASS | Venue filter captured
+13. PASS | Lane filter captured
+14. PASS | History source restored
+15. PASS | Public filter restored
+16. PASS | Search restored
+17. PASS | Sort restored
+18. PASS | Date range restored
+19. PASS | Player filter restored
+20. PASS | Venue filter restored
+21. PASS | Lane filter restored
+22. PASS | Cancellation feedback no longer says switched to 我的紀錄
+23. PASS | Unified history still marks publicRemoved
+24. PASS | filteredSessions unchanged
+25. PASS | renderHistory unchanged
+26. PASS | buildGroupPayload unchanged
+27. PASS | mergePublicRecordControls unchanged
+28. PASS | R2 navigation unblock retained
+29. PASS | R1 hard reset retained
+30. PASS | Dynamic games retained
+31. PASS | DB_VERSION unchanged
+32. PASS | PUBLIC PIN unchanged
+33. PASS | Main JavaScript parses
+34. PASS | rankingRowsForScope unchanged from R2
+35. PASS | renderAwards unchanged from R2
+36. PASS | shareScopeData unchanged from R2
+37. PASS | backupBeforePwaUpdate unchanged from R2
+38. PASS | applyPwaUpdate unchanged from R2
+39. PASS | finishPwaUpdateReload unchanged from R2
+40. PASS | applyRestorePayload unchanged from R2
+41. PASS | saveLiveRoll unchanged from R2
+42. PASS | liveSmartNextInput unchanged from R2
+43. PASS | adjustLiveRoundCount unchanged from R2
+44. PASS | clearCompletedMeetupContext unchanged from R2
+
+Result: 44/44 PASS
