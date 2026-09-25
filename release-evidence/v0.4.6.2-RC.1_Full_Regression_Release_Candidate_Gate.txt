@@ -5,9 +5,10 @@ Base: v0.4.6.2-dev.1-R2
 Stable ancestry: stable/v0.4.6.1
 
 FULL AUTOMATED GATE: 103 PASS / 0 FAIL
+PREVIEW CLOUD CONFIGURATION FIX GATE: 12 PASS / 0 FAIL
 
 R2 DEVICE FINDING
-PASS #1 First Publish
+PASS #1 RETEST First Publish after valid Preview Cloud Code fix
 FAIL #2 Republish button not shown after Cancel Public
 
 ROOT CAUSE
@@ -47,24 +48,25 @@ PASS PUBLIC payload migration NONE
 
 RC PREVIEW
 Path: preview/v0.4.6.2-RC.1/
-Cloud: V462RC1
+Cloud: V46RC2
 PIN: 046221
 IndexedDB: bowlmeet.preview.v0462rc1.local
 Cache: bowlmeet-preview-v0462rc1-*
+Fix1 Cache: bowlmeet-preview-v0462rc1-rc1fix1-*
 Preview Publish: PR #28 MERGED
 Production root included: NO
 
-RC DEVICE SMOKE: PENDING (6)
+RC DEVICE SMOKE: 3 PASS / 3 RETEST REQUIRED
 1 First Publish
-2 Cancel Public keeps card visible
-3 Republish button / copy
-4 Mobile horizontal scroll + sticky player
-5 Public-only leaderboard/share
-6 PWA close/reopen latest RC cache
+2 RETEST Cancel Public keeps card visible
+3 RETEST Republish button / copy
+4 PASS Mobile horizontal scroll + sticky player
+5 PASS Public-only leaderboard/share/awards
+6 PASS PWA close/reopen latest RC cache
 
 STATUS
 Full Automated Regression: PASS (103/103)
 RC Preview: PUBLISHED
-RC Device Smoke: PENDING
+RC Device Smoke: 3 PASS / 3 RETEST REQUIRED
 Release Candidate Validation Complete: NO
 Stable Promotion: NOT EXECUTED
