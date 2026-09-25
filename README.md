@@ -1,3 +1,16 @@
+# BowlMeet v0.4.7.0-dev.1 — Theme Center Foundation
+
+- 基線：`stable/v0.4.6.7` / `main` commit `bf6054deeaa0658ab807c3c60ad095d7060d0de7`。
+- 版面設定正式升級為 **版面設計｜Layout & Theme Design**。
+- 新增 6 組主題：Default / Liquid Glass / Clear Blue / Soft Violet / Dark Night / High Contrast。
+- 新增 5 組快速套用：標準工作 / 行動瀏覽 / 現場大字 / 玻璃展示 / 夜間模式。
+- 新增卡片圓角、陰影強度、色彩強度、Motion、Transparency 本機偏好。
+- 支援 `prefers-reduced-motion`、`prefers-reduced-transparency` 與無 backdrop-filter fallback。
+- `THEME_PREFS_KEY = bowlingMeetup.themePreferences.v1`；`LAYOUT_PREFS_KEY` 沿用 `bowlingMeetup.layoutPreferences.v1`。
+- Theme / Layout 只屬於 Local UI Preferences，不進 PUBLIC / Sync / Backup / Restore / Snapshot payload。
+- `DB_VERSION = 2`、`PUBLIC_HISTORY_CODE = PUBLIC` 保持不變。
+- 舊 dev.1 已封存：`archive/v0.4.7.0-dev.1-pre-v0.4.6.7-refresh-20260926`。
+
 # BowlMeet v0.4.6.7-dev.1 — Preview Deployment
 
 - 基線：`stable/v0.4.6.6`。
