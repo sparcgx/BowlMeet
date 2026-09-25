@@ -1,0 +1,265 @@
+{
+  "version": "0.4.6.7-dev.1",
+  "title": "Live Completion Reset & Dynamic Game Flow",
+  "base": {
+    "ref": "stable/v0.4.6.6",
+    "freeze_commit": "7d04ab6e7d3181fac53d742fdd5b736433c42d17"
+  },
+  "scope": {
+    "completion_reset": [
+      "cancel pending debounce/write state",
+      "clear active meetup context",
+      "clear stale live selector value",
+      "clear quick-player field",
+      "remove completed meetup live preferences",
+      "preserve completed session/history and open post-game review"
+    ],
+    "dynamic_games": [
+      "new meetups default to dynamic game mode",
+      "fixed 1-6 mode remains available",
+      "dynamic live flow starts at one game and can grow to six",
+      "Next auto-adds a game at the dynamic edge",
+      "live + game / - game controls",
+      "cannot shrink below the highest game containing score/frame data"
+    ]
+  },
+  "invariants": {
+    "max_games": 6,
+    "db_version": 2,
+    "public_pin": "UNCHANGED",
+    "ranking_awards_share": "UNCHANGED",
+    "backup_restore": "UNCHANGED",
+    "pwa_safe_update": "UNCHANGED"
+  },
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "APP_VERSION dev.1"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "Dynamic setup option exists"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "Fixed 1-6 options retained"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "Dynamic meetup flag normalized"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "Legacy meetup default stays fixed 6"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "New meetup defaults to dynamic"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "Save meetup stores dynamicGames"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "Edit meetup restores auto mode"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "LIVE_GAME_MAX remains 6"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "Live planned helper exists"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "Highest used round helper exists"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "Dynamic next round auto grows"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "Dynamic add control exists"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "Dynamic remove control exists"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "Add round handler exists"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "Remove round handler exists"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "Cannot shrink below used score"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "Round badge shows dynamic count"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "Dynamic KPI label exists"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "Dynamic next button label exists"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "Completion clear cancels pending commit"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "Completion clear resets write state"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "Completion clear resets last commit"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "Completion clear clears selector"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "Completion clear clears quick player"
+    },
+    {
+      "id": 26,
+      "status": "PASS",
+      "name": "Completion clear clears current context"
+    },
+    {
+      "id": 27,
+      "status": "PASS",
+      "name": "renderLive no longer preserves stale select DOM value"
+    },
+    {
+      "id": 28,
+      "status": "PASS",
+      "name": "renderLive explicitly blanks selector without current context"
+    },
+    {
+      "id": 29,
+      "status": "PASS",
+      "name": "Completed session remains retained"
+    },
+    {
+      "id": 30,
+      "status": "PASS",
+      "name": "DB_VERSION unchanged"
+    },
+    {
+      "id": 31,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 32,
+      "status": "PASS",
+      "name": "Score storage max remains 6"
+    },
+    {
+      "id": 33,
+      "status": "PASS",
+      "name": "Smart Next retained"
+    },
+    {
+      "id": 34,
+      "status": "PASS",
+      "name": "Auto commit 120/420/520 retained"
+    },
+    {
+      "id": 35,
+      "status": "PASS",
+      "name": "Input safety flush retained"
+    },
+    {
+      "id": 36,
+      "status": "PASS",
+      "name": "Repeat Enter guard retained"
+    },
+    {
+      "id": 37,
+      "status": "PASS",
+      "name": "IndexedDB warning retained"
+    },
+    {
+      "id": 38,
+      "status": "PASS",
+      "name": "Main JavaScript parses"
+    },
+    {
+      "id": 39,
+      "status": "PASS",
+      "name": "rankingRowsForScope unchanged from Stable"
+    },
+    {
+      "id": 40,
+      "status": "PASS",
+      "name": "renderAwards unchanged from Stable"
+    },
+    {
+      "id": 41,
+      "status": "PASS",
+      "name": "shareScopeData unchanged from Stable"
+    },
+    {
+      "id": 42,
+      "status": "PASS",
+      "name": "backupBeforePwaUpdate unchanged from Stable"
+    },
+    {
+      "id": 43,
+      "status": "PASS",
+      "name": "applyPwaUpdate unchanged from Stable"
+    },
+    {
+      "id": 44,
+      "status": "PASS",
+      "name": "finishPwaUpdateReload unchanged from Stable"
+    },
+    {
+      "id": 45,
+      "status": "PASS",
+      "name": "applyRestorePayload unchanged from Stable"
+    }
+  ],
+  "result": {
+    "pass": 45,
+    "fail": 0
+  }
+}
