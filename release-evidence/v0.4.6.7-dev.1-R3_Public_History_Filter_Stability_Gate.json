@@ -1,0 +1,241 @@
+{
+  "version": "0.4.6.7-dev.1-R3",
+  "title": "Public History Filter Stability",
+  "base": {
+    "ref": "v0.4.6.7-dev.1-R2"
+  },
+  "defect": "Cancelling one public record forced the source tab to local and public-state filter to unpublished, hiding unrelated records while aggregate counters remained visible.",
+  "fix": [
+    "preserve source tab",
+    "preserve public-state filter",
+    "preserve search/sort/date/player/venue/lane filters",
+    "update only target Session public state",
+    "leave unified-history counting and filtering semantics unchanged"
+  ],
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "R3 version"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "Async prefix remains exactly once"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "No forced historySource local after visibility change"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "No forced unpublished filter after visibility change"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "No forced all filter after republish"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "History source captured"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "Public filter captured"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "Search captured"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "Sort captured"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "Date range captured"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "Player filter captured"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "Venue filter captured"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "Lane filter captured"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "History source restored"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "Public filter restored"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "Search restored"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "Sort restored"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "Date range restored"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "Player filter restored"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "Venue filter restored"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "Lane filter restored"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "Cancellation feedback no longer says switched to 我的紀錄"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "Unified history still marks publicRemoved"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "filteredSessions unchanged"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "renderHistory unchanged"
+    },
+    {
+      "id": 26,
+      "status": "PASS",
+      "name": "buildGroupPayload unchanged"
+    },
+    {
+      "id": 27,
+      "status": "PASS",
+      "name": "mergePublicRecordControls unchanged"
+    },
+    {
+      "id": 28,
+      "status": "PASS",
+      "name": "R2 navigation unblock retained"
+    },
+    {
+      "id": 29,
+      "status": "PASS",
+      "name": "R1 hard reset retained"
+    },
+    {
+      "id": 30,
+      "status": "PASS",
+      "name": "Dynamic games retained"
+    },
+    {
+      "id": 31,
+      "status": "PASS",
+      "name": "DB_VERSION unchanged"
+    },
+    {
+      "id": 32,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 33,
+      "status": "PASS",
+      "name": "Main JavaScript parses"
+    },
+    {
+      "id": 34,
+      "status": "PASS",
+      "name": "rankingRowsForScope unchanged from R2"
+    },
+    {
+      "id": 35,
+      "status": "PASS",
+      "name": "renderAwards unchanged from R2"
+    },
+    {
+      "id": 36,
+      "status": "PASS",
+      "name": "shareScopeData unchanged from R2"
+    },
+    {
+      "id": 37,
+      "status": "PASS",
+      "name": "backupBeforePwaUpdate unchanged from R2"
+    },
+    {
+      "id": 38,
+      "status": "PASS",
+      "name": "applyPwaUpdate unchanged from R2"
+    },
+    {
+      "id": 39,
+      "status": "PASS",
+      "name": "finishPwaUpdateReload unchanged from R2"
+    },
+    {
+      "id": 40,
+      "status": "PASS",
+      "name": "applyRestorePayload unchanged from R2"
+    },
+    {
+      "id": 41,
+      "status": "PASS",
+      "name": "saveLiveRoll unchanged from R2"
+    },
+    {
+      "id": 42,
+      "status": "PASS",
+      "name": "liveSmartNextInput unchanged from R2"
+    },
+    {
+      "id": 43,
+      "status": "PASS",
+      "name": "adjustLiveRoundCount unchanged from R2"
+    },
+    {
+      "id": 44,
+      "status": "PASS",
+      "name": "clearCompletedMeetupContext unchanged from R2"
+    }
+  ],
+  "result": {
+    "pass": 44,
+    "fail": 0
+  }
+}
