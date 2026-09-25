@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.6.5",
+  "name": "保齡球球聚｜BowlMeet v0.4.6.6",
   "short_name": "BowlMeet",
-  "description": "BowlMeet v0.4.6.5 Stable：PWA 安全更新效能最佳化，移除重複 State 擷取與 IndexedDB Persist，保留強制備份 Gate、完整 JSON 備份與兩層安全快照；iOS/WebKit 在 SKIP_WAITING 後若 controllerchange 延遲，約 1 秒自動 Reload fallback，並具防重複 Reload 保護。公開成績、排行榜、獎項、分享與資料契約維持不變。",
+  "description": "BowlMeet v0.4.6.6 Stable：完成現場連續記分互動、iPhone 數字鍵盤與 Smart Next、手機版面最佳化，以及 debounce／切換局數／重複 Enter／焦點回復等輸入可靠性防護。保留公開成績、排行榜、獎項、分享、備份還原、IndexedDB Snapshot 與 PWA 安全更新資料契約。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
