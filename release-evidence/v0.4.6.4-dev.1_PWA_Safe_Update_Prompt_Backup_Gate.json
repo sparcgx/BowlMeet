@@ -11,7 +11,8 @@
     "mandatory backup step",
     "snapshot + full JSON backup",
     "update locked before backup",
-    "final snapshot before SKIP_WAITING"
+    "final snapshot before SKIP_WAITING",
+    "service worker handles SKIP_WAITING for immediate activation"
   ],
   "invariants": {
     "db_version": 2,
@@ -205,10 +206,15 @@
       "id": 37,
       "status": "PASS",
       "name": "Main JavaScript parses"
+    },
+    {
+      "id": 38,
+      "status": "PASS",
+      "name": "Service Worker handles SKIP_WAITING activation"
     }
   ],
   "result": {
-    "pass": 37,
+    "pass": 38,
     "fail": 0
   }
 }

@@ -10,6 +10,7 @@ New behavior:
 - Update button remains locked until backup step succeeds.
 - Applying the update creates one additional final safety snapshot before SKIP_WAITING.
 - Controller change reload behavior remains unchanged.
+- Service Worker now handles SKIP_WAITING so the approved update can activate immediately.
 
 Frozen areas:
 - DB_VERSION = 2
@@ -57,4 +58,6 @@ Checks:
 36. PASS | Stable score model remains max 6
 37. PASS | Main JavaScript parses
 
-Result: 37/37 PASS
+38. PASS | Service Worker handles SKIP_WAITING activation
+
+Result: 38/38 PASS

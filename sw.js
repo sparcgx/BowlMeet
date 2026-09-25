@@ -5,6 +5,8 @@ const APP_SHELL=['./','./index.html','./manifest.webmanifest','./assets/liquid-g
 
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(APP_SHELL)))});
 
+self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')self.skipWaiting()});
+
 self.addEventListener('activate',event=>{event.waitUntil(
   caches.keys()
     .then(keys=>Promise.all(keys.filter(k=>k.startsWith(PRODUCTION_CACHE_ROOT)&&k!==CACHE&&k!==RUNTIME).map(k=>caches.delete(k))))
