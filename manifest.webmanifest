@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.7.0-dev.1",
+  "name": "保齡球球聚｜BowlMeet v0.4.7.0-dev.2",
   "short_name": "BowlMeet",
-  "description": "BowlMeet v0.4.7.0-dev.1 Theme Center Foundation：以 v0.4.6.7 Stable 為基線，新增 6 組主題、5 組快速版面、圓角／陰影／色彩強度、動態與透明效果控制；所有主題與版面偏好僅儲存在目前裝置，不修改 PUBLIC、球聚成績、同步、Backup / Restore 或資料庫 Schema。",
+  "description": "BowlMeet v0.4.7.0-dev.2 Theme Token & Full Component Coverage：承接 Theme Center Foundation，新增 Semantic Theme Token Layer，統一歷史、OCR、球聚、球員分析、現場計分、設定、PWA、同步、安全、獎項、分享與對話框的主題呈現；不修改 PUBLIC、成績、同步資料格式、Backup / Restore 或 DB Schema。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
