@@ -11,7 +11,14 @@
 - 分享輸出的 `.share-canvas` 保持白底，避免主題污染可分享／列印成績卡。
 - `DB_VERSION = 2`、`PUBLIC_HISTORY_CODE = PUBLIC`、PUBLIC payload、Backup / Restore、Sync、Supabase Schema 均不變。
 - PWA Cache 更新為 `v0.4.7.0-dev.2`，並加入 Theme Token stylesheet。
-- 下一關：Theme Coverage 自動 Gate → 隔離 Preview → iPhone / PWA / Desktop 跨模組視覺驗收。
+- Theme Coverage Gate：**40 PASS / 0 FAIL**。
+- Legacy hardcoded-color selector coverage：**342 / 342**。
+- JavaScript logic drift from dev.1：**0**。
+- 隔離 Preview Gate：**16 PASS / 0 FAIL**。
+- Preview-only PR：#61，已合併到 main；只新增 `/preview/v0.4.7.0-dev.2/`。
+- Preview Cloud：OFF；LocalStorage / IndexedDB / PWA Cache 使用 `v0470d2` 隔離 namespace。
+- 正式 root `index.html` blob 與 `stable/v0.4.6.7` 完全一致。
+- 下一關：iPhone / PWA / Desktop 跨模組視覺與互動驗收。
 
 # BowlMeet v0.4.7.0-dev.1 — Theme Center Foundation
 
