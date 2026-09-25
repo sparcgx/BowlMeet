@@ -1,0 +1,50 @@
+{
+  "version": "v0.4.7.0-dev.1",
+  "name": "Theme Center Foundation Static Gate",
+  "baseline": {
+    "branch": "stable/v0.4.6.7",
+    "commit": "bf6054deeaa0658ab807c3c60ad095d7060d0de7"
+  },
+  "result": {
+    "total": 39,
+    "pass": 39,
+    "fail": 0,
+    "decision": "STATIC_GATE_PASS"
+  },
+  "verified": {
+    "javascriptParse": "PASS",
+    "cssBraceBalance": "PASS",
+    "themeCount": "6/6",
+    "designPresetCount": "5/5",
+    "duplicateIdRegression": "PASS — goMeetupBtn is inherited 3x from stable/v0.4.6.7",
+    "coreDataFunctions": "UNCHANGED against stable/v0.4.6.7 for captureState, mirrorStateToLocalStorage, normalizeState, openDataDb, persistDbStateNow, initSync, initGroup",
+    "dbVersion": "2 unchanged",
+    "publicHistoryCode": "PUBLIC unchanged",
+    "themeStorage": "bowlingMeetup.themePreferences.v1 — localStorage only",
+    "backupRestoreIsolation": "PASS — Theme preference key is not in captureState payload",
+    "reducedMotion": "PASS",
+    "reducedTransparency": "PASS",
+    "pwaManifest": "v0.4.7.0-dev.1 aligned",
+    "serviceWorker": "isolated v0.4.7.0-dev.1 theme cache + CSS fingerprint 0470d1"
+  },
+  "manualDeviceAcceptance": {
+    "status": "PENDING",
+    "scope": [
+      "6 themes visual differentiation",
+      "5 quick presets",
+      "reload/PWA reopen preference persistence",
+      "Dark Night readability",
+      "High Contrast readability",
+      "Motion off",
+      "Transparency off/fallback",
+      "mobile no horizontal overflow",
+      "score/ranking/history/share smoke",
+      "PUBLIC/Backup regression smoke"
+    ]
+  },
+  "notes": [
+    "This is a static/source gate, not a substitute for iPhone/PWA visual acceptance.",
+    "Theme and layout preferences remain local UI preferences and do not change database/public/sync payload contracts.",
+    "The previous dev.1 line was archived before refreshing this branch to stable/v0.4.6.7."
+  ]
+}
