@@ -1,0 +1,64 @@
+{
+  "version": "v0.4.7.0-dev.1",
+  "title": "Theme Center Foundation",
+  "date": "2026-09-26",
+  "base": "v0.4.6.2-dev.1-R1",
+  "stableAncestry": "stable/v0.4.6.1",
+  "automated": {
+    "pass": 97,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "themes": [
+    {
+      "key": "default",
+      "label": "預設（原主題）"
+    },
+    {
+      "key": "liquid",
+      "label": "高階動態透明"
+    },
+    {
+      "key": "clearblue",
+      "label": "清新藍白"
+    },
+    {
+      "key": "violet",
+      "label": "柔霧紫光"
+    },
+    {
+      "key": "dark",
+      "label": "夜幕深色"
+    },
+    {
+      "key": "contrast",
+      "label": "高對比簡潔"
+    }
+  ],
+  "localEffects": {
+    "motion": true,
+    "transparency": true
+  },
+  "storage": {
+    "layoutKey": "bowlingMeetup.layoutPreferences.v1",
+    "themeKey": "bowlingMeetup.themePreferences.v1",
+    "themeExcludedFromBackup": true,
+    "themeExcludedFromRestore": true,
+    "themeExcludedFromPublicPayload": true
+  },
+  "safety": {
+    "dbVersion": 2,
+    "publicCode": "PUBLIC",
+    "supabaseMigration": false,
+    "indexedDbMigration": false,
+    "publicPayloadMigration": false,
+    "unexpectedExistingFunctionChanges": 0
+  },
+  "inherited": {
+    "perGameTable": true,
+    "publicRecordControls": true,
+    "iphoneHorizontalScrollRepair": true
+  },
+  "devicePreviewReady": false,
+  "validationComplete": false
+}
