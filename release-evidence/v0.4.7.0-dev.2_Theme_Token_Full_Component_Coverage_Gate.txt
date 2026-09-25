@@ -52,3 +52,14 @@ ACCESSIBILITY / FALLBACK
 STATUS
 Theme Token & Full Component Coverage automated gate: PASS
 Next gate: isolated Preview + iPhone / PWA / desktop cross-module visual acceptance.
+
+ISOLATED PREVIEW
+- Path: /preview/v0.4.7.0-dev.2/
+- Preview-only PR: #61
+- Merge commit: 2cfa027db1dfbc5d85cf9b329df67d81487e32db
+- Isolation Gate: 16 PASS / 0 FAIL
+- Cloud: OFF
+- LocalStorage: bowlmeet.preview.v0470d2.*
+- IndexedDB: bowlmeet.preview.v0470d2.local
+- Service Worker cache: bowlmeet-preview-v0470d2-*
+- Production root blob remains identical to stable/v0.4.6.7
