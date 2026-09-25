@@ -1,0 +1,184 @@
+BowlMeet v0.4.6.5-RC.1｜PWA Update Performance Full Regression & Release Candidate Gate
+
+Base: v0.4.6.5-dev.1 @ ae6a2cc611e5bee9f2a7906249e159240696ac66
+Functional delta from dev.1: NONE
+Allowed RC delta: APP_VERSION + CSS cache query + RC label + release evidence only
+dev.1 Performance Gate: 47/47 PASS
+dev.1 manual performance validation: PASS (user-confirmed)
+
+Performance optimization frozen:
+- One captureState per backup/update phase.
+- One DB persist per backup/update phase.
+- State/meta persist uses one IndexedDB transaction.
+- Snapshot reuses caller state and can skip duplicate persist.
+- Safety UI render removed from update critical path.
+- JSON backup reuses the same validated state.
+- Manual no-update feedback uses 400ms guarded delay.
+
+Safety retained:
+- Mandatory backup gate.
+- Full JSON backup.
+- User backup IndexedDB snapshot.
+- Final pre-activation snapshot.
+- SKIP_WAITING handler.
+- controllerchange reload.
+
+Regression scope:
+- Dynamic Score Grid / horizontal scroll / sticky player.
+- PUBLIC Ranking / Awards / Share.
+- Navigation swap.
+- Backup/Restore/Snapshot.
+- Player Claim / Live / Photo verification core.
+- DB/PUBLIC/PIN/storage contracts.
+
+Checks:
+001. PASS | RC APP_VERSION
+002. PASS | RC CSS cache query
+003. PASS | RC footer label
+004. PASS | Single APP_VERSION
+005. PASS | RC functional source frozen vs dev.1
+006. PASS | Liquid Glass CSS unchanged
+007. PASS | idbPutMany retained
+008. PASS | persist accepts shared state
+009. PASS | persist state/meta one transaction
+010. PASS | snapshot options retained
+011. PASS | snapshot reuses supplied state
+012. PASS | snapshot can skip duplicate persist
+013. PASS | snapshot can skip blocking render
+014. PASS | export accepts shared state
+015. PASS | backup one captureState
+016. PASS | backup one persist
+017. PASS | backup skips duplicate snapshot persist
+018. PASS | backup skips blocking safety render
+019. PASS | backup JSON reuses state
+020. PASS | backup safety render deferred
+021. PASS | apply one captureState
+022. PASS | apply one persist
+023. PASS | apply final snapshot skips duplicate persist
+024. PASS | apply final snapshot skips blocking render
+025. PASS | manual no-update delay 400ms
+026. PASS | no false latest while installing
+027. PASS | Update dialog exists
+028. PASS | Update apply button initially disabled
+029. PASS | Mandatory backup wording retained
+030. PASS | Waiting worker stored
+031. PASS | Waiting worker resets backup gate
+032. PASS | Waiting worker auto-opens prompt
+033. PASS | Existing waiting SW prompts
+034. PASS | New installed SW prompts
+035. PASS | Backup gate starts false
+036. PASS | Reset gate false
+037. PASS | Backup persists current state
+038. PASS | Backup user snapshot retained
+039. PASS | Backup JSON retained
+040. PASS | Backup success unlocks update
+041. PASS | Backup failure locks gate
+042. PASS | Apply blocks without backup
+043. PASS | Apply final snapshot retained
+044. PASS | Apply validates final snapshot
+045. PASS | Apply sets reload flag
+046. PASS | Apply sends SKIP_WAITING
+047. PASS | Apply failure preserves current version
+048. PASS | Controllerchange reload retained
+049. PASS | SW message listener retained
+050. PASS | SW SKIP_WAITING handler retained
+051. PASS | SW self.skipWaiting retained
+052. PASS | Exactly one SKIP_WAITING token
+053. PASS | RC source SW stays v0.4.6.4 production shell
+054. PASS | RC source SW stays v0.4.6.4 production runtime
+055. PASS | RC does not pre-promote v0.4.6.5 stable cache
+056. PASS | Manifest remains v0.4.6.4 production identity
+057. PASS | DB_NAME unchanged
+058. PASS | DB_VERSION remains 2
+059. PASS | PUBLIC code unchanged
+060. PASS | PUBLIC PIN unchanged
+061. PASS | Session key unchanged
+062. PASS | Meetup key unchanged
+063. PASS | Roster key unchanged
+064. PASS | Player Claim key unchanged
+065. PASS | Public control key unchanged
+066. PASS | Layout prefs key unchanged
+067. PASS | Snapshot limit remains 10
+068. PASS | Score model remains max 6
+069. PASS | No 8/10/12 storage expansion
+070. PASS | normalizeSessionRecord frozen from dev.1
+071. PASS | normalizeBowlingGames frozen from dev.1
+072. PASS | normalizeMeetupRecord frozen from dev.1
+073. PASS | normalizePersonalData frozen from dev.1
+074. PASS | sessionScoreGameCount frozen from dev.1
+075. PASS | renderHistory frozen from dev.1
+076. PASS | publicHistoryRecords frozen from dev.1
+077. PASS | publicMeetupRecords frozen from dev.1
+078. PASS | publicSessionForMeetup frozen from dev.1
+079. PASS | rankingRowsForScope frozen from dev.1
+080. PASS | renderLeaderboard frozen from dev.1
+081. PASS | meetupAwardRows frozen from dev.1
+082. PASS | priorPbForPlayer frozen from dev.1
+083. PASS | computeAwards frozen from dev.1
+084. PASS | renderAwardOptions frozen from dev.1
+085. PASS | renderAwards frozen from dev.1
+086. PASS | shareScopeData frozen from dev.1
+087. PASS | renderShareOptions frozen from dev.1
+088. PASS | drawMeetupFullShareCard frozen from dev.1
+089. PASS | drawAwardsShareCard frozen from dev.1
+090. PASS | syncMeetupDerivedSelectors frozen from dev.1
+091. PASS | exportFullBackup frozen from dev.1
+092. PASS | createSnapshot frozen from dev.1
+093. PASS | persistDbStateNow frozen from dev.1
+094. PASS | parseRestorePayload frozen from dev.1
+095. PASS | applyRestorePayload frozen from dev.1
+096. PASS | restoreSnapshot frozen from dev.1
+097. PASS | claimSelectedPlayer frozen from dev.1
+098. PASS | removePersonalClaim frozen from dev.1
+099. PASS | syncPersonalNow frozen from dev.1
+100. PASS | renderMeetups frozen from dev.1
+101. PASS | renderLive frozen from dev.1
+102. PASS | saveLiveRoll frozen from dev.1
+103. PASS | finishLiveRound frozen from dev.1
+104. PASS | endLiveMeetup frozen from dev.1
+105. PASS | renderVerificationCenter frozen from dev.1
+106. PASS | applyOcrToSheet frozen from dev.1
+107. PASS | setUpdateUi frozen from dev.1
+108. PASS | setPwaUpdateDialogStatus frozen from dev.1
+109. PASS | resetPwaUpdateBackupGate frozen from dev.1
+110. PASS | openPwaUpdateDialog frozen from dev.1
+111. PASS | closePwaUpdateDialog frozen from dev.1
+112. PASS | markPendingPwaUpdate frozen from dev.1
+113. PASS | backupBeforePwaUpdate frozen from dev.1
+114. PASS | watchRegistration frozen from dev.1
+115. PASS | checkPwaUpdate frozen from dev.1
+116. PASS | applyPwaUpdate frozen from dev.1
+117. PASS | initPwa frozen from dev.1
+118. PASS | History dynamic game count retained
+119. PASS | History missing-score dash retained
+120. PASS | History horizontal scroll retained
+121. PASS | Sticky player column retained
+122. PASS | Ranking uses PUBLIC games
+123. PASS | Ranking meetup uses PUBLIC session
+124. PASS | Awards uses PUBLIC source
+125. PASS | Award options use public meetups
+126. PASS | Share scope uses PUBLIC session
+127. PASS | Share full card uses dynamic game count
+128. PASS | Public-only share note retained
+129. PASS | Desktop ranking before history
+130. PASS | Mobile primary dock has score history
+131. PASS | Mobile primary dock excludes ranking
+132. PASS | Mobile More contains ranking
+133. PASS | Dynamic grid fixture 1-game
+134. PASS | Dynamic grid fixture 3-game
+135. PASS | Dynamic grid fixture sparse-4
+136. PASS | Dynamic grid fixture 6-game
+137. PASS | Dynamic grid fixture empty-min
+138. PASS | Dynamic grid fixture hard-cap
+139. PASS | dev.1 Performance Gate prerequisite | 47/47 PASS
+140. PASS | dev.1 device performance validation | User-confirmed PASS
+141. PASS | v0.4.6.4 Stable safety-update acceptance chain | Previously user-confirmed PASS
+142. PASS | Main application JavaScript parses
+
+Automated Result: 142/142 PASS
+
+RC status:
+- Functional source frozen against v0.4.6.5-dev.1.
+- Production root remains v0.4.6.4 Stable until promotion.
+- RC Preview must use isolated cache/scope.
+- Manual RC device acceptance required before v0.4.6.5 Stable.
