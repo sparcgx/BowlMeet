@@ -1,7 +1,7 @@
 const PRODUCTION_CACHE_ROOT='bowlmeet-v';
-const CACHE='bowlmeet-v0.4.6.4-stable-shell';
-const RUNTIME='bowlmeet-v0.4.6.4-stable-runtime';
-const APP_SHELL=['./','./index.html','./manifest.webmanifest','./assets/liquid-glass-dev4.css?v=0464','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-maskable-512.png'];
+const CACHE='bowlmeet-v0.4.6.5-stable-shell';
+const RUNTIME='bowlmeet-v0.4.6.5-stable-runtime';
+const APP_SHELL=['./','./index.html','./manifest.webmanifest','./assets/liquid-glass-dev4.css?v=0465','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-maskable-512.png'];
 
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(APP_SHELL)))});
 

@@ -1141,7 +1141,7 @@ dialog::backdrop,
 }
 
 </style>
-<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0464" />
+<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0465" />
 <style id="history-score-critical">
 /* v0.4.6.3-dev.1 | Dynamic score grid + Safari/PWA fallback */
 .history-score-table-wrap{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
@@ -2080,7 +2080,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.6.4';
+const APP_VERSION='0.4.6.5';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const LAYOUT_DEFAULTS=Object.freeze({scale:'100',density:'standard',width:'standard',leaderboard:'standard',scoreSize:'standard'});
 const LAYOUT_PRESETS=Object.freeze({
@@ -2106,7 +2106,7 @@ const $=id=>document.getElementById(id);
 let sessions=[]; let legacy=[]; let meetups=[]; let roster=[]; let editingId=''; let currentMeetupId=''; let deferredInstallPrompt=null; let lastShareBlob=null; let liveGameNo=1; let liveMetric='total'; let liveSaveTimer=null; let manualMeetupPlayers=[]; let historySource='all'; let historyMode='scores'; let playerDirectoryDetail=false; let playerDirectoryView='list'; let postReviewMeetupId='';
 let playerContext={key:'',rosterId:'',playerName:'',source:'LOCAL',originView:'players',hubOrigin:'players',originSessionId:'',view:'hub',analyticsRange:'all',history:{search:'',sort:'newest',range:'all',scrollTop:0,sessionId:''},navigation:{current:'players',previous:'',returnTarget:'players',hubReturnTarget:'players',sessionReturnTarget:'playerHistory',preserveScroll:true,scroll:{players:0,playerHub:0,playerHistory:0,analytics:0,scoreHistory:0}}};
 let playerSessionFocusReturn=null;
-let appDb=null; let dbReady=false; let dbMode='初始化中'; let dbPersistTimer=null; let pendingRestorePayload=null; let pwaRegistration=null; let pendingServiceWorker=null; let reloadingForUpdate=false; let pwaUpdateBackupReady=false; let pwaUpdateBackupFile='';
+let appDb=null; let dbReady=false; let dbMode='初始化中'; let dbPersistTimer=null; let pendingRestorePayload=null; let pwaRegistration=null; let pendingServiceWorker=null; let reloadingForUpdate=false; let pwaUpdateReloadTimer=null; let pwaUpdateReloadStarted=false; let pwaUpdateBackupReady=false; let pwaUpdateBackupFile='';
 let syncTimer=null; let syncPushTimer=null; let syncBusy=false; let syncDirty=false; let syncApplyingRemote=false; let syncRemotePresence={}; let syncLastError='';
 let personalData={profile:null,claims:[],games:[],revision:0,lastSyncAt:0,autoSync:true,updatedAt:0}; let personalTimer=null; let personalPushTimer=null; let personalBusy=false; let personalDirty=false; let personalLastError='';
 let groupRemote={schema:1,groupName:'',meetups:[],sessions:[],updatedAt:0}; let groupTimer=null; let groupPushTimer=null; let groupBusy=false; let groupDirty=false; let groupApplyingRemote=false; let groupLastError='';
@@ -2257,14 +2257,24 @@ function openDataDb(){
 }
 function idbGet(store,key){return new Promise((resolve,reject)=>{if(!appDb){resolve(null);return}const tx=appDb.transaction(store,'readonly'),req=tx.objectStore(store).get(key);req.onsuccess=()=>resolve(req.result||null);req.onerror=()=>reject(req.error)})}
 function idbPut(store,value){return new Promise((resolve,reject)=>{if(!appDb){resolve(false);return}const tx=appDb.transaction(store,'readwrite');tx.oncomplete=()=>resolve(true);tx.onerror=()=>reject(tx.error);tx.objectStore(store).put(value)})}
+function idbPutMany(store,values){return new Promise((resolve,reject)=>{if(!appDb){resolve(false);return}const tx=appDb.transaction(store,'readwrite');tx.oncomplete=()=>resolve(true);tx.onerror=()=>reject(tx.error);const os=tx.objectStore(store);for(const value of values)os.put(value)})}
 function idbDelete(store,key){return new Promise((resolve,reject)=>{if(!appDb){resolve(false);return}const tx=appDb.transaction(store,'readwrite');tx.oncomplete=()=>resolve(true);tx.onerror=()=>reject(tx.error);tx.objectStore(store).delete(key)})}
 function idbGetAll(store){return new Promise((resolve,reject)=>{if(!appDb){resolve([]);return}const tx=appDb.transaction(store,'readonly'),req=tx.objectStore(store).getAll();req.onsuccess=()=>resolve(req.result||[]);req.onerror=()=>reject(req.error)})}
-async function persistDbStateNow(reason='state-change'){
-  if(!dbReady||!appDb)return false;const state=captureState();await idbPut(DB_STATE_STORE,{key:'appState',value:state});await idbPut(DB_STATE_STORE,{key:'meta',value:{lastWriteAt:Date.now(),lastWriteReason:reason,appVersion:APP_VERSION}});return true;
+async function persistDbStateNow(reason='state-change',stateOverride=null){
+  if(!dbReady||!appDb)return false;const state=stateOverride||captureState();await idbPutMany(DB_STATE_STORE,[{key:'appState',value:state},{key:'meta',value:{lastWriteAt:Date.now(),lastWriteReason:reason,appVersion:APP_VERSION}}]);return true;
 }
 function queueDbStatePersist(reason='state-change'){clearTimeout(dbPersistTimer);dbPersistTimer=setTimeout(()=>persistDbStateNow(reason).catch(e=>console.warn('IndexedDB persist failed',e)),120)}
-async function createSnapshot(reason='手動快照'){
-  if(!dbReady||!appDb){return null}await persistDbStateNow('before-snapshot');const snap={id:`snap-${Date.now()}-${uid().slice(0,8)}`,createdAt:Date.now(),reason,appVersion:APP_VERSION,state:captureState()};await idbPut(DB_SNAPSHOT_STORE,snap);let list=(await idbGetAll(DB_SNAPSHOT_STORE)).sort((a,b)=>b.createdAt-a.createdAt);for(const old of list.slice(SNAPSHOT_LIMIT))await idbDelete(DB_SNAPSHOT_STORE,old.id);const meta=(await idbGet(DB_STATE_STORE,'safetyMeta'))?.value||{};meta.lastSnapshotAt=snap.createdAt;meta.lastSnapshotReason=reason;await idbPut(DB_STATE_STORE,{key:'safetyMeta',value:meta});await renderSafety();return snap;
+async function createSnapshot(reason='手動快照',options={}){
+  if(!dbReady||!appDb){return null}
+  const state=options?.state||captureState();
+  if(!options?.skipPersist)await persistDbStateNow('before-snapshot',state);
+  const snap={id:`snap-${Date.now()}-${uid().slice(0,8)}`,createdAt:Date.now(),reason,appVersion:APP_VERSION,state};
+  await idbPut(DB_SNAPSHOT_STORE,snap);
+  let list=(await idbGetAll(DB_SNAPSHOT_STORE)).sort((a,b)=>b.createdAt-a.createdAt);
+  for(const old of list.slice(SNAPSHOT_LIMIT))await idbDelete(DB_SNAPSHOT_STORE,old.id);
+  const meta=(await idbGet(DB_STATE_STORE,'safetyMeta'))?.value||{};meta.lastSnapshotAt=snap.createdAt;meta.lastSnapshotReason=reason;await idbPut(DB_STATE_STORE,{key:'safetyMeta',value:meta});
+  if(!options?.skipRender)await renderSafety();
+  return snap;
 }
 async function listSnapshots(){if(!dbReady||!appDb)return [];return (await idbGetAll(DB_SNAPSHOT_STORE)).sort((a,b)=>b.createdAt-a.createdAt)}
 async function restoreSnapshot(id){
@@ -2329,7 +2339,7 @@ async function renderSafety(){
 function runIntegrityCheck(){
   const issues=[];const dup=(arr,label)=>{const seen=new Set();for(const x of arr){if(!x?.id){issues.push(`${label} 有缺少 ID 的資料`);continue}if(seen.has(x.id))issues.push(`${label} 有重複 ID：${x.id}`);seen.add(x.id)}};dup(sessions,'計分卡');dup(meetups,'球聚');dup(roster,'球員資料');const meetupIds=new Set(meetups.map(x=>x.id));for(const s of sessions){if(s.meetupId&&!meetupIds.has(s.meetupId))issues.push(`計分卡 ${s.id} 連結到不存在的球聚`);for(const p of s.players||[])for(const score of p.scores||[]){if(score!==null&&normalizeScore(score)===null)issues.push(`計分卡 ${s.id} 含無效分數`)}}const names=new Set();for(const r of roster){const k=nameKey(r.name);if(k&&names.has(k))issues.push(`球員資料重複姓名：${r.name}`);names.add(k)}const el=$('integrityResult');if(!issues.length)el.innerHTML='<strong class="integrity-ok">檢查通過：</strong>未發現重複 ID、無效分數、孤立球聚連結或重複球員資料姓名。';else el.innerHTML=`<strong class="integrity-warn">發現 ${issues.length} 個問題：</strong>${issues.slice(0,8).map(esc).join('；')}${issues.length>8?'…':''}`;
 }
-async function exportFullBackup(){const state=captureState(),payload={app:'BowlMeet',version:APP_VERSION,exportedAt:new Date().toISOString(),storageEngine:dbMode,...state};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}),filename=`bowlmeet-v${APP_VERSION}-${today()}.json`;const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);return {filename,payload}}
+async function exportFullBackup(stateOverride=null){const state=stateOverride||captureState(),payload={app:'BowlMeet',version:APP_VERSION,exportedAt:new Date().toISOString(),storageEngine:dbMode,...state};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}),filename=`bowlmeet-v${APP_VERSION}-${today()}.json`;const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);return {filename,payload}}
 function load(){
   try{sessions=JSON.parse(localStorage.getItem(V2KEY)||'[]');if(!Array.isArray(sessions))sessions=[]}catch{sessions=[]}
   try{legacy=JSON.parse(localStorage.getItem(V1KEY)||'[]');if(!Array.isArray(legacy))legacy=[]}catch{legacy=[]}
@@ -3587,33 +3597,55 @@ function closePwaUpdateDialog(){const d=$('pwaUpdateDialog');if(!d)return;if(d.c
 function markPendingPwaUpdate(worker){pendingServiceWorker=worker;resetPwaUpdateBackupGate();setUpdateUi('有新版可更新','新版已下載完成。請先備份資料，再更新至新版。',true);openPwaUpdateDialog()}
 async function backupBeforePwaUpdate(){
   if(!pendingServiceWorker){setPwaUpdateDialogStatus('目前沒有等待中的新版。',false);return}
-  const backupBtn=$('pwaUpdateBackupBtn');if(backupBtn)backupBtn.disabled=true;setPwaUpdateDialogStatus('正在建立安全快照與完整備份…',false);
+  const backupBtn=$('pwaUpdateBackupBtn');if(backupBtn)backupBtn.disabled=true;setPwaUpdateDialogStatus('正在快速建立安全快照與完整備份…',false);
   try{
-    await persistDbStateNow('pre-pwa-update-user-backup');
-    const snap=await createSnapshot('PWA 更新前使用者備份');
+    const state=captureState();
+    await persistDbStateNow('pre-pwa-update-user-backup',state);
+    const snap=await createSnapshot('PWA 更新前使用者備份',{state,skipPersist:true,skipRender:true});
     if(dbReady&&!snap)throw new Error('安全快照建立失敗');
-    const exported=exportFullBackup();pwaUpdateBackupReady=true;pwaUpdateBackupFile=exported?.filename||'完整備份';
+    const exported=exportFullBackup(state);pwaUpdateBackupReady=true;pwaUpdateBackupFile=exported?.filename||'完整備份';
     setPwaUpdateDialogStatus('備份完成：'+pwaUpdateBackupFile+'。現在可以更新至新版。',true);
-    setUpdateUi('備份完成，等待更新','完整備份已下載，安全快照已建立。',true)
+    setUpdateUi('備份完成，等待更新','已共用同一份安全狀態建立 JSON 備份與快照。',true);
+    setTimeout(()=>renderSafety().catch(e=>console.warn('延後更新安全快照畫面失敗',e)),0)
   }catch(e){
     console.error(e);pwaUpdateBackupReady=false;if(backupBtn)backupBtn.disabled=false;setPwaUpdateDialogStatus('備份失敗，尚未允許更新。請重試。',false);setUpdateUi('更新前備份失敗','目前版本仍保留，尚未套用新版。',true)
   }
 }
 function watchRegistration(reg){pwaRegistration=reg;if(reg.waiting)markPendingPwaUpdate(reg.waiting);reg.addEventListener('updatefound',()=>{const w=reg.installing;if(!w)return;setUpdateUi('正在下載更新','Service Worker 安裝中…',false);w.addEventListener('statechange',()=>{if(w.state==='installed'){if(navigator.serviceWorker.controller)markPendingPwaUpdate(w);else setUpdateUi('PWA 已就緒','首次安裝完成。',false)}})})}
-async function checkPwaUpdate(){if(!pwaRegistration){setUpdateUi('目前無法檢查','請使用 HTTPS / localhost 的 PWA 套件。',false);return}setUpdateUi('正在檢查更新','請稍候…',false);try{await pwaRegistration.update();setTimeout(()=>{if(!pendingServiceWorker)setUpdateUi('目前已是最新','沒有偵測到等待中的新版。',false)},900)}catch(e){setUpdateUi('更新檢查失敗',String(e?.message||e),false)}}
+async function checkPwaUpdate(){if(!pwaRegistration){setUpdateUi('目前無法檢查','請使用 HTTPS / localhost 的 PWA 套件。',false);return}setUpdateUi('正在檢查更新','請稍候…',false);try{await pwaRegistration.update();setTimeout(()=>{if(!pendingServiceWorker&&!pwaRegistration?.installing)setUpdateUi('目前已是最新','沒有偵測到等待中的新版。',false)},400)}catch(e){setUpdateUi('更新檢查失敗',String(e?.message||e),false)}}
+function finishPwaUpdateReload(reason='controllerchange'){
+  if(!reloadingForUpdate||pwaUpdateReloadStarted)return;
+  pwaUpdateReloadStarted=true;
+  if(pwaUpdateReloadTimer){clearTimeout(pwaUpdateReloadTimer);pwaUpdateReloadTimer=null}
+  reloadingForUpdate=false;
+  setPwaUpdateDialogStatus(reason==='fallback'?'iOS 更新接手稍慢，正在快速重新載入…':'新版已接手，正在重新載入…',false);
+  location.reload()
+}
 async function applyPwaUpdate(){
   if(!pendingServiceWorker){setUpdateUi('沒有等待中的更新','先按「檢查更新」。',false);return}
   if(!pwaUpdateBackupReady){openPwaUpdateDialog();setPwaUpdateDialogStatus('請先按「備份資料」，完成後才能更新。',false);return}
   try{
     if($('pwaUpdateBackupBtn'))$('pwaUpdateBackupBtn').disabled=true;if($('pwaUpdateApplyBtn'))$('pwaUpdateApplyBtn').disabled=true;
-    setPwaUpdateDialogStatus('正在建立最後安全快照並套用新版…',false);setUpdateUi('正在套用新版','更新前會再建立一次最後安全快照。',false);
-    await createSnapshot('PWA 更新前最後快照');await persistDbStateNow('pre-pwa-update');
-    reloadingForUpdate=true;pendingServiceWorker.postMessage({type:'SKIP_WAITING'});setPwaUpdateDialogStatus('新版正在套用，App 即將重新載入。',false);setUpdateUi('正在套用新版','App 即將重新載入。',false)
+    setPwaUpdateDialogStatus('正在快速建立最後安全快照並套用新版…',false);setUpdateUi('正在套用新版','更新前會保存一次最新狀態與最後安全快照。',false);
+    const state=captureState();
+    await persistDbStateNow('pre-pwa-update',state);
+    const snap=await createSnapshot('PWA 更新前最後快照',{state,skipPersist:true,skipRender:true});
+    if(dbReady&&!snap)throw new Error('最後安全快照建立失敗');
+    reloadingForUpdate=true;pwaUpdateReloadStarted=false;
+    if(pwaUpdateReloadTimer){clearTimeout(pwaUpdateReloadTimer);pwaUpdateReloadTimer=null}
+    pendingServiceWorker.postMessage({type:'SKIP_WAITING'});
+    pwaUpdateReloadTimer=setTimeout(()=>finishPwaUpdateReload('fallback'),1000);
+    setPwaUpdateDialogStatus('新版正在套用，App 即將重新載入。',false);setUpdateUi('正在套用新版','等待新版接手；iOS 若未即時回應，約 1 秒後會自動重新載入。',false)
   }catch(e){
-    console.error(e);reloadingForUpdate=false;if($('pwaUpdateBackupBtn'))$('pwaUpdateBackupBtn').disabled=false;setPwaUpdateDialogStatus('安全更新失敗，目前版本仍保留。可重新備份後再試。',false);setUpdateUi('安全更新失敗','目前版本仍保留，資料未被清除。',true)
+    console.error(e);
+    if(pwaUpdateReloadTimer){clearTimeout(pwaUpdateReloadTimer);pwaUpdateReloadTimer=null}
+    reloadingForUpdate=false;pwaUpdateReloadStarted=false;
+    if($('pwaUpdateBackupBtn'))$('pwaUpdateBackupBtn').disabled=false;
+    setPwaUpdateDialogStatus('安全更新失敗，目前版本仍保留。可重新備份後再試。',false);
+    setUpdateUi('安全更新失敗','目前版本仍保留，資料未被清除。',true)
   }
 }
-function initPwa(){window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;$('installAppBtn').classList.add('ready');$('installAppBtn').textContent='安裝 App'});window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;updatePwaState()});window.addEventListener('online',updatePwaState);window.addEventListener('offline',updatePwaState);if('serviceWorker'in navigator&&location.protocol!=='file:'){navigator.serviceWorker.addEventListener('controllerchange',()=>{if(reloadingForUpdate)location.reload()});navigator.serviceWorker.register('./sw.js').then(reg=>{watchRegistration(reg);if(!reg.waiting)setUpdateUi('PWA 更新保護已啟用','偵測到新版時會跳出視窗，必須先備份再更新。',false)}).catch(e=>{console.warn('Service Worker 註冊失敗',e);setUpdateUi('PWA 註冊失敗',String(e?.message||e),false)})}else setUpdateUi(location.protocol==='file:'?'本機 HTML 模式':'瀏覽器不支援 Service Worker','PWA 安全更新需要 HTTPS / localhost。',false);updatePwaState()}
+function initPwa(){window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;$('installAppBtn').classList.add('ready');$('installAppBtn').textContent='安裝 App'});window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;updatePwaState()});window.addEventListener('online',updatePwaState);window.addEventListener('offline',updatePwaState);if('serviceWorker'in navigator&&location.protocol!=='file:'){navigator.serviceWorker.addEventListener('controllerchange',()=>{if(reloadingForUpdate)finishPwaUpdateReload('controllerchange')});navigator.serviceWorker.register('./sw.js').then(reg=>{watchRegistration(reg);if(!reg.waiting)setUpdateUi('PWA 更新保護已啟用','偵測到新版時會跳出視窗，必須先備份再更新。',false)}).catch(e=>{console.warn('Service Worker 註冊失敗',e);setUpdateUi('PWA 註冊失敗',String(e?.message||e),false)})}else setUpdateUi(location.protocol==='file:'?'本機 HTML 模式':'瀏覽器不支援 Service Worker','PWA 安全更新需要 HTTPS / localhost。',false);updatePwaState()}
 function renderShare(preferredScope=''){renderShareOptions(preferredScope);drawShareCard()}
 
 
