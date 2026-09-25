@@ -1,0 +1,176 @@
+{
+  "version": "0.4.6.7-dev.1-R2",
+  "title": "Post-Game Navigation Unblock",
+  "base": {
+    "ref": "v0.4.6.7-dev.1-R1"
+  },
+  "defect": "Completing a meetup automatically opened the Post-game Review modal, which intentionally captured touch input and prevented the bottom navigation from being used until the modal was closed.",
+  "fix": [
+    "do not auto-open Post-game Review after completion",
+    "force-close any existing Post-game Review dialog during completion reset",
+    "show non-blocking completion feedback instead",
+    "keep Post-game Review available from 過往球聚／管理",
+    "preserve R1 hard reset and dynamic game flow"
+  ],
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "R2 version"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "Completion reset closes post-game dialog"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "End completion no longer auto-opens modal"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "End completion shows non-blocking feedback"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "Manual done no longer auto-opens modal"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "Manual done shows non-blocking feedback"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "Past meetup still has review button"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "Post-game review function retained"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "Post-game review close function retained"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "Hard reset helper retained"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "Score DOM hard clear retained"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "Ranking DOM hard clear retained"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "Safari hidden hardening retained"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "Dynamic game controls retained"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "Dynamic next-game growth retained"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "Smart Next retained"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "Auto-save timings retained"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "Bottom dock remains present"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "DB_VERSION unchanged"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "Main JavaScript parses"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "rankingRowsForScope unchanged from R1"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "renderAwards unchanged from R1"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "shareScopeData unchanged from R1"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "backupBeforePwaUpdate unchanged from R1"
+    },
+    {
+      "id": 26,
+      "status": "PASS",
+      "name": "applyPwaUpdate unchanged from R1"
+    },
+    {
+      "id": 27,
+      "status": "PASS",
+      "name": "finishPwaUpdateReload unchanged from R1"
+    },
+    {
+      "id": 28,
+      "status": "PASS",
+      "name": "applyRestorePayload unchanged from R1"
+    },
+    {
+      "id": 29,
+      "status": "PASS",
+      "name": "saveLiveRoll unchanged from R1"
+    },
+    {
+      "id": 30,
+      "status": "PASS",
+      "name": "liveSmartNextInput unchanged from R1"
+    },
+    {
+      "id": 31,
+      "status": "PASS",
+      "name": "adjustLiveRoundCount unchanged from R1"
+    }
+  ],
+  "result": {
+    "pass": 31,
+    "fail": 0
+  }
+}
