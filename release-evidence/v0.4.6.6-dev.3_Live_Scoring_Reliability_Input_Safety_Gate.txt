@@ -1,0 +1,81 @@
+BowlMeet v0.4.6.6-dev.3｜Live Scoring Reliability & Input Safety
+
+Base: v0.4.6.6-dev.2 @ e91e5d607f697337aae1a3d5a2c78741355fa35a
+Scope: live scoring reliability + input safety only.
+
+Reliability:
+- Debounced commits carry a token and game number; stale callbacks are ignored.
+- Pending live-score input is flushed before round/meetup/ranking/navigation renders.
+- Invalid values block context changes and keep focus on the current field.
+- Duplicate/repeated Enter writes are guarded.
+- Render restore only targets the same game/player/frame/roll.
+- Clearing a game returns focus to that player's first available roll.
+- IndexedDB persistence failure is surfaced in the live scoring status while localStorage fallback remains intact.
+
+Frozen:
+- DB_VERSION=2 / PUBLIC PIN / schemas unchanged.
+- Ranking/Awards/Share business logic unchanged.
+- PWA safe-update functions unchanged.
+- Score storage model remains 1-6 games.
+
+Checks:
+01. PASS | APP_VERSION dev.3
+02. PASS | Input carries live game context
+03. PASS | Commit token state
+04. PASS | Commit game state
+05. PASS | Write guard state
+06. PASS | Last commit fingerprint state
+07. PASS | Current input lookup helper
+08. PASS | Cancel invalidates token
+09. PASS | Flush helper exists
+10. PASS | Flush blocks invalid active input
+11. PASS | Schedule captures game number
+12. PASS | Schedule captures token
+13. PASS | Stale token guard
+14. PASS | Stale game guard
+15. PASS | 10 fast debounce retained
+16. PASS | 0-9 debounce retained
+17. PASS | Blank debounce retained
+18. PASS | Auto commit source tagged
+19. PASS | Restore checks same game
+20. PASS | Non-advance restores same field
+21. PASS | Advance still uses Smart Next
+22. PASS | Focus helper centers frame
+23. PASS | Save rejects detached input
+24. PASS | Save rejects stale round
+25. PASS | Duplicate write lock
+26. PASS | Duplicate fingerprint guard
+27. PASS | Invalid 0-10 validation retained
+28. PASS | Frame total validation retained
+29. PASS | Missing player safe stop
+30. PASS | Persist exception visible
+31. PASS | IndexedDB failure visible
+32. PASS | Round arrow flushes pending input
+33. PASS | Round select flushes pending input
+34. PASS | Add player flushes pending input
+35. PASS | Finish round flushes pending input
+36. PASS | End meetup flushes pending input
+37. PASS | Meetup switch flushes pending input
+38. PASS | Metric rerender flushes pending input
+39. PASS | Full score navigation flushes input
+40. PASS | Share navigation flushes input
+41. PASS | Enter repeat guarded
+42. PASS | Change remains no-force advance
+43. PASS | Clear game flushes pending input
+44. PASS | Clear game refocuses player
+45. PASS | DB_VERSION remains 2
+46. PASS | PUBLIC PIN unchanged
+47. PASS | Score storage model remains 1-6
+48. PASS | Main JavaScript parses
+49. PASS | renderMeetups unchanged from dev.2
+50. PASS | renderCurrentMeetup unchanged from dev.2
+51. PASS | rankingRowsForScope unchanged from dev.2
+52. PASS | renderAwards unchanged from dev.2
+53. PASS | shareScopeData unchanged from dev.2
+54. PASS | backupBeforePwaUpdate unchanged from dev.2
+55. PASS | applyPwaUpdate unchanged from dev.2
+56. PASS | finishPwaUpdateReload unchanged from dev.2
+57. PASS | normalizeSessionRecord unchanged from dev.2
+58. PASS | sessionScoreGameCount unchanged from dev.2
+
+Result: 58/58 PASS

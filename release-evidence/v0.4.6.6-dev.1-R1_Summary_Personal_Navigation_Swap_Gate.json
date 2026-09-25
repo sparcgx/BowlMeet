@@ -1,0 +1,139 @@
+{
+  "version": "0.4.6.6-dev.1-R1",
+  "title": "Summary & Personal Navigation Swap",
+  "base": {
+    "ref": "v0.4.6.6-dev.1",
+    "commit": "c3150059952876ef0287083017bf02261a936afb"
+  },
+  "changes": [
+    "desktop swap personal/summary",
+    "mobile dock summary",
+    "mobile more personal"
+  ],
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "R1 APP_VERSION"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "R1 cache identity"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "Desktop personal before summary"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "Mobile dock has summary"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "Mobile dock summary label"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "Mobile dock excludes personal"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "Mobile More has personal"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "Mobile More personal label"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "Mobile More excludes summary"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "Primary dock set updated"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "renderMeetups unchanged from dev.1"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "renderCurrentMeetup unchanged from dev.1"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "renderLive unchanged from dev.1"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "renderScores unchanged from dev.1"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "renderHistory unchanged from dev.1"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "rankingRowsForScope unchanged from dev.1"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "renderAwards unchanged from dev.1"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "shareScopeData unchanged from dev.1"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "backupBeforePwaUpdate unchanged from dev.1"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "applyPwaUpdate unchanged from dev.1"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "DB_VERSION unchanged"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "Score model max 6"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "JavaScript parses"
+    }
+  ],
+  "result": {
+    "pass": 24,
+    "fail": 0
+  }
+}

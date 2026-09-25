@@ -1,0 +1,246 @@
+{
+  "version": "0.4.6.6-dev.1",
+  "title": "Field Workflow Simplification & Layout Consolidation",
+  "base": {
+    "ref": "stable/v0.4.6.5",
+    "commit": "ce820a37cfdbceffb13b4d808d623804b968f445"
+  },
+  "scope": "field-first UI and operation consolidation",
+  "changes": [
+    "mobile nav consolidation",
+    "scoreView renamed/secondary",
+    "active quick-start collapse",
+    "single visible round navigation",
+    "compact KPI set",
+    "live header action merge",
+    "past-meetup action menu"
+  ],
+  "invariants": {
+    "db_version": 2,
+    "public_pin": "UNCHANGED",
+    "schema": "UNCHANGED",
+    "pwa_safe_update": "UNCHANGED",
+    "score_model": "1-6"
+  },
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "APP_VERSION dev.1"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "CSS cache dev.1"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "Desktop label renamed 本次總表"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "Mobile primary score dock removed"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "Mobile More has 本次總表"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "Mobile dock primary set matches visible dock"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "Live title simplified"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "Live top has 本次總表"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "Live top has edit action"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "Live top has end action"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "Duplicate top round controls hidden"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "Duplicate mobile round bar hidden"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "Single visible score-panel round nav retained"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "Quick add player compact wording"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "KPI visible count reduced with secondary classes"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "Active meetup auto hides quick setup"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "Active meetup hides duplicate current strip"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "Editing meetup can reopen setup"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "Reset closes editing state"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "Current meetup toggles active layout"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "Live edit button wired"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "Past meetup primary action compact"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "Past meetup menu includes 本次總表"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "Past meetup menu retains leaderboard"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "Past meetup menu retains awards"
+    },
+    {
+      "id": 26,
+      "status": "PASS",
+      "name": "Past meetup menu retains edit"
+    },
+    {
+      "id": 27,
+      "status": "PASS",
+      "name": "Past meetup menu retains delete"
+    },
+    {
+      "id": 28,
+      "status": "PASS",
+      "name": "Completed meetup primary becomes review"
+    },
+    {
+      "id": 29,
+      "status": "PASS",
+      "name": "Score view clarified as secondary/manual"
+    },
+    {
+      "id": 30,
+      "status": "PASS",
+      "name": "normalizeSessionRecord unchanged from stable"
+    },
+    {
+      "id": 31,
+      "status": "PASS",
+      "name": "sessionScoreGameCount unchanged from stable"
+    },
+    {
+      "id": 32,
+      "status": "PASS",
+      "name": "rankingRowsForScope unchanged from stable"
+    },
+    {
+      "id": 33,
+      "status": "PASS",
+      "name": "renderAwards unchanged from stable"
+    },
+    {
+      "id": 34,
+      "status": "PASS",
+      "name": "shareScopeData unchanged from stable"
+    },
+    {
+      "id": 35,
+      "status": "PASS",
+      "name": "drawMeetupFullShareCard unchanged from stable"
+    },
+    {
+      "id": 36,
+      "status": "PASS",
+      "name": "backupBeforePwaUpdate unchanged from stable"
+    },
+    {
+      "id": 37,
+      "status": "PASS",
+      "name": "applyPwaUpdate unchanged from stable"
+    },
+    {
+      "id": 38,
+      "status": "PASS",
+      "name": "finishPwaUpdateReload unchanged from stable"
+    },
+    {
+      "id": 39,
+      "status": "PASS",
+      "name": "DB_VERSION remains 2"
+    },
+    {
+      "id": 40,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 41,
+      "status": "PASS",
+      "name": "Score model max 6"
+    },
+    {
+      "id": 42,
+      "status": "PASS",
+      "name": "iOS 1s update fallback retained"
+    },
+    {
+      "id": 43,
+      "status": "PASS",
+      "name": "Main JavaScript parses"
+    }
+  ],
+  "result": {
+    "pass": 43,
+    "fail": 0
+  }
+}

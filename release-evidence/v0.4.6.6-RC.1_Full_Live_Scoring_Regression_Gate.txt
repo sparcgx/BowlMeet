@@ -1,0 +1,152 @@
+BowlMeet v0.4.6.6-RC.1｜Full Live Scoring Regression & Release Candidate Gate
+
+Base: v0.4.6.6-dev.3
+Policy: No new features. RC code delta from dev.3 is APP_VERSION only.
+
+Coverage:
+- navigation and mobile dock
+- live scoring interaction
+- debounced auto-save and Smart Next
+- input reliability and stale-write safety
+- bowling calculation and 1-6 game storage
+- leaderboard, awards, sharing and public gates
+- IndexedDB, snapshots, backup and restore
+- PWA safe update
+- frozen critical-function byte comparison
+
+Frozen:
+- Production root remains v0.4.6.5 Stable.
+- DB_VERSION=2 / PUBLIC PIN / schemas unchanged.
+- Ranking / Awards / Share business logic unchanged.
+- Score model remains 1-6 games.
+- PWA safe-update logic unchanged.
+
+Source checks:
+01. PASS | APP_VERSION RC.1
+02. PASS | DB_VERSION remains 2
+03. PASS | PUBLIC PIN unchanged
+04. PASS | Layout preferences key unchanged
+05. PASS | Score storage remains 1-6 games
+06. PASS | Main JavaScript parses
+07. PASS | Mobile Dock markup retained
+08. PASS | 現場 navigation retained
+09. PASS | 總表 navigation retained
+10. PASS | 成績 navigation retained
+11. PASS | 更多 navigation retained
+12. PASS | Layout preset field retained
+13. PASS | Live scoring panel retained
+14. PASS | Live ranking panel retained
+15. PASS | iOS enterkeyhint next retained
+16. PASS | Auto commit 10 = 120ms
+17. PASS | Auto commit blank = 520ms
+18. PASS | Auto commit single digit = 420ms
+19. PASS | Smart Next helper retained
+20. PASS | Same-player next roll path retained
+21. PASS | Next-player same-frame path retained
+22. PASS | Next-frame path retained
+23. PASS | Focused frame centers horizontally
+24. PASS | Mobile scoring strip 820px
+25. PASS | Mobile roll input 40px
+26. PASS | Ranking max height 240px
+27. PASS | Clear action remains 清除本局
+28. PASS | Commit token state retained
+29. PASS | Commit game state retained
+30. PASS | Write lock retained
+31. PASS | Commit fingerprint retained
+32. PASS | Current input lookup retained
+33. PASS | Cancel invalidates token
+34. PASS | Flush helper retained
+35. PASS | Invalid input blocks context change
+36. PASS | Input carries game context
+37. PASS | Scheduled commit captures game number
+38. PASS | Stale token guard retained
+39. PASS | Stale game guard retained
+40. PASS | Auto commit source retained
+41. PASS | Detached input guard retained
+42. PASS | Stale round save guard retained
+43. PASS | Duplicate write guard retained
+44. PASS | Duplicate fingerprint guard retained
+45. PASS | 0-10 validation retained
+46. PASS | Frame total validation retained
+47. PASS | Missing-player guard retained
+48. PASS | Persist failure visible
+49. PASS | IndexedDB failure visible
+50. PASS | Repeated Enter guard retained
+51. PASS | Round arrow flush retained
+52. PASS | Round select flush retained
+53. PASS | Add player flush retained
+54. PASS | Finish round flush retained
+55. PASS | End meetup flush retained
+56. PASS | Meetup switch flush retained
+57. PASS | Ranking metric flush retained
+58. PASS | Full score navigation flush retained
+59. PASS | Share navigation flush retained
+60. PASS | Bowling roll normalization exists
+61. PASS | Bowling frame validation exists
+62. PASS | Bowling calculation exists
+63. PASS | Strike/spare bonus traversal exists
+64. PASS | Bowling frame merge exists
+65. PASS | Session normalization exists
+66. PASS | Meetup normalization exists
+67. PASS | Roster normalization exists
+68. PASS | Live session mirror exists
+69. PASS | Personal claim sync retained
+70. PASS | Ranking scope function exists
+71. PASS | Leaderboard render exists
+72. PASS | Awards render exists
+73. PASS | Share scope function exists
+74. PASS | Share card render exists
+75. PASS | Public meetup gate exists
+76. PASS | Public history control retained
+77. PASS | Current meetup context sync exists
+78. PASS | Leaderboard selector sync retained
+79. PASS | Award selector sync retained
+80. PASS | Share selector sync retained
+81. PASS | captureState exists
+82. PASS | IndexedDB open exists
+83. PASS | IndexedDB persist exists
+84. PASS | Snapshot create exists
+85. PASS | Snapshot restore exists
+86. PASS | Full backup export exists
+87. PASS | Restore parser exists
+88. PASS | Restore application exists
+89. PASS | Restore pre-snapshot retained
+90. PASS | Integrity check exists
+91. PASS | localStorage mirror retained
+92. PASS | PWA pre-update backup exists
+93. PASS | PWA apply update exists
+94. PASS | PWA reload completion exists
+95. PASS | PWA update dialog retained
+96. PASS | PWA backup gate retained
+97. PASS | Pending service worker retained
+98. PASS | Reload guard retained
+99. PASS | renderMeetups unchanged from dev.3
+100. PASS | renderCurrentMeetup unchanged from dev.3
+101. PASS | rankingRowsForScope unchanged from dev.3
+102. PASS | renderLeaderboard unchanged from dev.3
+103. PASS | renderAwards unchanged from dev.3
+104. PASS | shareScopeData unchanged from dev.3
+105. PASS | drawShareCard unchanged from dev.3
+106. PASS | backupBeforePwaUpdate unchanged from dev.3
+107. PASS | applyPwaUpdate unchanged from dev.3
+108. PASS | finishPwaUpdateReload unchanged from dev.3
+109. PASS | normalizeSessionRecord unchanged from dev.3
+110. PASS | sessionScoreGameCount unchanged from dev.3
+111. PASS | bowlingGameCalc unchanged from dev.3
+112. PASS | saveLiveRoll unchanged from dev.3
+113. PASS | flushLiveRollCommit unchanged from dev.3
+114. PASS | liveSmartNextInput unchanged from dev.3
+115. PASS | applyRestorePayload unchanged from dev.3
+116. PASS | RC code delta is version-only
+
+Result: 116/116 PASS
+
+Manual RC gate:
+1. iPhone/Safari or installed PWA: 2+ players, frames 1-3 continuous input
+2. Enter, debounce, Smart Next and horizontal focus positioning
+3. switch round/meetup/ranking metric/full score/share immediately after typing
+4. invalid bowling totals remain on field without advancing
+5. clear current game and verify refocus
+6. leaderboard/current total/public score/share consistency
+7. backup/restore smoke test
+8. PWA update dialog and pre-update backup flow

@@ -1,0 +1,349 @@
+{
+  "version": "0.4.6.6",
+  "title": "Stable Promotion & Release Freeze",
+  "base": {
+    "ref": "v0.4.6.6-RC.1",
+    "source_gate": "116/116 PASS",
+    "manual_rc_gate": "PASS"
+  },
+  "promotion": {
+    "application_version": "0.4.6.6",
+    "html_title": "v0.4.6.6",
+    "manifest": "v0.4.6.6 Stable",
+    "service_worker_cache": "v0.4.6.6",
+    "production_root_target": "main",
+    "freeze_branch_target": "stable/v0.4.6.6"
+  },
+  "policy": "No feature logic changes after RC.1. Stable changes are release metadata, PWA manifest metadata, and production cache rotation only.",
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "Stable APP_VERSION 0.4.6.6"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "HTML title promoted to v0.4.6.6"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "Stable CSS cache-buster 0466"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "Manifest JSON valid"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "Manifest name promoted"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "Manifest stable description promoted"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "Manifest start_url unchanged"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "Manifest scope unchanged"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "Manifest display standalone unchanged"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "Manifest icons retained"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "SW shell cache promoted"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "SW runtime cache promoted"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "SW CSS cache-buster promoted"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "SW production cache root retained"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "SW skip waiting retained"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "SW client claim retained"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "SW navigate network-first retained"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "Main JavaScript parses"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "Service Worker JavaScript parses"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "DB_VERSION remains 2"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "Layout preferences key unchanged"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "Score model remains 1-6 games"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "iOS enterkeyhint next retained"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "10 auto-commit 120ms retained"
+    },
+    {
+      "id": 26,
+      "status": "PASS",
+      "name": "Blank auto-commit 520ms retained"
+    },
+    {
+      "id": 27,
+      "status": "PASS",
+      "name": "Single digit auto-commit 420ms retained"
+    },
+    {
+      "id": 28,
+      "status": "PASS",
+      "name": "Smart Next retained"
+    },
+    {
+      "id": 29,
+      "status": "PASS",
+      "name": "Pending input flush retained"
+    },
+    {
+      "id": 30,
+      "status": "PASS",
+      "name": "Stale token protection retained"
+    },
+    {
+      "id": 31,
+      "status": "PASS",
+      "name": "Stale game protection retained"
+    },
+    {
+      "id": 32,
+      "status": "PASS",
+      "name": "Repeated Enter protection retained"
+    },
+    {
+      "id": 33,
+      "status": "PASS",
+      "name": "Duplicate write lock retained"
+    },
+    {
+      "id": 34,
+      "status": "PASS",
+      "name": "Invalid total protection retained"
+    },
+    {
+      "id": 35,
+      "status": "PASS",
+      "name": "IndexedDB failure warning retained"
+    },
+    {
+      "id": 36,
+      "status": "PASS",
+      "name": "Leaderboard logic retained"
+    },
+    {
+      "id": 37,
+      "status": "PASS",
+      "name": "Awards logic retained"
+    },
+    {
+      "id": 38,
+      "status": "PASS",
+      "name": "Share scope retained"
+    },
+    {
+      "id": 39,
+      "status": "PASS",
+      "name": "Snapshot support retained"
+    },
+    {
+      "id": 40,
+      "status": "PASS",
+      "name": "Restore support retained"
+    },
+    {
+      "id": 41,
+      "status": "PASS",
+      "name": "Full backup support retained"
+    },
+    {
+      "id": 42,
+      "status": "PASS",
+      "name": "PWA backup gate retained"
+    },
+    {
+      "id": 43,
+      "status": "PASS",
+      "name": "PWA apply update retained"
+    },
+    {
+      "id": 44,
+      "status": "PASS",
+      "name": "PWA reload fallback retained"
+    },
+    {
+      "id": 45,
+      "status": "PASS",
+      "name": "renderMeetups unchanged from RC.1"
+    },
+    {
+      "id": 46,
+      "status": "PASS",
+      "name": "renderCurrentMeetup unchanged from RC.1"
+    },
+    {
+      "id": 47,
+      "status": "PASS",
+      "name": "rankingRowsForScope unchanged from RC.1"
+    },
+    {
+      "id": 48,
+      "status": "PASS",
+      "name": "renderLeaderboard unchanged from RC.1"
+    },
+    {
+      "id": 49,
+      "status": "PASS",
+      "name": "renderAwards unchanged from RC.1"
+    },
+    {
+      "id": 50,
+      "status": "PASS",
+      "name": "shareScopeData unchanged from RC.1"
+    },
+    {
+      "id": 51,
+      "status": "PASS",
+      "name": "drawShareCard unchanged from RC.1"
+    },
+    {
+      "id": 52,
+      "status": "PASS",
+      "name": "backupBeforePwaUpdate unchanged from RC.1"
+    },
+    {
+      "id": 53,
+      "status": "PASS",
+      "name": "applyPwaUpdate unchanged from RC.1"
+    },
+    {
+      "id": 54,
+      "status": "PASS",
+      "name": "finishPwaUpdateReload unchanged from RC.1"
+    },
+    {
+      "id": 55,
+      "status": "PASS",
+      "name": "normalizeSessionRecord unchanged from RC.1"
+    },
+    {
+      "id": 56,
+      "status": "PASS",
+      "name": "sessionScoreGameCount unchanged from RC.1"
+    },
+    {
+      "id": 57,
+      "status": "PASS",
+      "name": "bowlingGameCalc unchanged from RC.1"
+    },
+    {
+      "id": 58,
+      "status": "PASS",
+      "name": "saveLiveRoll unchanged from RC.1"
+    },
+    {
+      "id": 59,
+      "status": "PASS",
+      "name": "flushLiveRollCommit unchanged from RC.1"
+    },
+    {
+      "id": 60,
+      "status": "PASS",
+      "name": "liveSmartNextInput unchanged from RC.1"
+    },
+    {
+      "id": 61,
+      "status": "PASS",
+      "name": "applyRestorePayload unchanged from RC.1"
+    },
+    {
+      "id": 62,
+      "status": "PASS",
+      "name": "Stable index delta is release metadata only"
+    },
+    {
+      "id": 63,
+      "status": "PASS",
+      "name": "Stable SW delta is cache-version only"
+    },
+    {
+      "id": 64,
+      "status": "PASS",
+      "name": "Liquid Glass CSS file unchanged from RC.1"
+    }
+  ],
+  "result": {
+    "pass": 64,
+    "fail": 0
+  },
+  "acceptance": {
+    "source_regression_gate": "116/116 PASS",
+    "user_manual_rc_acceptance": "PASS",
+    "stable_pre_promotion_gate": "64/64 PASS"
+  }
+}

@@ -1,0 +1,78 @@
+BowlMeet v0.4.6.6-dev.2｜Live Scoring Interaction & Mobile Layout Optimization
+
+Base: v0.4.6.6-dev.1-R1 @ c8881c9d8c2b2fe4f83b6926e5329619f4c2d336
+Scope: live scoring interaction + mobile layout only.
+
+Interaction:
+- iOS numeric fields use enterkeyhint=next.
+- Valid input auto-commits after a short debounce (10: 120ms; 0-9: 420ms).
+- Blank input is saved without forced advance after 520ms.
+- Enter commits immediately.
+- Smart Next: incomplete frame -> same player next roll; completed frame -> next player same frame; all players -> next frame first player.
+- Focused frame is centered horizontally after re-render.
+- Change/blur path remains a non-forced-advance fallback.
+
+Mobile layout:
+- 10-frame strip reduced from ~900px to 820px minimum width.
+- Roll targets increased to 40px height / 16px text.
+- Focused player/frame gets stronger visual state.
+- Live top/KPI/panel gaps reduced.
+- Scoring help text hidden on mobile after entering field workflow.
+- Ranking table capped to 240px height with compact cell spacing.
+- Clear action shortened to 清除本局.
+
+Frozen:
+- v0.4.6.6-dev.1-R1 navigation layout retained.
+- DB_VERSION=2 / PUBLIC/PIN / schemas unchanged.
+- Ranking/Awards/Share business logic unchanged.
+- PWA safe update/performance/iOS activation unchanged.
+- Score storage model remains 1-6 games.
+
+Checks:
+01. PASS | APP_VERSION dev.2
+02. PASS | CSS query dev.2
+03. PASS | Auto-commit timer state
+04. PASS | Auto-commit key state
+05. PASS | iOS enterkeyhint next
+06. PASS | Smart next helper exists
+07. PASS | Smart next keeps same frame roll first
+08. PASS | Smart next advances next player same frame
+09. PASS | Smart next advances next frame after players
+10. PASS | Auto commit helper exists
+11. PASS | 10 gets fast delay
+12. PASS | Single digit debounce 420ms
+13. PASS | Blank clear debounce retained
+14. PASS | Input event schedules commit
+15. PASS | Change remains no-force-advance fallback
+16. PASS | Enter immediate smart advance
+17. PASS | Focus frame highlight
+18. PASS | Focus helper centers frame
+19. PASS | Restore uses smart next
+20. PASS | Current summary terminology
+21. PASS | Clear action shortened
+22. PASS | Mobile frame min width reduced to 820
+23. PASS | Mobile roll touch height 40
+24. PASS | Mobile frame scroll snap
+25. PASS | Mobile compact top
+26. PASS | Mobile compact KPI
+27. PASS | Mobile scoring instructions hidden
+28. PASS | Mobile rank table bounded
+29. PASS | R1 mobile summary Dock retained
+30. PASS | R1 personal in More retained
+31. PASS | renderMeetups unchanged from R1
+32. PASS | renderCurrentMeetup unchanged from R1
+33. PASS | rankingRowsForScope unchanged from R1
+34. PASS | renderAwards unchanged from R1
+35. PASS | shareScopeData unchanged from R1
+36. PASS | backupBeforePwaUpdate unchanged from R1
+37. PASS | applyPwaUpdate unchanged from R1
+38. PASS | finishPwaUpdateReload unchanged from R1
+39. PASS | normalizeSessionRecord unchanged from R1
+40. PASS | sessionScoreGameCount unchanged from R1
+41. PASS | DB_VERSION remains 2
+42. PASS | PUBLIC PIN unchanged
+43. PASS | Score model remains max 6
+44. PASS | iOS update fallback retained
+45. PASS | Main JavaScript parses
+
+Result: 45/45 PASS
