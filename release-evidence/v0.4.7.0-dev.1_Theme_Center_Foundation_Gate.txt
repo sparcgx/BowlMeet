@@ -54,3 +54,14 @@ archive/v0.4.7.0-dev.1-pre-v0.4.6.7-refresh-20260926
 STATUS
 Foundation automated gate: PASS
 Next gate: iPhone / PWA / desktop visual & interaction acceptance.
+
+ISOLATED PREVIEW
+- Path: /preview/v0.4.7.0-dev.1/
+- Preview-only PR: #60
+- Merge commit: fbeb7108c9cc6e4c18ad1fd8e28c699c65c353ad
+- Isolation Gate: 15 PASS / 0 FAIL
+- Cloud: OFF
+- LocalStorage: bowlmeet.preview.v0470d1.*
+- IndexedDB: bowlmeet.preview.v0470d1.local
+- Service Worker cache: bowlmeet-preview-v0470d1-*
+- Production root blob remains identical to stable/v0.4.6.7
