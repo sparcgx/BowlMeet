@@ -1,0 +1,1010 @@
+{
+  "version": "0.4.6.7-RC.1",
+  "title": "Completion Reset, Dynamic Games & Public History Full Regression",
+  "base": {
+    "ref": "v0.4.6.7-dev.1-R3",
+    "manual_acceptance": "R3 PASS"
+  },
+  "policy": "No new features. RC code delta from R3 is APP_VERSION only.",
+  "coverage": [
+    "v0.4.6.6 live scoring interaction and reliability",
+    "dynamic game flow and 1-6 game safety",
+    "R1 completed-meetup context + DOM/KPI hard reset",
+    "R2 post-game navigation unblock",
+    "R3 public-history filter stability",
+    "unified history counts and filters",
+    "public record controls and cloud sync",
+    "bowling calculation/session normalization",
+    "leaderboard, awards and sharing",
+    "IndexedDB, snapshot, backup and restore",
+    "PWA safe update",
+    "critical-function byte comparison to R3"
+  ],
+  "invariants": {
+    "production_root": "v0.4.6.6 Stable",
+    "db_version": 2,
+    "max_games": 6,
+    "public_pin": "UNCHANGED",
+    "schema": "UNCHANGED",
+    "ranking_awards_share": "UNCHANGED",
+    "backup_restore": "UNCHANGED",
+    "pwa_safe_update": "UNCHANGED"
+  },
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "APP_VERSION is RC.1"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "DB_VERSION remains 2"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "Layout preferences key retained"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "Score model remains length 6"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "Main JavaScript parses"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "Mobile dock retained"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "現場 view retained"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "總表 view retained"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "成績 view retained"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "更多 sheet retained"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "iOS enterkeyhint next retained"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "10 auto-commit 120ms retained"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "blank auto-commit 520ms retained"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "single digit auto-commit 420ms retained"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "Smart Next helper retained"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "same-player next-roll retained"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "next-player same-frame retained"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "next-frame progression retained"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "focused frame centering retained"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "flushLiveRollCommit retained"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "commit token retained"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "game-context commit guard retained"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "duplicate write lock retained"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "duplicate fingerprint retained"
+    },
+    {
+      "id": 26,
+      "status": "PASS",
+      "name": "repeated Enter guard retained"
+    },
+    {
+      "id": 27,
+      "status": "PASS",
+      "name": "0-10 validation retained"
+    },
+    {
+      "id": 28,
+      "status": "PASS",
+      "name": "frame total validation retained"
+    },
+    {
+      "id": 29,
+      "status": "PASS",
+      "name": "IndexedDB failure warning retained"
+    },
+    {
+      "id": 30,
+      "status": "PASS",
+      "name": "persist failure warning retained"
+    },
+    {
+      "id": 31,
+      "status": "PASS",
+      "name": "Dynamic meetup option exists"
+    },
+    {
+      "id": 32,
+      "status": "PASS",
+      "name": "Fixed 1-6 options retained"
+    },
+    {
+      "id": 33,
+      "status": "PASS",
+      "name": "dynamicGames normalized"
+    },
+    {
+      "id": 34,
+      "status": "PASS",
+      "name": "Legacy meetup default remains fixed 6"
+    },
+    {
+      "id": 35,
+      "status": "PASS",
+      "name": "New meetup defaults dynamic"
+    },
+    {
+      "id": 36,
+      "status": "PASS",
+      "name": "Dynamic mode saved"
+    },
+    {
+      "id": 37,
+      "status": "PASS",
+      "name": "Dynamic mode restored on edit"
+    },
+    {
+      "id": 38,
+      "status": "PASS",
+      "name": "LIVE_GAME_MAX remains 6"
+    },
+    {
+      "id": 39,
+      "status": "PASS",
+      "name": "livePlannedGames helper retained"
+    },
+    {
+      "id": 40,
+      "status": "PASS",
+      "name": "liveHighestUsedGame helper retained"
+    },
+    {
+      "id": 41,
+      "status": "PASS",
+      "name": "Dynamic +局 control retained"
+    },
+    {
+      "id": 42,
+      "status": "PASS",
+      "name": "Dynamic -局 control retained"
+    },
+    {
+      "id": 43,
+      "status": "PASS",
+      "name": "Dynamic adjust helper retained"
+    },
+    {
+      "id": 44,
+      "status": "PASS",
+      "name": "Cannot shrink below used game"
+    },
+    {
+      "id": 45,
+      "status": "PASS",
+      "name": "Dynamic edge auto-grows next game"
+    },
+    {
+      "id": 46,
+      "status": "PASS",
+      "name": "Dynamic next button text retained"
+    },
+    {
+      "id": 47,
+      "status": "PASS",
+      "name": "Dynamic badge retained"
+    },
+    {
+      "id": 48,
+      "status": "PASS",
+      "name": "Dynamic KPI label retained"
+    },
+    {
+      "id": 49,
+      "status": "PASS",
+      "name": "Safari hidden hardening retained"
+    },
+    {
+      "id": 50,
+      "status": "PASS",
+      "name": "resetLivePresentation helper retained"
+    },
+    {
+      "id": 51,
+      "status": "PASS",
+      "name": "Live score DOM clear retained"
+    },
+    {
+      "id": 52,
+      "status": "PASS",
+      "name": "Live ranking DOM clear retained"
+    },
+    {
+      "id": 53,
+      "status": "PASS",
+      "name": "Rank count reset retained"
+    },
+    {
+      "id": 54,
+      "status": "PASS",
+      "name": "Players KPI reset retained"
+    },
+    {
+      "id": 55,
+      "status": "PASS",
+      "name": "Round KPI reset retained"
+    },
+    {
+      "id": 56,
+      "status": "PASS",
+      "name": "Round-done KPI reset retained"
+    },
+    {
+      "id": 57,
+      "status": "PASS",
+      "name": "Average KPI reset retained"
+    },
+    {
+      "id": 58,
+      "status": "PASS",
+      "name": "Best KPI reset retained"
+    },
+    {
+      "id": 59,
+      "status": "PASS",
+      "name": "Progress reset retained"
+    },
+    {
+      "id": 60,
+      "status": "PASS",
+      "name": "Round badge reset retained"
+    },
+    {
+      "id": 61,
+      "status": "PASS",
+      "name": "liveMain hidden by reset"
+    },
+    {
+      "id": 62,
+      "status": "PASS",
+      "name": "liveContent hidden by reset"
+    },
+    {
+      "id": 63,
+      "status": "PASS",
+      "name": "liveEmpty shown by reset"
+    },
+    {
+      "id": 64,
+      "status": "PASS",
+      "name": "Completion clears live selector"
+    },
+    {
+      "id": 65,
+      "status": "PASS",
+      "name": "Completion clears quick player"
+    },
+    {
+      "id": 66,
+      "status": "PASS",
+      "name": "Completion clears current context"
+    },
+    {
+      "id": 67,
+      "status": "PASS",
+      "name": "Completion removes live prefs"
+    },
+    {
+      "id": 68,
+      "status": "PASS",
+      "name": "No-active-meetup render hard resets"
+    },
+    {
+      "id": 69,
+      "status": "PASS",
+      "name": "Completion does not auto-open Post-game Review"
+    },
+    {
+      "id": 70,
+      "status": "PASS",
+      "name": "Completion gives non-blocking success feedback"
+    },
+    {
+      "id": 71,
+      "status": "PASS",
+      "name": "Completion reset force-closes existing review"
+    },
+    {
+      "id": 72,
+      "status": "PASS",
+      "name": "Manual done does not auto-open Post-game Review"
+    },
+    {
+      "id": 73,
+      "status": "PASS",
+      "name": "Past meetup still exposes review action"
+    },
+    {
+      "id": 74,
+      "status": "PASS",
+      "name": "Post-game review function retained"
+    },
+    {
+      "id": 75,
+      "status": "PASS",
+      "name": "Post-game review close retained"
+    },
+    {
+      "id": 76,
+      "status": "PASS",
+      "name": "Public visibility preserves source tab"
+    },
+    {
+      "id": 77,
+      "status": "PASS",
+      "name": "Public visibility preserves public filter"
+    },
+    {
+      "id": 78,
+      "status": "PASS",
+      "name": "Public visibility preserves search"
+    },
+    {
+      "id": 79,
+      "status": "PASS",
+      "name": "Public visibility preserves sort"
+    },
+    {
+      "id": 80,
+      "status": "PASS",
+      "name": "Public visibility preserves dateFrom"
+    },
+    {
+      "id": 81,
+      "status": "PASS",
+      "name": "Public visibility preserves dateTo"
+    },
+    {
+      "id": 82,
+      "status": "PASS",
+      "name": "Public visibility preserves player filter"
+    },
+    {
+      "id": 83,
+      "status": "PASS",
+      "name": "Public visibility preserves venue filter"
+    },
+    {
+      "id": 84,
+      "status": "PASS",
+      "name": "Public visibility preserves lane filter"
+    },
+    {
+      "id": 85,
+      "status": "PASS",
+      "name": "Source tab restored after visibility change"
+    },
+    {
+      "id": 86,
+      "status": "PASS",
+      "name": "Public filter restored after visibility change"
+    },
+    {
+      "id": 87,
+      "status": "PASS",
+      "name": "Search restored after visibility change"
+    },
+    {
+      "id": 88,
+      "status": "PASS",
+      "name": "Sort restored after visibility change"
+    },
+    {
+      "id": 89,
+      "status": "PASS",
+      "name": "Date filters restored after visibility change"
+    },
+    {
+      "id": 90,
+      "status": "PASS",
+      "name": "Player filter restored after visibility change"
+    },
+    {
+      "id": 91,
+      "status": "PASS",
+      "name": "Venue filter restored after visibility change"
+    },
+    {
+      "id": 92,
+      "status": "PASS",
+      "name": "Lane filter restored after visibility change"
+    },
+    {
+      "id": 93,
+      "status": "PASS",
+      "name": "Removed records still labeled publicRemoved"
+    },
+    {
+      "id": 94,
+      "status": "PASS",
+      "name": "Removed record source tag retained"
+    },
+    {
+      "id": 95,
+      "status": "PASS",
+      "name": "Republish action retained"
+    },
+    {
+      "id": 96,
+      "status": "PASS",
+      "name": "Unpublish action retained"
+    },
+    {
+      "id": 97,
+      "status": "PASS",
+      "name": "Visibility change no longer forces local tab"
+    },
+    {
+      "id": 98,
+      "status": "PASS",
+      "name": "Visibility change no longer forces unpublished filter"
+    },
+    {
+      "id": 99,
+      "status": "PASS",
+      "name": "Visibility change no longer forces all filter"
+    },
+    {
+      "id": 100,
+      "status": "PASS",
+      "name": "Old switch-to-local feedback removed"
+    },
+    {
+      "id": 101,
+      "status": "PASS",
+      "name": "Unified history source tabs retained"
+    },
+    {
+      "id": 102,
+      "status": "PASS",
+      "name": "Local source tab retained"
+    },
+    {
+      "id": 103,
+      "status": "PASS",
+      "name": "Public source tab retained"
+    },
+    {
+      "id": 104,
+      "status": "PASS",
+      "name": "Public-state filter retained"
+    },
+    {
+      "id": 105,
+      "status": "PASS",
+      "name": "All-state option retained"
+    },
+    {
+      "id": 106,
+      "status": "PASS",
+      "name": "Published option retained"
+    },
+    {
+      "id": 107,
+      "status": "PASS",
+      "name": "Unpublished option retained"
+    },
+    {
+      "id": 108,
+      "status": "PASS",
+      "name": "Local-only option retained"
+    },
+    {
+      "id": 109,
+      "status": "PASS",
+      "name": "Public-only option retained"
+    },
+    {
+      "id": 110,
+      "status": "PASS",
+      "name": "Both option retained"
+    },
+    {
+      "id": 111,
+      "status": "PASS",
+      "name": "filteredSessions retained"
+    },
+    {
+      "id": 112,
+      "status": "PASS",
+      "name": "historyPublicStateMatch retained"
+    },
+    {
+      "id": 113,
+      "status": "PASS",
+      "name": "renderHistory retained"
+    },
+    {
+      "id": 114,
+      "status": "PASS",
+      "name": "Session count uses filtered list"
+    },
+    {
+      "id": 115,
+      "status": "PASS",
+      "name": "Top counts use unified full list"
+    },
+    {
+      "id": 116,
+      "status": "PASS",
+      "name": "Public record controls normalize retained"
+    },
+    {
+      "id": 117,
+      "status": "PASS",
+      "name": "Public record controls merge retained"
+    },
+    {
+      "id": 118,
+      "status": "PASS",
+      "name": "Public record state write retained"
+    },
+    {
+      "id": 119,
+      "status": "PASS",
+      "name": "Effective record controls retained"
+    },
+    {
+      "id": 120,
+      "status": "PASS",
+      "name": "Public record state helper retained"
+    },
+    {
+      "id": 121,
+      "status": "PASS",
+      "name": "Group payload schema 2 retained"
+    },
+    {
+      "id": 122,
+      "status": "PASS",
+      "name": "buildGroupPayload retained"
+    },
+    {
+      "id": 123,
+      "status": "PASS",
+      "name": "Removed sessions filtered from public payload"
+    },
+    {
+      "id": 124,
+      "status": "PASS",
+      "name": "Group pull retained"
+    },
+    {
+      "id": 125,
+      "status": "PASS",
+      "name": "Group push retained"
+    },
+    {
+      "id": 126,
+      "status": "PASS",
+      "name": "Public sync retained"
+    },
+    {
+      "id": 127,
+      "status": "PASS",
+      "name": "Public polling retained"
+    },
+    {
+      "id": 128,
+      "status": "PASS",
+      "name": "normalizeBowlingRoll retained"
+    },
+    {
+      "id": 129,
+      "status": "PASS",
+      "name": "normalizeBowlingFrame retained"
+    },
+    {
+      "id": 130,
+      "status": "PASS",
+      "name": "bowlingFrameValid retained"
+    },
+    {
+      "id": 131,
+      "status": "PASS",
+      "name": "bowlingNextRolls retained"
+    },
+    {
+      "id": 132,
+      "status": "PASS",
+      "name": "bowlingGameCalc retained"
+    },
+    {
+      "id": 133,
+      "status": "PASS",
+      "name": "normalizeBowlingGames retained"
+    },
+    {
+      "id": 134,
+      "status": "PASS",
+      "name": "mergeBowlingGames retained"
+    },
+    {
+      "id": 135,
+      "status": "PASS",
+      "name": "normalizeSessionRecord retained"
+    },
+    {
+      "id": 136,
+      "status": "PASS",
+      "name": "sessionScoreGameCount retained"
+    },
+    {
+      "id": 137,
+      "status": "PASS",
+      "name": "mirror live session retained"
+    },
+    {
+      "id": 138,
+      "status": "PASS",
+      "name": "personal claim sync retained"
+    },
+    {
+      "id": 139,
+      "status": "PASS",
+      "name": "rankingRowsForScope retained"
+    },
+    {
+      "id": 140,
+      "status": "PASS",
+      "name": "renderLeaderboard retained"
+    },
+    {
+      "id": 141,
+      "status": "PASS",
+      "name": "renderAwards retained"
+    },
+    {
+      "id": 142,
+      "status": "PASS",
+      "name": "shareScopeData retained"
+    },
+    {
+      "id": 143,
+      "status": "PASS",
+      "name": "drawShareCard retained"
+    },
+    {
+      "id": 144,
+      "status": "PASS",
+      "name": "requirePublicMeetup retained"
+    },
+    {
+      "id": 145,
+      "status": "PASS",
+      "name": "publicMeetupRecords retained"
+    },
+    {
+      "id": 146,
+      "status": "PASS",
+      "name": "publicSessionForMeetup retained"
+    },
+    {
+      "id": 147,
+      "status": "PASS",
+      "name": "selector context sync retained"
+    },
+    {
+      "id": 148,
+      "status": "PASS",
+      "name": "captureState retained"
+    },
+    {
+      "id": 149,
+      "status": "PASS",
+      "name": "openDataDb retained"
+    },
+    {
+      "id": 150,
+      "status": "PASS",
+      "name": "persistDbStateNow retained"
+    },
+    {
+      "id": 151,
+      "status": "PASS",
+      "name": "createSnapshot retained"
+    },
+    {
+      "id": 152,
+      "status": "PASS",
+      "name": "restoreSnapshot retained"
+    },
+    {
+      "id": 153,
+      "status": "PASS",
+      "name": "exportFullBackup retained"
+    },
+    {
+      "id": 154,
+      "status": "PASS",
+      "name": "parseRestorePayload retained"
+    },
+    {
+      "id": 155,
+      "status": "PASS",
+      "name": "applyRestorePayload retained"
+    },
+    {
+      "id": 156,
+      "status": "PASS",
+      "name": "Integrity check retained"
+    },
+    {
+      "id": 157,
+      "status": "PASS",
+      "name": "localStorage mirror retained"
+    },
+    {
+      "id": 158,
+      "status": "PASS",
+      "name": "backupBeforePwaUpdate retained"
+    },
+    {
+      "id": 159,
+      "status": "PASS",
+      "name": "applyPwaUpdate retained"
+    },
+    {
+      "id": 160,
+      "status": "PASS",
+      "name": "finishPwaUpdateReload retained"
+    },
+    {
+      "id": 161,
+      "status": "PASS",
+      "name": "PWA update dialog retained"
+    },
+    {
+      "id": 162,
+      "status": "PASS",
+      "name": "PWA backup-ready gate retained"
+    },
+    {
+      "id": 163,
+      "status": "PASS",
+      "name": "Pending service worker retained"
+    },
+    {
+      "id": 164,
+      "status": "PASS",
+      "name": "Reload guard retained"
+    },
+    {
+      "id": 165,
+      "status": "PASS",
+      "name": "renderMeetups unchanged from R3"
+    },
+    {
+      "id": 166,
+      "status": "PASS",
+      "name": "renderCurrentMeetup unchanged from R3"
+    },
+    {
+      "id": 167,
+      "status": "PASS",
+      "name": "rankingRowsForScope unchanged from R3"
+    },
+    {
+      "id": 168,
+      "status": "PASS",
+      "name": "renderLeaderboard unchanged from R3"
+    },
+    {
+      "id": 169,
+      "status": "PASS",
+      "name": "renderAwards unchanged from R3"
+    },
+    {
+      "id": 170,
+      "status": "PASS",
+      "name": "shareScopeData unchanged from R3"
+    },
+    {
+      "id": 171,
+      "status": "PASS",
+      "name": "drawShareCard unchanged from R3"
+    },
+    {
+      "id": 172,
+      "status": "PASS",
+      "name": "backupBeforePwaUpdate unchanged from R3"
+    },
+    {
+      "id": 173,
+      "status": "PASS",
+      "name": "applyPwaUpdate unchanged from R3"
+    },
+    {
+      "id": 174,
+      "status": "PASS",
+      "name": "finishPwaUpdateReload unchanged from R3"
+    },
+    {
+      "id": 175,
+      "status": "PASS",
+      "name": "normalizeSessionRecord unchanged from R3"
+    },
+    {
+      "id": 176,
+      "status": "PASS",
+      "name": "sessionScoreGameCount unchanged from R3"
+    },
+    {
+      "id": 177,
+      "status": "PASS",
+      "name": "bowlingGameCalc unchanged from R3"
+    },
+    {
+      "id": 178,
+      "status": "PASS",
+      "name": "saveLiveRoll unchanged from R3"
+    },
+    {
+      "id": 179,
+      "status": "PASS",
+      "name": "flushLiveRollCommit unchanged from R3"
+    },
+    {
+      "id": 180,
+      "status": "PASS",
+      "name": "liveSmartNextInput unchanged from R3"
+    },
+    {
+      "id": 181,
+      "status": "PASS",
+      "name": "applyRestorePayload unchanged from R3"
+    },
+    {
+      "id": 182,
+      "status": "PASS",
+      "name": "adjustLiveRoundCount unchanged from R3"
+    },
+    {
+      "id": 183,
+      "status": "PASS",
+      "name": "resetLivePresentation unchanged from R3"
+    },
+    {
+      "id": 184,
+      "status": "PASS",
+      "name": "clearCompletedMeetupContext unchanged from R3"
+    },
+    {
+      "id": 185,
+      "status": "PASS",
+      "name": "completeLiveMeetup unchanged from R3"
+    },
+    {
+      "id": 186,
+      "status": "PASS",
+      "name": "setMeetupStatus unchanged from R3"
+    },
+    {
+      "id": 187,
+      "status": "PASS",
+      "name": "filteredSessions unchanged from R3"
+    },
+    {
+      "id": 188,
+      "status": "PASS",
+      "name": "renderHistory unchanged from R3"
+    },
+    {
+      "id": 189,
+      "status": "PASS",
+      "name": "buildGroupPayload unchanged from R3"
+    },
+    {
+      "id": 190,
+      "status": "PASS",
+      "name": "mergePublicRecordControls unchanged from R3"
+    },
+    {
+      "id": 191,
+      "status": "PASS",
+      "name": "setPublicVisibility unchanged from R3"
+    },
+    {
+      "id": 192,
+      "status": "PASS",
+      "name": "RC code delta is APP_VERSION only"
+    }
+  ],
+  "result": {
+    "pass": 192,
+    "fail": 0
+  },
+  "manual_gate": [
+    "Complete a meetup and confirm 10-frame scoring, live ranking and KPIs clear",
+    "Immediately use bottom navigation after completion",
+    "Open Post-game Review manually from past meetup management",
+    "Create dynamic meetup, auto-add next game and test +局/-局 protection",
+    "Keep History on 全部, unpublish one record and verify unrelated records remain visible",
+    "Republish the same record and verify current filters remain unchanged",
+    "Check leaderboard/current total/public history/share consistency",
+    "Run backup/restore smoke test",
+    "Check PWA safe-update backup gate"
+  ]
+}
