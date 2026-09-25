@@ -90,7 +90,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 .live-shell{display:grid;gap:14px}.live-top{padding:17px}.live-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}.live-title h2{margin:0;font-size:20px}.live-title p{margin:5px 0 0;color:var(--muted);font-size:12px;line-height:1.5}.live-head-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.live-selector{display:grid;grid-template-columns:minmax(220px,1.3fr) minmax(130px,.55fr) auto auto;gap:9px;align-items:end;margin-top:14px}.live-selector .field{margin:0}
 .live-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:13px}.live-kpi{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}.live-kpi span{display:block;font-size:10px;color:var(--muted);font-weight:700}.live-kpi strong{display:block;font-size:24px;margin-top:4px;letter-spacing:-.02em}.live-kpi small{display:block;font-size:10px;color:var(--muted);margin-top:3px}
 .live-progress-wrap{margin-top:12px}.live-progress-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:11px;color:var(--muted);margin-bottom:5px}.live-progress{height:9px;background:#edf0f4;border-radius:999px;overflow:hidden}.live-progress span{display:block;height:100%;background:var(--primary);border-radius:inherit;transition:width .2s}
-.live-main{display:grid;grid-template-columns:1fr;gap:14px}.live-score-panel{grid-row:1}.live-rank-panel{grid-row:2}.live-score-panel,.live-rank-panel{padding:16px}.live-section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px}.live-section-head h3{margin:0;font-size:16px}.live-section-head p{margin:3px 0 0;font-size:11px;color:var(--muted)}.live-round-nav{display:flex;align-items:center;gap:7px}.live-round-badge{min-width:74px;text-align:center;padding:7px 10px;border-radius:999px;background:#172033;color:#fff;font-size:12px;font-weight:850}
+.live-main{display:grid;grid-template-columns:1fr;gap:14px}#liveMain[hidden],#liveContent[hidden]{display:none!important}.live-score-panel{grid-row:1}.live-rank-panel{grid-row:2}.live-score-panel,.live-rank-panel{padding:16px}.live-section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px}.live-section-head h3{margin:0;font-size:16px}.live-section-head p{margin:3px 0 0;font-size:11px;color:var(--muted)}.live-round-nav{display:flex;align-items:center;gap:7px}.live-round-badge{min-width:74px;text-align:center;padding:7px 10px;border-radius:999px;background:#172033;color:#fff;font-size:12px;font-weight:850}
 .live-score-list{display:grid;gap:8px}.live-score-row{display:grid;grid-template-columns:minmax(160px,1.05fr) minmax(220px,1fr) 130px;gap:10px;align-items:center;border:1px solid var(--line);border-radius:13px;padding:10px;background:#fff}.live-score-row.complete{background:#fbfefc;border-color:#cfe8d8}.live-person{display:flex;align-items:center;gap:10px;min-width:0}.live-rank{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:#f0f3f7;font-weight:900;font-size:14px;flex:0 0 auto}.live-rank.top{background:#eef4ff;color:#0f62fe}.live-person strong{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.live-person small{display:block;margin-top:3px;font-size:10px;color:var(--muted)}
 .live-chips{display:flex;gap:4px;flex-wrap:wrap}.live-chip{min-width:38px;border:1px solid var(--line);border-radius:8px;padding:5px 6px;text-align:center;background:#fafbfc}.live-chip b{display:block;font-size:11px}.live-chip small{display:block;font-size:8px;color:var(--muted);margin-bottom:1px}.live-chip.current{border-color:#8bb5ff;background:var(--primary-soft)}
 .live-entry{display:grid;grid-template-columns:1fr 30px;gap:5px;align-items:center}.live-entry input{width:100%;height:50px;border:1px solid #cfd6e2;border-radius:11px;text-align:center;font-size:24px;font-weight:900;outline:none;background:#fff}.live-entry input:focus{border-color:#0f62fe;box-shadow:0 0 0 3px #eaf2ff}.live-entry input.invalid{border-color:#d92d20;background:#fff5f5}.live-entry .clear-live{height:50px;border:1px solid var(--line);background:#fff;border-radius:9px;color:var(--muted)}
@@ -2161,7 +2161,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.6.7-dev.1';
+const APP_VERSION='0.4.6.7-dev.1-R1';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const LAYOUT_DEFAULTS=Object.freeze({scale:'100',density:'standard',width:'standard',leaderboard:'standard',scoreSize:'standard'});
 const LAYOUT_PRESETS=Object.freeze({
@@ -3216,6 +3216,34 @@ function liveMetricValue(row,metric){return metric==='avg'?(row.avg??-1):metric=
 function liveRowsFor(m,s){const planned=livePlannedGames(m);return (s?.players||[]).filter(p=>String(p.name||'').trim()).map(p=>{const scores=(p.scores||[]).slice(0,planned).map(normalizeScore),vals=scores.filter(v=>v!==null),game=normalizeBowlingGames(p.bowlingFrames)[liveGameNo-1],calc=bowlingGameCalc(game),legacyCurrent=!calc.started&&normalizeScore(scores[liveGameNo-1])!==null,current=calc.started?calc.total:normalizeScore(scores[liveGameNo-1]),gameComplete=calc.started?calc.complete:legacyCurrent,frameDone=calc.started?calc.completedFrames:(legacyCurrent?10:0);return {id:p.id,name:p.name,scores,games:vals.length,total:vals.reduce((a,b)=>a+b,0),avg:avg(vals),best:vals.length?Math.max(...vals):null,current,gameComplete,frameDone,game,frameCalc:calc,legacyCurrent}})}
 function liveSortRows(rows,metric){return [...rows].sort((a,b)=>liveMetricValue(b,metric)-liveMetricValue(a,metric)||b.games-a.games||a.name.localeCompare(b.name,'zh-Hant'))}
 function setLiveSaveState(text,pending=false){const el=$('liveSaveState');if(!el)return;el.textContent=text;el.classList.toggle('pending',pending);clearTimeout(liveSaveTimer);if(pending)liveSaveTimer=setTimeout(()=>setLiveSaveState('輸入即自動儲存',false),1300)}
+function resetLivePresentation(){
+  const scoreList=$('liveScoreList'),rankBody=$('liveRankBody'),rankCount=$('liveRankCount'),roundSel=$('liveGameRound');
+  if(scoreList)scoreList.innerHTML='';
+  if(rankBody)rankBody.innerHTML='';
+  if(rankCount)rankCount.textContent='0 人';
+  if(roundSel){roundSel.innerHTML='<option value="1">第 1 局</option>';roundSel.value='1'}
+  if($('livePlayers'))$('livePlayers').textContent='0';
+  if($('liveRoundKpi'))$('liveRoundKpi').textContent='—';
+  if($('liveRoundKpiSub'))$('liveRoundKpiSub').textContent='尚未開始';
+  if($('liveRoundDone'))$('liveRoundDone').textContent='0/0';
+  if($('liveMissingText'))$('liveMissingText').textContent='等待 10 格記分';
+  if($('liveAvg'))$('liveAvg').textContent='—';
+  if($('liveBest'))$('liveBest').textContent='—';
+  if($('liveBestName'))$('liveBestName').textContent='尚無分數';
+  if($('liveProgressText'))$('liveProgressText').textContent='球聚進度 0%';
+  if($('liveProgressBar'))$('liveProgressBar').style.width='0%';
+  if($('liveRoundBadge'))$('liveRoundBadge').textContent='第 1 局';
+  if($('liveRankMetric'))$('liveRankMetric').value='total';
+  if($('liveNextRoundBtn'))$('liveNextRoundBtn').textContent='下一局 →';
+  if($('liveNextRoundMobile'))$('liveNextRoundMobile').textContent='下一局 →';
+  ['livePrevRoundBtn','livePrevRoundBtn2','livePrevRoundMobile'].forEach(id=>{const el=$(id);if(el)el.disabled=true});
+  const addBtn=$('liveRoundAddBtn'),removeBtn=$('liveRoundRemoveBtn');
+  if(addBtn){addBtn.hidden=true;addBtn.disabled=true}
+  if(removeBtn){removeBtn.hidden=true;removeBtn.disabled=true}
+  if($('liveMain'))$('liveMain').hidden=true;
+  if($('liveContent'))$('liveContent').hidden=true;
+  if($('liveEmpty'))$('liveEmpty').hidden=false;
+}
 function selectLiveMeetup(id,chooseRound=true){
   const m=meetups.find(x=>x.id===id);if(!m)return;setCurrentMeetup(id);const sess=ensureLiveSession(m),prefs=livePrefs()[id]||{};liveMetric=prefs.metric||liveMetric||'total';
   const recommended=chooseRound?(Number(prefs.gameNo)||liveRecommendedRound(m,sess)):liveGameNo;
@@ -3375,10 +3403,11 @@ function clearCompletedMeetupContext(meetupId){
   const liveSelect=$('liveMeetupSelect');if(liveSelect)liveSelect.value='';
   const quickPlayer=$('liveQuickPlayerName');if(quickPlayer)quickPlayer.value='';
   if(currentMeetupId===meetupId)setCurrentMeetup('');
+  resetLivePresentation();
   const draft=safeJsonParse(localStorage.getItem(DRAFTKEY),null);if(draft&&draft.meetupId===meetupId){editingId='';pendingImportAudit=null;localStorage.removeItem(DRAFTKEY);queueDbStatePersist('clear-completed-draft')}
   queueDbStatePersist('complete-meetup-reset');
 }
-function completeLiveMeetup(m){if(!m)return;if(!syncAllowWrite(m.id,'結束球聚'))return;const id=m.id;m.status='done';m.updatedAt=Date.now();persistMeetups();clearCompletedMeetupContext(id);renderAll();renderLive();openPostGameReview(id)}
+function completeLiveMeetup(m){if(!m)return;if(!syncAllowWrite(m.id,'結束球聚'))return;const id=m.id;m.status='done';m.updatedAt=Date.now();persistMeetups();clearCompletedMeetupContext(id);renderAll();renderLive();resetLivePresentation();openPostGameReview(id)}
 function finishLiveRound(){
   if(!flushLiveRollCommit())return;
   const m=meetups.find(x=>x.id===currentMeetupId);if(!m)return;const sess=ensureLiveSession(m),rows=liveRowsFor(m,sess),missing=rows.filter(r=>!r.gameComplete);
@@ -3395,7 +3424,7 @@ function finishLiveRound(){
 function endLiveMeetup(){if(!flushLiveRollCommit())return;const m=meetups.find(x=>x.id===currentMeetupId);if(!m)return;if(!confirm(`確定結束「${m.title}」？完成後會清空目前現場畫面，已儲存成績不會刪除。`))return;completeLiveMeetup(m)}
 function renderLive(){
   const sel=$('liveMeetupSelect');if(!sel)return;const prev=currentMeetupId||'';const ordered=[...meetups].sort((a,b)=>(a.status==='ongoing'?0:a.status==='planned'?1:2)-(b.status==='ongoing'?0:b.status==='planned'?1:2)||String(b.date).localeCompare(String(a.date))||b.createdAt-a.createdAt);sel.innerHTML='<option value="">選擇球聚…</option>'+ordered.map(m=>`<option value="${esc(m.id)}">${m.status==='ongoing'?'● ':''}${esc(fmtDate(m.date))} · ${esc(m.title)}</option>`).join('');if(prev&&meetups.some(m=>m.id===prev))sel.value=prev;else sel.value='';
-  const m=meetups.find(x=>x.id===sel.value)||meetups.find(x=>x.id===currentMeetupId);if(!m){$('liveEmpty').hidden=false;$('liveMain').hidden=true;$('liveContent').hidden=true;$('liveMeetupMeta').textContent='選擇一場球聚後，以標準保齡球一局 10 格記分；每球輸入都會立即儲存並自動計算分數。';$('liveFullScoreBtn').disabled=true;$('liveShareBtn').disabled=true;$('liveEndMeetupBtn').disabled=true;$('liveSyncBadge').textContent='本機';return}
+  const m=meetups.find(x=>x.id===sel.value)||meetups.find(x=>x.id===currentMeetupId);if(!m){resetLivePresentation();$('liveMeetupMeta').textContent='選擇一場球聚後，以標準保齡球一局 10 格記分；每球輸入都會立即儲存並自動計算分數。';$('liveFullScoreBtn').disabled=true;$('liveShareBtn').disabled=true;$('liveEndMeetupBtn').disabled=true;$('liveSyncBadge').textContent='本機';return}
   if(currentMeetupId!==m.id)setCurrentMeetup(m.id);const sess=ensureLiveSession(m);const planned=livePlannedGames(m);const prefs=livePrefs()[m.id]||{};if(!Number.isFinite(liveGameNo)||liveGameNo<1||liveGameNo>planned)liveGameNo=Number(prefs.gameNo)||liveRecommendedRound(m,sess);if(m.dynamicGames&&liveGameNo>planned){m.plannedGames=Math.min(LIVE_GAME_MAX,liveGameNo);m.updatedAt=Date.now();persistMeetups()}liveGameNo=Math.max(1,Math.min(livePlannedGames(m),liveGameNo));liveMetric=prefs.metric||liveMetric||'total';
   $('liveEmpty').hidden=true;$('liveMain').hidden=false;$('liveContent').hidden=false;$('liveFullScoreBtn').disabled=false;$('liveShareBtn').disabled=false;const syncCfg=getSyncConfig(),syncBound=syncCfg.enabled&&syncCfg.meetupId===m.id,viewer=syncBound&&syncCfg.role==='viewer';$('liveEndMeetupBtn').disabled=viewer;$('liveSyncBadge').textContent=syncBound?`同步 ${syncCfg.roomCode} · ${syncRoleLabel(syncCfg.role)}`:'本機';
   $('liveMeetupMeta').textContent=`${m.title} · ${fmtDate(m.date)} · ${m.venue||'未填球館'}${m.lanes?` · 球道 ${m.lanes}`:''} · ${statusLabel(m.status)}`;
