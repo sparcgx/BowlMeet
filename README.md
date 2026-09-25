@@ -1,3 +1,18 @@
+# BowlMeet v0.4.7.0-dev.2 — Theme Token & Full Component Coverage
+
+- 基線：`v0.4.7.0-dev.1` commit `114b148d9700f720ccd9a4a0e6bdc7f576148b64`。
+- 新增 `assets/theme-center-dev2.css` Semantic Theme Token Layer，最後載入以覆蓋歷史硬編碼視覺。
+- Semantic Tokens：surface / text / border / focus / status / chart / overlay / sticky surface。
+- 完整覆蓋：Score Table、Unified History、OCR / Verification、Meetup / Roster、Player Analytics、Live Scoring、Settings、PWA / Sync / Safety、Awards、Share、Dialog / Backdrop。
+- 六主題與 5 組快速預設沿用 dev.1；Theme / Layout LocalStorage key 不變。
+- Dark Night 補強 legacy glass / sticky / form / status 對比。
+- High Contrast 補強 focus outline、狀態 border 與非純色彩識別。
+- Transparency OFF / Reduced Transparency 擴大到 History / Player Hub / Live Mobile Bar 等玻璃元件。
+- 分享輸出的 `.share-canvas` 保持白底，避免主題污染可分享／列印成績卡。
+- `DB_VERSION = 2`、`PUBLIC_HISTORY_CODE = PUBLIC`、PUBLIC payload、Backup / Restore、Sync、Supabase Schema 均不變。
+- PWA Cache 更新為 `v0.4.7.0-dev.2`，並加入 Theme Token stylesheet。
+- 下一關：Theme Coverage 自動 Gate → 隔離 Preview → iPhone / PWA / Desktop 跨模組視覺驗收。
+
 # BowlMeet v0.4.7.0-dev.1 — Theme Center Foundation
 
 - 基線：`stable/v0.4.6.7` / `main` commit `bf6054deeaa0658ab807c3c60ad095d7060d0de7`。
