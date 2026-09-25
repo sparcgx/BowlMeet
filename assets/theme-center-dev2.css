@@ -1,0 +1,456 @@
+/* =========================================================
+   BowlMeet v0.4.7.0-dev.2 | Theme Token & Full Component Coverage
+   Presentation-only semantic token layer.
+   Loaded after legacy / Liquid Glass styles so component colors
+   resolve through Theme Center tokens without changing data logic.
+   ========================================================= */
+
+:root{
+  --surface-base:var(--theme-surface,#fff);
+  --surface-raised:var(--theme-surface-strong,#fff);
+  --surface-subtle:var(--theme-surface-muted,#f8fafc);
+  --surface-control:var(--theme-control,#fff);
+  --surface-hover:color-mix(in srgb,var(--surface-control) 88%,var(--theme-primary) 12%);
+  --surface-selected:var(--theme-primary-soft,#eef4ff);
+  --surface-disabled:color-mix(in srgb,var(--surface-subtle) 88%,var(--theme-muted) 12%);
+
+  --text-primary:var(--theme-text,#172033);
+  --text-secondary:var(--theme-muted,#697386);
+  --text-accent:var(--theme-primary,#0f62fe);
+  --text-inverse:#fff;
+
+  --border-default:var(--theme-border,#e4e8ef);
+  --border-strong:var(--theme-border-strong,#cfd6e2);
+  --border-focus:color-mix(in srgb,var(--theme-primary) 68%,#fff 32%);
+
+  --status-success:#14804a;
+  --status-success-bg:#eaf7ef;
+  --status-success-border:#bfe3cc;
+  --status-warning:#915500;
+  --status-warning-bg:#fff7e8;
+  --status-warning-border:#f0d39b;
+  --status-danger:#b42318;
+  --status-danger-bg:#fff0f0;
+  --status-danger-border:#f1b9b5;
+  --status-info:var(--theme-primary,#0f62fe);
+  --status-info-bg:var(--theme-primary-soft,#eef4ff);
+  --status-info-border:color-mix(in srgb,var(--theme-primary) 32%,var(--border-default));
+
+  --chart-track:color-mix(in srgb,var(--surface-subtle) 84%,var(--text-secondary) 16%);
+  --chart-fill:var(--theme-primary,#0f62fe);
+  --overlay-bg:rgba(15,23,42,.42);
+  --sticky-surface:var(--surface-raised);
+}
+
+:root[data-theme="clear-blue"]{
+  --status-success:#15704a;--status-success-bg:#ecf8f2;--status-success-border:#bee5d2;
+  --status-warning:#8b5a00;--status-warning-bg:#fff8e9;--status-warning-border:#ead49c;
+  --status-danger:#aa3028;--status-danger-bg:#fff1f0;--status-danger-border:#edc0bc;
+}
+:root[data-theme="soft-violet"]{
+  --status-success:#3f7859;--status-success-bg:#edf7f1;--status-success-border:#c7dfd0;
+  --status-warning:#805a14;--status-warning-bg:#fff8e9;--status-warning-border:#ead8ac;
+  --status-danger:#a93e55;--status-danger-bg:#fff1f4;--status-danger-border:#ecc4ce;
+}
+:root[data-theme="dark-night"]{
+  --text-inverse:#07111f;
+  --status-success:#8be0b5;--status-success-bg:#112d22;--status-success-border:#285b45;
+  --status-warning:#ffd48a;--status-warning-bg:#382a12;--status-warning-border:#6a5123;
+  --status-danger:#ffb8c3;--status-danger-bg:#3a1b22;--status-danger-border:#6d3440;
+  --status-info:#9cc6ff;--status-info-bg:#172f50;--status-info-border:#355b89;
+  --chart-track:#243348;--overlay-bg:rgba(0,0,0,.68);
+}
+:root[data-theme="high-contrast"]{
+  --status-success:#075d2c;--status-success-bg:#fff;--status-success-border:#075d2c;
+  --status-warning:#704600;--status-warning-bg:#fff;--status-warning-border:#704600;
+  --status-danger:#9f1510;--status-danger-bg:#fff;--status-danger-border:#9f1510;
+  --status-info:#003f9e;--status-info-bg:#fff;--status-info-border:#003f9e;
+  --border-focus:#000;--chart-track:#d7d7d7;--overlay-bg:rgba(0,0,0,.62);
+}
+
+/* Core surfaces / controls */
+html[data-theme] .btn:not(.primary),
+html[data-theme] .tab:not(.active),
+html[data-theme] .history-source,
+html[data-theme] .pick-person,
+html[data-theme] .roster-row,
+html[data-theme] .form-block,
+html[data-theme] .frame-metric,
+html[data-theme] .live-kpi,
+html[data-theme] .live-score-row,
+html[data-theme] .live-chip,
+html[data-theme] .snapshot-item,
+html[data-theme] .update-row,
+html[data-theme] .custom-award-item,
+html[data-theme] .manual-player-chip,
+html[data-theme] .quick-player-chip{
+  background:var(--surface-control)!important;
+  color:var(--text-primary)!important;
+  border-color:var(--border-default)!important;
+}
+html[data-theme] .btn:not(.primary):hover,
+html[data-theme] .tab:not(.active):hover,
+html[data-theme] .history-source:hover,
+html[data-theme] .pick-person:hover,
+html[data-theme] .quick-player-chip:hover{
+  background:var(--surface-hover)!important;
+}
+html[data-theme] .tab.active,
+html[data-theme] .history-source.active,
+html[data-theme] .live-chip.current,
+html[data-theme] .restore-mode:has(input:checked){
+  border-color:var(--border-focus)!important;
+}
+html[data-theme] .field label,
+html[data-theme] .monthly-label,
+html[data-theme] details.review-details summary{
+  color:var(--text-secondary)!important;
+}
+html[data-theme] .field input:focus,
+html[data-theme] .field select:focus,
+html[data-theme] .field textarea:focus,
+html[data-theme] .verify-input:focus,
+html[data-theme] .live-entry input:focus,
+html[data-theme] .live-roll-input:focus{
+  border-color:var(--border-focus)!important;
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--theme-primary) 18%,transparent)!important;
+}
+
+/* Generic tables / sticky cells */
+html[data-theme] .score-table-wrap,
+html[data-theme] .grid-preview-wrap,
+html[data-theme] .trend-chart,
+html[data-theme] .share-canvas-wrap{
+  background:var(--surface-base)!important;
+  border-color:var(--border-default)!important;
+}
+html[data-theme] .score-table th,
+html[data-theme] .rank-table th,
+html[data-theme] .player-history-table th,
+html[data-theme] .live-rank-table th,
+html[data-theme] .mini-grid .mh{
+  background:var(--surface-subtle)!important;
+  color:var(--text-secondary)!important;
+  border-color:var(--border-default)!important;
+}
+html[data-theme] .score-table th.group{background:var(--surface-selected)!important}
+html[data-theme] .score-table td.name-cell,
+html[data-theme] .score-table th.name-head,
+html[data-theme] .score-table td.name-cell input,
+html[data-theme] .score-in,
+html[data-theme] .row-op{
+  background:var(--sticky-surface)!important;
+  color:var(--text-primary)!important;
+}
+html[data-theme] .sum,
+html[data-theme] .avg,
+html[data-theme] .total{
+  background:var(--surface-subtle)!important;
+  color:var(--text-primary)!important;
+}
+html[data-theme] .total,
+html[data-theme] .live-rank-table .primary-val,
+html[data-theme] .live-frame-score,
+html[data-theme] .history-eyebrow,
+html[data-theme] .settings-eyebrow,
+html[data-theme] .public-history-head .eyebrow,
+html[data-theme] .live-quick-head .eyebrow{
+  color:var(--text-accent)!important;
+}
+
+/* History / unified records */
+html[data-theme] .history-source span,
+html[data-theme] .conf-badge,
+html[data-theme] .status-badge,
+html[data-theme] .sync-status-pill{
+  background:var(--surface-disabled)!important;
+  color:var(--text-secondary)!important;
+}
+html[data-theme] .history-source.active,
+html[data-theme] .history-source.active span,
+html[data-theme] .session-source-tag.local,
+html[data-theme] .sync-device .tag,
+html[data-theme] .share-card-type-badge{
+  background:var(--status-info-bg)!important;
+  color:var(--status-info)!important;
+  border-color:var(--status-info-border)!important;
+}
+html[data-theme] .session-source-tag.public{
+  background:var(--status-success-bg)!important;color:var(--status-success)!important;border-color:var(--status-success-border)!important;
+}
+html[data-theme] .session-source-tag.both,
+html[data-theme] .modified-badge{
+  background:color-mix(in srgb,var(--surface-selected) 72%,#a855f7 28%)!important;
+  color:color-mix(in srgb,var(--text-primary) 60%,#7c3aed 40%)!important;
+}
+html[data-theme] .session.public-only{
+  background:color-mix(in srgb,var(--surface-base) 92%,var(--status-success-bg) 8%)!important;
+  border-color:var(--status-success-border)!important;
+}
+html[data-theme] .history-filter-panel,
+html[data-theme] .history-filter-grid input,
+html[data-theme] .history-filter-grid select,
+html[data-theme] .legacy-note,
+html[data-theme] .pb-item,
+html[data-theme] .frame-data-note{
+  background:var(--surface-subtle)!important;
+  color:var(--text-secondary)!important;
+  border-color:var(--border-default)!important;
+}
+
+/* OCR / import / verification */
+html[data-theme] .photo-drop,
+html[data-theme] .template-status,
+html[data-theme] .verify-stage>div,
+html[data-theme] .verify-crop,
+html[data-theme] .roster-picker,
+html[data-theme] .manual-participant-box{
+  background:var(--surface-subtle)!important;
+  color:var(--text-secondary)!important;
+  border-color:var(--border-default)!important;
+}
+html[data-theme] .photo-drop.has-image{background:#111827!important}
+html[data-theme] .ocr-status,
+html[data-theme] .verify-item,
+html[data-theme] .verify-toolbar select,
+html[data-theme] .verify-input{
+  background:var(--surface-control)!important;
+  color:var(--text-primary)!important;
+  border-color:var(--border-default)!important;
+}
+html[data-theme] .progress,
+html[data-theme] .verify-progress,
+html[data-theme] .bar-track,
+html[data-theme] .monthly-track,
+html[data-theme] .rank-progress,
+html[data-theme] .live-progress{
+  background:var(--chart-track)!important;
+}
+html[data-theme] .progress>div,
+html[data-theme] .bar-fill,
+html[data-theme] .monthly-track span,
+html[data-theme] .score-dot{
+  background:var(--chart-fill)!important;
+}
+html[data-theme] .verify-progress>div{background:var(--status-success)!important}
+html[data-theme] .ocr-chip,
+html[data-theme] .verify-stage>div.active,
+html[data-theme] .audit-chip{
+  background:var(--status-info-bg)!important;
+  color:var(--status-info)!important;
+  border-color:var(--status-info-border)!important;
+}
+html[data-theme] .verify-stage>div.done,
+html[data-theme] .verify-item.confirmed,
+html[data-theme] .conf-badge.good,
+html[data-theme] .review-gate.ready,
+html[data-theme] .mode-badge{
+  background:var(--status-success-bg)!important;
+  color:var(--status-success)!important;
+  border-color:var(--status-success-border)!important;
+}
+html[data-theme] .low-confidence,
+html[data-theme] .verify-item.pending,
+html[data-theme] .conf-badge.low,
+html[data-theme] .review-gate{
+  background:var(--status-warning-bg)!important;
+  color:var(--status-warning)!important;
+  border-color:var(--status-warning-border)!important;
+}
+
+/* Meetup / roster / status */
+html[data-theme] .current-meetup,
+html[data-theme] .active-meetup-banner{
+  background:var(--status-info-bg)!important;
+  border-color:var(--status-info-border)!important;
+  color:var(--text-primary)!important;
+}
+html[data-theme] .active-meetup-banner.unlinked,
+html[data-theme] .roster-row.header,
+html[data-theme] .settings-app-state,
+html[data-theme] .settings-toggle-row,
+html[data-theme] .public-history-intro,
+html[data-theme] .live-history-kpis>div{
+  background:var(--surface-subtle)!important;
+  color:var(--text-secondary)!important;
+  border-color:var(--border-default)!important;
+}
+html[data-theme] .status-badge.ongoing{
+  background:var(--status-success-bg)!important;color:var(--status-success)!important;
+}
+html[data-theme] .status-badge.done{
+  background:color-mix(in srgb,var(--surface-selected) 72%,#8b5cf6 28%)!important;
+  color:color-mix(in srgb,var(--text-primary) 60%,#6d4ab8 40%)!important;
+}
+html[data-theme] .status-badge.planned{
+  background:var(--status-warning-bg)!important;color:var(--status-warning)!important;
+}
+
+/* Player analytics */
+html[data-theme] .trend-chart,
+html[data-theme] .pb-item,
+html[data-theme] .form-block,
+html[data-theme] .frame-metric{
+  background:var(--surface-base)!important;
+  border-color:var(--border-default)!important;
+}
+html[data-theme] .frame-data-note{background:var(--surface-subtle)!important}
+html[data-theme] .bar-fill,
+html[data-theme] .monthly-track span{filter:saturate(var(--theme-accent-saturation))}
+
+/* Live scoring */
+html[data-theme] .live-round-badge{
+  background:var(--text-primary)!important;
+  color:var(--surface-raised)!important;
+}
+html[data-theme="dark-night"] .live-round-badge{background:#edf3fb!important;color:#111827!important}
+html[data-theme] .live-score-row.complete,
+html[data-theme] .live-frame.done{
+  background:color-mix(in srgb,var(--surface-base) 91%,var(--status-success-bg) 9%)!important;
+  border-color:var(--status-success-border)!important;
+}
+html[data-theme] .live-rank{background:var(--surface-disabled)!important;color:var(--text-secondary)!important}
+html[data-theme] .live-rank.top{background:var(--status-info-bg)!important;color:var(--status-info)!important}
+html[data-theme] .live-entry input,
+html[data-theme] .live-roll-input{
+  background:var(--surface-control)!important;
+  color:var(--text-primary)!important;
+  border-color:var(--border-strong)!important;
+}
+html[data-theme] .live-entry input.invalid,
+html[data-theme] .live-roll-input.invalid{
+  background:var(--status-danger-bg)!important;
+  color:var(--status-danger)!important;
+  border-color:var(--status-danger)!important;
+}
+html[data-theme] .live-roll-input:disabled{
+  background:var(--surface-disabled)!important;color:var(--text-secondary)!important;
+}
+html[data-theme] .live-entry .clear-live{background:var(--surface-control)!important;color:var(--text-secondary)!important;border-color:var(--border-default)!important}
+html[data-theme] .live-mobile-bar{
+  background:var(--glass-strong)!important;border-color:var(--border-default)!important;
+  -webkit-backdrop-filter:blur(var(--glass-blur));backdrop-filter:blur(var(--glass-blur));
+}
+html[data-theme] .live-legacy-total{
+  background:var(--status-warning-bg)!important;color:var(--status-warning)!important;border-color:var(--status-warning-border)!important;
+}
+html[data-theme] .meetup-live-heading .eyebrow{color:var(--status-danger)!important}
+
+/* PWA / Sync / Safety */
+html[data-theme] .pwa-panel,
+html[data-theme] .sync-room-card,
+html[data-theme] .safety-status,
+html[data-theme] .pwa-update-step,
+html[data-theme] .restore-count{
+  background:var(--surface-subtle)!important;color:var(--text-secondary)!important;border-color:var(--border-default)!important;
+}
+html[data-theme] .sync-secret,
+html[data-theme] .sync-device,
+html[data-theme] .sync-log,
+html[data-theme] .pwa-update-step-num{
+  background:var(--surface-control)!important;color:var(--text-primary)!important;border-color:var(--border-default)!important;
+}
+html[data-theme] .sync-status-pill.online,
+html[data-theme] .install-btn.ready,
+html[data-theme] .pwa-update-status.ready{
+  background:var(--status-success-bg)!important;color:var(--status-success)!important;border-color:var(--status-success-border)!important;
+}
+html[data-theme] .sync-status-pill.warn{
+  background:var(--status-warning-bg)!important;color:var(--status-warning)!important;border-color:var(--status-warning-border)!important;
+}
+html[data-theme] .sync-invite{
+  background:var(--status-info-bg)!important;color:var(--text-primary)!important;border-color:var(--status-info-border)!important;
+}
+html[data-theme] .sync-dot,
+html[data-theme] .pwa-dot{background:var(--text-secondary)!important}
+html[data-theme] .sync-status-pill.online .sync-dot,
+html[data-theme] .pwa-dot.online{background:var(--status-success)!important}
+html[data-theme] .sync-status-pill.warn .sync-dot,
+html[data-theme] .pwa-dot.offline{background:var(--status-warning)!important}
+html[data-theme] .pwa-update-status{background:var(--surface-subtle)!important;color:var(--text-secondary)!important}
+html[data-theme] .pwa-update-dialog::backdrop,
+html[data-theme] .restore-dialog::backdrop{background:var(--overlay-bg)!important}
+html[data-theme] .pwa-update-card,
+html[data-theme] .restore-dialog{
+  background:var(--surface-raised)!important;color:var(--text-primary)!important;border-color:var(--border-default)!important;
+}
+
+/* Awards / sharing */
+html[data-theme] .award-card:before{background:var(--theme-primary)!important}
+html[data-theme] .award-card .award-value{color:var(--text-accent)!important}
+html[data-theme] .award-card.empty .award-winner{color:var(--text-secondary)!important}
+html[data-theme] .award-rule{background:var(--surface-subtle)!important;color:var(--text-secondary)!important;border-color:var(--border-default)!important}
+html[data-theme] .share-canvas-wrap{background:var(--surface-subtle)!important}
+html[data-theme] .share-canvas{background:#fff!important} /* exported score card remains print/share neutral */
+
+/* Destructive / warning feedback */
+html[data-theme] .message.ok{background:var(--status-success-bg)!important;color:var(--status-success)!important}
+html[data-theme] .message.err{background:var(--status-danger-bg)!important;color:var(--status-danger)!important}
+html[data-theme] .manual-player-chip button{background:var(--surface-disabled)!important;color:var(--text-secondary)!important}
+html[data-theme] .manual-player-chip button:hover{background:var(--status-danger-bg)!important;color:var(--status-danger)!important}
+
+/* Dark Night: force legacy white glass layers into tokenized surfaces */
+html[data-theme="dark-night"] .unified-history-head,
+html[data-theme="dark-night"] .unified-history-panel,
+html[data-theme="dark-night"] .unified-history-info,
+html[data-theme="dark-night"] .player-hub-card,
+html[data-theme="dark-night"] .session,
+html[data-theme="dark-night"] .history-filter-panel{
+  background:var(--surface-base)!important;
+  border-color:var(--border-default)!important;
+  box-shadow:var(--theme-shadow)!important;
+}
+html[data-theme="dark-night"] .history-source-tabs{
+  background:var(--surface-subtle)!important;border-color:var(--border-default)!important;
+}
+html[data-theme="dark-night"] .history-source.active{
+  background:var(--status-info-bg)!important;color:var(--status-info)!important;
+}
+
+/* High Contrast: shape and focus communicate state in addition to color */
+html[data-theme="high-contrast"] .status-badge,
+html[data-theme="high-contrast"] .session-source-tag,
+html[data-theme="high-contrast"] .conf-badge,
+html[data-theme="high-contrast"] .sync-status-pill{
+  border:2px solid currentColor!important;
+}
+html[data-theme="high-contrast"] .theme-card.active,
+html[data-theme="high-contrast"] .layout-preset-btn.active,
+html[data-theme="high-contrast"] .history-source.active{
+  outline:3px solid #000!important;outline-offset:2px;
+}
+
+/* Transparency off / reduced transparency must remain opaque across covered surfaces */
+:root[data-theme-transparency="off"]{
+  --surface-base:var(--theme-surface);
+  --surface-raised:var(--theme-surface-strong);
+}
+:root[data-theme-transparency="off"] .live-mobile-bar,
+:root[data-theme-transparency="off"] .unified-history-head,
+:root[data-theme-transparency="off"] .unified-history-panel,
+:root[data-theme-transparency="off"] .unified-history-info,
+:root[data-theme-transparency="off"] .player-hub-card,
+:root[data-theme-transparency="off"] .session{
+  -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+}
+@media(prefers-reduced-transparency:reduce){
+  html[data-theme] .live-mobile-bar,
+  html[data-theme] .unified-history-head,
+  html[data-theme] .unified-history-panel,
+  html[data-theme] .unified-history-info,
+  html[data-theme] .player-hub-card,
+  html[data-theme] .session{
+    background:var(--surface-base)!important;
+    -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+  }
+}
+
+/* Mobile full coverage: no theme-specific width expansion */
+@media(max-width:680px){
+  html[data-theme] .theme-center-section,
+  html[data-theme] .layout-preset-section,
+  html[data-theme] .settings-panel,
+  html[data-theme] .live-score-panel,
+  html[data-theme] .live-rank-panel,
+  html[data-theme] .unified-history-panel{min-width:0;max-width:100%}
+}
