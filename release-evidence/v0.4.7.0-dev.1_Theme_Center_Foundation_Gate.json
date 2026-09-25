@@ -1,0 +1,65 @@
+{
+  "version": "v0.4.7.0-dev.1",
+  "title": "Theme Center Foundation",
+  "date": "2026-09-26",
+  "baseline": {
+    "branch": "stable/v0.4.6.7",
+    "commit": "bf6054deeaa0658ab807c3c60ad095d7060d0de7"
+  },
+  "result": {
+    "pass": 33,
+    "fail": 0,
+    "total": 33,
+    "status": "PASS"
+  },
+  "themes": [
+    "default",
+    "liquid-glass",
+    "clear-blue",
+    "soft-violet",
+    "dark-night",
+    "high-contrast"
+  ],
+  "presets": [
+    "standard",
+    "mobile",
+    "field",
+    "glass",
+    "night"
+  ],
+  "preferences": {
+    "layoutKey": "bowlingMeetup.layoutPreferences.v1",
+    "themeKey": "bowlingMeetup.themePreferences.v1",
+    "localOnly": true,
+    "fields": [
+      "theme",
+      "themeVariant",
+      "motionEnabled",
+      "transparencyEnabled",
+      "cardRadius",
+      "shadowLevel",
+      "colorIntensity"
+    ]
+  },
+  "safety": {
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "sqlSchemaChanges": false,
+    "publicPayloadMigration": false,
+    "backupRestoreContractChanged": false,
+    "syncContractChanged": false,
+    "themeInCaptureState": false,
+    "layoutInCaptureState": false
+  },
+  "staticValidation": {
+    "inlineJavaScriptSyntax": "PASS",
+    "cssBraceBalance": "PASS",
+    "manifestJsonSyntax": "PASS",
+    "serviceWorkerSyntax": "PASS",
+    "themeCards": "6/6",
+    "designPresets": "5/5",
+    "behindStable": 0
+  },
+  "archiveBranch": "archive/v0.4.7.0-dev.1-pre-v0.4.6.7-refresh-20260926",
+  "nextGate": "iPhone / PWA / desktop visual & interaction acceptance"
+}
