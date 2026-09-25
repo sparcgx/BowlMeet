@@ -44,20 +44,48 @@
   "preview": {
     "path": "preview/v0.4.6.2-RC.1/",
     "appVersion": "0.4.6.2-RC.1",
-    "groupCode": "V462RC1",
+    "groupCode": "V46RC2",
     "pin": "046221",
     "dbName": "bowlmeet.preview.v0462rc1.local",
     "layoutPreferencesKey": "bowlmeet.preview.v0462rc1.layoutPreferences.v1",
     "cacheRoot": "bowlmeet-preview-v0462rc1-",
     "publishPr": 28,
-    "published": true
+    "published": true,
+    "cachePrefix": "bowlmeet-preview-v0462rc1-rc1fix1-"
   },
   "deviceSmoke": {
-    "status": "PENDING",
+    "status": "RETEST_REQUIRED",
     "checks": 6,
-    "pass": 0,
-    "fail": 0
+    "pass": 3,
+    "fail": 0,
+    "retest": [
+      1,
+      2,
+      3
+    ],
+    "passed": [
+      4,
+      5,
+      6
+    ],
+    "notes": {
+      "1": "Pre-fix attempt blocked by invalid 7-character Preview Cloud group code; retest after V46RC2 fix.",
+      "4": "PASS",
+      "5": "PASS: leaderboard, share, and awards all use public results.",
+      "6": "PASS"
+    }
   },
   "releaseCandidateValidationComplete": false,
-  "stablePromotionExecuted": false
+  "stablePromotionExecuted": false,
+  "previewCloudConfigFix": {
+    "rootCause": "RC Preview group code V462RC1 had 7 characters; Supabase bowling_group_create requires ^[A-Z2-9]{6}$.",
+    "fixedGroupCode": "V46RC2",
+    "gate": {
+      "pass": 12,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "reproducibleGate": "tools/v0.4.6.2-rc1-preview-config-gate.mjs",
+    "publishPr": 29
+  }
 }
