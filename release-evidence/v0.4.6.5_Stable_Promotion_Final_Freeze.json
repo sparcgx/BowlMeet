@@ -1,0 +1,929 @@
+{
+  "version": "0.4.6.5",
+  "title": "Stable Promotion & Final Freeze",
+  "promoted_from": {
+    "ref": "v0.4.6.5-RC.1-R1",
+    "commit": "c5ab854fddf80f38a01adaadc9a7ca0f4122082f"
+  },
+  "promotion_base_main": "e199872358346e3ad328c0377710bb53fdaf4da8",
+  "acceptance": {
+    "dev1_gate": "47/47 PASS",
+    "dev1_manual": "PASS",
+    "rc1_gate": "142/142 PASS",
+    "r1_gate": "48/48 PASS",
+    "r1_manual": "PASS"
+  },
+  "functional_delta_from_r1": "NONE",
+  "release_delta": [
+    "APP_VERSION",
+    "release label",
+    "CSS cache",
+    "production stable SW cache",
+    "manifest",
+    "freeze evidence"
+  ],
+  "performance": {
+    "capture_state_per_phase": 1,
+    "db_persist_per_phase": 1,
+    "state_meta_single_transaction": true,
+    "snapshot_reuse_state": true,
+    "deferred_safety_render": true,
+    "no_update_delay_ms": 400
+  },
+  "ios_activation": {
+    "preferred": "controllerchange",
+    "fallback_ms": 1000,
+    "duplicate_reload_guard": true
+  },
+  "stable_cache": {
+    "shell": "bowlmeet-v0.4.6.5-stable-shell",
+    "runtime": "bowlmeet-v0.4.6.5-stable-runtime",
+    "css": "./assets/liquid-glass-dev4.css?v=0465"
+  },
+  "invariants": {
+    "db_name": "bowlingMeetup.local",
+    "db_version": 2,
+    "public_pin": "UNCHANGED",
+    "supabase_schema": "UNCHANGED",
+    "indexeddb_schema": "UNCHANGED",
+    "score_model": "1-6"
+  },
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "Stable APP_VERSION 0.4.6.5"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "Stable CSS query v0465"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "Stable footer label"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "RC.1-R1 APP_VERSION removed"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "RC cache query removed"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "RC label removed"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "Stable index differs from RC.1-R1 only by release identity"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "Liquid Glass CSS exactly RC.1-R1"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "idbPutMany retained"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "persist accepts shared state"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "state/meta persist one transaction"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "snapshot options retained"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "snapshot reuses supplied state"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "snapshot skip duplicate persist"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "snapshot skip blocking render"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "full backup accepts shared state"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "backup one captureState"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "backup one persist"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "backup snapshot skipPersist"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "backup snapshot skipRender"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "backup JSON reuses same state"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "backup safety render deferred"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "apply one captureState"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "apply one persist"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "apply final snapshot skipPersist"
+    },
+    {
+      "id": 26,
+      "status": "PASS",
+      "name": "apply final snapshot skipRender"
+    },
+    {
+      "id": 27,
+      "status": "PASS",
+      "name": "manual no-update delay 400ms"
+    },
+    {
+      "id": 28,
+      "status": "PASS",
+      "name": "manual check protects installing state"
+    },
+    {
+      "id": 29,
+      "status": "PASS",
+      "name": "Update dialog exists"
+    },
+    {
+      "id": 30,
+      "status": "PASS",
+      "name": "Update button initially disabled"
+    },
+    {
+      "id": 31,
+      "status": "PASS",
+      "name": "Mandatory backup copy retained"
+    },
+    {
+      "id": 32,
+      "status": "PASS",
+      "name": "Waiting worker stored"
+    },
+    {
+      "id": 33,
+      "status": "PASS",
+      "name": "Waiting worker resets backup gate"
+    },
+    {
+      "id": 34,
+      "status": "PASS",
+      "name": "Waiting worker auto-opens prompt"
+    },
+    {
+      "id": 35,
+      "status": "PASS",
+      "name": "Existing waiting worker handled"
+    },
+    {
+      "id": 36,
+      "status": "PASS",
+      "name": "New installed worker handled"
+    },
+    {
+      "id": 37,
+      "status": "PASS",
+      "name": "Backup gate starts false"
+    },
+    {
+      "id": 38,
+      "status": "PASS",
+      "name": "Reset gate locks update"
+    },
+    {
+      "id": 39,
+      "status": "PASS",
+      "name": "Backup persists current state"
+    },
+    {
+      "id": 40,
+      "status": "PASS",
+      "name": "Backup user snapshot retained"
+    },
+    {
+      "id": 41,
+      "status": "PASS",
+      "name": "Backup full JSON retained"
+    },
+    {
+      "id": 42,
+      "status": "PASS",
+      "name": "Backup success unlocks gate"
+    },
+    {
+      "id": 43,
+      "status": "PASS",
+      "name": "Backup failure re-locks gate"
+    },
+    {
+      "id": 44,
+      "status": "PASS",
+      "name": "Apply blocks without backup"
+    },
+    {
+      "id": 45,
+      "status": "PASS",
+      "name": "Apply final snapshot retained"
+    },
+    {
+      "id": 46,
+      "status": "PASS",
+      "name": "Apply validates final snapshot"
+    },
+    {
+      "id": 47,
+      "status": "PASS",
+      "name": "Apply sends SKIP_WAITING"
+    },
+    {
+      "id": 48,
+      "status": "PASS",
+      "name": "Reload timer state retained"
+    },
+    {
+      "id": 49,
+      "status": "PASS",
+      "name": "Reload duplicate guard retained"
+    },
+    {
+      "id": 50,
+      "status": "PASS",
+      "name": "Shared finish reload helper retained"
+    },
+    {
+      "id": 51,
+      "status": "PASS",
+      "name": "Finish helper blocks duplicate reload"
+    },
+    {
+      "id": 52,
+      "status": "PASS",
+      "name": "Finish helper marks started"
+    },
+    {
+      "id": 53,
+      "status": "PASS",
+      "name": "Finish helper clears timer"
+    },
+    {
+      "id": 54,
+      "status": "PASS",
+      "name": "Finish helper clears reloading flag"
+    },
+    {
+      "id": 55,
+      "status": "PASS",
+      "name": "Finish helper reloads location"
+    },
+    {
+      "id": 56,
+      "status": "PASS",
+      "name": "Apply resets guard"
+    },
+    {
+      "id": 57,
+      "status": "PASS",
+      "name": "Apply clears stale reload timer"
+    },
+    {
+      "id": 58,
+      "status": "PASS",
+      "name": "Apply uses 1000ms fallback"
+    },
+    {
+      "id": 59,
+      "status": "PASS",
+      "name": "Apply explains iOS fallback"
+    },
+    {
+      "id": 60,
+      "status": "PASS",
+      "name": "Apply catch clears fallback timer"
+    },
+    {
+      "id": 61,
+      "status": "PASS",
+      "name": "Apply catch resets reload guard"
+    },
+    {
+      "id": 62,
+      "status": "PASS",
+      "name": "controllerchange uses shared helper"
+    },
+    {
+      "id": 63,
+      "status": "PASS",
+      "name": "Old direct controllerchange reload absent"
+    },
+    {
+      "id": 64,
+      "status": "PASS",
+      "name": "Stable SW shell v0.4.6.5"
+    },
+    {
+      "id": 65,
+      "status": "PASS",
+      "name": "Stable SW runtime v0.4.6.5"
+    },
+    {
+      "id": 66,
+      "status": "PASS",
+      "name": "Stable SW CSS v0465"
+    },
+    {
+      "id": 67,
+      "status": "PASS",
+      "name": "Old v0.4.6.4 cache identities removed from new SW"
+    },
+    {
+      "id": 68,
+      "status": "PASS",
+      "name": "Production cache root retained"
+    },
+    {
+      "id": 69,
+      "status": "PASS",
+      "name": "Production cache cleanup remains scoped"
+    },
+    {
+      "id": 70,
+      "status": "PASS",
+      "name": "SW message listener retained"
+    },
+    {
+      "id": 71,
+      "status": "PASS",
+      "name": "SW SKIP_WAITING handler retained"
+    },
+    {
+      "id": 72,
+      "status": "PASS",
+      "name": "SW self.skipWaiting retained"
+    },
+    {
+      "id": 73,
+      "status": "PASS",
+      "name": "Exactly one SKIP_WAITING token"
+    },
+    {
+      "id": 74,
+      "status": "PASS",
+      "name": "New SW navigation remains network-first"
+    },
+    {
+      "id": 75,
+      "status": "PASS",
+      "name": "Old v0.4.6.4 SW navigation network-first"
+    },
+    {
+      "id": 76,
+      "status": "PASS",
+      "name": "New index registers sw.js"
+    },
+    {
+      "id": 77,
+      "status": "PASS",
+      "name": "New index watches registration"
+    },
+    {
+      "id": 78,
+      "status": "PASS",
+      "name": "New index handles reg.waiting"
+    },
+    {
+      "id": 79,
+      "status": "PASS",
+      "name": "Old Stable can fetch new index on navigation"
+    },
+    {
+      "id": 80,
+      "status": "PASS",
+      "name": "Waiting new SW owns SKIP_WAITING handler"
+    },
+    {
+      "id": 81,
+      "status": "PASS",
+      "name": "R1 fallback exists on new index"
+    },
+    {
+      "id": 82,
+      "status": "PASS",
+      "name": "DB_NAME unchanged"
+    },
+    {
+      "id": 83,
+      "status": "PASS",
+      "name": "DB_VERSION remains 2"
+    },
+    {
+      "id": 84,
+      "status": "PASS",
+      "name": "PUBLIC code unchanged"
+    },
+    {
+      "id": 85,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 86,
+      "status": "PASS",
+      "name": "Session key unchanged"
+    },
+    {
+      "id": 87,
+      "status": "PASS",
+      "name": "Meetup key unchanged"
+    },
+    {
+      "id": 88,
+      "status": "PASS",
+      "name": "Roster key unchanged"
+    },
+    {
+      "id": 89,
+      "status": "PASS",
+      "name": "Player Claim key unchanged"
+    },
+    {
+      "id": 90,
+      "status": "PASS",
+      "name": "Public control key unchanged"
+    },
+    {
+      "id": 91,
+      "status": "PASS",
+      "name": "Layout prefs key unchanged"
+    },
+    {
+      "id": 92,
+      "status": "PASS",
+      "name": "Snapshot limit 10"
+    },
+    {
+      "id": 93,
+      "status": "PASS",
+      "name": "Score model max 6"
+    },
+    {
+      "id": 94,
+      "status": "PASS",
+      "name": "No 8/10/12 expansion"
+    },
+    {
+      "id": 95,
+      "status": "PASS",
+      "name": "normalizeSessionRecord frozen from RC.1-R1"
+    },
+    {
+      "id": 96,
+      "status": "PASS",
+      "name": "normalizeBowlingGames frozen from RC.1-R1"
+    },
+    {
+      "id": 97,
+      "status": "PASS",
+      "name": "normalizeMeetupRecord frozen from RC.1-R1"
+    },
+    {
+      "id": 98,
+      "status": "PASS",
+      "name": "normalizePersonalData frozen from RC.1-R1"
+    },
+    {
+      "id": 99,
+      "status": "PASS",
+      "name": "sessionScoreGameCount frozen from RC.1-R1"
+    },
+    {
+      "id": 100,
+      "status": "PASS",
+      "name": "renderHistory frozen from RC.1-R1"
+    },
+    {
+      "id": 101,
+      "status": "PASS",
+      "name": "publicHistoryRecords frozen from RC.1-R1"
+    },
+    {
+      "id": 102,
+      "status": "PASS",
+      "name": "publicMeetupRecords frozen from RC.1-R1"
+    },
+    {
+      "id": 103,
+      "status": "PASS",
+      "name": "publicSessionForMeetup frozen from RC.1-R1"
+    },
+    {
+      "id": 104,
+      "status": "PASS",
+      "name": "rankingRowsForScope frozen from RC.1-R1"
+    },
+    {
+      "id": 105,
+      "status": "PASS",
+      "name": "renderLeaderboard frozen from RC.1-R1"
+    },
+    {
+      "id": 106,
+      "status": "PASS",
+      "name": "meetupAwardRows frozen from RC.1-R1"
+    },
+    {
+      "id": 107,
+      "status": "PASS",
+      "name": "priorPbForPlayer frozen from RC.1-R1"
+    },
+    {
+      "id": 108,
+      "status": "PASS",
+      "name": "computeAwards frozen from RC.1-R1"
+    },
+    {
+      "id": 109,
+      "status": "PASS",
+      "name": "renderAwardOptions frozen from RC.1-R1"
+    },
+    {
+      "id": 110,
+      "status": "PASS",
+      "name": "renderAwards frozen from RC.1-R1"
+    },
+    {
+      "id": 111,
+      "status": "PASS",
+      "name": "shareScopeData frozen from RC.1-R1"
+    },
+    {
+      "id": 112,
+      "status": "PASS",
+      "name": "renderShareOptions frozen from RC.1-R1"
+    },
+    {
+      "id": 113,
+      "status": "PASS",
+      "name": "drawMeetupFullShareCard frozen from RC.1-R1"
+    },
+    {
+      "id": 114,
+      "status": "PASS",
+      "name": "drawAwardsShareCard frozen from RC.1-R1"
+    },
+    {
+      "id": 115,
+      "status": "PASS",
+      "name": "syncMeetupDerivedSelectors frozen from RC.1-R1"
+    },
+    {
+      "id": 116,
+      "status": "PASS",
+      "name": "exportFullBackup frozen from RC.1-R1"
+    },
+    {
+      "id": 117,
+      "status": "PASS",
+      "name": "createSnapshot frozen from RC.1-R1"
+    },
+    {
+      "id": 118,
+      "status": "PASS",
+      "name": "persistDbStateNow frozen from RC.1-R1"
+    },
+    {
+      "id": 119,
+      "status": "PASS",
+      "name": "parseRestorePayload frozen from RC.1-R1"
+    },
+    {
+      "id": 120,
+      "status": "PASS",
+      "name": "applyRestorePayload frozen from RC.1-R1"
+    },
+    {
+      "id": 121,
+      "status": "PASS",
+      "name": "restoreSnapshot frozen from RC.1-R1"
+    },
+    {
+      "id": 122,
+      "status": "PASS",
+      "name": "claimSelectedPlayer frozen from RC.1-R1"
+    },
+    {
+      "id": 123,
+      "status": "PASS",
+      "name": "removePersonalClaim frozen from RC.1-R1"
+    },
+    {
+      "id": 124,
+      "status": "PASS",
+      "name": "syncPersonalNow frozen from RC.1-R1"
+    },
+    {
+      "id": 125,
+      "status": "PASS",
+      "name": "renderMeetups frozen from RC.1-R1"
+    },
+    {
+      "id": 126,
+      "status": "PASS",
+      "name": "renderLive frozen from RC.1-R1"
+    },
+    {
+      "id": 127,
+      "status": "PASS",
+      "name": "saveLiveRoll frozen from RC.1-R1"
+    },
+    {
+      "id": 128,
+      "status": "PASS",
+      "name": "finishLiveRound frozen from RC.1-R1"
+    },
+    {
+      "id": 129,
+      "status": "PASS",
+      "name": "endLiveMeetup frozen from RC.1-R1"
+    },
+    {
+      "id": 130,
+      "status": "PASS",
+      "name": "renderVerificationCenter frozen from RC.1-R1"
+    },
+    {
+      "id": 131,
+      "status": "PASS",
+      "name": "applyOcrToSheet frozen from RC.1-R1"
+    },
+    {
+      "id": 132,
+      "status": "PASS",
+      "name": "setUpdateUi frozen from RC.1-R1"
+    },
+    {
+      "id": 133,
+      "status": "PASS",
+      "name": "setPwaUpdateDialogStatus frozen from RC.1-R1"
+    },
+    {
+      "id": 134,
+      "status": "PASS",
+      "name": "resetPwaUpdateBackupGate frozen from RC.1-R1"
+    },
+    {
+      "id": 135,
+      "status": "PASS",
+      "name": "openPwaUpdateDialog frozen from RC.1-R1"
+    },
+    {
+      "id": 136,
+      "status": "PASS",
+      "name": "closePwaUpdateDialog frozen from RC.1-R1"
+    },
+    {
+      "id": 137,
+      "status": "PASS",
+      "name": "markPendingPwaUpdate frozen from RC.1-R1"
+    },
+    {
+      "id": 138,
+      "status": "PASS",
+      "name": "backupBeforePwaUpdate frozen from RC.1-R1"
+    },
+    {
+      "id": 139,
+      "status": "PASS",
+      "name": "watchRegistration frozen from RC.1-R1"
+    },
+    {
+      "id": 140,
+      "status": "PASS",
+      "name": "checkPwaUpdate frozen from RC.1-R1"
+    },
+    {
+      "id": 141,
+      "status": "PASS",
+      "name": "applyPwaUpdate frozen from RC.1-R1"
+    },
+    {
+      "id": 142,
+      "status": "PASS",
+      "name": "finishPwaUpdateReload frozen from RC.1-R1"
+    },
+    {
+      "id": 143,
+      "status": "PASS",
+      "name": "initPwa frozen from RC.1-R1"
+    },
+    {
+      "id": 144,
+      "status": "PASS",
+      "name": "History uses dynamic game count"
+    },
+    {
+      "id": 145,
+      "status": "PASS",
+      "name": "History missing score dash"
+    },
+    {
+      "id": 146,
+      "status": "PASS",
+      "name": "History horizontal scroll retained"
+    },
+    {
+      "id": 147,
+      "status": "PASS",
+      "name": "Sticky player column retained"
+    },
+    {
+      "id": 148,
+      "status": "PASS",
+      "name": "Ranking uses PUBLIC games"
+    },
+    {
+      "id": 149,
+      "status": "PASS",
+      "name": "Ranking meetup uses public session"
+    },
+    {
+      "id": 150,
+      "status": "PASS",
+      "name": "Awards uses PUBLIC source"
+    },
+    {
+      "id": 151,
+      "status": "PASS",
+      "name": "Award options use public meetups"
+    },
+    {
+      "id": 152,
+      "status": "PASS",
+      "name": "Share scope uses public session"
+    },
+    {
+      "id": 153,
+      "status": "PASS",
+      "name": "Share card dynamic game count"
+    },
+    {
+      "id": 154,
+      "status": "PASS",
+      "name": "Public-only share note retained"
+    },
+    {
+      "id": 155,
+      "status": "PASS",
+      "name": "Desktop ranking before history"
+    },
+    {
+      "id": 156,
+      "status": "PASS",
+      "name": "Mobile primary dock has history"
+    },
+    {
+      "id": 157,
+      "status": "PASS",
+      "name": "Mobile primary dock excludes ranking"
+    },
+    {
+      "id": 158,
+      "status": "PASS",
+      "name": "Mobile More has ranking"
+    },
+    {
+      "id": 159,
+      "status": "PASS",
+      "name": "Manifest name v0.4.6.5"
+    },
+    {
+      "id": 160,
+      "status": "PASS",
+      "name": "Manifest identifies Stable"
+    },
+    {
+      "id": 161,
+      "status": "PASS",
+      "name": "Manifest documents performance optimization"
+    },
+    {
+      "id": 162,
+      "status": "PASS",
+      "name": "Manifest documents iOS fallback"
+    },
+    {
+      "id": 163,
+      "status": "PASS",
+      "name": "Manifest scope unchanged"
+    },
+    {
+      "id": 164,
+      "status": "PASS",
+      "name": "Manifest start_url unchanged"
+    },
+    {
+      "id": 165,
+      "status": "PASS",
+      "name": "Manifest display unchanged"
+    },
+    {
+      "id": 166,
+      "status": "PASS",
+      "name": "Manifest icons retained"
+    },
+    {
+      "id": 167,
+      "status": "PASS",
+      "name": "dev.1 Performance Gate",
+      "detail": "47/47 PASS"
+    },
+    {
+      "id": 168,
+      "status": "PASS",
+      "name": "dev.1 manual performance acceptance",
+      "detail": "User-confirmed PASS"
+    },
+    {
+      "id": 169,
+      "status": "PASS",
+      "name": "RC.1 Full Regression",
+      "detail": "142/142 PASS"
+    },
+    {
+      "id": 170,
+      "status": "PASS",
+      "name": "RC.1-R1 Source Gate",
+      "detail": "48/48 PASS"
+    },
+    {
+      "id": 171,
+      "status": "PASS",
+      "name": "RC.1-R1 iOS fallback manual acceptance",
+      "detail": "User-confirmed PASS"
+    },
+    {
+      "id": 172,
+      "status": "PASS",
+      "name": "v0.4.6.4 stable baseline acceptance",
+      "detail": "Previously user-confirmed PASS"
+    },
+    {
+      "id": 173,
+      "status": "PASS",
+      "name": "Stable application JavaScript parses"
+    }
+  ],
+  "result": {
+    "pass": 173,
+    "fail": 0
+  },
+  "freeze": "IMMUTABLE_STABLE_BASELINE"
+}
