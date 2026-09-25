@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.6.2</title>
+<title>保齡球球聚｜BowlMeet v0.4.6.2.1</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1140,7 +1140,17 @@ dialog::backdrop,
 }
 
 </style>
-<link rel="stylesheet" href="./assets/liquid-glass-dev4.css" />\n</head>
+<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=04621" />
+<style id="history-score-critical">
+/* v0.4.6.2.1 | Critical fallback for Safari/PWA HTML-CSS cache skew */
+.history-score-table-wrap{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
+.history-score-grid{display:grid!important;grid-template-columns:132px repeat(6,60px) 76px 76px!important;width:max-content;min-width:720px!important}
+.history-score-grid>div{box-sizing:border-box;min-width:0}
+@media(max-width:680px){
+  .history-score-grid>.history-score-name{position:sticky;left:0;z-index:2;background:#fff}
+  .history-score-grid>.history-score-head.history-score-name{z-index:3}
+}
+</style>\n</head>
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
@@ -2051,7 +2061,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.6.2';
+const APP_VERSION='0.4.6.2.1-dev.1';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const LAYOUT_DEFAULTS=Object.freeze({scale:'100',density:'standard',width:'standard',leaderboard:'standard',scoreSize:'standard'});
 const LAYOUT_PRESETS=Object.freeze({
