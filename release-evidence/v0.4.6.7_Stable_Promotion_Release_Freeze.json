@@ -1,0 +1,440 @@
+{
+  "version": "0.4.6.7",
+  "title": "Stable Promotion & Release Freeze",
+  "base": {
+    "rc_ref": "v0.4.6.7-RC.1",
+    "rc_source_gate": "192/192 PASS",
+    "manual_rc_acceptance": "PASS"
+  },
+  "promotion": {
+    "app_version": "0.4.6.7",
+    "html_title": "v0.4.6.7",
+    "manifest": "v0.4.6.7 Stable",
+    "service_worker_cache": "v0.4.6.7",
+    "css_cache_buster": "0467",
+    "production_target": "main",
+    "freeze_target": "stable/v0.4.6.7"
+  },
+  "policy": "No feature logic changes after RC.1. Stable delta is release metadata, PWA manifest metadata, and production cache rotation only.",
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "RC source gate is 192/192 PASS"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "Stable APP_VERSION 0.4.6.7"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "HTML title promoted to v0.4.6.7"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "Stable CSS cache-buster 0467"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "Main JavaScript parses"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "Manifest JSON valid"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "Manifest name promoted"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "Manifest Stable description promoted"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "Manifest mentions completion reset"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "Manifest mentions dynamic games"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "Manifest mentions public-history fix"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "Manifest start_url unchanged"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "Manifest scope unchanged"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "Manifest standalone unchanged"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "Manifest icons retained"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "SW shell cache promoted"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "SW runtime cache promoted"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "SW CSS cache-buster promoted"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "SW production root retained"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "SW skip waiting retained"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "SW client claim retained"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "SW navigation network-first retained"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "Service Worker JavaScript parses"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "Liquid Glass CSS file exists unchanged"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "DB_VERSION remains 2"
+    },
+    {
+      "id": 26,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 27,
+      "status": "PASS",
+      "name": "Layout preference key unchanged"
+    },
+    {
+      "id": 28,
+      "status": "PASS",
+      "name": "Score model remains max 6"
+    },
+    {
+      "id": 29,
+      "status": "PASS",
+      "name": "Dynamic meetup mode retained"
+    },
+    {
+      "id": 30,
+      "status": "PASS",
+      "name": "Fixed 1-6 modes retained"
+    },
+    {
+      "id": 31,
+      "status": "PASS",
+      "name": "Dynamic +局 retained"
+    },
+    {
+      "id": 32,
+      "status": "PASS",
+      "name": "Dynamic -局 retained"
+    },
+    {
+      "id": 33,
+      "status": "PASS",
+      "name": "Dynamic score shrink guard retained"
+    },
+    {
+      "id": 34,
+      "status": "PASS",
+      "name": "Completion hard reset retained"
+    },
+    {
+      "id": 35,
+      "status": "PASS",
+      "name": "Safari hidden hardening retained"
+    },
+    {
+      "id": 36,
+      "status": "PASS",
+      "name": "Completion navigation unblock retained"
+    },
+    {
+      "id": 37,
+      "status": "PASS",
+      "name": "Post-game review remains available"
+    },
+    {
+      "id": 38,
+      "status": "PASS",
+      "name": "Public history source preservation retained"
+    },
+    {
+      "id": 39,
+      "status": "PASS",
+      "name": "Public history filter preservation retained"
+    },
+    {
+      "id": 40,
+      "status": "PASS",
+      "name": "No forced local tab after unpublish"
+    },
+    {
+      "id": 41,
+      "status": "PASS",
+      "name": "No forced unpublished filter after unpublish"
+    },
+    {
+      "id": 42,
+      "status": "PASS",
+      "name": "Smart Next retained"
+    },
+    {
+      "id": 43,
+      "status": "PASS",
+      "name": "Auto-save timings retained"
+    },
+    {
+      "id": 44,
+      "status": "PASS",
+      "name": "Repeat Enter guard retained"
+    },
+    {
+      "id": 45,
+      "status": "PASS",
+      "name": "IndexedDB persistence warning retained"
+    },
+    {
+      "id": 46,
+      "status": "PASS",
+      "name": "Ranking retained"
+    },
+    {
+      "id": 47,
+      "status": "PASS",
+      "name": "Awards retained"
+    },
+    {
+      "id": 48,
+      "status": "PASS",
+      "name": "Share retained"
+    },
+    {
+      "id": 49,
+      "status": "PASS",
+      "name": "Backup retained"
+    },
+    {
+      "id": 50,
+      "status": "PASS",
+      "name": "Restore retained"
+    },
+    {
+      "id": 51,
+      "status": "PASS",
+      "name": "Snapshot retained"
+    },
+    {
+      "id": 52,
+      "status": "PASS",
+      "name": "PWA backup gate retained"
+    },
+    {
+      "id": 53,
+      "status": "PASS",
+      "name": "PWA apply retained"
+    },
+    {
+      "id": 54,
+      "status": "PASS",
+      "name": "PWA reload fallback retained"
+    },
+    {
+      "id": 55,
+      "status": "PASS",
+      "name": "renderMeetups unchanged from RC.1"
+    },
+    {
+      "id": 56,
+      "status": "PASS",
+      "name": "renderCurrentMeetup unchanged from RC.1"
+    },
+    {
+      "id": 57,
+      "status": "PASS",
+      "name": "rankingRowsForScope unchanged from RC.1"
+    },
+    {
+      "id": 58,
+      "status": "PASS",
+      "name": "renderLeaderboard unchanged from RC.1"
+    },
+    {
+      "id": 59,
+      "status": "PASS",
+      "name": "renderAwards unchanged from RC.1"
+    },
+    {
+      "id": 60,
+      "status": "PASS",
+      "name": "shareScopeData unchanged from RC.1"
+    },
+    {
+      "id": 61,
+      "status": "PASS",
+      "name": "drawShareCard unchanged from RC.1"
+    },
+    {
+      "id": 62,
+      "status": "PASS",
+      "name": "backupBeforePwaUpdate unchanged from RC.1"
+    },
+    {
+      "id": 63,
+      "status": "PASS",
+      "name": "applyPwaUpdate unchanged from RC.1"
+    },
+    {
+      "id": 64,
+      "status": "PASS",
+      "name": "finishPwaUpdateReload unchanged from RC.1"
+    },
+    {
+      "id": 65,
+      "status": "PASS",
+      "name": "normalizeSessionRecord unchanged from RC.1"
+    },
+    {
+      "id": 66,
+      "status": "PASS",
+      "name": "sessionScoreGameCount unchanged from RC.1"
+    },
+    {
+      "id": 67,
+      "status": "PASS",
+      "name": "bowlingGameCalc unchanged from RC.1"
+    },
+    {
+      "id": 68,
+      "status": "PASS",
+      "name": "saveLiveRoll unchanged from RC.1"
+    },
+    {
+      "id": 69,
+      "status": "PASS",
+      "name": "flushLiveRollCommit unchanged from RC.1"
+    },
+    {
+      "id": 70,
+      "status": "PASS",
+      "name": "liveSmartNextInput unchanged from RC.1"
+    },
+    {
+      "id": 71,
+      "status": "PASS",
+      "name": "applyRestorePayload unchanged from RC.1"
+    },
+    {
+      "id": 72,
+      "status": "PASS",
+      "name": "adjustLiveRoundCount unchanged from RC.1"
+    },
+    {
+      "id": 73,
+      "status": "PASS",
+      "name": "resetLivePresentation unchanged from RC.1"
+    },
+    {
+      "id": 74,
+      "status": "PASS",
+      "name": "clearCompletedMeetupContext unchanged from RC.1"
+    },
+    {
+      "id": 75,
+      "status": "PASS",
+      "name": "completeLiveMeetup unchanged from RC.1"
+    },
+    {
+      "id": 76,
+      "status": "PASS",
+      "name": "setMeetupStatus unchanged from RC.1"
+    },
+    {
+      "id": 77,
+      "status": "PASS",
+      "name": "filteredSessions unchanged from RC.1"
+    },
+    {
+      "id": 78,
+      "status": "PASS",
+      "name": "renderHistory unchanged from RC.1"
+    },
+    {
+      "id": 79,
+      "status": "PASS",
+      "name": "buildGroupPayload unchanged from RC.1"
+    },
+    {
+      "id": 80,
+      "status": "PASS",
+      "name": "mergePublicRecordControls unchanged from RC.1"
+    },
+    {
+      "id": 81,
+      "status": "PASS",
+      "name": "setPublicVisibility unchanged from RC.1"
+    },
+    {
+      "id": 82,
+      "status": "PASS",
+      "name": "Stable index delta from RC is release metadata only"
+    },
+    {
+      "id": 83,
+      "status": "PASS",
+      "name": "Stable SW delta is cache-version only"
+    }
+  ],
+  "result": {
+    "pass": 83,
+    "fail": 0
+  }
+}
