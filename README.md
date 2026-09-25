@@ -2,19 +2,20 @@
 
 基線：`v0.4.6.2-dev.1-R2`。
 
-- R2 實機 #1 First Publish：PASS。
-- R2 實機 #2 Republish Visibility：FAIL；已定位為「公開歷史」來源篩選在取消公開後把紀錄卡排除。
-- RC.1 修正：取消公開後自動切到「我的紀錄／已取消公開」，重新公開按鈕保持可見。
-- Republish 狀態改由 Public Control tombstone `removed` 判定，不再依賴遠端 Session 是否存在。
-- Full Automated Regression：**103/103 PASS**。
+- Full Automated Regression：**103/103 PASS**
+- Preview Cloud Configuration Gate：**12/12 PASS**
+- RC Device Smoke：**6/6 PASS**
+- Release Candidate Validation Complete：**YES**
+- R2 的 Republish Visibility 問題已修正：取消公開後自動切到「我的紀錄／已取消公開」，重新公開按鈕保持可見。
+- Republish 狀態改由 Public Control tombstone `removed` 判斷。
+- RC Preview Cloud Code 已由無效 7 碼 `V462RC1` 修正為合法 6 碼 `V46RC2`；PR #29 已發布。
+- 排行榜／分享／獎項：**Public-only 實機 PASS**
+- 每局成績表水平滑動＋sticky 球員欄：**PASS**
+- PWA 關閉重開／最新 RC cache：**PASS**
 - R2 → RC function delta：0 missing / 0 added / 0 body drift。
-- RC Preview：`preview/v0.4.6.2-RC.1/`，Cloud `V46RC2`、PIN `046221`、獨立 IndexedDB / Layout / Cache。
-- Preview-only PR #28 已合併；正式 root 未包含在 Preview publish。
 - DB_VERSION 2、PUBLIC code / payload、Backup / Restore、同步資料格式維持不變。
 - Supabase / IndexedDB / PUBLIC payload migration：NONE。
-- RC Device Smoke：#4 / #5 / #6 已 PASS；#1 / #2 / #3 於 Preview Cloud Code Fix 後待重測。
-- RC Preview Cloud Code 原 `V462RC1` 為 7 碼，違反 Supabase 6 碼規則；已修正為 `V46RC2`，Preview Config Gate 12/12 PASS，PR #29 已發布。
-- Stable Promotion：尚未執行。
+- Stable Promotion：**尚未執行**。
 
 # BowlMeet v0.4.6.2-dev.1-R2 — Post-R1 Cleanup & Cache Hardening
 
