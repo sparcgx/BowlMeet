@@ -1140,7 +1140,17 @@ dialog::backdrop,
 }
 
 </style>
-<link rel="stylesheet" href="./assets/liquid-glass-dev4.css" />\n</head>
+<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=04621d1" />
+<style id="history-score-critical">
+/* v0.4.6.2.1-dev.1 | Critical fallback for Safari/PWA HTML-CSS cache skew */
+.history-score-table-wrap{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
+.history-score-grid{display:grid!important;grid-template-columns:132px repeat(6,60px) 76px 76px!important;width:max-content;min-width:720px!important}
+.history-score-grid>div{box-sizing:border-box;min-width:0}
+@media(max-width:680px){
+  .history-score-grid>.history-score-name{position:sticky;left:0;z-index:2;background:#fff}
+  .history-score-grid>.history-score-head.history-score-name{z-index:3}
+}
+</style>\n</head>
 <body>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
