@@ -1,0 +1,56 @@
+BowlMeet v0.4.7.0-dev.1｜Theme Center Foundation Gate
+Date: 2026-09-26
+Baseline: stable/v0.4.6.7
+Baseline commit: bf6054deeaa0658ab807c3c60ad095d7060d0de7
+
+RESULT
+PASS: 33
+FAIL: 0
+TOTAL: 33
+
+SCOPE
+- Layout Settings upgraded to Layout & Theme Design
+- 6 themes:
+  1. Default
+  2. Liquid Glass
+  3. Clear Blue
+  4. Soft Violet
+  5. Dark Night
+  6. High Contrast
+- 5 integrated presets:
+  1. Standard Work
+  2. Mobile Browse
+  3. Field Large Text
+  4. Glass Showcase
+  5. Night Mode
+- Local visual controls:
+  cardRadius / shadowLevel / colorIntensity / motionEnabled / transparencyEnabled
+- Reduced Motion / Reduced Transparency / no-backdrop-filter fallback
+
+DATA SAFETY
+- DB_VERSION: 2 (UNCHANGED)
+- PUBLIC_HISTORY_CODE: PUBLIC (UNCHANGED)
+- LAYOUT_PREFS_KEY: bowlingMeetup.layoutPreferences.v1
+- THEME_PREFS_KEY: bowlingMeetup.themePreferences.v1
+- Theme and Layout preferences excluded from captureState
+- No SQL / Supabase schema changes
+- No PUBLIC payload migration
+- No Backup / Restore contract changes
+- No Sync contract changes
+
+STATIC VALIDATION
+- Inline JavaScript syntax: PASS
+- CSS brace balance: PASS
+- Manifest JSON syntax: PASS
+- Service Worker JavaScript syntax: PASS
+- Theme card count: 6/6
+- Design preset count: 5/5
+- Branch ancestry: 0 commits behind stable/v0.4.6.7
+
+ARCHIVE
+Previous pre-refresh dev.1:
+archive/v0.4.7.0-dev.1-pre-v0.4.6.7-refresh-20260926
+
+STATUS
+Foundation automated gate: PASS
+Next gate: iPhone / PWA / desktop visual & interaction acceptance.
