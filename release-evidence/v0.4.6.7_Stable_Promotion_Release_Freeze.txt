@@ -1,0 +1,101 @@
+BowlMeet v0.4.6.7｜Stable Promotion & Release Freeze
+
+Base: v0.4.6.7-RC.1
+RC Source Regression Gate: 192/192 PASS
+RC Manual Acceptance: PASS
+
+Stable promotion only:
+- APP_VERSION -> 0.4.6.7
+- HTML title -> v0.4.6.7
+- manifest.webmanifest -> v0.4.6.7 Stable metadata
+- Service Worker production cache -> v0.4.6.7
+- Liquid Glass CSS cache-buster -> 0467
+
+No functional changes after RC.1.
+
+Checks:
+001. PASS | RC source gate is 192/192 PASS
+002. PASS | Stable APP_VERSION 0.4.6.7
+003. PASS | HTML title promoted to v0.4.6.7
+004. PASS | Stable CSS cache-buster 0467
+005. PASS | Main JavaScript parses
+006. PASS | Manifest JSON valid
+007. PASS | Manifest name promoted
+008. PASS | Manifest Stable description promoted
+009. PASS | Manifest mentions completion reset
+010. PASS | Manifest mentions dynamic games
+011. PASS | Manifest mentions public-history fix
+012. PASS | Manifest start_url unchanged
+013. PASS | Manifest scope unchanged
+014. PASS | Manifest standalone unchanged
+015. PASS | Manifest icons retained
+016. PASS | SW shell cache promoted
+017. PASS | SW runtime cache promoted
+018. PASS | SW CSS cache-buster promoted
+019. PASS | SW production root retained
+020. PASS | SW skip waiting retained
+021. PASS | SW client claim retained
+022. PASS | SW navigation network-first retained
+023. PASS | Service Worker JavaScript parses
+024. PASS | Liquid Glass CSS file exists unchanged
+025. PASS | DB_VERSION remains 2
+026. PASS | PUBLIC PIN unchanged
+027. PASS | Layout preference key unchanged
+028. PASS | Score model remains max 6
+029. PASS | Dynamic meetup mode retained
+030. PASS | Fixed 1-6 modes retained
+031. PASS | Dynamic +局 retained
+032. PASS | Dynamic -局 retained
+033. PASS | Dynamic score shrink guard retained
+034. PASS | Completion hard reset retained
+035. PASS | Safari hidden hardening retained
+036. PASS | Completion navigation unblock retained
+037. PASS | Post-game review remains available
+038. PASS | Public history source preservation retained
+039. PASS | Public history filter preservation retained
+040. PASS | No forced local tab after unpublish
+041. PASS | No forced unpublished filter after unpublish
+042. PASS | Smart Next retained
+043. PASS | Auto-save timings retained
+044. PASS | Repeat Enter guard retained
+045. PASS | IndexedDB persistence warning retained
+046. PASS | Ranking retained
+047. PASS | Awards retained
+048. PASS | Share retained
+049. PASS | Backup retained
+050. PASS | Restore retained
+051. PASS | Snapshot retained
+052. PASS | PWA backup gate retained
+053. PASS | PWA apply retained
+054. PASS | PWA reload fallback retained
+055. PASS | renderMeetups unchanged from RC.1
+056. PASS | renderCurrentMeetup unchanged from RC.1
+057. PASS | rankingRowsForScope unchanged from RC.1
+058. PASS | renderLeaderboard unchanged from RC.1
+059. PASS | renderAwards unchanged from RC.1
+060. PASS | shareScopeData unchanged from RC.1
+061. PASS | drawShareCard unchanged from RC.1
+062. PASS | backupBeforePwaUpdate unchanged from RC.1
+063. PASS | applyPwaUpdate unchanged from RC.1
+064. PASS | finishPwaUpdateReload unchanged from RC.1
+065. PASS | normalizeSessionRecord unchanged from RC.1
+066. PASS | sessionScoreGameCount unchanged from RC.1
+067. PASS | bowlingGameCalc unchanged from RC.1
+068. PASS | saveLiveRoll unchanged from RC.1
+069. PASS | flushLiveRollCommit unchanged from RC.1
+070. PASS | liveSmartNextInput unchanged from RC.1
+071. PASS | applyRestorePayload unchanged from RC.1
+072. PASS | adjustLiveRoundCount unchanged from RC.1
+073. PASS | resetLivePresentation unchanged from RC.1
+074. PASS | clearCompletedMeetupContext unchanged from RC.1
+075. PASS | completeLiveMeetup unchanged from RC.1
+076. PASS | setMeetupStatus unchanged from RC.1
+077. PASS | filteredSessions unchanged from RC.1
+078. PASS | renderHistory unchanged from RC.1
+079. PASS | buildGroupPayload unchanged from RC.1
+080. PASS | mergePublicRecordControls unchanged from RC.1
+081. PASS | setPublicVisibility unchanged from RC.1
+082. PASS | Stable index delta from RC is release metadata only
+083. PASS | Stable SW delta is cache-version only
+
+Result: 83/83 PASS
