@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BowlMeet v0.4.6.3-dev.3-R1｜Awards Public Score Test</title><meta name="theme-color" content="#ffffff">
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:#172033;background:#f5f7fa}*{box-sizing:border-box}body{margin:0}.wrap{max-width:800px;margin:auto;padding:18px}.card{background:#fff;border:1px solid #e4e8ef;border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 8px 24px rgba(17,24,39,.05)}h1{font-size:22px;margin:0 0 6px}h2{font-size:16px;margin:0 0 10px}p,li{color:#697386;line-height:1.6}.pill{display:inline-block;border-radius:999px;background:#eef4ff;color:#0f62fe;padding:5px 9px;font-size:11px;font-weight:850;margin-bottom:10px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid #eef1f5}.row:last-child{border-bottom:0}.label{font-weight:800}.status{font-weight:900}.ok{color:#14804a}.bad{color:#b42318}.btn{display:block;text-align:center;text-decoration:none;background:#172033;color:#fff;border-radius:12px;padding:13px 16px;font-weight:850}.meta{font-size:12px;color:#697386;word-break:break-all;white-space:pre-wrap}ol{padding-left:22px;margin:8px 0 0}
+</style></head><body><main class="wrap">
+<section class="card"><span class="pill">v0.4.6.3-dev.3-R1 Preview</span><h1>Awards Public Score Source Fix</h1><p>修正「公開歷史已有成績，但獎項頁顯示空白」問題。自動獎項現在與排行榜／分享卡一致，讀取 PUBLIC 成績。</p></section>
+<section class="card"><h2>修正版自我檢查</h2>
+<div class="row"><span class="label">JavaScript</span><span class="status bad" id="js">未執行</span></div>
+<div class="row"><span class="label">APP_VERSION</span><span class="status" id="version">檢查中</span></div>
+<div class="row"><span class="label">獎項選單來源</span><span class="status" id="options">檢查中</span></div>
+<div class="row"><span class="label">自動獎項 PUBLIC Source</span><span class="status" id="awards">檢查中</span></div>
+<div class="row"><span class="label">分享卡 PUBLIC Source</span><span class="status" id="share">檢查中</span></div>
+<div class="row"><span class="label">CSS Cache</span><span class="status" id="css">檢查中</span></div>
+<div class="row"><span class="label">HTTPS</span><span class="status" id="secure">檢查中</span></div>
+</section>
+<section class="card"><h2>請測 4 項</h2><ol>
+<li>先到「成績紀錄 → 公開」確認某場球聚有分數。</li>
+<li>進入「獎項」，選同一場球聚，冠軍／平均王／單局王應立即帶出。</li>
+<li>200+、PB、穩定王、進步王依符合條件顯示，不應整頁空白。</li>
+<li>按「分享獎項卡」，分享卡結果應與獎項頁一致。</li>
+</ol></section>
+<section class="card"><p><strong>自訂獎項：</strong>同一球聚存在本機資料時可正常新增／移除；只有遠端公開紀錄時保持唯讀，避免誤寫遠端資料。</p></section>
+<section class="card"><div class="meta" id="meta"></div></section>
+<a class="btn" href="./index.html?v=0463d3r1">開啟 R1 完整測試網頁</a>
+</main><script>
+(async()=>{
+ const set=(id,text,cls)=>{const e=document.getElementById(id);e.textContent=text;e.className='status '+cls};
+ set('js','正常執行','ok');set('secure',window.isSecureContext?'安全 HTTPS':'非安全環境',window.isSecureContext?'ok':'bad');
+ try{
+  const html=await fetch('./index.html?integrity=0463d3r1',{cache:'no-store'}).then(r=>r.text());
+  const tests={
+   version:html.includes("const APP_VERSION='0.4.6.3-dev.3-R1';"),
+   options:html.includes("const published=publicMeetupRecords()"),
+   awards:html.includes("result=computeAwards(id,'public')"),
+   share:html.includes("const result=computeAwards(data.m.id)"),
+   css:html.includes("liquid-glass-dev4.css?v=0463d3r1")
+  };
+  set('version',tests.version?'0.4.6.3-dev.3-R1':'版本不符',tests.version?'ok':'bad');
+  set('options',tests.options?'PUBLIC':'來源不符',tests.options?'ok':'bad');
+  set('awards',tests.awards?'PUBLIC':'仍非 PUBLIC',tests.awards?'ok':'bad');
+  set('share',tests.share?'PUBLIC 預設':'檢查失敗',tests.share?'ok':'bad');
+  set('css',tests.css?'v0463d3r1':'版本不符',tests.css?'ok':'bad');
+ }catch(e){['version','options','awards','share','css'].forEach(id=>set(id,'讀取失敗','bad'))}
+ document.getElementById('meta').textContent='URL：'+location.href+'\nUser Agent：'+navigator.userAgent;
+})();
+</script></body></html>
