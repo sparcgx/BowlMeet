@@ -1,0 +1,187 @@
+BowlMeet v0.4.6.4｜Stable Promotion & Final Freeze
+
+Promoted from: v0.4.6.4-RC.1 @ 03d0fc21cb87e2ff78d257a3b1fdcb5cd297368e
+Promotion base main: 20ea5c1bb1ce82fe014b67509a96e98c4fe056ef
+RC automated regression: 147/147 PASS
+RC manual device acceptance: PASS (user-confirmed)
+Functional delta from RC.1: NONE
+Release-only delta: APP_VERSION / release label / CSS cache / production SW stable cache / manifest metadata / freeze evidence
+
+Stable feature:
+- Detect waiting/new Service Worker and show update dialog.
+- Update remains locked until user completes backup step.
+- Backup step persists state, creates IndexedDB safety snapshot, downloads full JSON backup.
+- Update step creates one final safety snapshot before activation.
+- New Service Worker handles SKIP_WAITING and controllerchange reloads the approved new version.
+
+First rollout v0.4.6.3 -> v0.4.6.4:
+- Existing v0.4.6.3 Service Worker uses network-first navigation.
+- On reopen/reload, the new v0.4.6.4 index can load while the old worker still controls the page.
+- v0.4.6.4 registers the new Service Worker; if it is waiting, the backup-required dialog opens.
+- The waiting v0.4.6.4 worker itself handles SKIP_WAITING after user approval.
+
+Frozen invariants:
+- DB_NAME: bowlingMeetup.local
+- DB_VERSION: 2
+- PUBLIC/PIN: unchanged
+- Supabase schema: unchanged
+- IndexedDB schema: unchanged
+- Existing storage keys: unchanged
+- Score model: 1-6 games
+- Dynamic Grid / Ranking / Awards / Share: retained
+
+Stable PWA:
+- Shell cache: bowlmeet-v0.4.6.4-stable-shell
+- Runtime cache: bowlmeet-v0.4.6.4-stable-runtime
+- CSS shell asset: liquid-glass-dev4.css?v=0464
+- SKIP_WAITING handler: enabled
+
+Final Promotion Checks:
+001. PASS | Stable APP_VERSION 0.4.6.4
+002. PASS | Stable CSS query v0464
+003. PASS | Stable footer label
+004. PASS | RC APP_VERSION removed
+005. PASS | RC CSS identity removed
+006. PASS | RC footer label removed
+007. PASS | Stable index differs from RC only by release identity
+008. PASS | Liquid Glass CSS exactly RC.1
+009. PASS | normalizeSessionRecord frozen from RC.1
+010. PASS | normalizeBowlingGames frozen from RC.1
+011. PASS | normalizeMeetupRecord frozen from RC.1
+012. PASS | normalizePersonalData frozen from RC.1
+013. PASS | sessionScoreGameCount frozen from RC.1
+014. PASS | renderHistory frozen from RC.1
+015. PASS | publicHistoryRecords frozen from RC.1
+016. PASS | publicMeetupRecords frozen from RC.1
+017. PASS | publicSessionForMeetup frozen from RC.1
+018. PASS | rankingRowsForScope frozen from RC.1
+019. PASS | renderLeaderboard frozen from RC.1
+020. PASS | meetupAwardRows frozen from RC.1
+021. PASS | priorPbForPlayer frozen from RC.1
+022. PASS | computeAwards frozen from RC.1
+023. PASS | renderAwardOptions frozen from RC.1
+024. PASS | renderAwards frozen from RC.1
+025. PASS | shareScopeData frozen from RC.1
+026. PASS | renderShareOptions frozen from RC.1
+027. PASS | drawMeetupFullShareCard frozen from RC.1
+028. PASS | drawAwardsShareCard frozen from RC.1
+029. PASS | syncMeetupDerivedSelectors frozen from RC.1
+030. PASS | exportFullBackup frozen from RC.1
+031. PASS | createSnapshot frozen from RC.1
+032. PASS | persistDbStateNow frozen from RC.1
+033. PASS | parseRestorePayload frozen from RC.1
+034. PASS | applyRestorePayload frozen from RC.1
+035. PASS | restoreSnapshot frozen from RC.1
+036. PASS | claimSelectedPlayer frozen from RC.1
+037. PASS | removePersonalClaim frozen from RC.1
+038. PASS | syncPersonalNow frozen from RC.1
+039. PASS | renderMeetups frozen from RC.1
+040. PASS | renderLive frozen from RC.1
+041. PASS | saveLiveRoll frozen from RC.1
+042. PASS | finishLiveRound frozen from RC.1
+043. PASS | endLiveMeetup frozen from RC.1
+044. PASS | renderVerificationCenter frozen from RC.1
+045. PASS | applyOcrToSheet frozen from RC.1
+046. PASS | setUpdateUi frozen from RC.1
+047. PASS | setPwaUpdateDialogStatus frozen from RC.1
+048. PASS | resetPwaUpdateBackupGate frozen from RC.1
+049. PASS | openPwaUpdateDialog frozen from RC.1
+050. PASS | closePwaUpdateDialog frozen from RC.1
+051. PASS | markPendingPwaUpdate frozen from RC.1
+052. PASS | backupBeforePwaUpdate frozen from RC.1
+053. PASS | watchRegistration frozen from RC.1
+054. PASS | checkPwaUpdate frozen from RC.1
+055. PASS | applyPwaUpdate frozen from RC.1
+056. PASS | initPwa frozen from RC.1
+057. PASS | Update dialog retained
+058. PASS | Detected-new-version title retained
+059. PASS | Backup step button retained
+060. PASS | Update step starts disabled
+061. PASS | Mandatory backup copy retained
+062. PASS | Waiting worker stored
+063. PASS | Waiting worker resets backup gate
+064. PASS | Waiting worker auto-opens prompt
+065. PASS | Existing waiting worker handled on registration
+066. PASS | New installed worker handled
+067. PASS | Backup gate initializes false
+068. PASS | Reset gate sets false
+069. PASS | Backup persists current DB
+070. PASS | Backup creates IndexedDB snapshot
+071. PASS | Backup validates snapshot when DB ready
+072. PASS | Backup downloads full JSON
+073. PASS | Full backup JSON MIME retained
+074. PASS | Full backup returns filename
+075. PASS | Backup success unlocks update
+076. PASS | Backup failure locks update
+077. PASS | Apply blocks without backup
+078. PASS | Apply creates final snapshot
+079. PASS | Apply persists DB before activation
+080. PASS | Apply sets reload flag
+081. PASS | Apply sends SKIP_WAITING
+082. PASS | Apply failure preserves current version
+083. PASS | controllerchange reload retained
+084. PASS | Stable SW shell v0.4.6.4
+085. PASS | Stable SW runtime v0.4.6.4
+086. PASS | Stable SW CSS v0464
+087. PASS | Old v0.4.6.3 cache identities removed from new SW
+088. PASS | Production cache root retained
+089. PASS | Cache cleanup remains production-scoped
+090. PASS | Stable SW handles message event
+091. PASS | Stable SW handles SKIP_WAITING
+092. PASS | Stable SW calls self.skipWaiting
+093. PASS | Exactly one SKIP_WAITING token in SW
+094. PASS | Navigation remains network-first
+095. PASS | Old v0.4.6.3 SW navigation was network-first
+096. PASS | New index registers sw.js
+097. PASS | New index immediately watches registration
+098. PASS | New index sees reg.waiting
+099. PASS | Old Stable network-first can fetch new index on reopen
+100. PASS | New waiting SW itself owns SKIP_WAITING handler
+101. PASS | DB_NAME unchanged
+102. PASS | DB_VERSION remains 2
+103. PASS | PUBLIC code unchanged
+104. PASS | PUBLIC PIN unchanged
+105. PASS | Session key unchanged
+106. PASS | Meetup key unchanged
+107. PASS | Roster key unchanged
+108. PASS | Player Claim key unchanged
+109. PASS | Public control key unchanged
+110. PASS | Layout prefs key unchanged
+111. PASS | Snapshot limit remains 10
+112. PASS | No 8/10/12 stored-game expansion
+113. PASS | Score model remains max 6
+114. PASS | History uses dynamic game count
+115. PASS | History missing score dash
+116. PASS | History horizontal scroll retained
+117. PASS | Sticky player column retained
+118. PASS | Ranking uses public games
+119. PASS | Ranking meetup uses public session
+120. PASS | Awards use PUBLIC source
+121. PASS | Awards options use public meetups
+122. PASS | Share scope uses public session
+123. PASS | Share card dynamic game count
+124. PASS | Share card visible-column slice retained
+125. PASS | Public-only share note retained
+126. PASS | Desktop ranking before history retained
+127. PASS | Mobile primary dock has history
+128. PASS | Mobile primary dock excludes ranking
+129. PASS | Mobile More contains ranking
+130. PASS | Manifest name v0.4.6.4
+131. PASS | Manifest description identifies Stable
+132. PASS | Manifest documents backup Gate
+133. PASS | Manifest scope unchanged
+134. PASS | Manifest start_url unchanged
+135. PASS | Manifest display unchanged
+136. PASS | Manifest icons retained
+137. PASS | dev.1 manual PWA safe-update validation | User-confirmed PASS
+138. PASS | RC.1 automated regression prerequisite | 147/147 PASS
+139. PASS | RC.1 manual device acceptance | User-confirmed PASS
+140. PASS | v0.4.6.3 stable functional baseline acceptance | Previously user-confirmed PASS
+141. PASS | Stable application JavaScript parses
+
+Final Result: 141/141 PASS
+
+Freeze rule:
+- v0.4.6.4 Stable becomes immutable after promotion.
+- Future feature work must branch from stable/v0.4.6.4.
+- Only explicit hotfix/recovery work may patch this stable line.

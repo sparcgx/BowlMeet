@@ -1,0 +1,761 @@
+{
+  "version": "0.4.6.4",
+  "title": "Stable Promotion & Final Freeze",
+  "promoted_from": {
+    "ref": "v0.4.6.4-RC.1",
+    "commit": "03d0fc21cb87e2ff78d257a3b1fdcb5cd297368e"
+  },
+  "promotion_base_main": "20ea5c1bb1ce82fe014b67509a96e98c4fe056ef",
+  "rc_gate": {
+    "automated": "147/147 PASS",
+    "manual_device": "PASS"
+  },
+  "functional_delta_from_rc": "NONE",
+  "release_delta": [
+    "APP_VERSION",
+    "release label",
+    "CSS cache",
+    "production stable SW cache",
+    "manifest metadata",
+    "freeze evidence"
+  ],
+  "safe_update": {
+    "prompt_on_waiting_sw": true,
+    "mandatory_backup_gate": true,
+    "json_full_backup": true,
+    "indexeddb_snapshot": true,
+    "final_snapshot": true,
+    "skip_waiting": true,
+    "controllerchange_reload": true,
+    "first_rollout_bootstrap": "network-first old SW -> new index -> waiting new SW prompt"
+  },
+  "stable_cache": {
+    "shell": "bowlmeet-v0.4.6.4-stable-shell",
+    "runtime": "bowlmeet-v0.4.6.4-stable-runtime",
+    "css": "./assets/liquid-glass-dev4.css?v=0464"
+  },
+  "invariants": {
+    "db_name": "bowlingMeetup.local",
+    "db_version": 2,
+    "public_pin": "UNCHANGED",
+    "supabase_schema": "UNCHANGED",
+    "indexeddb_schema": "UNCHANGED",
+    "score_model": "1-6"
+  },
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "Stable APP_VERSION 0.4.6.4"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "Stable CSS query v0464"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "Stable footer label"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "RC APP_VERSION removed"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "RC CSS identity removed"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "RC footer label removed"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "Stable index differs from RC only by release identity"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "Liquid Glass CSS exactly RC.1"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "normalizeSessionRecord frozen from RC.1"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "normalizeBowlingGames frozen from RC.1"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "normalizeMeetupRecord frozen from RC.1"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "normalizePersonalData frozen from RC.1"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "sessionScoreGameCount frozen from RC.1"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "renderHistory frozen from RC.1"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "publicHistoryRecords frozen from RC.1"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "publicMeetupRecords frozen from RC.1"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "publicSessionForMeetup frozen from RC.1"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "rankingRowsForScope frozen from RC.1"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "renderLeaderboard frozen from RC.1"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "meetupAwardRows frozen from RC.1"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "priorPbForPlayer frozen from RC.1"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "computeAwards frozen from RC.1"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "renderAwardOptions frozen from RC.1"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "renderAwards frozen from RC.1"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "shareScopeData frozen from RC.1"
+    },
+    {
+      "id": 26,
+      "status": "PASS",
+      "name": "renderShareOptions frozen from RC.1"
+    },
+    {
+      "id": 27,
+      "status": "PASS",
+      "name": "drawMeetupFullShareCard frozen from RC.1"
+    },
+    {
+      "id": 28,
+      "status": "PASS",
+      "name": "drawAwardsShareCard frozen from RC.1"
+    },
+    {
+      "id": 29,
+      "status": "PASS",
+      "name": "syncMeetupDerivedSelectors frozen from RC.1"
+    },
+    {
+      "id": 30,
+      "status": "PASS",
+      "name": "exportFullBackup frozen from RC.1"
+    },
+    {
+      "id": 31,
+      "status": "PASS",
+      "name": "createSnapshot frozen from RC.1"
+    },
+    {
+      "id": 32,
+      "status": "PASS",
+      "name": "persistDbStateNow frozen from RC.1"
+    },
+    {
+      "id": 33,
+      "status": "PASS",
+      "name": "parseRestorePayload frozen from RC.1"
+    },
+    {
+      "id": 34,
+      "status": "PASS",
+      "name": "applyRestorePayload frozen from RC.1"
+    },
+    {
+      "id": 35,
+      "status": "PASS",
+      "name": "restoreSnapshot frozen from RC.1"
+    },
+    {
+      "id": 36,
+      "status": "PASS",
+      "name": "claimSelectedPlayer frozen from RC.1"
+    },
+    {
+      "id": 37,
+      "status": "PASS",
+      "name": "removePersonalClaim frozen from RC.1"
+    },
+    {
+      "id": 38,
+      "status": "PASS",
+      "name": "syncPersonalNow frozen from RC.1"
+    },
+    {
+      "id": 39,
+      "status": "PASS",
+      "name": "renderMeetups frozen from RC.1"
+    },
+    {
+      "id": 40,
+      "status": "PASS",
+      "name": "renderLive frozen from RC.1"
+    },
+    {
+      "id": 41,
+      "status": "PASS",
+      "name": "saveLiveRoll frozen from RC.1"
+    },
+    {
+      "id": 42,
+      "status": "PASS",
+      "name": "finishLiveRound frozen from RC.1"
+    },
+    {
+      "id": 43,
+      "status": "PASS",
+      "name": "endLiveMeetup frozen from RC.1"
+    },
+    {
+      "id": 44,
+      "status": "PASS",
+      "name": "renderVerificationCenter frozen from RC.1"
+    },
+    {
+      "id": 45,
+      "status": "PASS",
+      "name": "applyOcrToSheet frozen from RC.1"
+    },
+    {
+      "id": 46,
+      "status": "PASS",
+      "name": "setUpdateUi frozen from RC.1"
+    },
+    {
+      "id": 47,
+      "status": "PASS",
+      "name": "setPwaUpdateDialogStatus frozen from RC.1"
+    },
+    {
+      "id": 48,
+      "status": "PASS",
+      "name": "resetPwaUpdateBackupGate frozen from RC.1"
+    },
+    {
+      "id": 49,
+      "status": "PASS",
+      "name": "openPwaUpdateDialog frozen from RC.1"
+    },
+    {
+      "id": 50,
+      "status": "PASS",
+      "name": "closePwaUpdateDialog frozen from RC.1"
+    },
+    {
+      "id": 51,
+      "status": "PASS",
+      "name": "markPendingPwaUpdate frozen from RC.1"
+    },
+    {
+      "id": 52,
+      "status": "PASS",
+      "name": "backupBeforePwaUpdate frozen from RC.1"
+    },
+    {
+      "id": 53,
+      "status": "PASS",
+      "name": "watchRegistration frozen from RC.1"
+    },
+    {
+      "id": 54,
+      "status": "PASS",
+      "name": "checkPwaUpdate frozen from RC.1"
+    },
+    {
+      "id": 55,
+      "status": "PASS",
+      "name": "applyPwaUpdate frozen from RC.1"
+    },
+    {
+      "id": 56,
+      "status": "PASS",
+      "name": "initPwa frozen from RC.1"
+    },
+    {
+      "id": 57,
+      "status": "PASS",
+      "name": "Update dialog retained"
+    },
+    {
+      "id": 58,
+      "status": "PASS",
+      "name": "Detected-new-version title retained"
+    },
+    {
+      "id": 59,
+      "status": "PASS",
+      "name": "Backup step button retained"
+    },
+    {
+      "id": 60,
+      "status": "PASS",
+      "name": "Update step starts disabled"
+    },
+    {
+      "id": 61,
+      "status": "PASS",
+      "name": "Mandatory backup copy retained"
+    },
+    {
+      "id": 62,
+      "status": "PASS",
+      "name": "Waiting worker stored"
+    },
+    {
+      "id": 63,
+      "status": "PASS",
+      "name": "Waiting worker resets backup gate"
+    },
+    {
+      "id": 64,
+      "status": "PASS",
+      "name": "Waiting worker auto-opens prompt"
+    },
+    {
+      "id": 65,
+      "status": "PASS",
+      "name": "Existing waiting worker handled on registration"
+    },
+    {
+      "id": 66,
+      "status": "PASS",
+      "name": "New installed worker handled"
+    },
+    {
+      "id": 67,
+      "status": "PASS",
+      "name": "Backup gate initializes false"
+    },
+    {
+      "id": 68,
+      "status": "PASS",
+      "name": "Reset gate sets false"
+    },
+    {
+      "id": 69,
+      "status": "PASS",
+      "name": "Backup persists current DB"
+    },
+    {
+      "id": 70,
+      "status": "PASS",
+      "name": "Backup creates IndexedDB snapshot"
+    },
+    {
+      "id": 71,
+      "status": "PASS",
+      "name": "Backup validates snapshot when DB ready"
+    },
+    {
+      "id": 72,
+      "status": "PASS",
+      "name": "Backup downloads full JSON"
+    },
+    {
+      "id": 73,
+      "status": "PASS",
+      "name": "Full backup JSON MIME retained"
+    },
+    {
+      "id": 74,
+      "status": "PASS",
+      "name": "Full backup returns filename"
+    },
+    {
+      "id": 75,
+      "status": "PASS",
+      "name": "Backup success unlocks update"
+    },
+    {
+      "id": 76,
+      "status": "PASS",
+      "name": "Backup failure locks update"
+    },
+    {
+      "id": 77,
+      "status": "PASS",
+      "name": "Apply blocks without backup"
+    },
+    {
+      "id": 78,
+      "status": "PASS",
+      "name": "Apply creates final snapshot"
+    },
+    {
+      "id": 79,
+      "status": "PASS",
+      "name": "Apply persists DB before activation"
+    },
+    {
+      "id": 80,
+      "status": "PASS",
+      "name": "Apply sets reload flag"
+    },
+    {
+      "id": 81,
+      "status": "PASS",
+      "name": "Apply sends SKIP_WAITING"
+    },
+    {
+      "id": 82,
+      "status": "PASS",
+      "name": "Apply failure preserves current version"
+    },
+    {
+      "id": 83,
+      "status": "PASS",
+      "name": "controllerchange reload retained"
+    },
+    {
+      "id": 84,
+      "status": "PASS",
+      "name": "Stable SW shell v0.4.6.4"
+    },
+    {
+      "id": 85,
+      "status": "PASS",
+      "name": "Stable SW runtime v0.4.6.4"
+    },
+    {
+      "id": 86,
+      "status": "PASS",
+      "name": "Stable SW CSS v0464"
+    },
+    {
+      "id": 87,
+      "status": "PASS",
+      "name": "Old v0.4.6.3 cache identities removed from new SW"
+    },
+    {
+      "id": 88,
+      "status": "PASS",
+      "name": "Production cache root retained"
+    },
+    {
+      "id": 89,
+      "status": "PASS",
+      "name": "Cache cleanup remains production-scoped"
+    },
+    {
+      "id": 90,
+      "status": "PASS",
+      "name": "Stable SW handles message event"
+    },
+    {
+      "id": 91,
+      "status": "PASS",
+      "name": "Stable SW handles SKIP_WAITING"
+    },
+    {
+      "id": 92,
+      "status": "PASS",
+      "name": "Stable SW calls self.skipWaiting"
+    },
+    {
+      "id": 93,
+      "status": "PASS",
+      "name": "Exactly one SKIP_WAITING token in SW"
+    },
+    {
+      "id": 94,
+      "status": "PASS",
+      "name": "Navigation remains network-first"
+    },
+    {
+      "id": 95,
+      "status": "PASS",
+      "name": "Old v0.4.6.3 SW navigation was network-first"
+    },
+    {
+      "id": 96,
+      "status": "PASS",
+      "name": "New index registers sw.js"
+    },
+    {
+      "id": 97,
+      "status": "PASS",
+      "name": "New index immediately watches registration"
+    },
+    {
+      "id": 98,
+      "status": "PASS",
+      "name": "New index sees reg.waiting"
+    },
+    {
+      "id": 99,
+      "status": "PASS",
+      "name": "Old Stable network-first can fetch new index on reopen"
+    },
+    {
+      "id": 100,
+      "status": "PASS",
+      "name": "New waiting SW itself owns SKIP_WAITING handler"
+    },
+    {
+      "id": 101,
+      "status": "PASS",
+      "name": "DB_NAME unchanged"
+    },
+    {
+      "id": 102,
+      "status": "PASS",
+      "name": "DB_VERSION remains 2"
+    },
+    {
+      "id": 103,
+      "status": "PASS",
+      "name": "PUBLIC code unchanged"
+    },
+    {
+      "id": 104,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 105,
+      "status": "PASS",
+      "name": "Session key unchanged"
+    },
+    {
+      "id": 106,
+      "status": "PASS",
+      "name": "Meetup key unchanged"
+    },
+    {
+      "id": 107,
+      "status": "PASS",
+      "name": "Roster key unchanged"
+    },
+    {
+      "id": 108,
+      "status": "PASS",
+      "name": "Player Claim key unchanged"
+    },
+    {
+      "id": 109,
+      "status": "PASS",
+      "name": "Public control key unchanged"
+    },
+    {
+      "id": 110,
+      "status": "PASS",
+      "name": "Layout prefs key unchanged"
+    },
+    {
+      "id": 111,
+      "status": "PASS",
+      "name": "Snapshot limit remains 10"
+    },
+    {
+      "id": 112,
+      "status": "PASS",
+      "name": "No 8/10/12 stored-game expansion"
+    },
+    {
+      "id": 113,
+      "status": "PASS",
+      "name": "Score model remains max 6"
+    },
+    {
+      "id": 114,
+      "status": "PASS",
+      "name": "History uses dynamic game count"
+    },
+    {
+      "id": 115,
+      "status": "PASS",
+      "name": "History missing score dash"
+    },
+    {
+      "id": 116,
+      "status": "PASS",
+      "name": "History horizontal scroll retained"
+    },
+    {
+      "id": 117,
+      "status": "PASS",
+      "name": "Sticky player column retained"
+    },
+    {
+      "id": 118,
+      "status": "PASS",
+      "name": "Ranking uses public games"
+    },
+    {
+      "id": 119,
+      "status": "PASS",
+      "name": "Ranking meetup uses public session"
+    },
+    {
+      "id": 120,
+      "status": "PASS",
+      "name": "Awards use PUBLIC source"
+    },
+    {
+      "id": 121,
+      "status": "PASS",
+      "name": "Awards options use public meetups"
+    },
+    {
+      "id": 122,
+      "status": "PASS",
+      "name": "Share scope uses public session"
+    },
+    {
+      "id": 123,
+      "status": "PASS",
+      "name": "Share card dynamic game count"
+    },
+    {
+      "id": 124,
+      "status": "PASS",
+      "name": "Share card visible-column slice retained"
+    },
+    {
+      "id": 125,
+      "status": "PASS",
+      "name": "Public-only share note retained"
+    },
+    {
+      "id": 126,
+      "status": "PASS",
+      "name": "Desktop ranking before history retained"
+    },
+    {
+      "id": 127,
+      "status": "PASS",
+      "name": "Mobile primary dock has history"
+    },
+    {
+      "id": 128,
+      "status": "PASS",
+      "name": "Mobile primary dock excludes ranking"
+    },
+    {
+      "id": 129,
+      "status": "PASS",
+      "name": "Mobile More contains ranking"
+    },
+    {
+      "id": 130,
+      "status": "PASS",
+      "name": "Manifest name v0.4.6.4"
+    },
+    {
+      "id": 131,
+      "status": "PASS",
+      "name": "Manifest description identifies Stable"
+    },
+    {
+      "id": 132,
+      "status": "PASS",
+      "name": "Manifest documents backup Gate"
+    },
+    {
+      "id": 133,
+      "status": "PASS",
+      "name": "Manifest scope unchanged"
+    },
+    {
+      "id": 134,
+      "status": "PASS",
+      "name": "Manifest start_url unchanged"
+    },
+    {
+      "id": 135,
+      "status": "PASS",
+      "name": "Manifest display unchanged"
+    },
+    {
+      "id": 136,
+      "status": "PASS",
+      "name": "Manifest icons retained"
+    },
+    {
+      "id": 137,
+      "status": "PASS",
+      "name": "dev.1 manual PWA safe-update validation",
+      "detail": "User-confirmed PASS"
+    },
+    {
+      "id": 138,
+      "status": "PASS",
+      "name": "RC.1 automated regression prerequisite",
+      "detail": "147/147 PASS"
+    },
+    {
+      "id": 139,
+      "status": "PASS",
+      "name": "RC.1 manual device acceptance",
+      "detail": "User-confirmed PASS"
+    },
+    {
+      "id": 140,
+      "status": "PASS",
+      "name": "v0.4.6.3 stable functional baseline acceptance",
+      "detail": "Previously user-confirmed PASS"
+    },
+    {
+      "id": 141,
+      "status": "PASS",
+      "name": "Stable application JavaScript parses"
+    }
+  ],
+  "result": {
+    "pass": 141,
+    "fail": 0
+  },
+  "freeze": "IMMUTABLE_STABLE_BASELINE"
+}
