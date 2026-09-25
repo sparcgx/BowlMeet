@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BowlMeet v0.4.6.3-RC.1｜Release Candidate Test</title><meta name="theme-color" content="#ffffff">
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:#172033;background:#f5f7fa}*{box-sizing:border-box}body{margin:0}.wrap{max-width:820px;margin:auto;padding:18px}.card{background:#fff;border:1px solid #e4e8ef;border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 8px 24px rgba(17,24,39,.05)}h1{font-size:22px;margin:0 0 6px}h2{font-size:16px;margin:0 0 10px}p,li{color:#697386;line-height:1.6}.pill{display:inline-block;border-radius:999px;background:#eef4ff;color:#0f62fe;padding:5px 9px;font-size:11px;font-weight:850;margin-bottom:10px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid #eef1f5}.row:last-child{border-bottom:0}.label{font-weight:800}.status{font-weight:900}.ok{color:#14804a}.bad{color:#b42318}.btn{display:block;text-align:center;text-decoration:none;background:#172033;color:#fff;border-radius:12px;padding:13px 16px;font-weight:850}.meta{font-size:12px;color:#697386;word-break:break-all;white-space:pre-wrap}ol{padding-left:22px;margin:8px 0 0}
+</style></head><body><main class="wrap">
+<section class="card"><span class="pill">v0.4.6.3-RC.1 Preview</span><h1>Full Regression & Release Candidate Freeze Gate</h1><p>Automated / Source Gate：105/105 PASS。此頁為獨立 RC Preview，正式 v0.4.6.2.1 根目錄尚未升級。</p></section>
+<section class="card"><h2>RC 自我檢查</h2>
+<div class="row"><span class="label">APP_VERSION</span><span class="status" id="version">檢查中</span></div>
+<div class="row"><span class="label">Dynamic Score Grid</span><span class="status" id="grid">檢查中</span></div>
+<div class="row"><span class="label">Share Card Sync</span><span class="status" id="share">檢查中</span></div>
+<div class="row"><span class="label">Awards PUBLIC Source</span><span class="status" id="awards">檢查中</span></div>
+<div class="row"><span class="label">Mobile Navigation Swap</span><span class="status" id="nav">檢查中</span></div>
+<div class="row"><span class="label">RC CSS Cache</span><span class="status" id="css">檢查中</span></div>
+<div class="row"><span class="label">HTTPS / Service Worker</span><span class="status" id="pwa">檢查中</span></div>
+</section>
+<section class="card"><h2>Stable 前最後驗收 7 項</h2><ol>
+<li>公開成績：1／3／6 局動態欄位正確，缺分數顯示「—」。</li>
+<li>iPhone Safari / PWA：表格可水平滑動，球員欄 Sticky。</li>
+<li>排行榜：只讀公開成績，球聚切換正常。</li>
+<li>獎項：同一場公開球聚可帶出冠軍／平均王／單局王等結果。</li>
+<li>分享：球聚完整成績卡局數與公開成績一致；獎項卡與獎項頁一致。</li>
+<li>手機導覽：主 Dock 為「成績」，排行榜位於「更多」。</li>
+<li>重新整理兩次：版本仍為 RC.1，沒有舊 Preview／Stable Cache 混入。</li>
+</ol></section>
+<a class="btn" href="./index.html?v=0463rc1">開啟 v0.4.6.3-RC.1 完整測試網頁</a>
+<section class="card"><div class="meta" id="meta"></div></section>
+</main><script>
+(async()=>{
+ const set=(id,text,cls)=>{const e=document.getElementById(id);e.textContent=text;e.className='status '+cls};
+ try{
+  const html=await fetch('./index.html?integrity=0463rc1',{cache:'no-store'}).then(r=>r.text());
+  const tabs=html.slice(html.indexOf('<nav class="tabs"'),html.indexOf('</nav>',html.indexOf('<nav class="tabs"'))+6);
+  const dock=html.slice(html.indexOf('<nav class="mobile-glass-dock"'),html.indexOf('</nav>',html.indexOf('<nav class="mobile-glass-dock"'))+6);
+  const more=html.slice(html.indexOf('<section class="mobile-more-sheet"'),html.indexOf('</section>',html.indexOf('<section class="mobile-more-sheet"'))+10);
+  const tests={
+    version:html.includes("const APP_VERSION='0.4.6.3-RC.1';"),
+    grid:html.includes('function sessionScoreGameCount(s)')&&html.includes('const gameCount=sessionScoreGameCount(s),gridColumns='),
+    share:html.includes('visibleGameCount=sessionScoreGameCount(data.session)'),
+    awards:html.includes("result=computeAwards(id,'public')"),
+    nav:dock.includes('data-dock-view="historyView"')&&!dock.includes('data-dock-view="leaderboardView"')&&more.includes('data-dock-view="leaderboardView"')&&tabs.indexOf('leaderboardView')<tabs.indexOf('historyView'),
+    css:html.includes('liquid-glass-dev4.css?v=0463rc1'),
+    pwa:window.isSecureContext&&('serviceWorker' in navigator)
+  };
+  for(const [id,ok] of Object.entries(tests))set(id,ok?'PASS':'FAIL',ok?'ok':'bad');
+ }catch(e){['version','grid','share','awards','nav','css','pwa'].forEach(id=>set(id,'讀取失敗','bad'))}
+ const standalone=(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
+ document.getElementById('meta').textContent='模式：'+(standalone?'PWA / Standalone':'Safari / Browser')+'\nURL：'+location.href+'\nUser Agent：'+navigator.userAgent;
+})();
+</script></body></html>
