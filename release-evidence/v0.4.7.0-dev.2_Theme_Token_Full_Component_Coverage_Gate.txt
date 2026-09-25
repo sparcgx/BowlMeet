@@ -1,0 +1,54 @@
+BowlMeet v0.4.7.0-dev.2｜Theme Token & Full Component Coverage Gate
+Date: 2026-09-26
+Baseline: v0.4.7.0-dev.1
+Baseline commit: 114b148d9700f720ccd9a4a0e6bdc7f576148b64
+
+RESULT
+PASS: 40
+FAIL: 0
+TOTAL: 40
+
+THEME TOKEN COVERAGE
+- Semantic Token stylesheet: assets/theme-center-dev2.css
+- Semantic tokens: 26
+- Legacy hardcoded-color selector scan: 342 / 342 covered
+- Uncovered selectors: 0
+- Covered families:
+  Core Controls / Score Tables / Unified History / OCR / Verification
+  Meetup / Roster / Player Analytics / Live Scoring / Settings
+  Personal / Cloud / Group / Shared Records / Post-game Review
+  Mobile Dock / More Sheet / Leaderboard / PWA / Sync / Safety
+  Awards / Share / Dialogs / Backdrops / Layout Settings
+
+REGRESSION
+- dev.1 JavaScript syntax: PASS
+- dev.2 JavaScript syntax: PASS
+- JavaScript logic drift after version normalization: 0
+- CSS brace balance: PASS
+- Static duplicate IDs: 0
+- Manifest JSON: PASS
+- Service Worker JavaScript: PASS
+
+DATA SAFETY
+- DB_VERSION: 2 (UNCHANGED)
+- PUBLIC_HISTORY_CODE: PUBLIC (UNCHANGED)
+- LAYOUT_PREFS_KEY: bowlingMeetup.layoutPreferences.v1
+- THEME_PREFS_KEY: bowlingMeetup.themePreferences.v1
+- Theme / Layout excluded from captureState
+- No SQL / Supabase schema change
+- No PUBLIC payload migration
+- No Backup / Restore contract change
+- No Sync contract change
+- assets/liquid-glass-dev4.css unchanged
+
+ACCESSIBILITY / FALLBACK
+- Dark Night legacy glass cleanup: PASS
+- High Contrast non-color status borders: PASS
+- Focus-visible token coverage: PASS
+- Transparency OFF: PASS
+- prefers-reduced-transparency: PASS
+- Share export canvas intentionally remains white
+
+STATUS
+Theme Token & Full Component Coverage automated gate: PASS
+Next gate: isolated Preview + iPhone / PWA / desktop cross-module visual acceptance.
