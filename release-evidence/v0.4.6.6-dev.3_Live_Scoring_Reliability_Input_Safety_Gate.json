@@ -1,0 +1,320 @@
+{
+  "version": "0.4.6.6-dev.3",
+  "title": "Live Scoring Reliability & Input Safety",
+  "base": {
+    "ref": "v0.4.6.6-dev.2",
+    "commit": "e91e5d607f697337aae1a3d5a2c78741355fa35a"
+  },
+  "scope": [
+    "stale debounce/render race protection",
+    "pending score flush before context-changing actions",
+    "duplicate/repeat commit guard",
+    "invalid input hold-and-focus behavior",
+    "same-game focus restore and smart-next safety",
+    "visible IndexedDB live-score persistence warning"
+  ],
+  "invariants": {
+    "db_version": 2,
+    "public_pin": "UNCHANGED",
+    "schemas": "UNCHANGED",
+    "ranking_awards_share_business_logic": "UNCHANGED",
+    "pwa_safe_update": "UNCHANGED",
+    "score_model": "1-6"
+  },
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "APP_VERSION dev.3"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "Input carries live game context"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "Commit token state"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "Commit game state"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "Write guard state"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "Last commit fingerprint state"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "Current input lookup helper"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "Cancel invalidates token"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "Flush helper exists"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "Flush blocks invalid active input"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "Schedule captures game number"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "Schedule captures token"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "Stale token guard"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "Stale game guard"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "10 fast debounce retained"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "0-9 debounce retained"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "Blank debounce retained"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "Auto commit source tagged"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "Restore checks same game"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "Non-advance restores same field"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "Advance still uses Smart Next"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "Focus helper centers frame"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "Save rejects detached input"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "Save rejects stale round"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "Duplicate write lock"
+    },
+    {
+      "id": 26,
+      "status": "PASS",
+      "name": "Duplicate fingerprint guard"
+    },
+    {
+      "id": 27,
+      "status": "PASS",
+      "name": "Invalid 0-10 validation retained"
+    },
+    {
+      "id": 28,
+      "status": "PASS",
+      "name": "Frame total validation retained"
+    },
+    {
+      "id": 29,
+      "status": "PASS",
+      "name": "Missing player safe stop"
+    },
+    {
+      "id": 30,
+      "status": "PASS",
+      "name": "Persist exception visible"
+    },
+    {
+      "id": 31,
+      "status": "PASS",
+      "name": "IndexedDB failure visible"
+    },
+    {
+      "id": 32,
+      "status": "PASS",
+      "name": "Round arrow flushes pending input"
+    },
+    {
+      "id": 33,
+      "status": "PASS",
+      "name": "Round select flushes pending input"
+    },
+    {
+      "id": 34,
+      "status": "PASS",
+      "name": "Add player flushes pending input"
+    },
+    {
+      "id": 35,
+      "status": "PASS",
+      "name": "Finish round flushes pending input"
+    },
+    {
+      "id": 36,
+      "status": "PASS",
+      "name": "End meetup flushes pending input"
+    },
+    {
+      "id": 37,
+      "status": "PASS",
+      "name": "Meetup switch flushes pending input"
+    },
+    {
+      "id": 38,
+      "status": "PASS",
+      "name": "Metric rerender flushes pending input"
+    },
+    {
+      "id": 39,
+      "status": "PASS",
+      "name": "Full score navigation flushes input"
+    },
+    {
+      "id": 40,
+      "status": "PASS",
+      "name": "Share navigation flushes input"
+    },
+    {
+      "id": 41,
+      "status": "PASS",
+      "name": "Enter repeat guarded"
+    },
+    {
+      "id": 42,
+      "status": "PASS",
+      "name": "Change remains no-force advance"
+    },
+    {
+      "id": 43,
+      "status": "PASS",
+      "name": "Clear game flushes pending input"
+    },
+    {
+      "id": 44,
+      "status": "PASS",
+      "name": "Clear game refocuses player"
+    },
+    {
+      "id": 45,
+      "status": "PASS",
+      "name": "DB_VERSION remains 2"
+    },
+    {
+      "id": 46,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 47,
+      "status": "PASS",
+      "name": "Score storage model remains 1-6"
+    },
+    {
+      "id": 48,
+      "status": "PASS",
+      "name": "Main JavaScript parses"
+    },
+    {
+      "id": 49,
+      "status": "PASS",
+      "name": "renderMeetups unchanged from dev.2"
+    },
+    {
+      "id": 50,
+      "status": "PASS",
+      "name": "renderCurrentMeetup unchanged from dev.2"
+    },
+    {
+      "id": 51,
+      "status": "PASS",
+      "name": "rankingRowsForScope unchanged from dev.2"
+    },
+    {
+      "id": 52,
+      "status": "PASS",
+      "name": "renderAwards unchanged from dev.2"
+    },
+    {
+      "id": 53,
+      "status": "PASS",
+      "name": "shareScopeData unchanged from dev.2"
+    },
+    {
+      "id": 54,
+      "status": "PASS",
+      "name": "backupBeforePwaUpdate unchanged from dev.2"
+    },
+    {
+      "id": 55,
+      "status": "PASS",
+      "name": "applyPwaUpdate unchanged from dev.2"
+    },
+    {
+      "id": 56,
+      "status": "PASS",
+      "name": "finishPwaUpdateReload unchanged from dev.2"
+    },
+    {
+      "id": 57,
+      "status": "PASS",
+      "name": "normalizeSessionRecord unchanged from dev.2"
+    },
+    {
+      "id": 58,
+      "status": "PASS",
+      "name": "sessionScoreGameCount unchanged from dev.2"
+    }
+  ],
+  "result": {
+    "pass": 58,
+    "fail": 0
+  }
+}
