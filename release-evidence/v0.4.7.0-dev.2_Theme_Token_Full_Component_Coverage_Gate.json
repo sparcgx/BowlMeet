@@ -1,0 +1,74 @@
+{
+  "version": "v0.4.7.0-dev.2",
+  "title": "Theme Token & Full Component Coverage",
+  "date": "2026-09-26",
+  "baseline": {
+    "branch": "v0.4.7.0-dev.1",
+    "commit": "114b148d9700f720ccd9a4a0e6bdc7f576148b64"
+  },
+  "result": {
+    "pass": 40,
+    "fail": 0,
+    "total": 40,
+    "status": "PASS"
+  },
+  "themeTokenLayer": {
+    "file": "assets/theme-center-dev2.css",
+    "semanticTokenCount": 26,
+    "legacyHardcodedSelectorScan": {
+      "total": 342,
+      "covered": 342,
+      "uncovered": 0
+    },
+    "componentGroups": [
+      "Core controls",
+      "Score tables",
+      "Unified History",
+      "OCR / Verification",
+      "Meetup / Roster",
+      "Player Analytics",
+      "Live Scoring",
+      "Settings",
+      "Personal / Cloud",
+      "Group / Shared Records",
+      "Post-game Review",
+      "Mobile Dock / More Sheet",
+      "Leaderboard",
+      "PWA / Sync / Safety",
+      "Awards",
+      "Share",
+      "Dialogs / Backdrops",
+      "Layout Settings"
+    ]
+  },
+  "regression": {
+    "javascriptSyntax": "PASS",
+    "javascriptLogicDriftFromDev1": 0,
+    "cssBraceBalance": "PASS",
+    "staticDuplicateIds": 0,
+    "manifestJson": "PASS",
+    "serviceWorkerSyntax": "PASS"
+  },
+  "safety": {
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "layoutKey": "bowlingMeetup.layoutPreferences.v1",
+    "themeKey": "bowlingMeetup.themePreferences.v1",
+    "themeInCaptureState": false,
+    "layoutInCaptureState": false,
+    "sqlSchemaChanges": false,
+    "publicPayloadMigration": false,
+    "backupRestoreContractChanged": false,
+    "syncContractChanged": false,
+    "liquidGlassCoreAssetChanged": false
+  },
+  "accessibility": {
+    "darkNightCoverage": true,
+    "highContrastNonColorState": true,
+    "focusVisible": true,
+    "transparencyOffCoverage": true,
+    "prefersReducedTransparency": true
+  },
+  "shareCanvasNeutralWhite": true,
+  "nextGate": "isolated Preview + iPhone / PWA / desktop cross-module visual acceptance"
+}
