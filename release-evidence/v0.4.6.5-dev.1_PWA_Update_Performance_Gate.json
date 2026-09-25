@@ -1,0 +1,272 @@
+{
+  "version": "0.4.6.5-dev.1",
+  "title": "PWA Update Performance Optimization",
+  "base": {
+    "ref": "stable/v0.4.6.4",
+    "commit": "01a04ebf3a166bca6bd6e1cc51cf3f324f6d5a05"
+  },
+  "scope": "update latency optimization without safety reduction",
+  "optimization": {
+    "shared_state_per_phase": true,
+    "single_db_persist_per_phase": true,
+    "single_transaction_state_meta": true,
+    "deferred_safety_render": true,
+    "json_backup_reuses_snapshot_state": true,
+    "no_update_delay_ms": 400
+  },
+  "safety_retained": [
+    "user backup snapshot",
+    "full JSON backup",
+    "mandatory backup gate",
+    "final snapshot",
+    "SKIP_WAITING"
+  ],
+  "invariants": {
+    "db_version": 2,
+    "public_pin": "UNCHANGED",
+    "supabase": "UNCHANGED",
+    "indexeddb_schema": "UNCHANGED",
+    "score_model": "1-6"
+  },
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "APP_VERSION dev.1"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "CSS query dev.1"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "Development label"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "idbPutMany added"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "persistDbStateNow accepts shared state"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "persistDbStateNow uses one multi-put transaction"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "createSnapshot accepts options"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "createSnapshot can reuse state"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "createSnapshot can skip duplicate persist"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "createSnapshot can skip blocking render"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "exportFullBackup accepts shared state"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "backup captures state once"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "backup persist count reduced to one"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "backup snapshot skips duplicate persist"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "backup snapshot skips blocking render"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "backup JSON reuses same state"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "backup still requires safety snapshot"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "backup still downloads full JSON"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "backup unlock gate retained"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "backup safety UI render deferred"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "apply captures latest state once"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "apply persist count reduced to one"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "apply final snapshot skips duplicate persist"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "apply final snapshot skips blocking render"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "apply still blocks without backup"
+    },
+    {
+      "id": 26,
+      "status": "PASS",
+      "name": "apply final snapshot retained"
+    },
+    {
+      "id": 27,
+      "status": "PASS",
+      "name": "apply validates final snapshot"
+    },
+    {
+      "id": 28,
+      "status": "PASS",
+      "name": "SKIP_WAITING retained"
+    },
+    {
+      "id": 29,
+      "status": "PASS",
+      "name": "manual update no-result delay reduced"
+    },
+    {
+      "id": 30,
+      "status": "PASS",
+      "name": "manual update avoids false latest while installing"
+    },
+    {
+      "id": 31,
+      "status": "PASS",
+      "name": "renderHistory unchanged from stable"
+    },
+    {
+      "id": 32,
+      "status": "PASS",
+      "name": "rankingRowsForScope unchanged from stable"
+    },
+    {
+      "id": 33,
+      "status": "PASS",
+      "name": "renderAwards unchanged from stable"
+    },
+    {
+      "id": 34,
+      "status": "PASS",
+      "name": "shareScopeData unchanged from stable"
+    },
+    {
+      "id": 35,
+      "status": "PASS",
+      "name": "drawMeetupFullShareCard unchanged from stable"
+    },
+    {
+      "id": 36,
+      "status": "PASS",
+      "name": "normalizeSessionRecord unchanged from stable"
+    },
+    {
+      "id": 37,
+      "status": "PASS",
+      "name": "normalizeMeetupRecord unchanged from stable"
+    },
+    {
+      "id": 38,
+      "status": "PASS",
+      "name": "applyRestorePayload unchanged from stable"
+    },
+    {
+      "id": 39,
+      "status": "PASS",
+      "name": "watchRegistration unchanged from stable"
+    },
+    {
+      "id": 40,
+      "status": "PASS",
+      "name": "initPwa unchanged from stable"
+    },
+    {
+      "id": 41,
+      "status": "PASS",
+      "name": "DB_VERSION remains 2"
+    },
+    {
+      "id": 42,
+      "status": "PASS",
+      "name": "PUBLIC code unchanged"
+    },
+    {
+      "id": 43,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 44,
+      "status": "PASS",
+      "name": "Score model remains max 6"
+    },
+    {
+      "id": 45,
+      "status": "PASS",
+      "name": "Mandatory backup dialog retained"
+    },
+    {
+      "id": 46,
+      "status": "PASS",
+      "name": "Update button starts disabled"
+    },
+    {
+      "id": 47,
+      "status": "PASS",
+      "name": "Main JavaScript parses"
+    }
+  ],
+  "result": {
+    "pass": 47,
+    "fail": 0
+  }
+}

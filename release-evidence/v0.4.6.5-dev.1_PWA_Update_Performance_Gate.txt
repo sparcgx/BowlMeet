@@ -1,0 +1,78 @@
+BowlMeet v0.4.6.5-dev.1｜PWA Update Performance Optimization
+
+Base: stable/v0.4.6.4 @ 01a04ebf3a166bca6bd6e1cc51cf3f324f6d5a05
+Scope: optimize update latency without weakening backup/snapshot safety gates.
+
+Optimization:
+- Reuse one captured state per backup/update phase.
+- persistDbStateNow accepts a shared state snapshot instead of re-capturing it.
+- State/meta writes use one IndexedDB transaction via idbPutMany.
+- createSnapshot can skip duplicate persist when caller already persisted the exact same state.
+- createSnapshot can skip renderSafety on the update critical path.
+- Backup JSON reuses the exact state used for the safety snapshot.
+- Safety UI refresh is deferred until after the backup gate is unlocked.
+- Final update still captures the latest state, persists it once, and creates a final snapshot.
+- Manual no-update feedback delay reduced from 900ms to 400ms and avoids firing while a worker is installing.
+
+Expected critical-path reduction:
+- Backup phase: duplicate DB persist removed; duplicate captureState removed; blocking safety UI refresh removed.
+- Apply phase: duplicate DB persist removed; blocking safety UI refresh removed.
+- Safety layers retained: user backup snapshot + full JSON + final pre-activation snapshot.
+
+Frozen:
+- DB_VERSION = 2
+- PUBLIC/PIN unchanged
+- Supabase / IndexedDB schema unchanged
+- Dynamic Grid / Ranking / Awards / Share unchanged
+- Score model 1-6 unchanged
+
+Checks:
+01. PASS | APP_VERSION dev.1
+02. PASS | CSS query dev.1
+03. PASS | Development label
+04. PASS | idbPutMany added
+05. PASS | persistDbStateNow accepts shared state
+06. PASS | persistDbStateNow uses one multi-put transaction
+07. PASS | createSnapshot accepts options
+08. PASS | createSnapshot can reuse state
+09. PASS | createSnapshot can skip duplicate persist
+10. PASS | createSnapshot can skip blocking render
+11. PASS | exportFullBackup accepts shared state
+12. PASS | backup captures state once
+13. PASS | backup persist count reduced to one
+14. PASS | backup snapshot skips duplicate persist
+15. PASS | backup snapshot skips blocking render
+16. PASS | backup JSON reuses same state
+17. PASS | backup still requires safety snapshot
+18. PASS | backup still downloads full JSON
+19. PASS | backup unlock gate retained
+20. PASS | backup safety UI render deferred
+21. PASS | apply captures latest state once
+22. PASS | apply persist count reduced to one
+23. PASS | apply final snapshot skips duplicate persist
+24. PASS | apply final snapshot skips blocking render
+25. PASS | apply still blocks without backup
+26. PASS | apply final snapshot retained
+27. PASS | apply validates final snapshot
+28. PASS | SKIP_WAITING retained
+29. PASS | manual update no-result delay reduced
+30. PASS | manual update avoids false latest while installing
+31. PASS | renderHistory unchanged from stable
+32. PASS | rankingRowsForScope unchanged from stable
+33. PASS | renderAwards unchanged from stable
+34. PASS | shareScopeData unchanged from stable
+35. PASS | drawMeetupFullShareCard unchanged from stable
+36. PASS | normalizeSessionRecord unchanged from stable
+37. PASS | normalizeMeetupRecord unchanged from stable
+38. PASS | applyRestorePayload unchanged from stable
+39. PASS | watchRegistration unchanged from stable
+40. PASS | initPwa unchanged from stable
+41. PASS | DB_VERSION remains 2
+42. PASS | PUBLIC code unchanged
+43. PASS | PUBLIC PIN unchanged
+44. PASS | Score model remains max 6
+45. PASS | Mandatory backup dialog retained
+46. PASS | Update button starts disabled
+47. PASS | Main JavaScript parses
+
+Result: 47/47 PASS
