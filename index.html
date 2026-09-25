@@ -1140,11 +1140,11 @@ dialog::backdrop,
 }
 
 </style>
-<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=04621" />
+<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0463d1" />
 <style id="history-score-critical">
-/* v0.4.6.2.1 | Critical fallback for Safari/PWA HTML-CSS cache skew */
+/* v0.4.6.3-dev.1 | Dynamic score grid + Safari/PWA fallback */
 .history-score-table-wrap{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
-.history-score-grid{display:grid!important;grid-template-columns:132px repeat(6,60px) 76px 76px!important;width:max-content;min-width:720px!important}
+.history-score-grid{display:grid!important;grid-template-columns:var(--history-grid-columns,132px repeat(6,60px) 76px 76px)!important;width:max-content;min-width:var(--history-grid-min-width,720px)!important}
 .history-score-grid>div{box-sizing:border-box;min-width:0}
 @media(max-width:680px){
   .history-score-grid>.history-score-name{position:sticky;left:0;z-index:2;background:#fff}
@@ -2061,7 +2061,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.6.2.1';
+const APP_VERSION='0.4.6.3-dev.1';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const LAYOUT_DEFAULTS=Object.freeze({scale:'100',density:'standard',width:'standard',leaderboard:'standard',scoreSize:'standard'});
 const LAYOUT_PRESETS=Object.freeze({
@@ -2550,6 +2550,7 @@ async function setPublicVisibility(id,state){
   if(ok)flash(state==='removed'?(local?'已取消公開；已切到「我的紀錄」，可直接重新公開。':'已從公開歷史移除。'):(isRepublish?'已重新公開。':'已公開。'));
   else flash('公開狀態同步失敗，稍後會自動重試。','err')
 }
+function historyScoreGameCount(s){let max=0;for(const p of (s?.players||[])){const scores=Array.isArray(p?.scores)?p.scores:[];for(let i=0;i<Math.min(6,scores.length);i++){if(normalizeScore(scores[i])!==null)max=Math.max(max,i+1)}}return Math.max(1,Math.min(6,max||1))}
 function renderHistory(){
   const all=unifiedHistoryRecords();updateHistoryFilterOptions(all);const list=filteredSessions(all),localCount=all.filter(r=>r.local).length,publicCount=all.filter(r=>r.public).length;renderHistoryFilterSummary();
   $('historyAllCount').textContent=all.length;$('historyLocalCount').textContent=localCount;$('historyPublicCount').textContent=publicCount;$('sessionCount').textContent=list.length+' 張';
@@ -2559,18 +2560,19 @@ function renderHistory(){
   $('sessionEmpty').style.display=list.length?'none':'block';
   $('sessionList').innerHTML=list.map(r=>{
     const s=r.session,sm=sessionSummary(s),m=r.meetup;
-    const rows=(s.players||[]).map(p=>{
-      const pc=playerCalc(p),pid=playerIdentity(p.name);
-      const scores=Array.from({length:6},(_,i)=>normalizeScore((p.scores||[])[i]));
-      return '<div class="history-score-name"><button type="button" class="player-link" data-player-hub="'+esc(pid.key)+'" data-origin-session="'+esc(s.id)+'">'+esc(p.name)+'</button></div>'
-        +scores.map(v=>'<div class="history-game-score">'+(v===null?'—':v)+'</div>').join('')
-        +'<div class="history-score-total">'+pc.total+'</div><div class="history-score-average">'+(pc.avg??'—')+'</div>';
+    const gameCount=historyScoreGameCount(s),gridColumns=`132px repeat(${gameCount},60px) 76px 76px`,gridMinWidth=Math.max(480,284+(gameCount*60)),gameHeaders=Array.from({length:gameCount},(_,i)=>'<div class="history-score-head">'+(i+1)+'</div>').join('');
+    const rows=(s.players||[]).map((p,rowIndex,players)=>{
+      const pc=playerCalc(p),pid=playerIdentity(p.name),lastRowClass=rowIndex===players.length-1?' history-score-last-row':'';
+      const scores=Array.from({length:gameCount},(_,i)=>normalizeScore((p.scores||[])[i]));
+      return '<div class="history-score-name'+lastRowClass+'"><button type="button" class="player-link" data-player-hub="'+esc(pid.key)+'" data-origin-session="'+esc(s.id)+'">'+esc(p.name)+'</button></div>'
+        +scores.map(v=>'<div class="history-game-score'+lastRowClass+'">'+(v===null?'—':v)+'</div>').join('')
+        +'<div class="history-score-total'+lastRowClass+'">'+pc.total+'</div><div class="history-score-average history-score-row-end'+lastRowClass+'">'+(pc.avg??'—')+'</div>';
     }).join('');
     const sourceTag=r.local&&r.public?'<span class="session-source-tag both">我的紀錄＋已公開</span>':r.local&&r.publicRemoved?'<span class="session-source-tag removed">我的紀錄 · 已取消公開</span>':r.local?'<span class="session-source-tag local">我的紀錄</span>':'<span class="session-source-tag public">公開</span>';
     const canShare=r.local&&s.meetupId&&meetups.some(x=>x.id===s.meetupId);let actions='';
     if(r.local){actions=`<button class="btn small" data-act="edit" data-id="${esc(s.id)}">編輯</button>`+(canShare?`<button class="btn small" data-act="share" data-id="${esc(s.id)}">分享</button>`:'')+(r.public?`<button class="btn small" data-act="unpublish-public" data-id="${esc(s.id)}">取消公開</button>`:r.publicRemoved?`<button class="btn small primary" data-act="republish-public" data-id="${esc(s.id)}">重新公開</button>`:`<button class="btn small primary" data-act="republish-public" data-id="${esc(s.id)}">公開</button>`)+`<button class="btn small danger" data-act="del" data-id="${esc(s.id)}">${r.public?'刪除本機':'刪除'}</button>`}
     else{actions=`<button class="btn small primary" data-act="import-public" data-id="${esc(s.id)}">匯入我的紀錄</button>`+(r.public?`<button class="btn small danger" data-act="unpublish-public" data-id="${esc(s.id)}">取消公開</button>`:'')}
-    return `<article class="session ${r.local?'':'public-only'}"><div class="session-head"><div><div class="session-title">${esc(fmtDate(s.date))} · ${esc(m?.title||s.venue||'未填球館')}</div><div class="session-meta">${s.venue&&m?.title?esc(s.venue)+' · ':''}${s.lane?`球道 ${esc(s.lane)} · `:''}${sm.games} 局 · 平均 ${sm.avg??'—'}${sm.best!==null?` · 最高 ${sm.best} (${esc(sm.bestName)})`:''}${s.importAudit?'<span class="audit-chip">照片驗證匯入</span>':''}</div><div class="session-source-tags">${sourceTag}</div></div><div class="session-actions">${actions}</div></div><div class="history-score-table-wrap" role="region" aria-label="每局成績，可左右滑動"><div class="history-score-grid"><div class="history-score-head history-score-name">球員</div><div class="history-score-head">1</div><div class="history-score-head">2</div><div class="history-score-head">3</div><div class="history-score-head">4</div><div class="history-score-head">5</div><div class="history-score-head">6</div><div class="history-score-head">總分</div><div class="history-score-head">平均</div>${rows}</div></div></article>`
+    return `<article class="session ${r.local?'':'public-only'}"><div class="session-head"><div><div class="session-title">${esc(fmtDate(s.date))} · ${esc(m?.title||s.venue||'未填球館')}</div><div class="session-meta">${s.venue&&m?.title?esc(s.venue)+' · ':''}${s.lane?`球道 ${esc(s.lane)} · `:''}${sm.games} 局 · 平均 ${sm.avg??'—'}${sm.best!==null?` · 最高 ${sm.best} (${esc(sm.bestName)})`:''}${s.importAudit?'<span class="audit-chip">照片驗證匯入</span>':''}</div><div class="session-source-tags">${sourceTag}</div></div><div class="session-actions">${actions}</div></div><div class="history-score-table-wrap" role="region" aria-label="每局成績，共 ${gameCount} 局，可左右滑動"><div class="history-score-grid" style="--history-grid-columns:${gridColumns};--history-grid-min-width:${gridMinWidth}px"><div class="history-score-head history-score-name">球員</div>${gameHeaders}<div class="history-score-head">總分</div><div class="history-score-head history-score-row-end">平均</div>${rows}</div></div></article>`
   }).join('')
 }
 

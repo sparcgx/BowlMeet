@@ -1,0 +1,40 @@
+BowlMeet v0.4.6.3-dev.1｜Dynamic Grid Foundation
+Source Static Gate
+
+Base: stable/v0.4.6.2.1 @ fb4c9c5b49f2e4912ed8bfd5961987c886d8d4ba
+Scope: history/public score grid presentation only
+Data range: current frozen score model 1-6 games
+Migration: NONE
+Supabase schema: unchanged
+IndexedDB schema: unchanged
+PUBLIC/PIN rules: unchanged
+sw.js stable cache: unchanged in dev.1 source branch
+
+Checks:
+01. PASS | APP_VERSION
+02. PASS | CSS cache busting
+03. PASS | Dynamic helper
+04. PASS | Dynamic header count
+05. PASS | Dynamic row scores
+06. PASS | Dynamic CSS columns
+07. PASS | Dynamic min width
+08. PASS | Row-end border
+09. PASS | Last-row border
+10. PASS | Sticky player retained
+11. PASS | Horizontal scroll retained
+12. PASS | Session normalization unchanged
+13. PASS | Meetup normalization unchanged
+14. PASS | No DB schema edit
+
+Result: 14/14 PASS
+
+Behavior:
+- History score table derives the visible game-column count from the highest non-null score index in the session.
+- Visible game columns dynamically render from 1 through the current frozen maximum of 6.
+- Missing scores inside the visible range continue to render as —.
+- Player sticky column and horizontal scrolling are preserved.
+- Grid end/bottom borders no longer depend on a fixed 9-column selector.
+
+Deferred:
+- 8/10/12-game support requires score-model expansion and is not part of this display-only foundation.
+- Share-card synchronization is deferred to the next development step.
