@@ -1,0 +1,160 @@
+{
+  "version": "0.4.6.3-dev.2",
+  "title": "Dynamic Grid Regression & Share Card Sync",
+  "base": {
+    "ref": "v0.4.6.3-dev.1",
+    "commit": "3c24c175ca753df8d0ae34c627bf52e8dd22d517"
+  },
+  "scope": [
+    "dynamic-history-grid-regression",
+    "public-meetup-share-card-sync"
+  ],
+  "score_model": {
+    "min_games": 1,
+    "max_games": 6,
+    "migration": "NONE"
+  },
+  "invariants": {
+    "supabase_schema": "UNCHANGED",
+    "indexeddb_schema": "UNCHANGED",
+    "public_code": "PUBLIC",
+    "public_pin": "UNCHANGED",
+    "db_version": 2,
+    "service_worker": "UNCHANGED"
+  },
+  "checks": [
+    {
+      "id": 1,
+      "status": "PASS",
+      "name": "APP_VERSION dev.2"
+    },
+    {
+      "id": 2,
+      "status": "PASS",
+      "name": "CSS cache busting dev.2"
+    },
+    {
+      "id": 3,
+      "status": "PASS",
+      "name": "Shared session game-count helper"
+    },
+    {
+      "id": 4,
+      "status": "PASS",
+      "name": "History uses shared helper"
+    },
+    {
+      "id": 5,
+      "status": "PASS",
+      "name": "Share card uses shared helper"
+    },
+    {
+      "id": 6,
+      "status": "PASS",
+      "name": "Share card no longer uses plannedGames for visible columns"
+    },
+    {
+      "id": 7,
+      "status": "PASS",
+      "name": "Share header loops dynamic columns"
+    },
+    {
+      "id": 8,
+      "status": "PASS",
+      "name": "Share rows slice dynamic columns"
+    },
+    {
+      "id": 9,
+      "status": "PASS",
+      "name": "Share table width reacts to column count"
+    },
+    {
+      "id": 10,
+      "status": "PASS",
+      "name": "History missing-score dash retained"
+    },
+    {
+      "id": 11,
+      "status": "PASS",
+      "name": "Share missing-score dash retained"
+    },
+    {
+      "id": 12,
+      "status": "PASS",
+      "name": "History mobile horizontal-scroll semantics retained"
+    },
+    {
+      "id": 13,
+      "status": "PASS",
+      "name": "PUBLIC code unchanged"
+    },
+    {
+      "id": 14,
+      "status": "PASS",
+      "name": "PUBLIC PIN unchanged"
+    },
+    {
+      "id": 15,
+      "status": "PASS",
+      "name": "DB_VERSION remains 2"
+    },
+    {
+      "id": 16,
+      "status": "PASS",
+      "name": "Session normalization unchanged"
+    },
+    {
+      "id": 17,
+      "status": "PASS",
+      "name": "Meetup normalization unchanged"
+    },
+    {
+      "id": 18,
+      "status": "PASS",
+      "name": "PUBLIC source selection unchanged"
+    },
+    {
+      "id": 19,
+      "status": "PASS",
+      "name": "Meetup share row data model unchanged"
+    },
+    {
+      "id": 20,
+      "status": "PASS",
+      "name": "Behavior 1-game"
+    },
+    {
+      "id": 21,
+      "status": "PASS",
+      "name": "Behavior 3-game"
+    },
+    {
+      "id": 22,
+      "status": "PASS",
+      "name": "Behavior sparse-through-4"
+    },
+    {
+      "id": 23,
+      "status": "PASS",
+      "name": "Behavior 6-game"
+    },
+    {
+      "id": 24,
+      "status": "PASS",
+      "name": "Behavior empty defaults to 1 column"
+    },
+    {
+      "id": 25,
+      "status": "PASS",
+      "name": "Behavior caps current model at 6"
+    }
+  ],
+  "result": {
+    "pass": 25,
+    "fail": 0
+  },
+  "manual_gate": [
+    "Safari/PWA visual check",
+    "1/3/6-game share-card visual check"
+  ]
+}

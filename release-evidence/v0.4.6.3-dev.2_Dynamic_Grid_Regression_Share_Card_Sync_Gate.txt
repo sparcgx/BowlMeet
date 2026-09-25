@@ -1,0 +1,52 @@
+BowlMeet v0.4.6.3-dev.2｜Dynamic Grid Regression & Share Card Sync
+Source Regression Gate
+
+Base: v0.4.6.3-dev.1 @ 3c24c175ca753df8d0ae34c627bf52e8dd22d517
+Scope: dynamic history-grid regression + public meetup share-card synchronization
+Data range: frozen current score model 1-6 games
+Migration: NONE
+Supabase schema: unchanged
+IndexedDB schema: unchanged
+PUBLIC/PIN rules: unchanged
+Service Worker stable cache definition: unchanged
+
+Checks:
+01. PASS | APP_VERSION dev.2
+02. PASS | CSS cache busting dev.2
+03. PASS | Shared session game-count helper
+04. PASS | History uses shared helper
+05. PASS | Share card uses shared helper
+06. PASS | Share card no longer uses plannedGames for visible columns
+07. PASS | Share header loops dynamic columns
+08. PASS | Share rows slice dynamic columns
+09. PASS | Share table width reacts to column count
+10. PASS | History missing-score dash retained
+11. PASS | Share missing-score dash retained
+12. PASS | History mobile horizontal-scroll semantics retained
+13. PASS | PUBLIC code unchanged
+14. PASS | PUBLIC PIN unchanged
+15. PASS | DB_VERSION remains 2
+16. PASS | Session normalization unchanged
+17. PASS | Meetup normalization unchanged
+18. PASS | PUBLIC source selection unchanged
+19. PASS | Meetup share row data model unchanged
+20. PASS | Behavior 1-game
+21. PASS | Behavior 3-game
+22. PASS | Behavior sparse-through-4
+23. PASS | Behavior 6-game
+24. PASS | Behavior empty defaults to 1 column
+25. PASS | Behavior caps current model at 6
+
+Result: 25/25 PASS
+
+Behavior:
+- History and meetup full share card now use one shared sessionScoreGameCount() rule.
+- Visible game columns follow the highest actual non-null score position in the selected public session.
+- The current frozen data model remains capped at 6 games; no schema expansion is performed.
+- Share-card table width contracts for shorter sessions instead of stretching 1-2 game columns across the full canvas.
+- Missing scores inside the visible range remain rendered as —.
+- Share data remains public-only through the unchanged shareScopeData()/public session path.
+
+Deferred:
+- 8/10/12-game storage support requires a separate data-model version.
+- Device/Safari visual acceptance remains a manual gate before RC promotion.
