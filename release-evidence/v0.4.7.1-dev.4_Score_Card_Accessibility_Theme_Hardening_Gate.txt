@@ -1,0 +1,39 @@
+BowlMeet v0.4.7.1-dev.4
+Score Card Accessibility & Theme Hardening
+Date: 2026-09-27
+Base: v0.4.7.1-dev.3
+
+AUTOMATED REGRESSION: 59 PASS / 0 FAIL
+
+SCOPE
+- New presentation/accessibility asset: assets/score-card-accessibility-v0471.css
+- History score region is keyboard-focusable
+- Horizontal-scroll region receives explicit accessible label
+- Player buttons receive accessible names
+- Focus-visible hardening for score region, action buttons and player links
+- Status badge border/contrast hardening
+- Total / Average visual separation
+- Liquid Glass / Dark Night / High Contrast coverage
+- Reduced Motion / Reduced Transparency / forced-colors fallbacks
+
+SAFETY
+- Core JavaScript unchanged after excluding APP_VERSION + accessibility markup
+- dev.2-R1 PWA InvalidState recovery retained
+- DB_VERSION unchanged
+- PUBLIC contract unchanged
+- Score core unchanged
+- Backup / Restore unchanged
+- Sync unchanged
+- No Supabase migration
+- No IndexedDB migration
+- No PUBLIC payload migration
+
+ISOLATED PREVIEW
+- Path: preview/v0.4.7.1-dev.4/
+- Cloud: OFF
+- Storage / IndexedDB / PWA cache: isolated
+- PWA recovery retained
+
+DEVICE MANUAL
+- 0 / 10 PENDING
+- Validation Complete: NO
