@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.7.1-dev.3",
+  "name": "保齡球球聚｜BowlMeet v0.4.7.1-dev.4",
   "short_name": "BowlMeet",
-  "description": "BowlMeet v0.4.7.1-dev.3 Development：Mobile Score Card & History Interaction Optimization；延續 Theme Center、Score Card Theme、PWA Update Recovery，保留 PUBLIC、Sync、Backup/Restore 與資料庫安全契約。",
+  "description": "BowlMeet v0.4.7.1-dev.4 Development：Score Card Accessibility & Theme Hardening；延續 Mobile Score Card UX 與 PWA Update Recovery，保留 PUBLIC、Sync、Backup/Restore 與資料庫安全契約。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
