@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.7.0-dev.3</title>
+<title>保齡球球聚｜BowlMeet v0.4.7.0-dev.4</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="color-scheme" content="light dark" />
 <meta name="application-name" content="BowlMeet" />
@@ -1142,7 +1142,7 @@ dialog::backdrop,
 }
 
 </style>
-<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0470d3" />
+<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0470d4" />
 <style id="history-score-critical">
 /* v0.4.6.3-dev.1 | Dynamic score grid + Safari/PWA fallback */
 .history-score-table-wrap{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
@@ -1567,15 +1567,17 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
   .design-preset-strip .layout-preset-btn{min-width:150px;scroll-snap-align:start}
 }
 </style>
-<link rel="stylesheet" href="./assets/theme-center-dev2.css?v=0470d3" />
-<link rel="stylesheet" href="./assets/theme-center-dev3-mobile.css?v=0470d3r2" />
+<link rel="stylesheet" href="./assets/theme-center-dev2.css?v=0470d4" />
+<link rel="stylesheet" href="./assets/theme-center-dev3-mobile.css?v=0470d4" />
+<link rel="stylesheet" href="./assets/theme-center-dev4-accessibility.css?v=0470d4" />
 </head>
 <body>
+<a class="skip-link" href="#mainContent">跳到主要內容</a>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
   <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · 開發版</p></div></div>
 </div></header>
-<main>
+<main id="mainContent" tabindex="-1">
   <nav class="tabs" aria-label="功能切換">
     <button class="tab active live-tab" data-view="meetupView">球聚現場</button>
     <button class="tab" data-view="personalView">我的成績</button>
@@ -1604,10 +1606,10 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
   </nav>
 
   <div class="mobile-more-backdrop" id="mobileMoreBackdrop" hidden></div>
-  <section class="mobile-more-sheet" id="mobileMoreSheet" aria-label="更多功能" aria-hidden="true">
+  <section class="mobile-more-sheet" id="mobileMoreSheet" role="dialog" aria-modal="true" aria-labelledby="mobileMoreTitle" aria-describedby="mobileMoreDesc" aria-hidden="true" tabindex="-1">
     <div class="mobile-more-handle" aria-hidden="true"></div>
     <div class="mobile-more-head">
-      <div><strong>更多功能</strong><span>次要功能集中於此，不干擾現場操作。</span></div>
+      <div><strong id="mobileMoreTitle">更多功能</strong><span id="mobileMoreDesc">次要功能集中於此，不干擾現場操作。</span></div>
       <button class="mobile-more-close" id="mobileMoreCloseBtn" type="button" aria-label="關閉更多功能">×</button>
     </div>
     <div class="mobile-more-grid">
@@ -2051,7 +2053,7 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
         <div class="left-actions"><button class="btn" id="addPlayerBtn">＋ 增加球員</button><div class="score-roster-tools"><select id="rosterQuickSelect"><option value="">從常用球員加入…</option></select><button class="btn small" type="button" id="quickAddRosterBtn">加入</button></div><span class="status" id="sheetStatus">尚未儲存</span></div>
         <div class="right-actions"><button class="btn" id="newSessionBtn">新增一張</button><button class="btn primary" id="saveSessionBtn">儲存本次成績</button></div>
       </div>
-      <div id="message" class="message"></div>
+      <div id="message" class="message" role="status" aria-live="polite" aria-atomic="true"></div>
       <div class="legacy-note live-score-link-note">現場 10 格完成後會自動帶入本次計分對應局次；不需要重複輸入。</div>
       <div class="legacy-note" style="margin-top:10px">完成「儲存本次成績」後：若已加入共享群組，任何成員儲存後都會立即寫入「公開歷史」；離線時先保存在本機，恢復連線後再同步。</div>
     </section>
@@ -2450,7 +2452,7 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
     </div>
   </section>
 
-  <dialog id="postGameReviewDialog" class="post-review-dialog">
+  <dialog id="postGameReviewDialog" class="post-review-dialog" aria-labelledby="postReviewTitle" aria-describedby="postReviewMeta">
     <div class="post-review-card">
       <div class="post-review-head">
         <div>
@@ -2483,16 +2485,16 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
     </div>
   </dialog>
 
-  <dialog id="pwaUpdateDialog" class="pwa-update-dialog">
+  <dialog id="pwaUpdateDialog" class="pwa-update-dialog" aria-labelledby="pwaUpdateTitle" aria-describedby="pwaUpdateDesc">
     <div class="pwa-update-card">
       <span class="pwa-update-badge">PWA 安全更新</span>
-      <h2>偵測到新版</h2>
-      <p>新版已下載完成，但不會自動覆蓋目前 App。為避免資料遺失，請依順序先備份，再更新。</p>
+      <h2 id="pwaUpdateTitle">偵測到新版</h2>
+      <p id="pwaUpdateDesc">新版已下載完成，但不會自動覆蓋目前 App。為避免資料遺失，請依順序先備份，再更新。</p>
       <div class="pwa-update-steps">
         <div class="pwa-update-step"><span class="pwa-update-step-num">1</span><div><strong>先備份資料</strong><span>建立 IndexedDB 安全快照，並下載完整 JSON 備份檔。</span></div></div>
         <div class="pwa-update-step"><span class="pwa-update-step-num">2</span><div><strong>再更新新版</strong><span>備份完成後才會解鎖更新按鈕；套用新版後 App 會自動重新載入。</span></div></div>
       </div>
-      <div class="pwa-update-status" id="pwaUpdateDialogStatus">尚未備份。請先按「備份資料」。</div>
+      <div class="pwa-update-status" id="pwaUpdateDialogStatus" role="status" aria-live="polite" aria-atomic="true">尚未備份。請先按「備份資料」。</div>
       <div class="pwa-update-actions">
         <button class="btn" id="pwaUpdateLaterBtn" type="button">稍後</button>
         <button class="btn" id="pwaUpdateBackupBtn" type="button">1. 備份資料</button>
@@ -2501,9 +2503,9 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
     </div>
   </dialog>
 
-  <dialog id="restoreDialog" class="restore-dialog">
+  <dialog id="restoreDialog" class="restore-dialog" aria-labelledby="restoreDialogTitle" aria-describedby="restoreFileInfo">
     <div class="restore-dialog-card">
-      <h2>還原資料</h2>
+      <h2 id="restoreDialogTitle">還原資料</h2>
       <p id="restoreFileInfo">已讀取備份檔。選擇匯入方式後再套用；套用前會自動建立安全快照。</p>
       <div class="restore-counts">
         <div class="restore-count"><strong id="restoreMeetupsCount">0</strong><span>球聚</span></div>
@@ -2544,7 +2546,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.7.0-dev.3';
+const APP_VERSION='0.4.7.0-dev.4';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const THEME_PREFS_KEY='bowlingMeetup.themePreferences.v1';
 const THEME_DEFAULTS=Object.freeze({
@@ -2615,6 +2617,7 @@ function mountMobileViewportNav(){
   [dock,backdrop,sheet].forEach(el=>{if(el&&el.parentElement!==body)body.appendChild(el)});
 }
 mountMobileViewportNav();
+setA11yCurrentView('meetupView');
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
 const BUILTIN_CLOUD=true;
@@ -2629,6 +2632,37 @@ const GROUP_POLL_MS=10000;
 const SNAPSHOT_LIMIT=10;
 let photoFile=null; let photoRotation=0; let ocrCandidates=[]; let lastGrid=null; let pendingImportAudit=null;
 const $=id=>document.getElementById(id);
+const a11yFocusReturn=new WeakMap();
+function rememberA11yFocus(container){
+  const active=document.activeElement;
+  if(container&&active&&active!==document.body)a11yFocusReturn.set(container,active);
+}
+function restoreA11yFocus(container,fallback=null){
+  const saved=container?a11yFocusReturn.get(container):null;
+  if(container)a11yFocusReturn.delete(container);
+  const target=saved?.isConnected?saved:fallback;
+  if(target&&!target.hidden&&!target.disabled){
+    requestAnimationFrame(()=>{try{target.focus({preventScroll:true})}catch{try{target.focus()}catch{}}});
+  }
+}
+function a11yFocusable(container){
+  if(!container)return[];
+  return [...container.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]):not([type="hidden"]),select:not([disabled]),textarea:not([disabled]),summary,[tabindex]:not([tabindex="-1"])')]
+    .filter(el=>!el.hidden&&el.getAttribute('aria-hidden')!=='true'&&el.getClientRects().length);
+}
+function trapA11yTab(container,event){
+  if(event.key!=='Tab'||!container)return;
+  const items=a11yFocusable(container);if(!items.length){event.preventDefault();container.focus?.();return}
+  const first=items[0],last=items[items.length-1],active=document.activeElement;
+  if(event.shiftKey&&active===first){event.preventDefault();last.focus()}
+  else if(!event.shiftKey&&active===last){event.preventDefault();first.focus()}
+}
+function setA11yCurrentView(viewId){
+  document.querySelectorAll('.tab[data-view],[data-dock-view]').forEach(el=>{
+    const active=(el.dataset.view||el.dataset.dockView)===viewId;
+    if(active)el.setAttribute('aria-current','page');else el.removeAttribute('aria-current');
+  });
+}
 let sessions=[]; let legacy=[]; let meetups=[]; let roster=[]; let editingId=''; let currentMeetupId=''; let deferredInstallPrompt=null; let lastShareBlob=null; let liveGameNo=1; let liveMetric='total'; let liveSaveTimer=null; let liveRollCommitTimer=null; let liveRollCommitKey=''; let liveRollCommitToken=0; let liveRollCommitGameNo=0; let liveRollWriteKey=''; let liveRollLastCommit={key:'',raw:'',gameNo:0,at:0}; let manualMeetupPlayers=[]; let historySource='all'; let historyMode='scores'; let playerDirectoryDetail=false; let playerDirectoryView='list'; let postReviewMeetupId='';
 let playerContext={key:'',rosterId:'',playerName:'',source:'LOCAL',originView:'players',hubOrigin:'players',originSessionId:'',view:'hub',analyticsRange:'all',history:{search:'',sort:'newest',range:'all',scrollTop:0,sessionId:''},navigation:{current:'players',previous:'',returnTarget:'players',hubReturnTarget:'players',sessionReturnTarget:'playerHistory',preserveScroll:true,scroll:{players:0,playerHub:0,playerHistory:0,analytics:0,scoreHistory:0}}};
 let playerSessionFocusReturn=null;
@@ -2997,7 +3031,7 @@ async function applyRestorePayload(payload,mode){
   migrateV3();await persistDbStateNow('restore');renderAll();newSheet(false);resetMeetupForm();resetRosterForm();renderSafety();switchView('meetupView');return {added:a.added+b.added+c.added+d.added+e.added+f.added,updated:a.updated+b.updated+c.updated+d.updated+e.updated+f.updated,skipped:a.skipped+b.skipped+c.skipped+d.skipped+e.skipped+f.skipped};
 }
 function openRestoreDialog(payload,fileName='備份檔'){
-  pendingRestorePayload=payload;$('restoreFileInfo').textContent=`${fileName} 已讀取。選擇匯入方式後再套用；套用前會自動建立安全快照。`;$('restoreMeetupsCount').textContent=payload.meetups.length;$('restoreRosterCount').textContent=payload.roster.length;$('restoreSessionsCount').textContent=payload.sessions.length;$('restoreLegacyCount').textContent=payload.legacy.length;const d=$('restoreDialog');if(d.showModal)d.showModal();else d.setAttribute('open','');
+  pendingRestorePayload=payload;$('restoreFileInfo').textContent=`${fileName} 已讀取。選擇匯入方式後再套用；套用前會自動建立安全快照。`;$('restoreMeetupsCount').textContent=payload.meetups.length;$('restoreRosterCount').textContent=payload.roster.length;$('restoreSessionsCount').textContent=payload.sessions.length;$('restoreLegacyCount').textContent=payload.legacy.length;const d=$('restoreDialog');rememberA11yFocus(d);if(d.showModal)d.showModal();else d.setAttribute('open','');requestAnimationFrame(()=>d.querySelector('input[name="restoreMode"]:checked')?.focus());
 }
 async function renderSafety(){
   const eng=$('safetyEngine');if(!eng)return;eng.textContent=dbMode;$('safetyEngineSub').textContent=dbReady?'主要資料已由 IndexedDB 保存；localStorage 為相容鏡像。':'IndexedDB 不可用時仍可繼續使用 localStorage。';const snaps=await listSnapshots().catch(()=>[]);$('snapshotCount').textContent=snaps.length;if(snaps.length){$('lastSnapshotTime').textContent=new Date(snaps[0].createdAt).toLocaleDateString('zh-TW');$('lastSnapshotReason').textContent=snaps[0].reason||'快照';$('snapshotList').innerHTML=snaps.map(s=>`<div class="snapshot-item"><div class="snapshot-main"><strong>${esc(new Date(s.createdAt).toLocaleString('zh-TW'))}</strong><span>${esc(s.reason||'快照')} · ${esc(s.appVersion||'')}</span></div><button class="btn small" type="button" data-restore-snapshot="${esc(s.id)}">回復</button></div>`).join('')}else{$('lastSnapshotTime').textContent='—';$('lastSnapshotReason').textContent='尚無快照';$('snapshotList').innerHTML='<div class="snapshot-empty">尚無安全快照。</div>'}
@@ -3125,14 +3159,14 @@ function postGameReviewData(meetupId){
   const official=rows.flatMap(r=>{const p=(session?.players||[]).find(x=>nameKey(x.name)===nameKey(r.name));return (p?.scores||[]).map(normalizeScore).filter(v=>v!==null).map(score=>({name:r.name,score}))}),total=official.reduce((a,b)=>a+b.score,0),best=official.length?[...official].sort((a,b)=>b.score-a.score)[0]:null;
   return {meetup,session,rows,players:rows.length,games:official.length,total,avg:official.length?Math.round(total/official.length):null,best};
 }
-function closePostGameReview(){const d=$('postGameReviewDialog');postReviewMeetupId='';if(d?.open)d.close()}
+function closePostGameReview(){const d=$('postGameReviewDialog');postReviewMeetupId='';if(d?.open)d.close();restoreA11yFocus(d,$('postReviewDoneBtn'))}
 function openPostGameReview(meetupId){
   const data=postGameReviewData(meetupId);if(!data)return;postReviewMeetupId=meetupId;const {meetup,rows,players,games,total,avg:average,best}=data;
   $('postReviewTitle').textContent=meetup.title||'本次球聚摘要';$('postReviewMeta').textContent=`${fmtDate(meetup.date)} · ${meetup.venue||'未填球館'}${meetup.lanes?` · 球道 ${meetup.lanes}`:''}`;
   $('postReviewPlayers').textContent=players;$('postReviewGames').textContent=games;$('postReviewTotal').textContent=total;$('postReviewAvg').textContent=average??'—';$('postReviewBest').textContent=best?.score??'—';$('postReviewBestName').textContent=best?.name||'尚無正式分數';
   $('postReviewBody').innerHTML=rows.map(r=>`<tr><td class="post-review-player">${esc(r.name)}</td><td>${r.games}</td><td>${r.total}</td><td>${r.avg??'—'}</td><td>${r.best??'—'}</td></tr>`).join('');$('postReviewEmpty').hidden=games>0;$('postReviewBody').hidden=games===0;
   $('postReviewShareBtn').disabled=!data.session||!publicSessionForMeetup(meetupId);$('postReviewHistoryBtn').disabled=!data.session;
-  const d=$('postGameReviewDialog');if(d.showModal)d.showModal();else d.setAttribute('open','')
+  const d=$('postGameReviewDialog');rememberA11yFocus(d);if(d.showModal)d.showModal();else d.setAttribute('open','');requestAnimationFrame(()=>$('postReviewCloseBtn')?.focus())
 }
 function openPostReviewShare(){const id=postReviewMeetupId;if(!id||!requirePublicMeetup(id,'分享成績'))return;closePostGameReview();setCurrentMeetup(id);switchView('shareView');renderShareOptions(id);$('shareMeetup').value=id;$('shareCardType').value='meetupCard';syncMeetupDerivedSelectors(id);updateShareControls(true)}
 function openPostReviewHistory(){const id=postReviewMeetupId,data=postGameReviewData(id);closePostGameReview();historySource='all';historyMode='scores';playerDirectoryDetail=false;switchView('historyView');renderHistory();if(data?.session)setTimeout(()=>document.querySelector(`[data-id="${CSS.escape(data.session.id)}"]`)?.closest('.session')?.scrollIntoView({behavior:'smooth',block:'center'}),80)}
@@ -4445,8 +4479,8 @@ function setPwaUpdateDialogStatus(text,ready=false){
   if($('pwaUpdateApplyBtn'))$('pwaUpdateApplyBtn').disabled=!ready
 }
 function resetPwaUpdateBackupGate(){pwaUpdateBackupReady=false;pwaUpdateBackupFile='';if($('pwaUpdateBackupBtn'))$('pwaUpdateBackupBtn').disabled=false;setPwaUpdateDialogStatus('尚未備份。請先按「備份資料」。',false)}
-function openPwaUpdateDialog(){if(!pendingServiceWorker){setUpdateUi('沒有等待中的更新','先按「檢查更新」。',false);return}const d=$('pwaUpdateDialog');if(!d)return;if(d.showModal&&!d.open)d.showModal();else d.setAttribute('open','')}
-function closePwaUpdateDialog(){const d=$('pwaUpdateDialog');if(!d)return;if(d.close&&d.open)d.close();else d.removeAttribute('open')}
+function openPwaUpdateDialog(){if(!pendingServiceWorker){setUpdateUi('沒有等待中的更新','先按「檢查更新」。',false);return}const d=$('pwaUpdateDialog');if(!d)return;rememberA11yFocus(d);if(d.showModal&&!d.open)d.showModal();else d.setAttribute('open','');requestAnimationFrame(()=>$('pwaUpdateLaterBtn')?.focus())}
+function closePwaUpdateDialog(){const d=$('pwaUpdateDialog');if(!d)return;if(d.close&&d.open)d.close();else d.removeAttribute('open');restoreA11yFocus(d)}
 function markPendingPwaUpdate(worker){pendingServiceWorker=worker;resetPwaUpdateBackupGate();setUpdateUi('有新版可更新','新版已下載完成。請先備份資料，再更新至新版。',true);openPwaUpdateDialog()}
 async function backupBeforePwaUpdate(){
   if(!pendingServiceWorker){setPwaUpdateDialogStatus('目前沒有等待中的新版。',false);return}
@@ -4628,6 +4662,7 @@ function switchView(id){
   document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===viewId));
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.view===viewId));
   document.querySelectorAll('[data-dock-view]').forEach(t=>t.classList.toggle('active',t.dataset.dockView===viewId));
+  setA11yCurrentView(viewId);
   const primaryDockViews=new Set(['meetupView','scoreView','historyView']);
   const dockMore=document.getElementById('mobileDockMoreBtn');
   dockMore?.classList.toggle('has-secondary-active',!primaryDockViews.has(viewId));
@@ -4652,11 +4687,14 @@ function setMobileMoreOpen(open){
   const backdrop=document.getElementById('mobileMoreBackdrop');
   const trigger=document.getElementById('mobileDockMoreBtn');
   if(!sheet||!backdrop||!trigger)return;
+  if(open)rememberA11yFocus(sheet);
   sheet.classList.toggle('open',open);
   sheet.setAttribute('aria-hidden',open?'false':'true');
   backdrop.hidden=!open;
   backdrop.classList.toggle('show',open);
   trigger.setAttribute('aria-expanded',open?'true':'false');
+  if(open)requestAnimationFrame(()=>a11yFocusable(sheet)[0]?.focus());
+  else restoreA11yFocus(sheet,trigger);
 }
 document.querySelectorAll('[data-dock-view]').forEach(t=>t.addEventListener('click',()=>{
   switchView(t.dataset.dockView);
@@ -4666,6 +4704,8 @@ document.getElementById('mobileDockMoreBtn')?.addEventListener('click',()=>setMo
 document.getElementById('mobileMoreCloseBtn')?.addEventListener('click',()=>setMobileMoreOpen(false));
 document.getElementById('mobileMoreBackdrop')?.addEventListener('click',()=>setMobileMoreOpen(false));
 document.addEventListener('keydown',e=>{if(e.key==='Escape')setMobileMoreOpen(false)});
+$('mobileMoreSheet')?.addEventListener('keydown',e=>trapA11yTab($('mobileMoreSheet'),e));
+['postGameReviewDialog','pwaUpdateDialog','restoreDialog'].forEach(id=>$(id)?.addEventListener('keydown',e=>trapA11yTab($(id),e)));
 $('addPlayerBtn').addEventListener('click',()=>{const rows=currentPlayersFromTable();if(rows.length>=12){flash('最多 12 位球員。','err');return}rows.push(makePlayer());renderScoreRows(rows)});
 $('saveSessionBtn').addEventListener('click',saveSession);
 $('newSessionBtn').addEventListener('click',()=>newSheet(true));
