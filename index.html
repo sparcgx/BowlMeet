@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.7.1-dev.2</title>
+<title>保齡球球聚｜BowlMeet v0.4.7.1-dev.2-R1</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="color-scheme" content="light dark" />
 <meta name="application-name" content="BowlMeet" />
@@ -1239,7 +1239,7 @@ dialog::backdrop,
 
 <style id="theme-center-v0470">
 /* =========================================================
-   v0.4.7.1-dev.2 | Theme Center Foundation
+   v0.4.7.1-dev.2-R1 | Theme Center Foundation
    Presentation-only. No score/PUBLIC/sync/backup schema changes.
    ========================================================= */
 :root{
@@ -1577,7 +1577,7 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
 <a class="skip-link" href="#mainContent">跳到主要內容</a>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · Development dev.2 · Theme Center · Score Card Theme</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · Development dev.2-R1 · PWA Update Recovery</p></div></div>
 </div></header>
 <main id="mainContent" tabindex="-1">
   <nav class="tabs" aria-label="功能切換">
@@ -2669,6 +2669,7 @@ let sessions=[]; let legacy=[]; let meetups=[]; let roster=[]; let editingId='';
 let playerContext={key:'',rosterId:'',playerName:'',source:'LOCAL',originView:'players',hubOrigin:'players',originSessionId:'',view:'hub',analyticsRange:'all',history:{search:'',sort:'newest',range:'all',scrollTop:0,sessionId:''},navigation:{current:'players',previous:'',returnTarget:'players',hubReturnTarget:'players',sessionReturnTarget:'playerHistory',preserveScroll:true,scroll:{players:0,playerHub:0,playerHistory:0,analytics:0,scoreHistory:0}}};
 let playerSessionFocusReturn=null;
 let appDb=null; let dbReady=false; let dbMode='初始化中'; let dbPersistTimer=null; let pendingRestorePayload=null; let pwaRegistration=null; let pendingServiceWorker=null; let reloadingForUpdate=false; let pwaUpdateReloadTimer=null; let pwaUpdateReloadStarted=false; let pwaUpdateBackupReady=false; let pwaUpdateBackupFile='';
+const watchedPwaRegistrations=new WeakSet();
 let syncTimer=null; let syncPushTimer=null; let syncBusy=false; let syncDirty=false; let syncApplyingRemote=false; let syncRemotePresence={}; let syncLastError='';
 let personalData={profile:null,claims:[],games:[],revision:0,lastSyncAt:0,autoSync:true,updatedAt:0}; let personalTimer=null; let personalPushTimer=null; let personalBusy=false; let personalDirty=false; let personalLastError='';
 let groupRemote={schema:1,groupName:'',meetups:[],sessions:[],updatedAt:0}; let groupTimer=null; let groupPushTimer=null; let groupBusy=false; let groupDirty=false; let groupApplyingRemote=false; let groupLastError='';
@@ -4549,8 +4550,67 @@ async function backupBeforePwaUpdate(){
     console.error(e);pwaUpdateBackupReady=false;if(backupBtn)backupBtn.disabled=false;setPwaUpdateDialogStatus('備份失敗，尚未允許更新。請重試。',false);setUpdateUi('更新前備份失敗','目前版本仍保留，尚未套用新版。',true)
   }
 }
-function watchRegistration(reg){pwaRegistration=reg;if(reg.waiting)markPendingPwaUpdate(reg.waiting);reg.addEventListener('updatefound',()=>{const w=reg.installing;if(!w)return;setUpdateUi('正在下載更新','Service Worker 安裝中…',false);w.addEventListener('statechange',()=>{if(w.state==='installed'){if(navigator.serviceWorker.controller)markPendingPwaUpdate(w);else setUpdateUi('PWA 已就緒','首次安裝完成。',false)}})})}
-async function checkPwaUpdate(){if(!pwaRegistration){setUpdateUi('目前無法檢查','請使用 HTTPS / localhost 的 PWA 套件。',false);return}setUpdateUi('正在檢查更新','請稍候…',false);try{await pwaRegistration.update();setTimeout(()=>{if(!pendingServiceWorker&&!pwaRegistration?.installing)setUpdateUi('目前已是最新','沒有偵測到等待中的新版。',false)},400)}catch(e){setUpdateUi('更新檢查失敗',String(e?.message||e),false)}}
+function watchRegistration(reg){
+  if(!reg)return;
+  pwaRegistration=reg;
+  if(reg.waiting)markPendingPwaUpdate(reg.waiting);
+  if(watchedPwaRegistrations.has(reg))return;
+  watchedPwaRegistrations.add(reg);
+  reg.addEventListener('updatefound',()=>{
+    const w=reg.installing;if(!w)return;
+    setUpdateUi('正在下載更新','Service Worker 安裝中…',false);
+    w.addEventListener('statechange',()=>{
+      if(w.state==='installed'){
+        if(navigator.serviceWorker.controller)markPendingPwaUpdate(w);
+        else setUpdateUi('PWA 已就緒','首次安裝完成。',false)
+      }
+    })
+  })
+}
+function isInvalidPwaRegistrationError(e){
+  const name=String(e?.name||''),message=String(e?.message||e||'');
+  return name==='InvalidStateError'||/invalid state/i.test(message)
+}
+async function acquirePwaRegistration(forceRegister=false){
+  if(!('serviceWorker'in navigator)||location.protocol==='file:')return null;
+  const scopeUrl=new URL('./',location.href).href;
+  let reg=null;
+  if(!forceRegister){
+    try{reg=await navigator.serviceWorker.getRegistration(scopeUrl)}
+    catch(e){console.warn('取得目前 Service Worker registration 失敗，將重新註冊。',e)}
+  }
+  if(!reg){
+    reg=await navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'})
+  }
+  watchRegistration(reg);
+  return reg
+}
+async function checkPwaUpdate(){
+  if(!('serviceWorker'in navigator)||location.protocol==='file:'){
+    setUpdateUi('目前無法檢查','請使用 HTTPS / localhost 的 PWA 套件。',false);return
+  }
+  setUpdateUi('正在檢查更新','正在確認目前 Service Worker 狀態…',false);
+  try{
+    let reg=await acquirePwaRegistration(false);
+    if(!reg)throw new Error('找不到可用的 Service Worker registration');
+    try{
+      await reg.update()
+    }catch(e){
+      if(!isInvalidPwaRegistrationError(e))throw e;
+      console.warn('Service Worker registration 已失效，重新註冊後重試。',e);
+      pwaRegistration=null;
+      reg=await acquirePwaRegistration(true);
+      await reg.update()
+    }
+    pwaRegistration=reg;
+    setTimeout(()=>{
+      if(!pendingServiceWorker&&!pwaRegistration?.installing)setUpdateUi('目前已是最新','Service Worker 狀態正常，沒有偵測到等待中的新版。',false)
+    },400)
+  }catch(e){
+    console.warn('PWA 更新檢查失敗',e);
+    setUpdateUi('更新檢查失敗',String(e?.message||e),false)
+  }
+}
 function finishPwaUpdateReload(reason='controllerchange'){
   if(!reloadingForUpdate||pwaUpdateReloadStarted)return;
   pwaUpdateReloadStarted=true;
@@ -4583,7 +4643,7 @@ async function applyPwaUpdate(){
     setUpdateUi('安全更新失敗','目前版本仍保留，資料未被清除。',true)
   }
 }
-function initPwa(){window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;$('installAppBtn').classList.add('ready');$('installAppBtn').textContent='安裝 App'});window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;updatePwaState()});window.addEventListener('online',updatePwaState);window.addEventListener('offline',updatePwaState);if('serviceWorker'in navigator&&location.protocol!=='file:'){navigator.serviceWorker.addEventListener('controllerchange',()=>{if(reloadingForUpdate)finishPwaUpdateReload('controllerchange')});navigator.serviceWorker.register('./sw.js').then(reg=>{watchRegistration(reg);if(!reg.waiting)setUpdateUi('PWA 更新保護已啟用','偵測到新版時會跳出視窗，必須先備份再更新。',false)}).catch(e=>{console.warn('Service Worker 註冊失敗',e);setUpdateUi('PWA 註冊失敗',String(e?.message||e),false)})}else setUpdateUi(location.protocol==='file:'?'本機 HTML 模式':'瀏覽器不支援 Service Worker','PWA 安全更新需要 HTTPS / localhost。',false);updatePwaState()}
+function initPwa(){window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;$('installAppBtn').classList.add('ready');$('installAppBtn').textContent='安裝 App'});window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;updatePwaState()});window.addEventListener('online',updatePwaState);window.addEventListener('offline',updatePwaState);if('serviceWorker'in navigator&&location.protocol!=='file:'){navigator.serviceWorker.addEventListener('controllerchange',()=>{if(reloadingForUpdate)finishPwaUpdateReload('controllerchange')});acquirePwaRegistration(true).then(reg=>{if(!reg?.waiting)setUpdateUi('PWA 更新保護已啟用','偵測到新版時會跳出視窗，必須先備份再更新。',false)}).catch(e=>{console.warn('Service Worker 註冊失敗',e);setUpdateUi('PWA 註冊失敗',String(e?.message||e),false)})}else setUpdateUi(location.protocol==='file:'?'本機 HTML 模式':'瀏覽器不支援 Service Worker','PWA 安全更新需要 HTTPS / localhost。',false);updatePwaState()}
 function renderShare(preferredScope=''){renderShareOptions(preferredScope);drawShareCard()}
 
 
