@@ -1,0 +1,64 @@
+{
+  "version": "v0.4.7.0-dev.4",
+  "title": "Accessibility & Theme Hardening",
+  "date": "2026-09-26",
+  "baseline": {
+    "branch": "v0.4.7.0-dev.3",
+    "commit": "adf2db460c6181f8985bbbbb8a7c26df552e498b"
+  },
+  "result": {
+    "pass": 45,
+    "fail": 0,
+    "total": 45,
+    "status": "PASS"
+  },
+  "accessibility": {
+    "skipLink": true,
+    "mainLandmark": true,
+    "ariaCurrent": true,
+    "dialogModalSemantics": 4,
+    "moreSheetDialogSemantics": true,
+    "focusTrap": [
+      "More Sheet",
+      "Player Session",
+      "Post-game Review",
+      "PWA Update",
+      "Restore"
+    ],
+    "focusReturn": true,
+    "liveRegions": true,
+    "focusVisible": true,
+    "darkNightFocus": true,
+    "highContrastFocus": true,
+    "nonColorStatusCues": true,
+    "prefersContrastMore": true,
+    "forcedColors": true,
+    "prefersReducedMotion": true,
+    "prefersReducedTransparency": true,
+    "coarsePointerMinTargetPx": 44
+  },
+  "staticAudit": {
+    "duplicateIds": 0,
+    "missingAriaReferences": 0,
+    "unnamedButtons": 0,
+    "imagesWithoutAlt": 0
+  },
+  "regression": {
+    "dev3JavascriptSyntax": "PASS",
+    "dev4JavascriptSyntax": "PASS",
+    "accessibilityCssBraceBalance": "PASS",
+    "manifestJson": "PASS",
+    "serviceWorkerSyntax": "PASS"
+  },
+  "safety": {
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "layoutKey": "bowlingMeetup.layoutPreferences.v1",
+    "themeKey": "bowlingMeetup.themePreferences.v1",
+    "sqlSchemaChanges": false,
+    "publicPayloadMigration": false,
+    "backupRestoreContractChanged": false,
+    "syncContractChanged": false
+  },
+  "nextGate": "isolated Preview + keyboard / iPhone / PWA / High Contrast manual acceptance"
+}
