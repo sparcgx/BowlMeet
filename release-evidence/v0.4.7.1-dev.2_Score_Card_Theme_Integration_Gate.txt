@@ -1,0 +1,35 @@
+BowlMeet v0.4.7.1-dev.2
+Score Card Theme Integration & History Visual Polish
+Date: 2026-09-27
+Base: v0.4.7.1-dev.1-R1
+
+AUTOMATED REGRESSION: 61 PASS / 0 FAIL
+
+SCOPE
+- Presentation-only score-card theme layer
+- Public / local history cards use Theme Center tokens
+- Status badge visual polish
+- Total / Average emphasis
+- Mobile horizontal scrolling and sticky player column preserved
+- Six Theme Center themes covered
+
+SAFETY
+- Application JavaScript unchanged except APP_VERSION
+- DB_VERSION remains 2
+- PUBLIC history contract unchanged
+- No score-core change
+- No Supabase migration
+- No IndexedDB migration
+- No PUBLIC payload migration
+- No Backup / Restore contract change
+- No Sync contract change
+
+ISOLATED PREVIEW
+- Path: preview/v0.4.7.1-dev.2/
+- Cloud: OFF
+- Storage / IndexedDB / PWA cache: isolated
+- Production data contract: unchanged
+
+DEVICE MANUAL
+- 0 / 10 PENDING
+- Validation Complete: NO
