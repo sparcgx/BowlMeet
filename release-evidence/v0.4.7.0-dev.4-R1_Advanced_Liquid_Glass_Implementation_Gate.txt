@@ -1,0 +1,62 @@
+BowlMeet v0.4.7.0-dev.4-R1
+Advanced Liquid Glass Motion Enhancement
+Implementation Gate Evidence
+Date: 2026-09-26
+
+BASELINE
+- Accepted dev.4 index SHA: f98fd4fed4450dbb1bf5dcbea82d6f94b99d2a1b
+- Current dev.4 index SHA:  f98fd4fed4450dbb1bf5dcbea82d6f94b99d2a1b
+- Result: MATCH / baseline preserved
+
+VERSION ISOLATION
+PASS  Production root APP_VERSION = 0.4.6.7
+PASS  dev.4 APP_VERSION = 0.4.7.0-dev.4
+PASS  R1 APP_VERSION = 0.4.7.0-dev.4-R1
+PASS  R1 preview path is separate from dev.4
+PASS  R1 LocalStorage namespace = bowlmeet.preview.v0470d4r1.*
+PASS  R1 IndexedDB namespace = bowlmeet.preview.v0470d4r1.local
+PASS  R1 Service Worker cache namespace is independent
+
+R1 VISUAL LAYER
+PASS  Advanced Liquid Glass CSS loaded with cache-busted URL
+PASS  Liquid Glass refractive / sheen / depth layer present
+PASS  Pointer-following desktop depth uses requestAnimationFrame
+PASS  Scroll optical offset uses requestAnimationFrame
+PASS  Dock / More Sheet / primary-action press feedback present
+PASS  More Sheet / Dialog backdrop depth present
+PASS  Dark Night deep-glass material present
+PASS  Mobile/PWA lighter GPU treatment present
+
+ACCESSIBILITY / FALLBACKS
+PASS  prefers-reduced-motion fallback present
+PASS  prefers-reduced-transparency fallback present
+PASS  prefers-contrast / forced-colors fallback present
+PASS  transparency-off fallback present
+PASS  unsupported backdrop-filter fallback retained through dev.4 base
+
+DATA SAFETY
+PASS  No production root APP_VERSION change
+PASS  No scoring / PUBLIC / Sync / Backup / DB schema migration change introduced by R1 visual layer
+PASS  Accepted dev.4 preview remains independently retestable
+
+STATUS
+- Static implementation gate: PASS
+- Manual device acceptance: PENDING
+- RC promotion: NOT YET ELIGIBLE until R1 device acceptance passes
+
+MANUAL DEVICE ACCEPTANCE TARGET
+1. Light Liquid Glass
+2. Dark Night Glass
+3. High Contrast
+4. Reduce Motion
+5. Reduce Transparency
+6. Keyboard Focus
+7. Card press feedback
+8. Dock press feedback
+9. Scroll optical motion
+10. More Sheet depth
+11. Dialog depth
+12. iPhone Safari
+13. iPhone PWA
+14. No visible jank / flashing
+15. Functional smoke: scoring / PUBLIC / Sync / Backup
