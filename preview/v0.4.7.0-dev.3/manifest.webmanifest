@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.7.0-dev.3 Preview R1",
+  "name": "保齡球球聚｜BowlMeet v0.4.7.0-dev.3 Preview R2",
   "short_name": "BowlMeet dev.3",
-  "description": "v0.4.7.0-dev.3 R1 隔離 Preview：修正底部 Dock 4 欄對齊與更多選單定位；Mobile / PWA Theme Optimization 測試，正式 LocalStorage / IndexedDB / Cloud 全部隔離。",
+  "description": "v0.4.7.0-dev.3 R2 隔離 Preview：More Sheet Readability Fix，iPhone 直向 2 欄、文字最多 2 行、icon / padding / 設定列 / 關閉按鈕微調；正式 LocalStorage / IndexedDB / Cloud 全部隔離。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
