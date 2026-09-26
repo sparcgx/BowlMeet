@@ -1,0 +1,43 @@
+{
+  "version": "v0.4.7.1-dev.2-R1",
+  "title": "Preview Service Worker Update Recovery",
+  "date": "2026-09-27",
+  "base": "v0.4.7.1-dev.2",
+  "automated": {
+    "pass": 48,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "issue": "stale ServiceWorkerRegistration could cause InvalidStateError during manual update check",
+  "repair": {
+    "reacquireCurrentScopeRegistration": true,
+    "reRegisterWhenMissing": true,
+    "invalidStateRecovery": true,
+    "retryUpdateOnce": true,
+    "duplicateListenerGuard": true,
+    "explicitScope": true,
+    "updateViaCacheNone": true
+  },
+  "safety": {
+    "dbVersionChanged": false,
+    "publicContractChanged": false,
+    "scoreCoreChanged": false,
+    "backupRestoreChanged": false,
+    "syncChanged": false,
+    "supabaseMigration": false,
+    "indexedDbMigration": false,
+    "publicPayloadMigration": false
+  },
+  "preview": {
+    "path": "preview/v0.4.7.1-dev.2-R1/",
+    "cloudEnabled": false,
+    "isolated": true
+  },
+  "deviceRetest": {
+    "checks": 1,
+    "pass": 0,
+    "fail": 0,
+    "status": "PENDING"
+  },
+  "validationComplete": false
+}
