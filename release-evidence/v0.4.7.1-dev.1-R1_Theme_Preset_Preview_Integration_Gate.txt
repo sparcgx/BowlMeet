@@ -41,5 +41,12 @@ ISOLATED PREVIEW
 - Cache prefix: bowlmeet-preview-v0471d1r1-*
 
 DEVICE MANUAL
-- 0 / 10 PENDING
-- Validation Complete: NO
+- 10 / 10 PASS
+- User confirmation date: 2026-09-27
+- Validation Complete: YES
+
+FINAL R1 RESULT
+- Automated Regression: 52 / 52 PASS / 0 FAIL
+- Device Acceptance: 10 / 10 PASS
+- Overall: PASS
+- No main / stable promotion executed
