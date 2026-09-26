@@ -1,0 +1,62 @@
+{
+  "version": "v0.4.7.0-dev.1-R1",
+  "title": "Theme Preset Architecture & Preview Integration Gate",
+  "date": "2026-09-26",
+  "base": "v0.4.7.0-dev.1",
+  "stableBase": "stable/v0.4.6.7",
+  "automated": {
+    "pass": 62,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "themes": [
+    "default",
+    "liquid-glass",
+    "clear-blue",
+    "soft-violet",
+    "dark-night",
+    "high-contrast"
+  ],
+  "designPresets": [
+    "standard",
+    "mobile",
+    "field",
+    "glass",
+    "night"
+  ],
+  "controls": [
+    "motionEnabled",
+    "transparencyEnabled",
+    "cardRadius",
+    "shadowLevel",
+    "colorIntensity"
+  ],
+  "preferences": {
+    "themeKey": "bowlingMeetup.themePreferences.v1",
+    "layoutKey": "bowlingMeetup.layoutPreferences.v1",
+    "localOnly": true
+  },
+  "safety": {
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "publicControlKey": "bowlingMeetup.publicControl.v044",
+    "backupContractChanged": false,
+    "syncContractChanged": false,
+    "publicPayloadMigration": false,
+    "databaseMigration": false
+  },
+  "preview": {
+    "sourcePreviewVerified": true,
+    "storageIsolation": true,
+    "indexedDbIsolation": true,
+    "cloudDisabled": true,
+    "cacheIsolation": true
+  },
+  "deviceManual": {
+    "checks": 10,
+    "pass": 0,
+    "fail": 0,
+    "status": "PENDING"
+  },
+  "validationComplete": false
+}
