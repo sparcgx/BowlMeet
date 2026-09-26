@@ -23,6 +23,11 @@
       "pass": 23,
       "fail": 0,
       "total": 23
+    },
+    "previewIsolation": {
+      "pass": 17,
+      "fail": 0,
+      "total": 17
     }
   },
   "regression": {
@@ -31,5 +36,16 @@
     "publicHistoryCode": "PUBLIC",
     "dataContractChanged": false
   },
-  "nextGate": "isolated Preview + iPhone portrait visual acceptance"
+  "nextGate": "iPhone portrait visual acceptance",
+  "preview": {
+    "status": "PUBLISHED",
+    "path": "/preview/v0.4.7.0-dev.3/",
+    "pullRequest": 64,
+    "mergeCommit": "61d9a253c984d46513d3a94b6b46751fbe1ac7f2",
+    "cloudEnabled": false,
+    "localStorageNamespace": "bowlmeet.preview.v0470d3.*",
+    "indexedDb": "bowlmeet.preview.v0470d3.local",
+    "cacheNamespace": "bowlmeet-preview-v0470d3-r2-*",
+    "productionRootUnchanged": true
+  }
 }
