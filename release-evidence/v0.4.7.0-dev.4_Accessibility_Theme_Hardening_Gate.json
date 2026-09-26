@@ -87,20 +87,22 @@
       "total": 12
     },
     "scope": [
-      "Skip Link / Main landmark",
-      "Desktop / Mobile navigation focus state",
-      "More Sheet focus trap / focus return",
-      "Dialog focus trap / focus return",
-      "Default / Liquid Glass / Clear Blue / Soft Violet focus",
-      "Dark Night focus visibility",
-      "High Contrast non-color state",
+      "Skip Link / main focus",
+      "Desktop / Dock / More current + focus",
+      "More Sheet focus trap / return",
+      "Dialog focus trap / return",
+      "Default / Liquid / Blue / Violet focus",
+      "Dark Night focus",
+      "High Contrast non-color states",
       "Reduced Motion",
       "Reduced Transparency",
-      "iPhone Safari mobile regression",
-      "PWA Safe Area / Dialog / More Sheet",
-      "PWA reopen preference persistence / Preview isolation"
+      "iPhone Safari layout",
+      "PWA Safe Area / dialogs",
+      "PWA reopen preferences / preview isolation"
     ]
   },
   "releaseStatus": "DEV.4 ACCESSIBILITY ACCEPTED",
-  "nextWork": "v0.4.7.0-dev.4-R1｜Advanced Liquid Glass Motion Hardening"
+  "nextWork": "v0.4.7.0-dev.4-R1｜Advanced Liquid Glass Motion Hardening",
+  "status": "DEV.4 ACCEPTED",
+  "nextChange": "v0.4.7.0-dev.4-R1｜Advanced Liquid Glass Motion Hardening"
 }
