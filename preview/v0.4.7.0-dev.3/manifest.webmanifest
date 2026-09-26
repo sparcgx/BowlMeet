@@ -1,0 +1,36 @@
+{
+  "name": "保齡球球聚｜BowlMeet v0.4.7.0-dev.3 Preview",
+  "short_name": "BowlMeet dev.3",
+  "description": "v0.4.7.0-dev.3 Mobile / PWA Theme Optimization 隔離 Preview：iPhone Safari / PWA Standalone / Safe Area / Mobile Dock / More Sheet / 動態視窗與手機表格測試；正式 LocalStorage / IndexedDB / Cloud 全部隔離。",
+  "lang": "zh-Hant",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#ffffff",
+  "orientation": "any",
+  "categories": [
+    "sports",
+    "utilities"
+  ],
+  "icons": [
+    {
+      "src": "../../icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "../../icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "../../icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
