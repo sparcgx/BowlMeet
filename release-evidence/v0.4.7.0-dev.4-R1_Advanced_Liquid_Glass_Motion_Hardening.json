@@ -75,8 +75,29 @@
     "cloudEnabled": false,
     "localStorageNamespace": "bowlmeet.preview.v0470d4.*",
     "indexedDb": "bowlmeet.preview.v0470d4.local",
-    "cacheNamespace": "bowlmeet-preview-v0470d4-r1-glass-*",
+    "cacheNamespace": "bowlmeet-preview-v0470d4-r1-glass-v2-*",
     "productionRootUnchanged": true,
-    "productionRootBlob": "26a1b9028a6c8184dd7a616e1fa718caaeceae38"
+    "productionRootBlob": "26a1b9028a6c8184dd7a616e1fa718caaeceae38",
+    "latestPullRequest": 67,
+    "latestMergeCommit": "26ba3c7f3cf3a8e6bd35c6e127bf3c9fd57fec44",
+    "identityRefreshGate": {
+      "pass": 21,
+      "fail": 0,
+      "total": 21
+    },
+    "visibleVersion": "v0.4.7.0-dev.4-R1"
+  },
+  "finalGate": {
+    "pass": 28,
+    "fail": 0,
+    "total": 28,
+    "status": "PASS"
+  },
+  "versionIdentity": {
+    "appVersion": "0.4.7.0-dev.4-R1",
+    "titleAligned": true,
+    "manifestAligned": true,
+    "deploymentTestAligned": true,
+    "pwaCacheRefreshed": true
   }
 }
