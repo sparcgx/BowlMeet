@@ -1,0 +1,301 @@
+{
+  "version": "v0.4.7.1-dev.1-R1",
+  "title": "Theme Preset Architecture & Preview Integration",
+  "date": "2026-09-26",
+  "base": "stable/v0.4.7.0",
+  "branch": "v0.4.7.1-dev.1-R1",
+  "automated": {
+    "pass": 52,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "checks": [
+    {
+      "name": "Root exact expected transform",
+      "ok": true,
+      "detail": "No unexpected application logic drift vs stable/v0.4.7.0"
+    },
+    {
+      "name": "APP_VERSION identity",
+      "ok": true,
+      "detail": "0.4.7.1-dev.1-R1"
+    },
+    {
+      "name": "DB_VERSION frozen",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "PUBLIC_HISTORY_CODE frozen",
+      "ok": true,
+      "detail": "PUBLIC"
+    },
+    {
+      "name": "PUBLIC_HISTORY_PIN unchanged",
+      "ok": true,
+      "detail": "042042"
+    },
+    {
+      "name": "Production Cloud unchanged",
+      "ok": true,
+      "detail": "true"
+    },
+    {
+      "name": "Theme prefs key local-only",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Layout prefs key local-only",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Theme preset: default",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Theme preset: liquid-glass",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Theme preset: clear-blue",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Theme preset: soft-violet",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Theme preset: dark-night",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Theme preset: high-contrast",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Layout scale: 90",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Layout scale: 100",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Layout scale: 110",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Layout scale: 120",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Density: compact",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Density: standard",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Density: spacious",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Width: standard",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Width: wide",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Width: full",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Leaderboard standard/compact",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Score standard/large",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Leaderboard renderer retained",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Share renderer retained",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "History renderer retained",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Backup capture retained",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "DB open retained",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Group payload retained",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Manifest identity",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Root SW cache identity",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Preview version identity",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Preview Cloud OFF",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Preview IndexedDB isolated",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Preview Theme key isolated",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Preview Layout key isolated",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Preview PUBLIC code isolated",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Preview production PUBLIC absent",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Preview production storage prefix absent",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Preview DB_VERSION frozen",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Preview shared assets use parent path",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Preview manifest identity",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Preview SW cache isolated",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Preview SW cannot purge production caches",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Deployment test identity",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No SQL migration",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No Supabase migration",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "No IndexedDB schema migration",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Changed files constrained",
+      "ok": true,
+      "detail": "index.html, manifest.webmanifest, preview/v0.4.7.1-dev.1-R1/deployment-test.html, preview/v0.4.7.1-dev.1-R1/index.html, preview/v0.4.7.1-dev.1-R1/manifest.webmanifest, preview/v0.4.7.1-dev.1-R1/sw.js, sw.js"
+    }
+  ],
+  "safety": {
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "publicHistoryPin": "042042",
+    "backupContractChanged": false,
+    "syncContractChanged": false,
+    "publicPayloadMigration": false,
+    "databaseMigration": false,
+    "supabaseMigration": false,
+    "indexedDbMigration": false
+  },
+  "preview": {
+    "path": "preview/v0.4.7.1-dev.1-R1/",
+    "cloudEnabled": false,
+    "indexedDb": "bowlmeet.preview.v0471d1r1.local",
+    "themeKey": "bowlmeet.preview.v0471d1r1.themePreferences.v1",
+    "layoutKey": "bowlmeet.preview.v0471d1r1.layoutPreferences.v1",
+    "cachePrefix": "bowlmeet-preview-v0471d1r1-",
+    "isolated": true
+  },
+  "deviceManual": {
+    "checks": 10,
+    "pass": 0,
+    "fail": 0,
+    "status": "PENDING"
+  },
+  "validationComplete": false
+}
