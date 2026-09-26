@@ -1,0 +1,32 @@
+BowlMeet v0.4.7.0-dev.3-R1｜Mobile Dock & More Menu Alignment Fix
+Date: 2026-09-26
+Baseline: v0.4.7.0-dev.3 @ 5dd72202dbf792e7c74b663d8904cf5a0d1f4986
+
+ISSUE
+- 下方選單與「更多」內選單發生位移。
+
+ROOT CAUSE
+1. Mobile Dock 實際只有 4 個主要按鈕，但 dev.3 override 強制 5 欄。
+2. Dock / Backdrop / More Sheet 位於可被 90–120% layout scale zoom 的 .app 內，iPhone fixed positioning 可能一起偏移。
+
+FIX
+- Dock 固定 4 等分欄。
+- Dock / Backdrop / More Sheet 啟動時 mount 到 body，脫離 .app zoom 座標系。
+- 更多選單直向 3 欄；最後「設定」滿寬收尾。
+- <=420px 改 2 欄；短螢幕橫向改 4 欄。
+- PWA cache 更新為 dev.3-r1。
+
+GATES
+- R1 Source Gate: 23 PASS / 0 FAIL
+- R1 Preview Isolation Gate: 16 PASS / 0 FAIL
+- UI-only JS delta: 364 bytes
+- Core JS drift after removing mount helper: 0
+- DB_VERSION: 2
+- PUBLIC_HISTORY_CODE: PUBLIC
+- Data contract change: NONE
+
+PREVIEW
+- /preview/v0.4.7.0-dev.3/
+- Preview-only PR: #63
+- Merge commit: 3699c2de8f260896307d47465b6b4e7083ab715d
+- Production root remains identical to stable/v0.4.6.7
