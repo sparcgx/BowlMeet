@@ -1,12 +1,12 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.6.7",
+  "name": "保齡球球聚｜BowlMeet v0.4.7.0-dev.1",
   "short_name": "BowlMeet",
-  "description": "BowlMeet v0.4.6.7 Stable：修正完成球聚後現場記分、即時排行榜與 KPI 清空，解除賽後摘要對底部導覽的阻擋；新增現場動態局數（1～6 局）與安全增減局；修正取消公開／重新公開時的成績紀錄篩選穩定性。保留 Smart Next、Auto-save、公開排行榜／獎項／分享、備份還原、IndexedDB Snapshot 與 PWA 安全更新資料契約。",
+  "description": "BowlMeet v0.4.7.0-dev.1 Theme Center Foundation：以 v0.4.6.7 Stable 為基線，新增 6 組主題、5 組快速版面、圓角／陰影／色彩強度、動態與透明效果控制；所有主題與版面偏好僅儲存在目前裝置，不修改 PUBLIC、球聚成績、同步、Backup / Restore 或資料庫 Schema。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#eef3f8",
+  "background_color": "#f5f7fa",
   "theme_color": "#ffffff",
   "orientation": "any",
   "categories": [

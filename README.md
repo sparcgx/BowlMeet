@@ -1,3 +1,25 @@
+# BowlMeet v0.4.7.0-dev.1 — Theme Center Foundation
+
+- 基線：`stable/v0.4.6.7` / `main` commit `bf6054deeaa0658ab807c3c60ad095d7060d0de7`。
+- 版面設定正式升級為 **版面設計｜Layout & Theme Design**。
+- 新增 6 組主題：Default / Liquid Glass / Clear Blue / Soft Violet / Dark Night / High Contrast。
+- 新增 5 組快速套用：標準工作 / 行動瀏覽 / 現場大字 / 玻璃展示 / 夜間模式。
+- 新增卡片圓角、陰影強度、色彩強度、Motion、Transparency 本機偏好。
+- 支援 `prefers-reduced-motion`、`prefers-reduced-transparency` 與無 backdrop-filter fallback。
+- `THEME_PREFS_KEY = bowlingMeetup.themePreferences.v1`；`LAYOUT_PREFS_KEY` 沿用 `bowlingMeetup.layoutPreferences.v1`。
+- Theme / Layout 只屬於 Local UI Preferences，不進 PUBLIC / Sync / Backup / Restore / Snapshot payload。
+- `DB_VERSION = 2`、`PUBLIC_HISTORY_CODE = PUBLIC` 保持不變。
+- Theme Center Static Gate：**39/39 PASS / 0 FAIL**。
+- JavaScript Parse / CSS Brace / PWA Manifest / Service Worker Cache / Local-only Data Isolation：**PASS**。
+- iPhone / PWA Manual Device Acceptance：**PENDING**（10 項）。
+- 舊 dev.1 已封存：`archive/v0.4.7.0-dev.1-pre-v0.4.6.7-refresh-20260926`。
+- Theme Center Foundation Static Gate：**33 PASS / 0 FAIL**。
+- 隔離 Preview Gate：**15 PASS / 0 FAIL**。
+- Preview-only PR：#60，已合併到 main；只新增 `/preview/v0.4.7.0-dev.1/`。
+- Preview Cloud：OFF；LocalStorage / IndexedDB / PWA Cache 均使用 `v0470d1` 隔離 namespace。
+- 正式 root `index.html` blob 與 `stable/v0.4.6.7` 完全一致；正式版未升級。
+- 下一關：iPhone / PWA / Desktop Theme Center 視覺與互動驗收。
+
 # BowlMeet v0.4.6.7-dev.1 — Preview Deployment
 
 - 基線：`stable/v0.4.6.6`。

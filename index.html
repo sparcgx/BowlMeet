@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.6.7</title>
+<title>保齡球球聚｜BowlMeet v0.4.7.0-dev.1</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1141,7 +1141,7 @@ dialog::backdrop,
 }
 
 </style>
-<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0467" />
+<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0470d1" />
 <style id="history-score-critical">
 /* v0.4.6.3-dev.1 | Dynamic score grid + Safari/PWA fallback */
 .history-score-table-wrap{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
@@ -1233,6 +1233,337 @@ dialog::backdrop,
   #meetupView .live-rank-table-wrap{max-height:240px;overflow:auto}
   #meetupView .live-rank-table th,#meetupView .live-rank-table td{padding:6px 5px!important;font-size:10px!important}
   #meetupView .live-history-compact{margin-top:0!important}
+}
+</style>
+
+<style id="theme-center-v0470">
+/* =========================================================
+   v0.4.7.0-dev.1 | Theme Center Foundation
+   Presentation-only. No score/PUBLIC/sync/backup schema changes.
+   ========================================================= */
+:root{
+  --theme-page:#f5f7fa;
+  --theme-page-alt:#eef3f8;
+  --theme-surface:#ffffff;
+  --theme-surface-strong:#ffffff;
+  --theme-surface-muted:#f8fafc;
+  --theme-control:#ffffff;
+  --theme-table-head:#f5f7fa;
+  --theme-text:#172033;
+  --theme-muted:#697386;
+  --theme-border:#e4e8ef;
+  --theme-border-strong:#cfd6e2;
+  --theme-primary:#0f62fe;
+  --theme-primary-soft:#eef4ff;
+  --theme-shadow-low:0 3px 12px rgba(17,24,39,.05);
+  --theme-shadow-medium:0 8px 28px rgba(17,24,39,.08);
+  --theme-shadow-high:0 18px 48px rgba(17,24,39,.14);
+  --theme-shadow:var(--theme-shadow-medium);
+  --theme-radius:16px;
+  --theme-accent-saturation:1;
+  --glass:rgba(255,255,255,.80);
+  --glass-strong:rgba(255,255,255,.92);
+  --glass-soft:rgba(248,250,252,.72);
+  --glass-border:rgba(255,255,255,.78);
+  --glass-blur:18px;
+  --bg:var(--theme-page);
+  --card:var(--theme-surface);
+  --text:var(--theme-text);
+  --muted:var(--theme-muted);
+  --line:var(--theme-border);
+  --line-strong:var(--theme-border-strong);
+  --primary:var(--theme-primary);
+  --primary-soft:var(--theme-primary-soft);
+  --shadow:var(--theme-shadow);
+  --radius:var(--theme-radius);
+}
+:root[data-theme="default"]{
+  --theme-page:#f5f7fa;--theme-page-alt:#eef2f6;--theme-surface:#fff;--theme-surface-strong:#fff;--theme-surface-muted:#f8fafc;
+  --theme-control:#fff;--theme-table-head:#f5f7fa;--theme-text:#172033;--theme-muted:#697386;--theme-border:#e3e8ef;--theme-border-strong:#cdd5df;
+  --theme-primary:#0f62fe;--theme-primary-soft:#edf4ff;--glass:#fff;--glass-strong:#fff;--glass-soft:#fafbfc;--glass-border:#e3e8ef;--glass-blur:0px;
+}
+:root[data-theme="liquid-glass"]{
+  --theme-page:#edf3fa;--theme-page-alt:#f7f9fc;--theme-surface:rgba(255,255,255,.68);--theme-surface-strong:rgba(255,255,255,.86);--theme-surface-muted:rgba(248,250,252,.60);
+  --theme-control:rgba(255,255,255,.78);--theme-table-head:rgba(248,250,252,.74);--theme-text:#18202d;--theme-muted:#667085;--theme-border:rgba(255,255,255,.68);--theme-border-strong:rgba(100,116,139,.22);
+  --theme-primary:#0a66e8;--theme-primary-soft:rgba(10,102,232,.10);--glass:rgba(255,255,255,.62);--glass-strong:rgba(255,255,255,.84);--glass-soft:rgba(248,250,252,.54);--glass-border:rgba(255,255,255,.74);--glass-blur:26px;
+}
+:root[data-theme="clear-blue"]{
+  --theme-page:#f2f7fd;--theme-page-alt:#e9f3ff;--theme-surface:#fff;--theme-surface-strong:#fff;--theme-surface-muted:#f1f7ff;
+  --theme-control:#fff;--theme-table-head:#eaf4ff;--theme-text:#16243a;--theme-muted:#607087;--theme-border:#d8e7f7;--theme-border-strong:#b9d3ef;
+  --theme-primary:#156bd6;--theme-primary-soft:#e7f2ff;--glass:#f9fcff;--glass-strong:#fff;--glass-soft:#eef6ff;--glass-border:#d7e8f9;--glass-blur:12px;
+}
+:root[data-theme="soft-violet"]{
+  --theme-page:#f7f4fb;--theme-page-alt:#f1ebf9;--theme-surface:#fff;--theme-surface-strong:#fff;--theme-surface-muted:#faf7fd;
+  --theme-control:#fff;--theme-table-head:#f2ecf9;--theme-text:#2a2137;--theme-muted:#71677d;--theme-border:#e6ddef;--theme-border-strong:#d2c1e2;
+  --theme-primary:#7554b3;--theme-primary-soft:#f0e9fb;--glass:#fcfaff;--glass-strong:#fff;--glass-soft:#f5effb;--glass-border:#eadff4;--glass-blur:14px;
+}
+:root[data-theme="dark-night"]{
+  --theme-page:#0d1420;--theme-page-alt:#111b2a;--theme-surface:#151f2e;--theme-surface-strong:#192536;--theme-surface-muted:#101a28;
+  --theme-control:#172333;--theme-table-head:#1b293b;--theme-text:#edf3fb;--theme-muted:#a9b6c7;--theme-border:#2a3a4f;--theme-border-strong:#41536a;
+  --theme-primary:#69a8ff;--theme-primary-soft:#172f50;--glass:rgba(20,31,46,.88);--glass-strong:rgba(25,37,54,.96);--glass-soft:rgba(16,26,40,.88);--glass-border:rgba(98,119,145,.32);--glass-blur:20px;
+  --theme-shadow-low:0 3px 14px rgba(0,0,0,.22);--theme-shadow-medium:0 10px 30px rgba(0,0,0,.30);--theme-shadow-high:0 20px 54px rgba(0,0,0,.42);
+}
+:root[data-theme="high-contrast"]{
+  --theme-page:#fff;--theme-page-alt:#f4f4f4;--theme-surface:#fff;--theme-surface-strong:#fff;--theme-surface-muted:#f4f4f4;
+  --theme-control:#fff;--theme-table-head:#ededed;--theme-text:#000;--theme-muted:#303030;--theme-border:#5d5d5d;--theme-border-strong:#111;
+  --theme-primary:#0047b8;--theme-primary-soft:#e4efff;--glass:#fff;--glass-strong:#fff;--glass-soft:#f4f4f4;--glass-border:#333;--glass-blur:0px;
+}
+
+:root[data-card-radius="small"]{--theme-radius:10px}
+:root[data-card-radius="medium"]{--theme-radius:16px}
+:root[data-card-radius="large"]{--theme-radius:22px}
+:root[data-shadow-level="low"]{--theme-shadow:var(--theme-shadow-low)}
+:root[data-shadow-level="medium"]{--theme-shadow:var(--theme-shadow-medium)}
+:root[data-shadow-level="high"]{--theme-shadow:var(--theme-shadow-high)}
+:root[data-color-intensity="soft"]{--theme-accent-saturation:.78}
+:root[data-color-intensity="standard"]{--theme-accent-saturation:1}
+:root[data-color-intensity="vivid"]{--theme-accent-saturation:1.22}
+
+html[data-theme] body{
+  color:var(--theme-text)!important;
+  background:var(--theme-page)!important;
+  transition:background-color .2s ease,color .2s ease;
+}
+html[data-theme="liquid-glass"] body{
+  background:
+    radial-gradient(circle at 12% 0%,rgba(136,190,255,.30),transparent 32rem),
+    radial-gradient(circle at 92% 8%,rgba(197,178,255,.24),transparent 30rem),
+    radial-gradient(circle at 48% 92%,rgba(178,225,255,.20),transparent 34rem),
+    linear-gradient(145deg,#f7f9fc 0%,#eef3f8 44%,#f7f8fb 100%)!important;
+  background-attachment:fixed!important;
+}
+html[data-theme="clear-blue"] body{background:linear-gradient(180deg,#f8fbff 0%,#eef6ff 100%)!important}
+html[data-theme="soft-violet"] body{background:linear-gradient(180deg,#fcfaff 0%,#f3edf9 100%)!important}
+html[data-theme="dark-night"] body{background:linear-gradient(160deg,#0b111b 0%,#111b2a 58%,#0d1420 100%)!important}
+html[data-theme="high-contrast"] body{background:#fff!important}
+
+html[data-theme] .card,
+html[data-theme] .panel,
+html[data-theme] .sheet-card,
+html[data-theme] .settings-panel,
+html[data-theme] .session,
+html[data-theme] .group-panel,
+html[data-theme] .personal-panel,
+html[data-theme] .award-card,
+html[data-theme] .custom-award-panel,
+html[data-theme] .award-rules-panel,
+html[data-theme] .live-score-panel,
+html[data-theme] .live-rank-panel,
+html[data-theme] .leaderboard-card{
+  background:var(--theme-surface)!important;
+  border-color:var(--theme-border)!important;
+  border-radius:var(--theme-radius)!important;
+  box-shadow:var(--theme-shadow)!important;
+  color:var(--theme-text)!important;
+}
+html[data-theme] .topbar{
+  background:var(--glass)!important;
+  border-color:var(--theme-border)!important;
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(150%);
+  backdrop-filter:blur(var(--glass-blur)) saturate(150%);
+}
+html[data-theme] .tab,
+html[data-theme] .btn:not(.primary),
+html[data-theme] button.theme-card,
+html[data-theme] button.layout-preset-btn{
+  background:var(--theme-control)!important;
+  color:var(--theme-text)!important;
+  border-color:var(--theme-border)!important;
+}
+html[data-theme] .tab.active,
+html[data-theme] .btn.primary{
+  background:var(--theme-primary)!important;
+  border-color:var(--theme-primary)!important;
+  color:#fff!important;
+  filter:saturate(var(--theme-accent-saturation));
+}
+html[data-theme="dark-night"] .tab.active,
+html[data-theme="dark-night"] .btn.primary{color:#07111f!important}
+html[data-theme] input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+html[data-theme] select,
+html[data-theme] textarea{
+  background:var(--theme-control)!important;
+  color:var(--theme-text)!important;
+  border-color:var(--theme-border)!important;
+}
+html[data-theme] input::placeholder,
+html[data-theme] textarea::placeholder{color:var(--theme-muted)!important}
+html[data-theme] label,
+html[data-theme] .status,
+html[data-theme] small,
+html[data-theme] .sub,
+html[data-theme] .settings-note,
+html[data-theme] .footer-note{color:var(--theme-muted)}
+html[data-theme] table th,
+html[data-theme] .score-table th,
+html[data-theme] .history-score-head,
+html[data-theme] .personal-history-table th,
+html[data-theme] .live-rank-table th{
+  background:var(--theme-table-head)!important;
+  color:var(--theme-muted)!important;
+  border-color:var(--theme-border)!important;
+}
+html[data-theme] table td,
+html[data-theme] .score-table td,
+html[data-theme] .history-score-grid>div,
+html[data-theme] .personal-history-table td,
+html[data-theme] .live-rank-table td{border-color:var(--theme-border)!important}
+html[data-theme] .score-table-wrap,
+html[data-theme] .history-score-table-wrap,
+html[data-theme] .personal-history-wrap,
+html[data-theme] .live-rank-table-wrap{border-color:var(--theme-border)!important;background:var(--theme-surface)!important}
+html[data-theme] .score-table td.name-cell,
+html[data-theme] .score-table th.name-head,
+html[data-theme] .score-in,
+html[data-theme] .row-op{background:var(--theme-surface-strong)!important;color:var(--theme-text)!important}
+html[data-theme] .sum,
+html[data-theme] .avg,
+html[data-theme] .total{background:var(--theme-surface-muted)!important;color:var(--theme-text)!important}
+html[data-theme] .pill,
+html[data-theme] .theme-current-chip,
+html[data-theme] .layout-local-badge{
+  background:var(--theme-primary-soft)!important;
+  color:var(--theme-primary)!important;
+  filter:saturate(var(--theme-accent-saturation));
+}
+html[data-theme] .notice,
+html[data-theme] .legacy-note,
+html[data-theme] .history-filter-panel,
+html[data-theme] .personal-profile-card,
+html[data-theme] .group-card,
+html[data-theme] .cloud-summary,
+html[data-theme] .layout-settings-preview,
+html[data-theme] .layout-preset-section,
+html[data-theme] .theme-center-section{
+  background:var(--theme-surface-muted)!important;
+  border-color:var(--theme-border)!important;
+  color:var(--theme-text)!important;
+}
+html[data-theme] dialog,
+html[data-theme] .pwa-update-card,
+html[data-theme] .restore-dialog-card{
+  background:var(--theme-surface-strong)!important;
+  color:var(--theme-text)!important;
+}
+html[data-theme] .mobile-glass-dock,
+html[data-theme] .mobile-glass-more-sheet,
+html[data-theme] .more-sheet{
+  background:var(--glass-strong)!important;
+  border-color:var(--theme-border)!important;
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(150%);
+  backdrop-filter:blur(var(--glass-blur)) saturate(150%);
+}
+html[data-theme="dark-night"] .message.ok{background:#112d22!important;color:#8be0b5!important}
+html[data-theme="dark-night"] .message.err{background:#3a1b22!important;color:#ffb8c3!important}
+html[data-theme="dark-night"] a{color:#86b8ff}
+html[data-theme="high-contrast"] *:focus-visible{outline:3px solid #000!important;outline-offset:2px}
+html[data-theme="high-contrast"] .btn,
+html[data-theme="high-contrast"] input,
+html[data-theme="high-contrast"] select,
+html[data-theme="high-contrast"] textarea{border-width:2px!important}
+html[data-theme="high-contrast"] .tab.active,
+html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-color:#000!important;color:#fff!important}
+
+.theme-center-panel{display:grid;gap:14px}
+.theme-center-section,.layout-preset-section{border:1px solid var(--theme-border);border-radius:calc(var(--theme-radius) - 2px);padding:14px}
+.theme-center-head,.layout-preset-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:11px}
+.theme-center-head strong,.layout-preset-head strong{display:block;font-size:13px}
+.theme-center-head span:not(.theme-current-chip),.layout-preset-head span:not(.layout-device-hint){display:block;margin-top:3px;font-size:11px;color:var(--theme-muted)}
+.theme-current-chip,.layout-device-hint{display:inline-flex;align-items:center;border-radius:999px;padding:5px 9px;font-size:10px;font-weight:850;white-space:nowrap}
+.theme-current-chip{background:var(--theme-primary-soft);color:var(--theme-primary)}
+.layout-device-hint{background:var(--theme-surface);border:1px solid var(--theme-border);color:var(--theme-muted)}
+.theme-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.theme-card{display:grid;grid-template-columns:54px minmax(0,1fr);grid-template-rows:auto auto;column-gap:10px;align-items:center;text-align:left;border:1px solid var(--theme-border);border-radius:14px;padding:10px;min-height:76px;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+.theme-card:hover{transform:translateY(-1px)}
+.theme-card.active{border-color:var(--theme-primary)!important;box-shadow:0 0 0 2px var(--theme-primary-soft)!important}
+.theme-card strong{font-size:12px;align-self:end}
+.theme-card>span:last-child{font-size:10px;color:var(--theme-muted);align-self:start}
+.theme-swatch{grid-row:1/3;width:54px;height:48px;border-radius:12px;padding:7px;display:grid;grid-template-columns:repeat(3,1fr);gap:4px;border:1px solid rgba(100,116,139,.15);overflow:hidden}
+.theme-swatch i{display:block;border-radius:5px}
+.swatch-default{background:#f6f7f9}.swatch-default i{background:#fff}.swatch-default i:first-child{background:#0f62fe}
+.swatch-liquid{background:linear-gradient(135deg,#dcecff,#f7f3ff)}.swatch-liquid i{background:rgba(255,255,255,.72);box-shadow:0 4px 12px rgba(51,89,140,.12)}.swatch-liquid i:first-child{background:rgba(72,141,241,.65)}
+.swatch-clearblue{background:#edf6ff}.swatch-clearblue i{background:#fff}.swatch-clearblue i:first-child{background:#5b9ce6}
+.swatch-violet{background:#f3ecf9}.swatch-violet i{background:#fff}.swatch-violet i:first-child{background:#9471c6}
+.swatch-dark{background:#111b29}.swatch-dark i{background:#26374b}.swatch-dark i:first-child{background:#70aaff}
+.swatch-contrast{background:#fff;border-color:#111}.swatch-contrast i{background:#fff;border:1px solid #111}.swatch-contrast i:first-child{background:#111}
+.theme-detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:11px}
+.theme-options{display:grid;grid-template-columns:1fr 1fr auto;gap:9px;align-items:stretch;margin-top:10px}
+.theme-toggle-row{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--theme-border);border-radius:12px;padding:10px;background:var(--theme-surface)}
+.theme-toggle-row span{min-width:0}.theme-toggle-row strong{display:block;font-size:11px;color:var(--theme-text)}.theme-toggle-row small{display:block;font-size:9px;line-height:1.4;margin-top:2px;color:var(--theme-muted)}
+.theme-toggle-row input{width:18px;height:18px;flex:0 0 auto}
+.theme-center-status,.layout-settings-status{font-size:10px;line-height:1.5;color:var(--theme-muted);margin-top:9px}
+.theme-center-status.saved,.layout-settings-status.saved{color:var(--success)}
+.design-preset-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.design-preset-strip .layout-preset-btn{min-width:0}
+.design-preset-strip .layout-preset-btn.active{border-color:var(--theme-primary)!important;box-shadow:0 0 0 2px var(--theme-primary-soft)!important}
+.design-preset-strip .layout-preset-btn strong{display:block}
+.design-preset-strip .layout-preset-btn span{display:block;font-size:9px;margin-top:3px;color:var(--theme-muted)}
+
+:root[data-theme-transparency="off"]{
+  --glass:var(--theme-surface);
+  --glass-strong:var(--theme-surface-strong);
+  --glass-soft:var(--theme-surface-muted);
+  --glass-border:var(--theme-border);
+  --glass-blur:0px;
+}
+:root[data-theme-transparency="off"] .topbar,
+:root[data-theme-transparency="off"] .mobile-glass-dock,
+:root[data-theme-transparency="off"] .mobile-glass-more-sheet,
+:root[data-theme-transparency="off"] .more-sheet,
+:root[data-theme-transparency="off"] .card{
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+}
+:root[data-theme-motion="off"] *,
+:root[data-theme-motion="off"] *::before,
+:root[data-theme-motion="off"] *::after{
+  scroll-behavior:auto!important;
+  animation-duration:.01ms!important;
+  animation-iteration-count:1!important;
+  transition-duration:.01ms!important;
+}
+@media(prefers-reduced-motion:reduce){
+  html[data-theme] *,html[data-theme] *::before,html[data-theme] *::after{
+    scroll-behavior:auto!important;
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+}
+@media(prefers-reduced-transparency:reduce){
+  :root[data-theme]{
+    --glass:var(--theme-surface);
+    --glass-strong:var(--theme-surface-strong);
+    --glass-soft:var(--theme-surface-muted);
+    --glass-border:var(--theme-border);
+    --glass-blur:0px;
+  }
+  html[data-theme] .topbar,
+  html[data-theme] .mobile-glass-dock,
+  html[data-theme] .mobile-glass-more-sheet,
+  html[data-theme] .more-sheet,
+  html[data-theme] .card{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+}
+@supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  :root[data-theme="liquid-glass"]{
+    --glass:#f8fbff;--glass-strong:#fff;--glass-soft:#f4f7fb;--glass-border:#dce5ef;--glass-blur:0px;
+    --theme-surface:#fbfdff;--theme-surface-strong:#fff;--theme-surface-muted:#f5f8fc;
+  }
+}
+@media(max-width:900px){
+  .theme-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .design-preset-strip{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:620px){
+  .theme-center-panel{gap:10px}
+  .theme-center-section,.layout-preset-section{padding:11px}
+  .theme-center-head,.layout-preset-head{flex-direction:column;align-items:flex-start}
+  .theme-card-grid{grid-template-columns:1fr}
+  .theme-card{min-height:70px}
+  .theme-detail-grid{grid-template-columns:1fr}
+  .theme-options{grid-template-columns:1fr}
+  .design-preset-strip{display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;padding-bottom:3px}
+  .design-preset-strip .layout-preset-btn{min-width:150px;scroll-snap-align:start}
 }
 </style>
 </head>
@@ -1457,22 +1788,71 @@ dialog::backdrop,
           </div>
         </section>
 
-        <section class="card settings-panel layout-settings-panel">
+        <section class="card settings-panel layout-settings-panel theme-center-panel">
           <div class="settings-panel-head">
-            <div><h2>版面設定</h2><p>調整目前裝置的 Liquid Glass 顯示方式；不會修改球聚、公開成績、同步或備份資料。</p></div>
+            <div><h2>版面設計</h2><p>Theme Center 與版面設定集中管理；全部只儲存在目前裝置，不會修改球聚、PUBLIC、同步、成績或備份資料。</p></div>
             <span class="layout-preview-chip" id="layoutPreviewChip">預設版面</span>
           </div>
+
+          <div class="theme-center-section">
+            <div class="theme-center-head">
+              <div><strong>主題</strong><span>切換整體視覺風格，立即套用並保留於此裝置。</span></div>
+              <span class="theme-current-chip" id="themeCurrentChip">預設（原主題）</span>
+            </div>
+            <div class="theme-card-grid" role="group" aria-label="主題選擇">
+              <button class="theme-card" type="button" data-theme-option="default" aria-pressed="false">
+                <span class="theme-swatch swatch-default"><i></i><i></i><i></i></span>
+                <strong>預設</strong><span>白色企業風，穩定易讀</span>
+              </button>
+              <button class="theme-card" type="button" data-theme-option="liquid-glass" aria-pressed="false">
+                <span class="theme-swatch swatch-liquid"><i></i><i></i><i></i></span>
+                <strong>高階動態透明</strong><span>玻璃、柔光與動態層次</span>
+              </button>
+              <button class="theme-card" type="button" data-theme-option="clear-blue" aria-pressed="false">
+                <span class="theme-swatch swatch-clearblue"><i></i><i></i><i></i></span>
+                <strong>清新藍白</strong><span>清爽、專業、資料易讀</span>
+              </button>
+              <button class="theme-card" type="button" data-theme-option="soft-violet" aria-pressed="false">
+                <span class="theme-swatch swatch-violet"><i></i><i></i><i></i></span>
+                <strong>柔霧紫光</strong><span>淡紫柔霧與柔和層次</span>
+              </button>
+              <button class="theme-card" type="button" data-theme-option="dark-night" aria-pressed="false">
+                <span class="theme-swatch swatch-dark"><i></i><i></i><i></i></span>
+                <strong>夜幕深色</strong><span>低光環境與夜間球聚</span>
+              </button>
+              <button class="theme-card" type="button" data-theme-option="high-contrast" aria-pressed="false">
+                <span class="theme-swatch swatch-contrast"><i></i><i></i><i></i></span>
+                <strong>高對比簡潔</strong><span>強化辨識與快速操作</span>
+              </button>
+            </div>
+
+            <div class="theme-detail-grid">
+              <div class="field"><label for="themeCardRadiusSelect">卡片圓角</label><select id="themeCardRadiusSelect"><option value="small">小</option><option value="medium">中</option><option value="large">大</option></select></div>
+              <div class="field"><label for="themeShadowLevelSelect">陰影強度</label><select id="themeShadowLevelSelect"><option value="low">低</option><option value="medium">中</option><option value="high">高</option></select></div>
+              <div class="field"><label for="themeColorIntensitySelect">色彩強度</label><select id="themeColorIntensitySelect"><option value="soft">柔和</option><option value="standard">標準</option><option value="vivid">鮮明</option></select></div>
+            </div>
+            <div class="theme-options">
+              <label class="theme-toggle-row"><span><strong>動態效果</strong><small>主題高光與切換動畫；系統 Reduce Motion 仍優先。</small></span><input id="themeMotionToggle" type="checkbox" checked /></label>
+              <label class="theme-toggle-row"><span><strong>透明效果</strong><small>玻璃模糊與半透明背景；不支援時自動改用實色。</small></span><input id="themeTransparencyToggle" type="checkbox" checked /></label>
+              <button class="btn small" id="themeResetBtn" type="button">恢復原主題</button>
+            </div>
+            <div class="theme-center-status" id="themeCenterStatus">主題設定會立即套用並儲存在目前裝置。</div>
+          </div>
+
           <div class="layout-preset-section">
             <div class="layout-preset-head">
-              <div><strong>快速版面</strong><span>一鍵套用並保存；下方仍可進一步自訂。</span></div>
+              <div><strong>快速套用</strong><span>主題＋版面一起套用；套用後仍可個別微調。</span></div>
               <span class="layout-device-hint" id="layoutDeviceHint">自動依目前裝置顯示</span>
             </div>
-            <div class="layout-preset-strip" role="group" aria-label="版面快速預設">
-              <button class="layout-preset-btn" type="button" data-layout-preset="standard" aria-pressed="false"><strong>標準</strong><span>v0.4.6 原始比例</span></button>
-              <button class="layout-preset-btn" type="button" data-layout-preset="compact" aria-pressed="false"><strong>緊湊</strong><span>更多內容、排行榜更精簡</span></button>
-              <button class="layout-preset-btn" type="button" data-layout-preset="field" aria-pressed="false"><strong>現場大字</strong><span>加大計分區，手機現場優先</span></button>
+            <div class="design-preset-strip" role="group" aria-label="主題與版面快速預設">
+              <button class="layout-preset-btn" type="button" data-design-preset="standard" aria-pressed="false"><strong>標準工作</strong><span>預設主題與標準版面</span></button>
+              <button class="layout-preset-btn" type="button" data-design-preset="mobile" aria-pressed="false"><strong>行動瀏覽</strong><span>清新藍白＋緊湊滿版</span></button>
+              <button class="layout-preset-btn" type="button" data-design-preset="field" aria-pressed="false"><strong>現場大字</strong><span>高對比＋大字計分</span></button>
+              <button class="layout-preset-btn" type="button" data-design-preset="glass" aria-pressed="false"><strong>玻璃展示</strong><span>Liquid Glass 完整效果</span></button>
+              <button class="layout-preset-btn" type="button" data-design-preset="night" aria-pressed="false"><strong>夜間模式</strong><span>深色低光環境</span></button>
             </div>
           </div>
+
           <div class="layout-settings-grid">
             <div class="field"><label for="layoutScaleSelect">介面大小</label><select id="layoutScaleSelect"><option value="90">90%</option><option value="100">100%</option><option value="110">110%</option><option value="120">120%</option></select></div>
             <div class="field"><label for="layoutDensitySelect">內容密度</label><select id="layoutDensitySelect"><option value="compact">緊湊</option><option value="standard">標準</option><option value="spacious">寬鬆</option></select></div>
@@ -1485,10 +1865,10 @@ dialog::backdrop,
             <span class="layout-local-badge">本機限定</span>
           </div>
           <div class="settings-actions">
-            <button class="btn primary" id="layoutApplyBtn" type="button">套用設定</button>
-            <button class="btn" id="layoutResetBtn" type="button">恢復預設</button>
+            <button class="btn primary" id="layoutApplyBtn" type="button">套用版面</button>
+            <button class="btn" id="layoutResetBtn" type="button">恢復版面預設</button>
           </div>
-          <div class="layout-settings-status" id="layoutSettingsStatus">調整後立即預覽；按「套用設定」才會保存到目前裝置。</div>
+          <div class="layout-settings-status" id="layoutSettingsStatus">版面調整立即預覽；按「套用版面」才會保存到目前裝置。</div>
         </section>
 
         <section class="card settings-panel settings-app-panel">
@@ -2161,13 +2541,65 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.6.7';
+const APP_VERSION='0.4.7.0-dev.1';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
+const THEME_PREFS_KEY='bowlingMeetup.themePreferences.v1';
+const THEME_DEFAULTS=Object.freeze({
+  theme:'default',
+  themeVariant:'base',
+  motionEnabled:true,
+  transparencyEnabled:true,
+  cardRadius:'medium',
+  shadowLevel:'medium',
+  colorIntensity:'standard'
+});
+const THEME_ALIASES=Object.freeze({
+  liquid:'liquid-glass',
+  clearblue:'clear-blue',
+  violet:'soft-violet',
+  dark:'dark-night',
+  contrast:'high-contrast'
+});
+const THEMES=Object.freeze({
+  default:Object.freeze({label:'預設（原主題）',themeColor:'#ffffff'}),
+  'liquid-glass':Object.freeze({label:'高階動態透明',themeColor:'#f3f7fd'}),
+  'clear-blue':Object.freeze({label:'清新藍白',themeColor:'#f4f9ff'}),
+  'soft-violet':Object.freeze({label:'柔霧紫光',themeColor:'#fbf8ff'}),
+  'dark-night':Object.freeze({label:'夜幕深色',themeColor:'#111827'}),
+  'high-contrast':Object.freeze({label:'高對比簡潔',themeColor:'#ffffff'})
+});
 const LAYOUT_DEFAULTS=Object.freeze({scale:'100',density:'standard',width:'standard',leaderboard:'standard',scoreSize:'standard'});
 const LAYOUT_PRESETS=Object.freeze({
   standard:Object.freeze({label:'標準',prefs:Object.freeze({...LAYOUT_DEFAULTS})}),
   compact:Object.freeze({label:'緊湊',prefs:Object.freeze({scale:'90',density:'compact',width:'wide',leaderboard:'compact',scoreSize:'standard'})}),
   field:Object.freeze({label:'現場大字',prefs:Object.freeze({scale:'110',density:'spacious',width:'standard',leaderboard:'standard',scoreSize:'large'})})
+});
+const DESIGN_PRESETS=Object.freeze({
+  standard:Object.freeze({
+    label:'標準工作',
+    theme:Object.freeze({...THEME_DEFAULTS,theme:'default',transparencyEnabled:false}),
+    layout:Object.freeze({...LAYOUT_DEFAULTS})
+  }),
+  mobile:Object.freeze({
+    label:'行動瀏覽',
+    theme:Object.freeze({...THEME_DEFAULTS,theme:'clear-blue',cardRadius:'medium',shadowLevel:'low'}),
+    layout:Object.freeze({scale:'100',density:'compact',width:'full',leaderboard:'compact',scoreSize:'standard'})
+  }),
+  field:Object.freeze({
+    label:'現場大字',
+    theme:Object.freeze({...THEME_DEFAULTS,theme:'high-contrast',motionEnabled:false,transparencyEnabled:false,cardRadius:'small',shadowLevel:'low',colorIntensity:'vivid'}),
+    layout:Object.freeze({scale:'110',density:'spacious',width:'full',leaderboard:'standard',scoreSize:'large'})
+  }),
+  glass:Object.freeze({
+    label:'玻璃展示',
+    theme:Object.freeze({...THEME_DEFAULTS,theme:'liquid-glass',motionEnabled:true,transparencyEnabled:true,cardRadius:'large',shadowLevel:'high'}),
+    layout:Object.freeze({...LAYOUT_DEFAULTS})
+  }),
+  night:Object.freeze({
+    label:'夜間模式',
+    theme:Object.freeze({...THEME_DEFAULTS,theme:'dark-night',transparencyEnabled:false,shadowLevel:'low'}),
+    layout:Object.freeze({...LAYOUT_DEFAULTS})
+  })
 });
 document.querySelectorAll('[data-app-version]').forEach(el=>{el.textContent='v'+APP_VERSION});
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
@@ -2199,6 +2631,135 @@ function avg(nums){return nums.length?Math.round(nums.reduce((a,b)=>a+b,0)/nums.
 function flash(text,type='ok'){const el=$('message');el.textContent=text;el.className='message show '+type;clearTimeout(flash.t);flash.t=setTimeout(()=>el.className='message',2400)}
 
 function safeJsonParse(raw,fallback=null){try{return JSON.parse(raw)}catch{return fallback}}
+
+
+function normalizeThemePreferences(raw={}){
+  const requested=String(raw?.theme||'');
+  const aliased=THEME_ALIASES[requested]||requested;
+  const theme=THEMES[aliased]?aliased:THEME_DEFAULTS.theme;
+  const pick=(key,allowed,fallback)=>allowed.has(String(raw?.[key]??''))?String(raw[key]):fallback;
+  return {
+    theme,
+    themeVariant:String(raw?.themeVariant||THEME_DEFAULTS.themeVariant),
+    motionEnabled:typeof raw?.motionEnabled==='boolean'?raw.motionEnabled:(typeof raw?.motion==='boolean'?raw.motion:THEME_DEFAULTS.motionEnabled),
+    transparencyEnabled:typeof raw?.transparencyEnabled==='boolean'?raw.transparencyEnabled:(typeof raw?.transparency==='boolean'?raw.transparency:THEME_DEFAULTS.transparencyEnabled),
+    cardRadius:pick('cardRadius',new Set(['small','medium','large']),THEME_DEFAULTS.cardRadius),
+    shadowLevel:pick('shadowLevel',new Set(['low','medium','high']),THEME_DEFAULTS.shadowLevel),
+    colorIntensity:pick('colorIntensity',new Set(['soft','standard','vivid']),THEME_DEFAULTS.colorIntensity)
+  };
+}
+function readThemePreferences(){
+  return normalizeThemePreferences(safeJsonParse(localStorage.getItem(THEME_PREFS_KEY),{})||{});
+}
+function themePreferencesEqual(a,b){
+  const x=normalizeThemePreferences(a),y=normalizeThemePreferences(b);
+  return Object.keys(THEME_DEFAULTS).every(key=>x[key]===y[key]);
+}
+function applyThemePreferences(prefs){
+  const p=normalizeThemePreferences(prefs),root=document.documentElement;
+  root.dataset.theme=p.theme;
+  root.dataset.themeMotion=p.motionEnabled?'on':'off';
+  root.dataset.themeTransparency=p.transparencyEnabled?'on':'off';
+  root.dataset.cardRadius=p.cardRadius;
+  root.dataset.shadowLevel=p.shadowLevel;
+  root.dataset.colorIntensity=p.colorIntensity;
+  root.style.colorScheme=p.theme==='dark-night'?'dark':'light';
+  const meta=document.querySelector('meta[name="theme-color"]');
+  if(meta)meta.setAttribute('content',THEMES[p.theme]?.themeColor||'#ffffff');
+  return p;
+}
+function renderThemeControls(prefs){
+  const p=normalizeThemePreferences(prefs);
+  document.querySelectorAll('[data-theme-option]').forEach(btn=>{
+    const active=btn.dataset.themeOption===p.theme;
+    btn.classList.toggle('active',active);
+    btn.setAttribute('aria-pressed',active?'true':'false');
+  });
+  if($('themeCurrentChip'))$('themeCurrentChip').textContent=THEMES[p.theme]?.label||THEMES.default.label;
+  if($('themeMotionToggle'))$('themeMotionToggle').checked=p.motionEnabled;
+  if($('themeTransparencyToggle'))$('themeTransparencyToggle').checked=p.transparencyEnabled;
+  if($('themeCardRadiusSelect'))$('themeCardRadiusSelect').value=p.cardRadius;
+  if($('themeShadowLevelSelect'))$('themeShadowLevelSelect').value=p.shadowLevel;
+  if($('themeColorIntensitySelect'))$('themeColorIntensitySelect').value=p.colorIntensity;
+  return p;
+}
+function setThemeCenterStatus(text,saved=false){
+  const el=$('themeCenterStatus');if(!el)return;
+  el.textContent=text;el.classList.toggle('saved',!!saved);
+}
+function collectThemePreferences(){
+  const current=readThemePreferences();
+  return normalizeThemePreferences({
+    ...current,
+    motionEnabled:$('themeMotionToggle')?.checked!==false,
+    transparencyEnabled:$('themeTransparencyToggle')?.checked!==false,
+    cardRadius:$('themeCardRadiusSelect')?.value||current.cardRadius,
+    shadowLevel:$('themeShadowLevelSelect')?.value||current.shadowLevel,
+    colorIntensity:$('themeColorIntensitySelect')?.value||current.colorIntensity
+  });
+}
+function renderDesignPresetState(){
+  const theme=readThemePreferences();
+  const layout=readLayoutPreferences();
+  let active='';
+  for(const [key,preset] of Object.entries(DESIGN_PRESETS)){
+    if(themePreferencesEqual(theme,preset.theme)&&layoutPreferencesEqual(layout,preset.layout)){active=key;break}
+  }
+  document.querySelectorAll('[data-design-preset]').forEach(btn=>{
+    const on=btn.dataset.designPreset===active;
+    btn.classList.toggle('active',on);
+    btn.setAttribute('aria-pressed',on?'true':'false');
+  });
+  return active;
+}
+function saveThemePreferences(prefs,message='主題設定已儲存在目前裝置。'){
+  const p=normalizeThemePreferences(prefs);
+  localStorage.setItem(THEME_PREFS_KEY,JSON.stringify(p));
+  applyThemePreferences(p);
+  renderThemeControls(p);
+  renderDesignPresetState();
+  setThemeCenterStatus(message,true);
+  return p;
+}
+function selectTheme(theme){
+  if(!THEMES[theme])return;
+  saveThemePreferences({...collectThemePreferences(),theme},'已套用「'+THEMES[theme].label+'」。');
+}
+function updateThemeDetails(){
+  saveThemePreferences(collectThemePreferences(),'視覺細節已更新並儲存在目前裝置。');
+}
+function resetThemePreferences(){
+  localStorage.removeItem(THEME_PREFS_KEY);
+  applyThemePreferences(THEME_DEFAULTS);
+  renderThemeControls(THEME_DEFAULTS);
+  renderDesignPresetState();
+  setThemeCenterStatus('已恢復預設（原主題）。',true);
+}
+function applyDesignPreset(key){
+  const preset=DESIGN_PRESETS[key];if(!preset)return;
+  const theme=normalizeThemePreferences(preset.theme);
+  const layout=normalizeLayoutPreferences(preset.layout);
+  localStorage.setItem(THEME_PREFS_KEY,JSON.stringify(theme));
+  localStorage.setItem(LAYOUT_PREFS_KEY,JSON.stringify(layout));
+  applyThemePreferences(theme);
+  renderThemeControls(theme);
+  applyLayoutPreferences(layout);
+  renderLayoutSettingsControls(layout);
+  renderDesignPresetState();
+  setThemeCenterStatus('已套用「'+preset.label+'」主題與版面。',true);
+  setLayoutSettingsStatus('「'+preset.label+'」版面已儲存在目前裝置。',true);
+}
+function initThemeCenter(){
+  const saved=readThemePreferences();
+  applyThemePreferences(saved);
+  renderThemeControls(saved);
+  document.querySelectorAll('[data-theme-option]').forEach(btn=>btn.addEventListener('click',()=>selectTheme(btn.dataset.themeOption)));
+  ['themeMotionToggle','themeTransparencyToggle','themeCardRadiusSelect','themeShadowLevelSelect','themeColorIntensitySelect']
+    .forEach(id=>$(id)?.addEventListener('change',updateThemeDetails));
+  document.querySelectorAll('[data-design-preset]').forEach(btn=>btn.addEventListener('click',()=>applyDesignPreset(btn.dataset.designPreset)));
+  $('themeResetBtn')?.addEventListener('click',resetThemePreferences);
+  renderDesignPresetState();
+}
 
 const LAYOUT_ALLOWED={
   scale:new Set(['90','100','110','120']),
@@ -2293,20 +2854,23 @@ function previewLayoutPreferences(){
   const p=collectLayoutPreferences();
   applyLayoutPreferences(p);
   renderLayoutSettingsControls(p);
-  setLayoutSettingsStatus('目前為即時預覽；按「套用設定」才會保存到目前裝置。',false);
+  renderDesignPresetState();
+  setLayoutSettingsStatus('目前為即時預覽；按「套用版面」才會保存到目前裝置。',false);
 }
 function saveLayoutPreferences(){
   const p=collectLayoutPreferences();
   localStorage.setItem(LAYOUT_PREFS_KEY,JSON.stringify(p));
   applyLayoutPreferences(p);
   renderLayoutSettingsControls(p);
+  renderDesignPresetState();
   setLayoutSettingsStatus('版面設定已儲存於目前裝置。',true);
 }
 function resetLayoutPreferences(){
   localStorage.removeItem(LAYOUT_PREFS_KEY);
   applyLayoutPreferences(LAYOUT_DEFAULTS);
   renderLayoutSettingsControls(LAYOUT_DEFAULTS);
-  setLayoutSettingsStatus('已恢復 v0.4.6 預設 Liquid Glass 版面。',true);
+  renderDesignPresetState();
+  setLayoutSettingsStatus('已恢復標準版面；主題設定保持不變。',true);
 }
 function initLayoutSettings(){
   const saved=readLayoutPreferences();
@@ -4149,7 +4713,7 @@ $('photoInput').addEventListener('change',e=>setPhoto(e.target.files&&e.target.f
 $('rotateLeftBtn').addEventListener('click',()=>rotatePhoto(-90));$('rotateRightBtn').addEventListener('click',()=>rotatePhoto(90));$('ocrBtn').addEventListener('click',runOcr);$('clearPhotoBtn').addEventListener('click',clearPhoto);$('ocrQuality').addEventListener('change',()=>{if($('photoPreview').src)previewTemplateGrid()});$('ocrMode').addEventListener('change',()=>{previewTemplateGrid();if($('ocrMode').value==='general')$('templateStatus').textContent='一般 OCR 模式：不使用固定表格欄位定位。';else previewTemplateGrid()});$('showGridGuide').addEventListener('change',()=>previewTemplateGrid());$('reparseBtn').addEventListener('click',()=>{renderOcrRows(parseOcrText($('ocrRawText').value));$('verifyFilter').value='pending';renderVerificationCenter();setOcrStatus('已重新解析；請完成待確認欄位。',100)});$('applyOcrBtn').addEventListener('click',applyOcrToSheet);
 renderOcrRows(blankOcrRows());updateStages();
 
-$('date').value=today();$('meetupDate').value=today();load();initLayoutSettings();resetMeetupForm();resetRosterForm();if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll();initPwa();initSync();initGroup();startPersonalPolling();switchView('meetupView',{scroll:false});initDataSafety().then(()=>{if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll()});
+$('date').value=today();$('meetupDate').value=today();load();initLayoutSettings();initThemeCenter();resetMeetupForm();resetRosterForm();if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll();initPwa();initSync();initGroup();startPersonalPolling();switchView('meetupView',{scroll:false});initDataSafety().then(()=>{if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll()});
 })();
 </script>
 </body>
