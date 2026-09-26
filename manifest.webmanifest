@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.7.0-dev.4",
+  "name": "保齡球球聚｜BowlMeet v0.4.7.0-dev.4-R1",
   "short_name": "BowlMeet",
-  "description": "BowlMeet v0.4.7.0-dev.4 Accessibility & Theme Hardening：承接 dev.3-R2 實機驗收，強化 Skip Link、aria-current、More Sheet / Dialog modal semantics、Focus Trap / Focus Return、Live Region、Focus Visible、prefers-contrast、forced-colors、Reduced Motion / Transparency、Dark Night / High Contrast；不修改 PUBLIC、成績、同步、Backup / Restore 或資料庫 Schema。",
+  "description": "BowlMeet v0.4.7.0-dev.4-R1 Advanced Liquid Glass Motion Hardening：在已通過 Accessibility & Theme Hardening 的基線上，強化 Liquid Glass 多層折射、動態高光、環境光、Dock / More Sheet 光學深度與觸控回饋；Motion / Transparency / Reduced Motion / Reduced Transparency / High Contrast 均可安全降級，不修改 PUBLIC、成績、同步、Backup / Restore 或資料庫 Schema。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
