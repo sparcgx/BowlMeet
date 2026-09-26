@@ -1,0 +1,36 @@
+{
+  "name": "保齡球球聚｜BowlMeet v0.4.7.0-dev.4-R1 Preview",
+  "short_name": "BowlMeet R1",
+  "description": "v0.4.7.0-dev.4-R1 Advanced Liquid Glass Motion 隔離 Preview：強化 Liquid Glass 多層折射、環境光、高光、Dock / More Sheet 光學深度與觸控回饋；正式 LocalStorage / IndexedDB / Cloud 全部隔離。",
+  "lang": "zh-Hant",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#ffffff",
+  "orientation": "any",
+  "categories": [
+    "sports",
+    "utilities"
+  ],
+  "icons": [
+    {
+      "src": "../../icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "../../icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "../../icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
