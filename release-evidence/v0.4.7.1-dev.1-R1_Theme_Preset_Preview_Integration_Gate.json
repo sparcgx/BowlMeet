@@ -293,9 +293,12 @@
   },
   "deviceManual": {
     "checks": 10,
-    "pass": 0,
+    "pass": 10,
     "fail": 0,
-    "status": "PENDING"
+    "status": "PASS",
+    "confirmedDate": "2026-09-27",
+    "confirmedBy": "user"
   },
-  "validationComplete": false
+  "validationComplete": true,
+  "validationStatus": "PASS"
 }
