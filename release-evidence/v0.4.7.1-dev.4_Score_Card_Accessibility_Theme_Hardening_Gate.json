@@ -1,0 +1,48 @@
+{
+  "version": "v0.4.7.1-dev.4",
+  "title": "Score Card Accessibility & Theme Hardening",
+  "date": "2026-09-27",
+  "base": "v0.4.7.1-dev.3",
+  "automated": {
+    "pass": 59,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "scope": {
+    "presentationAccessibilityOnly": true,
+    "asset": "assets/score-card-accessibility-v0471.css",
+    "focusableScoreRegion": true,
+    "horizontalRegionLabel": true,
+    "playerAccessibleName": true,
+    "focusVisibleHardening": true,
+    "badgeContrastHardening": true,
+    "reducedMotion": true,
+    "reducedTransparency": true,
+    "forcedColors": true
+  },
+  "safety": {
+    "coreLogicDrift": false,
+    "pwaRecoveryRetained": true,
+    "dbVersionChanged": false,
+    "publicContractChanged": false,
+    "scoreCoreChanged": false,
+    "backupRestoreChanged": false,
+    "syncChanged": false,
+    "supabaseMigration": false,
+    "indexedDbMigration": false,
+    "publicPayloadMigration": false
+  },
+  "preview": {
+    "path": "preview/v0.4.7.1-dev.4/",
+    "cloudEnabled": false,
+    "isolated": true,
+    "pwaRecoveryRetained": true
+  },
+  "deviceManual": {
+    "checks": 10,
+    "pass": 0,
+    "fail": 0,
+    "status": "PENDING"
+  },
+  "validationComplete": false
+}
