@@ -311,3 +311,178 @@
 @supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
   :root[data-theme="liquid-glass"] body::after{display:none!important}
 }
+
+
+/* =========================================================
+   R1 completion | Dark Night glass + modal depth
+   Keeps High Contrast / Reduced Motion / Reduced Transparency
+   on the hardened dev.4 fallback path.
+   ========================================================= */
+
+/* Modal / sheet scene depth for the advanced glass themes. */
+:root:is([data-theme="liquid-glass"],[data-theme="dark-night"])[data-theme-transparency="on"] :where(
+  dialog::backdrop,
+  .player-session-dialog::backdrop,
+  .post-review-dialog::backdrop
+){
+  background:rgba(12,20,34,.34)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(122%)!important;
+  backdrop-filter:blur(18px) saturate(122%)!important;
+}
+:root:is([data-theme="liquid-glass"],[data-theme="dark-night"])[data-theme-transparency="on"] .mobile-more-backdrop{
+  background:rgba(12,20,34,.28)!important;
+  -webkit-backdrop-filter:blur(14px) saturate(120%)!important;
+  backdrop-filter:blur(14px) saturate(120%)!important;
+}
+
+/* Dark Night uses its own deep optical material instead of inverting light glass. */
+:root[data-theme="dark-night"][data-theme-transparency="on"]{
+  --glass:rgba(20,29,43,.68);
+  --glass-strong:rgba(27,38,56,.82);
+  --glass-soft:rgba(17,25,38,.58);
+  --glass-border:rgba(190,215,246,.16);
+  --glass-blur:22px;
+  --glass-depth-shadow:0 20px 60px rgba(0,0,0,.34),0 5px 18px rgba(0,0,0,.22);
+}
+:root[data-theme="dark-night"][data-theme-motion="on"][data-theme-transparency="on"] body::after{
+  content:"";
+  position:fixed;
+  inset:-18vh -14vw;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at var(--glass-pointer-x) var(--glass-pointer-y),
+      rgba(104,157,224,.22) 0,
+      rgba(75,101,168,.15) 17%,
+      rgba(116,89,170,.13) 31%,
+      transparent 58%),
+    radial-gradient(circle at 18% 78%,rgba(45,103,165,.14),transparent 34%),
+    radial-gradient(circle at 84% 20%,rgba(102,77,152,.12),transparent 30%);
+  filter:blur(32px) saturate(112%);
+  transform:translate3d(0,var(--glass-scroll-offset),0) scale(1.03);
+  will-change:transform,background-position;
+  animation:liquidAmbientFloat 18s ease-in-out infinite alternate;
+}
+:root[data-theme="dark-night"][data-theme-transparency="on"] :where(
+  .card,
+  .panel,
+  .sheet-card,
+  .topbar,
+  .mobile-glass-dock,
+  .mobile-more-sheet,
+  .live-mobile-bar,
+  .leaderboard-card,
+  .leaderboard-controls,
+  .player-hub-card,
+  .unified-history-head,
+  .unified-history-panel,
+  .pwa-update-card,
+  .restore-dialog-card,
+  .player-session-dialog-card,
+  .post-review-card
+){
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:
+    linear-gradient(145deg,rgba(29,41,60,.74),rgba(20,30,46,.62) 56%,rgba(14,23,36,.56))!important;
+  border-color:rgba(190,215,246,.15)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(221,235,255,.11),
+    inset 0 -1px 0 rgba(0,0,0,.16),
+    var(--glass-depth-shadow)!important;
+  -webkit-backdrop-filter:blur(22px) saturate(140%) contrast(106%)!important;
+  backdrop-filter:blur(22px) saturate(140%) contrast(106%)!important;
+}
+:root[data-theme="dark-night"][data-theme-motion="on"][data-theme-transparency="on"] :where(
+  .card:not(.award-card),
+  .panel,
+  .sheet-card,
+  .mobile-glass-dock,
+  .mobile-more-sheet,
+  .live-mobile-bar,
+  .leaderboard-card,
+  .player-hub-card
+)::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  border-radius:inherit;
+  background:
+    radial-gradient(circle at var(--glass-pointer-x) var(--glass-pointer-y),
+      rgba(183,215,255,.14) 0,
+      rgba(112,155,213,.08) 20%,
+      transparent 45%),
+    linear-gradient(125deg,
+      rgba(220,235,255,.11),
+      rgba(255,255,255,.015) 30%,
+      rgba(95,122,166,.06) 62%,
+      rgba(196,217,246,.07));
+  mix-blend-mode:screen;
+  opacity:.82;
+}
+:root[data-theme="dark-night"][data-theme-motion="on"][data-theme-transparency="on"] :where(
+  .dock-item,
+  .mobile-more-item,
+  .btn.primary
+){
+  transition:transform .22s cubic-bezier(.2,.8,.2,1),background .2s ease,box-shadow .2s ease!important;
+}
+:root[data-theme="dark-night"][data-theme-motion="on"][data-theme-transparency="on"] :where(
+  .dock-item:active,
+  .mobile-more-item:active,
+  .btn.primary:active
+){
+  transform:scale(.965)!important;
+}
+:root[data-theme="dark-night"][data-theme-transparency="on"] .mobile-more-sheet{
+  background:
+    linear-gradient(150deg,rgba(32,45,65,.88),rgba(22,33,50,.78) 64%,rgba(16,25,39,.72))!important;
+  border-color:rgba(194,218,247,.17)!important;
+}
+:root[data-theme="dark-night"][data-theme-transparency="on"] .mobile-more-item{
+  background:rgba(31,45,65,.62)!important;
+  border-color:rgba(190,215,246,.13)!important;
+}
+
+/* Accessibility fallbacks explicitly cover the new Dark Night optical layer. */
+:root[data-theme="dark-night"][data-theme-motion="off"] body::after,
+:root[data-theme="dark-night"][data-theme-transparency="off"] body::after{
+  animation:none!important;
+  transform:none!important;
+  opacity:0!important;
+}
+@media(prefers-reduced-motion:reduce){
+  :root[data-theme="dark-night"] body::after{
+    animation:none!important;
+    transform:none!important;
+  }
+  :root[data-theme="dark-night"] :where(.card,.dock-item,.mobile-more-item,.btn.primary){
+    transform:none!important;
+    transition:none!important;
+  }
+}
+@media(prefers-reduced-transparency:reduce){
+  :root[data-theme="dark-night"] body::after{display:none!important}
+  :root[data-theme="dark-night"] :where(
+    .card,.panel,.sheet-card,.topbar,.mobile-glass-dock,.mobile-more-sheet,.live-mobile-bar,
+    .leaderboard-card,.leaderboard-controls,.player-hub-card,.unified-history-head,.unified-history-panel,
+    .pwa-update-card,.restore-dialog-card,.player-session-dialog-card,.post-review-card
+  ){
+    background:var(--surface-raised)!important;
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+  }
+  :root[data-theme="dark-night"] .mobile-more-backdrop{
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+  }
+}
+@media(prefers-contrast:more),(forced-colors:active){
+  :root[data-theme="dark-night"] body::after{display:none!important}
+  :root[data-theme="dark-night"] :where(.card,.panel,.sheet-card,.mobile-glass-dock,.mobile-more-sheet){
+    transform:none!important;
+  }
+}
