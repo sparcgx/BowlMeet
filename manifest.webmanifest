@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.7.1-dev.2",
+  "name": "保齡球球聚｜BowlMeet v0.4.7.1-dev.2-R1",
   "short_name": "BowlMeet",
-  "description": "BowlMeet v0.4.7.1-dev.2 Stable：Theme Center、Score Card Theme Integration、History Visual Polish；保留 PUBLIC、Sync、Backup/Restore 與資料庫安全契約。",
+  "description": "BowlMeet v0.4.7.1-dev.2-R1 Stable：Theme Center、Score Card Theme Integration、History Visual Polish、PWA Update Recovery；保留 PUBLIC、Sync、Backup/Restore 與資料庫安全契約。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
