@@ -35,5 +35,12 @@ ISOLATED PREVIEW
 - PWA InvalidState recovery retained
 
 DEVICE MANUAL
-- 0 / 10 PENDING
-- Validation Complete: NO
+- 10 / 10 PASS
+- User confirmation date: 2026-09-27
+- Validation Complete: YES
+
+FINAL DEV.3 RESULT
+- Automated Regression: 56 / 56 PASS / 0 FAIL
+- Device Acceptance: 10 / 10 PASS
+- Overall: PASS
+- main / stable promotion: NOT EXECUTED
