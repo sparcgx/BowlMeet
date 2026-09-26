@@ -11,9 +11,11 @@
 - High Contrast 不套用動態玻璃。
 - DB / PUBLIC / Sync / Backup / Restore / Supabase Schema：**無變更**。
 - R1 Visual Hardening Gate：**24 PASS / 0 FAIL**。
+- R1 Final Gate（含版本識別／PWA Cache）：**28 PASS / 0 FAIL**。
 - R1 Preview Isolation Gate：**25 PASS / 0 FAIL**。
-- Preview-only PR：#66，已更新原 `/preview/v0.4.7.0-dev.4/`。
-- Preview merge commit：`a7ff92480b67ea9eb9347a72c24e37d0e8f83fd6`。
+- Preview Identity / Isolation Refresh Gate：**21 PASS / 0 FAIL**。
+- Preview-only PR：#66 初始發布；#67 完成 R1 版本識別與 PWA Cache 對齊。
+- Latest Preview merge commit：`26ba3c7f3cf3a8e6bd35c6e127bf3c9fd57fec44`。
 - 正式 root 仍與 `stable/v0.4.6.7` 完全一致。
 - 下一關：iPhone / PWA Liquid Glass 實機視覺驗收。
 
