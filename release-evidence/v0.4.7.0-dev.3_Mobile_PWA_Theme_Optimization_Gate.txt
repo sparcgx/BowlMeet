@@ -50,3 +50,14 @@ DATA SAFETY
 STATUS
 Mobile / PWA automated gate: PASS
 Next gate: isolated Preview + iPhone Safari / PWA Standalone manual acceptance.
+
+ISOLATED PREVIEW
+- Path: /preview/v0.4.7.0-dev.3/
+- Preview-only PR: #62
+- Merge commit: 0b6d567d3a4f4eb441b7d42c3625d3447ea40f18
+- Isolation Gate: 21 PASS / 0 FAIL
+- Cloud: OFF
+- LocalStorage: bowlmeet.preview.v0470d3.*
+- IndexedDB: bowlmeet.preview.v0470d3.local
+- Service Worker cache: bowlmeet-preview-v0470d3-*
+- Production root blob remains identical to stable/v0.4.6.7
