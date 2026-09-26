@@ -32,3 +32,19 @@ PREVIEW
 - Cloud: OFF
 - Cache namespace: bowlmeet-preview-v0470d3-r2-*
 - Production root remains identical to stable/v0.4.6.7
+
+MANUAL ACCEPTANCE
+- Date: 2026-09-26
+- Device: iPhone
+- Result: PASS
+- More Sheet portrait 2-column layout: PASS
+- 拍照匯入 / 資料安全完整顯示: PASS
+- Function cards equal width: PASS
+- Settings full-width alignment: PASS
+- Close button / header alignment: PASS
+- Manual Acceptance: 5 PASS / 0 FAIL
+
+DEV.3 STATUS
+- v0.4.7.0-dev.3-R2 accepted.
+- Mobile / PWA Theme Optimization phase complete.
+- Next: v0.4.7.0-dev.4｜Accessibility & Theme Hardening
