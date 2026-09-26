@@ -84,7 +84,7 @@
 
 /* Optical edge highlight */
 :root[data-theme="liquid-glass"][data-theme-motion="on"][data-theme-transparency="on"] :where(
-  .card,
+  .card:not(.award-card),
   .panel,
   .sheet-card,
   .mobile-glass-dock,
