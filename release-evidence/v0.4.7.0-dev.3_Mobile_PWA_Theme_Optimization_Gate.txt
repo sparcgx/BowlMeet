@@ -1,0 +1,52 @@
+BowlMeet v0.4.7.0-dev.3｜Mobile / PWA Theme Optimization Gate
+Date: 2026-09-26
+Baseline: v0.4.7.0-dev.2
+Baseline commit: 2802ed5a722c5eb0bc2d0683d3710ac977d25cb0
+
+RESULT
+PASS: 30
+FAIL: 0
+TOTAL: 30
+
+MOBILE / PWA
+- Safe Area: top / right / bottom / left
+- viewport-fit=cover: PASS
+- Dynamic viewport units (dvh): PASS
+- Standalone detection: display-mode + navigator.standalone
+- iPhone input zoom guard: 16px
+- Minimum mobile touch target: 44px
+- Mobile Dock safe-area alignment: PASS
+- More Sheet dynamic height + internal scrolling: PASS
+- Horizontal score/history/rank tables: PASS
+- Sticky player column: PASS
+- Dialog keyboard / browser chrome resilience: PASS
+- 420px compact phone gate: PASS
+- 360px narrow phone gate: PASS
+- Landscape phone gate: PASS
+- Dark Night mobile readability layer: PASS
+- High Contrast mobile non-color active state: PASS
+- Reduced Motion compatibility: PASS
+
+REGRESSION
+- dev.2 JavaScript syntax: PASS
+- dev.3 JavaScript syntax: PASS
+- UI-only JS delta: 206 bytes
+- Core JavaScript drift after removing Standalone UI marker: 0
+- CSS brace balance: PASS
+- Static duplicate IDs: 0
+- Manifest JSON: PASS
+- Service Worker JavaScript: PASS
+
+DATA SAFETY
+- DB_VERSION: 2 (UNCHANGED)
+- PUBLIC_HISTORY_CODE: PUBLIC (UNCHANGED)
+- Theme / Layout local preference keys unchanged
+- Theme / Layout excluded from captureState
+- No SQL / Supabase schema changes
+- No PUBLIC payload migration
+- No Backup / Restore contract change
+- No Sync contract change
+
+STATUS
+Mobile / PWA automated gate: PASS
+Next gate: isolated Preview + iPhone Safari / PWA Standalone manual acceptance.
