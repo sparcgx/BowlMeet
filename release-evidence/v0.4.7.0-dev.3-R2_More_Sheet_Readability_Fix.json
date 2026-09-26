@@ -1,0 +1,35 @@
+{
+  "version": "v0.4.7.0-dev.3-R2",
+  "title": "More Sheet Readability Fix",
+  "date": "2026-09-26",
+  "baseline": {
+    "version": "v0.4.7.0-dev.3-R1",
+    "commit": "59d200b72fd092b50ecb0d6a5bdaa9f3dba49fbc"
+  },
+  "source": "iPhone screenshot showing third-column clipping / crowding in More Sheet",
+  "fix": {
+    "portraitColumns": 2,
+    "labelLines": 2,
+    "textEllipsis": false,
+    "iconSizePx": 28,
+    "itemMinHeightPx": 82,
+    "settingsFullWidth": true,
+    "settingsMinHeightPx": 54,
+    "closeButtonCentered": true,
+    "landscapeColumns": 4
+  },
+  "gates": {
+    "source": {
+      "pass": 23,
+      "fail": 0,
+      "total": 23
+    }
+  },
+  "regression": {
+    "javascriptDeltaBytes": 0,
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "dataContractChanged": false
+  },
+  "nextGate": "isolated Preview + iPhone portrait visual acceptance"
+}
