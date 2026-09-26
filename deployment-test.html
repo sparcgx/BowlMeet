@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>BowlMeet v0.4.7.0-dev.2｜Theme Token Coverage Deployment Test</title>
+<title>BowlMeet v0.4.7.0-dev.3｜Mobile / PWA Theme Optimization Deployment Test</title>
 <meta name="theme-color" content="#ffffff">
 <style>
 :root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:#172033;background:#f5f7fa}*{box-sizing:border-box}body{margin:0}.wrap{max-width:760px;margin:auto;padding:18px}.card{background:#fff;border:1px solid #e4e8ef;border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 8px 24px rgba(17,24,39,.05)}h1{font-size:22px;margin:0 0 6px}p{color:#697386;line-height:1.6}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #eef1f5}.row:last-child{border-bottom:0}.label{font-weight:800}.status{font-weight:900}.ok{color:#14804a}.bad{color:#b42318}.warn{color:#b26a00}.btn{display:block;text-align:center;text-decoration:none;background:#172033;color:white;border-radius:12px;padding:13px 16px;font-weight:850}.meta{font-size:12px;color:#697386;word-break:break-all;line-height:1.6}.pill{display:inline-block;border-radius:999px;background:#eef4ff;color:#0f62fe;padding:5px 9px;font-size:11px;font-weight:850;margin-bottom:10px}</style>
 </head>
 <body><main class="wrap">
-<section class="card"><span class="pill">BowlMeet v0.4.7.0-dev.2</span><h1>iPhone Safari Deployment Test</h1><p>此頁用來確認目前不是檔案預覽器，而是真正以 HTTPS 網頁方式執行。</p></section>
-<section class="card"><p><strong>Theme Center 驗收重點：</strong>驗證六主題在歷史、OCR、球聚、球員分析、現場計分、設定、PWA、同步、安全、獎項、分享與對話框的完整覆蓋；同時檢查 Dark Night／High Contrast、狀態色、輸入焦點、表格 sticky cell 與 Reduced Transparency。</p></section>
+<section class="card"><span class="pill">BowlMeet v0.4.7.0-dev.3</span><h1>iPhone Safari Deployment Test</h1><p>此頁用來確認目前不是檔案預覽器，而是真正以 HTTPS 網頁方式執行。</p></section>
+<section class="card"><p><strong>Theme Center 驗收重點：</strong>驗證 iPhone Safari / PWA Standalone 的 Safe Area、Mobile Dock、More Sheet、橫向表格、Sticky 球員欄、16px 輸入防縮放、動態視窗高度、橫向模式，以及 Dark Night／High Contrast 在小螢幕的可讀性。</p></section>
 <section class="card"><p><strong>Public Record Control 前置：</strong>Supabase 已套用 <code>supabase_v044_public_record_control_patch.sql</code>；跨裝置 tombstone 與 R1 legacy repush 防復活測試已通過。</p></section>
-<section class="card"><p><strong>版本狀態：</strong>v0.4.7.0-dev.2 Theme Token & Full Component Coverage；承接 v0.4.7.0-dev.1。自動 Theme Coverage Gate 執行中；實機需確認跨模組視覺一致性。</p></section>
+<section class="card"><p><strong>版本狀態：</strong>v0.4.7.0-dev.3 Mobile / PWA Theme Optimization；承接 v0.4.7.0-dev.2。自動 Mobile/PWA Gate 執行中；實機需確認 Safari 與加入主畫面模式。</p></section>
 <section class="card"><p><strong>每局公開成績表：</strong>固定顯示球員／1～6／總分／平均；未完成局數顯示「—」，手機表格由內層容器水平滑動。</p></section>
-<section class="card"><p><strong>Manual Device Acceptance：</strong>本輪請逐一切換 6 主題並巡覽：成績紀錄、公開歷史、OCR、球聚現場、球員分析、設定、PWA／同步／安全、獎項與分享；確認沒有殘留白底、灰底或固定藍色造成主題斷裂。</p></section>
+<section class="card"><p><strong>Manual Device Acceptance：</strong>本輪請在 iPhone Safari 與加入主畫面的 PWA 各測一次：Dock 不蓋內容、More Sheet 可完整捲動、輸入框聚焦不自動放大、橫向表格可滑、Sticky 球員欄穩定、鍵盤出現時 Dialog/Sheet 可操作、直向與橫向都不跑版。</p></section>
 <section class="card"><p><strong>Unified Player Directory：</strong>不再需要「從歷史成績同步」。球員頁直接由 Unified History 與 Legacy 成績產生；暱稱／備註等附加資料才寫入 Roster。</p></section>
 <section class="card" id="checks">
 <div class="row"><span class="label">JavaScript</span><span class="status bad" id="js">未執行</span></div>
