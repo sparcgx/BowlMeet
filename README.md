@@ -12,7 +12,12 @@
 - Reduced Motion / Reduced Transparency 與 dev.1～dev.3 Theme Center 保持相容。
 - pointer coarse 互動目標至少 44px。
 - `DB_VERSION = 2`、`PUBLIC_HISTORY_CODE = PUBLIC`、PUBLIC / Sync / Backup / Restore / Supabase Schema 不變。
-- 下一關：Accessibility Automated Gate → 隔離 Preview → Keyboard / iPhone / PWA / High Contrast 實機驗收。
+- Accessibility Automated Gate：**45 PASS / 0 FAIL**。
+- Preview Isolation Gate：**25 PASS / 0 FAIL**。
+- Preview-only PR：#65，已合併到 main；只新增 `/preview/v0.4.7.0-dev.4/`。
+- Preview Cloud：OFF；LocalStorage / IndexedDB / PWA Cache 使用 `v0470d4` 隔離 namespace。
+- 正式 root `index.html` blob 與 `stable/v0.4.6.7` 完全一致。
+- 下一關：Keyboard / iPhone / PWA / High Contrast 實機驗收。
 
 # BowlMeet v0.4.7.0-dev.3-R2 — More Sheet Readability Fix
 
