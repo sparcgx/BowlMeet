@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.7.0",
+  "name": "保齡球球聚｜BowlMeet v0.4.7.1-dev.1-R1",
   "short_name": "BowlMeet",
-  "description": "BowlMeet v0.4.7.0 Stable：Theme Center、完整元件主題覆蓋、行動版主題最佳化、Accessibility & Theme Hardening，以及 Advanced Liquid Glass Motion。保留既有正式計分、PUBLIC、Sync、Player Claim、Backup/Restore、IndexedDB Snapshot 與 PWA 安全更新資料契約。",
+  "description": "BowlMeet v0.4.7.1-dev.1-R1 Stable：Theme Center、完整元件主題覆蓋、行動版主題最佳化、Accessibility & Theme Hardening，以及 Advanced Liquid Glass Motion。保留既有正式計分、PUBLIC、Sync、Player Claim、Backup/Restore、IndexedDB Snapshot 與 PWA 安全更新資料契約。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
