@@ -23,3 +23,12 @@ GATE
 
 NEXT
 - Isolated Preview + iPhone portrait visual acceptance.
+
+PREVIEW
+- Preview Isolation Gate: 17 PASS / 0 FAIL
+- Path: /preview/v0.4.7.0-dev.3/
+- Preview-only PR: #64
+- Merge commit: 61d9a253c984d46513d3a94b6b46751fbe1ac7f2
+- Cloud: OFF
+- Cache namespace: bowlmeet-preview-v0470d3-r2-*
+- Production root remains identical to stable/v0.4.6.7
