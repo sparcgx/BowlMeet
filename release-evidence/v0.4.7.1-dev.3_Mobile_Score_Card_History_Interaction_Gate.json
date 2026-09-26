@@ -1,0 +1,45 @@
+{
+  "version": "v0.4.7.1-dev.3",
+  "title": "Mobile Score Card & History Interaction Optimization",
+  "date": "2026-09-27",
+  "base": "v0.4.7.1-dev.2-R1",
+  "automated": {
+    "pass": 56,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "scope": {
+    "presentationOnly": true,
+    "asset": "assets/score-card-mobile-v0471.css",
+    "touchTarget44": true,
+    "actionLayout": "2-column mobile / 1-column narrow fallback",
+    "swipeHint": true,
+    "stickyPlayerColumn": true,
+    "playerTouchTarget": true
+  },
+  "safety": {
+    "applicationJsChangedExceptVersion": false,
+    "pwaRecoveryRetained": true,
+    "dbVersionChanged": false,
+    "publicContractChanged": false,
+    "scoreCoreChanged": false,
+    "backupRestoreChanged": false,
+    "syncChanged": false,
+    "supabaseMigration": false,
+    "indexedDbMigration": false,
+    "publicPayloadMigration": false
+  },
+  "preview": {
+    "path": "preview/v0.4.7.1-dev.3/",
+    "cloudEnabled": false,
+    "isolated": true,
+    "pwaRecoveryRetained": true
+  },
+  "deviceManual": {
+    "checks": 10,
+    "pass": 0,
+    "fail": 0,
+    "status": "PENDING"
+  },
+  "validationComplete": false
+}
