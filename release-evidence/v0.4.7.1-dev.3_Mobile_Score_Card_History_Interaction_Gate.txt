@@ -1,0 +1,39 @@
+BowlMeet v0.4.7.1-dev.3
+Mobile Score Card & History Interaction Optimization
+Date: 2026-09-27
+Base: v0.4.7.1-dev.2-R1
+
+AUTOMATED REGRESSION: 56 PASS / 0 FAIL
+
+SCOPE
+- New presentation-only asset: assets/score-card-mobile-v0471.css
+- 44px minimum mobile touch targets for history card actions
+- 2-column mobile action layout
+- Single-column fallback on very narrow screens
+- Horizontal swipe hint for per-game score table
+- Horizontal pan containment preserved
+- Sticky player column readability strengthened
+- Player name touch target enlarged
+- Dark Night / High Contrast / coarse pointer / reduced motion / forced colors covered
+
+SAFETY
+- Application JavaScript unchanged except APP_VERSION
+- dev.2-R1 PWA registration recovery retained
+- DB_VERSION unchanged
+- PUBLIC contract unchanged
+- Score core unchanged
+- Backup / Restore unchanged
+- Sync unchanged
+- No Supabase migration
+- No IndexedDB migration
+- No PUBLIC payload migration
+
+ISOLATED PREVIEW
+- Path: preview/v0.4.7.1-dev.3/
+- Cloud: OFF
+- Storage / IndexedDB / PWA cache: isolated
+- PWA InvalidState recovery retained
+
+DEVICE MANUAL
+- 0 / 10 PENDING
+- Validation Complete: NO
