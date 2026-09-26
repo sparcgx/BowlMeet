@@ -1,0 +1,65 @@
+{
+  "version": "v0.4.7.0-dev.4-R1",
+  "title": "Advanced Liquid Glass Motion Hardening",
+  "date": "2026-09-26",
+  "baseline": {
+    "version": "v0.4.7.0-dev.4",
+    "commit": "8fbb4208955a27e4b614e35633e67d52e6c3bbce",
+    "manualAcceptance": "12/12 PASS"
+  },
+  "result": {
+    "pass": 24,
+    "fail": 0,
+    "total": 24,
+    "status": "PASS"
+  },
+  "activation": {
+    "theme": "liquid-glass",
+    "motionEnabled": true,
+    "transparencyEnabled": true,
+    "strictTripleGate": true
+  },
+  "effects": [
+    "multi-layer glass refraction",
+    "ambient refracted light",
+    "pointer-following highlight on fine pointer devices",
+    "subtle perspective depth",
+    "Dock optical depth",
+    "More Sheet floating glass",
+    "touch press feedback",
+    "standalone PWA denser glass chrome"
+  ],
+  "mobile": {
+    "deviceMotionPermissionRequested": false,
+    "gyroUsed": false,
+    "ambientMotionOnly": true,
+    "mobileBlurPx": 20,
+    "standaloneDockBlurPx": 28
+  },
+  "fallbacks": {
+    "motionOff": true,
+    "transparencyOff": true,
+    "prefersReducedMotion": true,
+    "prefersReducedTransparency": true,
+    "prefersContrastMore": true,
+    "forcedColors": true,
+    "noBackdropFilter": true
+  },
+  "regression": {
+    "javascriptSyntax": "PASS",
+    "visualHelperJavascriptDeltaBytes": 2202,
+    "coreJavascriptDriftAfterHelperRemoval": 0,
+    "cssBraceBalance": "PASS",
+    "awardCardPseudoConflictProtected": true
+  },
+  "safety": {
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "captureStateChanged": false,
+    "groupPublicContractChanged": false,
+    "sqlSchemaChanges": false,
+    "backupRestoreContractChanged": false,
+    "syncContractChanged": false
+  },
+  "nextGate": "isolated Preview + iPhone / PWA Liquid Glass visual acceptance"
+}
