@@ -1,3 +1,16 @@
+# BowlMeet v0.4.7.0-dev.3-R2 — More Sheet Readability Fix
+
+- 依 iPhone 實機截圖修正「更多功能」直向 3 欄過擠與第三欄裁切問題。
+- Phone portrait <=680px 固定 **2 欄**；landscape 維持 4 欄。
+- 功能名稱最多 2 行，不再使用 ellipsis 裁切。
+- icon 調整為 28px，卡片 min-height 82px，padding / gap 重整。
+- 最後「設定」維持滿寬，降低視覺重量。
+- 關閉按鈕重新置中。
+- R2 Source Gate：**23 PASS / 0 FAIL**。
+- JavaScript delta：**0**。
+- DB / PUBLIC / Sync / Backup / Restore / Supabase Schema：**無變更**。
+- 下一關：隔離 Preview + iPhone 直向實機驗收。
+
 # BowlMeet v0.4.7.0-dev.3-R1 — Mobile Navigation Alignment Fix
 
 - 修正手機下方 Dock 與「更多」選單位移。
