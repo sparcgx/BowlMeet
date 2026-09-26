@@ -59,7 +59,7 @@ button,.btn,.tab,.dock-item,.mobile-more-item{-webkit-tap-highlight-color:transp
     position:sticky;
     top:0;
     z-index:60;
-    padding-top:var(--safe-top);
+    padding-top:0;
   }
   .topbar-inner{
     width:100%;
@@ -320,7 +320,7 @@ button,.btn,.tab,.dock-item,.mobile-more-item{-webkit-tap-highlight-color:transp
 @media(display-mode:standalone){
   html{background:var(--theme-page)!important}
   body{min-height:100dvh}
-  .topbar{padding-top:var(--safe-top)!important}
+  .topbar{padding-top:0!important}
   @media(max-width:680px){
     main{padding-bottom:calc(var(--mobile-dock-height) + 50px + var(--safe-bottom))!important}
     .mobile-glass-dock{bottom:max(8px,var(--safe-bottom))!important}
@@ -329,7 +329,7 @@ button,.btn,.tab,.dock-item,.mobile-more-item{-webkit-tap-highlight-color:transp
 }
 
 /* iOS installed PWA / legacy standalone selector. */
-html[data-pwa-standalone="true"] .topbar{padding-top:var(--safe-top)!important}
+html[data-pwa-standalone="true"] .topbar{padding-top:0!important}
 @media(max-width:680px){
   html[data-pwa-standalone="true"] main{padding-bottom:calc(var(--mobile-dock-height) + 50px + var(--safe-bottom))!important}
 }
