@@ -63,3 +63,20 @@ ISOLATED PREVIEW
 - IndexedDB: bowlmeet.preview.v0470d4.local
 - Service Worker cache: bowlmeet-preview-v0470d4-*
 - Production root remains identical to stable/v0.4.6.7
+
+MANUAL ACCEPTANCE
+- Result: 12 PASS / 0 FAIL
+- Keyboard / Focus: PASS
+- Dialog / More Sheet focus trap + focus return: PASS
+- Dark Night: PASS
+- High Contrast: PASS
+- Reduced Motion: PASS
+- Reduced Transparency: PASS
+- iPhone Safari: PASS
+- PWA Standalone: PASS
+- Preview isolation / preference persistence: PASS
+
+STATUS
+- v0.4.7.0-dev.4 Accessibility & Theme Hardening accepted.
+- Additional visual enhancement requested before RC:
+  v0.4.7.0-dev.4-R1｜Advanced Liquid Glass Motion Hardening
