@@ -1,13 +1,13 @@
-const PREVIEW_CACHE_ROOT='bowlmeet-preview-v0470d3-';
+const PREVIEW_CACHE_ROOT='bowlmeet-preview-v0470d3-r1-';
 const CACHE=PREVIEW_CACHE_ROOT+'mobile-shell';
 const RUNTIME=PREVIEW_CACHE_ROOT+'mobile-runtime';
-const APP_SHELL=['./','./index.html','./manifest.webmanifest','../../assets/liquid-glass-dev4.css?v=0470d3','./assets/theme-center-dev2.css?v=0470d3','./assets/theme-center-dev3-mobile.css?v=0470d3','../../icons/icon-192.png','../../icons/icon-512.png','../../icons/icon-maskable-512.png'];
+const APP_SHELL=['./','./index.html','./manifest.webmanifest','../../assets/liquid-glass-dev4.css?v=0470d3','./assets/theme-center-dev2.css?v=0470d3','./assets/theme-center-dev3-mobile.css?v=0470d3r1','../../icons/icon-192.png','../../icons/icon-512.png','../../icons/icon-maskable-512.png'];
 
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(APP_SHELL)))});
 self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')self.skipWaiting()});
 self.addEventListener('activate',event=>{event.waitUntil(
   caches.keys()
-    .then(keys=>Promise.all(keys.filter(k=>k.startsWith(PREVIEW_CACHE_ROOT)&&k!==CACHE&&k!==RUNTIME).map(k=>caches.delete(k))))
+    .then(keys=>Promise.all(keys.filter(k=>k.startsWith('bowlmeet-preview-v0470d3-')&&k!==CACHE&&k!==RUNTIME).map(k=>caches.delete(k))))
     .then(()=>self.clients.claim())
 )});
 async function matchPreviewCache(request){
