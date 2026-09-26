@@ -1,3 +1,17 @@
+# BowlMeet v0.4.7.0-dev.4-R1 — Advanced Liquid Glass Motion Hardening
+
+- dev.4 Accessibility Manual Acceptance：**12 PASS / 0 FAIL**。
+- 新增 `assets/theme-center-dev4-r1-liquid-motion.css`，只在 Liquid Glass + Motion ON + Transparency ON 啟用。
+- 視覺效果：多層玻璃折射、指標追光、環境光漂移、柔和高光、深度陰影、Dock / More Sheet 高階玻璃厚度。
+- Desktop precision pointer：微幅 tilt / hover depth；不使用誇張 3D。
+- iPhone / touch：不要求 DeviceMotion / 陀螺儀權限，改用低耗能 ambient motion + press feedback。
+- Standalone PWA：Dock 使用稍高 blur / saturation，維持 native-app-like glass chrome。
+- Motion OFF / Transparency OFF：立即停止／移除高階效果。
+- Reduced Motion / Reduced Transparency / prefers-contrast / forced-colors：完整安全降級。
+- High Contrast 不套用動態玻璃。
+- DB / PUBLIC / Sync / Backup / Restore / Supabase Schema：**無變更**。
+- 下一關：R1 Visual Hardening Gate → 隔離 Preview → iPhone / PWA Liquid Glass 實機驗收。
+
 # BowlMeet v0.4.7.0-dev.4 — Accessibility & Theme Hardening
 
 - 基線：`v0.4.7.0-dev.3` accepted commit `adf2db460c6181f8985bbbbb8a7c26df552e498b`。
