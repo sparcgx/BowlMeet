@@ -13,7 +13,10 @@
 - Preview-only PR：#64，已更新原 `/preview/v0.4.7.0-dev.3/`。
 - Preview merge commit：`61d9a253c984d46513d3a94b6b46751fbe1ac7f2`。
 - 正式 root 仍與 `stable/v0.4.6.7` 完全一致。
-- 下一關：iPhone 直向實機驗收。
+- dev.3 R2 Manual Acceptance：**5 PASS / 0 FAIL**。
+- iPhone 實機驗收：**PASS**。
+- `v0.4.7.0-dev.3｜Mobile / PWA Theme Optimization` 階段正式完成。
+- 下一版：`v0.4.7.0-dev.4｜Accessibility & Theme Hardening`。
 
 # BowlMeet v0.4.7.0-dev.3-R1 — Mobile Navigation Alignment Fix
 
