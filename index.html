@@ -2297,7 +2297,7 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
       </section>
     </div>
 
-    <dialog id="playerSessionDialog" class="player-session-dialog" aria-labelledby="playerSessionTitle" aria-describedby="playerSessionMeta">
+    <dialog id="playerSessionDialog" class="player-session-dialog" aria-modal="true" aria-labelledby="playerSessionTitle" aria-describedby="playerSessionMeta">
       <div class="player-session-dialog-card">
         <div class="player-session-dialog-head"><div><span class="history-eyebrow">SESSION DETAIL</span><h2 id="playerSessionTitle">單場紀錄</h2><div class="player-hub-sub" id="playerSessionMeta"></div></div><button class="btn small" id="playerSessionCloseBtn" type="button">返回</button></div>
         <div id="playerSessionSummary" class="player-session-summary" aria-label="本場摘要"></div>
@@ -2452,7 +2452,7 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
     </div>
   </section>
 
-  <dialog id="postGameReviewDialog" class="post-review-dialog" aria-labelledby="postReviewTitle" aria-describedby="postReviewMeta">
+  <dialog id="postGameReviewDialog" class="post-review-dialog" aria-modal="true" aria-labelledby="postReviewTitle" aria-describedby="postReviewMeta">
     <div class="post-review-card">
       <div class="post-review-head">
         <div>
@@ -2485,7 +2485,7 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
     </div>
   </dialog>
 
-  <dialog id="pwaUpdateDialog" class="pwa-update-dialog" aria-labelledby="pwaUpdateTitle" aria-describedby="pwaUpdateDesc">
+  <dialog id="pwaUpdateDialog" class="pwa-update-dialog" aria-modal="true" aria-labelledby="pwaUpdateTitle" aria-describedby="pwaUpdateDesc">
     <div class="pwa-update-card">
       <span class="pwa-update-badge">PWA 安全更新</span>
       <h2 id="pwaUpdateTitle">偵測到新版</h2>
@@ -2503,7 +2503,7 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
     </div>
   </dialog>
 
-  <dialog id="restoreDialog" class="restore-dialog" aria-labelledby="restoreDialogTitle" aria-describedby="restoreFileInfo">
+  <dialog id="restoreDialog" class="restore-dialog" aria-modal="true" aria-labelledby="restoreDialogTitle" aria-describedby="restoreFileInfo">
     <div class="restore-dialog-card">
       <h2 id="restoreDialogTitle">還原資料</h2>
       <p id="restoreFileInfo">已讀取備份檔。選擇匯入方式後再套用；套用前會自動建立安全快照。</p>
@@ -4705,7 +4705,8 @@ document.getElementById('mobileMoreCloseBtn')?.addEventListener('click',()=>setM
 document.getElementById('mobileMoreBackdrop')?.addEventListener('click',()=>setMobileMoreOpen(false));
 document.addEventListener('keydown',e=>{if(e.key==='Escape')setMobileMoreOpen(false)});
 $('mobileMoreSheet')?.addEventListener('keydown',e=>trapA11yTab($('mobileMoreSheet'),e));
-['postGameReviewDialog','pwaUpdateDialog','restoreDialog'].forEach(id=>$(id)?.addEventListener('keydown',e=>trapA11yTab($(id),e)));
+['playerSessionDialog','postGameReviewDialog','pwaUpdateDialog','restoreDialog'].forEach(id=>$(id)?.addEventListener('keydown',e=>trapA11yTab($(id),e)));
+['pwaUpdateDialog','restoreDialog'].forEach(id=>$(id)?.addEventListener('close',()=>restoreA11yFocus($(id))));
 $('addPlayerBtn').addEventListener('click',()=>{const rows=currentPlayersFromTable();if(rows.length>=12){flash('最多 12 位球員。','err');return}rows.push(makePlayer());renderScoreRows(rows)});
 $('saveSessionBtn').addEventListener('click',saveSession);
 $('newSessionBtn').addEventListener('click',()=>newSheet(true));
