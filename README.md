@@ -14,7 +14,13 @@
 - Dark Night 與 High Contrast 另補 Mobile Dock / Sticky 欄／Active State 可讀性。
 - `prefers-reduced-motion`、Transparency OFF 與 dev.2 Theme Tokens 保持相容。
 - `DB_VERSION = 2`、PUBLIC、Sync、Backup / Restore、Supabase Schema 不變。
-- 下一關：Mobile / PWA 自動 Gate → 隔離 Preview → iPhone Safari / PWA Standalone 實機驗收。
+- Mobile / PWA Automated Gate：**30 PASS / 0 FAIL**。
+- Preview Isolation Gate：**21 PASS / 0 FAIL**。
+- UI-only JavaScript delta：**206 bytes**；移除 Standalone 標記後核心 JS drift = **0**。
+- Preview-only PR：#62，已合併到 main；只新增 `/preview/v0.4.7.0-dev.3/`。
+- Preview Cloud：OFF；LocalStorage / IndexedDB / PWA Cache 使用 `v0470d3` 隔離 namespace。
+- 正式 root `index.html` blob 與 `stable/v0.4.6.7` 完全一致。
+- 下一關：iPhone Safari / PWA Standalone 實機驗收。
 
 # BowlMeet v0.4.7.0-dev.2 — Theme Token & Full Component Coverage
 
