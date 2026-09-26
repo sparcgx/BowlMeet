@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.7.0-dev.4 Preview",
+  "name": "保齡球球聚｜BowlMeet v0.4.7.0-dev.4 Preview Glass R1",
   "short_name": "BowlMeet dev.4",
-  "description": "v0.4.7.0-dev.4 Accessibility & Theme Hardening 隔離 Preview：Skip Link、ARIA、Focus Trap / Return、forced-colors、prefers-contrast、Reduced Motion / Transparency 與 High Contrast 驗收；正式資料與 Cloud 完全隔離。",
+  "description": "v0.4.7.0-dev.4-R1 Advanced Liquid Glass Motion Hardening 隔離 Preview：高階透明、折射、高光、Dock / More Sheet glass depth 與安全降級測試；正式 LocalStorage / IndexedDB / Cloud 全部隔離。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
