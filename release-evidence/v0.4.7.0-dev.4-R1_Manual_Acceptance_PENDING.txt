@@ -1,6 +1,7 @@
 BowlMeet v0.4.7.0-dev.4-R1｜Advanced Liquid Glass Motion Manual Acceptance
 Status: PENDING
 Preview: /preview/v0.4.7.0-dev.4/
+Visible version: v0.4.7.0-dev.4-R1
 
 1. Liquid Glass + Motion ON + Transparency ON：卡片、Dock、More Sheet 有明顯但不刺眼的高階玻璃層次。
 2. iPhone 直向：Dock / More Sheet 透明、模糊、邊緣高光正常，文字仍清楚。
