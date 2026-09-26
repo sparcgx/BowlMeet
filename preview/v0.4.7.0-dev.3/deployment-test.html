@@ -10,9 +10,10 @@
 </head>
 <body><main class="wrap">
 <section class="card"><span class="pill">BowlMeet v0.4.7.0-dev.3</span><h1>iPhone Safari Deployment Test</h1><p>此頁用來確認目前不是檔案預覽器，而是真正以 HTTPS 網頁方式執行。</p></section>
-<section class="card"><p><strong>Preview Isolation：</strong>此測試版使用獨立 LocalStorage / IndexedDB / Service Worker Cache，Cloud 關閉；不會寫入正式 PUBLIC、球聚或多人同步資料。</p></section>
+<section class="card"><p><strong>Preview Isolation：</strong>此 R1 測試版使用獨立 LocalStorage / IndexedDB / Service Worker Cache，Cloud 關閉；不會寫入正式 PUBLIC、球聚或多人同步資料。</p></section>
 <section class="card"><p><strong>Theme Center 驗收重點：</strong>驗證 iPhone Safari / PWA Standalone 的 Safe Area、Mobile Dock、More Sheet、橫向表格、Sticky 球員欄、16px 輸入防縮放、動態視窗高度、橫向模式，以及 Dark Night／High Contrast 在小螢幕的可讀性。</p></section>
 <section class="card"><p><strong>Public Record Control 前置：</strong>Supabase 已套用 <code>supabase_v044_public_record_control_patch.sql</code>；跨裝置 tombstone 與 R1 legacy repush 防復活測試已通過。</p></section>
+<section class="card"><p><strong>Mobile Navigation R1（Preview）：</strong>修正下方 Dock 與「更多」選單位移：Dock 依實際 4 個主要按鈕固定 4 等分；Dock / More Sheet 移出介面縮放容器；更多選單最後「設定」採滿寬收尾，避免尾列偏移。</p></section>
 <section class="card"><p><strong>版本狀態：</strong>v0.4.7.0-dev.3 Mobile / PWA Theme Optimization；承接 v0.4.7.0-dev.2。自動 Mobile/PWA Gate 執行中；實機需確認 Safari 與加入主畫面模式。</p></section>
 <section class="card"><p><strong>每局公開成績表：</strong>固定顯示球員／1～6／總分／平均；未完成局數顯示「—」，手機表格由內層容器水平滑動。</p></section>
 <section class="card"><p><strong>Manual Device Acceptance：</strong>本輪請在 iPhone Safari 與加入主畫面的 PWA 各測一次：Dock 不蓋內容、More Sheet 可完整捲動、輸入框聚焦不自動放大、橫向表格可滑、Sticky 球員欄穩定、鍵盤出現時 Dialog/Sheet 可操作、直向與橫向都不跑版。</p></section>
