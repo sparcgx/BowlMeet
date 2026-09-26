@@ -1,0 +1,45 @@
+BowlMeet v0.4.7.1-dev.1-R1
+Theme Preset Architecture & Preview Integration Gate
+Date: 2026-09-26
+Base: stable/v0.4.7.0
+Branch: v0.4.7.1-dev.1-R1
+
+AUTOMATED REGRESSION: 52 PASS / 0 FAIL
+
+VERSION GOVERNANCE
+- APP_VERSION = 0.4.7.1-dev.1-R1
+- stable/v0.4.7.0 remains untouched
+- v0.4.7.1-dev.1 is the development anchor
+- v0.4.7.1-dev.1-R1 is the active R1 branch
+
+THEME / LAYOUT
+- 6 themes retained: Default / Liquid Glass / Clear Blue / Soft Violet / Dark Night / High Contrast
+- Scale retained: 90 / 100 / 110 / 120
+- Density retained: compact / standard / spacious
+- Width retained: standard / wide / full
+- Leaderboard retained: standard / compact
+- Score size retained: standard / large
+- Theme and Layout preferences coexist as local-only preferences
+
+SAFETY
+- DB_VERSION = 2
+- PUBLIC_HISTORY_CODE = PUBLIC
+- PUBLIC_HISTORY_PIN unchanged
+- No Supabase migration
+- No IndexedDB migration
+- No PUBLIC payload migration
+- No Backup / Restore contract change
+- No Sync contract change
+- Root index.html equals the expected version-only transform of stable/v0.4.7.0
+
+ISOLATED PREVIEW
+- Path: preview/v0.4.7.1-dev.1-R1/
+- Cloud: OFF
+- IndexedDB: bowlmeet.preview.v0471d1r1.local
+- Theme key: bowlmeet.preview.v0471d1r1.themePreferences.v1
+- Layout key: bowlmeet.preview.v0471d1r1.layoutPreferences.v1
+- Cache prefix: bowlmeet-preview-v0471d1r1-*
+
+DEVICE MANUAL
+- 0 / 10 PENDING
+- Validation Complete: NO
