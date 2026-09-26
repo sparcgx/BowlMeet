@@ -1,3 +1,21 @@
+# BowlMeet v0.4.7.0-dev.3 — Mobile / PWA Theme Optimization
+
+- 基線：`v0.4.7.0-dev.2` commit `2802ed5a722c5eb0bc2d0683d3710ac977d25cb0`。
+- 新增 `assets/theme-center-dev3-mobile.css`，只處理 Mobile / PWA Responsive 與主題呈現。
+- Safe Area 統一：top / right / bottom / left 使用 `env(safe-area-inset-*)`。
+- Mobile Dock / More Sheet：固定不受 90～120% 版面縮放影響，並避開 Home Indicator。
+- More Sheet 使用 `dvh` 最大高度與內層捲動，改善短螢幕及鍵盤彈出。
+- iPhone 表單控制強制 16px，避免 Safari focus 自動放大。
+- 成績／歷史／排行榜／玩家表格統一手機水平滑動，Sticky 球員欄使用 Theme Token 背景。
+- Live Scoring 觸控目標、輸入框與 Mobile Bar 重新對齊 Dock / Safe Area。
+- PWA / Dialog / Post-game Review / Player Session 使用 Dynamic Viewport Height。
+- 420px / 360px / landscape phone 皆有專屬 Responsive Gate。
+- Standalone PWA 由 `display-mode: standalone` 與 `navigator.standalone` 雙路徑識別。
+- Dark Night 與 High Contrast 另補 Mobile Dock / Sticky 欄／Active State 可讀性。
+- `prefers-reduced-motion`、Transparency OFF 與 dev.2 Theme Tokens 保持相容。
+- `DB_VERSION = 2`、PUBLIC、Sync、Backup / Restore、Supabase Schema 不變。
+- 下一關：Mobile / PWA 自動 Gate → 隔離 Preview → iPhone Safari / PWA Standalone 實機驗收。
+
 # BowlMeet v0.4.7.0-dev.2 — Theme Token & Full Component Coverage
 
 - 基線：`v0.4.7.0-dev.1` commit `114b148d9700f720ccd9a4a0e6bdc7f576148b64`。
