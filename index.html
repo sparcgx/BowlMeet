@@ -1568,7 +1568,7 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
 }
 </style>
 <link rel="stylesheet" href="./assets/theme-center-dev2.css?v=0470d3" />
-<link rel="stylesheet" href="./assets/theme-center-dev3-mobile.css?v=0470d3" />
+<link rel="stylesheet" href="./assets/theme-center-dev3-mobile.css?v=0470d3r1" />
 </head>
 <body>
 <div class="app">
@@ -2607,6 +2607,14 @@ const DESIGN_PRESETS=Object.freeze({
 document.querySelectorAll('[data-app-version]').forEach(el=>{el.textContent='v'+APP_VERSION});
 const PWA_STANDALONE=(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
 document.documentElement.dataset.pwaStandalone=PWA_STANDALONE?'true':'false';
+function mountMobileViewportNav(){
+  const body=document.body;
+  const dock=document.querySelector('.mobile-glass-dock');
+  const backdrop=document.getElementById('mobileMoreBackdrop');
+  const sheet=document.getElementById('mobileMoreSheet');
+  [dock,backdrop,sheet].forEach(el=>{if(el&&el.parentElement!==body)body.appendChild(el)});
+}
+mountMobileViewportNav();
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
 const BUILTIN_CLOUD=true;
