@@ -1,0 +1,47 @@
+{
+  "version": "v0.4.7.1-dev.2",
+  "title": "Score Card Theme Integration & History Visual Polish",
+  "date": "2026-09-27",
+  "base": "v0.4.7.1-dev.1-R1",
+  "automated": {
+    "pass": 61,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "scope": {
+    "presentationOnly": true,
+    "asset": "assets/score-card-v0471.css",
+    "historyCardThemeIntegration": true,
+    "scoreTableVisualPolish": true,
+    "statusBadgePolish": true,
+    "mobileStickyAndScrollPreserved": true
+  },
+  "safety": {
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "publicHistoryPin": "042042",
+    "applicationJsChangedExceptVersion": false,
+    "scoreCoreChanged": false,
+    "backupRestoreChanged": false,
+    "syncChanged": false,
+    "publicPayloadMigration": false,
+    "indexedDbMigration": false,
+    "supabaseMigration": false
+  },
+  "preview": {
+    "path": "preview/v0.4.7.1-dev.2/",
+    "cloudEnabled": false,
+    "indexedDb": "bowlmeet.preview.v0471d2.local",
+    "themeKey": "bowlmeet.preview.v0471d2.themePreferences.v1",
+    "layoutKey": "bowlmeet.preview.v0471d2.layoutPreferences.v1",
+    "cachePrefix": "bowlmeet-preview-v0471d2-",
+    "isolated": true
+  },
+  "deviceManual": {
+    "checks": 10,
+    "pass": 0,
+    "fail": 0,
+    "status": "PENDING"
+  },
+  "validationComplete": false
+}
