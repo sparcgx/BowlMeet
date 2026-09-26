@@ -1,0 +1,54 @@
+BowlMeet v0.4.7.0-dev.4｜Accessibility & Theme Hardening Gate
+Date: 2026-09-26
+Baseline: v0.4.7.0-dev.3 accepted @ adf2db460c6181f8985bbbbb8a7c26df552e498b
+
+RESULT
+PASS: 45
+FAIL: 0
+TOTAL: 45
+
+ACCESSIBILITY
+- Skip Link -> main#mainContent: PASS
+- Main landmark: PASS
+- Desktop / Dock / More aria-current: PASS
+- More Sheet dialog semantics: PASS
+- Native Dialog modal semantics: 4 / 4
+- Focus Trap: More Sheet / Player Session / Post-game Review / PWA Update / Restore
+- Focus Return: PASS
+- Global / PWA Live Region: PASS
+- Theme-aware focus-visible: PASS
+- Dark Night focus hardening: PASS
+- High Contrast focus hardening: PASS
+- Status not color-only: PASS
+- prefers-contrast: more: PASS
+- forced-colors: active: PASS
+- prefers-reduced-motion: PASS
+- prefers-reduced-transparency: PASS
+- Coarse pointer min target: 44px
+
+STATIC AUDIT
+- Duplicate IDs: 0
+- Missing aria-labelledby / aria-describedby refs: 0
+- Unnamed buttons: 0
+- Images without alt: 0
+
+REGRESSION
+- dev.3 JavaScript syntax: PASS
+- dev.4 JavaScript syntax: PASS
+- Accessibility CSS brace balance: PASS
+- Manifest JSON: PASS
+- Service Worker JavaScript: PASS
+
+DATA SAFETY
+- DB_VERSION: 2 (UNCHANGED)
+- PUBLIC_HISTORY_CODE: PUBLIC (UNCHANGED)
+- LAYOUT_PREFS_KEY: bowlingMeetup.layoutPreferences.v1
+- THEME_PREFS_KEY: bowlingMeetup.themePreferences.v1
+- No SQL / Supabase schema change
+- No PUBLIC payload migration
+- No Backup / Restore contract change
+- No Sync contract change
+
+STATUS
+Accessibility Automated Gate: PASS
+Next gate: isolated Preview + keyboard / iPhone / PWA / High Contrast manual acceptance.
