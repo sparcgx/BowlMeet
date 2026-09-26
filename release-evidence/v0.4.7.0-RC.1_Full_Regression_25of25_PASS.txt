@@ -1,0 +1,47 @@
+BowlMeet v0.4.7.0-RC.1
+Full Regression & Release Candidate Gate
+Date: 2026-09-26
+
+ENTRY BASELINE
+- v0.4.7.0-dev.4 Accessibility & Theme Hardening: 12 / 12 PASS
+- v0.4.7.0-dev.4-R1 Advanced Liquid Glass Motion: 15 / 15 PASS
+- R1 accepted Liquid Glass CSS SHA: 057769c5028a46b19d789309f0b752fb977d4991
+
+FULL REGRESSION
+Result: 25 / 25 PASS
+
+1. App launch / navigation — PASS
+2. Meetup create / edit / end — PASS
+3. 10-frame live scoring — PASS
+4. Current score synchronization — PASS
+5. Unified score history — PASS
+6. Player directory / player history / analytics — PASS
+7. Public history — PASS
+8. Public-only leaderboard — PASS
+9. Public-only sharing — PASS
+10. Awards — PASS
+11. Multi-device sync — PASS
+12. Player Claim / Personal Score Sync — PASS
+13. Backup / Restore — PASS
+14. PWA install / update / offline shell — PASS
+15. Layout Settings — PASS
+16. Theme Center — PASS
+17. Liquid Glass Light — PASS
+18. Dark Night Glass — PASS
+19. High Contrast — PASS
+20. Reduce Motion / Transparency — PASS
+21. Keyboard Focus / Dialog / More Sheet focus trap — PASS
+22. iPhone Safari — PASS
+23. iPhone PWA Standalone — PASS
+24. No visual jank / flashing — PASS
+25. Production / preview data isolation — PASS
+
+RC FREEZE INTEGRITY
+- RC APP_VERSION: 0.4.7.0-RC.1
+- RC Liquid Glass CSS SHA: 057769c5028a46b19d789309f0b752fb977d4991
+- No new feature added after R1 acceptance
+- No scoring / PUBLIC / Sync / Backup / DB schema migration introduced
+
+RESULT
+- RC.1 Full Regression Gate: PASS
+- Stable Promotion Eligibility: APPROVED
