@@ -1,7 +1,7 @@
-const PREVIEW_CACHE_ROOT='bowlmeet-preview-v0470d3-r1-';
+const PREVIEW_CACHE_ROOT='bowlmeet-preview-v0470d3-r2-';
 const CACHE=PREVIEW_CACHE_ROOT+'mobile-shell';
 const RUNTIME=PREVIEW_CACHE_ROOT+'mobile-runtime';
-const APP_SHELL=['./','./index.html','./manifest.webmanifest','../../assets/liquid-glass-dev4.css?v=0470d3','./assets/theme-center-dev2.css?v=0470d3','./assets/theme-center-dev3-mobile.css?v=0470d3r1','../../icons/icon-192.png','../../icons/icon-512.png','../../icons/icon-maskable-512.png'];
+const APP_SHELL=['./','./index.html','./manifest.webmanifest','../../assets/liquid-glass-dev4.css?v=0470d3','./assets/theme-center-dev2.css?v=0470d3','./assets/theme-center-dev3-mobile.css?v=0470d3r2','../../icons/icon-192.png','../../icons/icon-512.png','../../icons/icon-maskable-512.png'];
 
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(APP_SHELL)))});
 self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')self.skipWaiting()});
