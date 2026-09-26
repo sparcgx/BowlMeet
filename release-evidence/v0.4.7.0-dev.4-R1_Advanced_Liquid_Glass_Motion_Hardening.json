@@ -61,5 +61,22 @@
     "backupRestoreContractChanged": false,
     "syncContractChanged": false
   },
-  "nextGate": "isolated Preview + iPhone / PWA Liquid Glass visual acceptance"
+  "nextGate": "iPhone / PWA Liquid Glass manual visual acceptance",
+  "preview": {
+    "status": "PUBLISHED",
+    "path": "/preview/v0.4.7.0-dev.4/",
+    "pullRequest": 66,
+    "mergeCommit": "a7ff92480b67ea9eb9347a72c24e37d0e8f83fd6",
+    "isolationGate": {
+      "pass": 25,
+      "fail": 0,
+      "total": 25
+    },
+    "cloudEnabled": false,
+    "localStorageNamespace": "bowlmeet.preview.v0470d4.*",
+    "indexedDb": "bowlmeet.preview.v0470d4.local",
+    "cacheNamespace": "bowlmeet-preview-v0470d4-r1-glass-*",
+    "productionRootUnchanged": true,
+    "productionRootBlob": "26a1b9028a6c8184dd7a616e1fa718caaeceae38"
+  }
 }
