@@ -1,3 +1,28 @@
+# BowlMeet v0.4.7.0 — Stable / Release Freeze
+
+正式認證來源：`v0.4.7.0-RC.1`。
+
+- dev.4 Accessibility & Theme Hardening：**12/12 PASS**
+- dev.4-R1 Advanced Liquid Glass Motion：**15/15 PASS**
+- RC.1 Full Regression：**25/25 PASS**
+- APP_VERSION：`0.4.7.0`
+- Theme Center、Mobile Theme、Accessibility Hardening、Advanced Liquid Glass Motion 正式納入 production
+- Light Liquid Glass / Dark Night / High Contrast / Reduce Motion / Reduce Transparency：**PASS**
+- Keyboard Focus / Dialog / More Sheet focus safety：**PASS**
+- iPhone Safari / PWA Standalone：**PASS**
+- Production IndexedDB：`bowlingMeetup.local`
+- `DB_VERSION = 2`
+- `PUBLIC_HISTORY_CODE = PUBLIC`
+- `LAYOUT_PREFS_KEY = bowlingMeetup.layoutPreferences.v1`
+- `THEME_PREFS_KEY = bowlingMeetup.themePreferences.v1`
+- Built-in Supabase Cloud：**保留啟用**
+- Supabase / IndexedDB / PUBLIC payload migration：**NONE**
+- Preview storage namespace：**未帶入 production**
+- Production PWA cache：`bowlmeet-v0.4.7.0-stable-*`
+- Advanced Liquid Glass Motion SHA：`057769c5028a46b19d789309f0b752fb977d4991`
+- Scoring / PUBLIC / Sync / Player Claim / Backup / Restore 契約：**UNCHANGED**
+- 此版本自 Stable Promotion 起視為 **Freeze Baseline**，後續變更須另開新版本分支。
+
 # BowlMeet v0.4.6.7-dev.1 — Preview Deployment
 
 - 基線：`stable/v0.4.6.6`。
