@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.7.0-dev.3",
+  "name": "保齡球球聚｜BowlMeet v0.4.7.0-dev.4",
   "short_name": "BowlMeet",
-  "description": "BowlMeet v0.4.7.0-dev.3 Mobile / PWA Theme Optimization：承接 dev.2 Theme Token Full Coverage，強化 iPhone / PWA Standalone Safe Area、Mobile Dock、More Sheet、橫向表格、Sticky 球員欄、動態視窗高度、16px 輸入防 Safari 自動放大、橫向模式與 Dark / High Contrast 行動可讀性；不修改 PUBLIC、成績、同步、Backup / Restore 或資料庫 Schema。",
+  "description": "BowlMeet v0.4.7.0-dev.4 Accessibility & Theme Hardening：承接 dev.3-R2 實機驗收，強化 Skip Link、aria-current、More Sheet / Dialog modal semantics、Focus Trap / Focus Return、Live Region、Focus Visible、prefers-contrast、forced-colors、Reduced Motion / Transparency、Dark Night / High Contrast；不修改 PUBLIC、成績、同步、Backup / Restore 或資料庫 Schema。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
