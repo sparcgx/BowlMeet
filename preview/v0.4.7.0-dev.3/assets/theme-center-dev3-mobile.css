@@ -379,3 +379,120 @@ html[data-pwa-standalone="true"] .topbar{padding-top:0!important}
 @media(prefers-reduced-motion:reduce){
   .mobile-more-sheet,.dock-item,.mobile-more-item{transform:none!important}
 }
+
+
+/* =========================================================
+   dev.3 R1 | Mobile Dock / More Sheet Alignment Fix
+   - Dock has 4 actual actions: use 4 equal columns.
+   - Navigation chrome is mounted to <body> by JS so .app zoom
+     cannot offset fixed positioning.
+   - More menu keeps a stable 3-column grid; final Settings item
+     spans the full row instead of appearing as a shifted orphan.
+   ========================================================= */
+@media(max-width:680px){
+  body>.mobile-glass-dock,
+  body>.mobile-more-sheet,
+  body>.mobile-more-backdrop{
+    zoom:1!important;
+  }
+
+  body>.mobile-glass-dock{
+    position:fixed!important;
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    grid-auto-flow:column!important;
+    width:auto!important;
+    max-width:none!important;
+    margin:0!important;
+    left:max(10px,var(--safe-left))!important;
+    right:max(10px,var(--safe-right))!important;
+    bottom:max(var(--mobile-dock-gap),var(--safe-bottom))!important;
+    transform:none!important;
+    transform-origin:bottom center!important;
+  }
+  body>.mobile-glass-dock>.dock-item{
+    width:100%!important;
+    min-width:0!important;
+    max-width:none!important;
+    margin:0!important;
+    justify-self:stretch!important;
+  }
+  body>.mobile-glass-dock>.dock-item>span:last-child{
+    display:block;
+    width:100%;
+    max-width:100%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    text-align:center;
+  }
+
+  body>.mobile-more-backdrop{
+    position:fixed!important;
+    inset:0!important;
+    margin:0!important;
+  }
+
+  body>.mobile-more-sheet{
+    position:fixed!important;
+    width:auto!important;
+    max-width:none!important;
+    margin:0!important;
+    left:max(10px,var(--safe-left))!important;
+    right:max(10px,var(--safe-right))!important;
+    bottom:calc(var(--mobile-dock-height) + 18px + var(--safe-bottom))!important;
+    transform-origin:bottom center!important;
+  }
+  body>.mobile-more-sheet .mobile-more-grid{
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    grid-auto-flow:row!important;
+    width:100%!important;
+    align-items:stretch!important;
+    justify-items:stretch!important;
+  }
+  body>.mobile-more-sheet .mobile-more-item{
+    width:100%!important;
+    min-width:0!important;
+    max-width:none!important;
+    margin:0!important;
+    justify-self:stretch!important;
+  }
+  body>.mobile-more-sheet .mobile-more-item:last-child{
+    grid-column:1/-1!important;
+    min-height:56px!important;
+    flex-direction:row!important;
+    justify-content:center!important;
+    gap:10px!important;
+  }
+  body>.mobile-more-sheet .mobile-more-item:last-child>span{
+    flex:0 0 30px;
+  }
+}
+@media(max-width:420px){
+  body>.mobile-glass-dock{
+    left:max(7px,var(--safe-left))!important;
+    right:max(7px,var(--safe-right))!important;
+  }
+  body>.mobile-more-sheet{
+    left:max(7px,var(--safe-left))!important;
+    right:max(7px,var(--safe-right))!important;
+  }
+  body>.mobile-more-sheet .mobile-more-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  body>.mobile-more-sheet .mobile-more-item:last-child{
+    grid-column:1/-1!important;
+  }
+}
+@media(max-width:900px) and (orientation:landscape) and (max-height:500px){
+  body>.mobile-glass-dock{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+  body>.mobile-more-sheet .mobile-more-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+  body>.mobile-more-sheet .mobile-more-item:last-child{
+    grid-column:span 2!important;
+  }
+}
