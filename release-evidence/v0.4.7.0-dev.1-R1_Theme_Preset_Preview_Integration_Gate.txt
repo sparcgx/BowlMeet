@@ -1,0 +1,76 @@
+BowlMeet v0.4.7.0-dev.1-R1
+Theme Preset Architecture & Preview Integration Gate
+Date: 2026-09-26
+Base: v0.4.7.0-dev.1
+Stable ancestry: stable/v0.4.6.7
+
+AUTOMATED / SOURCE GATE: 62 PASS / 0 FAIL
+
+THEME CENTER
+- 6 themes:
+  1. Default
+  2. Liquid Glass
+  3. Clear Blue
+  4. Soft Violet
+  5. Dark Night
+  6. High Contrast
+- 5 design presets:
+  1. Standard Work
+  2. Mobile Browse
+  3. Field Large Text
+  4. Glass Showcase
+  5. Night Mode
+- Theme detail controls:
+  - Motion
+  - Transparency
+  - Card Radius
+  - Shadow Level
+  - Color Intensity
+
+LOCAL STORAGE
+- Theme key: bowlingMeetup.themePreferences.v1
+- Layout key: bowlingMeetup.layoutPreferences.v1
+- Theme/Layout preferences remain local UI preferences only.
+
+SAFETY
+- DB_VERSION = 2
+- PUBLIC_HISTORY_CODE = PUBLIC
+- PUBLIC_CONTROL_KEY unchanged
+- captureState unchanged vs stable/v0.4.6.7
+- mirrorStateToLocalStorage unchanged
+- normalizeState unchanged
+- openDataDb unchanged
+- persistDbStateNow unchanged
+- initSync / initGroup unchanged
+- buildGroupPayload unchanged
+- renderLeaderboard / renderShare / renderHistory unchanged
+- Theme preferences excluded from Backup state
+- Layout preferences excluded from Backup state
+- Theme preferences excluded from PUBLIC/group payload
+- No DB migration
+- No PUBLIC payload migration
+- No Sync contract change
+
+PWA
+- APP_VERSION = 0.4.7.0-dev.1
+- Manifest aligned
+- Theme shell/runtime cache isolated
+- Shared Liquid Glass CSS fingerprint = 0470d1
+- Reduced Motion / Reduced Transparency / no-backdrop fallback present
+
+PREVIEW
+- Existing dev.1 Preview verified isolated
+- Preview localStorage isolated
+- Preview IndexedDB isolated
+- Preview Cloud disabled
+- Preview cache isolated
+- 6 themes / 5 presets present
+
+DEVICE ACCEPTANCE
+- PENDING: 10 manual checks
+- R1 Validation Complete: NO
+
+DECISION
+- Source Gate: PASS
+- Preview Integration Gate: PASS
+- Ready for R1 Device Preview: YES
