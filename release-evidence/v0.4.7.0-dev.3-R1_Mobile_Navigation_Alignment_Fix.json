@@ -1,0 +1,50 @@
+{
+  "version": "v0.4.7.0-dev.3-R1",
+  "title": "Mobile Dock & More Menu Alignment Fix",
+  "date": "2026-09-26",
+  "baseline": {
+    "version": "v0.4.7.0-dev.3",
+    "commit": "5dd72202dbf792e7c74b663d8904cf5a0d1f4986"
+  },
+  "issue": {
+    "reported": "下方選單與更多裡選單跑掉",
+    "rootCauses": [
+      "Mobile Dock has 4 actual actions but dev.3 override forced 5 CSS grid columns.",
+      "Dock / backdrop / More Sheet were inside .app, which can be zoomed by 90–120% layout scale and offset fixed-position mobile chrome."
+    ]
+  },
+  "fix": {
+    "dockColumns": 4,
+    "viewportNavigationMountedToBody": true,
+    "moreMenuPortraitColumns": 3,
+    "moreMenuCompactColumns": 2,
+    "moreMenuLandscapeColumns": 4,
+    "settingsItemFullRowInPortrait": true,
+    "pwaCache": "bowlmeet-v0.4.7.0-dev.3-r1-mobile-*"
+  },
+  "gates": {
+    "source": {
+      "pass": 23,
+      "fail": 0,
+      "total": 23
+    },
+    "previewIsolation": {
+      "pass": 16,
+      "fail": 0,
+      "total": 16
+    }
+  },
+  "regression": {
+    "uiOnlyJavascriptDeltaBytes": 364,
+    "coreJavascriptDriftAfterMountHelperRemoval": 0,
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "dataContractChanged": false
+  },
+  "preview": {
+    "path": "/preview/v0.4.7.0-dev.3/",
+    "pullRequest": 63,
+    "mergeCommit": "3699c2de8f260896307d47465b6b4e7083ab715d",
+    "productionRootUnchanged": true
+  }
+}
