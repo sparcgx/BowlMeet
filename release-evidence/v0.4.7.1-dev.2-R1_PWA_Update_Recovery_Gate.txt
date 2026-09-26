@@ -37,5 +37,12 @@ PREVIEW
 - Preview Service Worker cache isolated
 
 DEVICE RETEST
-- Pending: PWA Safety Update > Check Update
-- Expected: no InvalidStateError
+- PWA Safety Update > Check Update: PASS
+- InvalidStateError: NOT REPRODUCED AFTER REPAIR
+- User confirmation date: 2026-09-27
+
+FINAL R1 RESULT
+- Repair Regression: 48 / 48 PASS / 0 FAIL
+- Device Retest: PASS
+- Validation Complete: YES
+- main / stable promotion: NOT EXECUTED
