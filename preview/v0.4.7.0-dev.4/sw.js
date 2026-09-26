@@ -1,4 +1,4 @@
-const PREVIEW_CACHE_ROOT='bowlmeet-preview-v0470d4-r1-glass-';
+const PREVIEW_CACHE_ROOT='bowlmeet-preview-v0470d4-r1-glass-v2-';
 const CACHE=PREVIEW_CACHE_ROOT+'shell';
 const RUNTIME=PREVIEW_CACHE_ROOT+'runtime';
 const APP_SHELL=['./','./index.html','./manifest.webmanifest','../../assets/liquid-glass-dev4.css?v=0470d4','./assets/theme-center-dev2.css?v=0470d4','./assets/theme-center-dev3-mobile.css?v=0470d4','./assets/theme-center-dev4-accessibility.css?v=0470d4','./assets/theme-center-dev4-r1-liquid-motion.css?v=0470d4r1','../../icons/icon-192.png','../../icons/icon-512.png','../../icons/icon-maskable-512.png'];
