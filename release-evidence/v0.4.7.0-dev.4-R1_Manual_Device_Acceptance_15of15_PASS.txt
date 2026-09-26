@@ -1,0 +1,34 @@
+BowlMeet v0.4.7.0-dev.4-R1
+Advanced Liquid Glass Motion Enhancement
+Manual Device Acceptance Gate
+Date: 2026-09-26
+
+USER DEVICE ACCEPTANCE
+Result: 15 / 15 PASS
+
+1. Light Liquid Glass — PASS
+2. Dark Night Glass — PASS
+3. High Contrast — PASS
+4. Reduce Motion — PASS
+5. Reduce Transparency — PASS
+6. Keyboard Focus — PASS
+7. Card press feedback — PASS
+8. Dock press feedback — PASS
+9. Scroll optical motion — PASS
+10. More Sheet depth — PASS
+11. Dialog depth — PASS
+12. iPhone Safari — PASS
+13. iPhone PWA — PASS
+14. No visible jank / flashing — PASS
+15. Functional smoke: scoring / PUBLIC / Sync / Backup — PASS
+
+BASELINE
+- dev.4 accepted baseline preserved
+- R1 preview isolated from dev.4
+- Production root remains v0.4.6.7 Stable
+
+STATUS
+- Static Implementation Gate: PASS
+- Manual Device Acceptance: 15 / 15 PASS
+- R1 Acceptance: COMPLETE
+- Eligible for v0.4.7.0-RC.1
