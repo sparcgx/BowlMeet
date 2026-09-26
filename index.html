@@ -1570,6 +1570,7 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
 <link rel="stylesheet" href="./assets/theme-center-dev2.css?v=0470d4" />
 <link rel="stylesheet" href="./assets/theme-center-dev3-mobile.css?v=0470d4" />
 <link rel="stylesheet" href="./assets/theme-center-dev4-accessibility.css?v=0470d4" />
+<link rel="stylesheet" href="./assets/theme-center-dev4-r1-liquid-motion.css?v=0470d4r1" />
 </head>
 <body>
 <a class="skip-link" href="#mainContent">跳到主要內容</a>
@@ -2806,6 +2807,55 @@ function initThemeCenter(){
   document.querySelectorAll('[data-design-preset]').forEach(btn=>btn.addEventListener('click',()=>applyDesignPreset(btn.dataset.designPreset)));
   $('themeResetBtn')?.addEventListener('click',resetThemePreferences);
   renderDesignPresetState();
+}
+
+function liquidGlassMotionActive(){
+  const root=document.documentElement;
+  if(root.dataset.theme!=='liquid-glass'||root.dataset.themeMotion!=='on'||root.dataset.themeTransparency!=='on')return false;
+  if(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches)return false;
+  if(window.matchMedia?.('(prefers-reduced-transparency: reduce)').matches)return false;
+  return true;
+}
+function initLiquidGlassMotion(){
+  const root=document.documentElement;
+  const finePointer=window.matchMedia?.('(hover: hover) and (pointer: fine)').matches;
+  let raf=0;
+  const reset=()=>{
+    root.style.setProperty('--glass-pointer-x','50%');
+    root.style.setProperty('--glass-pointer-y','18%');
+    root.style.setProperty('--glass-tilt-x','0deg');
+    root.style.setProperty('--glass-tilt-y','0deg');
+  };
+  if(finePointer){
+    window.addEventListener('pointermove',event=>{
+      if(!liquidGlassMotionActive())return;
+      if(raf)return;
+      raf=requestAnimationFrame(()=>{
+        raf=0;
+        const x=Math.max(0,Math.min(100,event.clientX/Math.max(1,window.innerWidth)*100));
+        const y=Math.max(0,Math.min(100,event.clientY/Math.max(1,window.innerHeight)*100));
+        const tiltY=(x-50)*0.018;
+        const tiltX=(50-y)*0.014;
+        root.style.setProperty('--glass-pointer-x',x.toFixed(2)+'%');
+        root.style.setProperty('--glass-pointer-y',y.toFixed(2)+'%');
+        root.style.setProperty('--glass-tilt-x',tiltX.toFixed(3)+'deg');
+        root.style.setProperty('--glass-tilt-y',tiltY.toFixed(3)+'deg');
+      });
+    },{passive:true});
+    document.addEventListener('mouseleave',reset,{passive:true});
+  }
+  let scrollRaf=0;
+  window.addEventListener('scroll',()=>{
+    if(!liquidGlassMotionActive())return;
+    if(scrollRaf)return;
+    scrollRaf=requestAnimationFrame(()=>{
+      scrollRaf=0;
+      const offset=Math.min(12,window.scrollY*.012);
+      root.style.setProperty('--glass-scroll-offset',offset.toFixed(2)+'px');
+    });
+  },{passive:true});
+  window.matchMedia?.('(prefers-reduced-motion: reduce)').addEventListener?.('change',reset);
+  window.matchMedia?.('(prefers-reduced-transparency: reduce)').addEventListener?.('change',reset);
 }
 
 const LAYOUT_ALLOWED={
@@ -4767,7 +4817,7 @@ $('photoInput').addEventListener('change',e=>setPhoto(e.target.files&&e.target.f
 $('rotateLeftBtn').addEventListener('click',()=>rotatePhoto(-90));$('rotateRightBtn').addEventListener('click',()=>rotatePhoto(90));$('ocrBtn').addEventListener('click',runOcr);$('clearPhotoBtn').addEventListener('click',clearPhoto);$('ocrQuality').addEventListener('change',()=>{if($('photoPreview').src)previewTemplateGrid()});$('ocrMode').addEventListener('change',()=>{previewTemplateGrid();if($('ocrMode').value==='general')$('templateStatus').textContent='一般 OCR 模式：不使用固定表格欄位定位。';else previewTemplateGrid()});$('showGridGuide').addEventListener('change',()=>previewTemplateGrid());$('reparseBtn').addEventListener('click',()=>{renderOcrRows(parseOcrText($('ocrRawText').value));$('verifyFilter').value='pending';renderVerificationCenter();setOcrStatus('已重新解析；請完成待確認欄位。',100)});$('applyOcrBtn').addEventListener('click',applyOcrToSheet);
 renderOcrRows(blankOcrRows());updateStages();
 
-$('date').value=today();$('meetupDate').value=today();load();initLayoutSettings();initThemeCenter();resetMeetupForm();resetRosterForm();if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll();initPwa();initSync();initGroup();startPersonalPolling();switchView('meetupView',{scroll:false});initDataSafety().then(()=>{if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll()});
+$('date').value=today();$('meetupDate').value=today();load();initLayoutSettings();initThemeCenter();initLiquidGlassMotion();resetMeetupForm();resetRosterForm();if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll();initPwa();initSync();initGroup();startPersonalPolling();switchView('meetupView',{scroll:false});initDataSafety().then(()=>{if(!loadDraft()){renderScoreRows(defaultPlayers());updateEditStatus()}else updateEditStatus();renderAll()});
 })();
 </script>
 </body>
