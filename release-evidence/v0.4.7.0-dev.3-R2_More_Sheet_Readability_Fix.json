@@ -47,5 +47,24 @@
     "indexedDb": "bowlmeet.preview.v0470d3.local",
     "cacheNamespace": "bowlmeet-preview-v0470d3-r2-*",
     "productionRootUnchanged": true
-  }
+  },
+  "manualAcceptance": {
+    "status": "PASS",
+    "date": "2026-09-26",
+    "device": "iPhone",
+    "scope": [
+      "More Sheet portrait 2-column layout",
+      "No clipping on 拍照匯入 / 資料安全",
+      "Function cards equal width",
+      "Settings full-width alignment",
+      "Close button / header alignment"
+    ],
+    "result": {
+      "pass": 5,
+      "fail": 0,
+      "total": 5
+    }
+  },
+  "releaseStatus": "DEV.3 ACCEPTED",
+  "nextVersion": "v0.4.7.0-dev.4｜Accessibility & Theme Hardening"
 }
