@@ -1,7 +1,7 @@
 const PRODUCTION_CACHE_ROOT='bowlmeet-v';
-const CACHE='bowlmeet-v0.4.6.7-stable-shell';
-const RUNTIME='bowlmeet-v0.4.6.7-stable-runtime';
-const APP_SHELL=['./','./index.html','./manifest.webmanifest','./assets/liquid-glass-dev4.css?v=0467','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-maskable-512.png'];
+const CACHE='bowlmeet-v0.4.7.0-stable-shell';
+const RUNTIME='bowlmeet-v0.4.7.0-stable-runtime';
+const APP_SHELL=['./','./index.html','./manifest.webmanifest','./assets/liquid-glass-dev4.css?v=0470','./assets/theme-center-v0470.css?v=0470','./assets/theme-center-v0470-mobile.css?v=0470','./assets/theme-center-v0470-accessibility.css?v=0470','./assets/liquid-motion-v0470.css?v=0470','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-maskable-512.png'];
 
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(APP_SHELL)))});
 
@@ -24,7 +24,6 @@ async function matchProductionCache(request){
 self.addEventListener('fetch',event=>{
   const req=event.request;
   if(req.method!=='GET')return;
-  const url=new URL(req.url);
 
   if(req.mode==='navigate'){
     event.respondWith(
