@@ -1,0 +1,19 @@
+BowlMeet v0.4.7.0-dev.4-R1｜Advanced Liquid Glass Motion Manual Acceptance
+Status: PENDING
+Preview: /preview/v0.4.7.0-dev.4/
+
+1. Liquid Glass + Motion ON + Transparency ON：卡片、Dock、More Sheet 有明顯但不刺眼的高階玻璃層次。
+2. iPhone 直向：Dock / More Sheet 透明、模糊、邊緣高光正常，文字仍清楚。
+3. iPhone PWA：Standalone Dock 的玻璃厚度更明顯，但沒有卡頓或閃爍。
+4. 點按 Dock / More Sheet / Primary Button：縮放回饋自然，不造成跑版。
+5. Motion OFF：環境光與動態效果停止，操作與版面正常。
+6. Transparency OFF：玻璃退回實色，不殘留透明／模糊。
+7. Reduce Motion / Reduce Transparency：系統設定能正確降級。
+8. High Contrast：不套用 Liquid Glass 動態效果，Focus / 狀態仍清楚。
+
+PASS criterion:
+- 8 / 8 PASS
+- No text readability regression
+- No mobile layout regression
+- No visible flicker
+- No production data / root changes
