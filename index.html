@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.7.1-dev.3</title>
+<title>保齡球球聚｜BowlMeet v0.4.7.1-dev.4</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="color-scheme" content="light dark" />
 <meta name="application-name" content="BowlMeet" />
@@ -1142,7 +1142,7 @@ dialog::backdrop,
 }
 
 </style>
-<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0471d3" />
+<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0471d4" />
 <style id="history-score-critical">
 /* v0.4.6.3-dev.1 | Dynamic score grid + Safari/PWA fallback */
 .history-score-table-wrap{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
@@ -1239,7 +1239,7 @@ dialog::backdrop,
 
 <style id="theme-center-v0470">
 /* =========================================================
-   v0.4.7.1-dev.3 | Theme Center Foundation
+   v0.4.7.1-dev.4 | Theme Center Foundation
    Presentation-only. No score/PUBLIC/sync/backup schema changes.
    ========================================================= */
 :root{
@@ -1567,18 +1567,19 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
   .design-preset-strip .layout-preset-btn{min-width:150px;scroll-snap-align:start}
 }
 </style>
-<link rel="stylesheet" href="./assets/theme-center-v0470.css?v=0471d3" />
-<link rel="stylesheet" href="./assets/theme-center-v0470-mobile.css?v=0471d3" />
-<link rel="stylesheet" href="./assets/theme-center-v0470-accessibility.css?v=0471d3" />
-<link rel="stylesheet" href="./assets/liquid-motion-v0470.css?v=0471d3" />
-<link rel="stylesheet" href="./assets/score-card-v0471.css?v=0471d3" />
-<link rel="stylesheet" href="./assets/score-card-mobile-v0471.css?v=0471d3" />
+<link rel="stylesheet" href="./assets/theme-center-v0470.css?v=0471d4" />
+<link rel="stylesheet" href="./assets/theme-center-v0470-mobile.css?v=0471d4" />
+<link rel="stylesheet" href="./assets/theme-center-v0470-accessibility.css?v=0471d4" />
+<link rel="stylesheet" href="./assets/liquid-motion-v0470.css?v=0471d4" />
+<link rel="stylesheet" href="./assets/score-card-v0471.css?v=0471d4" />
+<link rel="stylesheet" href="./assets/score-card-mobile-v0471.css?v=0471d4" />
+<link rel="stylesheet" href="./assets/score-card-accessibility-v0471.css?v=0471d4" />
 </head>
 <body>
 <a class="skip-link" href="#mainContent">跳到主要內容</a>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · Development dev.3 · Mobile Score Card UX</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · Development dev.4 · Score Card Accessibility</p></div></div>
 </div></header>
 <main id="mainContent" tabindex="-1">
   <nav class="tabs" aria-label="功能切換">
@@ -2549,7 +2550,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.7.1-dev.3';
+const APP_VERSION='0.4.7.1-dev.4';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const THEME_PREFS_KEY='bowlingMeetup.themePreferences.v1';
 const THEME_DEFAULTS=Object.freeze({
@@ -3369,7 +3370,7 @@ function renderHistory(){
     const rows=(s.players||[]).map((p,rowIndex,players)=>{
       const pc=playerCalc(p),pid=playerIdentity(p.name),lastRowClass=rowIndex===players.length-1?' history-score-last-row':'';
       const scores=Array.from({length:gameCount},(_,i)=>normalizeScore((p.scores||[])[i]));
-      return '<div class="history-score-name'+lastRowClass+'"><button type="button" class="player-link" data-player-hub="'+esc(pid.key)+'" data-origin-session="'+esc(s.id)+'">'+esc(p.name)+'</button></div>'
+      return '<div class="history-score-name'+lastRowClass+'"><button type="button" class="player-link" data-player-hub="'+esc(pid.key)+'" data-origin-session="'+esc(s.id)+'" aria-label="查看 '+esc(p.name)+' 的球員資料">'+esc(p.name)+'</button></div>'
         +scores.map(v=>'<div class="history-game-score'+lastRowClass+'">'+(v===null?'—':v)+'</div>').join('')
         +'<div class="history-score-total'+lastRowClass+'">'+pc.total+'</div><div class="history-score-average history-score-row-end'+lastRowClass+'">'+(pc.avg??'—')+'</div>';
     }).join('');
@@ -3377,7 +3378,7 @@ function renderHistory(){
     const canShare=r.local&&s.meetupId&&meetups.some(x=>x.id===s.meetupId);let actions='';
     if(r.local){actions=`<button class="btn small" data-act="edit" data-id="${esc(s.id)}">編輯</button>`+(canShare?`<button class="btn small" data-act="share" data-id="${esc(s.id)}">分享</button>`:'')+(r.public?`<button class="btn small" data-act="unpublish-public" data-id="${esc(s.id)}">取消公開</button>`:r.publicRemoved?`<button class="btn small primary" data-act="republish-public" data-id="${esc(s.id)}">重新公開</button>`:`<button class="btn small primary" data-act="republish-public" data-id="${esc(s.id)}">公開</button>`)+`<button class="btn small danger" data-act="del" data-id="${esc(s.id)}">${r.public?'刪除本機':'刪除'}</button>`}
     else{actions=`<button class="btn small primary" data-act="import-public" data-id="${esc(s.id)}">匯入我的紀錄</button>`+(r.public?`<button class="btn small danger" data-act="unpublish-public" data-id="${esc(s.id)}">取消公開</button>`:'')}
-    return `<article class="session ${r.local?'':'public-only'}"><div class="session-head"><div><div class="session-title">${esc(fmtDate(s.date))} · ${esc(m?.title||s.venue||'未填球館')}</div><div class="session-meta">${s.venue&&m?.title?esc(s.venue)+' · ':''}${s.lane?`球道 ${esc(s.lane)} · `:''}${sm.games} 局 · 平均 ${sm.avg??'—'}${sm.best!==null?` · 最高 ${sm.best} (${esc(sm.bestName)})`:''}${s.importAudit?'<span class="audit-chip">照片驗證匯入</span>':''}</div><div class="session-source-tags">${sourceTag}</div></div><div class="session-actions">${actions}</div></div><div class="history-score-table-wrap" role="region" aria-label="每局成績，共 ${gameCount} 局，可左右滑動"><div class="history-score-grid" style="--history-grid-columns:${gridColumns};--history-grid-min-width:${gridMinWidth}px"><div class="history-score-head history-score-name">球員</div>${gameHeaders}<div class="history-score-head">總分</div><div class="history-score-head history-score-row-end">平均</div>${rows}</div></div></article>`
+    return `<article class="session ${r.local?'':'public-only'}"><div class="session-head"><div><div class="session-title">${esc(fmtDate(s.date))} · ${esc(m?.title||s.venue||'未填球館')}</div><div class="session-meta">${s.venue&&m?.title?esc(s.venue)+' · ':''}${s.lane?`球道 ${esc(s.lane)} · `:''}${sm.games} 局 · 平均 ${sm.avg??'—'}${sm.best!==null?` · 最高 ${sm.best} (${esc(sm.bestName)})`:''}${s.importAudit?'<span class="audit-chip">照片驗證匯入</span>':''}</div><div class="session-source-tags">${sourceTag}</div></div><div class="session-actions">${actions}</div></div><div class="history-score-table-wrap" role="region" tabindex="0" aria-label="每局成績，共 ${gameCount} 局；可水平捲動查看完整成績"><div class="history-score-grid" style="--history-grid-columns:${gridColumns};--history-grid-min-width:${gridMinWidth}px"><div class="history-score-head history-score-name">球員</div>${gameHeaders}<div class="history-score-head">總分</div><div class="history-score-head history-score-row-end">平均</div>${rows}</div></div></article>`
   }).join('')
 }
 
