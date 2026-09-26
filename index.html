@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.7.0-dev.2</title>
+<title>保齡球球聚｜BowlMeet v0.4.7.0-dev.3</title>
 <meta name="theme-color" content="#ffffff" />
+<meta name="color-scheme" content="light dark" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -1141,7 +1142,7 @@ dialog::backdrop,
 }
 
 </style>
-<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0470d2" />
+<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0470d3" />
 <style id="history-score-critical">
 /* v0.4.6.3-dev.1 | Dynamic score grid + Safari/PWA fallback */
 .history-score-table-wrap{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
@@ -1566,7 +1567,8 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
   .design-preset-strip .layout-preset-btn{min-width:150px;scroll-snap-align:start}
 }
 </style>
-<link rel="stylesheet" href="./assets/theme-center-dev2.css?v=0470d2" />
+<link rel="stylesheet" href="./assets/theme-center-dev2.css?v=0470d3" />
+<link rel="stylesheet" href="./assets/theme-center-dev3-mobile.css?v=0470d3" />
 </head>
 <body>
 <div class="app">
@@ -2542,7 +2544,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.7.0-dev.2';
+const APP_VERSION='0.4.7.0-dev.3';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const THEME_PREFS_KEY='bowlingMeetup.themePreferences.v1';
 const THEME_DEFAULTS=Object.freeze({
@@ -2603,6 +2605,8 @@ const DESIGN_PRESETS=Object.freeze({
   })
 });
 document.querySelectorAll('[data-app-version]').forEach(el=>{el.textContent='v'+APP_VERSION});
+const PWA_STANDALONE=(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
+document.documentElement.dataset.pwaStandalone=PWA_STANDALONE?'true':'false';
 const BUILTIN_SUPABASE_URL='https://wkchnffhvxiwbydowwie.supabase.co';
 const BUILTIN_SUPABASE_PUBLISHABLE_KEY='sb_publishable_plfYoWOkv0U9h_lQx-Lnlg_w8Ky4q_G';
 const BUILTIN_CLOUD=true;
