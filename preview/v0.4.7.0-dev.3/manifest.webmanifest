@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.7.0-dev.3 Preview",
+  "name": "保齡球球聚｜BowlMeet v0.4.7.0-dev.3 Preview R1",
   "short_name": "BowlMeet dev.3",
-  "description": "v0.4.7.0-dev.3 Mobile / PWA Theme Optimization 隔離 Preview：iPhone Safari / PWA Standalone / Safe Area / Mobile Dock / More Sheet / 動態視窗與手機表格測試；正式 LocalStorage / IndexedDB / Cloud 全部隔離。",
+  "description": "v0.4.7.0-dev.3 R1 隔離 Preview：修正底部 Dock 4 欄對齊與更多選單定位；Mobile / PWA Theme Optimization 測試，正式 LocalStorage / IndexedDB / Cloud 全部隔離。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
