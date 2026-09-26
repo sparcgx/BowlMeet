@@ -1,0 +1,74 @@
+BowlMeet v0.4.7.0
+Stable Promotion & Release Freeze
+Final Release Evidence
+Date: 2026-09-26
+
+ENTRY GATES
+PASS  v0.4.7.0-dev.4 Accessibility & Theme Hardening device acceptance = 12 / 12
+PASS  v0.4.7.0-dev.4-R1 Advanced Liquid Glass Motion device acceptance = 15 / 15
+PASS  v0.4.7.0-RC.1 Full Regression & Release Candidate Gate = 25 / 25
+
+PRODUCTION PROMOTION
+PASS  Production APP_VERSION = 0.4.7.0
+PASS  Production root index SHA = 2f17ae786221535d372616a3d9eda20633c970e9
+PASS  PWA manifest updated to v0.4.7.0
+PASS  Service Worker cache = bowlmeet-v0.4.7.0-stable-shell
+PASS  Production LocalStorage keys preserved
+PASS  Production IndexedDB = bowlingMeetup.local
+PASS  Built-in Supabase Cloud remains enabled
+PASS  RC preview namespace is absent from production root
+PASS  Layout preferences remain bowlingMeetup.layoutPreferences.v1
+PASS  Theme preferences use bowlingMeetup.themePreferences.v1
+
+FROZEN VISUAL / ACCESSIBILITY LAYERS
+Theme Center SHA:
+ca6337ecc020be86380f64b94c4eb4e37cb9c6ed
+
+Mobile Theme SHA:
+24bbe787eff568071e3927afe7787753ea24af66
+
+Accessibility Hardening SHA:
+ee3a341eb20f250e5ff3700f6128341ec4ae5fd6
+
+Advanced Liquid Glass Motion SHA:
+057769c5028a46b19d789309f0b752fb977d4991
+
+BASELINE PRESERVATION
+PASS  dev.4 APP_VERSION = 0.4.7.0-dev.4
+PASS  dev.4 accepted index SHA = f98fd4fed4450dbb1bf5dcbea82d6f94b99d2a1b
+PASS  R1 APP_VERSION = 0.4.7.0-dev.4-R1
+PASS  RC APP_VERSION = 0.4.7.0-RC.1
+PASS  Production root no longer uses preview storage namespace
+
+RELEASE SCOPE
+- Theme Center
+- Full component theme coverage
+- Mobile / PWA theme optimization
+- Accessibility & Theme Hardening
+- Advanced Liquid Glass Motion
+- Dark Night deep glass
+- High Contrast
+- Reduced Motion / Reduced Transparency fallbacks
+- Keyboard focus / Dialog / More Sheet accessibility hardening
+
+DATA / FUNCTION CONTRACT
+UNCHANGED / PRESERVED
+- Scoring core
+- 10-frame live scoring
+- Meetup Context
+- Unified Score History
+- PUBLIC History
+- Public-only leaderboard / sharing
+- Awards
+- Multi-device Sync
+- Player Claim / Personal Score Sync
+- Backup / Restore
+- IndexedDB Snapshot
+- PUBLIC record control
+- Existing Supabase production configuration
+
+FINAL STATUS
+Stable Promotion: PASS
+Release Freeze: ACTIVE
+Production Version: v0.4.7.0
+Future changes must branch from v0.4.7.0 Stable and must not modify the frozen baseline directly.
