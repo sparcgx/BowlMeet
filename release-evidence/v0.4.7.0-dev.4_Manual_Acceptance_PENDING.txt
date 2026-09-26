@@ -1,28 +1,22 @@
 BowlMeet v0.4.7.0-dev.4｜Manual Acceptance
-Status: PENDING
-Preview: /preview/v0.4.7.0-dev.4/
+Status: PASS
+Date: 2026-09-26
+Result: 12 PASS / 0 FAIL
 
-A. Keyboard / Focus
-1. 首次 Tab 可看到「跳到主要內容」；Enter 後焦點進入主內容。
-2. Desktop tabs / Mobile Dock / More Sheet 目前頁狀態清楚，鍵盤焦點框可見。
-3. More Sheet 開啟後 Tab / Shift+Tab 不會跑到背景；Esc 關閉後焦點回到「更多」。
-4. Player Session / Post-game Review / PWA Update / Restore Dialog：Tab 不離開 Dialog；關閉後焦點合理返回。
+1. Skip Link / Main content: PASS
+2. Navigation aria-current / focus-visible: PASS
+3. More Sheet focus trap / Esc focus return: PASS
+4. Player Session / Post-game Review / PWA Update / Restore Dialog focus containment: PASS
+5. Default / Liquid Glass / Clear Blue / Soft Violet focus-visible: PASS
+6. Dark Night focus visibility: PASS
+7. High Contrast non-color state: PASS
+8. Reduce Motion: PASS
+9. Reduce Transparency: PASS
+10. iPhone Safari mobile layout: PASS
+11. PWA Standalone Safe Area / Dialog / More Sheet: PASS
+12. Reopen preference persistence / Preview isolation: PASS
 
-B. Theme / Accessibility
-5. Default / Liquid Glass / Clear Blue / Soft Violet：focus-visible 清楚且不蓋文字。
-6. Dark Night：按鈕、輸入框、Dialog、Dock 的 focus ring 清楚。
-7. High Contrast：目前頁與成功 / 警告 / 錯誤狀態不只依靠顏色辨識。
-8. 系統 Reduce Motion 開啟後：More Sheet / Dock / Theme Card 無不必要動態，功能正常。
-9. 系統 Reduce Transparency 開啟後：玻璃背景降級但文字仍清楚。
-
-C. iPhone / PWA
-10. iPhone Safari：More Sheet、Dialog、底部 Dock 仍與 dev.3-R2 一致，不跑版。
-11. 加入主畫面 PWA：Safe Area / Home Indicator / More Sheet / Dialog 正常。
-12. PWA 關閉重開：Theme / Layout preference 保留；正式球聚資料與 Preview 隔離。
-
-PASS criterion:
-- 12 / 12 PASS
-- No keyboard trap escape
-- No invisible focus
-- No mobile regression
-- No production data / root changes
+DEV.4 STATUS
+- Accessibility & Theme Hardening accepted.
+- Additional requested work before RC:
+  v0.4.7.0-dev.4-R1｜Advanced Liquid Glass Motion Hardening
