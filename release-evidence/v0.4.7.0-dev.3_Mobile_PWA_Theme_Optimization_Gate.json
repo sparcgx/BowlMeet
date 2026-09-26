@@ -1,0 +1,69 @@
+{
+  "version": "v0.4.7.0-dev.3",
+  "title": "Mobile / PWA Theme Optimization",
+  "date": "2026-09-26",
+  "baseline": {
+    "branch": "v0.4.7.0-dev.2",
+    "commit": "2802ed5a722c5eb0bc2d0683d3710ac977d25cb0"
+  },
+  "result": {
+    "pass": 30,
+    "fail": 0,
+    "total": 30,
+    "status": "PASS"
+  },
+  "mobilePwa": {
+    "stylesheet": "assets/theme-center-dev3-mobile.css",
+    "safeArea": [
+      "top",
+      "right",
+      "bottom",
+      "left"
+    ],
+    "viewportFitCover": true,
+    "dynamicViewportUnits": true,
+    "standaloneDetection": [
+      "display-mode: standalone",
+      "navigator.standalone"
+    ],
+    "safariInputZoomGuardPx": 16,
+    "minimumTouchTargetPx": 44,
+    "compactPhoneBreakpointPx": 420,
+    "narrowPhoneBreakpointPx": 360,
+    "landscapePhoneGate": true,
+    "horizontalTables": true,
+    "stickyPlayerColumn": true,
+    "dynamicDialogs": true,
+    "dockSafeArea": true,
+    "moreSheetSafeArea": true
+  },
+  "themes": {
+    "darkNightMobileCoverage": true,
+    "highContrastMobileCoverage": true,
+    "reducedMotion": true,
+    "transparencyCompatibility": true
+  },
+  "regression": {
+    "dev2JavascriptSyntax": "PASS",
+    "dev3JavascriptSyntax": "PASS",
+    "uiOnlyJavascriptDeltaBytes": 206,
+    "coreJavascriptDriftAfterUiMarkerRemoval": 0,
+    "cssBraceBalance": "PASS",
+    "staticDuplicateIds": 0,
+    "manifestJson": "PASS",
+    "serviceWorkerSyntax": "PASS"
+  },
+  "safety": {
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "layoutKey": "bowlingMeetup.layoutPreferences.v1",
+    "themeKey": "bowlingMeetup.themePreferences.v1",
+    "themeInCaptureState": false,
+    "layoutInCaptureState": false,
+    "sqlSchemaChanges": false,
+    "publicPayloadMigration": false,
+    "backupRestoreContractChanged": false,
+    "syncContractChanged": false
+  },
+  "nextGate": "isolated Preview + iPhone Safari / PWA Standalone manual acceptance"
+}
