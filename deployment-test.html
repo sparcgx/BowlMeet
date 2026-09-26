@@ -6,15 +6,13 @@
 <title>BowlMeet v0.4.7.0｜Stable Deployment Test</title>
 <meta name="theme-color" content="#ffffff">
 <style>
-:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:#172033;background:#f5f7fa}*{box-sizing:border-box}body{margin:0}.wrap{max-width:760px;margin:auto;padding:18px}.card{background:#fff;border:1px solid #e4e8ef;border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 8px 24px rgba(17,24,39,.05)}h1{font-size:22px;margin:0 0 6px}p{color:#697386;line-height:1.6}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #eef1f5}.row:last-child{border-bottom:0}.label{font-weight:800}.status{font-weight:900}.ok{color:#14804a}.bad{color:#b42318}.btn{display:block;text-align:center;text-decoration:none;background:#172033;color:white;border-radius:12px;padding:13px 16px;font-weight:850}.meta{font-size:12px;color:#697386;word-break:break-all;line-height:1.6}.pill{display:inline-block;border-radius:999px;background:#eef4ff;color:#0f62fe;padding:5px 9px;font-size:11px;font-weight:850;margin-bottom:10px}</style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;color:#172033;background:#f5f7fa}*{box-sizing:border-box}body{margin:0}.wrap{max-width:760px;margin:auto;padding:18px}.card{background:#fff;border:1px solid #e4e8ef;border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 8px 24px rgba(17,24,39,.05)}h1{font-size:22px;margin:0 0 6px}p{color:#697386;line-height:1.6}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #eef1f5}.row:last-child{border-bottom:0}.label{font-weight:800}.status{font-weight:900}.ok{color:#14804a}.bad{color:#b42318}.btn{display:block;text-align:center;text-decoration:none;background:#172033;color:white;border-radius:12px;padding:13px 16px;font-weight:850}.meta{font-size:12px;color:#697386;word-break:break-all;line-height:1.6;white-space:pre-wrap}.pill{display:inline-block;border-radius:999px;background:#eef4ff;color:#0f62fe;padding:5px 9px;font-size:11px;font-weight:850;margin-bottom:10px}</style>
 </head>
 <body><main class="wrap">
-<section class="card"><span class="pill">BowlMeet v0.4.7.0 Stable</span><h1>iPhone / PWA Deployment Test</h1><p>確認正式站已部署 v0.4.7.0，而不是 RC / Preview 或舊版 PWA Cache。</p></section>
-<section class="card"><p><strong>Release Gate：</strong>v0.4.7.0-RC.1 Full Regression 25 / 25 PASS；承接 dev.4 Accessibility & Theme Hardening 與 dev.4-R1 Advanced Liquid Glass Motion。</p></section>
-<section class="card"><p><strong>資料契約：</strong>正式 LocalStorage、IndexedDB、PUBLIC、Sync、Player Claim、Backup / Restore 與既有 Supabase 設定維持 production 契約；RC Preview namespace 不會帶入正式版。</p></section>
-<section class="card"><p><strong>Theme Center：</strong>包含 Default、Liquid Glass、Clear Blue、Soft Violet、Dark Night、High Contrast，以及 Motion / Transparency / Radius / Shadow / Color Intensity 控制。</p></section>
-<section class="card"><p><strong>Accessibility：</strong>Focus Visible、Skip Link、ARIA current、Dialog / More Sheet focus trap、Reduced Motion / Transparency、prefers-contrast 與 forced-colors 已納入正式版。</p></section>
-<section class="card"><p><strong>PWA：</strong>Service Worker 已旋轉至 v0.4.7.0 Stable cache；更新仍保留備份前置保護。</p></section>
+<section class="card"><span class="pill">BowlMeet v0.4.7.0 Stable</span><h1>Production Deployment Test</h1><p>確認正式站以 HTTPS / PWA 模式執行，並使用正式 LocalStorage、IndexedDB、Cloud 與 Service Worker namespace。</p></section>
+<section class="card"><p><strong>Stable Promotion：</strong>由 v0.4.7.0-RC.1 Full Regression 25/25 PASS 升版。Theme Center、Accessibility Hardening、Advanced Liquid Glass Motion 與 Dark Night Glass 均已完成實機驗收。</p></section>
+<section class="card"><p><strong>資料契約：</strong>沿用既有 production keys、DB_VERSION 2、PUBLIC、Sync、Player Claim、Backup / Restore、Snapshot 與 PWA 安全更新流程；不使用 preview.* 儲存鍵。</p></section>
+<section class="card"><p><strong>視覺基線：</strong>RC 與 Stable Liquid Glass motion layer 維持相同驗收內容，正式版只完成 production path / cache / identity promotion。</p></section>
 <section class="card" id="checks">
 <div class="row"><span class="label">JavaScript</span><span class="status bad" id="js">未執行</span></div>
 <div class="row"><span class="label">HTTPS / Secure Context</span><span class="status" id="secure">檢查中</span></div>
@@ -36,7 +34,7 @@
  set('sw','serviceWorker' in navigator?'支援':'不支援','serviceWorker' in navigator?'ok':'bad');
  const standalone=(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
  set('standalone',standalone?'已加入主畫面 / App':'Safari 瀏覽器','ok');
- document.getElementById('meta').textContent=`URL：${location.href}\nUser Agent：${navigator.userAgent}`;
+ document.getElementById('meta').textContent=`版本：v0.4.7.0 Stable\nURL：${location.href}\nUser Agent：${navigator.userAgent}`;
 })();
 </script>
 </body></html>
