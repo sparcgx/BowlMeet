@@ -52,3 +52,14 @@ DATA SAFETY
 STATUS
 Accessibility Automated Gate: PASS
 Next gate: isolated Preview + keyboard / iPhone / PWA / High Contrast manual acceptance.
+
+ISOLATED PREVIEW
+- Path: /preview/v0.4.7.0-dev.4/
+- Preview-only PR: #65
+- Merge commit: 4cfd2c236cc550cb84693b9b16d4d71093487d2d
+- Preview Isolation Gate: 25 PASS / 0 FAIL
+- Cloud: OFF
+- LocalStorage: bowlmeet.preview.v0470d4.*
+- IndexedDB: bowlmeet.preview.v0470d4.local
+- Service Worker cache: bowlmeet-preview-v0470d4-*
+- Production root remains identical to stable/v0.4.6.7
