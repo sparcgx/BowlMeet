@@ -10,7 +10,12 @@
 - Reduced Motion / Reduced Transparency / prefers-contrast / forced-colors：完整安全降級。
 - High Contrast 不套用動態玻璃。
 - DB / PUBLIC / Sync / Backup / Restore / Supabase Schema：**無變更**。
-- 下一關：R1 Visual Hardening Gate → 隔離 Preview → iPhone / PWA Liquid Glass 實機驗收。
+- R1 Visual Hardening Gate：**24 PASS / 0 FAIL**。
+- R1 Preview Isolation Gate：**25 PASS / 0 FAIL**。
+- Preview-only PR：#66，已更新原 `/preview/v0.4.7.0-dev.4/`。
+- Preview merge commit：`a7ff92480b67ea9eb9347a72c24e37d0e8f83fd6`。
+- 正式 root 仍與 `stable/v0.4.6.7` 完全一致。
+- 下一關：iPhone / PWA Liquid Glass 實機視覺驗收。
 
 # BowlMeet v0.4.7.0-dev.4 — Accessibility & Theme Hardening
 
