@@ -1,3 +1,15 @@
+# BowlMeet v0.4.7.0-dev.3-R1 — Mobile Navigation Alignment Fix
+
+- 修正手機下方 Dock 與「更多」選單位移。
+- Dock 依實際 4 個主要按鈕固定為 4 等分。
+- Dock / Backdrop / More Sheet mount 到 `body`，不再受 90～120% `.app` layout zoom 影響。
+- 更多選單：直向 3 欄＋最後「設定」滿寬；<=420px 2 欄；短螢幕橫向 4 欄。
+- R1 Source Gate：**23 PASS / 0 FAIL**。
+- R1 Preview Isolation Gate：**16 PASS / 0 FAIL**。
+- UI-only JavaScript delta：364 bytes；移除 mount helper 後核心 JS drift = **0**。
+- Preview-only PR：#63，已更新原 `/preview/v0.4.7.0-dev.3/`。
+- 正式 root 仍與 `stable/v0.4.6.7` 完全一致。
+
 # BowlMeet v0.4.7.0-dev.3 — Mobile / PWA Theme Optimization
 
 - 基線：`v0.4.7.0-dev.2` commit `2802ed5a722c5eb0bc2d0683d3710ac977d25cb0`。
