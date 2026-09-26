@@ -75,6 +75,7 @@
     "localStorageNamespace": "bowlmeet.preview.v0470d4.*",
     "indexedDb": "bowlmeet.preview.v0470d4.local",
     "cacheNamespace": "bowlmeet-preview-v0470d4-*",
-    "productionRootUnchanged": true
+    "productionRootUnchanged": true,
+    "productionRootBlob": "26a1b9028a6c8184dd7a616e1fa718caaeceae38"
   }
 }
