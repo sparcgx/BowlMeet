@@ -2427,7 +2427,7 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
         <h2>IndexedDB 與資料完整性</h2>
         <p>主要資料會寫入 IndexedDB，並同步保留 localStorage 相容鏡像。若 IndexedDB 不可用，會自動退回 localStorage，不中斷記分。</p>
         <div class="safety-actions"><button class="btn primary" id="createSnapshotBtn" type="button">立即建立快照</button><button class="btn" id="integrityCheckBtn" type="button">資料完整性檢查</button></div>
-        <div class="safety-status" id="integrityResult"><strong>狀態：</strong>尚未執行完整性檢查。</div>
+        <div class="safety-status" id="integrityResult" role="status" aria-live="polite" aria-atomic="true"><strong>狀態：</strong>尚未執行完整性檢查。</div>
       </section>
       <section class="card safety-panel">
         <h2>安全快照 / Recovery</h2>
@@ -2474,7 +2474,7 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
           <thead><tr><th>玩家</th><th>完成局</th><th>總分</th><th>平均</th><th>最高</th></tr></thead>
           <tbody id="postReviewBody"></tbody>
         </table>
-        <div class="post-review-empty" id="postReviewEmpty" hidden>目前沒有正式完成局；未完成 10 格不會列入統計。</div>
+        <div class="post-review-empty" id="postReviewEmpty" role="status" hidden>目前沒有正式完成局；未完成 10 格不會列入統計。</div>
       </div>
       <div class="post-review-note">摘要只統計已完成並寫入 Session 的正式單局；未完成 10 格維持「未完成」，不會污染平均、最高分與歷史分析。</div>
       <div class="post-review-actions">
