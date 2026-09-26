@@ -77,5 +77,30 @@
     "cacheNamespace": "bowlmeet-preview-v0470d4-*",
     "productionRootUnchanged": true,
     "productionRootBlob": "26a1b9028a6c8184dd7a616e1fa718caaeceae38"
-  }
+  },
+  "manualAcceptance": {
+    "status": "PASS",
+    "date": "2026-09-26",
+    "result": {
+      "pass": 12,
+      "fail": 0,
+      "total": 12
+    },
+    "scope": [
+      "Skip Link / Main landmark",
+      "Desktop / Mobile navigation focus state",
+      "More Sheet focus trap / focus return",
+      "Dialog focus trap / focus return",
+      "Default / Liquid Glass / Clear Blue / Soft Violet focus",
+      "Dark Night focus visibility",
+      "High Contrast non-color state",
+      "Reduced Motion",
+      "Reduced Transparency",
+      "iPhone Safari mobile regression",
+      "PWA Safe Area / Dialog / More Sheet",
+      "PWA reopen preference persistence / Preview isolation"
+    ]
+  },
+  "releaseStatus": "DEV.4 ACCESSIBILITY ACCEPTED",
+  "nextWork": "v0.4.7.0-dev.4-R1｜Advanced Liquid Glass Motion Hardening"
 }
