@@ -9,7 +9,11 @@
 - R2 Source Gate：**23 PASS / 0 FAIL**。
 - JavaScript delta：**0**。
 - DB / PUBLIC / Sync / Backup / Restore / Supabase Schema：**無變更**。
-- 下一關：隔離 Preview + iPhone 直向實機驗收。
+- Preview Isolation Gate：**17 PASS / 0 FAIL**。
+- Preview-only PR：#64，已更新原 `/preview/v0.4.7.0-dev.3/`。
+- Preview merge commit：`61d9a253c984d46513d3a94b6b46751fbe1ac7f2`。
+- 正式 root 仍與 `stable/v0.4.6.7` 完全一致。
+- 下一關：iPhone 直向實機驗收。
 
 # BowlMeet v0.4.7.0-dev.3-R1 — Mobile Navigation Alignment Fix
 
