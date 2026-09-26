@@ -60,5 +60,21 @@
     "backupRestoreContractChanged": false,
     "syncContractChanged": false
   },
-  "nextGate": "isolated Preview + keyboard / iPhone / PWA / High Contrast manual acceptance"
+  "nextGate": "keyboard / iPhone / PWA / High Contrast manual acceptance",
+  "preview": {
+    "status": "PUBLISHED",
+    "path": "/preview/v0.4.7.0-dev.4/",
+    "pullRequest": 65,
+    "mergeCommit": "4cfd2c236cc550cb84693b9b16d4d71093487d2d",
+    "isolationGate": {
+      "pass": 25,
+      "fail": 0,
+      "total": 25
+    },
+    "cloudEnabled": false,
+    "localStorageNamespace": "bowlmeet.preview.v0470d4.*",
+    "indexedDb": "bowlmeet.preview.v0470d4.local",
+    "cacheNamespace": "bowlmeet-preview-v0470d4-*",
+    "productionRootUnchanged": true
+  }
 }
