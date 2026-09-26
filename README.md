@@ -1,3 +1,19 @@
+# BowlMeet v0.4.7.0-dev.4 — Accessibility & Theme Hardening
+
+- 基線：`v0.4.7.0-dev.3` accepted commit `adf2db460c6181f8985bbbbb8a7c26df552e498b`。
+- 新增 `assets/theme-center-dev4-accessibility.css`，最後載入 Accessibility / Theme Hardening layer。
+- 新增 Skip Link 與 `main#mainContent` landmark。
+- Desktop tabs、Mobile Dock、More Sheet 由 JavaScript 維護 `aria-current="page"`。
+- More Sheet 補上 `role="dialog"`、`aria-modal`、標題／說明關聯、Tab focus trap 與 focus return。
+- Player Session / Post-game Review / PWA Update / Restore 四個 Dialog 補齊 modal semantics；PWA / Restore Esc 關閉後會返回原焦點。
+- 全域 `:focus-visible` 使用 Theme Token；Dark Night / High Contrast 另有可讀性 hardening。
+- Status feedback 除顏色外加入文字／形狀 cue；Safety / PWA feedback 使用 live-region。
+- 新增 `prefers-contrast: more` 與 `forced-colors: active` 支援。
+- Reduced Motion / Reduced Transparency 與 dev.1～dev.3 Theme Center 保持相容。
+- pointer coarse 互動目標至少 44px。
+- `DB_VERSION = 2`、`PUBLIC_HISTORY_CODE = PUBLIC`、PUBLIC / Sync / Backup / Restore / Supabase Schema 不變。
+- 下一關：Accessibility Automated Gate → 隔離 Preview → Keyboard / iPhone / PWA / High Contrast 實機驗收。
+
 # BowlMeet v0.4.7.0-dev.3-R2 — More Sheet Readability Fix
 
 - 依 iPhone 實機截圖修正「更多功能」直向 3 欄過擠與第三欄裁切問題。
