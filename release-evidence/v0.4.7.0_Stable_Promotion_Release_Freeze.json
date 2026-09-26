@@ -1,0 +1,34 @@
+{
+  "version": "0.4.7.0",
+  "gate": "Stable Promotion & Release Freeze",
+  "date": "2026-09-26",
+  "status": "PASS",
+  "acceptance": {
+    "v0.4.7.0-dev.4": "12/12 PASS",
+    "v0.4.7.0-dev.4-R1": "15/15 PASS",
+    "v0.4.7.0-RC.1": "25/25 PASS"
+  },
+  "production": {
+    "appVersion": "0.4.7.0",
+    "indexSha": "2f17ae786221535d372616a3d9eda20633c970e9",
+    "indexedDb": "bowlingMeetup.local",
+    "cloudEnabled": true,
+    "previewNamespacePresent": false,
+    "layoutPreferencesKey": "bowlingMeetup.layoutPreferences.v1",
+    "themePreferencesKey": "bowlingMeetup.themePreferences.v1",
+    "serviceWorkerCache": "bowlmeet-v0.4.7.0-stable-shell"
+  },
+  "frozenLayers": {
+    "themeCenter": "ca6337ecc020be86380f64b94c4eb4e37cb9c6ed",
+    "mobileTheme": "24bbe787eff568071e3927afe7787753ea24af66",
+    "accessibility": "ee3a341eb20f250e5ff3700f6128341ec4ae5fd6",
+    "liquidMotion": "057769c5028a46b19d789309f0b752fb977d4991"
+  },
+  "preservedBaselines": {
+    "dev4IndexSha": "f98fd4fed4450dbb1bf5dcbea82d6f94b99d2a1b",
+    "dev4Version": "0.4.7.0-dev.4",
+    "r1Version": "0.4.7.0-dev.4-R1",
+    "rc1Version": "0.4.7.0-RC.1"
+  },
+  "freeze": true
+}
