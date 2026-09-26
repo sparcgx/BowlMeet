@@ -1,0 +1,41 @@
+BowlMeet v0.4.7.1-dev.2-R1
+Preview Service Worker Update Recovery
+Date: 2026-09-27
+Base: v0.4.7.1-dev.2
+
+REPAIR REGRESSION: 48 PASS / 0 FAIL
+
+ISSUE
+- Preview PWA update check could fail with:
+  "The object is in an invalid state."
+- Root cause: checkPwaUpdate() could call update() on a stale ServiceWorkerRegistration after Preview republish / registration replacement.
+
+REPAIR
+- Reacquire current-scope registration before update check.
+- If registration is missing, register ./sw.js again.
+- Detect InvalidStateError / "invalid state".
+- On invalid registration, re-register and retry update once.
+- Prevent duplicate updatefound listeners with WeakSet.
+- Registration uses explicit ./ scope and updateViaCache none.
+- PWA cache identity rotated for R1.
+
+SAFETY
+- DB_VERSION unchanged.
+- PUBLIC contract unchanged.
+- Theme / Layout keys unchanged.
+- Score core unchanged.
+- Backup / Restore unchanged.
+- Sync unchanged.
+- No Supabase migration.
+- No IndexedDB migration.
+- No PUBLIC payload migration.
+
+PREVIEW
+- preview/v0.4.7.1-dev.2-R1/
+- Cloud OFF
+- Preview storage isolated
+- Preview Service Worker cache isolated
+
+DEVICE RETEST
+- Pending: PWA Safety Update > Check Update
+- Expected: no InvalidStateError
