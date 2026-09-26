@@ -1,0 +1,58 @@
+BowlMeet v0.4.7.0-dev.4-R1｜Advanced Liquid Glass Motion Hardening
+Date: 2026-09-26
+Baseline: v0.4.7.0-dev.4 accepted @ 8fbb4208955a27e4b614e35633e67d52e6c3bbce
+Baseline Manual Acceptance: 12 PASS / 0 FAIL
+
+RESULT
+PASS: 24
+FAIL: 0
+TOTAL: 24
+
+ACTIVATION
+- Theme: Liquid Glass
+- Motion: ON
+- Transparency: ON
+- All three conditions are required.
+
+EFFECTS
+- Multi-layer glass refraction
+- Ambient refracted light
+- Pointer-following highlight on fine-pointer devices
+- Subtle depth / hover lift
+- Higher optical depth for Mobile Dock
+- Floating glass More Sheet
+- Touch press feedback
+- Standalone PWA denser glass chrome
+
+MOBILE / PERFORMANCE
+- No DeviceMotion / gyro permission requested
+- iPhone uses ambient motion + touch feedback
+- Mobile blur reduced to 20px
+- PWA Dock blur: 28px
+- requestAnimationFrame + passive listeners used for desktop optical tracking
+
+ACCESSIBILITY / FALLBACK
+- Motion OFF: PASS
+- Transparency OFF: PASS
+- prefers-reduced-motion: PASS
+- prefers-reduced-transparency: PASS
+- prefers-contrast: more: PASS
+- forced-colors: active: PASS
+- No backdrop-filter support fallback: PASS
+- Award card status pseudo-element preserved
+
+REGRESSION / DATA SAFETY
+- JavaScript syntax: PASS
+- Visual helper JS delta: 2202 bytes
+- Core JavaScript drift after helper removal: 0
+- CSS brace balance: PASS
+- DB_VERSION: 2
+- PUBLIC_HISTORY_CODE: PUBLIC
+- captureState: UNCHANGED
+- Group / PUBLIC contract: UNCHANGED
+- No SQL / Supabase schema change
+- No Backup / Restore contract change
+- No Sync contract change
+
+NEXT
+- Isolated Preview + iPhone / PWA Liquid Glass visual acceptance.
