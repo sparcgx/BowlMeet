@@ -71,3 +71,19 @@ ISOLATED PREVIEW
 
 NEXT
 - iPhone / PWA Liquid Glass manual visual acceptance.
+
+VERSION IDENTITY ALIGNMENT
+- Final R1 Gate: 28 PASS / 0 FAIL
+- APP_VERSION: 0.4.7.0-dev.4-R1
+- HTML title: ALIGNED
+- Manifest name: ALIGNED
+- Deployment Test: ALIGNED
+- PWA cache refreshed: PASS
+
+PREVIEW REFRESH
+- Latest Preview PR: #67
+- Merge commit: 26ba3c7f3cf3a8e6bd35c6e127bf3c9fd57fec44
+- Identity / Isolation Gate: 21 PASS / 0 FAIL
+- Cache: bowlmeet-preview-v0470d4-r1-glass-v2-*
+- Visible Preview version: v0.4.7.0-dev.4-R1
+- Production root remains identical to stable/v0.4.6.7
