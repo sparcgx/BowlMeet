@@ -1,0 +1,25 @@
+BowlMeet v0.4.7.0-dev.3-R2｜More Sheet Readability Fix
+Date: 2026-09-26
+Baseline: v0.4.7.0-dev.3-R1 @ 59d200b72fd092b50ecb0d6a5bdaa9f3dba49fbc
+
+SOURCE
+- iPhone 實機截圖顯示「更多功能」3 欄在直向螢幕仍過擠，第三欄文字與卡片視覺被裁切。
+
+FIX
+- iPhone / phone portrait <=680px：固定 2 欄。
+- 功能名稱允許最多 2 行，不再 ellipsis 裁切。
+- icon 縮至 28px，字級與卡片 padding 重新平衡。
+- 功能卡 min-height 82px。
+- 最後「設定」維持滿寬，min-height 54px，降低視覺重量。
+- 關閉按鈕重新置中。
+- Landscape 保留 4 欄。
+
+GATE
+- R2 Source Gate: 23 PASS / 0 FAIL
+- JavaScript delta: 0
+- DB_VERSION: 2
+- PUBLIC_HISTORY_CODE: PUBLIC
+- Data contract change: NONE
+
+NEXT
+- Isolated Preview + iPhone portrait visual acceptance.
