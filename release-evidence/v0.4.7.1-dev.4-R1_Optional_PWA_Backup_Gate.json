@@ -1,0 +1,42 @@
+{
+  "version": "v0.4.7.1-dev.4-R1",
+  "title": "Optional Backup Before PWA Update",
+  "date": "2026-09-27",
+  "base": "v0.4.7.1-dev.4",
+  "automated": {
+    "pass": 47,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "change": {
+    "manualBackupRequired": false,
+    "backupActionRetained": true,
+    "directUpdateAllowed": true,
+    "backupFailureBlocksUpdate": false,
+    "currentStatePersistedBeforeUpdate": true,
+    "localSnapshotBestEffort": true,
+    "invalidStateRecoveryRetained": true
+  },
+  "safety": {
+    "dbVersionChanged": false,
+    "publicContractChanged": false,
+    "scoreCoreChanged": false,
+    "backupRestoreImplementationChanged": false,
+    "syncChanged": false,
+    "supabaseMigration": false,
+    "indexedDbMigration": false,
+    "publicPayloadMigration": false
+  },
+  "preview": {
+    "path": "preview/v0.4.7.1-dev.4-R1/",
+    "cloudEnabled": false,
+    "isolated": true
+  },
+  "deviceRetest": {
+    "checks": 5,
+    "pass": 0,
+    "fail": 0,
+    "status": "PENDING"
+  },
+  "validationComplete": false
+}
