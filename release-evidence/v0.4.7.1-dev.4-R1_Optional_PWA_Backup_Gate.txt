@@ -1,0 +1,34 @@
+BowlMeet v0.4.7.1-dev.4-R1
+Optional Backup Before PWA Update
+Date: 2026-09-27
+Base: v0.4.7.1-dev.4
+
+AUTOMATED REPAIR GATE: 47 PASS / 0 FAIL
+
+CHANGE
+- PWA update no longer requires a manual JSON backup before applying.
+- Backup button remains available as an optional action.
+- Update button is enabled when a waiting Service Worker is detected.
+- Backup failure does not block update.
+- Before switching Service Worker, current state is still persisted.
+- Local pre-update snapshot is best-effort and no longer blocks update if snapshot creation fails.
+- Existing InvalidStateError Service Worker recovery remains active.
+
+SAFETY
+- DB_VERSION unchanged.
+- PUBLIC contract unchanged.
+- Score core unchanged.
+- Backup / Restore implementation unchanged.
+- Sync unchanged.
+- No Supabase migration.
+- No IndexedDB migration.
+- No PUBLIC payload migration.
+
+ISOLATED PREVIEW
+- Path: preview/v0.4.7.1-dev.4-R1/
+- Cloud: OFF
+- Preview storage / IndexedDB / PWA cache isolated.
+
+DEVICE RETEST
+- 0 / 5 PENDING
+- Validation Complete: NO
