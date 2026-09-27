@@ -30,5 +30,12 @@ ISOLATED PREVIEW
 - Preview storage / IndexedDB / PWA cache isolated.
 
 DEVICE RETEST
-- 0 / 5 PENDING
-- Validation Complete: NO
+- 5 / 5 PASS
+- User confirmation date: 2026-09-27
+- Validation Complete: YES
+
+FINAL R1 RESULT
+- Automated Repair Gate: 47 / 47 PASS / 0 FAIL
+- Device Retest: 5 / 5 PASS
+- Overall: PASS
+- main / stable promotion: NOT EXECUTED
