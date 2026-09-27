@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.7.1-dev.4-R1",
+  "name": "保齡球球聚｜BowlMeet v0.4.7.1-RC.1",
   "short_name": "BowlMeet",
-  "description": "BowlMeet v0.4.7.1-dev.4-R1 Development：Optional Backup Before PWA Update；更新不再強制下載備份檔，保留自動本機安全快照與既有資料安全契約。",
+  "description": "BowlMeet v0.4.7.1-RC.1 Release Candidate：Full Regression & Release Candidate Gate；凍結 v0.4.7.1 功能範圍，不新增功能，保留 PUBLIC、Sync、Backup/Restore、PWA 與資料庫安全契約。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
