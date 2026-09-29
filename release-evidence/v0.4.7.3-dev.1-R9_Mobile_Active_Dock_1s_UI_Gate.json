@@ -1,0 +1,43 @@
+{
+  "version": "v0.4.7.3-dev.1-R9",
+  "title": "Mobile Active Dock 1s Dynamic Float",
+  "date": "2026-09-30",
+  "base": "stable/v0.4.7.2",
+  "result": "PASS",
+  "checks_total": 16,
+  "checks_passed": 16,
+  "scope": [
+    "UI/CSS"
+  ],
+  "mobile_active_dock": {
+    "selectors": [
+      ".mobile-glass-dock .dock-item.active",
+      ".mobile-glass-dock .dock-more.has-secondary-active"
+    ],
+    "animation": "bowlmeet-dock-float-r9 1s ease-in-out infinite",
+    "range_px": [
+      0,
+      -2
+    ]
+  },
+  "accessibility": {
+    "high_contrast": "disabled",
+    "prefers_reduced_motion": "disabled"
+  },
+  "device_visual_acceptance": "PENDING user confirmation",
+  "stable_promotion": "NOT EXECUTED",
+  "contracts_unchanged": [
+    "Scoring Core",
+    "10-frame live scoring",
+    "PUBLIC/PUBLIC Control",
+    "public-only leaderboard",
+    "public-only sharing",
+    "Sync",
+    "Backup/Restore",
+    "IndexedDB Schema",
+    "Supabase Schema",
+    "PUBLIC payload",
+    "DB_VERSION=2",
+    "Theme/Layout local-only"
+  ]
+}
