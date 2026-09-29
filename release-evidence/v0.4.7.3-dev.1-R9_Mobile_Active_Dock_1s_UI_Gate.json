@@ -24,7 +24,7 @@
     "high_contrast": "disabled",
     "prefers_reduced_motion": "disabled"
   },
-  "device_visual_acceptance": "PENDING user confirmation",
+  "device_visual_acceptance": "PASS — user confirmed mobile real-device test OK.",
   "stable_promotion": "NOT EXECUTED",
   "contracts_unchanged": [
     "Scoring Core",
