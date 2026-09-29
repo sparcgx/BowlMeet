@@ -1,0 +1,92 @@
+BowlMeet v0.4.7.1-RC.1-R1
+Mobile Header Overflow & Score Entry Layout Repair
+Date: 2026-09-29
+Base: v0.4.7.1-RC.1
+
+ORIGINAL R1 AUTOMATED REPAIR GATE
+- 36 / 36 PASS / 0 FAIL
+
+DEVICE RETEST BEFORE HF1
+- PASS: scrolling / rubber-band behavior normal
+- PASS: score input + horizontal scrolling normal
+- REMAINING: player-name column proportion
+- REMAINING: header text residue / text bleed
+
+DEPLOYMENT DEFECT FOUND
+- Preview PR #85 deployed preview HTML/SW but did NOT deploy:
+  assets/rc-mobile-repair-v0471.css
+- The Preview therefore referenced an R1 stylesheet that was absent from main/GitHub Pages.
+- HF1 corrects the Preview deployment and hardens the two remaining UI repairs.
+
+HF1 REPAIR
+- Mobile header is fully opaque white.
+- Mobile header backdrop-filter is disabled to avoid iOS sticky/translucent compositing bleed.
+- Header overflow clipping + safe-area shield retained.
+- Added a lower-edge white shield to prevent text showing at the sticky boundary.
+- Player name column:
+  - <=680px: 88px
+  - <=420px: 80px
+- Score input remains:
+  - <=680px: 90px
+  - <=420px: 88px
+  - minimum touch height: 52px
+- Horizontal scrolling behavior retained.
+
+HF1 TARGETED STATIC GATE
+- 22 / 22 PASS / 0 FAIL
+- Application JavaScript unchanged from RC.1 except APP_VERSION.
+- DB_VERSION remains 2.
+- PUBLIC_HISTORY_CODE remains PUBLIC in release source.
+- Score core unchanged.
+- Sync unchanged.
+- Backup / Restore unchanged.
+- Optional PWA Backup behavior unchanged.
+- InvalidState recovery unchanged.
+- No Supabase / IndexedDB / PUBLIC payload migration.
+- Theme / Layout preferences remain local-only.
+- Preview storage / PUBLIC / PWA cache remain isolated.
+
+DEVICE STATUS
+- 2 / 4 confirmed before HF1
+- Remaining retest after HF1: Header text residue + player-name column proportion
+- Validation Complete: NO
+- Stable Promotion Eligibility: PENDING
+- main / stable promotion: NOT EXECUTED
+
+
+HF2 TEXT ARTIFACT REPAIR
+- Root cause confirmed: one literal HTML text node `\n` existed between style blocks.
+- Replaced only `</style>\n<style id="field-workflow-dev1">` with a real newline.
+- HF2 targeted static gate: 12 / 12 PASS / 0 FAIL.
+- Application JavaScript unchanged from RC.1 except APP_VERSION.
+- HF1 header/name-column/score-input behavior retained.
+- Device status before HF2 retest: 3 / 4 PASS.
+- Remaining: confirm visible `\n` text is gone.
+
+HF2 ROOT CAUSE
+- A literal backslash+n text node existed between style blocks:
+  </style>\n<style id="field-workflow-dev1">
+- Because it was outside CSS/JS, Safari rendered "\n" as visible page text above the app header.
+- HF2 replaces only that one literal sequence with a real newline.
+
+HF2 TARGETED STATIC GATE
+- 15 / 15 PASS / 0 FAIL
+- Literal backslash+n before application scripts: 0 in RC source.
+- Literal backslash+n before application scripts: 0 in isolated Preview.
+- Application JavaScript unchanged from RC.1 except APP_VERSION.
+- DB_VERSION remains 2.
+- PUBLIC_HISTORY_CODE remains PUBLIC in release source.
+- Theme / Layout keys unchanged and local-only.
+- HF1 player-name sizing retained.
+- HF1 score-input sizing and horizontal interaction retained.
+- Preview PUBLIC namespace remains isolated.
+- PWA cache identity bumped to HF2.
+
+DEVICE STATUS AFTER USER RETEST
+- Scrolling / rubber-band: PASS
+- Player-name column proportion: PASS
+- Score input + horizontal scrolling: PASS
+- Visible "\n" artifact: HF2 fixed in source; final device confirmation PENDING
+- Device total before final HF2 confirmation: 3 / 4 PASS
+- Stable Promotion Eligibility: PENDING
+- main / stable promotion: NOT EXECUTED

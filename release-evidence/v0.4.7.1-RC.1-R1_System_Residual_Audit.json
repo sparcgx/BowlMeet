@@ -1,0 +1,60 @@
+{
+  "version": "v0.4.7.1-RC.1-R1",
+  "date": "2026-09-29",
+  "audit": "System Visible Residual Audit",
+  "method": "visible markup literal escape scan excluding executable/style/preformatted blocks",
+  "scope": {
+    "htmlSurfacesChecked": 29
+  },
+  "activeCandidate": {
+    "checked": 5,
+    "clean": 5,
+    "residual": 0,
+    "surfaces": [
+      "v0.4.7.1-RC.1-R1/index.html",
+      "preview/v0.4.7.1-RC.1-R1/index.html",
+      "preview/v0.4.7.1-RC.1-R1/deployment-test.html",
+      "preview/v0.4.7.1-RC.1-R1-HF3/index.html",
+      "preview/v0.4.7.1-RC.1-R1-HF3/deployment-test.html"
+    ]
+  },
+  "frozenProduction": {
+    "checked": 3,
+    "clean": 1,
+    "residual": 2,
+    "residuals": [
+      {
+        "ref": "main",
+        "path": "index.html",
+        "version": "v0.4.7.0",
+        "literalBackslashN": 1
+      },
+      {
+        "ref": "stable/v0.4.7.0",
+        "path": "index.html",
+        "version": "v0.4.7.0",
+        "literalBackslashN": 1
+      }
+    ],
+    "modified": false,
+    "reason": "frozen baseline; no silent main/stable mutation"
+  },
+  "archive": {
+    "checked": 21,
+    "clean": 7,
+    "residual": 14,
+    "note": "same historical literal backslash+n pattern in earlier v0.4.7.1 root and Preview index snapshots"
+  },
+  "total": {
+    "checked": 29,
+    "clean": 13,
+    "residual": 16
+  },
+  "deviceRetest": {
+    "pass": 4,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "validationComplete": true,
+  "promotionExecuted": false
+}

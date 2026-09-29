@@ -1,0 +1,68 @@
+BowlMeet v0.4.7.1-RC.1-R1
+Release Candidate Closure & Freeze Gate
+Date: 2026-09-29
+Base: v0.4.7.1-RC.1
+Candidate Head Before Closure Evidence: 1a7c646877dc0a2b444ab82c2475241265ca8d9d
+
+RELEASE CANDIDATE PURPOSE
+- Close the RC.1-R1 mobile UI repair cycle.
+- Confirm no unintended logic/data-contract drift.
+- Preserve Stable v0.4.7.0 unchanged.
+- Prepare the candidate for an explicit future Promotion Gate only.
+
+ACCUMULATED GATES
+- RC.1 Full Regression / Preview Isolation: 91 / 91 PASS
+- R1 Automated Repair Gate: 36 / 36 PASS
+- HF1 Targeted Static Gate: 22 / 22 PASS
+- HF2 Targeted Static Gate: 15 / 15 PASS
+- HF3 Clean-Scope Gate: 12 / 12 PASS
+- Final RC Closure Gate: 18 / 18 PASS
+- Device Retest: 4 / 4 PASS
+
+FINAL RC CLOSURE CHECKS
+- APP_VERSION = 0.4.7.1-RC.1-R1
+- DB_VERSION = 2
+- PUBLIC_HISTORY_CODE = PUBLIC
+- Application JavaScript is identical to RC.1 except APP_VERSION.
+- Score core unchanged.
+- PUBLIC / PUBLIC Control contracts unchanged.
+- Sync unchanged.
+- Backup / Restore unchanged.
+- Optional Backup Before PWA Update unchanged.
+- InvalidStateError recovery unchanged.
+- IndexedDB schema unchanged.
+- Supabase schema unchanged.
+- Theme / Layout preferences remain local-only.
+- Mobile Header repair retained.
+- Player-name column = 88px / 80px mobile breakpoints.
+- Score input = 90px / 88px with 52px minimum touch height.
+- Horizontal scrolling retained.
+
+VISIBLE RESIDUAL STATUS
+- Current RC.1-R1 validation chain: CLEAN.
+- Active candidate visible escape residuals: 0.
+- Device final confirmation: no header text residue.
+- Frozen v0.4.7.0 and archived dev/Preview snapshots retain historical residuals and were not silently rewritten.
+
+PREVIEW
+- Final clean-scope validation path:
+  preview/v0.4.7.1-RC.1-R1-HF3/
+- Preview storage namespace isolated.
+- Preview PUBLIC code isolated.
+- Preview Service Worker cache isolated.
+
+GOVERNANCE
+- main root remains v0.4.7.0.
+- stable/v0.4.7.0 remains Frozen.
+- PR #84 is the RC.1-R1 closure PR.
+- No merge to main.
+- No stable promotion.
+- No production root app promotion.
+- Next allowed action: explicit Promotion Gate only.
+
+RESULT
+- RELEASE CANDIDATE CLOSURE: PASS
+- RC.1-R1 VALIDATION: COMPLETE
+- READY FOR REVIEW: YES
+- READY FOR PROMOTION GATE: YES
+- PROMOTION EXECUTED: NO

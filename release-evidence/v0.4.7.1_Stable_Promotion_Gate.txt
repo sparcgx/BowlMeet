@@ -1,0 +1,72 @@
+BowlMeet v0.4.7.1
+Stable Promotion Gate
+Date: 2026-09-29
+Source RC Freeze: freeze/v0.4.7.1-RC.1-R1
+Promotion Branch: release/v0.4.7.1-promotion
+
+ENTRY GATES
+PASS  RC.1 Full Regression / Preview Isolation = 91 / 91
+PASS  R1 Automated Repair Gate = 36 / 36
+PASS  HF1 Targeted Static Gate = 22 / 22
+PASS  HF2 Targeted Static Gate = 15 / 15
+PASS  HF3 Clean-Scope Gate = 12 / 12
+PASS  Final RC Closure Gate = 18 / 18
+PASS  iPhone / PWA Device Retest = 4 / 4
+
+STABLE PROMOTION GATE
+PASS  20 / 20
+PASS  APP_VERSION = 0.4.7.1
+PASS  HTML title = BowlMeet v0.4.7.1
+PASS  Production header uses Stable Release identity
+PASS  Manifest uses v0.4.7.1 Stable identity
+PASS  Service Worker cache = bowlmeet-v0.4.7.1-stable-shell
+PASS  Service Worker runtime = bowlmeet-v0.4.7.1-stable-runtime
+PASS  No RC.1-R1 production/cache identity remains
+PASS  DB_VERSION = 2
+PASS  PUBLIC_HISTORY_CODE = PUBLIC
+PASS  Layout prefs key preserved
+PASS  Theme prefs key preserved
+PASS  Active production visible escape residuals = 0
+PASS  Application JavaScript equivalent to RC except APP_VERSION
+PASS  Score Card CSS SHA identical to RC Freeze
+PASS  Mobile Score Card CSS SHA identical to RC Freeze
+PASS  Accessibility CSS SHA identical to RC Freeze
+PASS  Mobile Repair CSS SHA identical to RC Freeze
+PASS  Stable cache-bust identity applied
+
+PRODUCTION INDEX BLOB SHA
+0af983524f63783c186b4186faf9f216cdb3fb30
+
+FROZEN v0.4.7.1 ASSET SHAS
+score-card-v0471.css:
+e3de8dcb7ac7eec5610c3546dc901094edcdf1e4
+
+score-card-mobile-v0471.css:
+7a760b47fefb9a8a023eab5c73fb4a3041fa79ad
+
+score-card-accessibility-v0471.css:
+0f2a369d321597a22b0fae406775d2b9f17635a1
+
+rc-mobile-repair-v0471.css:
+6b33de92211f408238bdf00b9cbcdb2e2e548671
+
+DATA / FUNCTION CONTRACT
+UNCHANGED / PRESERVED
+- Scoring core
+- 10-frame live scoring
+- PUBLIC / PUBLIC Control
+- Public-only leaderboard / sharing
+- Multi-device Sync
+- Backup / Restore
+- Optional Backup Before PWA Update
+- InvalidStateError recovery
+- IndexedDB schema
+- Supabase schema
+- Theme / Layout local-only preference contracts
+
+PRE-MERGE STATUS
+Stable Promotion Gate: PASS
+Ready to merge to main: YES
+Main merge executed: NO (at time of this evidence)
+Stable branch creation: PENDING
+Release Freeze: PENDING

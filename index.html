@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.7.0</title>
+<title>保齡球球聚｜BowlMeet v0.4.7.1</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="color-scheme" content="light dark" />
 <meta name="application-name" content="BowlMeet" />
@@ -1142,7 +1142,7 @@ dialog::backdrop,
 }
 
 </style>
-<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0470" />
+<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0471" />
 <style id="history-score-critical">
 /* v0.4.6.3-dev.1 | Dynamic score grid + Safari/PWA fallback */
 .history-score-table-wrap{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
@@ -1152,7 +1152,8 @@ dialog::backdrop,
   .history-score-grid>.history-score-name{position:sticky;left:0;z-index:2;background:#fff}
   .history-score-grid>.history-score-head.history-score-name{z-index:3}
 }
-</style>\n<style id="field-workflow-dev1">
+</style>
+<style id="field-workflow-dev1">
 /* v0.4.6.6-dev.1 | Field workflow simplification */
 #meetupView.has-active-meetup:not(.editing-meetup) #meetupSetupCard{display:none}
 #meetupView.has-active-meetup .live-current-strip{display:none}
@@ -1239,7 +1240,7 @@ dialog::backdrop,
 
 <style id="theme-center-v0470">
 /* =========================================================
-   v0.4.7.0-dev.1 | Theme Center Foundation
+   v0.4.7.1 | Theme Center Foundation
    Presentation-only. No score/PUBLIC/sync/backup schema changes.
    ========================================================= */
 :root{
@@ -1567,16 +1568,20 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
   .design-preset-strip .layout-preset-btn{min-width:150px;scroll-snap-align:start}
 }
 </style>
-<link rel="stylesheet" href="./assets/theme-center-v0470.css?v=0470" />
-<link rel="stylesheet" href="./assets/theme-center-v0470-mobile.css?v=0470" />
-<link rel="stylesheet" href="./assets/theme-center-v0470-accessibility.css?v=0470" />
-<link rel="stylesheet" href="./assets/liquid-motion-v0470.css?v=0470" />
+<link rel="stylesheet" href="./assets/theme-center-v0470.css?v=0471" />
+<link rel="stylesheet" href="./assets/theme-center-v0470-mobile.css?v=0471" />
+<link rel="stylesheet" href="./assets/theme-center-v0470-accessibility.css?v=0471" />
+<link rel="stylesheet" href="./assets/liquid-motion-v0470.css?v=0471" />
+<link rel="stylesheet" href="./assets/score-card-v0471.css?v=0471" />
+<link rel="stylesheet" href="./assets/score-card-mobile-v0471.css?v=0471" />
+<link rel="stylesheet" href="./assets/score-card-accessibility-v0471.css?v=0471" />
+<link rel="stylesheet" href="./assets/rc-mobile-repair-v0471.css?v=0471" />
 </head>
 <body>
 <a class="skip-link" href="#mainContent">跳到主要內容</a>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · Stable · Theme Center · Liquid Glass</p></div></div>
+  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · Stable Release · v0.4.7.1</p></div></div>
 </div></header>
 <main id="mainContent" tabindex="-1">
   <nav class="tabs" aria-label="功能切換">
@@ -2490,16 +2495,16 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
     <div class="pwa-update-card">
       <span class="pwa-update-badge">PWA 安全更新</span>
       <h2 id="pwaUpdateTitle">偵測到新版</h2>
-      <p id="pwaUpdateDesc">新版已下載完成，但不會自動覆蓋目前 App。為避免資料遺失，請依順序先備份，再更新。</p>
+      <p id="pwaUpdateDesc">新版已下載完成，不會自動覆蓋目前 App。你可以直接更新；若需要額外備份，可先下載完整 JSON 備份檔。</p>
       <div class="pwa-update-steps">
-        <div class="pwa-update-step"><span class="pwa-update-step-num">1</span><div><strong>先備份資料</strong><span>建立 IndexedDB 安全快照，並下載完整 JSON 備份檔。</span></div></div>
-        <div class="pwa-update-step"><span class="pwa-update-step-num">2</span><div><strong>再更新新版</strong><span>備份完成後才會解鎖更新按鈕；套用新版後 App 會自動重新載入。</span></div></div>
+        <div class="pwa-update-step"><span class="pwa-update-step-num">1</span><div><strong>備份資料（選用）</strong><span>如需要額外備份，可建立安全快照並下載完整 JSON 備份檔；不是更新必要條件。</span></div></div>
+        <div class="pwa-update-step"><span class="pwa-update-step-num">2</span><div><strong>更新新版</strong><span>可直接套用新版；更新前仍會自動保存目前狀態並嘗試建立本機安全快照。</span></div></div>
       </div>
-      <div class="pwa-update-status" id="pwaUpdateDialogStatus" role="status" aria-live="polite" aria-atomic="true">尚未備份。請先按「備份資料」。</div>
+      <div class="pwa-update-status ready" id="pwaUpdateDialogStatus" role="status" aria-live="polite" aria-atomic="true">可以直接更新；備份資料為選用。</div>
       <div class="pwa-update-actions">
         <button class="btn" id="pwaUpdateLaterBtn" type="button">稍後</button>
-        <button class="btn" id="pwaUpdateBackupBtn" type="button">1. 備份資料</button>
-        <button class="btn primary" id="pwaUpdateApplyBtn" type="button" disabled>2. 更新至新版</button>
+        <button class="btn" id="pwaUpdateBackupBtn" type="button">備份資料（選用）</button>
+        <button class="btn primary" id="pwaUpdateApplyBtn" type="button">更新至新版</button>
       </div>
     </div>
   </dialog>
@@ -2547,7 +2552,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.7.0';
+const APP_VERSION='0.4.7.1';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const THEME_PREFS_KEY='bowlingMeetup.themePreferences.v1';
 const THEME_DEFAULTS=Object.freeze({
@@ -2668,6 +2673,7 @@ let sessions=[]; let legacy=[]; let meetups=[]; let roster=[]; let editingId='';
 let playerContext={key:'',rosterId:'',playerName:'',source:'LOCAL',originView:'players',hubOrigin:'players',originSessionId:'',view:'hub',analyticsRange:'all',history:{search:'',sort:'newest',range:'all',scrollTop:0,sessionId:''},navigation:{current:'players',previous:'',returnTarget:'players',hubReturnTarget:'players',sessionReturnTarget:'playerHistory',preserveScroll:true,scroll:{players:0,playerHub:0,playerHistory:0,analytics:0,scoreHistory:0}}};
 let playerSessionFocusReturn=null;
 let appDb=null; let dbReady=false; let dbMode='初始化中'; let dbPersistTimer=null; let pendingRestorePayload=null; let pwaRegistration=null; let pendingServiceWorker=null; let reloadingForUpdate=false; let pwaUpdateReloadTimer=null; let pwaUpdateReloadStarted=false; let pwaUpdateBackupReady=false; let pwaUpdateBackupFile='';
+const watchedPwaRegistrations=new WeakSet();
 let syncTimer=null; let syncPushTimer=null; let syncBusy=false; let syncDirty=false; let syncApplyingRemote=false; let syncRemotePresence={}; let syncLastError='';
 let personalData={profile:null,claims:[],games:[],revision:0,lastSyncAt:0,autoSync:true,updatedAt:0}; let personalTimer=null; let personalPushTimer=null; let personalBusy=false; let personalDirty=false; let personalLastError='';
 let groupRemote={schema:1,groupName:'',meetups:[],sessions:[],updatedAt:0}; let groupTimer=null; let groupPushTimer=null; let groupBusy=false; let groupDirty=false; let groupApplyingRemote=false; let groupLastError='';
@@ -3366,7 +3372,7 @@ function renderHistory(){
     const rows=(s.players||[]).map((p,rowIndex,players)=>{
       const pc=playerCalc(p),pid=playerIdentity(p.name),lastRowClass=rowIndex===players.length-1?' history-score-last-row':'';
       const scores=Array.from({length:gameCount},(_,i)=>normalizeScore((p.scores||[])[i]));
-      return '<div class="history-score-name'+lastRowClass+'"><button type="button" class="player-link" data-player-hub="'+esc(pid.key)+'" data-origin-session="'+esc(s.id)+'">'+esc(p.name)+'</button></div>'
+      return '<div class="history-score-name'+lastRowClass+'"><button type="button" class="player-link" data-player-hub="'+esc(pid.key)+'" data-origin-session="'+esc(s.id)+'" aria-label="查看 '+esc(p.name)+' 的球員資料">'+esc(p.name)+'</button></div>'
         +scores.map(v=>'<div class="history-game-score'+lastRowClass+'">'+(v===null?'—':v)+'</div>').join('')
         +'<div class="history-score-total'+lastRowClass+'">'+pc.total+'</div><div class="history-score-average history-score-row-end'+lastRowClass+'">'+(pc.avg??'—')+'</div>';
     }).join('');
@@ -3374,7 +3380,7 @@ function renderHistory(){
     const canShare=r.local&&s.meetupId&&meetups.some(x=>x.id===s.meetupId);let actions='';
     if(r.local){actions=`<button class="btn small" data-act="edit" data-id="${esc(s.id)}">編輯</button>`+(canShare?`<button class="btn small" data-act="share" data-id="${esc(s.id)}">分享</button>`:'')+(r.public?`<button class="btn small" data-act="unpublish-public" data-id="${esc(s.id)}">取消公開</button>`:r.publicRemoved?`<button class="btn small primary" data-act="republish-public" data-id="${esc(s.id)}">重新公開</button>`:`<button class="btn small primary" data-act="republish-public" data-id="${esc(s.id)}">公開</button>`)+`<button class="btn small danger" data-act="del" data-id="${esc(s.id)}">${r.public?'刪除本機':'刪除'}</button>`}
     else{actions=`<button class="btn small primary" data-act="import-public" data-id="${esc(s.id)}">匯入我的紀錄</button>`+(r.public?`<button class="btn small danger" data-act="unpublish-public" data-id="${esc(s.id)}">取消公開</button>`:'')}
-    return `<article class="session ${r.local?'':'public-only'}"><div class="session-head"><div><div class="session-title">${esc(fmtDate(s.date))} · ${esc(m?.title||s.venue||'未填球館')}</div><div class="session-meta">${s.venue&&m?.title?esc(s.venue)+' · ':''}${s.lane?`球道 ${esc(s.lane)} · `:''}${sm.games} 局 · 平均 ${sm.avg??'—'}${sm.best!==null?` · 最高 ${sm.best} (${esc(sm.bestName)})`:''}${s.importAudit?'<span class="audit-chip">照片驗證匯入</span>':''}</div><div class="session-source-tags">${sourceTag}</div></div><div class="session-actions">${actions}</div></div><div class="history-score-table-wrap" role="region" aria-label="每局成績，共 ${gameCount} 局，可左右滑動"><div class="history-score-grid" style="--history-grid-columns:${gridColumns};--history-grid-min-width:${gridMinWidth}px"><div class="history-score-head history-score-name">球員</div>${gameHeaders}<div class="history-score-head">總分</div><div class="history-score-head history-score-row-end">平均</div>${rows}</div></div></article>`
+    return `<article class="session ${r.local?'':'public-only'}"><div class="session-head"><div><div class="session-title">${esc(fmtDate(s.date))} · ${esc(m?.title||s.venue||'未填球館')}</div><div class="session-meta">${s.venue&&m?.title?esc(s.venue)+' · ':''}${s.lane?`球道 ${esc(s.lane)} · `:''}${sm.games} 局 · 平均 ${sm.avg??'—'}${sm.best!==null?` · 最高 ${sm.best} (${esc(sm.bestName)})`:''}${s.importAudit?'<span class="audit-chip">照片驗證匯入</span>':''}</div><div class="session-source-tags">${sourceTag}</div></div><div class="session-actions">${actions}</div></div><div class="history-score-table-wrap" role="region" tabindex="0" aria-label="每局成績，共 ${gameCount} 局；可水平捲動查看完整成績"><div class="history-score-grid" style="--history-grid-columns:${gridColumns};--history-grid-min-width:${gridMinWidth}px"><div class="history-score-head history-score-name">球員</div>${gameHeaders}<div class="history-score-head">總分</div><div class="history-score-head history-score-row-end">平均</div>${rows}</div></div></article>`
   }).join('')
 }
 
@@ -4526,30 +4532,89 @@ function setUpdateUi(text,detail='',ready=false){
 }
 function setPwaUpdateDialogStatus(text,ready=false){
   const status=$('pwaUpdateDialogStatus');if(status){status.textContent=text;status.classList.toggle('ready',ready)}
-  if($('pwaUpdateApplyBtn'))$('pwaUpdateApplyBtn').disabled=!ready
 }
-function resetPwaUpdateBackupGate(){pwaUpdateBackupReady=false;pwaUpdateBackupFile='';if($('pwaUpdateBackupBtn'))$('pwaUpdateBackupBtn').disabled=false;setPwaUpdateDialogStatus('尚未備份。請先按「備份資料」。',false)}
+function setPwaUpdateApplyEnabled(enabled=true){if($('pwaUpdateApplyBtn'))$('pwaUpdateApplyBtn').disabled=!enabled}
+function resetPwaUpdateBackupChoice(){pwaUpdateBackupReady=false;pwaUpdateBackupFile='';if($('pwaUpdateBackupBtn'))$('pwaUpdateBackupBtn').disabled=false;setPwaUpdateApplyEnabled(true);setPwaUpdateDialogStatus('可以直接更新；備份資料為選用。',true)}
 function openPwaUpdateDialog(){if(!pendingServiceWorker){setUpdateUi('沒有等待中的更新','先按「檢查更新」。',false);return}const d=$('pwaUpdateDialog');if(!d)return;rememberA11yFocus(d);if(d.showModal&&!d.open)d.showModal();else d.setAttribute('open','');requestAnimationFrame(()=>$('pwaUpdateLaterBtn')?.focus())}
 function closePwaUpdateDialog(){const d=$('pwaUpdateDialog');if(!d)return;if(d.close&&d.open)d.close();else d.removeAttribute('open');restoreA11yFocus(d)}
-function markPendingPwaUpdate(worker){pendingServiceWorker=worker;resetPwaUpdateBackupGate();setUpdateUi('有新版可更新','新版已下載完成。請先備份資料，再更新至新版。',true);openPwaUpdateDialog()}
+function markPendingPwaUpdate(worker){pendingServiceWorker=worker;resetPwaUpdateBackupChoice();setUpdateUi('有新版可更新','新版已下載完成。可直接更新；備份資料為選用。',true);openPwaUpdateDialog()}
 async function backupBeforePwaUpdate(){
   if(!pendingServiceWorker){setPwaUpdateDialogStatus('目前沒有等待中的新版。',false);return}
-  const backupBtn=$('pwaUpdateBackupBtn');if(backupBtn)backupBtn.disabled=true;setPwaUpdateDialogStatus('正在快速建立安全快照與完整備份…',false);
+  const backupBtn=$('pwaUpdateBackupBtn');if(backupBtn)backupBtn.disabled=true;setPwaUpdateApplyEnabled(false);setPwaUpdateDialogStatus('正在建立選用的安全快照與完整備份…',false);
   try{
     const state=captureState();
     await persistDbStateNow('pre-pwa-update-user-backup',state);
     const snap=await createSnapshot('PWA 更新前使用者備份',{state,skipPersist:true,skipRender:true});
     if(dbReady&&!snap)throw new Error('安全快照建立失敗');
     const exported=exportFullBackup(state);pwaUpdateBackupReady=true;pwaUpdateBackupFile=exported?.filename||'完整備份';
-    setPwaUpdateDialogStatus('備份完成：'+pwaUpdateBackupFile+'。現在可以更新至新版。',true);
+    setPwaUpdateApplyEnabled(true);setPwaUpdateDialogStatus('備份完成：'+pwaUpdateBackupFile+'。可更新至新版。',true);
     setUpdateUi('備份完成，等待更新','已共用同一份安全狀態建立 JSON 備份與快照。',true);
     setTimeout(()=>renderSafety().catch(e=>console.warn('延後更新安全快照畫面失敗',e)),0)
   }catch(e){
-    console.error(e);pwaUpdateBackupReady=false;if(backupBtn)backupBtn.disabled=false;setPwaUpdateDialogStatus('備份失敗，尚未允許更新。請重試。',false);setUpdateUi('更新前備份失敗','目前版本仍保留，尚未套用新版。',true)
+    console.error(e);pwaUpdateBackupReady=false;if(backupBtn)backupBtn.disabled=false;setPwaUpdateApplyEnabled(true);setPwaUpdateDialogStatus('備份失敗，但仍可直接更新；也可以稍後再重試備份。',true);setUpdateUi('選用備份失敗','新版仍可直接更新，目前資料未被清除。',true)
   }
 }
-function watchRegistration(reg){pwaRegistration=reg;if(reg.waiting)markPendingPwaUpdate(reg.waiting);reg.addEventListener('updatefound',()=>{const w=reg.installing;if(!w)return;setUpdateUi('正在下載更新','Service Worker 安裝中…',false);w.addEventListener('statechange',()=>{if(w.state==='installed'){if(navigator.serviceWorker.controller)markPendingPwaUpdate(w);else setUpdateUi('PWA 已就緒','首次安裝完成。',false)}})})}
-async function checkPwaUpdate(){if(!pwaRegistration){setUpdateUi('目前無法檢查','請使用 HTTPS / localhost 的 PWA 套件。',false);return}setUpdateUi('正在檢查更新','請稍候…',false);try{await pwaRegistration.update();setTimeout(()=>{if(!pendingServiceWorker&&!pwaRegistration?.installing)setUpdateUi('目前已是最新','沒有偵測到等待中的新版。',false)},400)}catch(e){setUpdateUi('更新檢查失敗',String(e?.message||e),false)}}
+function watchRegistration(reg){
+  if(!reg)return;
+  pwaRegistration=reg;
+  if(reg.waiting)markPendingPwaUpdate(reg.waiting);
+  if(watchedPwaRegistrations.has(reg))return;
+  watchedPwaRegistrations.add(reg);
+  reg.addEventListener('updatefound',()=>{
+    const w=reg.installing;if(!w)return;
+    setUpdateUi('正在下載更新','Service Worker 安裝中…',false);
+    w.addEventListener('statechange',()=>{
+      if(w.state==='installed'){
+        if(navigator.serviceWorker.controller)markPendingPwaUpdate(w);
+        else setUpdateUi('PWA 已就緒','首次安裝完成。',false)
+      }
+    })
+  })
+}
+function isInvalidPwaRegistrationError(e){
+  const name=String(e?.name||''),message=String(e?.message||e||'');
+  return name==='InvalidStateError'||/invalid state/i.test(message)
+}
+async function acquirePwaRegistration(forceRegister=false){
+  if(!('serviceWorker'in navigator)||location.protocol==='file:')return null;
+  const scopeUrl=new URL('./',location.href).href;
+  let reg=null;
+  if(!forceRegister){
+    try{reg=await navigator.serviceWorker.getRegistration(scopeUrl)}
+    catch(e){console.warn('取得目前 Service Worker registration 失敗，將重新註冊。',e)}
+  }
+  if(!reg){
+    reg=await navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'})
+  }
+  watchRegistration(reg);
+  return reg
+}
+async function checkPwaUpdate(){
+  if(!('serviceWorker'in navigator)||location.protocol==='file:'){
+    setUpdateUi('目前無法檢查','請使用 HTTPS / localhost 的 PWA 套件。',false);return
+  }
+  setUpdateUi('正在檢查更新','正在確認目前 Service Worker 狀態…',false);
+  try{
+    let reg=await acquirePwaRegistration(false);
+    if(!reg)throw new Error('找不到可用的 Service Worker registration');
+    try{
+      await reg.update()
+    }catch(e){
+      if(!isInvalidPwaRegistrationError(e))throw e;
+      console.warn('Service Worker registration 已失效，重新註冊後重試。',e);
+      pwaRegistration=null;
+      reg=await acquirePwaRegistration(true);
+      await reg.update()
+    }
+    pwaRegistration=reg;
+    setTimeout(()=>{
+      if(!pendingServiceWorker&&!pwaRegistration?.installing)setUpdateUi('目前已是最新','Service Worker 狀態正常，沒有偵測到等待中的新版。',false)
+    },400)
+  }catch(e){
+    console.warn('PWA 更新檢查失敗',e);
+    setUpdateUi('更新檢查失敗',String(e?.message||e),false)
+  }
+}
 function finishPwaUpdateReload(reason='controllerchange'){
   if(!reloadingForUpdate||pwaUpdateReloadStarted)return;
   pwaUpdateReloadStarted=true;
@@ -4560,14 +4625,17 @@ function finishPwaUpdateReload(reason='controllerchange'){
 }
 async function applyPwaUpdate(){
   if(!pendingServiceWorker){setUpdateUi('沒有等待中的更新','先按「檢查更新」。',false);return}
-  if(!pwaUpdateBackupReady){openPwaUpdateDialog();setPwaUpdateDialogStatus('請先按「備份資料」，完成後才能更新。',false);return}
   try{
-    if($('pwaUpdateBackupBtn'))$('pwaUpdateBackupBtn').disabled=true;if($('pwaUpdateApplyBtn'))$('pwaUpdateApplyBtn').disabled=true;
-    setPwaUpdateDialogStatus('正在快速建立最後安全快照並套用新版…',false);setUpdateUi('正在套用新版','更新前會保存一次最新狀態與最後安全快照。',false);
+    if($('pwaUpdateBackupBtn'))$('pwaUpdateBackupBtn').disabled=true;setPwaUpdateApplyEnabled(false);
+    setPwaUpdateDialogStatus('正在保存目前狀態並套用新版…',false);setUpdateUi('正在套用新版','不強制下載備份檔；更新前會保存目前狀態並嘗試建立本機安全快照。',false);
     const state=captureState();
     await persistDbStateNow('pre-pwa-update',state);
-    const snap=await createSnapshot('PWA 更新前最後快照',{state,skipPersist:true,skipRender:true});
-    if(dbReady&&!snap)throw new Error('最後安全快照建立失敗');
+    try{
+      const snap=await createSnapshot('PWA 更新前自動安全快照',{state,skipPersist:true,skipRender:true});
+      if(dbReady&&!snap)console.warn('PWA 更新前自動安全快照未建立；繼續更新。')
+    }catch(snapshotError){
+      console.warn('PWA 更新前自動安全快照失敗；繼續更新。',snapshotError)
+    }
     reloadingForUpdate=true;pwaUpdateReloadStarted=false;
     if(pwaUpdateReloadTimer){clearTimeout(pwaUpdateReloadTimer);pwaUpdateReloadTimer=null}
     pendingServiceWorker.postMessage({type:'SKIP_WAITING'});
@@ -4577,12 +4645,12 @@ async function applyPwaUpdate(){
     console.error(e);
     if(pwaUpdateReloadTimer){clearTimeout(pwaUpdateReloadTimer);pwaUpdateReloadTimer=null}
     reloadingForUpdate=false;pwaUpdateReloadStarted=false;
-    if($('pwaUpdateBackupBtn'))$('pwaUpdateBackupBtn').disabled=false;
-    setPwaUpdateDialogStatus('安全更新失敗，目前版本仍保留。可重新備份後再試。',false);
+    if($('pwaUpdateBackupBtn'))$('pwaUpdateBackupBtn').disabled=false;setPwaUpdateApplyEnabled(true);
+    setPwaUpdateDialogStatus('安全更新失敗，目前版本仍保留。可直接重試更新，或選擇先備份。',true);
     setUpdateUi('安全更新失敗','目前版本仍保留，資料未被清除。',true)
   }
 }
-function initPwa(){window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;$('installAppBtn').classList.add('ready');$('installAppBtn').textContent='安裝 App'});window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;updatePwaState()});window.addEventListener('online',updatePwaState);window.addEventListener('offline',updatePwaState);if('serviceWorker'in navigator&&location.protocol!=='file:'){navigator.serviceWorker.addEventListener('controllerchange',()=>{if(reloadingForUpdate)finishPwaUpdateReload('controllerchange')});navigator.serviceWorker.register('./sw.js').then(reg=>{watchRegistration(reg);if(!reg.waiting)setUpdateUi('PWA 更新保護已啟用','偵測到新版時會跳出視窗，必須先備份再更新。',false)}).catch(e=>{console.warn('Service Worker 註冊失敗',e);setUpdateUi('PWA 註冊失敗',String(e?.message||e),false)})}else setUpdateUi(location.protocol==='file:'?'本機 HTML 模式':'瀏覽器不支援 Service Worker','PWA 安全更新需要 HTTPS / localhost。',false);updatePwaState()}
+function initPwa(){window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;$('installAppBtn').classList.add('ready');$('installAppBtn').textContent='安裝 App'});window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;updatePwaState()});window.addEventListener('online',updatePwaState);window.addEventListener('offline',updatePwaState);if('serviceWorker'in navigator&&location.protocol!=='file:'){navigator.serviceWorker.addEventListener('controllerchange',()=>{if(reloadingForUpdate)finishPwaUpdateReload('controllerchange')});acquirePwaRegistration(true).then(reg=>{if(!reg?.waiting)setUpdateUi('PWA 更新保護已啟用','偵測到新版時會跳出視窗；可直接更新，備份資料為選用。',false)}).catch(e=>{console.warn('Service Worker 註冊失敗',e);setUpdateUi('PWA 註冊失敗',String(e?.message||e),false)})}else setUpdateUi(location.protocol==='file:'?'本機 HTML 模式':'瀏覽器不支援 Service Worker','PWA 安全更新需要 HTTPS / localhost。',false);updatePwaState()}
 function renderShare(preferredScope=''){renderShareOptions(preferredScope);drawShareCard()}
 
 
