@@ -1,7 +1,7 @@
 {
-  "name": "保齡球球聚｜BowlMeet v0.4.7.1-RC.1",
+  "name": "保齡球球聚｜BowlMeet v0.4.7.1-RC.1-R1",
   "short_name": "BowlMeet",
-  "description": "BowlMeet v0.4.7.1-RC.1 Release Candidate：Full Regression & Release Candidate Gate；凍結 v0.4.7.1 功能範圍，不新增功能，保留 PUBLIC、Sync、Backup/Restore、PWA 與資料庫安全契約。",
+  "description": "BowlMeet v0.4.7.1-RC.1-R1 Release Candidate Repair：Mobile Header Overflow & Score Entry Layout Repair；只修正 iPhone Header 上方文字殘影與本次總表手機欄寬，不變更計分、PUBLIC、Sync、Backup/Restore 或 PWA 更新邏輯。",
   "lang": "zh-Hant",
   "start_url": "./index.html",
   "scope": "./",
