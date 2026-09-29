@@ -1,0 +1,85 @@
+BowlMeet v0.4.7.3-dev.1-R6
+Unified Frosted Glass Tabs UI Gate
+Date: 2026-09-30
+Base: stable/v0.4.7.2
+
+REQUEST
+- Make the glass treatment more transparent.
+- Make all primary navigation buttons use the same frosted-glass shape/style.
+
+DESIGN CHANGE
+- All primary navigation tabs now share identical geometry:
+  - 44px minimum height
+  - 24px radius
+  - same thin translucent border
+  - same frosted gradient
+  - same 18px backdrop blur / 132% saturation
+- Transparency increased compared with R5:
+  - base surface mix reduced to 46% / 24%
+  - softer border and shadow
+- Active tab no longer changes shape.
+  - only becomes slightly brighter
+  - slightly more elevated
+  - 1px lift
+- 「球聚現場」 keeps the same capsule shape as other tabs.
+  - only adds right-side divider
+  - keeps 7px green live dot + halo
+- Transparency Off / Dark / High Contrast / Reduced Motion / Theme Motion Off preserved.
+- Mobile Glass Dock remains unchanged; top tabs remain hidden at <=680px.
+
+TARGETED REGRESSION / UI GATE
+PASS 31 / 31
+
+PASS  DEV all primary tabs height = 44px
+PASS  DEV all primary tabs radius = 24px
+PASS  DEV all primary tabs use same frosted gradient
+PASS  DEV all primary tabs use 18px blur
+PASS  DEV all primary tabs use softened border
+PASS  DEV active tab geometry remains identical
+PASS  DEV active state only brighter/elevated
+PASS  DEV live status area padding preserved
+PASS  DEV live divider preserved
+PASS  DEV live dot preserved
+PASS  DEV R6 pulse animation present
+PASS  DEV transparency-off fallback covers all tabs
+PASS  DEV dark theme covers all tabs
+PASS  DEV high-contrast fallback covers all tabs
+PASS  DEV reduced-motion / theme-motion-off guards preserved
+PASS  DEV APP_VERSION = 0.4.7.3-dev.1
+PASS  DEV DB_VERSION = 2
+PASS  DEV PUBLIC_HISTORY_CODE = PUBLIC
+PASS  DEV Header verified BowlMeet icon unchanged
+PASS  DEV application JavaScript unchanged from stable except APP_VERSION
+PASS  MAIN production remains APP_VERSION 0.4.7.2
+PASS  PREVIEW loads R6 stylesheet
+PASS  PREVIEW all tabs use unified 44px / 24px geometry
+PASS  PREVIEW increased transparency mix applied
+PASS  PREVIEW live divider retained
+PASS  PREVIEW live dot retained
+PASS  PREVIEW cache identity = v0473d1r6
+PASS  PREVIEW Service Worker caches R6 stylesheet
+PASS  PREVIEW PUBLIC code remains isolated as V473D1
+PASS  PREVIEW localStorage remains isolated
+PASS  PREVIEW DB_VERSION = 2
+
+SAFETY
+UNCHANGED
+- Scoring Core
+- 10-frame live scoring
+- PUBLIC / PUBLIC Control
+- Public-only leaderboard / sharing
+- Sync
+- Backup / Restore
+- Optional Backup Before PWA Update
+- InvalidStateError recovery
+- IndexedDB schema
+- Supabase schema
+- PUBLIC payload
+- Theme / Layout preference storage contracts
+
+STATUS
+R6 Targeted UI Gate: PASS
+Device visual acceptance: PENDING
+Stable Promotion: NOT EXECUTED
+stable/v0.4.7.2: UNCHANGED
+freeze/v0.4.7.2: UNCHANGED
