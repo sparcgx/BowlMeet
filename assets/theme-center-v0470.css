@@ -777,60 +777,67 @@ html[data-theme="dark-night"] .player-directory-kpis>div{
 }
 
 
-/* v0.4.7.3-dev.1-R5 | Frosted Glass Live Control
-   Inspired by the approved iOS-style frosted glass reference.
-   The navigation rail becomes visually quiet while the selected live control
-   uses a single translucent capsule, inner highlight, divider and activity dot. */
+/* v0.4.7.3-dev.1-R6 | Unified Frosted Glass Tabs
+   All primary navigation tabs share the same lighter frosted-glass capsule.
+   Active state changes only luminance/elevation; geometry remains identical.
+   The live tab keeps a divider and activity dot without becoming a different shape. */
 html[data-theme] .tabs{
-  gap:6px!important;
+  gap:8px!important;
   padding:2px!important;
   border-color:transparent!important;
-  border-radius:26px!important;
+  border-radius:28px!important;
   background:transparent!important;
   box-shadow:none!important;
 }
 html[data-theme] .tabs .tab{
-  min-height:38px;
-  padding:8px 13px!important;
-  border:1px solid transparent!important;
-  border-radius:13px!important;
-  background:transparent!important;
-  color:var(--text-secondary)!important;
-  box-shadow:none!important;
-  filter:none!important;
-}
-html[data-theme] .tabs .tab:not(.active):hover{
-  background:color-mix(in srgb,var(--surface-hover) 76%,transparent)!important;
-  color:var(--text-primary)!important;
-}
-html[data-theme] .tabs .tab.active{
-  background:color-mix(in srgb,var(--surface-raised) 82%,transparent)!important;
-  color:var(--text-primary)!important;
-  border-color:color-mix(in srgb,var(--border-default) 72%,transparent)!important;
-  box-shadow:0 4px 14px color-mix(in srgb,var(--text-primary) 8%,transparent)!important;
-  filter:none!important;
-}
-html[data-theme] .tabs .live-tab{
-  position:relative;
-}
-html[data-theme] .tabs .live-tab.active{
   min-height:44px;
-  padding:9px 44px 9px 18px!important;
+  padding:9px 18px!important;
+  border:1px solid color-mix(in srgb,#fff 48%,var(--border-default) 52%)!important;
   border-radius:24px!important;
   background:
     linear-gradient(145deg,
-      color-mix(in srgb,var(--surface-raised) 78%,transparent),
-      color-mix(in srgb,var(--surface-control) 56%,transparent))!important;
+      color-mix(in srgb,var(--surface-raised) 46%,transparent),
+      color-mix(in srgb,var(--surface-control) 24%,transparent))!important;
   color:var(--text-primary)!important;
-  border:1px solid color-mix(in srgb,#fff 72%,var(--border-default) 28%)!important;
   box-shadow:
-    0 10px 28px color-mix(in srgb,var(--text-primary) 11%,transparent),
-    inset 0 1px 0 color-mix(in srgb,#fff 82%,transparent),
-    inset 0 -1px 0 color-mix(in srgb,var(--border-default) 52%,transparent)!important;
-  -webkit-backdrop-filter:blur(18px) saturate(145%);
-  backdrop-filter:blur(18px) saturate(145%);
+    0 4px 14px color-mix(in srgb,var(--text-primary) 5%,transparent),
+    inset 0 1px 0 color-mix(in srgb,#fff 58%,transparent),
+    inset 0 -1px 0 color-mix(in srgb,var(--border-default) 28%,transparent)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(132%);
+  backdrop-filter:blur(18px) saturate(132%);
+  filter:none!important;
+  transition:
+    background .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease,
+    transform .18s ease;
 }
-html[data-theme] .tabs .live-tab.active:before{
+html[data-theme] .tabs .tab:not(.active):hover{
+  background:
+    linear-gradient(145deg,
+      color-mix(in srgb,var(--surface-raised) 54%,transparent),
+      color-mix(in srgb,var(--surface-control) 30%,transparent))!important;
+  border-color:color-mix(in srgb,#fff 56%,var(--border-default) 44%)!important;
+}
+html[data-theme] .tabs .tab.active{
+  background:
+    linear-gradient(145deg,
+      color-mix(in srgb,var(--surface-raised) 62%,transparent),
+      color-mix(in srgb,var(--surface-control) 38%,transparent))!important;
+  color:var(--text-primary)!important;
+  border-color:color-mix(in srgb,#fff 66%,var(--border-default) 34%)!important;
+  box-shadow:
+    0 7px 20px color-mix(in srgb,var(--text-primary) 7%,transparent),
+    inset 0 1px 0 color-mix(in srgb,#fff 72%,transparent),
+    inset 0 -1px 0 color-mix(in srgb,var(--border-default) 36%,transparent)!important;
+  filter:none!important;
+  transform:translateY(-1px);
+}
+html[data-theme] .tabs .live-tab{
+  position:relative;
+  padding-right:44px!important;
+}
+html[data-theme] .tabs .live-tab:before{
   content:'';
   position:absolute;
   right:34px;
@@ -838,80 +845,89 @@ html[data-theme] .tabs .live-tab.active:before{
   bottom:9px;
   width:1px;
   border-radius:99px;
-  background:color-mix(in srgb,var(--border-strong) 52%,transparent);
-  box-shadow:1px 0 0 color-mix(in srgb,#fff 46%,transparent);
+  background:color-mix(in srgb,var(--border-strong) 38%,transparent);
+  box-shadow:1px 0 0 color-mix(in srgb,#fff 30%,transparent);
   pointer-events:none;
 }
 html[data-theme] .tabs .tab:focus-visible{
   outline:2px solid var(--border-focus)!important;
   outline-offset:2px!important;
 }
-html[data-theme] .tabs .live-tab:after{
-  content:''!important;
-  display:inline-block;
-  width:7px;
-  height:7px;
-  margin-left:8px;
-  border-radius:999px;
-  vertical-align:1px;
-  background:var(--status-success)!important;
-  color:transparent!important;
-  box-shadow:
-    0 0 0 3px var(--status-success-bg),
-    0 0 11px color-mix(in srgb,var(--status-success) 42%,transparent);
-  animation:bowlmeet-live-pulse-r5 1.9s ease-out infinite;
-}
+html[data-theme] .tabs .live-tab:after,
 html[data-theme] .tabs .live-tab.active:after{
+  content:''!important;
   position:absolute;
   right:14px;
   top:50%;
+  width:7px;
+  height:7px;
   margin:0;
+  border-radius:999px;
+  background:var(--status-success)!important;
+  color:transparent!important;
+  box-shadow:
+    0 0 0 3px color-mix(in srgb,var(--status-success-bg) 72%,transparent),
+    0 0 10px color-mix(in srgb,var(--status-success) 32%,transparent);
   transform:translateY(-50%);
+  animation:bowlmeet-live-pulse-r6 1.9s ease-out infinite;
 }
-@keyframes bowlmeet-live-pulse-r5{
+@keyframes bowlmeet-live-pulse-r6{
   0%,38%{
     box-shadow:
-      0 0 0 3px var(--status-success-bg),
-      0 0 10px color-mix(in srgb,var(--status-success) 38%,transparent);
+      0 0 0 3px color-mix(in srgb,var(--status-success-bg) 72%,transparent),
+      0 0 10px color-mix(in srgb,var(--status-success) 32%,transparent);
     opacity:1;
   }
   72%{
     box-shadow:
-      0 0 0 5px color-mix(in srgb,var(--status-success-bg) 52%,transparent),
-      0 0 15px color-mix(in srgb,var(--status-success) 18%,transparent);
+      0 0 0 5px color-mix(in srgb,var(--status-success-bg) 36%,transparent),
+      0 0 14px color-mix(in srgb,var(--status-success) 14%,transparent);
     opacity:.88;
   }
   100%{
     box-shadow:
-      0 0 0 3px var(--status-success-bg),
-      0 0 10px color-mix(in srgb,var(--status-success) 38%,transparent);
+      0 0 0 3px color-mix(in srgb,var(--status-success-bg) 72%,transparent),
+      0 0 10px color-mix(in srgb,var(--status-success) 32%,transparent);
     opacity:1;
   }
 }
-:root[data-theme-transparency="off"] html[data-theme] .tabs .live-tab.active,
-html[data-theme][data-theme-transparency="off"] .tabs .live-tab.active{
+html[data-theme][data-theme-transparency="off"] .tabs .tab{
   -webkit-backdrop-filter:none;
   backdrop-filter:none;
+  background:var(--surface-control)!important;
+}
+html[data-theme][data-theme-transparency="off"] .tabs .tab.active{
   background:var(--surface-raised)!important;
 }
-html[data-theme="dark-night"] .tabs .live-tab.active{
-  border-color:color-mix(in srgb,#fff 22%,var(--border-default) 78%)!important;
+html[data-theme="dark-night"] .tabs .tab{
+  border-color:color-mix(in srgb,#fff 16%,var(--border-default) 84%)!important;
   background:
     linear-gradient(145deg,
-      color-mix(in srgb,var(--surface-raised) 88%,transparent),
-      color-mix(in srgb,var(--surface-control) 70%,transparent))!important;
+      color-mix(in srgb,var(--surface-raised) 42%,transparent),
+      color-mix(in srgb,var(--surface-control) 26%,transparent))!important;
 }
-html[data-theme="high-contrast"] .tabs .tab.active,
-html[data-theme="high-contrast"] .tabs .live-tab.active{
-  background:#000!important;
-  border-color:#000!important;
-  color:#fff!important;
+html[data-theme="dark-night"] .tabs .tab.active{
+  background:
+    linear-gradient(145deg,
+      color-mix(in srgb,var(--surface-raised) 58%,transparent),
+      color-mix(in srgb,var(--surface-control) 38%,transparent))!important;
+}
+html[data-theme="high-contrast"] .tabs .tab,
+html[data-theme="high-contrast"] .tabs .tab.active{
+  background:#fff!important;
+  border:2px solid #000!important;
+  color:#000!important;
   box-shadow:none!important;
   -webkit-backdrop-filter:none;
   backdrop-filter:none;
+  transform:none;
 }
-html[data-theme="high-contrast"] .tabs .live-tab.active:before{
-  background:#fff;
+html[data-theme="high-contrast"] .tabs .tab.active{
+  background:#000!important;
+  color:#fff!important;
+}
+html[data-theme="high-contrast"] .tabs .live-tab:before{
+  background:currentColor;
   box-shadow:none;
 }
 html[data-theme="high-contrast"] .tabs .live-tab:after,
