@@ -51,7 +51,7 @@
     "fail": 0,
     "status": "PARTIAL",
     "remaining": [
-      "confirm visible \\\\n text artifact removed"
+      "final HF2 visible text artifact confirmation"
     ]
   },
   "validationComplete": false,
@@ -87,15 +87,21 @@
     "schemaMigration": false
   },
   "hf2": {
-    "rootCause": "literal \\\\n HTML text node between style blocks",
+    "rootCause": "literal backslash+n text node between style blocks rendered as visible page text",
     "repairedSequence": "</style>\\\\n<style id=\"field-workflow-dev1\">",
-    "replacement": "real newline between style blocks",
     "automated": {
-      "pass": 12,
+      "pass": 15,
       "fail": 0,
       "status": "PASS"
     },
+    "visibleLiteralBeforeScripts": {
+      "releaseSource": 0,
+      "preview": 0
+    },
     "applicationLogicDrift": false,
-    "hf1BehaviorRetained": true
+    "dbVersionChanged": false,
+    "publicContractChanged": false,
+    "themeLayoutContractChanged": false,
+    "stableBaselineChanged": false
   }
 }
