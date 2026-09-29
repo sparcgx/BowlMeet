@@ -1,0 +1,81 @@
+{
+  "version": "v0.4.7.2",
+  "date": "2026-09-29",
+  "title": "Stable Promotion & Release Freeze",
+  "source": {
+    "rcFreeze": "freeze/v0.4.7.2-RC.1",
+    "promotionBranch": "release/v0.4.7.2-promotion",
+    "promotionPr": 97,
+    "promotionMergeCommit": "30f9a5005217fd4ac4cda921fdab5fb03914a1e2",
+    "readmeBaselineCommit": "0b4f73f479a7627fc96d5a151e89a928214a2ac4"
+  },
+  "gates": {
+    "source": {
+      "pass": 21,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "previewIsolation": {
+      "pass": 13,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "device": {
+      "pass": 1,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "rc": {
+      "pass": 23,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "stablePromotion": {
+      "pass": 23,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "postPromotion": {
+      "pass": 19,
+      "fail": 0,
+      "status": "PASS"
+    }
+  },
+  "production": {
+    "appVersion": "0.4.7.2",
+    "indexBlobSha": "acc21501debb9cefb26717daf54ff6cbf716a1b0",
+    "shellCache": "bowlmeet-v0.4.7.2-stable-shell",
+    "runtimeCache": "bowlmeet-v0.4.7.2-stable-runtime",
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "visibleMarkupResiduals": 0,
+    "previewHistoryRetained": true
+  },
+  "iconShas": {
+    "icon192": "d3c482d9db4642e9e0fea8805a906403bb205912",
+    "icon512Svg": "19d0d5252c6d9829f476680f5fa50abc0869c4d2",
+    "maskableSvg": "92121371bcea6d17ecc2a342d9e01e03c7642e9d"
+  },
+  "contracts": {
+    "scoringCoreChanged": false,
+    "publicContractChanged": false,
+    "publicControlChanged": false,
+    "syncChanged": false,
+    "backupRestoreChanged": false,
+    "optionalBackupBehaviorChanged": false,
+    "invalidStateRecoveryChanged": false,
+    "indexedDbSchemaChanged": false,
+    "supabaseSchemaChanged": false,
+    "publicPayloadChanged": false,
+    "themeLayoutPreferencesLocalOnly": true
+  },
+  "governance": {
+    "productionPromoted": true,
+    "stableBranch": "stable/v0.4.7.2",
+    "freezeBranch": "freeze/v0.4.7.2",
+    "releaseFreezeActive": true,
+    "previousStablePreserved": "stable/v0.4.7.1",
+    "validationComplete": true
+  },
+  "result": "PASS"
+}
