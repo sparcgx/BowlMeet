@@ -166,3 +166,31 @@ html[data-theme="high-contrast"] .tabs .live-tab.active:after{
   background:#075d2c!important;
   box-shadow:0 0 0 2px #fff,0 0 0 3px #075d2c;
 }
+
+
+/* R9 | Mobile Active Dock 1s Dynamic Float */
+@media(max-width:680px){
+  html[data-theme] .mobile-glass-dock .dock-item.active,
+  html[data-theme] .mobile-glass-dock .dock-more.has-secondary-active{
+    animation:bowlmeet-dock-float-r9 1s ease-in-out infinite;
+    will-change:transform;
+  }
+}
+@keyframes bowlmeet-dock-float-r9{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-2px)}
+}
+html[data-theme="high-contrast"] .mobile-glass-dock .dock-item.active,
+html[data-theme="high-contrast"] .mobile-glass-dock .dock-more.has-secondary-active{
+  animation:none!important;
+  transform:none!important;
+  will-change:auto;
+}
+@media(prefers-reduced-motion:reduce){
+  html[data-theme] .mobile-glass-dock .dock-item.active,
+  html[data-theme] .mobile-glass-dock .dock-more.has-secondary-active{
+    animation:none!important;
+    transform:none!important;
+    will-change:auto;
+  }
+}
