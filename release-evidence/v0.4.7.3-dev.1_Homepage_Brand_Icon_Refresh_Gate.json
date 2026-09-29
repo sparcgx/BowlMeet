@@ -36,7 +36,9 @@
     "publicPayloadChanged": false
   },
   "previewGate": {
-    "status": "PENDING"
+    "pass": 11,
+    "fail": 0,
+    "status": "PASS"
   },
   "deviceHomepageIconAcceptance": {
     "status": "PENDING"
