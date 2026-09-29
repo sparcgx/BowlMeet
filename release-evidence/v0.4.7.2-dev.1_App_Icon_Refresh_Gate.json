@@ -47,7 +47,10 @@
       "status": "PASS"
     },
     "device": {
-      "status": "PENDING"
+      "pass": 1,
+      "fail": 0,
+      "status": "PASS",
+      "note": "Physical-device PWA/App icon visually confirmed OK by user on 2026-09-29."
     }
   },
   "contracts": {
@@ -65,5 +68,6 @@
     "publicPayloadChanged": false
   },
   "visibleMarkupResiduals": 0,
-  "stablePromotionExecuted": false
+  "stablePromotionExecuted": false,
+  "validationComplete": true
 }
