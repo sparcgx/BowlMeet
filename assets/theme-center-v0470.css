@@ -554,7 +554,24 @@ html[data-theme] .sync-tab:after{background:transparent!important;color:var(--th
 html[data-theme] .group-tab.active:after,
 html[data-theme] .sync-tab.active:after{background:transparent!important;color:var(--border-focus)!important}
 html[data-theme] .live-tab:after,
-html[data-theme] .live-tab.active:after{background:transparent!important;color:var(--status-danger)!important}
+html[data-theme] .live-tab.active:after{
+  content:''!important;
+  display:inline-block;
+  width:8px;
+  height:8px;
+  margin-left:7px;
+  border-radius:999px;
+  vertical-align:1px;
+  background:var(--status-success)!important;
+  color:transparent!important;
+  box-shadow:0 0 0 0 color-mix(in srgb,var(--status-success) 34%,transparent);
+  animation:bowlmeet-live-pulse 1.8s ease-out infinite;
+}
+@keyframes bowlmeet-live-pulse{
+  0%,32%{box-shadow:0 0 0 0 color-mix(in srgb,var(--status-success) 34%,transparent);transform:scale(1)}
+  72%{box-shadow:0 0 0 6px transparent;transform:scale(.94)}
+  100%{box-shadow:0 0 0 0 transparent;transform:scale(1)}
+}
 
 /* Post-game review */
 html[data-theme] .post-review-dialog::backdrop{background:var(--overlay-bg)!important}
