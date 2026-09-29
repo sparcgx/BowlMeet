@@ -1,0 +1,46 @@
+BowlMeet v0.4.7.3-RC.1｜Release Candidate / Baseline Validation
+Date: 2026-09-30
+Base: stable/v0.4.7.2
+Source candidate: v0.4.7.3-dev.1
+RC branch: v0.4.7.3-RC.1
+
+Purpose:
+Freeze the validated v0.4.7.3-dev.1 UI candidate as RC.1 and validate release identity, contracts, R8/R9 behavior, branch isolation, and production baseline integrity.
+
+Checks:
+RC-001 RC branch created from v0.4.7.3-dev.1 — PASS
+RC-002 APP_VERSION is 0.4.7.3-RC.1 — PASS
+RC-003 DB_VERSION remains 2 — PASS
+RC-004 PUBLIC_HISTORY_CODE remains PUBLIC — PASS
+RC-005 Scoring / 10-frame scoring source unchanged — PASS
+RC-006 PUBLIC Control / public-only sharing and leaderboard contracts unchanged — PASS
+RC-007 Sync contract unchanged — PASS
+RC-008 Backup / Restore contract unchanged — PASS
+RC-009 IndexedDB / Supabase schema contract unchanged — PASS
+RC-010 R8 desktop 1s float retained — PASS
+RC-011 R9 mobile active dock 1s float retained — PASS
+RC-012 R9 0px ↔ -2px motion range retained — PASS
+RC-013 High Contrast motion protection retained — PASS
+RC-014 Reduced Motion protection retained — PASS
+RC-015 Mobile real-device R9 acceptance already PASS — PASS
+RC-016 RC delta from dev limited to index/manifest/sw version identity — PASS
+RC-017 Stable v0.4.7.2 remains separate from RC — PASS
+RC-018 freeze/v0.4.7.2 remains identical to Stable — PASS
+RC-019 Production main remains v0.4.7.2 — PASS
+RC-020 Stable Promotion not executed — PASS
+
+Result: PASS — 20/20
+
+RC delta from dev:
+- index.html: APP_VERSION/title/cache identity only
+- manifest.webmanifest: RC version/name/cache identity only
+- sw.js: RC cache/version identity only
+No functional JavaScript or data/schema change introduced by RC versioning.
+
+Release governance:
+- Stable promotion: NOT EXECUTED
+- stable/v0.4.7.2: unchanged
+- freeze/v0.4.7.2: unchanged and identical to stable
+- main production: v0.4.7.2
+- Mobile real-device R9 acceptance: PASS
+- RC device re-test after version-only identity change: PENDING / not required for code-behavior gate unless a fresh RC URL is requested.
