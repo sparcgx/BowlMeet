@@ -1,0 +1,45 @@
+{
+  "version": "v0.4.7.3-dev.1",
+  "date": "2026-09-29",
+  "title": "Homepage Brand Icon Refresh Gate",
+  "base": "stable/v0.4.7.2",
+  "scope": "Homepage/Header brand icon refresh only",
+  "sourceGate": {
+    "pass": 19,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "icon": {
+    "path": "icons/icon-192.png",
+    "gitBlobSha": "d3c482d9db4642e9e0fea8805a906403bb205912",
+    "sameAsV0472": true
+  },
+  "changes": {
+    "homepageBrandIcon": true,
+    "legacyBallMarkupRemoved": true,
+    "legacyBallCssRemoved": true,
+    "manifestIdentityRefreshed": true,
+    "serviceWorkerIdentityRefreshed": true
+  },
+  "contracts": {
+    "applicationJsChangedExceptAppVersion": false,
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "scoringCoreChanged": false,
+    "publicContractChanged": false,
+    "syncChanged": false,
+    "backupRestoreChanged": false,
+    "optionalBackupBehaviorChanged": false,
+    "invalidStateRecoveryChanged": false,
+    "indexedDbSchemaChanged": false,
+    "supabaseSchemaChanged": false,
+    "publicPayloadChanged": false
+  },
+  "previewGate": {
+    "status": "PENDING"
+  },
+  "deviceHomepageIconAcceptance": {
+    "status": "PENDING"
+  },
+  "stablePromotionExecuted": false
+}
