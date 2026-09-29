@@ -1,27 +1,33 @@
-# BowlMeet v0.4.7.0 — Stable / Release Freeze
+# BowlMeet v0.4.7.1 — Stable / Release Freeze
 
-正式認證來源：`v0.4.7.0-RC.1`。
+正式認證來源：`freeze/v0.4.7.1-RC.1-R1`。
 
-- dev.4 Accessibility & Theme Hardening：**12/12 PASS**
-- dev.4-R1 Advanced Liquid Glass Motion：**15/15 PASS**
-- RC.1 Full Regression：**25/25 PASS**
-- APP_VERSION：`0.4.7.0`
-- Theme Center、Mobile Theme、Accessibility Hardening、Advanced Liquid Glass Motion 正式納入 production
-- Light Liquid Glass / Dark Night / High Contrast / Reduce Motion / Reduce Transparency：**PASS**
-- Keyboard Focus / Dialog / More Sheet focus safety：**PASS**
-- iPhone Safari / PWA Standalone：**PASS**
+- RC.1 Full Regression / Preview Isolation：**91/91 PASS**
+- R1 Automated Repair Gate：**36/36 PASS**
+- HF1 Targeted Static Gate：**22/22 PASS**
+- HF2 Targeted Static Gate：**15/15 PASS**
+- HF3 Clean-Scope Gate：**12/12 PASS**
+- Final RC Closure Gate：**18/18 PASS**
+- iPhone / PWA Device Retest：**4/4 PASS**
+- Stable Promotion Gate：**20/20 PASS**
+- Post-Promotion Gate：**19/19 PASS**
+- APP_VERSION：`0.4.7.1`
+- Production PWA Cache：`bowlmeet-v0.4.7.1-stable-*`
 - Production IndexedDB：`bowlingMeetup.local`
 - `DB_VERSION = 2`
 - `PUBLIC_HISTORY_CODE = PUBLIC`
 - `LAYOUT_PREFS_KEY = bowlingMeetup.layoutPreferences.v1`
 - `THEME_PREFS_KEY = bowlingMeetup.themePreferences.v1`
-- Built-in Supabase Cloud：**保留啟用**
+- 每局公開／歷史成績表、Score Card Theme、Mobile Score Card UX、Accessibility Hardening：**正式納入 production**
+- PWA InvalidState recovery、Optional Backup Before PWA Update：**保留**
+- Mobile Header 可見文字殘留：**已修正／實機 PASS**
+- 姓名欄比例、分數輸入、左右滑動、捲動回彈：**實機 PASS**
+- 排行榜／分享：**Public-only 契約維持**
+- Scoring / PUBLIC / PUBLIC Control / Sync / Backup / Restore：**UNCHANGED**
 - Supabase / IndexedDB / PUBLIC payload migration：**NONE**
-- Preview storage namespace：**未帶入 production**
-- Production PWA cache：`bowlmeet-v0.4.7.0-stable-*`
-- Advanced Liquid Glass Motion SHA：`057769c5028a46b19d789309f0b752fb977d4991`
-- Scoring / PUBLIC / Sync / Player Claim / Backup / Restore 契約：**UNCHANGED**
-- 此版本自 Stable Promotion 起視為 **Freeze Baseline**，後續變更須另開新版本分支。
+- Production 可見 escape residual：**0**
+- `stable/v0.4.7.1` 與 `freeze/v0.4.7.1` 為正式 Stable / Release Freeze 基線。
+- 後續變更必須從 v0.4.7.1 Stable 另開新版本分支，不直接修改 Freeze baseline。
 
 # BowlMeet v0.4.6.7-dev.1 — Preview Deployment
 
