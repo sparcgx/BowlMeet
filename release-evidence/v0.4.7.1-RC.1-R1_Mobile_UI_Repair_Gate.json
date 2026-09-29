@@ -47,10 +47,44 @@
   },
   "deviceRetest": {
     "checks": 4,
-    "pass": 0,
+    "pass": 2,
     "fail": 0,
-    "status": "PENDING"
+    "status": "PARTIAL",
+    "remaining": [
+      "header text residue / bleed",
+      "player-name column proportion"
+    ]
   },
   "validationComplete": false,
-  "stablePromotionEligibility": "PENDING"
+  "stablePromotionEligibility": "PENDING",
+  "followUp": "HF1",
+  "deploymentDefect": {
+    "missingPreviewAsset": "assets/rc-mobile-repair-v0471.css",
+    "cause": "Preview PR #85 deployed preview files without the referenced R1 stylesheet",
+    "corrected": true
+  },
+  "hf1": {
+    "automated": {
+      "pass": 22,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "opaqueMobileHeader": true,
+    "backdropFilterDisabledOnMobileHeader": true,
+    "lowerEdgeShield": true,
+    "nameColumnPx": {
+      "mobile": 88,
+      "narrow": 80
+    },
+    "scoreInputPxRetained": {
+      "mobile": 90,
+      "narrow": 88
+    },
+    "scoreTouchMinHeightPxRetained": 52,
+    "horizontalScrollRetained": true,
+    "applicationLogicDrift": false,
+    "dbVersionChanged": false,
+    "publicContractChanged": false,
+    "schemaMigration": false
+  }
 }
