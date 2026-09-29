@@ -551,10 +551,10 @@ html[data-theme] .group-status.warn{
 }
 html[data-theme] .group-tab:after,
 html[data-theme] .sync-tab:after,
-html[data-theme] .live-tab:after{background:var(--theme-primary)!important;color:var(--theme-primary)!important}
+html[data-theme] .live-tab:after{background:transparent!important;color:var(--theme-primary)!important}
 html[data-theme] .group-tab.active:after,
 html[data-theme] .sync-tab.active:after,
-html[data-theme] .live-tab.active:after{background:var(--border-focus)!important;color:var(--border-focus)!important}
+html[data-theme] .live-tab.active:after{background:transparent!important;color:var(--border-focus)!important}
 
 /* Post-game review */
 html[data-theme] .post-review-dialog::backdrop{background:var(--overlay-bg)!important}
