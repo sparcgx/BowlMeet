@@ -89,6 +89,9 @@ UNCHANGED
 STATUS
 Development Gate: PASS
 Preview Gate: PASS
-Device Icon Acceptance: PENDING
+Device Icon Acceptance: PASS
+Device Icon Retest: PASS
+Validation: COMPLETE
+Device Icon Retest: PASS
 Stable Promotion: NOT EXECUTED
 stable/v0.4.7.1 remains frozen.
