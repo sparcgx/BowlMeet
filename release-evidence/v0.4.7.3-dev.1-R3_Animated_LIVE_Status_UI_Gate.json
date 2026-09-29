@@ -1,0 +1,39 @@
+{
+  "version": "v0.4.7.3-dev.1-R3",
+  "gate": "Animated LIVE Status Indicator UI Gate",
+  "date": "2026-09-29",
+  "base": "stable/v0.4.7.2",
+  "design": {
+    "visual": "8px pulsing status dot",
+    "color": "var(--status-success)",
+    "animation": "bowlmeet-live-pulse 1.8s ease-out infinite",
+    "text": "removed",
+    "reducedMotion": "preserved via existing global guards"
+  },
+  "targetedGate": {
+    "passed": 20,
+    "total": 20,
+    "status": "PASS"
+  },
+  "safety": {
+    "appVersion": "0.4.7.3-dev.1",
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "scoringCore": "UNCHANGED",
+    "liveScoring": "UNCHANGED",
+    "publicControl": "UNCHANGED",
+    "sync": "UNCHANGED",
+    "backupRestore": "UNCHANGED",
+    "indexedDbSchema": "UNCHANGED",
+    "supabaseSchema": "UNCHANGED",
+    "publicPayload": "UNCHANGED"
+  },
+  "preview": {
+    "publicCode": "V473D1",
+    "cacheIdentity": "bowlmeet-preview-v0473d1r3",
+    "deviceVisualAcceptance": "PENDING"
+  },
+  "stablePromotion": "NOT EXECUTED",
+  "stableBranch": "UNCHANGED",
+  "freezeBranch": "UNCHANGED"
+}

@@ -1,0 +1,78 @@
+BowlMeet v0.4.7.3-dev.1-R5
+Frosted Glass Live Control UI Gate
+Date: 2026-09-30
+Base: stable/v0.4.7.2
+
+REQUEST
+- Apply the approved Apple / iOS-style frosted glass button direction to the 「球聚現場」 control.
+
+DESIGN CHANGE
+- Navigation rail becomes visually quiet: transparent background, no heavy enclosing frame.
+- Selected 「球聚現場」 becomes a single translucent glass capsule.
+- Active live capsule:
+  - 44px minimum height
+  - 24px capsule radius
+  - translucent theme-aware gradient
+  - 18px backdrop blur + 145% saturation
+  - thin light edge
+  - subtle outer shadow
+  - top/bottom inner highlight
+- Add a vertical divider before the live status area.
+- Keep a 7px semantic green activity dot with a soft halo and 1.9s pulse.
+- Inactive tabs remain lightweight and unobtrusive.
+- Transparency Off, Dark, High Contrast, Reduced Motion and Theme Motion Off behavior preserved.
+
+TARGETED REGRESSION / UI GATE
+PASS 28 / 28
+
+PASS  DEV tabs rail visually quiet
+PASS  DEV live control height = 44px
+PASS  DEV live capsule radius = 24px
+PASS  DEV frosted gradient present
+PASS  DEV 18px blur / 145% saturation present
+PASS  DEV inner highlights present
+PASS  DEV divider present
+PASS  DEV live dot positioned in right status area
+PASS  DEV green halo present
+PASS  DEV R5 pulse animation present
+PASS  DEV transparency-off fallback preserved
+PASS  DEV dark theme override preserved
+PASS  DEV high-contrast override preserved
+PASS  DEV reduced-motion / theme-motion-off guards preserved
+PASS  DEV APP_VERSION = 0.4.7.3-dev.1
+PASS  DEV DB_VERSION = 2
+PASS  DEV PUBLIC_HISTORY_CODE = PUBLIC
+PASS  DEV Header verified BowlMeet icon unchanged
+PASS  DEV application JavaScript unchanged from stable except APP_VERSION
+PASS  MAIN production remains APP_VERSION 0.4.7.2
+PASS  PREVIEW loads R5 stylesheet
+PASS  PREVIEW frosted capsule present
+PASS  PREVIEW divider present
+PASS  PREVIEW glowing activity dot present
+PASS  PREVIEW cache identity = v0473d1r5
+PASS  PREVIEW Service Worker caches R5 stylesheet
+PASS  PREVIEW PUBLIC code remains isolated as V473D1
+PASS  PREVIEW localStorage remains isolated
+PASS  PREVIEW DB_VERSION = 2
+
+SAFETY
+UNCHANGED
+- Scoring Core
+- 10-frame live scoring
+- PUBLIC / PUBLIC Control
+- Public-only leaderboard / sharing
+- Sync
+- Backup / Restore
+- Optional Backup Before PWA Update
+- InvalidStateError recovery
+- IndexedDB schema
+- Supabase schema
+- PUBLIC payload
+- Theme / Layout preference storage contracts
+
+STATUS
+R5 Targeted UI Gate: PASS
+Device visual acceptance: PENDING
+Stable Promotion: NOT EXECUTED
+stable/v0.4.7.2: UNCHANGED
+freeze/v0.4.7.2: UNCHANGED

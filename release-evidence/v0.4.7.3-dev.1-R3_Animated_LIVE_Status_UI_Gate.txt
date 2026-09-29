@@ -1,0 +1,67 @@
+BowlMeet v0.4.7.3-dev.1-R3
+Animated LIVE Status Indicator UI Gate
+Date: 2026-09-29
+Base: stable/v0.4.7.2
+
+REQUEST
+- Replace the awkward red / blue LIVE treatment with a more natural dynamic indicator.
+
+DESIGN
+- Remove colored LIVE text.
+- Use a compact 8px pulsing status dot.
+- Color = semantic success / active-state green via var(--status-success).
+- Pulse interval = 1.8s.
+- Background ring fades outward instead of using a solid block.
+- Existing reduced-motion / theme-motion-off rules automatically suppress animation.
+- Keeps Header compact and avoids mobile text squeeze / overflow.
+
+IMPLEMENTATION
+- index.html: base LIVE pseudo-element changed from text to animated dot.
+- assets/theme-center-v0470.css: theme-aware semantic success color + pulse.
+- SYNC / GROUP styling left unchanged.
+
+TARGETED REGRESSION / UI GATE
+PASS 20 / 20
+
+PASS  DEV LIVE text removed from base style
+PASS  DEV animated pulse keyframes present
+PASS  DEV semantic active color uses status-success
+PASS  DEV previous red token removed from LIVE rule
+PASS  DEV motion uses 1.8s pulse
+PASS  DEV reduced-motion / theme-motion-off guards preserved
+PASS  DEV APP_VERSION = 0.4.7.3-dev.1
+PASS  DEV DB_VERSION = 2
+PASS  DEV PUBLIC_HISTORY_CODE = PUBLIC
+PASS  DEV Header verified BowlMeet icon unchanged
+PASS  DEV application JavaScript unchanged from stable except APP_VERSION
+PASS  MAIN production remains APP_VERSION 0.4.7.2
+PASS  PREVIEW loads R3 stylesheet
+PASS  PREVIEW base LIVE text removed
+PASS  PREVIEW semantic success dot present
+PASS  PREVIEW pulse animation present
+PASS  PREVIEW cache identity = v0473d1r3
+PASS  PREVIEW Service Worker caches R3 stylesheet
+PASS  PREVIEW PUBLIC code remains isolated as V473D1
+PASS  PREVIEW DB_VERSION = 2
+
+SAFETY
+UNCHANGED
+- Scoring Core
+- 10-frame live scoring
+- PUBLIC / PUBLIC Control
+- Public-only leaderboard / sharing
+- Sync
+- Backup / Restore
+- Optional Backup Before PWA Update
+- InvalidStateError recovery
+- IndexedDB schema
+- Supabase schema
+- PUBLIC payload
+- Theme / Layout preference storage contracts
+
+STATUS
+R3 Targeted UI Gate: PASS
+Device visual acceptance: PENDING
+Stable Promotion: NOT EXECUTED
+stable/v0.4.7.2: UNCHANGED
+freeze/v0.4.7.2: UNCHANGED

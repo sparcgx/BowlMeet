@@ -1,7 +1,7 @@
 const PRODUCTION_CACHE_ROOT='bowlmeet-v';
-const CACHE='bowlmeet-v0.4.7.2-stable-shell';
-const RUNTIME='bowlmeet-v0.4.7.2-stable-runtime';
-const APP_SHELL=['./','./index.html','./manifest.webmanifest?v=0472','./assets/liquid-glass-dev4.css?v=0471','./assets/theme-center-v0470.css?v=0471','./assets/theme-center-v0470-mobile.css?v=0471','./assets/theme-center-v0470-accessibility.css?v=0471','./assets/liquid-motion-v0470.css?v=0471','./assets/score-card-v0471.css?v=0471','./assets/score-card-mobile-v0471.css?v=0471','./assets/score-card-accessibility-v0471.css?v=0471','./assets/rc-mobile-repair-v0471.css?v=0471','./icons/icon-192.png?v=0472','./icons/icon-512.svg?v=0472','./icons/icon-maskable-512.svg?v=0472'];
+const CACHE='bowlmeet-v0.4.7.3-dev.1-shell';
+const RUNTIME='bowlmeet-v0.4.7.3-dev.1-runtime';
+const APP_SHELL=['./','./index.html','./manifest.webmanifest?v=0473d1','./assets/liquid-glass-dev4.css?v=0471','./assets/theme-center-v0470.css?v=0471','./assets/theme-center-v0470-mobile.css?v=0471','./assets/theme-center-v0470-accessibility.css?v=0471','./assets/liquid-motion-v0470.css?v=0471','./assets/score-card-v0471.css?v=0471','./assets/score-card-mobile-v0471.css?v=0471','./assets/score-card-accessibility-v0471.css?v=0471','./assets/rc-mobile-repair-v0471.css?v=0471','./icons/icon-192.png?v=0473d1','./icons/icon-512.svg?v=0473d1','./icons/icon-maskable-512.svg?v=0473d1'];
 
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(APP_SHELL)))});
 

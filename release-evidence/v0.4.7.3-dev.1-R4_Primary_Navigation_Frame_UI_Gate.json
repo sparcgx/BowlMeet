@@ -1,0 +1,53 @@
+{
+  "version": "v0.4.7.3-dev.1-R4",
+  "gate": "Primary Navigation Frame Refinement UI Gate",
+  "date": "2026-09-29",
+  "base": "stable/v0.4.7.2",
+  "design": {
+    "rail": {
+      "border": "1px neutral",
+      "radius": "16px",
+      "surface": "theme-aware neutral",
+      "shadow": "low elevation"
+    },
+    "tab": {
+      "radius": "12px",
+      "inactive": "transparent",
+      "active": "raised neutral surface"
+    },
+    "live": {
+      "size": "7px",
+      "color": "var(--status-success)",
+      "halo": "var(--status-success-bg)",
+      "animation": "1.9s pulse"
+    },
+    "mobileDock": "UNCHANGED",
+    "reducedMotion": "PRESERVED"
+  },
+  "targetedGate": {
+    "passed": 24,
+    "total": 24,
+    "status": "PASS"
+  },
+  "safety": {
+    "appVersion": "0.4.7.3-dev.1",
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "scoringCore": "UNCHANGED",
+    "liveScoring": "UNCHANGED",
+    "publicControl": "UNCHANGED",
+    "sync": "UNCHANGED",
+    "backupRestore": "UNCHANGED",
+    "indexedDbSchema": "UNCHANGED",
+    "supabaseSchema": "UNCHANGED",
+    "publicPayload": "UNCHANGED"
+  },
+  "preview": {
+    "publicCode": "V473D1",
+    "cacheIdentity": "bowlmeet-preview-v0473d1r4",
+    "deviceVisualAcceptance": "PENDING"
+  },
+  "stablePromotion": "NOT EXECUTED",
+  "stableBranch": "UNCHANGED",
+  "freezeBranch": "UNCHANGED"
+}

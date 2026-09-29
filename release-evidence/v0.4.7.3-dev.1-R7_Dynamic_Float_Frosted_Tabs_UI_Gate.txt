@@ -1,0 +1,76 @@
+BowlMeet v0.4.7.3-dev.1-R7
+Dynamic Float Frosted Glass Tabs UI Gate
+Date: 2026-09-30
+Base: stable/v0.4.7.2
+
+REQUEST
+- Replace the static slight lift of the active frosted-glass tab with a subtle dynamic floating motion.
+
+DESIGN CHANGE
+- Active primary tab geometry remains unchanged:
+  - 44px minimum height
+  - 24px radius
+  - same R6 unified frosted-glass style
+- Static translateY(-1px) removed.
+- Active tab now uses:
+  - animation: bowlmeet-tab-float-r7 3.2s ease-in-out infinite
+  - vertical range: 0px to -2px
+  - smooth continuous float
+- will-change: transform enabled for the active tab.
+- High Contrast explicitly disables the float.
+- Existing global Theme Motion Off / prefers-reduced-motion rules continue to suppress animation.
+- Live activity dot pulse and divider remain unchanged.
+
+TARGETED REGRESSION / UI GATE
+PASS 28 / 28
+
+PASS  DEV R7 marker present
+PASS  DEV active float animation present
+PASS  DEV float keyframes present
+PASS  DEV float range = 0px to -2px
+PASS  DEV active geometry unchanged
+PASS  DEV active glass family unchanged
+PASS  DEV will-change transform enabled
+PASS  DEV high contrast disables float
+PASS  DEV reduced-motion / theme-motion-off guards preserved
+PASS  DEV live status pulse preserved
+PASS  DEV live divider preserved
+PASS  DEV APP_VERSION = 0.4.7.3-dev.1
+PASS  DEV DB_VERSION = 2
+PASS  DEV PUBLIC_HISTORY_CODE = PUBLIC
+PASS  DEV Header verified BowlMeet icon unchanged
+PASS  DEV application JavaScript unchanged from stable except APP_VERSION
+PASS  MAIN production remains APP_VERSION 0.4.7.2
+PASS  PREVIEW loads R7 stylesheet
+PASS  PREVIEW float animation present
+PASS  PREVIEW float keyframes present
+PASS  PREVIEW unified 44px / 24px geometry retained
+PASS  PREVIEW high contrast disables float
+PASS  PREVIEW live dot retained
+PASS  PREVIEW cache identity = v0473d1r7
+PASS  PREVIEW Service Worker caches R7 stylesheet
+PASS  PREVIEW PUBLIC code remains isolated as V473D1
+PASS  PREVIEW localStorage remains isolated
+PASS  PREVIEW DB_VERSION = 2
+
+SAFETY
+UNCHANGED
+- Scoring Core
+- 10-frame live scoring
+- PUBLIC / PUBLIC Control
+- Public-only leaderboard / sharing
+- Sync
+- Backup / Restore
+- Optional Backup Before PWA Update
+- InvalidStateError recovery
+- IndexedDB schema
+- Supabase schema
+- PUBLIC payload
+- Theme / Layout preference storage contracts
+
+STATUS
+R7 Targeted UI Gate: PASS
+Device visual acceptance: PENDING
+Stable Promotion: NOT EXECUTED
+stable/v0.4.7.2: UNCHANGED
+freeze/v0.4.7.2: UNCHANGED
