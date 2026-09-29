@@ -27,4 +27,4 @@ Result: PASS — 16/16
 Scope: UI/CSS only.
 Unchanged contracts: scoring core, 10-frame live scoring, PUBLIC/PUBLIC Control, public-only leaderboard/sharing, sync, backup/restore, IndexedDB schema, Supabase schema, PUBLIC payload, DB_VERSION=2, local-only theme/layout preferences.
 Stable Promotion: NOT EXECUTED.
-Device visual acceptance: PENDING user confirmation on mobile.
+Device visual acceptance: PASS — user confirmed mobile real-device test OK.
