@@ -1,0 +1,57 @@
+BowlMeet v0.4.7.2-RC.1
+Release Candidate Gate
+Date: 2026-09-29
+Base: v0.4.7.2-dev.1
+Stable Base: stable/v0.4.7.1
+
+ENTRY GATES
+PASS  App Icon Source Gate = 21 / 21
+PASS  Preview Isolation Gate = 13 / 13
+PASS  Physical Device Icon Acceptance = PASS
+PASS  Development Validation = COMPLETE
+
+RC FINAL GATE
+PASS  23 / 23
+PASS  APP_VERSION = 0.4.7.2-RC.1
+PASS  HTML title = BowlMeet v0.4.7.2-RC.1
+PASS  App Icon Refresh RC.1 identity
+PASS  Application JavaScript unchanged from dev.1 except APP_VERSION
+PASS  DB_VERSION = 2
+PASS  PUBLIC_HISTORY_CODE = PUBLIC
+PASS  Layout / Theme local preference keys preserved
+PASS  Apple touch icon cache-bust = 0472rc1
+PASS  Manifest RC icon refs verified
+PASS  Service Worker RC cache identity verified
+PASS  Production-visible markup residuals = 0
+PASS  Icon artwork blobs unchanged from validated dev.1
+PASS  RC delta from dev.1 limited to index.html / manifest.webmanifest / sw.js identity changes
+
+VERIFIED ICON SHAS
+icon-192.png:
+d3c482d9db4642e9e0fea8805a906403bb205912
+
+icon-512.svg:
+19d0d5252c6d9829f476680f5fa50abc0869c4d2
+
+icon-maskable-512.svg:
+92121371bcea6d17ecc2a342d9e01e03c7642e9d
+
+DATA / FUNCTION CONTRACT
+UNCHANGED
+- Scoring core
+- PUBLIC / PUBLIC Control
+- Public-only leaderboard / sharing
+- Sync
+- Backup / Restore
+- Optional Backup Before PWA Update
+- InvalidStateError recovery
+- IndexedDB schema
+- Supabase schema
+- PUBLIC payload
+- DB_VERSION = 2
+
+RESULT
+Release Candidate Gate: PASS
+RC Validation: COMPLETE
+Ready for Stable Promotion Gate: YES
+Stable Promotion Executed: NO (at time of this evidence)
