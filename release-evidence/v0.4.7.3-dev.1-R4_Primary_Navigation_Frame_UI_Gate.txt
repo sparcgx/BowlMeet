@@ -1,0 +1,78 @@
+BowlMeet v0.4.7.3-dev.1-R4
+Primary Navigation Frame Refinement UI Gate
+Date: 2026-09-29
+Base: stable/v0.4.7.2
+
+REQUEST
+- Improve the 「球聚現場」 button/frame styling because the previous blue capsule treatment and LIVE indicator were not visually clear.
+
+DESIGN CHANGE
+- Replace the double blue capsule appearance with a neutral segmented-control rail.
+- Outer navigation rail:
+  - 1px neutral border
+  - 16px radius
+  - subtle low-elevation shadow
+  - neutral theme-aware surface
+- Inner tabs:
+  - 12px radius
+  - transparent inactive state
+  - selected tab uses raised neutral surface instead of solid primary blue
+  - single clean border + soft elevation
+- LIVE activity:
+  - keep compact green semantic activity dot
+  - 7px core + soft status halo
+  - 1.9s pulse
+  - no red / blue LIVE text
+- High-contrast override preserved.
+- Existing reduced-motion / Theme Motion Off behavior preserved.
+- Mobile dock remains unchanged; top tabs are hidden at <=680px as before.
+
+TARGETED REGRESSION / UI GATE
+PASS 24 / 24
+
+PASS  DEV neutral tab rail background
+PASS  DEV outer rail radius = 16px
+PASS  DEV inner tab radius = 12px
+PASS  DEV active tab uses raised neutral surface
+PASS  DEV active tab primary-color filter removed
+PASS  DEV active tab soft elevation present
+PASS  DEV LIVE dot = 7px
+PASS  DEV LIVE dot soft halo present
+PASS  DEV R4 pulse animation present
+PASS  DEV high-contrast override preserved
+PASS  DEV reduced-motion / theme-motion-off guards preserved
+PASS  DEV APP_VERSION = 0.4.7.3-dev.1
+PASS  DEV DB_VERSION = 2
+PASS  DEV PUBLIC_HISTORY_CODE = PUBLIC
+PASS  DEV Header verified BowlMeet icon unchanged
+PASS  DEV application JavaScript unchanged from stable except APP_VERSION
+PASS  MAIN production remains APP_VERSION 0.4.7.2
+PASS  PREVIEW loads R4 stylesheet
+PASS  PREVIEW selected tab uses raised neutral surface
+PASS  PREVIEW LIVE halo present
+PASS  PREVIEW cache identity = v0473d1r4
+PASS  PREVIEW Service Worker caches R4 stylesheet
+PASS  PREVIEW PUBLIC code remains isolated as V473D1
+PASS  PREVIEW DB_VERSION = 2
+
+SAFETY
+UNCHANGED
+- Scoring Core
+- 10-frame live scoring
+- PUBLIC / PUBLIC Control
+- Public-only leaderboard / sharing
+- Sync
+- Backup / Restore
+- Optional Backup Before PWA Update
+- InvalidStateError recovery
+- IndexedDB schema
+- Supabase schema
+- PUBLIC payload
+- Theme / Layout preference storage contracts
+
+STATUS
+R4 Targeted UI Gate: PASS
+Device visual acceptance: PENDING
+Stable Promotion: NOT EXECUTED
+stable/v0.4.7.2: UNCHANGED
+freeze/v0.4.7.2: UNCHANGED
