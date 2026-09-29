@@ -52,3 +52,13 @@ DEVICE STATUS
 - Validation Complete: NO
 - Stable Promotion Eligibility: PENDING
 - main / stable promotion: NOT EXECUTED
+
+
+HF2 TEXT ARTIFACT REPAIR
+- Root cause confirmed: one literal HTML text node `\n` existed between style blocks.
+- Replaced only `</style>\n<style id="field-workflow-dev1">` with a real newline.
+- HF2 targeted static gate: 12 / 12 PASS / 0 FAIL.
+- Application JavaScript unchanged from RC.1 except APP_VERSION.
+- HF1 header/name-column/score-input behavior retained.
+- Device status before HF2 retest: 3 / 4 PASS.
+- Remaining: confirm visible `\n` text is gone.
