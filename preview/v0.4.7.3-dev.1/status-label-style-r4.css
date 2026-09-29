@@ -1,0 +1,82 @@
+/* BowlMeet v0.4.7.3-dev.1-R4
+   Preview-only navigation refinement.
+   Removes the double blue capsule appearance and uses a neutral segmented
+   control rail with one elevated selected segment. The animated green
+   activity dot remains but gains a soft halo for better visibility.
+   No scoring / PUBLIC / Sync / Backup / DB / schema logic changes. */
+
+html[data-theme] .tabs{
+  gap:4px!important;
+  padding:4px!important;
+  border:1px solid var(--border-default)!important;
+  border-radius:16px!important;
+  background:color-mix(in srgb,var(--surface-subtle) 90%,transparent)!important;
+  box-shadow:0 5px 16px color-mix(in srgb,var(--text-primary) 7%,transparent)!important;
+}
+html[data-theme] .tabs .tab{
+  min-height:38px;
+  padding:8px 13px!important;
+  border:1px solid transparent!important;
+  border-radius:12px!important;
+  background:transparent!important;
+  color:var(--text-secondary)!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+html[data-theme] .tabs .tab:not(.active):hover{
+  background:var(--surface-hover)!important;
+  color:var(--text-primary)!important;
+}
+html[data-theme] .tabs .tab.active{
+  background:var(--surface-raised)!important;
+  color:var(--text-primary)!important;
+  border-color:var(--border-default)!important;
+  box-shadow:
+    0 3px 10px color-mix(in srgb,var(--text-primary) 10%,transparent),
+    inset 0 1px 0 color-mix(in srgb,var(--text-inverse) 38%,transparent)!important;
+  filter:none!important;
+}
+html[data-theme] .tabs .tab:focus-visible{
+  outline:2px solid var(--border-focus)!important;
+  outline-offset:2px!important;
+}
+html[data-theme] .group-tab:after,
+html[data-theme] .sync-tab:after{
+  background:transparent!important;
+  color:var(--theme-primary)!important;
+}
+html[data-theme] .group-tab.active:after,
+html[data-theme] .sync-tab.active:after{
+  background:transparent!important;
+  color:var(--border-focus)!important;
+}
+html[data-theme] .tabs .live-tab:after,
+html[data-theme] .tabs .live-tab.active:after{
+  content:''!important;
+  display:inline-block;
+  width:7px;
+  height:7px;
+  margin-left:8px;
+  border-radius:999px;
+  vertical-align:1px;
+  background:var(--status-success)!important;
+  color:transparent!important;
+  box-shadow:0 0 0 3px var(--status-success-bg);
+  animation:bowlmeet-live-pulse-r4 1.9s ease-out infinite;
+}
+@keyframes bowlmeet-live-pulse-r4{
+  0%,38%{box-shadow:0 0 0 3px var(--status-success-bg),0 0 0 3px color-mix(in srgb,var(--status-success) 20%,transparent);transform:scale(1)}
+  72%{box-shadow:0 0 0 3px var(--status-success-bg),0 0 0 7px transparent;transform:scale(.96)}
+  100%{box-shadow:0 0 0 3px var(--status-success-bg),0 0 0 3px transparent;transform:scale(1)}
+}
+html[data-theme="high-contrast"] .tabs .tab.active{
+  background:#000!important;
+  border-color:#000!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+html[data-theme="high-contrast"] .tabs .live-tab:after,
+html[data-theme="high-contrast"] .tabs .live-tab.active:after{
+  background:#075d2c!important;
+  box-shadow:0 0 0 2px #fff,0 0 0 3px #075d2c;
+}
