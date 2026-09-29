@@ -1,0 +1,32 @@
+{
+  "version": "0.4.7.3-RC.1",
+  "stage": "Release Candidate / Baseline Validation",
+  "date": "2026-09-30",
+  "base": "stable/v0.4.7.2",
+  "source_candidate": "v0.4.7.3-dev.1",
+  "result": "PASS",
+  "checks_total": 20,
+  "checks_passed": 20,
+  "rc_delta_from_dev": [
+    "index.html version/title/cache identity",
+    "manifest.webmanifest RC identity",
+    "sw.js RC cache identity"
+  ],
+  "device_visual_acceptance": "PASS inherited from R9 mobile real-device validation; RC-only delta is version/cache identity",
+  "stable_promotion": "NOT EXECUTED",
+  "production_main": "0.4.7.2",
+  "stable_freeze": "IDENTICAL",
+  "contracts_unchanged": [
+    "Scoring Core",
+    "10-frame live scoring",
+    "PUBLIC/PUBLIC Control",
+    "public-only leaderboard/sharing",
+    "Sync",
+    "Backup/Restore",
+    "IndexedDB Schema",
+    "Supabase Schema",
+    "PUBLIC payload",
+    "DB_VERSION=2",
+    "Theme/Layout local-only"
+  ]
+}
