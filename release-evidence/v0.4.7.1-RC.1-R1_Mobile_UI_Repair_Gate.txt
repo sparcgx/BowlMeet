@@ -1,0 +1,48 @@
+BowlMeet v0.4.7.1-RC.1-R1
+Mobile Header Overflow & Score Entry Layout Repair
+Date: 2026-09-29
+Base: v0.4.7.1-RC.1
+
+REPORTED DEVICE ISSUES
+1. iPhone/PWA header safe-area shows clipped text residue above the BowlMeet header.
+2. Manual score table mobile layout allocates too much width to player name and too little width to score inputs.
+
+REPAIR
+- Add mobile safe-area shield above sticky header.
+- Clip header/header-inner overflow and constrain brand title.
+- Keep player name column fixed and compact:
+  - <=680px: 112px
+  - <=420px: 104px
+- Enlarge score inputs:
+  - <=680px: 90px wide
+  - <=420px: 88px wide
+  - minimum touch height: 52px
+- Keep score table horizontally scrollable.
+- Repair is implemented in an isolated UI-only stylesheet:
+  assets/rc-mobile-repair-v0471.css
+
+AUTOMATED REPAIR GATE
+- 36 / 36 PASS / 0 FAIL
+
+FREEZE / SAFETY
+- Application JavaScript unchanged except APP_VERSION.
+- DB_VERSION unchanged.
+- PUBLIC contract unchanged.
+- Score core unchanged.
+- Sync unchanged.
+- Backup / Restore unchanged.
+- PWA update behavior unchanged.
+- No Supabase migration.
+- No IndexedDB migration.
+- No PUBLIC payload migration.
+
+ISOLATED PREVIEW
+- preview/v0.4.7.1-RC.1-R1/
+- Cloud OFF
+- Preview storage / IndexedDB / PUBLIC / PWA cache isolated.
+
+DEVICE RETEST
+- 0 / 4 PENDING
+- Validation Complete: NO
+- Stable Promotion Eligibility: PENDING
+- main / stable promotion: NOT EXECUTED
