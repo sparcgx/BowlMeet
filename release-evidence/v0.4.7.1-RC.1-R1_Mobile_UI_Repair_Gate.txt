@@ -62,3 +62,31 @@ HF2 TEXT ARTIFACT REPAIR
 - HF1 header/name-column/score-input behavior retained.
 - Device status before HF2 retest: 3 / 4 PASS.
 - Remaining: confirm visible `\n` text is gone.
+
+HF2 ROOT CAUSE
+- A literal backslash+n text node existed between style blocks:
+  </style>\n<style id="field-workflow-dev1">
+- Because it was outside CSS/JS, Safari rendered "\n" as visible page text above the app header.
+- HF2 replaces only that one literal sequence with a real newline.
+
+HF2 TARGETED STATIC GATE
+- 15 / 15 PASS / 0 FAIL
+- Literal backslash+n before application scripts: 0 in RC source.
+- Literal backslash+n before application scripts: 0 in isolated Preview.
+- Application JavaScript unchanged from RC.1 except APP_VERSION.
+- DB_VERSION remains 2.
+- PUBLIC_HISTORY_CODE remains PUBLIC in release source.
+- Theme / Layout keys unchanged and local-only.
+- HF1 player-name sizing retained.
+- HF1 score-input sizing and horizontal interaction retained.
+- Preview PUBLIC namespace remains isolated.
+- PWA cache identity bumped to HF2.
+
+DEVICE STATUS AFTER USER RETEST
+- Scrolling / rubber-band: PASS
+- Player-name column proportion: PASS
+- Score input + horizontal scrolling: PASS
+- Visible "\n" artifact: HF2 fixed in source; final device confirmation PENDING
+- Device total before final HF2 confirmation: 3 / 4 PASS
+- Stable Promotion Eligibility: PENDING
+- main / stable promotion: NOT EXECUTED
