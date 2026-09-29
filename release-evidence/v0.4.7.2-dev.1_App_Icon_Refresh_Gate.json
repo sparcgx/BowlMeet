@@ -1,0 +1,73 @@
+{
+  "version": "v0.4.7.2-dev.1",
+  "date": "2026-09-29",
+  "title": "App Icon Refresh Gate",
+  "base": "stable/v0.4.7.1",
+  "scope": "PWA/App icon refresh only",
+  "iconDelivery": {
+    "icon192": {
+      "path": "icons/icon-192.png",
+      "type": "image/png",
+      "gitBlobSha": "d3c482d9db4642e9e0fea8805a906403bb205912",
+      "sha256": "a2b512f7c967a368f0a7efbf007093c37f3f721ec5d3fe0b96717d937c07421e"
+    },
+    "icon512": {
+      "path": "icons/icon-512.svg",
+      "type": "image/svg+xml",
+      "gitBlobSha": "19d0d5252c6d9829f476680f5fa50abc0869c4d2",
+      "source": "embedded selected icon-192 PNG"
+    },
+    "maskable512": {
+      "path": "icons/icon-maskable-512.svg",
+      "type": "image/svg+xml",
+      "gitBlobSha": "92121371bcea6d17ecc2a342d9e01e03c7642e9d",
+      "source": "embedded selected icon-192 PNG with safe inset"
+    }
+  },
+  "restoredLegacyPng": {
+    "icon512": {
+      "path": "icons/icon-512.png",
+      "gitBlobSha": "0dfb52c8c2a99f76ad1195641780aff5fb35e0e1"
+    },
+    "maskable512": {
+      "path": "icons/icon-maskable-512.png",
+      "gitBlobSha": "d8506c7897c5ec507abe064dcd3738a5b784c67a"
+    },
+    "referencedByDev1": false
+  },
+  "gates": {
+    "source": {
+      "pass": 21,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "previewIsolation": {
+      "pass": 13,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "device": {
+      "pass": 1,
+      "fail": 0,
+      "status": "PASS",
+      "note": "Physical-device PWA/App icon visually confirmed OK by user on 2026-09-29."
+    }
+  },
+  "contracts": {
+    "applicationJsChangedExceptAppVersion": false,
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "scoringCoreChanged": false,
+    "publicContractChanged": false,
+    "syncChanged": false,
+    "backupRestoreChanged": false,
+    "optionalBackupBehaviorChanged": false,
+    "invalidStateRecoveryChanged": false,
+    "indexedDbSchemaChanged": false,
+    "supabaseSchemaChanged": false,
+    "publicPayloadChanged": false
+  },
+  "visibleMarkupResiduals": 0,
+  "stablePromotionExecuted": false,
+  "validationComplete": true
+}
