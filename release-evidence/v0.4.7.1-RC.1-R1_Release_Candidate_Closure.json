@@ -1,0 +1,87 @@
+{
+  "version": "v0.4.7.1-RC.1-R1",
+  "date": "2026-09-29",
+  "title": "Release Candidate Closure & Freeze Gate",
+  "base": "v0.4.7.1-RC.1",
+  "candidateHeadBeforeClosureEvidence": "1a7c646877dc0a2b444ab82c2475241265ca8d9d",
+  "gates": {
+    "rc1FullRegressionPreviewIsolation": {
+      "pass": 91,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "r1AutomatedRepair": {
+      "pass": 36,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "hf1TargetedStatic": {
+      "pass": 22,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "hf2TargetedStatic": {
+      "pass": 15,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "hf3CleanScope": {
+      "pass": 12,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "finalClosure": {
+      "pass": 18,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "device": {
+      "pass": 4,
+      "fail": 0,
+      "status": "PASS"
+    }
+  },
+  "safety": {
+    "appVersion": "0.4.7.1-RC.1-R1",
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "applicationJsEquivalentToRc1ExceptAppVersion": true,
+    "scoreCoreChanged": false,
+    "publicContractChanged": false,
+    "publicControlChanged": false,
+    "syncChanged": false,
+    "backupRestoreChanged": false,
+    "optionalBackupBehaviorChanged": false,
+    "invalidStateRecoveryChanged": false,
+    "indexedDbSchemaChanged": false,
+    "supabaseSchemaChanged": false,
+    "themeLayoutPreferencesLocalOnly": true
+  },
+  "mobileRepair": {
+    "headerResidualResolved": true,
+    "nameColumnPx": {
+      "mobile": 88,
+      "narrow": 80
+    },
+    "scoreInputPx": {
+      "mobile": 90,
+      "narrow": 88
+    },
+    "scoreTouchMinHeightPx": 52,
+    "horizontalScrollRetained": true
+  },
+  "residualAudit": {
+    "activeCandidateResiduals": 0,
+    "deviceConfirmedClean": true,
+    "frozenHistoricalResidualsRetained": true
+  },
+  "governance": {
+    "mainVersion": "v0.4.7.0",
+    "stableBaseline": "stable/v0.4.7.0",
+    "mainPromotionExecuted": false,
+    "stablePromotionExecuted": false,
+    "readyForReview": true,
+    "readyForPromotionGate": true
+  },
+  "result": "PASS"
+}
