@@ -963,3 +963,35 @@ html[data-theme] .history-score-total,
 html[data-theme] .history-score-average{
   background:var(--surface-subtle)!important;color:var(--text-primary)!important;border-color:var(--border-default)!important;
 }
+
+
+/* =========================================================
+   R9 | Mobile Active Dock 1s Dynamic Float
+   Mirrors R8 active-tab motion for the mobile navigation dock.
+   UI-only: no scoring / PUBLIC / sync / backup / DB / schema changes.
+   ========================================================= */
+@media(max-width:680px){
+  html[data-theme] .mobile-glass-dock .dock-item.active,
+  html[data-theme] .mobile-glass-dock .dock-more.has-secondary-active{
+    animation:bowlmeet-dock-float-r9 1s ease-in-out infinite;
+    will-change:transform;
+  }
+}
+@keyframes bowlmeet-dock-float-r9{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-2px)}
+}
+html[data-theme="high-contrast"] .mobile-glass-dock .dock-item.active,
+html[data-theme="high-contrast"] .mobile-glass-dock .dock-more.has-secondary-active{
+  animation:none!important;
+  transform:none!important;
+  will-change:auto;
+}
+@media(prefers-reduced-motion:reduce){
+  html[data-theme] .mobile-glass-dock .dock-item.active,
+  html[data-theme] .mobile-glass-dock .dock-more.has-secondary-active{
+    animation:none!important;
+    transform:none!important;
+    will-change:auto;
+  }
+}
