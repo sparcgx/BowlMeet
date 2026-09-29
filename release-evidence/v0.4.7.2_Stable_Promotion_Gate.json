@@ -1,0 +1,68 @@
+{
+  "version": "v0.4.7.2",
+  "date": "2026-09-29",
+  "title": "Stable Promotion Gate",
+  "sourceRcFreeze": "freeze/v0.4.7.2-RC.1",
+  "promotionBranch": "release/v0.4.7.2-promotion",
+  "entryGates": {
+    "source": {
+      "pass": 21,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "previewIsolation": {
+      "pass": 13,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "device": {
+      "pass": 1,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "rc": {
+      "pass": 23,
+      "fail": 0,
+      "status": "PASS"
+    }
+  },
+  "stablePromotionGate": {
+    "pass": 23,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "production": {
+    "appVersion": "0.4.7.2",
+    "indexBlobSha": "acc21501debb9cefb26717daf54ff6cbf716a1b0",
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "visibleMarkupResiduals": 0,
+    "shellCache": "bowlmeet-v0.4.7.2-stable-shell",
+    "runtimeCache": "bowlmeet-v0.4.7.2-stable-runtime"
+  },
+  "iconShas": {
+    "icon192": "d3c482d9db4642e9e0fea8805a906403bb205912",
+    "icon512Svg": "19d0d5252c6d9829f476680f5fa50abc0869c4d2",
+    "maskableSvg": "92121371bcea6d17ecc2a342d9e01e03c7642e9d"
+  },
+  "promotionDiffExpectedFiles": 10,
+  "contracts": {
+    "applicationJsChangedExceptAppVersion": false,
+    "scoringCoreChanged": false,
+    "publicContractChanged": false,
+    "publicControlChanged": false,
+    "syncChanged": false,
+    "backupRestoreChanged": false,
+    "optionalBackupBehaviorChanged": false,
+    "invalidStateRecoveryChanged": false,
+    "indexedDbSchemaChanged": false,
+    "supabaseSchemaChanged": false,
+    "publicPayloadChanged": false
+  },
+  "preMerge": {
+    "readyToMergeMain": true,
+    "mainMergeExecuted": false,
+    "stableBranchCreated": false,
+    "releaseFreezeActive": false
+  }
+}
