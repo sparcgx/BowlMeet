@@ -777,7 +777,7 @@ html[data-theme="dark-night"] .player-directory-kpis>div{
 }
 
 
-/* v0.4.7.3-dev.1-R7 | Dynamic Float Frosted Glass Tabs
+/* v0.4.7.3-dev.1-R8 | 1s Dynamic Float Frosted Glass Tabs
    All primary navigation tabs keep the same lighter frosted-glass capsule.
    Active state keeps identical geometry and now uses a subtle continuous floating motion.
    The live tab keeps a divider and activity dot without becoming a different shape. */
@@ -831,10 +831,10 @@ html[data-theme] .tabs .tab.active{
     inset 0 1px 0 color-mix(in srgb,#fff 72%,transparent),
     inset 0 -1px 0 color-mix(in srgb,var(--border-default) 36%,transparent)!important;
   filter:none!important;
-  animation:bowlmeet-tab-float-r7 3.2s ease-in-out infinite;
+  animation:bowlmeet-tab-float-r8 1s ease-in-out infinite;
   will-change:transform;
 }
-@keyframes bowlmeet-tab-float-r7{
+@keyframes bowlmeet-tab-float-r8{
   0%,100%{transform:translateY(0)}
   50%{transform:translateY(-2px)}
 }
