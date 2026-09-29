@@ -1,0 +1,62 @@
+{
+  "version": "v0.4.7.2-RC.1",
+  "date": "2026-09-29",
+  "title": "Release Candidate Gate",
+  "base": "v0.4.7.2-dev.1",
+  "stableBase": "stable/v0.4.7.1",
+  "entryGates": {
+    "source": {
+      "pass": 21,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "previewIsolation": {
+      "pass": 13,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "device": {
+      "pass": 1,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "validationComplete": true
+  },
+  "rcGate": {
+    "pass": 23,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "productionIdentity": {
+    "appVersion": "0.4.7.2-RC.1",
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "visibleMarkupResiduals": 0
+  },
+  "iconShas": {
+    "icon192": "d3c482d9db4642e9e0fea8805a906403bb205912",
+    "icon512Svg": "19d0d5252c6d9829f476680f5fa50abc0869c4d2",
+    "maskableSvg": "92121371bcea6d17ecc2a342d9e01e03c7642e9d"
+  },
+  "rcDeltaFiles": [
+    "index.html",
+    "manifest.webmanifest",
+    "sw.js"
+  ],
+  "contracts": {
+    "applicationJsChangedExceptAppVersion": false,
+    "scoringCoreChanged": false,
+    "publicContractChanged": false,
+    "publicControlChanged": false,
+    "syncChanged": false,
+    "backupRestoreChanged": false,
+    "optionalBackupBehaviorChanged": false,
+    "invalidStateRecoveryChanged": false,
+    "indexedDbSchemaChanged": false,
+    "supabaseSchemaChanged": false,
+    "publicPayloadChanged": false
+  },
+  "validationComplete": true,
+  "readyForStablePromotion": true,
+  "stablePromotionExecuted": false
+}
