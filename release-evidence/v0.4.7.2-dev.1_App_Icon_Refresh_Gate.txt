@@ -9,50 +9,57 @@ SCOPE
 - Refresh version / manifest / Service Worker icon cache identity.
 - Publish an isolated Preview for device verification.
 
-SOURCE ARTWORK
-Selected BowlMeet artwork:
+SELECTED ARTWORK
 - Dark glossy bowling ball
-- Three white/red pins
+- Three white/red bowling pins
 - Blue / violet motion trails
 - BowlMeet wordmark + 保齡球球聚 subtitle
 
-GENERATED ICON FILES
+FINAL ICON DELIVERY
 - icons/icon-192.png
-- icons/icon-512.png
-- icons/icon-maskable-512.png
+  - Rich PNG used for Apple touch icon / 192px PWA icon.
+- icons/icon-512.svg
+  - SVG wrapper embedding the same selected PNG artwork at 512px.
+- icons/icon-maskable-512.svg
+  - Mask-safe SVG wrapper embedding the same artwork with protected inset.
+- Legacy icons/icon-512.png and icon-maskable-512.png were restored exactly to stable/v0.4.7.1 and are not referenced by v0.4.7.2-dev.1.
+- This avoids retaining any invalid/corrupt intermediate PNG blobs.
 
-GIT BLOB SHAS
+VERIFIED GIT BLOB SHAS
 icon-192.png:
 d3c482d9db4642e9e0fea8805a906403bb205912
 
+icon-512.svg:
+19d0d5252c6d9829f476680f5fa50abc0869c4d2
+
+icon-maskable-512.svg:
+92121371bcea6d17ecc2a342d9e01e03c7642e9d
+
+RESTORED LEGACY PNG SHAS
 icon-512.png:
-7dddbe6f79b9c13208f5d3cdb04e4ef3428ffafc
+0dfb52c8c2a99f76ad1195641780aff5fb35e0e1
 
 icon-maskable-512.png:
-bfcc156a17e91f305966e1efc511e19621ff104a
+d8506c7897c5ec507abe064dcd3738a5b784c67a
 
-LOCAL SOURCE FILE SHA-256
-icon-192:
+LOCAL SOURCE SHA-256
+icon-192 PNG:
 a2b512f7c967a368f0a7efbf007093c37f3f721ec5d3fe0b96717d937c07421e
 
-icon-512:
-a9eabac1d225f80cec26da0b2af09f50ac9f370c4b99e72cc35b3523b1c8861d
-
-maskable-512:
-66f429b3653f3e04c60f8443c21fa3a3dfb64f62b74eab7c614929ce7774e529
-
 SOURCE ICON REFRESH GATE
-PASS  17 / 17
-PASS  Exactly 6 expected production files changed
+PASS  21 / 21
 PASS  APP_VERSION = 0.4.7.2-dev.1
 PASS  Application JavaScript unchanged from stable/v0.4.7.1 except APP_VERSION
 PASS  DB_VERSION = 2
 PASS  PUBLIC_HISTORY_CODE = PUBLIC
 PASS  Layout / Theme local preference keys unchanged
 PASS  Apple touch icon cache-busted
-PASS  Manifest uses refreshed 192 / 512 / maskable icons
+PASS  Manifest uses refreshed 192 PNG / 512 SVG / maskable SVG
 PASS  Service Worker uses v0.4.7.2-dev.1 cache identity
-PASS  New icon blobs verified
+PASS  New icon blobs verified by exact SHA
+PASS  Legacy 512 PNG files restored to Stable SHA
+PASS  Invalid intermediate PNG blobs are not referenced
+PASS  Visible markup residuals = 0
 
 PREVIEW ISOLATION GATE
 PASS  13 / 13
@@ -60,8 +67,10 @@ PASS  Preview APP_VERSION = 0.4.7.2-dev.1
 PASS  Preview storage namespace = bowlmeet.preview.v0472d1.*
 PASS  Preview PUBLIC code = V472D1
 PASS  Preview Service Worker = bowlmeet-preview-v0472d1-*
-PASS  Preview uses local icon assets
+PASS  Preview uses local refreshed icon assets
 PASS  Preview icon blobs match source icon blobs
+PASS  Preview legacy 512 PNG files are restored Stable blobs
+PASS  Preview visible markup residuals = 0
 
 DATA / FUNCTION CONTRACT
 UNCHANGED
