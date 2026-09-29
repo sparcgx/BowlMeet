@@ -1,0 +1,55 @@
+BowlMeet v0.4.7.3-dev.1-R1
+Homepage Brand Icon Refresh / Status Label Visibility Repair Gate
+Date: 2026-09-29
+Base: stable/v0.4.7.2
+
+ISSUE
+- Mobile / themed "球聚現場" tab rendered the small LIVE label as a solid blue rectangle.
+- Root cause: assets/theme-center-v0470.css applied the same color to pseudo-element background and text:
+  background: var(--theme-primary)
+  color: var(--theme-primary)
+- The content remained "LIVE", but the text was visually hidden by the same-color background.
+
+R1 FIX
+- Keep the existing LIVE / SYNC / GROUP pseudo-label content and sizing.
+- Change themed pseudo-label background to transparent.
+- Keep normal text color = var(--theme-primary).
+- Keep active text color = var(--border-focus).
+- No navigation, scoring, PUBLIC, sync, backup, IndexedDB, Supabase, payload, schema, or data behavior changes.
+
+TARGETED REGRESSION / UI GATE
+PASS 20 / 20
+
+PASS  DEV APP_VERSION = 0.4.7.3-dev.1
+PASS  DEV DB_VERSION = 2
+PASS  DEV PUBLIC_HISTORY_CODE = PUBLIC
+PASS  DEV Header uses verified icons/icon-192.png?v=0473d1
+PASS  DEV legacy .ball markup/CSS absent
+PASS  DEV themed LIVE/SYNC/GROUP background = transparent
+PASS  DEV themed normal label color = var(--theme-primary)
+PASS  DEV themed active label color = var(--border-focus)
+PASS  DEV application JavaScript unchanged from stable except APP_VERSION
+PASS  MAIN production APP_VERSION remains 0.4.7.2
+PASS  MAIN production root remains separate from dev source
+PASS  PREVIEW loads local R1 status-label override
+PASS  PREVIEW R1 background = transparent
+PASS  PREVIEW R1 normal label color preserved
+PASS  PREVIEW R1 active label color preserved
+PASS  PREVIEW cache identity bumped to v0473d1r1
+PASS  PREVIEW Service Worker caches R1 override
+PASS  PREVIEW PUBLIC code remains isolated as V473D1
+PASS  PREVIEW localStorage remains isolated under bowlmeet.preview.v0473d1.*
+PASS  PREVIEW DB_VERSION remains 2
+
+SOURCE DELTA FROM stable/v0.4.7.2
+- assets/theme-center-v0470.css: 2 additions / 2 deletions
+- Existing v0.4.7.3-dev.1 homepage brand icon refresh files remain in scope.
+- Stable/freeze branches are not modified.
+
+STATUS
+Targeted Regression / UI Gate: PASS
+R1 Gate: 20 / 20 PASS
+Device visual acceptance: PENDING
+Stable Promotion: NOT EXECUTED
+stable/v0.4.7.2: UNCHANGED
+freeze/v0.4.7.2: UNCHANGED
