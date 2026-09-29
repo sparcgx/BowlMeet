@@ -1,0 +1,85 @@
+BowlMeet v0.4.7.2-dev.1
+App Icon Refresh Gate
+Date: 2026-09-29
+Base: stable/v0.4.7.1
+
+SCOPE
+- Replace BowlMeet PWA / App icon artwork only.
+- Keep scoring, PUBLIC, Sync, Backup / Restore, DB and schemas unchanged.
+- Refresh version / manifest / Service Worker icon cache identity.
+- Publish an isolated Preview for device verification.
+
+SOURCE ARTWORK
+Selected BowlMeet artwork:
+- Dark glossy bowling ball
+- Three white/red pins
+- Blue / violet motion trails
+- BowlMeet wordmark + 保齡球球聚 subtitle
+
+GENERATED ICON FILES
+- icons/icon-192.png
+- icons/icon-512.png
+- icons/icon-maskable-512.png
+
+GIT BLOB SHAS
+icon-192.png:
+d3c482d9db4642e9e0fea8805a906403bb205912
+
+icon-512.png:
+7dddbe6f79b9c13208f5d3cdb04e4ef3428ffafc
+
+icon-maskable-512.png:
+bfcc156a17e91f305966e1efc511e19621ff104a
+
+LOCAL SOURCE FILE SHA-256
+icon-192:
+a2b512f7c967a368f0a7efbf007093c37f3f721ec5d3fe0b96717d937c07421e
+
+icon-512:
+a9eabac1d225f80cec26da0b2af09f50ac9f370c4b99e72cc35b3523b1c8861d
+
+maskable-512:
+66f429b3653f3e04c60f8443c21fa3a3dfb64f62b74eab7c614929ce7774e529
+
+SOURCE ICON REFRESH GATE
+PASS  17 / 17
+PASS  Exactly 6 expected production files changed
+PASS  APP_VERSION = 0.4.7.2-dev.1
+PASS  Application JavaScript unchanged from stable/v0.4.7.1 except APP_VERSION
+PASS  DB_VERSION = 2
+PASS  PUBLIC_HISTORY_CODE = PUBLIC
+PASS  Layout / Theme local preference keys unchanged
+PASS  Apple touch icon cache-busted
+PASS  Manifest uses refreshed 192 / 512 / maskable icons
+PASS  Service Worker uses v0.4.7.2-dev.1 cache identity
+PASS  New icon blobs verified
+
+PREVIEW ISOLATION GATE
+PASS  13 / 13
+PASS  Preview APP_VERSION = 0.4.7.2-dev.1
+PASS  Preview storage namespace = bowlmeet.preview.v0472d1.*
+PASS  Preview PUBLIC code = V472D1
+PASS  Preview Service Worker = bowlmeet-preview-v0472d1-*
+PASS  Preview uses local icon assets
+PASS  Preview icon blobs match source icon blobs
+
+DATA / FUNCTION CONTRACT
+UNCHANGED
+- Scoring core
+- PUBLIC / PUBLIC Control
+- Public-only leaderboard / sharing
+- Sync
+- Backup / Restore
+- Optional Backup Before PWA Update
+- InvalidStateError recovery
+- IndexedDB schema
+- Supabase schema
+- PUBLIC payload
+- DB_VERSION = 2
+
+STATUS
+Development Gate: PASS
+Preview Gate: PASS
+Device Icon Acceptance: PENDING
+Stable Promotion: NOT EXECUTED
+stable/v0.4.7.1 remains frozen.
