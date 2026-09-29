@@ -1,0 +1,94 @@
+BowlMeet v0.4.7.1
+Stable Promotion & Release Freeze
+Final Release Evidence
+Date: 2026-09-29
+
+PROMOTION SOURCE
+RC Freeze: freeze/v0.4.7.1-RC.1-R1
+Promotion Branch: release/v0.4.7.1-promotion
+Promotion PR: #91
+Promotion Merge Commit: b21dc3d9eb8146c42eb74e867917817186341ba8
+
+ENTRY GATES
+PASS  RC.1 Full Regression / Preview Isolation = 91 / 91
+PASS  R1 Automated Repair Gate = 36 / 36
+PASS  HF1 Targeted Static Gate = 22 / 22
+PASS  HF2 Targeted Static Gate = 15 / 15
+PASS  HF3 Clean-Scope Gate = 12 / 12
+PASS  Final RC Closure Gate = 18 / 18
+PASS  iPhone / PWA Device Retest = 4 / 4
+PASS  Stable Promotion Gate = 20 / 20
+PASS  Post-Promotion Gate = 19 / 19
+
+PRODUCTION PROMOTION
+PASS  Production APP_VERSION = 0.4.7.1
+PASS  Production HTML title = BowlMeet v0.4.7.1
+PASS  Production root index SHA = 0af983524f63783c186b4186faf9f216cdb3fb30
+PASS  PWA manifest = v0.4.7.1 Stable
+PASS  Service Worker shell cache = bowlmeet-v0.4.7.1-stable-shell
+PASS  Service Worker runtime cache = bowlmeet-v0.4.7.1-stable-runtime
+PASS  Production visible escape residuals = 0
+PASS  Production LocalStorage keys preserved
+PASS  DB_VERSION = 2
+PASS  PUBLIC_HISTORY_CODE = PUBLIC
+PASS  Existing Preview history retained
+PASS  Final HF3 Preview retained
+PASS  Layout preferences remain bowlingMeetup.layoutPreferences.v1
+PASS  Theme preferences remain bowlingMeetup.themePreferences.v1
+
+FROZEN v0.4.7.1 ASSET SHAS
+Score Card:
+e3de8dcb7ac7eec5610c3546dc901094edcdf1e4
+
+Mobile Score Card:
+7a760b47fefb9a8a023eab5c73fb4a3041fa79ad
+
+Accessibility:
+0f2a369d321597a22b0fae406775d2b9f17635a1
+
+Mobile Header / Table Repair:
+6b33de92211f408238bdf00b9cbcdb2e2e548671
+
+RELEASE SCOPE
+- Per-game public/history score table
+- Score Card Theme Integration
+- Mobile Score Card UX
+- Score Card Accessibility & Theme Hardening
+- PWA InvalidState recovery
+- Optional Backup Before PWA Update
+- Mobile Header visible-text repair
+- Mobile score-entry player-name / score-input proportion repair
+
+DATA / FUNCTION CONTRACT
+UNCHANGED / PRESERVED
+- Scoring core
+- 10-frame live scoring
+- Meetup Context
+- Unified Score History
+- PUBLIC History
+- PUBLIC Control
+- Public-only leaderboard / sharing
+- Awards
+- Multi-device Sync
+- Player Claim / Personal Score Sync
+- Backup / Restore
+- IndexedDB Snapshot
+- Existing Supabase production configuration
+- DB_VERSION = 2
+- No Supabase schema migration
+- No IndexedDB schema migration
+- No PUBLIC payload migration
+
+RELEASE GOVERNANCE
+- Production main promoted to v0.4.7.1
+- stable/v0.4.7.1 is the new formal Stable baseline
+- freeze/v0.4.7.1 is the immutable Release Freeze baseline
+- stable and freeze branches must point to the same final release commit
+- Previous stable/v0.4.7.0 remains preserved as historical baseline
+- Future changes must branch from v0.4.7.1 Stable and must not modify the frozen baseline directly
+
+FINAL STATUS
+Stable Promotion: PASS
+Release Freeze: ACTIVE
+Production Version: v0.4.7.1
+Validation: COMPLETE
