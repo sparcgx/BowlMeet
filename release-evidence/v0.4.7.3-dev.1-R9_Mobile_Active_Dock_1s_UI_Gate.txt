@@ -1,0 +1,30 @@
+BowlMeet v0.4.7.3-dev.1-R9｜Mobile Active Dock 1s Dynamic Float｜Targeted UI Gate
+Date: 2026-09-30
+Base: stable/v0.4.7.2
+Development: v0.4.7.3-dev.1
+Purpose: Fix mobile mode not receiving the R8 active-tab 1-second float. Mobile .dock-item.active and .dock-more.has-secondary-active now receive the same 1s / 0px↔-2px float behavior.
+User evidence: uploaded iPhone screenshot shows mobile bottom dock active item remained static while desktop .tabs active animation had been updated.
+
+Checks:
+R9-001 Mobile active dock selector present — PASS
+R9-002 Active dock float cycle is exactly 1s — PASS
+R9-003 Float keyframes are 0px ↔ -2px — PASS
+R9-004 R9 animation applies to primary active dock item — PASS
+R9-005 R9 animation applies to More/secondary-active dock state — PASS
+R9-006 High Contrast disables R9 animation — PASS
+R9-007 prefers-reduced-motion disables R9 animation — PASS
+R9-008 No dock geometry/label/navigation structure changes — PASS
+R9-009 Desktop R8 tab animation remains 1s — PASS
+R9-010 Preview R9 CSS contains mobile dock animation — PASS
+R9-011 Preview stylesheet cache-bust updated to R9 — PASS
+R9-012 Preview Service Worker cache namespace updated to R9 — PASS
+R9-013 Preview remains isolated from production PUBLIC/data contracts — PASS
+R9-014 DB_VERSION remains 2 — PASS
+R9-015 Stable v0.4.7.2 remains unchanged — PASS
+R9-016 Freeze v0.4.7.2 remains identical to Stable — PASS
+
+Result: PASS — 16/16
+Scope: UI/CSS only.
+Unchanged contracts: scoring core, 10-frame live scoring, PUBLIC/PUBLIC Control, public-only leaderboard/sharing, sync, backup/restore, IndexedDB schema, Supabase schema, PUBLIC payload, DB_VERSION=2, local-only theme/layout preferences.
+Stable Promotion: NOT EXECUTED.
+Device visual acceptance: PENDING user confirmation on mobile.
