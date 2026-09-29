@@ -1,0 +1,20 @@
+/* BowlMeet v0.4.7.3-dev.1-R2
+   Preview-only UI override.
+   Keeps LIVE / SYNC / GROUP labels visible and makes LIVE use the semantic
+   danger/red token across themes.
+   No scoring / PUBLIC / Sync / Backup / DB / schema logic changes. */
+html[data-theme] .group-tab:after,
+html[data-theme] .sync-tab:after{
+  background:transparent!important;
+  color:var(--theme-primary)!important;
+}
+html[data-theme] .group-tab.active:after,
+html[data-theme] .sync-tab.active:after{
+  background:transparent!important;
+  color:var(--border-focus)!important;
+}
+html[data-theme] .live-tab:after,
+html[data-theme] .live-tab.active:after{
+  background:transparent!important;
+  color:var(--status-danger)!important;
+}
