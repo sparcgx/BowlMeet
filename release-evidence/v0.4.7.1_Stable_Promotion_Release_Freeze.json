@@ -1,0 +1,86 @@
+{
+  "version": "v0.4.7.1",
+  "date": "2026-09-29",
+  "title": "Stable Promotion & Release Freeze",
+  "source": {
+    "rcFreeze": "freeze/v0.4.7.1-RC.1-R1",
+    "promotionBranch": "release/v0.4.7.1-promotion",
+    "promotionPr": 91,
+    "promotionMergeCommit": "b21dc3d9eb8146c42eb74e867917817186341ba8"
+  },
+  "gates": {
+    "rc1": {
+      "pass": 91,
+      "fail": 0
+    },
+    "r1": {
+      "pass": 36,
+      "fail": 0
+    },
+    "hf1": {
+      "pass": 22,
+      "fail": 0
+    },
+    "hf2": {
+      "pass": 15,
+      "fail": 0
+    },
+    "hf3": {
+      "pass": 12,
+      "fail": 0
+    },
+    "finalRcClosure": {
+      "pass": 18,
+      "fail": 0
+    },
+    "device": {
+      "pass": 4,
+      "fail": 0
+    },
+    "stablePromotion": {
+      "pass": 20,
+      "fail": 0
+    },
+    "postPromotion": {
+      "pass": 19,
+      "fail": 0
+    }
+  },
+  "production": {
+    "appVersion": "0.4.7.1",
+    "indexBlobSha": "0af983524f63783c186b4186faf9f216cdb3fb30",
+    "shellCache": "bowlmeet-v0.4.7.1-stable-shell",
+    "runtimeCache": "bowlmeet-v0.4.7.1-stable-runtime",
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "visibleEscapeResiduals": 0,
+    "previewHistoryRetained": true,
+    "hf3PreviewRetained": true
+  },
+  "assetShas": {
+    "scoreCard": "e3de8dcb7ac7eec5610c3546dc901094edcdf1e4",
+    "scoreCardMobile": "7a760b47fefb9a8a023eab5c73fb4a3041fa79ad",
+    "scoreCardAccessibility": "0f2a369d321597a22b0fae406775d2b9f17635a1",
+    "mobileRepair": "6b33de92211f408238bdf00b9cbcdb2e2e548671"
+  },
+  "contracts": {
+    "scoringCoreChanged": false,
+    "publicContractChanged": false,
+    "publicControlChanged": false,
+    "syncChanged": false,
+    "backupRestoreChanged": false,
+    "indexedDbSchemaChanged": false,
+    "supabaseSchemaChanged": false,
+    "publicPayloadMigration": false,
+    "themeLayoutPreferencesLocalOnly": true
+  },
+  "governance": {
+    "productionPromoted": true,
+    "stableBranch": "stable/v0.4.7.1",
+    "freezeBranch": "freeze/v0.4.7.1",
+    "releaseFreezeActive": true,
+    "previousStablePreserved": "stable/v0.4.7.0",
+    "validationComplete": true
+  },
+  "result": "PASS"
+}
