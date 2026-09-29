@@ -1,0 +1,62 @@
+BowlMeet v0.4.7.2
+Stable Promotion & Release Freeze
+Final Release Evidence
+Date: 2026-09-29
+
+PROMOTION SOURCE
+RC Freeze: freeze/v0.4.7.2-RC.1
+Promotion Branch: release/v0.4.7.2-promotion
+Promotion PR: #97
+Promotion Merge Commit: 30f9a5005217fd4ac4cda921fdab5fb03914a1e2
+README Stable Baseline Commit: 0b4f73f479a7627fc96d5a151e89a928214a2ac4
+
+GATES
+PASS  App Icon Source Gate = 21 / 21
+PASS  Preview Isolation Gate = 13 / 13
+PASS  Physical Device Icon Acceptance = PASS
+PASS  RC Final Gate = 23 / 23
+PASS  Stable Promotion Gate = 23 / 23
+PASS  Post-Promotion Gate = 19 / 19
+
+PRODUCTION
+PASS  APP_VERSION = 0.4.7.2
+PASS  HTML title = BowlMeet v0.4.7.2
+PASS  PWA cache = bowlmeet-v0.4.7.2-stable-*
+PASS  Production index blob SHA = acc21501debb9cefb26717daf54ff6cbf716a1b0
+PASS  Production-visible markup residuals = 0
+PASS  Existing Preview history retained
+PASS  v0.4.7.2-dev.1 Preview retained
+
+VERIFIED ICON SHAS
+icon-192.png = d3c482d9db4642e9e0fea8805a906403bb205912
+icon-512.svg = 19d0d5252c6d9829f476680f5fa50abc0869c4d2
+icon-maskable-512.svg = 92121371bcea6d17ecc2a342d9e01e03c7642e9d
+
+DATA / FUNCTION CONTRACT
+UNCHANGED / PRESERVED
+- Scoring core
+- PUBLIC / PUBLIC Control
+- Public-only leaderboard / sharing
+- Sync
+- Backup / Restore
+- Optional Backup Before PWA Update
+- InvalidStateError recovery
+- IndexedDB schema
+- Supabase schema
+- PUBLIC payload
+- DB_VERSION = 2
+- PUBLIC_HISTORY_CODE = PUBLIC
+- Layout / Theme preferences remain local-only
+
+RELEASE GOVERNANCE
+- Production main promoted to v0.4.7.2
+- stable/v0.4.7.2 is the new formal Stable baseline
+- freeze/v0.4.7.2 is the immutable Release Freeze baseline
+- Previous stable/v0.4.7.1 remains preserved as historical baseline
+- Future changes must branch from v0.4.7.2 Stable
+
+FINAL STATUS
+Stable Promotion: PASS
+Release Freeze: ACTIVE
+Production Version: v0.4.7.2
+Validation: COMPLETE
