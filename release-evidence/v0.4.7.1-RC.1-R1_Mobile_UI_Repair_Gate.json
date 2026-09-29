@@ -47,12 +47,11 @@
   },
   "deviceRetest": {
     "checks": 4,
-    "pass": 2,
+    "pass": 3,
     "fail": 0,
     "status": "PARTIAL",
     "remaining": [
-      "header text residue / bleed",
-      "player-name column proportion"
+      "confirm visible \\\\n text artifact removed"
     ]
   },
   "validationComplete": false,
@@ -86,5 +85,17 @@
     "dbVersionChanged": false,
     "publicContractChanged": false,
     "schemaMigration": false
+  },
+  "hf2": {
+    "rootCause": "literal \\\\n HTML text node between style blocks",
+    "repairedSequence": "</style>\\\\n<style id=\"field-workflow-dev1\">",
+    "replacement": "real newline between style blocks",
+    "automated": {
+      "pass": 12,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "applicationLogicDrift": false,
+    "hf1BehaviorRetained": true
   }
 }
