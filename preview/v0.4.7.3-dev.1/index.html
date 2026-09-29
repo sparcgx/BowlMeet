@@ -86,7 +86,7 @@ details.review-details{margin-top:10px;border-top:1px solid var(--line);padding-
 
 
 /* v0.4.1 Live Meetup completion reset */
-.live-tab{position:relative}.live-tab:after{content:'LIVE';font-size:8px;font-weight:900;letter-spacing:.04em;margin-left:5px;color:#d92d20}.live-tab.active:after{color:#ffb4ad}
+.live-tab{position:relative}.live-tab:after{content:'';display:inline-block;width:8px;height:8px;margin-left:7px;border-radius:999px;vertical-align:1px;background:var(--success,#14804a);box-shadow:0 0 0 0 rgba(20,128,74,.28);animation:bowlmeet-live-pulse 1.8s ease-out infinite}@keyframes bowlmeet-live-pulse{0%,32%{box-shadow:0 0 0 0 rgba(20,128,74,.28);transform:scale(1)}72%{box-shadow:0 0 0 6px rgba(20,128,74,0);transform:scale(.94)}100%{box-shadow:0 0 0 0 rgba(20,128,74,0);transform:scale(1)}}
 .live-shell{display:grid;gap:14px}.live-top{padding:17px}.live-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}.live-title h2{margin:0;font-size:20px}.live-title p{margin:5px 0 0;color:var(--muted);font-size:12px;line-height:1.5}.live-head-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.live-selector{display:grid;grid-template-columns:minmax(220px,1.3fr) minmax(130px,.55fr) auto auto;gap:9px;align-items:end;margin-top:14px}.live-selector .field{margin:0}
 .live-kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:13px}.live-kpi{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}.live-kpi span{display:block;font-size:10px;color:var(--muted);font-weight:700}.live-kpi strong{display:block;font-size:24px;margin-top:4px;letter-spacing:-.02em}.live-kpi small{display:block;font-size:10px;color:var(--muted);margin-top:3px}
 .live-progress-wrap{margin-top:12px}.live-progress-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:11px;color:var(--muted);margin-bottom:5px}.live-progress{height:9px;background:#edf0f4;border-radius:999px;overflow:hidden}.live-progress span{display:block;height:100%;background:var(--primary);border-radius:inherit;transition:width .2s}
@@ -1565,7 +1565,7 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
 <link rel="stylesheet" href="../../assets/theme-center-v0470.css?v=0471rc1r1" />
 <link rel="stylesheet" href="../../assets/theme-center-v0470-mobile.css?v=0471rc1r1" />
 <link rel="stylesheet" href="../../assets/theme-center-v0470-accessibility.css?v=0471rc1r1" />
-<link rel="stylesheet" href="./status-label-style-r2.css?v=0473d1r2" />
+<link rel="stylesheet" href="./status-label-style-r3.css?v=0473d1r3" />
 <link rel="stylesheet" href="../../assets/liquid-motion-v0470.css?v=0471rc1r1" />
 <link rel="stylesheet" href="../../assets/score-card-v0471.css?v=0471rc1r1" />
 <link rel="stylesheet" href="../../assets/score-card-mobile-v0471.css?v=0471rc1r1" />
