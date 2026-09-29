@@ -1,0 +1,57 @@
+BowlMeet v0.4.7.1-RC.1-R1
+System Visible Residual Audit
+Date: 2026-09-29
+
+AUDIT METHOD
+- Scan rendered HTML markup for literal backslash escape markers outside script/style/template/noscript/pre/code/textarea.
+- Mark literal \\n / \\r / \\t in visible markup as residual candidates.
+- JavaScript string escapes are not treated as UI residuals.
+
+SCOPE
+- 29 known HTML surfaces across production/stable, v0.4.7.1 development/RC lineage, Preview pages, and deployment-test pages.
+
+ACTIVE RC.1-R1 VALIDATION CHAIN
+- RC.1-R1 source index.html: CLEAN
+- RC.1-R1 old-scope Preview index.html: CLEAN
+- RC.1-R1 old-scope deployment-test.html: CLEAN
+- RC.1-R1 HF3 Preview index.html: CLEAN
+- RC.1-R1 HF3 deployment-test.html: CLEAN
+Result: 5 / 5 CLEAN, 0 visible escape residuals.
+
+FROZEN PRODUCTION
+- main/index.html (v0.4.7.0): 1 literal \\n remains between stylesheet links.
+- stable/v0.4.7.0/index.html: same 1 literal \\n remains.
+- main/deployment-test.html: CLEAN.
+These were not modified because v0.4.7.0 is the frozen baseline and RC.1-R1 must not silently alter main/stable.
+
+ARCHIVED DEVELOPMENT / PREVIEW SNAPSHOTS
+Known same-pattern residual remains in:
+- v0.4.7.1-dev.1-R1 root
+- v0.4.7.1-dev.2 root
+- v0.4.7.1-dev.2-R1 root
+- v0.4.7.1-dev.3 root
+- v0.4.7.1-dev.4 root
+- v0.4.7.1-dev.4-R1 root
+- v0.4.7.1-RC.1 root
+- preview/v0.4.7.1-dev.1-R1/index.html
+- preview/v0.4.7.1-dev.2/index.html
+- preview/v0.4.7.1-dev.2-R1/index.html
+- preview/v0.4.7.1-dev.3/index.html
+- preview/v0.4.7.1-dev.4/index.html
+- preview/v0.4.7.1-dev.4-R1/index.html
+- preview/v0.4.7.1-RC.1/index.html
+
+Historical deployment-test pages are clean.
+
+TOTAL
+- Checked: 29 HTML surfaces
+- Active candidate: 5 / 5 CLEAN
+- Frozen production/stable residual surfaces: 2
+- Archived snapshot residual surfaces: 14
+- Total residual surfaces retained for history/freeze: 16
+- No residual found in current RC.1-R1 release candidate / HF3 validation chain.
+
+DEVICE
+- 4 / 4 PASS
+- Validation Complete: YES
+- Promotion main/stable: NOT EXECUTED
