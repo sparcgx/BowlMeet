@@ -550,11 +550,11 @@ html[data-theme] .group-status.warn{
   background:var(--status-warning-bg)!important;color:var(--status-warning)!important;border-color:var(--status-warning-border)!important;
 }
 html[data-theme] .group-tab:after,
-html[data-theme] .sync-tab:after,
-html[data-theme] .live-tab:after{background:transparent!important;color:var(--theme-primary)!important}
+html[data-theme] .sync-tab:after{background:transparent!important;color:var(--theme-primary)!important}
 html[data-theme] .group-tab.active:after,
-html[data-theme] .sync-tab.active:after,
-html[data-theme] .live-tab.active:after{background:transparent!important;color:var(--border-focus)!important}
+html[data-theme] .sync-tab.active:after{background:transparent!important;color:var(--border-focus)!important}
+html[data-theme] .live-tab:after,
+html[data-theme] .live-tab.active:after{background:transparent!important;color:var(--status-danger)!important}
 
 /* Post-game review */
 html[data-theme] .post-review-dialog::backdrop{background:var(--overlay-bg)!important}
