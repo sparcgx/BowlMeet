@@ -1,0 +1,50 @@
+BowlMeet v0.4.7.1-RC.1
+Full Regression & Release Candidate Gate
+Date: 2026-09-27
+Base: v0.4.7.1-dev.4-R1
+
+ENTRY VALIDATED BASELINES
+- v0.4.7.1-dev.1-R1: 52 / 52 automated PASS + 10 / 10 device PASS
+- v0.4.7.1-dev.2-R1: 48 / 48 repair PASS + device retest PASS
+- v0.4.7.1-dev.3: 56 / 56 automated PASS + 10 / 10 device PASS
+- v0.4.7.1-dev.4: 59 / 59 automated PASS + 10 / 10 device PASS
+- v0.4.7.1-dev.4-R1: 47 / 47 repair PASS + 5 / 5 device PASS
+
+RC SOURCE FREEZE / FULL REGRESSION
+- 64 / 64 PASS / 0 FAIL
+- Application JavaScript is identical to dev.4-R1 except APP_VERSION.
+- 8 / 8 visual CSS assets are SHA-identical to dev.4-R1.
+- RC source delta before Preview is limited to index.html, manifest.webmanifest, sw.js.
+- Previous 25 RC functional/safety areas retained.
+- v0.4.7.1 per-game score table, Score Card Theme, Mobile UX, Accessibility, PWA InvalidState recovery and Optional Backup retained.
+
+RC PREVIEW ISOLATION / DEPLOYMENT
+- 27 / 27 PASS / 0 FAIL
+- Preview path: preview/v0.4.7.1-RC.1/
+- Cloud OFF
+- Preview LocalStorage / IndexedDB / PUBLIC / PWA cache isolated.
+- Production root contract not used by Preview.
+
+TOTAL AUTOMATED RC GATE
+- 91 / 91 PASS / 0 FAIL
+
+FREEZE INTEGRITY
+- APP_VERSION: 0.4.7.1-RC.1
+- DB_VERSION: 2
+- PUBLIC contract: unchanged
+- PUBLIC Control contract: unchanged
+- Score core: unchanged
+- Backup / Restore contract: unchanged
+- Sync contract: unchanged
+- No Supabase migration
+- No IndexedDB migration
+- No PUBLIC payload migration
+- Theme / Layout preferences remain local-only
+- PWA Optional Backup flow retained
+- PWA InvalidState recovery retained
+
+DEVICE RC ACCEPTANCE
+- 0 / 12 PENDING
+- Validation Complete: NO
+- Stable Promotion Eligibility: PENDING
+- main / stable promotion: NOT EXECUTED
