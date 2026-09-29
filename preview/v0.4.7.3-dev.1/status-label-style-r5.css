@@ -1,0 +1,143 @@
+/* BowlMeet v0.4.7.3-dev.1-R5
+   Preview-only frosted-glass live control.
+   Matches the approved reference direction: one clean translucent capsule,
+   subtle inner highlight, divider, and a small glowing activity dot.
+   No scoring / PUBLIC / Sync / Backup / DB / schema logic changes. */
+
+html[data-theme] .tabs{
+  gap:6px!important;
+  padding:2px!important;
+  border-color:transparent!important;
+  border-radius:26px!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+html[data-theme] .tabs .tab{
+  min-height:38px;
+  padding:8px 13px!important;
+  border:1px solid transparent!important;
+  border-radius:13px!important;
+  background:transparent!important;
+  color:var(--text-secondary)!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+html[data-theme] .tabs .tab:not(.active):hover{
+  background:color-mix(in srgb,var(--surface-hover) 76%,transparent)!important;
+  color:var(--text-primary)!important;
+}
+html[data-theme] .tabs .tab.active{
+  background:color-mix(in srgb,var(--surface-raised) 82%,transparent)!important;
+  color:var(--text-primary)!important;
+  border-color:color-mix(in srgb,var(--border-default) 72%,transparent)!important;
+  box-shadow:0 4px 14px color-mix(in srgb,var(--text-primary) 8%,transparent)!important;
+  filter:none!important;
+}
+html[data-theme] .tabs .live-tab{
+  position:relative;
+}
+html[data-theme] .tabs .live-tab.active{
+  min-height:44px;
+  padding:9px 44px 9px 18px!important;
+  border-radius:24px!important;
+  background:
+    linear-gradient(145deg,
+      color-mix(in srgb,var(--surface-raised) 78%,transparent),
+      color-mix(in srgb,var(--surface-control) 56%,transparent))!important;
+  color:var(--text-primary)!important;
+  border:1px solid color-mix(in srgb,#fff 72%,var(--border-default) 28%)!important;
+  box-shadow:
+    0 10px 28px color-mix(in srgb,var(--text-primary) 11%,transparent),
+    inset 0 1px 0 color-mix(in srgb,#fff 82%,transparent),
+    inset 0 -1px 0 color-mix(in srgb,var(--border-default) 52%,transparent)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(145%);
+  backdrop-filter:blur(18px) saturate(145%);
+}
+html[data-theme] .tabs .live-tab.active:before{
+  content:'';
+  position:absolute;
+  right:34px;
+  top:9px;
+  bottom:9px;
+  width:1px;
+  border-radius:99px;
+  background:color-mix(in srgb,var(--border-strong) 52%,transparent);
+  box-shadow:1px 0 0 color-mix(in srgb,#fff 46%,transparent);
+  pointer-events:none;
+}
+html[data-theme] .tabs .tab:focus-visible{
+  outline:2px solid var(--border-focus)!important;
+  outline-offset:2px!important;
+}
+html[data-theme] .tabs .live-tab:after{
+  content:''!important;
+  display:inline-block;
+  width:7px;
+  height:7px;
+  margin-left:8px;
+  border-radius:999px;
+  vertical-align:1px;
+  background:var(--status-success)!important;
+  color:transparent!important;
+  box-shadow:
+    0 0 0 3px var(--status-success-bg),
+    0 0 11px color-mix(in srgb,var(--status-success) 42%,transparent);
+  animation:bowlmeet-live-pulse-r5 1.9s ease-out infinite;
+}
+html[data-theme] .tabs .live-tab.active:after{
+  position:absolute;
+  right:14px;
+  top:50%;
+  margin:0;
+  transform:translateY(-50%);
+}
+@keyframes bowlmeet-live-pulse-r5{
+  0%,38%{
+    box-shadow:
+      0 0 0 3px var(--status-success-bg),
+      0 0 10px color-mix(in srgb,var(--status-success) 38%,transparent);
+    opacity:1;
+  }
+  72%{
+    box-shadow:
+      0 0 0 5px color-mix(in srgb,var(--status-success-bg) 52%,transparent),
+      0 0 15px color-mix(in srgb,var(--status-success) 18%,transparent);
+    opacity:.88;
+  }
+  100%{
+    box-shadow:
+      0 0 0 3px var(--status-success-bg),
+      0 0 10px color-mix(in srgb,var(--status-success) 38%,transparent);
+    opacity:1;
+  }
+}
+html[data-theme][data-theme-transparency="off"] .tabs .live-tab.active{
+  -webkit-backdrop-filter:none;
+  backdrop-filter:none;
+  background:var(--surface-raised)!important;
+}
+html[data-theme="dark-night"] .tabs .live-tab.active{
+  border-color:color-mix(in srgb,#fff 22%,var(--border-default) 78%)!important;
+  background:
+    linear-gradient(145deg,
+      color-mix(in srgb,var(--surface-raised) 88%,transparent),
+      color-mix(in srgb,var(--surface-control) 70%,transparent))!important;
+}
+html[data-theme="high-contrast"] .tabs .tab.active,
+html[data-theme="high-contrast"] .tabs .live-tab.active{
+  background:#000!important;
+  border-color:#000!important;
+  color:#fff!important;
+  box-shadow:none!important;
+  -webkit-backdrop-filter:none;
+  backdrop-filter:none;
+}
+html[data-theme="high-contrast"] .tabs .live-tab.active:before{
+  background:#fff;
+  box-shadow:none;
+}
+html[data-theme="high-contrast"] .tabs .live-tab:after,
+html[data-theme="high-contrast"] .tabs .live-tab.active:after{
+  background:#075d2c!important;
+  box-shadow:0 0 0 2px #fff,0 0 0 3px #075d2c;
+}
