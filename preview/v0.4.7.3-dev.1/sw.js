@@ -1,7 +1,7 @@
-const PREVIEW_CACHE_ROOT='bowlmeet-preview-v0473d1r1-';
-const CACHE='bowlmeet-preview-v0473d1r1-shell';
-const RUNTIME='bowlmeet-preview-v0473d1r1-runtime';
-const APP_SHELL=['./','./index.html','./manifest.webmanifest','../../assets/liquid-glass-dev4.css?v=0471rc1r1','../../assets/theme-center-v0470.css?v=0471rc1r1','../../assets/theme-center-v0470-mobile.css?v=0471rc1r1','../../assets/theme-center-v0470-accessibility.css?v=0471rc1r1','../../assets/liquid-motion-v0470.css?v=0471rc1r1','../../assets/score-card-v0471.css?v=0471rc1r1','../../assets/score-card-mobile-v0471.css?v=0471rc1r1','../../assets/score-card-accessibility-v0471.css?v=0471rc1r1','./rc-mobile-repair-v0471.css?v=0473d1','./status-label-visibility-r1.css?v=0473d1r1','./icons/icon-192.png?v=0473d1','./icons/icon-512.svg?v=0473d1','./icons/icon-maskable-512.svg?v=0473d1'];
+const PREVIEW_CACHE_ROOT='bowlmeet-preview-v0473d1r2-';
+const CACHE='bowlmeet-preview-v0473d1r2-shell';
+const RUNTIME='bowlmeet-preview-v0473d1r2-runtime';
+const APP_SHELL=['./','./index.html','./manifest.webmanifest','../../assets/liquid-glass-dev4.css?v=0471rc1r1','../../assets/theme-center-v0470.css?v=0471rc1r1','../../assets/theme-center-v0470-mobile.css?v=0471rc1r1','../../assets/theme-center-v0470-accessibility.css?v=0471rc1r1','../../assets/liquid-motion-v0470.css?v=0471rc1r1','../../assets/score-card-v0471.css?v=0471rc1r1','../../assets/score-card-mobile-v0471.css?v=0471rc1r1','../../assets/score-card-accessibility-v0471.css?v=0471rc1r1','./rc-mobile-repair-v0471.css?v=0473d1','./status-label-style-r2.css?v=0473d1r2','./icons/icon-192.png?v=0473d1','./icons/icon-512.svg?v=0473d1','./icons/icon-maskable-512.svg?v=0473d1'];
 
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(APP_SHELL)).then(()=>self.skipWaiting()))});
 
