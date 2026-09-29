@@ -1,0 +1,74 @@
+{
+  "version": "v0.4.7.1-RC.1",
+  "title": "Full Regression & Release Candidate Gate",
+  "date": "2026-09-27",
+  "base": "v0.4.7.1-dev.4-R1",
+  "entryBaselines": {
+    "dev1R1": {
+      "automated": "52/52 PASS",
+      "device": "10/10 PASS"
+    },
+    "dev2R1": {
+      "automated": "48/48 PASS",
+      "device": "PASS"
+    },
+    "dev3": {
+      "automated": "56/56 PASS",
+      "device": "10/10 PASS"
+    },
+    "dev4": {
+      "automated": "59/59 PASS",
+      "device": "10/10 PASS"
+    },
+    "dev4R1": {
+      "automated": "47/47 PASS",
+      "device": "5/5 PASS"
+    }
+  },
+  "automated": {
+    "sourceFreeze": {
+      "pass": 64,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "previewIsolation": {
+      "pass": 27,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "total": {
+      "pass": 91,
+      "fail": 0,
+      "status": "PASS"
+    }
+  },
+  "freezeIntegrity": {
+    "applicationLogicDrift": false,
+    "cssAssetsShaIdentical": "8/8",
+    "dbVersion": 2,
+    "publicContractChanged": false,
+    "publicControlContractChanged": false,
+    "scoreCoreChanged": false,
+    "backupRestoreChanged": false,
+    "syncChanged": false,
+    "supabaseMigration": false,
+    "indexedDbMigration": false,
+    "publicPayloadMigration": false,
+    "themeLayoutLocalOnly": true,
+    "pwaOptionalBackupRetained": true,
+    "invalidStateRecoveryRetained": true
+  },
+  "preview": {
+    "path": "preview/v0.4.7.1-RC.1/",
+    "cloudEnabled": false,
+    "isolated": true
+  },
+  "deviceAcceptance": {
+    "checks": 12,
+    "pass": 0,
+    "fail": 0,
+    "status": "PENDING"
+  },
+  "validationComplete": false,
+  "stablePromotionEligibility": "PENDING"
+}
