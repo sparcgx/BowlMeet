@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.7.2</title>
+<title>保齡球球聚｜BowlMeet v0.4.7.3-dev.1</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="color-scheme" content="light dark" />
 <meta name="application-name" content="BowlMeet" />
@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="apple-mobile-web-app-title" content="BowlMeet" />
 <link rel="manifest" href="./manifest.webmanifest" />
-<link rel="apple-touch-icon" href="./icons/icon-192.png?v=0472" />
+<link rel="apple-touch-icon" href="./icons/icon-192.png?v=0473d1" />
 <style>
 :root{
   --bg:#f5f7fa;--card:#fff;--text:#172033;--muted:#697386;--line:#e4e8ef;
@@ -21,8 +21,7 @@
 *{box-sizing:border-box} html,body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",Roboto,Arial,sans-serif}
 button,input,select,textarea{font:inherit} button{cursor:pointer}.app{min-height:100vh}
 .topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.topbar-inner{max-width:1320px;margin:auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:12px}.ball{width:38px;height:38px;border-radius:50%;background:#111827;position:relative;box-shadow:inset -8px -8px 14px rgba(255,255,255,.08)}
-.ball:before,.ball:after{content:"";position:absolute;width:6px;height:6px;border-radius:50%;background:#d1d5db;top:10px}.ball:before{left:12px}.ball:after{left:21px}.ball i{position:absolute;width:6px;height:6px;border-radius:50%;background:#d1d5db;top:19px;left:16px}.brand h1{font-size:18px;margin:0}.brand p{font-size:12px;color:var(--muted);margin:2px 0 0}.top-actions{display:flex;gap:8px;flex-wrap:wrap}
+.topbar-inner{max-width:1320px;margin:auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:12px}.brand-icon{width:42px;height:42px;display:block;flex:0 0 42px;object-fit:cover;border-radius:12px;box-shadow:0 8px 22px rgba(15,23,42,.16);background:#f7fbff}.brand h1{font-size:18px;margin:0}.brand p{font-size:12px;color:var(--muted);margin:2px 0 0}.top-actions{display:flex;gap:8px;flex-wrap:wrap}
 .btn{border:1px solid var(--line);background:#fff;color:var(--text);border-radius:10px;padding:9px 13px;font-weight:700}.btn:hover{background:#f8fafc}.btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}.btn.danger{color:var(--danger)}.btn.ghost{background:transparent}.btn.small{padding:6px 9px;font-size:12px}.btn:disabled{opacity:.5;cursor:not-allowed}
 main{max-width:1320px;margin:auto;padding:18px 18px 56px}.tabs{display:flex;gap:8px;margin-bottom:14px}.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 13px;font-size:13px;font-weight:750}.tab.active{background:#172033;color:#fff;border-color:#172033}.view{display:none}.view.active{display:block}
 .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:14px}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.kpi{padding:16px}.kpi .label{font-size:12px;color:var(--muted)}.kpi .value{font-size:28px;font-weight:850;letter-spacing:-.03em;margin-top:5px}.kpi .sub{font-size:11px;color:var(--muted);margin-top:4px}
@@ -494,11 +493,6 @@ body:before{
   -webkit-backdrop-filter:blur(28px) saturate(170%);
   backdrop-filter:blur(28px) saturate(170%);
   box-shadow:0 1px 0 rgba(100,116,139,.06),0 10px 30px rgba(15,23,42,.045);
-}
-.ball{
-  box-shadow:
-    inset -8px -8px 14px rgba(255,255,255,.08),
-    0 8px 22px rgba(15,23,42,.16);
 }
 .tabs{
   position:sticky;
@@ -1581,7 +1575,7 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
 <a class="skip-link" href="#mainContent">跳到主要內容</a>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><div class="ball"><i></i></div><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · Stable Release · v0.4.7.2</p></div></div>
+  <div class="brand"><img class="brand-icon" src="./icons/icon-192.png?v=0473d1" alt="" width="42" height="42" /><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · Homepage Brand Icon Refresh · dev.1</p></div></div>
 </div></header>
 <main id="mainContent" tabindex="-1">
   <nav class="tabs" aria-label="功能切換">
@@ -2552,7 +2546,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.7.2';
+const APP_VERSION='0.4.7.3-dev.1';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const THEME_PREFS_KEY='bowlingMeetup.themePreferences.v1';
 const THEME_DEFAULTS=Object.freeze({
