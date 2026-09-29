@@ -1,0 +1,107 @@
+{
+  "version": "v0.4.7.1-RC.1-R1",
+  "title": "Mobile Header Overflow & Score Entry Layout Repair",
+  "date": "2026-09-29",
+  "base": "v0.4.7.1-RC.1",
+  "reportedIssues": [
+    "iPhone/PWA safe-area text residue above sticky header",
+    "manual score table player-name column too wide and score inputs too narrow"
+  ],
+  "automated": {
+    "pass": 36,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "repair": {
+    "uiOnly": true,
+    "asset": "assets/rc-mobile-repair-v0471.css",
+    "safeAreaShield": true,
+    "headerOverflowClip": true,
+    "nameColumnPx": {
+      "mobile": 112,
+      "narrow": 104
+    },
+    "scoreInputPx": {
+      "mobile": 90,
+      "narrow": 88
+    },
+    "scoreTouchMinHeightPx": 52,
+    "horizontalScrollRetained": true
+  },
+  "safety": {
+    "applicationLogicDrift": false,
+    "dbVersionChanged": false,
+    "publicContractChanged": false,
+    "scoreCoreChanged": false,
+    "syncChanged": false,
+    "backupRestoreChanged": false,
+    "pwaBehaviorChanged": false,
+    "supabaseMigration": false,
+    "indexedDbMigration": false,
+    "publicPayloadMigration": false
+  },
+  "preview": {
+    "path": "preview/v0.4.7.1-RC.1-R1/",
+    "cloudEnabled": false,
+    "isolated": true
+  },
+  "deviceRetest": {
+    "checks": 4,
+    "pass": 3,
+    "fail": 0,
+    "status": "PARTIAL",
+    "remaining": [
+      "final HF2 visible text artifact confirmation"
+    ]
+  },
+  "validationComplete": false,
+  "stablePromotionEligibility": "PENDING",
+  "followUp": "HF1",
+  "deploymentDefect": {
+    "missingPreviewAsset": "assets/rc-mobile-repair-v0471.css",
+    "cause": "Preview PR #85 deployed preview files without the referenced R1 stylesheet",
+    "corrected": true
+  },
+  "hf1": {
+    "automated": {
+      "pass": 22,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "opaqueMobileHeader": true,
+    "backdropFilterDisabledOnMobileHeader": true,
+    "lowerEdgeShield": true,
+    "nameColumnPx": {
+      "mobile": 88,
+      "narrow": 80
+    },
+    "scoreInputPxRetained": {
+      "mobile": 90,
+      "narrow": 88
+    },
+    "scoreTouchMinHeightPxRetained": 52,
+    "horizontalScrollRetained": true,
+    "applicationLogicDrift": false,
+    "dbVersionChanged": false,
+    "publicContractChanged": false,
+    "schemaMigration": false
+  },
+  "hf2": {
+    "rootCause": "literal backslash+n text node between style blocks rendered as visible page text",
+    "repairedSequence": "</style>\\\\n<style id=\"field-workflow-dev1\">",
+    "automated": {
+      "pass": 15,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "visibleLiteralBeforeScripts": {
+      "releaseSource": 0,
+      "preview": 0
+    },
+    "applicationLogicDrift": false,
+    "dbVersionChanged": false,
+    "publicContractChanged": false,
+    "themeLayoutContractChanged": false,
+    "stableBaselineChanged": false
+  }
+}
