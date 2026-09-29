@@ -1,0 +1,56 @@
+{
+  "version": "v0.4.7.1-RC.1-R1",
+  "title": "Mobile Header Overflow & Score Entry Layout Repair",
+  "date": "2026-09-29",
+  "base": "v0.4.7.1-RC.1",
+  "reportedIssues": [
+    "iPhone/PWA safe-area text residue above sticky header",
+    "manual score table player-name column too wide and score inputs too narrow"
+  ],
+  "automated": {
+    "pass": 36,
+    "fail": 0,
+    "status": "PASS"
+  },
+  "repair": {
+    "uiOnly": true,
+    "asset": "assets/rc-mobile-repair-v0471.css",
+    "safeAreaShield": true,
+    "headerOverflowClip": true,
+    "nameColumnPx": {
+      "mobile": 112,
+      "narrow": 104
+    },
+    "scoreInputPx": {
+      "mobile": 90,
+      "narrow": 88
+    },
+    "scoreTouchMinHeightPx": 52,
+    "horizontalScrollRetained": true
+  },
+  "safety": {
+    "applicationLogicDrift": false,
+    "dbVersionChanged": false,
+    "publicContractChanged": false,
+    "scoreCoreChanged": false,
+    "syncChanged": false,
+    "backupRestoreChanged": false,
+    "pwaBehaviorChanged": false,
+    "supabaseMigration": false,
+    "indexedDbMigration": false,
+    "publicPayloadMigration": false
+  },
+  "preview": {
+    "path": "preview/v0.4.7.1-RC.1-R1/",
+    "cloudEnabled": false,
+    "isolated": true
+  },
+  "deviceRetest": {
+    "checks": 4,
+    "pass": 0,
+    "fail": 0,
+    "status": "PENDING"
+  },
+  "validationComplete": false,
+  "stablePromotionEligibility": "PENDING"
+}
