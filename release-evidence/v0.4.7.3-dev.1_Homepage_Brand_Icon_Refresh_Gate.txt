@@ -1,0 +1,53 @@
+BowlMeet v0.4.7.3-dev.1
+Homepage Brand Icon Refresh Gate
+Date: 2026-09-29
+Base: stable/v0.4.7.2
+
+SCOPE
+- Replace the homepage / Header legacy CSS bowling-ball icon with the already validated BowlMeet app icon.
+- Use the same verified icons/icon-192.png artwork introduced in v0.4.7.2.
+- Remove legacy .ball header visual CSS/markup.
+- Refresh version / manifest / Service Worker cache identity only as required for testing.
+
+SOURCE GATE
+PASS  19 / 19
+PASS  APP_VERSION = 0.4.7.3-dev.1
+PASS  HTML title = BowlMeet v0.4.7.3-dev.1
+PASS  Homepage brand uses icons/icon-192.png?v=0473d1
+PASS  Legacy .ball markup removed
+PASS  Legacy .ball CSS removed
+PASS  New .brand-icon CSS present
+PASS  Application JavaScript unchanged from stable/v0.4.7.2 except APP_VERSION
+PASS  DB_VERSION = 2
+PASS  PUBLIC_HISTORY_CODE = PUBLIC
+PASS  Layout / Theme preference keys preserved
+PASS  Verified icon blob unchanged from v0.4.7.2
+PASS  Manifest icon cache identity refreshed
+PASS  Service Worker cache identity = v0.4.7.3-dev.1
+PASS  Production-visible markup residuals = 0
+PASS  Source diff limited to index.html / manifest.webmanifest / sw.js
+
+VERIFIED ICON BLOB SHA
+icons/icon-192.png:
+d3c482d9db4642e9e0fea8805a906403bb205912
+
+DATA / FUNCTION CONTRACT
+UNCHANGED
+- Scoring core
+- PUBLIC / PUBLIC Control
+- Public-only leaderboard / sharing
+- Sync
+- Backup / Restore
+- Optional Backup Before PWA Update
+- InvalidStateError recovery
+- IndexedDB schema
+- Supabase schema
+- PUBLIC payload
+- DB_VERSION = 2
+
+STATUS
+Development Gate: PASS
+Preview Gate: PENDING
+Device Homepage Icon Acceptance: PENDING
+Stable Promotion: NOT EXECUTED
+stable/v0.4.7.2 and freeze/v0.4.7.2 remain untouched.
