@@ -1,0 +1,17 @@
+/* BowlMeet v0.4.7.3-dev.1-R1
+   Preview-only UI override.
+   Restores LIVE / SYNC / GROUP status label text hidden by same-color
+   foreground/background rules in theme-center-v0470.css.
+   No scoring / PUBLIC / Sync / Backup / DB / schema logic changes. */
+html[data-theme] .group-tab:after,
+html[data-theme] .sync-tab:after,
+html[data-theme] .live-tab:after{
+  background:transparent!important;
+  color:var(--theme-primary)!important;
+}
+html[data-theme] .group-tab.active:after,
+html[data-theme] .sync-tab.active:after,
+html[data-theme] .live-tab.active:after{
+  background:transparent!important;
+  color:var(--border-focus)!important;
+}
