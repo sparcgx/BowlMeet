@@ -1,0 +1,52 @@
+{
+  "version": "v0.4.7.2-dev.1",
+  "date": "2026-09-29",
+  "title": "App Icon Refresh Gate",
+  "base": "stable/v0.4.7.1",
+  "scope": "PWA/App icon refresh only",
+  "icons": {
+    "icon192": {
+      "path": "icons/icon-192.png",
+      "gitBlobSha": "d3c482d9db4642e9e0fea8805a906403bb205912",
+      "sha256": "a2b512f7c967a368f0a7efbf007093c37f3f721ec5d3fe0b96717d937c07421e"
+    },
+    "icon512": {
+      "path": "icons/icon-512.png",
+      "gitBlobSha": "7dddbe6f79b9c13208f5d3cdb04e4ef3428ffafc",
+      "sha256": "a9eabac1d225f80cec26da0b2af09f50ac9f370c4b99e72cc35b3523b1c8861d"
+    },
+    "maskable512": {
+      "path": "icons/icon-maskable-512.png",
+      "gitBlobSha": "bfcc156a17e91f305966e1efc511e19621ff104a",
+      "sha256": "66f429b3653f3e04c60f8443c21fa3a3dfb64f62b74eab7c614929ce7774e529"
+    }
+  },
+  "gates": {
+    "source": {
+      "pass": 17,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "previewIsolation": {
+      "pass": 13,
+      "fail": 0,
+      "status": "PASS"
+    },
+    "device": {
+      "status": "PENDING"
+    }
+  },
+  "contracts": {
+    "applicationJsChangedExceptAppVersion": false,
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "scoringCoreChanged": false,
+    "publicContractChanged": false,
+    "syncChanged": false,
+    "backupRestoreChanged": false,
+    "indexedDbSchemaChanged": false,
+    "supabaseSchemaChanged": false,
+    "publicPayloadChanged": false
+  },
+  "stablePromotionExecuted": false
+}
