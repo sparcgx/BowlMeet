@@ -1,33 +1,32 @@
-# BowlMeet v0.4.7.1 — Stable / Release Freeze
+# BowlMeet v0.4.7.2 — Stable / Release Freeze
 
-正式認證來源：`freeze/v0.4.7.1-RC.1-R1`。
+正式認證來源：`freeze/v0.4.7.2-RC.1`。
 
-- RC.1 Full Regression / Preview Isolation：**91/91 PASS**
-- R1 Automated Repair Gate：**36/36 PASS**
-- HF1 Targeted Static Gate：**22/22 PASS**
-- HF2 Targeted Static Gate：**15/15 PASS**
-- HF3 Clean-Scope Gate：**12/12 PASS**
-- Final RC Closure Gate：**18/18 PASS**
-- iPhone / PWA Device Retest：**4/4 PASS**
-- Stable Promotion Gate：**20/20 PASS**
+- App Icon Source Gate：**21/21 PASS**
+- Preview Isolation Gate：**13/13 PASS**
+- Physical Device Icon Acceptance：**PASS**
+- RC Final Gate：**23/23 PASS**
+- Stable Promotion Gate：**23/23 PASS**
 - Post-Promotion Gate：**19/19 PASS**
-- APP_VERSION：`0.4.7.1`
-- Production PWA Cache：`bowlmeet-v0.4.7.1-stable-*`
+- APP_VERSION：`0.4.7.2`
+- Production PWA Cache：`bowlmeet-v0.4.7.2-stable-*`
+- 新 BowlMeet App / PWA 圖示：**正式納入 production**
+- Apple Touch Icon：`icons/icon-192.png`
+- 512 Icon：`icons/icon-512.svg`
+- Maskable Icon：`icons/icon-maskable-512.svg`
 - Production IndexedDB：`bowlingMeetup.local`
 - `DB_VERSION = 2`
 - `PUBLIC_HISTORY_CODE = PUBLIC`
 - `LAYOUT_PREFS_KEY = bowlingMeetup.layoutPreferences.v1`
 - `THEME_PREFS_KEY = bowlingMeetup.themePreferences.v1`
-- 每局公開／歷史成績表、Score Card Theme、Mobile Score Card UX、Accessibility Hardening：**正式納入 production**
-- PWA InvalidState recovery、Optional Backup Before PWA Update：**保留**
-- Mobile Header 可見文字殘留：**已修正／實機 PASS**
-- 姓名欄比例、分數輸入、左右滑動、捲動回彈：**實機 PASS**
 - 排行榜／分享：**Public-only 契約維持**
 - Scoring / PUBLIC / PUBLIC Control / Sync / Backup / Restore：**UNCHANGED**
+- Optional Backup Before PWA Update / InvalidState Recovery：**保留**
 - Supabase / IndexedDB / PUBLIC payload migration：**NONE**
 - Production 可見 escape residual：**0**
-- `stable/v0.4.7.1` 與 `freeze/v0.4.7.1` 為正式 Stable / Release Freeze 基線。
-- 後續變更必須從 v0.4.7.1 Stable 另開新版本分支，不直接修改 Freeze baseline。
+- 舊 Preview 歷史：**保留**
+- `stable/v0.4.7.2` 與 `freeze/v0.4.7.2` 為正式 Stable / Release Freeze 基線。
+- 後續變更必須從 v0.4.7.2 Stable 另開新版本分支，不直接修改 Freeze baseline。
 
 # BowlMeet v0.4.6.7-dev.1 — Preview Deployment
 
