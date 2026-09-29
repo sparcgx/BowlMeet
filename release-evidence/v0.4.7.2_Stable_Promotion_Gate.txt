@@ -1,0 +1,56 @@
+BowlMeet v0.4.7.2
+Stable Promotion Gate
+Date: 2026-09-29
+Source RC Freeze: freeze/v0.4.7.2-RC.1
+Promotion Branch: release/v0.4.7.2-promotion
+
+ENTRY GATES
+PASS  App Icon Source Gate = 21 / 21
+PASS  Preview Isolation Gate = 13 / 13
+PASS  Physical Device Icon Acceptance = PASS
+PASS  RC Final Gate = 23 / 23
+
+STABLE PROMOTION GATE
+PASS  23 / 23
+PASS  APP_VERSION = 0.4.7.2
+PASS  HTML title = BowlMeet v0.4.7.2
+PASS  Stable Release identity applied
+PASS  Application JavaScript unchanged from RC except APP_VERSION
+PASS  DB_VERSION = 2
+PASS  PUBLIC_HISTORY_CODE = PUBLIC
+PASS  Layout / Theme preference keys preserved
+PASS  Apple touch icon cache-bust = 0472
+PASS  Manifest stable icon refs verified
+PASS  Service Worker stable cache identity verified
+PASS  Production-visible markup residuals = 0
+PASS  Validated icon artwork SHAs preserved
+PASS  Promotion diff limited to 10 expected files
+
+PRODUCTION INDEX BLOB SHA
+acc21501debb9cefb26717daf54ff6cbf716a1b0
+
+VERIFIED ICON SHAS
+icon-192.png = d3c482d9db4642e9e0fea8805a906403bb205912
+icon-512.svg = 19d0d5252c6d9829f476680f5fa50abc0869c4d2
+icon-maskable-512.svg = 92121371bcea6d17ecc2a342d9e01e03c7642e9d
+
+DATA / FUNCTION CONTRACT
+UNCHANGED
+- Scoring core
+- PUBLIC / PUBLIC Control
+- Public-only leaderboard / sharing
+- Sync
+- Backup / Restore
+- Optional Backup Before PWA Update
+- InvalidStateError recovery
+- IndexedDB schema
+- Supabase schema
+- PUBLIC payload
+- DB_VERSION = 2
+
+PRE-MERGE STATUS
+Stable Promotion Gate: PASS
+Ready to merge main: YES
+Main merge executed: NO
+Stable branch creation: PENDING
+Release Freeze: PENDING
