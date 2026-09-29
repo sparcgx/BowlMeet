@@ -47,7 +47,8 @@ UNCHANGED
 
 STATUS
 Development Gate: PASS
-Preview Gate: PENDING
+Preview Gate: PASS
+Preview Isolation Gate: 11 / 11 PASS
 Device Homepage Icon Acceptance: PENDING
 Stable Promotion: NOT EXECUTED
 stable/v0.4.7.2 and freeze/v0.4.7.2 remain untouched.
