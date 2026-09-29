@@ -1,0 +1,38 @@
+{
+  "version": "v0.4.7.3-dev.1-R2",
+  "gate": "LIVE Label Red UI Gate",
+  "date": "2026-09-29",
+  "base": "stable/v0.4.7.2",
+  "change": {
+    "selector": "html[data-theme] .live-tab:after, html[data-theme] .live-tab.active:after",
+    "background": "transparent",
+    "color": "var(--status-danger)",
+    "scope": "UI-only"
+  },
+  "targetedGate": {
+    "passed": 16,
+    "total": 16,
+    "status": "PASS"
+  },
+  "safety": {
+    "appVersion": "0.4.7.3-dev.1",
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "scoringCore": "UNCHANGED",
+    "liveScoring": "UNCHANGED",
+    "publicControl": "UNCHANGED",
+    "sync": "UNCHANGED",
+    "backupRestore": "UNCHANGED",
+    "indexedDbSchema": "UNCHANGED",
+    "supabaseSchema": "UNCHANGED",
+    "publicPayload": "UNCHANGED"
+  },
+  "preview": {
+    "publicCode": "V473D1",
+    "cacheIdentity": "bowlmeet-preview-v0473d1r2",
+    "deviceVisualAcceptance": "PENDING"
+  },
+  "stablePromotion": "NOT EXECUTED",
+  "stableBranch": "UNCHANGED",
+  "freezeBranch": "UNCHANGED"
+}

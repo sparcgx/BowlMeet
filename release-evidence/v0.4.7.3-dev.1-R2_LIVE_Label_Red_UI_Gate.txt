@@ -1,0 +1,55 @@
+BowlMeet v0.4.7.3-dev.1-R2
+LIVE Label Red UI Gate
+Date: 2026-09-29
+Base: stable/v0.4.7.2
+
+REQUEST
+- Change the small LIVE label beside 「球聚現場」 to red.
+
+IMPLEMENTATION
+- assets/theme-center-v0470.css
+- LIVE normal + active color = var(--status-danger)
+- LIVE background remains transparent
+- SYNC / GROUP keep existing theme-primary / border-focus behavior
+
+TARGETED REGRESSION / UI GATE
+PASS 16 / 16
+
+PASS  DEV LIVE uses semantic red token
+PASS  DEV SYNC/GROUP remain theme-primary
+PASS  DEV APP_VERSION = 0.4.7.3-dev.1
+PASS  DEV DB_VERSION = 2
+PASS  DEV PUBLIC_HISTORY_CODE = PUBLIC
+PASS  DEV Header verified BowlMeet icon unchanged
+PASS  DEV application JavaScript unchanged from stable except APP_VERSION
+PASS  MAIN production remains APP_VERSION 0.4.7.2
+PASS  PREVIEW loads R2 stylesheet
+PASS  PREVIEW LIVE uses semantic red token
+PASS  PREVIEW LIVE background remains transparent
+PASS  PREVIEW SYNC/GROUP retain existing colors
+PASS  PREVIEW cache identity = v0473d1r2
+PASS  PREVIEW Service Worker caches R2 stylesheet
+PASS  PREVIEW PUBLIC code remains isolated as V473D1
+PASS  PREVIEW DB_VERSION = 2
+
+SAFETY
+UNCHANGED
+- Scoring core
+- 10-frame live scoring
+- PUBLIC / PUBLIC Control
+- Public-only leaderboard / sharing
+- Sync
+- Backup / Restore
+- Optional Backup Before PWA Update
+- InvalidStateError recovery
+- IndexedDB schema
+- Supabase schema
+- PUBLIC payload
+- Theme / Layout local-only storage contracts
+
+STATUS
+R2 Targeted UI Gate: PASS
+Device visual acceptance: PENDING
+Stable Promotion: NOT EXECUTED
+stable/v0.4.7.2: UNCHANGED
+freeze/v0.4.7.2: UNCHANGED

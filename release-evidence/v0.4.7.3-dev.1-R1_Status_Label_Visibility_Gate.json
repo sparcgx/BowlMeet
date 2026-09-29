@@ -1,0 +1,48 @@
+{
+  "version": "v0.4.7.3-dev.1-R1",
+  "gate": "Homepage Brand Icon Refresh / Status Label Visibility Repair Gate",
+  "date": "2026-09-29",
+  "base": "stable/v0.4.7.2",
+  "issue": {
+    "symptom": "The small LIVE label beside 球聚現場 appeared as a solid blue rectangle in themed UI.",
+    "rootCause": "theme-center-v0470.css set pseudo-element background and text color to the same theme color."
+  },
+  "fix": {
+    "file": "assets/theme-center-v0470.css",
+    "normal": {
+      "background": "transparent",
+      "color": "var(--theme-primary)"
+    },
+    "active": {
+      "background": "transparent",
+      "color": "var(--border-focus)"
+    },
+    "scope": "UI-only"
+  },
+  "targetedGate": {
+    "passed": 20,
+    "total": 20,
+    "status": "PASS"
+  },
+  "safety": {
+    "appVersion": "0.4.7.3-dev.1",
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "scoringCore": "UNCHANGED",
+    "publicControl": "UNCHANGED",
+    "sync": "UNCHANGED",
+    "backupRestore": "UNCHANGED",
+    "indexedDbSchema": "UNCHANGED",
+    "supabaseSchema": "UNCHANGED",
+    "publicPayload": "UNCHANGED"
+  },
+  "preview": {
+    "publicCode": "V473D1",
+    "localStoragePrefix": "bowlmeet.preview.v0473d1.",
+    "cacheIdentity": "bowlmeet-preview-v0473d1r1",
+    "deviceVisualAcceptance": "PENDING"
+  },
+  "stablePromotion": "NOT EXECUTED",
+  "stableBranch": "UNCHANGED",
+  "freezeBranch": "UNCHANGED"
+}

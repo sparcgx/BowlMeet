@@ -1,0 +1,25 @@
+{
+  "version": "v0.4.7.3-dev.1-R8",
+  "gate": "1s Dynamic Float Frosted Glass Tabs UI Gate",
+  "date": "2026-09-30",
+  "base": "stable/v0.4.7.2",
+  "animation": {
+    "duration": "1s",
+    "timing": "ease-in-out",
+    "iteration": "infinite",
+    "range": "0px to -2px"
+  },
+  "geometry": "UNCHANGED",
+  "targetedGate": {
+    "passed": 14,
+    "total": 14,
+    "status": "PASS"
+  },
+  "preview": {
+    "publicCode": "V473D1",
+    "cacheIdentity": "bowlmeet-preview-v0473d1r8"
+  },
+  "stablePromotion": "NOT EXECUTED",
+  "stableBranch": "UNCHANGED",
+  "freezeBranch": "UNCHANGED"
+}

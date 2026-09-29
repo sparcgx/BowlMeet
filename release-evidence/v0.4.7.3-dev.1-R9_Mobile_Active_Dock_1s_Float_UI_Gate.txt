@@ -1,0 +1,22 @@
+BowlMeet v0.4.7.3-dev.1-R9｜Mobile Active Dock 1s Dynamic Float UI Gate
+Date: 2026-09-30
+Base: stable/v0.4.7.2
+Status: PASS — targeted CSS/static verification
+
+Checks:
+1. Mobile dock active selector present: PASS
+2. Mobile dock-more secondary-active selector present: PASS
+3. 1s ease-in-out infinite animation: PASS
+4. Float range 0px ↔ -2px: PASS
+5. High Contrast disables animation: PASS
+6. prefers-reduced-motion disables animation: PASS
+7. Existing R8 desktop active-tab 1s animation preserved: PASS
+8. Mobile breakpoint max-width 680px preserved: PASS
+9. Preview stylesheet contains R9 selector: PASS
+10. Preview cache-bust changed to 0473d1r9: PASS
+11. Preview Service Worker cache namespace bumped to r9: PASS
+12. Scoring/PUBLIC/Share/Sync/Backup/Restore/DB contracts unchanged by this change: PASS
+
+Device visual acceptance: PENDING
+Stable Promotion: NOT EXECUTED
+Stable/freeze branches: NOT modified

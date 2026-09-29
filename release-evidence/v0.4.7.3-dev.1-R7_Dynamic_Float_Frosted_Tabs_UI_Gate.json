@@ -1,0 +1,41 @@
+{
+  "version": "v0.4.7.3-dev.1-R7",
+  "gate": "Dynamic Float Frosted Glass Tabs UI Gate",
+  "date": "2026-09-30",
+  "base": "stable/v0.4.7.2",
+  "design": {
+    "activeGeometry": "UNCHANGED from R6",
+    "animation": "bowlmeet-tab-float-r7 3.2s ease-in-out infinite",
+    "verticalRange": "0px to -2px",
+    "reducedMotion": "PRESERVED",
+    "highContrast": "animation disabled",
+    "liveIndicator": "UNCHANGED"
+  },
+  "targetedGate": {
+    "passed": 28,
+    "total": 28,
+    "status": "PASS"
+  },
+  "safety": {
+    "appVersion": "0.4.7.3-dev.1",
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "scoringCore": "UNCHANGED",
+    "liveScoring": "UNCHANGED",
+    "publicControl": "UNCHANGED",
+    "sync": "UNCHANGED",
+    "backupRestore": "UNCHANGED",
+    "indexedDbSchema": "UNCHANGED",
+    "supabaseSchema": "UNCHANGED",
+    "publicPayload": "UNCHANGED"
+  },
+  "preview": {
+    "publicCode": "V473D1",
+    "localStoragePrefix": "bowlmeet.preview.v0473d1.",
+    "cacheIdentity": "bowlmeet-preview-v0473d1r7",
+    "deviceVisualAcceptance": "PENDING"
+  },
+  "stablePromotion": "NOT EXECUTED",
+  "stableBranch": "UNCHANGED",
+  "freezeBranch": "UNCHANGED"
+}

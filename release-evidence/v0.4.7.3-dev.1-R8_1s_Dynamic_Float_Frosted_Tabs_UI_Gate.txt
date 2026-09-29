@@ -1,0 +1,58 @@
+BowlMeet v0.4.7.3-dev.1-R8
+1s Dynamic Float Frosted Glass Tabs UI Gate
+Date: 2026-09-30
+Base: stable/v0.4.7.2
+
+REQUEST
+- Change the active frosted-glass tab from a 3.2s float cycle to a 1s float cycle.
+
+CHANGE
+- Active tab animation is now:
+  - 1s
+  - ease-in-out
+  - infinite
+  - vertical range 0px ↔ -2px
+- R6/R7 unified frosted-glass geometry is unchanged.
+- Live green status pulse and divider remain unchanged.
+- High Contrast and reduced-motion behavior remain protected.
+- Preview cache and stylesheet version bumped to R8.
+
+TARGETED UI GATE
+PASS 14 / 14
+
+PASS DEV R8 marker
+PASS DEV 1s animation
+PASS DEV R8 keyframes
+PASS DEV float range 0px ↔ -2px
+PASS DEV motion handling retained
+PASS PREVIEW R8 stylesheet loaded
+PASS PREVIEW 1s animation
+PASS PREVIEW R8 keyframes
+PASS PREVIEW cache identity
+PASS PREVIEW Service Worker loads R8 stylesheet
+PASS PREVIEW PUBLIC isolation
+PASS PREVIEW DB_VERSION = 2
+PASS STABLE remains v0.4.7.2
+PASS MAIN remains v0.4.7.2
+
+SAFETY
+UNCHANGED
+- Scoring Core
+- 10-frame live scoring
+- PUBLIC / PUBLIC Control
+- Public-only leaderboard / sharing
+- Sync
+- Backup / Restore
+- Optional Backup Before PWA Update
+- InvalidStateError recovery
+- IndexedDB schema
+- Supabase schema
+- PUBLIC payload
+- Theme / Layout preference storage contracts
+
+STATUS
+R8 Targeted UI Gate: PASS
+Device visual acceptance: PENDING
+Stable Promotion: NOT EXECUTED
+stable/v0.4.7.2: UNCHANGED
+freeze/v0.4.7.2: UNCHANGED

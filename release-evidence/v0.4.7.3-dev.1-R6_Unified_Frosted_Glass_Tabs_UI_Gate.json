@@ -1,0 +1,54 @@
+{
+  "version": "v0.4.7.3-dev.1-R6",
+  "gate": "Unified Frosted Glass Tabs UI Gate",
+  "date": "2026-09-30",
+  "base": "stable/v0.4.7.2",
+  "design": {
+    "scope": "primary navigation tabs",
+    "allTabs": {
+      "minHeight": "44px",
+      "radius": "24px",
+      "blur": "18px",
+      "saturation": "132%",
+      "surfaceMix": [
+        "46%",
+        "24%"
+      ]
+    },
+    "activeState": "same geometry; brighter + slightly elevated",
+    "liveTab": {
+      "sameGeometry": true,
+      "divider": true,
+      "dot": "7px semantic green",
+      "animation": "1.9s pulse"
+    },
+    "mobileDock": "UNCHANGED"
+  },
+  "targetedGate": {
+    "passed": 31,
+    "total": 31,
+    "status": "PASS"
+  },
+  "safety": {
+    "appVersion": "0.4.7.3-dev.1",
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "scoringCore": "UNCHANGED",
+    "liveScoring": "UNCHANGED",
+    "publicControl": "UNCHANGED",
+    "sync": "UNCHANGED",
+    "backupRestore": "UNCHANGED",
+    "indexedDbSchema": "UNCHANGED",
+    "supabaseSchema": "UNCHANGED",
+    "publicPayload": "UNCHANGED"
+  },
+  "preview": {
+    "publicCode": "V473D1",
+    "localStoragePrefix": "bowlmeet.preview.v0473d1.",
+    "cacheIdentity": "bowlmeet-preview-v0473d1r6",
+    "deviceVisualAcceptance": "PENDING"
+  },
+  "stablePromotion": "NOT EXECUTED",
+  "stableBranch": "UNCHANGED",
+  "freezeBranch": "UNCHANGED"
+}

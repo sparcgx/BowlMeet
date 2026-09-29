@@ -1,0 +1,48 @@
+{
+  "version": "v0.4.7.3-dev.1-R5",
+  "gate": "Frosted Glass Live Control UI Gate",
+  "date": "2026-09-30",
+  "base": "stable/v0.4.7.2",
+  "design": {
+    "control": "single frosted-glass capsule",
+    "minHeight": "44px",
+    "radius": "24px",
+    "blur": "18px",
+    "saturation": "145%",
+    "divider": true,
+    "liveDot": {
+      "size": "7px",
+      "color": "var(--status-success)",
+      "animation": "1.9s pulse",
+      "halo": true
+    },
+    "rail": "transparent / quiet"
+  },
+  "targetedGate": {
+    "passed": 28,
+    "total": 28,
+    "status": "PASS"
+  },
+  "safety": {
+    "appVersion": "0.4.7.3-dev.1",
+    "dbVersion": 2,
+    "publicHistoryCode": "PUBLIC",
+    "scoringCore": "UNCHANGED",
+    "liveScoring": "UNCHANGED",
+    "publicControl": "UNCHANGED",
+    "sync": "UNCHANGED",
+    "backupRestore": "UNCHANGED",
+    "indexedDbSchema": "UNCHANGED",
+    "supabaseSchema": "UNCHANGED",
+    "publicPayload": "UNCHANGED"
+  },
+  "preview": {
+    "publicCode": "V473D1",
+    "localStoragePrefix": "bowlmeet.preview.v0473d1.",
+    "cacheIdentity": "bowlmeet-preview-v0473d1r5",
+    "deviceVisualAcceptance": "PENDING"
+  },
+  "stablePromotion": "NOT EXECUTED",
+  "stableBranch": "UNCHANGED",
+  "freezeBranch": "UNCHANGED"
+}
