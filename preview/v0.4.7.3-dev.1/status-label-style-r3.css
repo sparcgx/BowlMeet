@@ -1,0 +1,35 @@
+/* BowlMeet v0.4.7.3-dev.1-R3
+   Preview-only UI override.
+   Replaces colored LIVE text with a compact animated semantic status dot.
+   Uses the theme-aware success color so the indicator reads as "active"
+   instead of danger/info. Motion follows existing global reduced-motion rules.
+   No scoring / PUBLIC / Sync / Backup / DB / schema logic changes. */
+html[data-theme] .group-tab:after,
+html[data-theme] .sync-tab:after{
+  background:transparent!important;
+  color:var(--theme-primary)!important;
+}
+html[data-theme] .group-tab.active:after,
+html[data-theme] .sync-tab.active:after{
+  background:transparent!important;
+  color:var(--border-focus)!important;
+}
+html[data-theme] .live-tab:after,
+html[data-theme] .live-tab.active:after{
+  content:''!important;
+  display:inline-block;
+  width:8px;
+  height:8px;
+  margin-left:7px;
+  border-radius:999px;
+  vertical-align:1px;
+  background:var(--status-success)!important;
+  color:transparent!important;
+  box-shadow:0 0 0 0 color-mix(in srgb,var(--status-success) 34%,transparent);
+  animation:bowlmeet-live-pulse 1.8s ease-out infinite;
+}
+@keyframes bowlmeet-live-pulse{
+  0%,32%{box-shadow:0 0 0 0 color-mix(in srgb,var(--status-success) 34%,transparent);transform:scale(1)}
+  72%{box-shadow:0 0 0 6px transparent;transform:scale(.94)}
+  100%{box-shadow:0 0 0 0 transparent;transform:scale(1)}
+}
