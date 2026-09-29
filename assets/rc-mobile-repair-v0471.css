@@ -156,18 +156,14 @@
   }
 }
 
-@media(prefers-reduced-transparency:reduce){
-  @media(max-width:680px){
-    .app::before{
-      background:var(--theme-surface,#fff);
-    }
+@media(max-width:680px) and (prefers-reduced-transparency:reduce){
+  .app::before{
+    background:var(--theme-surface,#fff);
   }
 }
 
-@media(forced-colors:active){
-  @media(max-width:680px){
-    .app::before{
-      background:Canvas;
-    }
+@media(max-width:680px) and (forced-colors:active){
+  .app::before{
+    background:Canvas;
   }
 }
