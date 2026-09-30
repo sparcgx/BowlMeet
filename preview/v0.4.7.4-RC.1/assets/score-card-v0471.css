@@ -1,0 +1,257 @@
+/* =========================================================
+   BowlMeet v0.4.7.1-dev.2
+   Score Card Theme Integration & History Visual Polish
+   Presentation-only. No score/PUBLIC/sync/backup/schema changes.
+   ========================================================= */
+
+#historyScoresPanel .session-list{
+  gap:14px;
+}
+
+#historyScoresPanel .session{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  padding:0;
+  border:1px solid var(--border-default,var(--theme-border));
+  border-radius:var(--theme-radius,16px);
+  background:
+    linear-gradient(135deg,
+      var(--theme-surface-strong) 0%,
+      var(--theme-surface) 70%,
+      var(--theme-primary-soft) 100%);
+  box-shadow:var(--theme-shadow);
+  color:var(--theme-text);
+}
+
+#historyScoresPanel .session::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:4px;
+  background:var(--theme-primary);
+  opacity:.72;
+  filter:saturate(var(--theme-accent-saturation,1));
+  z-index:1;
+}
+
+#historyScoresPanel .session.public-only::before{
+  opacity:1;
+}
+
+#historyScoresPanel .session-head{
+  position:relative;
+  z-index:2;
+  padding:15px 16px 13px 18px;
+  border-bottom:1px solid var(--border-default,var(--theme-border));
+  background:linear-gradient(180deg,var(--theme-surface-strong),var(--theme-surface));
+}
+
+#historyScoresPanel .session-title{
+  color:var(--theme-text);
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:-.01em;
+}
+
+#historyScoresPanel .session-meta{
+  color:var(--theme-muted);
+  line-height:1.55;
+}
+
+#historyScoresPanel .session-source-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:8px;
+}
+
+#historyScoresPanel .session-source-tag{
+  display:inline-flex;
+  align-items:center;
+  min-height:24px;
+  padding:4px 9px;
+  border:1px solid var(--border-default,var(--theme-border));
+  border-radius:999px;
+  background:var(--theme-surface-muted);
+  color:var(--theme-muted);
+  font-size:10px;
+  font-weight:850;
+  line-height:1;
+}
+
+#historyScoresPanel .session-source-tag.public,
+#historyScoresPanel .session-source-tag.both{
+  background:var(--theme-primary-soft);
+  border-color:var(--theme-border-strong);
+  color:var(--theme-primary);
+}
+
+#historyScoresPanel .session-source-tag.removed{
+  background:var(--status-warning-bg,#fff7e8);
+  border-color:var(--status-warning-border,#f0d39b);
+  color:var(--status-warning,#915500);
+}
+
+#historyScoresPanel .session-actions{
+  align-items:center;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+}
+
+#historyScoresPanel .history-score-table-wrap{
+  position:relative;
+  z-index:2;
+  margin:0;
+  border:0!important;
+  border-radius:0 0 var(--theme-radius,16px) var(--theme-radius,16px);
+  background:var(--theme-surface)!important;
+  scrollbar-width:thin;
+  scrollbar-color:var(--theme-border-strong) transparent;
+}
+
+#historyScoresPanel .history-score-grid{
+  background:var(--theme-surface);
+  color:var(--theme-text);
+}
+
+#historyScoresPanel .history-score-grid>div{
+  min-height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:9px 8px;
+  border-right:1px solid var(--border-default,var(--theme-border));
+  border-bottom:1px solid var(--border-default,var(--theme-border));
+  background:var(--theme-surface);
+  color:var(--theme-text);
+  font-variant-numeric:tabular-nums;
+}
+
+#historyScoresPanel .history-score-head{
+  min-height:38px!important;
+  background:var(--theme-table-head)!important;
+  color:var(--theme-muted)!important;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.02em;
+}
+
+#historyScoresPanel .history-score-name{
+  justify-content:flex-start!important;
+  padding-left:14px!important;
+  background:var(--theme-surface-strong)!important;
+  font-weight:850;
+}
+
+#historyScoresPanel .history-score-head.history-score-name{
+  background:var(--theme-table-head)!important;
+}
+
+#historyScoresPanel .history-game-score{
+  font-weight:750;
+}
+
+#historyScoresPanel .history-score-total,
+#historyScoresPanel .history-score-average{
+  background:var(--theme-primary-soft)!important;
+  color:var(--theme-primary)!important;
+  font-weight:950;
+}
+
+#historyScoresPanel .history-score-total{
+  font-size:14px;
+}
+
+#historyScoresPanel .history-score-average{
+  font-size:13px;
+}
+
+#historyScoresPanel .history-score-row-end{
+  border-right:0!important;
+}
+
+#historyScoresPanel .history-score-last-row{
+  border-bottom:0!important;
+}
+
+html[data-theme="liquid-glass"][data-theme-transparency="on"] #historyScoresPanel .session{
+  background:linear-gradient(135deg,var(--glass-strong),var(--glass),var(--theme-primary-soft));
+  -webkit-backdrop-filter:blur(var(--glass-blur,18px)) saturate(1.12);
+  backdrop-filter:blur(var(--glass-blur,18px)) saturate(1.12);
+  border-color:var(--glass-border);
+}
+
+html[data-theme="liquid-glass"][data-theme-transparency="on"] #historyScoresPanel .session-head,
+html[data-theme="liquid-glass"][data-theme-transparency="on"] #historyScoresPanel .history-score-table-wrap{
+  background:var(--glass)!important;
+  -webkit-backdrop-filter:blur(var(--glass-blur,18px));
+  backdrop-filter:blur(var(--glass-blur,18px));
+}
+
+html[data-theme="clear-blue"] #historyScoresPanel .session::before{opacity:.88}
+html[data-theme="soft-violet"] #historyScoresPanel .session::before{opacity:.78}
+
+html[data-theme="dark-night"] #historyScoresPanel .session{
+  background:linear-gradient(135deg,var(--surface-raised),var(--surface-base));
+}
+html[data-theme="dark-night"] #historyScoresPanel .history-score-total,
+html[data-theme="dark-night"] #historyScoresPanel .history-score-average{
+  background:var(--status-info-bg,var(--theme-primary-soft))!important;
+  color:var(--status-info,var(--theme-primary))!important;
+}
+
+html[data-theme="high-contrast"] #historyScoresPanel .session{
+  border:2px solid var(--theme-border-strong);
+  box-shadow:none;
+}
+html[data-theme="high-contrast"] #historyScoresPanel .session::before{width:6px;opacity:1}
+html[data-theme="high-contrast"] #historyScoresPanel .history-score-total,
+html[data-theme="high-contrast"] #historyScoresPanel .history-score-average{
+  border-left:2px solid currentColor;
+}
+
+:root[data-theme-transparency="off"] #historyScoresPanel .session,
+:root[data-theme-transparency="off"] #historyScoresPanel .session-head,
+:root[data-theme-transparency="off"] #historyScoresPanel .history-score-table-wrap{
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+}
+
+@media(max-width:680px){
+  #historyScoresPanel .session-list{gap:12px}
+  #historyScoresPanel .session-head{padding:13px 12px 12px 15px}
+  #historyScoresPanel .session-head{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+  #historyScoresPanel .session-actions{justify-content:flex-start}
+  #historyScoresPanel .session-actions .btn{min-height:38px}
+  #historyScoresPanel .history-score-grid>div{min-height:44px;padding:9px 7px}
+  #historyScoresPanel .history-score-name{
+    box-shadow:1px 0 0 var(--theme-border),6px 0 14px rgba(15,23,42,.04);
+  }
+  #historyScoresPanel .history-score-total,
+  #historyScoresPanel .history-score-average{font-size:13px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  #historyScoresPanel .session,
+  #historyScoresPanel .session::before{transition:none!important}
+}
+
+@media(prefers-reduced-transparency:reduce){
+  #historyScoresPanel .session,
+  #historyScoresPanel .session-head,
+  #historyScoresPanel .history-score-table-wrap{
+    background:var(--theme-surface)!important;
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+  }
+}
+
+@media(forced-colors:active){
+  #historyScoresPanel .session,
+  #historyScoresPanel .session-source-tag,
+  #historyScoresPanel .history-score-grid>div{
+    border-color:CanvasText!important;
+  }
+  #historyScoresPanel .session::before{background:Highlight}
+}

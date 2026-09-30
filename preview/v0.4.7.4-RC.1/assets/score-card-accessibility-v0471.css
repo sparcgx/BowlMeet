@@ -1,0 +1,156 @@
+/* =========================================================
+   BowlMeet v0.4.7.1-dev.4
+   Score Card Accessibility & Theme Hardening
+   Presentation/accessibility-only. No score/PUBLIC/sync/backup/schema changes.
+   ========================================================= */
+
+#historyScoresPanel .history-score-table-wrap:focus-visible,
+#historyScoresPanel .session-actions .btn:focus-visible,
+#historyScoresPanel .player-link:focus-visible{
+  outline:3px solid color-mix(in srgb,var(--theme-primary) 52%,transparent);
+  outline-offset:2px;
+}
+
+#historyScoresPanel .history-score-table-wrap:focus-visible{
+  border-radius:0 0 var(--theme-radius,16px) var(--theme-radius,16px);
+  box-shadow:
+    inset 0 0 0 2px var(--theme-primary),
+    0 0 0 4px color-mix(in srgb,var(--theme-primary) 14%,transparent);
+}
+
+#historyScoresPanel .player-link:focus-visible{
+  border-radius:8px;
+  text-decoration:none;
+  background:var(--theme-primary-soft);
+  color:var(--theme-primary);
+}
+
+#historyScoresPanel .session-actions .btn:focus-visible{
+  position:relative;
+  z-index:3;
+}
+
+#historyScoresPanel .session-source-tag{
+  border-width:1px;
+  border-style:solid;
+}
+
+#historyScoresPanel .session-source-tag.local{
+  background:color-mix(in srgb,var(--theme-primary-soft) 74%,var(--theme-surface) 26%);
+  color:var(--theme-primary);
+  border-color:color-mix(in srgb,var(--theme-primary) 24%,var(--theme-border) 76%);
+}
+
+#historyScoresPanel .session-source-tag.public,
+#historyScoresPanel .session-source-tag.both{
+  border-color:color-mix(in srgb,var(--theme-primary) 32%,var(--theme-border) 68%);
+}
+
+#historyScoresPanel .session-source-tag.removed{
+  border-color:var(--status-warning-border,#f0d39b);
+}
+
+#historyScoresPanel .history-score-head{
+  text-wrap:balance;
+}
+
+#historyScoresPanel .history-score-total,
+#historyScoresPanel .history-score-average{
+  border-inline-start:1px solid color-mix(in srgb,var(--theme-primary) 28%,var(--theme-border) 72%);
+}
+
+html[data-theme="liquid-glass"][data-theme-transparency="on"] #historyScoresPanel .history-score-table-wrap:focus-visible{
+  background:var(--glass-strong)!important;
+}
+
+html[data-theme="dark-night"] #historyScoresPanel .history-score-table-wrap:focus-visible,
+html[data-theme="dark-night"] #historyScoresPanel .session-actions .btn:focus-visible,
+html[data-theme="dark-night"] #historyScoresPanel .player-link:focus-visible{
+  outline-color:color-mix(in srgb,var(--theme-primary) 72%,white 28%);
+}
+
+html[data-theme="high-contrast"] #historyScoresPanel .history-score-table-wrap:focus-visible,
+html[data-theme="high-contrast"] #historyScoresPanel .session-actions .btn:focus-visible,
+html[data-theme="high-contrast"] #historyScoresPanel .player-link:focus-visible{
+  outline:3px solid currentColor!important;
+  outline-offset:3px!important;
+}
+
+html[data-theme="high-contrast"] #historyScoresPanel .session-source-tag{
+  border:2px solid currentColor!important;
+}
+
+html[data-theme="high-contrast"] #historyScoresPanel .history-score-total,
+html[data-theme="high-contrast"] #historyScoresPanel .history-score-average{
+  border-inline-start:2px solid currentColor!important;
+}
+
+:root[data-theme-transparency="off"] #historyScoresPanel .session,
+:root[data-theme-transparency="off"] #historyScoresPanel .session-head,
+:root[data-theme-transparency="off"] #historyScoresPanel .history-score-table-wrap,
+:root[data-theme-transparency="off"] #historyScoresPanel .history-score-grid>div{
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+}
+
+@media(prefers-reduced-transparency:reduce){
+  #historyScoresPanel .session,
+  #historyScoresPanel .session-head,
+  #historyScoresPanel .history-score-table-wrap,
+  #historyScoresPanel .history-score-grid>div{
+    background:var(--theme-surface)!important;
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+  }
+
+  #historyScoresPanel .history-score-head{
+    background:var(--theme-table-head)!important;
+  }
+
+  #historyScoresPanel .history-score-name{
+    background:var(--theme-surface-strong)!important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  #historyScoresPanel .history-score-table-wrap,
+  #historyScoresPanel .session-actions .btn,
+  #historyScoresPanel .player-link,
+  #historyScoresPanel .session-source-tag{
+    transition:none!important;
+    animation:none!important;
+    transform:none!important;
+  }
+}
+
+@media(forced-colors:active){
+  #historyScoresPanel .history-score-table-wrap:focus-visible,
+  #historyScoresPanel .session-actions .btn:focus-visible,
+  #historyScoresPanel .player-link:focus-visible{
+    outline:3px solid Highlight!important;
+    outline-offset:3px!important;
+    box-shadow:none!important;
+  }
+
+  #historyScoresPanel .session-source-tag,
+  #historyScoresPanel .history-score-grid>div{
+    forced-color-adjust:auto;
+    border-color:CanvasText!important;
+  }
+
+  #historyScoresPanel .history-score-total,
+  #historyScoresPanel .history-score-average{
+    border-inline-start:2px solid CanvasText!important;
+  }
+}
+
+@media(max-width:680px){
+  #historyScoresPanel .history-score-table-wrap:focus-visible{
+    outline-offset:-2px;
+  }
+
+  #historyScoresPanel .session-actions .btn:focus-visible,
+  #historyScoresPanel .player-link:focus-visible{
+    outline-width:3px;
+  }
+}
