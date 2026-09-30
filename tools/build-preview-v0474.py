@@ -16,7 +16,7 @@ html=html.replace('<main id="mainContent" tabindex="-1">','<main id="mainContent
 assert "const DB_VERSION=2;" in html and "const PUBLIC_HISTORY_CODE='PUBLIC';" not in html
 assert "const DB_NAME='bowlmeet.preview.v0474rc1." in html
 (out/'index.html').write_text(html)
-manifest=json.loads((root/'manifest.webmanifest').read_text());manifest['name']='BowlMeet v0.4.7.4-RC.1 Preview';manifest['short_name']='BowlMeet TEST'
+manifest=json.loads((root/'manifest.webmanifest').read_text());manifest['name']='BowlMeet v0.4.7.4-RC.1 Preview';manifest['short_name']='BowlMeet RC'
 (out/'manifest.webmanifest').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
 sw=(root/'sw.js').read_text().replace("const PRODUCTION_CACHE_ROOT='bowlmeet-v';","const PRODUCTION_CACHE_ROOT='bowlmeet-preview-v0474rc1-';").replace('bowlmeet-v0.4.7.4-RC.1-','bowlmeet-preview-v0474rc1-')
 (out/'sw.js').write_text(sw)

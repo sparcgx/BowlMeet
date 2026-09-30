@@ -7,6 +7,8 @@
   "dev2_device_gate": "PASS_USER_REPORTED",
   "dev2_device_reported_at": "2026-09-30T22:41:57+08:00",
   "rc_device_gate": "PENDING_RC_SMOKE",
-  "automated_gate": "PENDING",
+  "automated_gate": "PASS",
+  "automated_gate_run": 36731423813,
+  "tested_source_commit": "1fabe4494cceed34fb9437ecc96bde9e74f6bbfc",
   "stable_promotion": "NOT_EXECUTED"
 }

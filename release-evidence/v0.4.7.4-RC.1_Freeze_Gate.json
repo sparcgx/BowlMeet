@@ -1,0 +1,29 @@
+{
+  "version": "v0.4.7.4-RC.1",
+  "date": "2026-09-30",
+  "status": "AUTOMATED_PASS_CANDIDATE_FREEZE",
+  "baseCommit": "40df653f3df7070a9332de9ba1ea40c60444c74d",
+  "testedSourceCommit": "1fabe4494cceed34fb9437ecc96bde9e74f6bbfc",
+  "indexSha256": "afe9fa0c5e31e47cf5f7de401125a0b42a8af39517fc2329eae13bc9d39bec7f",
+  "fullGateRun": 36731423813,
+  "faultInjection": {
+    "chromium": {"PASS": 24, "FAIL": 0, "PENDING": 0, "HARNESS_ERROR": 0},
+    "playwrightWebkit": {"PASS": 24, "FAIL": 0, "PENDING": 0, "HARNESS_ERROR": 0}
+  },
+  "backupRestore": {
+    "chromium": {"PASS": 7, "FAIL": 0, "PENDING": 0, "HARNESS_ERROR": 0},
+    "playwrightWebkit": {"PASS": 7, "FAIL": 0, "PENDING": 0, "HARNESS_ERROR": 0}
+  },
+  "sourceScoringSimulatedSW": {"PASS": 25, "FAIL": 0},
+  "chromiumOfflineUI": {"PASS": 248, "FAIL": 0},
+  "publicOnly": "PASS_IN_UI_REGRESSION",
+  "previewIsolation": {"PASS": 10, "FAIL": 0},
+  "dev2DeviceGate": {"status": "PASS_USER_REPORTED", "reportedAt": "2026-09-30T22:41:57+08:00", "scope": "open/UI, save/reload, installed TEST PWA close/reopen"},
+  "rcDeviceSmoke": "PENDING",
+  "stablePromotion": "BLOCKED_PENDING_RC_DEVICE_SMOKE",
+  "stableFreezeCommit": "1d7ea21ea2654e989545974dcd3987281710c6fc",
+  "dbVersion": 2,
+  "productionPublicCode": "PUBLIC",
+  "functionalChangesFromAcceptedDev2": false,
+  "limitations": ["Playwright WebKit is not physical iPhone Safari/PWA", "UI storage is mocked; FI and backup tests use native browser storage on localhost", "SW Cache API regression is simulated in Node", "No production Supabase/RLS or PUBLIC data mutations", "RC device smoke is separate from the accepted dev.2 device report"]
+}
