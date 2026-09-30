@@ -2996,7 +2996,7 @@ function stateShapeValid(state){
 function stateFreshness(state){
   if(!state||typeof state!=='object')return 0;let newest=0;
   const scan=v=>{if(!v||typeof v!=='object')return;if(Array.isArray(v)){for(const x of v)scan(x);return}for(const [k,x] of Object.entries(v)){if((k==='updatedAt'||k==='createdAt')&&typeof x==='number')newest=Math.max(newest,x);else if((k==='scoreUpdatedAt'||k==='frameUpdatedAt')&&Array.isArray(x))for(const n of x)newest=Math.max(newest,Number(n)||0);else if(typeof x==='object')scan(x)}};
-  scan(state.sessions);scan(state.meetups);scan(state.roster);scan(state.draft);scan(state.publicControl);scan(state.personalData);
+  scan(state.sessions);scan(state.meetups);scan(state.roster);scan(state.draft);scan(state.publicControl);
   return newest||Number(state.updatedAt)||0;
 }
 function mirrorStateToLocalStorage(state){
@@ -3012,7 +3012,7 @@ function normalizeState(state){
 function applyState(state,{render=true,mirror=true}={}){
   const n=normalizeState(state);if(!n){console.warn('Rejected invalid saved app state');return false}
   sessions=n.sessions;legacy=n.legacyRecords;meetups=n.meetups;roster=n.roster;personalData=n.personalData;currentMeetupId=n.activeMeetupId||'';const mirrored=mirror?mirrorStateToLocalStorage(n):true;
-  try{if(n.settings?.venue){$('venue').value=n.settings.venue;$('meetupVenue').value=n.settings.venue}}catch{}migrateV3();if(render){renderAll();renderSafety()}return mirrored;
+  if(!mirrored)queueDbStatePersist('apply-state-mirror-recovery');try{if(n.settings?.venue){$('venue').value=n.settings.venue;$('meetupVenue').value=n.settings.venue}}catch{}migrateV3();if(render){renderAll();renderSafety()}return mirrored;
 }
 function openDataDb(){
   return new Promise((resolve,reject)=>{if(!('indexedDB' in window)){reject(new Error('IndexedDB unavailable'));return}const req=indexedDB.open(DB_NAME,DB_VERSION);req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(DB_STATE_STORE))db.createObjectStore(DB_STATE_STORE,{keyPath:'key'});if(!db.objectStoreNames.contains(DB_SNAPSHOT_STORE)){const st=db.createObjectStore(DB_SNAPSHOT_STORE,{keyPath:'id'});st.createIndex('createdAt','createdAt',{unique:false})}if(!db.objectStoreNames.contains(DB_SYNC_LOG_STORE)){const lg=db.createObjectStore(DB_SYNC_LOG_STORE,{keyPath:'id'});lg.createIndex('createdAt','createdAt',{unique:false})}};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error||new Error('IndexedDB open failed'));});
@@ -3030,7 +3030,7 @@ function queueDbStatePersist(reason='state-change'){
   clearTimeout(dbPersistTimer);dbPersistTimer=setTimeout(()=>persistDbStateNow(reason).then(ok=>{if(ok===false){storageHealth.idb=false;if(!storageHealth.local)markStorageFailure('資料尚未安全寫入：IndexedDB 與 localStorage 都不可用');else if(reason==='sessions')setLiveSaveState('分數已保留於 localStorage · IndexedDB 目前不可用',true)}}).catch(e=>{storageHealth.idb=false;if(!storageHealth.local)markStorageFailure('資料尚未安全寫入：兩條本機儲存路徑皆失敗',e);else{dbMode='localStorage fallback';if(reason==='sessions')setLiveSaveState('分數已保留於 localStorage，但 IndexedDB 寫入失敗 · 請勿清除網站資料',true);renderSafety().catch(()=>{})}}),120)
 }
 function safeLocalPersist(key,value,reason){
-  let ok=true;try{if(value===null)localStorage.removeItem(key);else localStorage.setItem(key,value);storageHealth.local=true}catch(e){ok=false;storageHealth.local=false;storageHealth.unsaved=true;storageHealth.lastError='localStorage 寫入失敗 · '+(e?.name||'Error');console.warn('localStorage persist failed',e)}queueDbStatePersist(reason);return ok;
+  let ok=true;try{if(value===null)localStorage.removeItem(key);else localStorage.setItem(key,value);storageHealth.local=true}catch(e){ok=false;storageHealth.local=false;markStorageFailure('localStorage 寫入失敗；IndexedDB 備援寫入尚未確認',e)}queueDbStatePersist(reason);return ok;
 }
 async function createSnapshot(reason='手動快照',options={}){
   if(!dbReady||!appDb){return null}
