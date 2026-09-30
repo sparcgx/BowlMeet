@@ -1,0 +1,32 @@
+{
+  "version": "v0.4.7.4-dev.2",
+  "gate": "Data Safety Recovery & Persistence Hardening",
+  "date": "2026-09-30",
+  "nativeFaultRun": 36681233429,
+  "nativeFault": {
+    "chromium": {
+      "pass": 24,
+      "fail": 0,
+      "harnessError": 0
+    },
+    "webkit": {
+      "pass": 24,
+      "fail": 0,
+      "harnessError": 0
+    },
+    "totalExecutions": 48
+  },
+  "dbVersion": 2,
+  "schemaMigration": false,
+  "fixed": [
+    "startup freshness reconciliation",
+    "malformed IDB state validation",
+    "localStorage quota independent IDB fallback",
+    "partial mirror rollback + IDB recovery",
+    "IDB transaction abort rejection",
+    "unsaved status feedback",
+    "corrupt local JSON recovery"
+  ],
+  "physicalDeviceDataSafety": "PENDING",
+  "stablePromotion": "NOT EXECUTED"
+}
