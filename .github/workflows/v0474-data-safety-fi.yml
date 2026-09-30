@@ -1,0 +1,49 @@
+name: BowlMeet native data-safety fault injection
+on:
+  push:
+    branches: ['test/v0.4.7.4-data-safety-fi']
+    paths: ['tools/test-data-safety-v0474.py', '.github/workflows/v0474-data-safety-fi.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: bowlmeet-native-data-safety-fi
+  cancel-in-progress: false
+jobs:
+  fault-injection:
+    if: github.ref == 'refs/heads/test/v0.4.7.4-data-safety-fi'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - name: Checkout test-only branch
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify application runtime is unchanged from accepted dev.1
+        run: |
+          test "$(git branch --show-current)" = 'test/v0.4.7.4-data-safety-fi'
+          git diff --exit-code 541ba7afe34889a343909f96c44a0ad5227e9edc -- index.html assets sw.js manifest.webmanifest release-identity.json '*.sql'
+          mkdir -p fi-results
+          git rev-parse HEAD > fi-results/test-commit.txt
+          git hash-object index.html > fi-results/index-blob.txt
+          sha256sum index.html tools/test-data-safety-v0474.py > fi-results/SHA256.txt
+      - name: Install pinned native browser harness
+        run: |
+          python -m pip install 'playwright==1.57.0'
+          python -m playwright install --with-deps ${{ matrix.browser }}
+      - name: Execute native storage fault assertions
+        run: |
+          set -o pipefail
+          python tools/test-data-safety-v0474.py . fi-results --browser '${{ matrix.browser }}' 2>&1 | tee fi-results/run.log
+      - name: Upload actual results even when safety assertions fail
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: bowlmeet-data-safety-fi-${{ matrix.browser }}
+          path: fi-results/
+          retention-days: 14
