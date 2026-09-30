@@ -1,0 +1,146 @@
+/* v0.4.7.4-dev.1 | Navigation parity, paint budget and accessibility.
+   Last presentation layer; scoring fields and destructive actions are untouched. */
+:root{
+  --nav-glass:linear-gradient(145deg,rgba(255,255,255,.46),rgba(255,255,255,.24));
+  --nav-glass-selected:linear-gradient(145deg,rgba(255,255,255,.68),rgba(255,255,255,.40));
+  --nav-edge:rgba(206,216,229,.65);
+  --nav-shadow:0 3px 10px rgba(17,24,39,.055),inset 0 1px 0 rgba(255,255,255,.58);
+  --nav-shadow-selected:0 6px 16px rgba(17,24,39,.10),inset 0 1px 0 rgba(255,255,255,.75);
+}
+:root[data-theme="dark-night"]{
+  --nav-glass:linear-gradient(145deg,rgba(34,48,67,.46),rgba(25,37,54,.24));
+  --nav-glass-selected:linear-gradient(145deg,rgba(59,78,103,.74),rgba(37,53,73,.56));
+  --nav-edge:rgba(183,205,231,.26);
+  --nav-shadow:0 3px 10px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.09);
+  --nav-shadow-selected:0 6px 16px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.17);
+}
+:root[data-theme][data-theme-motion][data-theme-transparency] .tabs .tab,
+:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock .dock-item,
+:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-more-sheet .mobile-more-item{
+  background:var(--nav-glass)!important;
+  border:1px solid var(--nav-edge)!important;
+  color:var(--text-primary)!important;
+  box-shadow:var(--nav-shadow)!important;
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+  filter:none!important;
+}
+:root[data-theme][data-theme-motion][data-theme-transparency] .tabs .tab.active,
+:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock .dock-item.active,
+:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock .dock-more.has-secondary-active,
+:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-more-sheet .mobile-more-item.active{
+  background:var(--nav-glass-selected)!important;
+  color:var(--text-primary)!important;
+  box-shadow:var(--nav-shadow-selected)!important;
+}
+/* Blur once at the container instead of on every glass button. */
+:root[data-theme][data-theme-motion][data-theme-transparency] .tabs,
+:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock{
+  -webkit-backdrop-filter:blur(18px) saturate(132%)!important;
+  backdrop-filter:blur(18px) saturate(132%)!important;
+}
+:root[data-theme][data-theme-motion][data-theme-transparency] .tabs{padding:4px!important;}
+:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock{
+  background:var(--nav-glass)!important;
+  border-color:var(--nav-edge)!important;
+  box-shadow:0 10px 28px rgba(15,23,42,.12),inset 0 1px 0 rgba(255,255,255,.48)!important;
+}
+:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock .dock-item .dock-icon{
+  color:inherit!important;
+  background:transparent!important;
+}
+:root[data-theme][data-theme-motion][data-theme-transparency] .tabs .tab:focus-visible,
+:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock .dock-item:focus-visible,
+:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-more-sheet .mobile-more-item:focus-visible{
+  outline:2px solid var(--a11y-focus,var(--text-primary))!important;
+  outline-offset:2px!important;
+}
+:root[data-theme][data-theme-motion][data-theme-transparency] .tabs .tab.active:active,
+:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock .dock-item:active{
+  animation-play-state:paused!important;
+  transform:scale(.98)!important;
+}
+/* Keep the approved 1s / 2px float. Live dot pulses opacity, not painted shadows. */
+:root[data-theme][data-theme-motion][data-theme-transparency] .tabs .live-tab::after{
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--status-success-bg) 72%,transparent)!important;
+  animation:bowlmeet-live-opacity 1.9s ease-in-out infinite;
+}
+@keyframes bowlmeet-live-opacity{0%,100%{opacity:1}50%{opacity:.65}}
+@media(max-width:680px){
+  :root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock{position:fixed!important;gap:6px;}
+  :root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock .dock-item{border-radius:20px!important;}
+  #meetupView .meetup-form-grid input[type="date"]{width:100%;min-width:0;max-width:100%;}
+}
+/* No hidden-tab compositing work; storage and sync lifecycles stay untouched. */
+:root[data-theme][data-theme-motion][data-theme-transparency][data-ui-paused="true"] .tabs .tab,
+:root[data-theme][data-theme-motion][data-theme-transparency][data-ui-paused="true"] .tabs .tab::after,
+:root[data-theme][data-theme-motion][data-theme-transparency][data-ui-paused="true"] .mobile-glass-dock .dock-item,
+:root[data-theme][data-theme-motion][data-theme-transparency][data-ui-paused="true"] body::after{
+  animation-play-state:paused!important;
+  will-change:auto!important;
+}
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme-motion="off"] .tabs .tab,
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme-motion="off"] .tabs .tab::after,
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme-motion="off"] .mobile-glass-dock .dock-item{
+  animation:none!important;transition:none!important;will-change:auto!important;
+}
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme-motion="off"] .tabs .tab,
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme-motion="off"] .mobile-glass-dock .dock-item{transform:none!important;}
+/* Explicit fallbacks appear AFTER every theme/motion rule. */
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme-transparency="off"] .tabs,
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme-transparency="off"] .mobile-glass-dock,
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme-transparency="off"] .mobile-more-sheet,
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme-transparency="off"] .tabs .tab,
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme-transparency="off"] .mobile-glass-dock .dock-item,
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme-transparency="off"] .mobile-more-sheet .mobile-more-item{
+  background:var(--theme-surface-strong,#fff)!important;
+  -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+}
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme-transparency="off"] .tabs .tab.active,
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme-transparency="off"] .mobile-glass-dock .dock-item.active,
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme-transparency="off"] .mobile-glass-dock .dock-more.has-secondary-active{
+  box-shadow:inset 0 -2px 0 currentColor!important;
+}
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme="high-contrast"] .tabs .tab,
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme="high-contrast"] .mobile-glass-dock .dock-item,
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme="high-contrast"] .mobile-more-sheet .mobile-more-item{
+  background:#fff!important;color:#000!important;border:2px solid #000!important;
+  box-shadow:none!important;animation:none!important;transform:none!important;will-change:auto!important;
+}
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme="high-contrast"] .tabs .tab.active,
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme="high-contrast"] .mobile-glass-dock .dock-item.active,
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme="high-contrast"] .mobile-glass-dock .dock-more.has-secondary-active,
+:root[data-theme][data-theme-motion][data-theme-transparency][data-theme="high-contrast"] .mobile-more-sheet .mobile-more-item.active{
+  background:#000!important;color:#fff!important;
+}
+@media(prefers-reduced-motion:reduce){
+  :root[data-theme][data-theme-motion][data-theme-transparency] .tabs .tab,:root[data-theme][data-theme-motion][data-theme-transparency] .tabs .tab::after,:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock .dock-item{
+    animation:none!important;transition:none!important;will-change:auto!important;
+  }
+  :root[data-theme][data-theme-motion][data-theme-transparency] .tabs .tab,:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock .dock-item{transform:none!important;}
+}
+@media(prefers-reduced-transparency:reduce){
+  :root[data-theme][data-theme-motion][data-theme-transparency] .tabs,:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock,:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-more-sheet,
+  :root[data-theme][data-theme-motion][data-theme-transparency] .tabs .tab,:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock .dock-item,:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-more-sheet .mobile-more-item{
+    background:var(--theme-surface-strong,#fff)!important;
+    -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+  }
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  :root[data-theme][data-theme-motion][data-theme-transparency] .tabs,:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock,:root[data-theme][data-theme-motion][data-theme-transparency] .tabs .tab,:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock .dock-item{
+    background:var(--theme-surface-strong,#fff)!important;
+  }
+}
+@media(forced-colors:active){
+  :root[data-theme][data-theme-motion][data-theme-transparency] .tabs,:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock,:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-more-sheet,
+  :root[data-theme][data-theme-motion][data-theme-transparency] .tabs .tab,:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock .dock-item,:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-more-sheet .mobile-more-item{
+    background:Canvas!important;color:CanvasText!important;border-color:CanvasText!important;
+    box-shadow:none!important;animation:none!important;transform:none!important;
+    -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+  }
+  :root[data-theme][data-theme-motion][data-theme-transparency] .tabs .tab.active,:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock .dock-item.active,
+  :root[data-theme][data-theme-motion][data-theme-transparency] .mobile-glass-dock .dock-more.has-secondary-active,:root[data-theme][data-theme-motion][data-theme-transparency] .mobile-more-sheet .mobile-more-item.active{
+    background:Highlight!important;color:HighlightText!important;
+  }
+  :root[data-theme][data-theme-motion][data-theme-transparency] .tabs .live-tab::after{background:currentColor!important;animation:none!important;box-shadow:none!important;}
+}

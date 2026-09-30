@@ -1,0 +1,74 @@
+name: BowlMeet v0474 development gate
+on:
+  push:
+    branches: ['v0.4.7.4-dev.1']
+  workflow_dispatch:
+permissions: {}
+concurrency:
+  group: bowlmeet-v0474-development-only
+  cancel-in-progress: false
+jobs:
+  verify-and-prepare-preview:
+    if: github.ref == 'refs/heads/v0.4.7.4-dev.1'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout development branch only
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: v0.4.7.4-dev.1
+          fetch-depth: 0
+      - name: Apply audited patch with input and output SHA-256 guards
+        run: |
+          test "$(git branch --show-current)" = 'v0.4.7.4-dev.1'
+          python tools/apply-v0474.py
+          git diff --exit-code -- '*.sql'
+      - name: Source, scoring and simulated Service Worker tests
+        run: |
+          mkdir -p test-results
+          node tools/test-v0474.mjs . > test-results/unit.json
+      - name: Install pinned presentation-test harness
+        run: |
+          python -m pip install 'playwright==1.57.0'
+          python -m playwright install --with-deps chromium
+      - name: Offline DOM and CSS browser regression
+        run: python tools/test-ui-v0474.py . test-results/ui > test-results/browser.log
+      - name: Commit generated application source to development only
+        run: |
+          test "$(git branch --show-current)" = 'v0.4.7.4-dev.1'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- index.html README.md release-identity.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'build(v0.4.7.4-dev.1): apply audited runtime patch after regression'
+            git push origin HEAD:refs/heads/v0.4.7.4-dev.1
+          fi
+      - name: Build isolated and cloud-disabled preview
+        run: python tools/build-preview-v0474.py "$RUNNER_TEMP/BowlMeet-preview"
+      - name: Prepare preview branch without changing production main
+        run: |
+          git fetch origin deploy/preview-v0.4.7.4-dev.1
+          git worktree add -B deploy/preview-v0.4.7.4-dev.1 "$RUNNER_TEMP/BowlMeet-preview-worktree" origin/deploy/preview-v0.4.7.4-dev.1
+          target="$RUNNER_TEMP/BowlMeet-preview-worktree/preview/v0.4.7.4-dev.1"
+          mkdir -p "$target"
+          cp -a "$RUNNER_TEMP/BowlMeet-preview/." "$target/"
+          cd "$RUNNER_TEMP/BowlMeet-preview-worktree"
+          test "$(git branch --show-current)" = 'deploy/preview-v0.4.7.4-dev.1'
+          git add -- preview/v0.4.7.4-dev.1
+          if git diff --cached --name-only | grep -v '^preview/v0.4.7.4-dev.1/'; then
+            echo 'Refusing non-preview changes'
+            exit 1
+          fi
+          if ! git diff --cached --quiet; then
+            git commit -m 'preview(v0.4.7.4-dev.1): isolated performance and UI hardening build'
+            git push origin HEAD:refs/heads/deploy/preview-v0.4.7.4-dev.1
+          fi
+      - name: Upload actual test results and screenshots
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: bowlmeet-v0474-executed-gates
+          path: test-results/
+          retention-days: 14
