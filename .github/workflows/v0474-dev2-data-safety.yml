@@ -31,6 +31,16 @@ jobs:
         run: |
           set -o pipefail
           python tools/test-data-safety-v0474.py . fi-results --browser '${{ matrix.browser }}' 2>&1 | tee fi-results/run.log
+      - name: Source scoring and simulated Service Worker regression
+        if: matrix.browser == 'chromium'
+        run: node tools/test-v0474.mjs . > fi-results/source-regression.json
+      - name: Browser UI and PUBLIC-only regression
+        if: matrix.browser == 'chromium'
+        run: python tools/test-ui-v0474.py . fi-results/ui > fi-results/ui.log
+      - name: Native Backup Restore regression
+        run: |
+          set -o pipefail
+          python tools/test-data-safety-v0474.py . fi-results/backup --browser '${{ matrix.browser }}' --suite backup 2>&1 | tee fi-results/backup.log
       - name: Upload results
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

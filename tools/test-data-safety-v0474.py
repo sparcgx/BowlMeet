@@ -13,6 +13,7 @@ parser=argparse.ArgumentParser()
 parser.add_argument('root',type=Path)
 parser.add_argument('out',type=Path)
 parser.add_argument('--browser',choices=['chromium','webkit'],default='chromium')
+parser.add_argument('--suite',choices=['fault','backup'],default='fault')
 args=parser.parse_args(); ROOT=args.root.resolve(); OUT=args.out.resolve(); OUT.mkdir(parents=True,exist_ok=True)
 original=(ROOT/'index.html').read_text(encoding='utf-8')
 assert "const DB_VERSION=2;" in original and "async function initDataSafety()" in original
@@ -33,7 +34,7 @@ window.__fi={
  captureState,applyState,load,initDataSafety,persist,persistMeetups,persistRoster,saveDraft,
  persistDbStateNow,queueDbStatePersist,idbGet,idbGetAll,idbPut,idbPutMany,idbDelete,
  createSnapshot,listSnapshots,getPublicControl,setPublicRecordState,publicRecordState,
- exportFullBackup,renderSafety,
+ exportFullBackup,parseRestorePayload,applyRestorePayload,renderSafety,
  status:()=>({dbReady,dbMode,timer:dbPersistTimer,score:sessions[0]?.players?.[0]?.scores?.[0]??null,
    sessions:sessions.map(s=>s.id),meetups:meetups.map(m=>m.id),roster:roster.map(r=>r.id),
    publicControl:getPublicControl(),engine:document.getElementById('safetyEngineSub')?.textContent,
@@ -297,38 +298,87 @@ def corrupt_ls():
   p.reload();p.wait_for_function('!!window.__fiBoot');p.evaluate('()=>__fiBoot');p.wait_for_timeout(350)
   d=state_result(p);return d['memory_score']==225 and d['local_score']==225,d
 
+def backup_export():
+ with environment(state(),state()) as (p,_):
+  with p.expect_download() as pending:
+   exported=p.evaluate('()=>__fi.exportFullBackup()')
+  file=OUT/'synthetic-backup.json';pending.value.save_as(str(file))
+  payload=json.loads(file.read_text())
+  required=['sessions','meetups','roster','legacyRecords','personalData','publicControl','draft','settings','liveState']
+  ok=payload==exported['payload'] and payload['schema']==3 and all(k in payload for k in required)
+  ok=ok and payload['sessions'][0]['players'][0]['scores'][0]==100
+  ok=ok and 'themePreferences' not in payload and 'layoutPreferences' not in payload
+  return ok,{'schema':payload['schema'],'version':payload['version'],'download_matches_payload':payload==exported['payload'],'required_fields_present':all(k in payload for k in required)}
+
+def backup_restore(mode,older_version=False):
+ with environment(state(),state()) as (p,_):
+  incoming=state(220,T0+10000)
+  incoming['appVersion']='0.4.7.3' if older_version else '0.4.7.4-dev.2'
+  incoming['publicControl']={'records':[{'id':'fi-session','state':'removed','updatedAt':T0+10000}]}
+  p.evaluate('(keys)=>{localStorage.setItem(keys.THEME_PREFS_KEY,JSON.stringify({theme:"dark-night"}));localStorage.setItem(keys.LAYOUT_PREFS_KEY,JSON.stringify({scale:110}))}',KEYS)
+  prefs=p.evaluate('(keys)=>[localStorage.getItem(keys.THEME_PREFS_KEY),localStorage.getItem(keys.LAYOUT_PREFS_KEY)]',KEYS)
+  before=p.evaluate('()=>__fi.listSnapshots().then(x=>x.length)')
+  counts=p.evaluate('async ({incoming,mode})=>__fi.applyRestorePayload(__fi.parseRestorePayload(incoming),mode)',{'incoming':incoming,'mode':mode})
+  snaps=p.evaluate('()=>__fi.listSnapshots()')
+  p.wait_for_timeout(350);p.reload();p.wait_for_function('!!window.__fiBoot');p.evaluate('()=>__fiBoot');p.wait_for_timeout(350)
+  d=state_result(p);expected=100 if mode=='add' else 220
+  control=p.evaluate("__fi.publicRecordState('fi-session')")
+  same_prefs=p.evaluate('(keys)=>[localStorage.getItem(keys.THEME_PREFS_KEY),localStorage.getItem(keys.LAYOUT_PREFS_KEY)]',KEYS)==prefs
+  ok=d['memory_score']==d['local_score']==d['idb_score']==expected and control=='removed' and same_prefs
+  ok=ok and len(snaps)>before and any(x['state']['sessions'][0]['players'][0]['scores'][0]==100 for x in snaps)
+  return ok,{'mode':mode,'prior_version':older_version,'scores':[d['memory_score'],d['local_score'],d['idb_score']],'expected':expected,'public_control':control,'preferences_unchanged':same_prefs,'pre_restore_snapshot':len(snaps)>before,'counts':counts,'errors':d['errors']}
+
+def legacy_backup():
+ with environment(state(),state()) as (p,_):
+  d=p.evaluate('''async()=>{const legacy=[{id:'legacy-fi',date:'2026-09-01',player:'Legacy FI',gameNo:1,score:123,createdAt:1700000000000}];const parsed=__fi.parseRestorePayload(legacy);await __fi.applyRestorePayload(parsed,'add');return __fi.captureState().legacyRecords}''')
+  return len(d)==1 and d[0]['score']==123,{'legacy_records':len(d),'score':d[0]['score'] if d else None}
+
+def malformed_backup():
+ with environment(state(),state()) as (p,_):
+  d=p.evaluate('''()=>{const before=JSON.stringify(__fi.captureState().sessions);let rejected=0;for(const value of [null,{},42,{sessions:'broken'}]){try{__fi.parseRestorePayload(value)}catch{rejected++}}return {rejected,unchanged:JSON.stringify(__fi.captureState().sessions)===before}}''')
+  return d['rejected']==4 and d['unchanged'],d
+
 with sync_playwright() as pw:
  engine=getattr(pw,args.browser)
  exe=os.environ.get('BROWSER_EXECUTABLE') or (shutil.which('chromium') if args.browser=='chromium' else None)
  browser=engine.launch(headless=True,**({'executable_path':exe,'args':['--no-sandbox']} if exe else {}))
  version=browser.version
- log_case('FI-01','Equal localStorage and IndexedDB bootstrap','control',lambda:bootstrap(state(),state(),100))
- log_case('FI-02','Newer IndexedDB wins against older local mirror','control',lambda:bootstrap(state(),state(220,T0+10000),220))
- log_case('FI-03','Newer local score must survive older IndexedDB','freshness',lambda:bootstrap(state(220,T0+10000),state(),220))
- log_case('FI-04','New local session must survive older IndexedDB','freshness',newer_session)
- log_case('FI-05','Local removed tombstone must not become published','freshness',newer_tombstone)
- log_case('FI-06','Newer local draft must survive older IndexedDB','freshness',newer_draft)
- log_case('FI-07','Immediate reload before 120ms persistence must retain edit','freshness',immediate_reload)
- log_case('FI-08','Sessions quota exception must not skip IDB fallback','quota',lambda:quota('persist','V2KEY'))
- log_case('FI-09','Meetups quota exception must not skip IDB fallback','quota',lambda:quota('persistMeetups','MEETUPKEY'))
- log_case('FI-10','Roster quota exception must not skip IDB fallback','quota',lambda:quota('persistRoster','ROSTERKEY'))
- log_case('FI-11','Partial localStorage mirror must not leave mixed generations','quota',partial_mirror)
- log_case('FI-12','Native localStorage quota must preserve IDB write path','native-quota',real_quota)
- log_case('FI-13','idbPut promise rejects on native abort after request success','transaction',lambda:idb_abort('idbPut','state','fi-one'))
- log_case('FI-14','idbPutMany promise rejects on native abort and data rolls back','transaction',lambda:idb_abort('idbPutMany','state','meta'))
- log_case('FI-15','idbDelete promise rejects on native abort and record remains','transaction',lambda:idb_abort('idbDelete','state','fi-delete'))
- log_case('FI-16','Closed IndexedDB connection fallback survives restart','freshness',closed_connection)
- log_case('FI-17','Malformed saved IDB object must not erase valid local records','corruption',malformed_state)
- log_case('FI-18','IDB missing: valid local data imports on first boot','control',missing_idb)
- log_case('FI-19','IDB unavailable: valid local data usable in fallback','control',disabled_idb)
- log_case('FI-20','Both write paths unavailable must show an unsaved warning','feedback',both_fail)
- log_case('FI-21','Edit while IDB open is blocked must survive release','startup-race',delayed_boot)
- log_case('FI-22','Normal snapshot restore retains score','control',snapshot_roundtrip)
- log_case('FI-23','Valid zero score survives storage bootstrap','control',zero_score)
- log_case('FI-24','Corrupt local JSON recovers from valid IndexedDB','control',corrupt_ls)
+ if args.suite=='fault':
+  log_case('FI-01','Equal localStorage and IndexedDB bootstrap','control',lambda:bootstrap(state(),state(),100))
+  log_case('FI-02','Newer IndexedDB wins against older local mirror','control',lambda:bootstrap(state(),state(220,T0+10000),220))
+  log_case('FI-03','Newer local score must survive older IndexedDB','freshness',lambda:bootstrap(state(220,T0+10000),state(),220))
+  log_case('FI-04','New local session must survive older IndexedDB','freshness',newer_session)
+  log_case('FI-05','Local removed tombstone must not become published','freshness',newer_tombstone)
+  log_case('FI-06','Newer local draft must survive older IndexedDB','freshness',newer_draft)
+  log_case('FI-07','Immediate reload before 120ms persistence must retain edit','freshness',immediate_reload)
+  log_case('FI-08','Sessions quota exception must not skip IDB fallback','quota',lambda:quota('persist','V2KEY'))
+  log_case('FI-09','Meetups quota exception must not skip IDB fallback','quota',lambda:quota('persistMeetups','MEETUPKEY'))
+  log_case('FI-10','Roster quota exception must not skip IDB fallback','quota',lambda:quota('persistRoster','ROSTERKEY'))
+  log_case('FI-11','Partial localStorage mirror must not leave mixed generations','quota',partial_mirror)
+  log_case('FI-12','Native localStorage quota must preserve IDB write path','native-quota',real_quota)
+  log_case('FI-13','idbPut promise rejects on native abort after request success','transaction',lambda:idb_abort('idbPut','state','fi-one'))
+  log_case('FI-14','idbPutMany promise rejects on native abort and data rolls back','transaction',lambda:idb_abort('idbPutMany','state','meta'))
+  log_case('FI-15','idbDelete promise rejects on native abort and record remains','transaction',lambda:idb_abort('idbDelete','state','fi-delete'))
+  log_case('FI-16','Closed IndexedDB connection fallback survives restart','freshness',closed_connection)
+  log_case('FI-17','Malformed saved IDB object must not erase valid local records','corruption',malformed_state)
+  log_case('FI-18','IDB missing: valid local data imports on first boot','control',missing_idb)
+  log_case('FI-19','IDB unavailable: valid local data usable in fallback','control',disabled_idb)
+  log_case('FI-20','Both write paths unavailable must show an unsaved warning','feedback',both_fail)
+  log_case('FI-21','Edit while IDB open is blocked must survive release','startup-race',delayed_boot)
+  log_case('FI-22','Normal snapshot restore retains score','control',snapshot_roundtrip)
+  log_case('FI-23','Valid zero score survives storage bootstrap','control',zero_score)
+  log_case('FI-24','Corrupt local JSON recovers from valid IndexedDB','control',corrupt_ls)
+ else:
+  log_case('BR-01','Full backup download contains complete compatible state','backup',backup_export)
+  log_case('BR-02','Replace restore survives reload with pre-restore snapshot and PUBLIC control','backup',lambda:backup_restore('replace'))
+  log_case('BR-03','Newer-record merge survives reload','backup',lambda:backup_restore('merge'))
+  log_case('BR-04','Add-only restore preserves existing scores','backup',lambda:backup_restore('add'))
+  log_case('BR-05','Legacy record array remains importable','backup',legacy_backup)
+  log_case('BR-06','Malformed backup rejected without data mutation','backup',malformed_backup)
+  log_case('BR-07','v0.4.7.3 full-state backup remains compatible','backup',lambda:backup_restore('replace',True))
  browser.close()
 server.shutdown()
-result={'version':'v0.4.7.4-dev.2','purpose':'Data Safety Fault Injection — test-only; NOT a repair',
+result={'version':'v0.4.7.4-dev.2','purpose':'Native storage '+args.suite+' suite — isolated synthetic data',
  'source_index_sha256':hashlib.sha256(original.encode()).hexdigest(),'browser':args.browser,'browser_version':version,
  'environment':'localhost HTTP, fresh isolated browser context per scenario, native localStorage + native IndexedDB; Service Worker blocked; no production data or cloud',
  'source_storage_prefix':RUN,'external_requests_blocked':external,'counts':{k:sum(r['status']==k for r in results) for k in ['PASS','FAIL','HARNESS_ERROR']},
