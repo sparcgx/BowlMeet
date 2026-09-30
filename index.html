@@ -2548,7 +2548,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.7.4-dev.1';
+const APP_VERSION='0.4.7.4-dev.2';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const THEME_PREFS_KEY='bowlingMeetup.themePreferences.v1';
 const THEME_DEFAULTS=Object.freeze({
@@ -2668,7 +2668,7 @@ function setA11yCurrentView(viewId){
 let sessions=[]; let legacy=[]; let meetups=[]; let roster=[]; let editingId=''; let currentMeetupId=''; let deferredInstallPrompt=null; let lastShareBlob=null; let liveGameNo=1; let liveMetric='total'; let liveSaveTimer=null; let liveRollCommitTimer=null; let liveRollCommitKey=''; let liveRollCommitToken=0; let liveRollCommitGameNo=0; let liveRollWriteKey=''; let liveRollLastCommit={key:'',raw:'',gameNo:0,at:0}; let manualMeetupPlayers=[]; let historySource='all'; let historyMode='scores'; let playerDirectoryDetail=false; let playerDirectoryView='list'; let postReviewMeetupId='';
 let playerContext={key:'',rosterId:'',playerName:'',source:'LOCAL',originView:'players',hubOrigin:'players',originSessionId:'',view:'hub',analyticsRange:'all',history:{search:'',sort:'newest',range:'all',scrollTop:0,sessionId:''},navigation:{current:'players',previous:'',returnTarget:'players',hubReturnTarget:'players',sessionReturnTarget:'playerHistory',preserveScroll:true,scroll:{players:0,playerHub:0,playerHistory:0,analytics:0,scoreHistory:0}}};
 let playerSessionFocusReturn=null;
-let appDb=null; let dbReady=false; let dbMode='初始化中'; let dbPersistTimer=null; let pendingRestorePayload=null; let pwaRegistration=null; let pendingServiceWorker=null; let reloadingForUpdate=false; let pwaUpdateReloadTimer=null; let pwaUpdateReloadStarted=false; let pwaUpdateBackupReady=false; let pwaUpdateBackupFile='';
+let appDb=null; let dbReady=false; let dbMode='初始化中'; let dbPersistTimer=null; let storageHealth={local:true,idb:false,unsaved:false,lastError:'',lastSavedAt:0}; let pendingRestorePayload=null; let pwaRegistration=null; let pendingServiceWorker=null; let reloadingForUpdate=false; let pwaUpdateReloadTimer=null; let pwaUpdateReloadStarted=false; let pwaUpdateBackupReady=false; let pwaUpdateBackupFile='';
 const watchedPwaRegistrations=new WeakSet();
 let syncTimer=null; let syncPushTimer=null; let syncBusy=false; let syncDirty=false; let syncApplyingRemote=false; let syncRemotePresence={}; let syncLastError='';
 let personalData={profile:null,claims:[],games:[],revision:0,lastSyncAt:0,autoSync:true,updatedAt:0}; let personalTimer=null; let personalPushTimer=null; let personalBusy=false; let personalDirty=false; let personalLastError='';
@@ -2986,35 +2986,51 @@ function initLayoutSettings(){
 function captureState(){
   return {schema:3,appVersion:APP_VERSION,updatedAt:Date.now(),sessions:JSON.parse(JSON.stringify(sessions||[])),legacyRecords:JSON.parse(JSON.stringify(legacy||[])),meetups:JSON.parse(JSON.stringify(meetups||[])),roster:JSON.parse(JSON.stringify(roster||[])),personalData:JSON.parse(JSON.stringify(normalizePersonalData(personalData))),activeMeetupId:currentMeetupId||'',draft:safeJsonParse(localStorage.getItem(DRAFTKEY),'')||null,settings:safeJsonParse(localStorage.getItem(SETTINGS),'')||{},liveState:safeJsonParse(localStorage.getItem(LIVEKEY),'')||{},publicControl:getPublicControl()};
 }
+function stateShapeValid(state){
+  if(!state||typeof state!=='object'||Array.isArray(state))return false;
+  if(Number(state.schema)!==3)return false;
+  if(!Array.isArray(state.sessions)||!Array.isArray(state.meetups)||!Array.isArray(state.roster))return false;
+  if(state.legacyRecords!==undefined&&!Array.isArray(state.legacyRecords)&&!Array.isArray(state.legacy))return false;
+  return true;
+}
+function stateFreshness(state){
+  if(!state||typeof state!=='object')return 0;let newest=0;
+  const scan=v=>{if(!v||typeof v!=='object')return;if(Array.isArray(v)){for(const x of v)scan(x);return}for(const [k,x] of Object.entries(v)){if((k==='updatedAt'||k==='createdAt')&&typeof x==='number')newest=Math.max(newest,x);else if((k==='scoreUpdatedAt'||k==='frameUpdatedAt')&&Array.isArray(x))for(const n of x)newest=Math.max(newest,Number(n)||0);else if(typeof x==='object')scan(x)}};
+  scan(state.sessions);scan(state.meetups);scan(state.roster);scan(state.draft);scan(state.publicControl);scan(state.personalData);
+  return newest||Number(state.updatedAt)||0;
+}
 function mirrorStateToLocalStorage(state){
-  try{localStorage.setItem(V2KEY,JSON.stringify(state.sessions||[]));localStorage.setItem(V1KEY,JSON.stringify(state.legacyRecords||[]));localStorage.setItem(MEETUPKEY,JSON.stringify(state.meetups||[]));localStorage.setItem(ROSTERKEY,JSON.stringify(state.roster||[]));if(state.activeMeetupId)localStorage.setItem(ACTIVEKEY,state.activeMeetupId);else localStorage.removeItem(ACTIVEKEY);if(state.draft)localStorage.setItem(DRAFTKEY,JSON.stringify(state.draft));else localStorage.removeItem(DRAFTKEY);if(state.settings)localStorage.setItem(SETTINGS,JSON.stringify(state.settings));else localStorage.removeItem(SETTINGS);if(state.liveState)localStorage.setItem(LIVEKEY,JSON.stringify(state.liveState));else localStorage.removeItem(LIVEKEY);if(state.personalData)localStorage.setItem(PERSONALKEY,JSON.stringify(normalizePersonalData(state.personalData)));if(state.publicControl)localStorage.setItem(PUBLIC_CONTROL_KEY,JSON.stringify(normalizePublicControl(state.publicControl)));}catch(e){console.warn('localStorage mirror failed',e)}
+  const ops=[[V2KEY,JSON.stringify(state.sessions||[])],[V1KEY,JSON.stringify(state.legacyRecords||[])],[MEETUPKEY,JSON.stringify(state.meetups||[])],[ROSTERKEY,JSON.stringify(state.roster||[])],[ACTIVEKEY,state.activeMeetupId||null],[DRAFTKEY,state.draft?JSON.stringify(state.draft):null],[SETTINGS,state.settings?JSON.stringify(state.settings):null],[LIVEKEY,state.liveState?JSON.stringify(state.liveState):null],[PERSONALKEY,state.personalData?JSON.stringify(normalizePersonalData(state.personalData)):null],[PUBLIC_CONTROL_KEY,state.publicControl?JSON.stringify(normalizePublicControl(state.publicControl)):null]];
+  const before=new Map(),written=[];
+  try{for(const [key,value] of ops){before.set(key,localStorage.getItem(key));if(value===null)localStorage.removeItem(key);else localStorage.setItem(key,value);written.push(key)}storageHealth.local=true;return true}
+  catch(e){console.warn('localStorage mirror failed; rolling back partial mirror',e);for(const key of written.reverse()){try{const prev=before.get(key);if(prev===null)localStorage.removeItem(key);else localStorage.setItem(key,prev)}catch{}}storageHealth.local=false;storageHealth.unsaved=true;storageHealth.lastError='localStorage mirror failed · '+(e?.name||'Error');return false}
 }
 function normalizeState(state){
-  const s=state&&typeof state==='object'?state:{};
-  return {schema:3,appVersion:APP_VERSION,updatedAt:Number(s.updatedAt)||Date.now(),sessions:Array.isArray(s.sessions)?s.sessions:[],legacyRecords:Array.isArray(s.legacyRecords)?s.legacyRecords:(Array.isArray(s.legacy)?s.legacy:[]),meetups:Array.isArray(s.meetups)?s.meetups:[],roster:Array.isArray(s.roster)?s.roster:[],personalData:normalizePersonalData(s.personalData||{}),activeMeetupId:String(s.activeMeetupId||''),draft:s.draft||null,settings:s.settings||{},liveState:s.liveState||{},publicControl:normalizePublicControl(s.publicControl||{})};
+  if(!stateShapeValid(state))return null;const s=state;
+  return {schema:3,appVersion:APP_VERSION,updatedAt:Number(s.updatedAt)||0,sessions:s.sessions,legacyRecords:Array.isArray(s.legacyRecords)?s.legacyRecords:(Array.isArray(s.legacy)?s.legacy:[]),meetups:s.meetups,roster:s.roster,personalData:normalizePersonalData(s.personalData||{}),activeMeetupId:String(s.activeMeetupId||''),draft:s.draft||null,settings:s.settings||{},liveState:s.liveState||{},publicControl:normalizePublicControl(s.publicControl||{})};
 }
-function applyState(state,{render=true}={}){
-  const s=normalizeState(state);sessions=s.sessions;legacy=s.legacyRecords;meetups=s.meetups;roster=s.roster;personalData=s.personalData;currentMeetupId=s.activeMeetupId||'';mirrorStateToLocalStorage(s);try{if(s.settings?.venue){$('venue').value=s.settings.venue;$('meetupVenue').value=s.settings.venue}}catch{}migrateV3();if(render){renderAll();renderSafety();}
+function applyState(state,{render=true,mirror=true}={}){
+  const n=normalizeState(state);if(!n){console.warn('Rejected invalid saved app state');return false}
+  sessions=n.sessions;legacy=n.legacyRecords;meetups=n.meetups;roster=n.roster;personalData=n.personalData;currentMeetupId=n.activeMeetupId||'';const mirrored=mirror?mirrorStateToLocalStorage(n):true;
+  try{if(n.settings?.venue){$('venue').value=n.settings.venue;$('meetupVenue').value=n.settings.venue}}catch{}migrateV3();if(render){renderAll();renderSafety()}return mirrored;
 }
 function openDataDb(){
   return new Promise((resolve,reject)=>{if(!('indexedDB' in window)){reject(new Error('IndexedDB unavailable'));return}const req=indexedDB.open(DB_NAME,DB_VERSION);req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(DB_STATE_STORE))db.createObjectStore(DB_STATE_STORE,{keyPath:'key'});if(!db.objectStoreNames.contains(DB_SNAPSHOT_STORE)){const st=db.createObjectStore(DB_SNAPSHOT_STORE,{keyPath:'id'});st.createIndex('createdAt','createdAt',{unique:false})}if(!db.objectStoreNames.contains(DB_SYNC_LOG_STORE)){const lg=db.createObjectStore(DB_SYNC_LOG_STORE,{keyPath:'id'});lg.createIndex('createdAt','createdAt',{unique:false})}};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error||new Error('IndexedDB open failed'));});
 }
 function idbGet(store,key){return new Promise((resolve,reject)=>{if(!appDb){resolve(null);return}const tx=appDb.transaction(store,'readonly'),req=tx.objectStore(store).get(key);req.onsuccess=()=>resolve(req.result||null);req.onerror=()=>reject(req.error)})}
-function idbPut(store,value){return new Promise((resolve,reject)=>{if(!appDb){resolve(false);return}const tx=appDb.transaction(store,'readwrite');tx.oncomplete=()=>resolve(true);tx.onerror=()=>reject(tx.error);tx.objectStore(store).put(value)})}
-function idbPutMany(store,values){return new Promise((resolve,reject)=>{if(!appDb){resolve(false);return}const tx=appDb.transaction(store,'readwrite');tx.oncomplete=()=>resolve(true);tx.onerror=()=>reject(tx.error);const os=tx.objectStore(store);for(const value of values)os.put(value)})}
-function idbDelete(store,key){return new Promise((resolve,reject)=>{if(!appDb){resolve(false);return}const tx=appDb.transaction(store,'readwrite');tx.oncomplete=()=>resolve(true);tx.onerror=()=>reject(tx.error);tx.objectStore(store).delete(key)})}
+function idbPut(store,value){return new Promise((resolve,reject)=>{if(!appDb){resolve(false);return}let settled=false;const tx=appDb.transaction(store,'readwrite'),fail=()=>{if(settled)return;settled=true;reject(tx.error||new DOMException('IndexedDB transaction aborted','AbortError'))};tx.oncomplete=()=>{if(settled)return;settled=true;resolve(true)};tx.onerror=fail;tx.onabort=fail;try{tx.objectStore(store).put(value)}catch(e){settled=true;reject(e)}})}
+function idbPutMany(store,values){return new Promise((resolve,reject)=>{if(!appDb){resolve(false);return}let settled=false;const tx=appDb.transaction(store,'readwrite'),fail=()=>{if(settled)return;settled=true;reject(tx.error||new DOMException('IndexedDB transaction aborted','AbortError'))};tx.oncomplete=()=>{if(settled)return;settled=true;resolve(true)};tx.onerror=fail;tx.onabort=fail;try{const os=tx.objectStore(store);for(const value of values)os.put(value)}catch(e){settled=true;reject(e)}})}
+function idbDelete(store,key){return new Promise((resolve,reject)=>{if(!appDb){resolve(false);return}let settled=false;const tx=appDb.transaction(store,'readwrite'),fail=()=>{if(settled)return;settled=true;reject(tx.error||new DOMException('IndexedDB transaction aborted','AbortError'))};tx.oncomplete=()=>{if(settled)return;settled=true;resolve(true)};tx.onerror=fail;tx.onabort=fail;try{tx.objectStore(store).delete(key)}catch(e){settled=true;reject(e)}})}
 function idbGetAll(store){return new Promise((resolve,reject)=>{if(!appDb){resolve([]);return}const tx=appDb.transaction(store,'readonly'),req=tx.objectStore(store).getAll();req.onsuccess=()=>resolve(req.result||[]);req.onerror=()=>reject(req.error)})}
 async function persistDbStateNow(reason='state-change',stateOverride=null){
-  if(!dbReady||!appDb)return false;const state=stateOverride||captureState();await idbPutMany(DB_STATE_STORE,[{key:'appState',value:state},{key:'meta',value:{lastWriteAt:Date.now(),lastWriteReason:reason,appVersion:APP_VERSION}}]);return true;
+  if(!dbReady||!appDb)return false;const state=stateOverride||captureState();await idbPutMany(DB_STATE_STORE,[{key:'appState',value:state},{key:'meta',value:{lastWriteAt:Date.now(),lastWriteReason:reason,appVersion:APP_VERSION}}]);storageHealth.idb=true;storageHealth.unsaved=false;storageHealth.lastError='';storageHealth.lastSavedAt=Date.now();return true;
 }
+function markStorageFailure(message,error=null){storageHealth.unsaved=true;storageHealth.lastError=message+(error?.name?' · '+error.name:'');if(error)console.warn(message,error);renderSafety().catch(()=>{})}
 function queueDbStatePersist(reason='state-change'){
-  clearTimeout(dbPersistTimer);
-  dbPersistTimer=setTimeout(()=>persistDbStateNow(reason).then(ok=>{
-    if(ok===false&&reason==='sessions'&&dbMode==='localStorage fallback')setLiveSaveState('分數已保留於本機相容儲存 · IndexedDB 目前不可用',true)
-  }).catch(e=>{
-    console.warn('IndexedDB persist failed',e);
-    if(reason==='sessions'){dbMode='localStorage fallback';setLiveSaveState('分數已保留於本機，但 IndexedDB 寫入失敗 · 請勿清除網站資料',true);renderSafety().catch(()=>{})}
-  }),120)
+  clearTimeout(dbPersistTimer);dbPersistTimer=setTimeout(()=>persistDbStateNow(reason).then(ok=>{if(ok===false){storageHealth.idb=false;if(!storageHealth.local)markStorageFailure('資料尚未安全寫入：IndexedDB 與 localStorage 都不可用');else if(reason==='sessions')setLiveSaveState('分數已保留於 localStorage · IndexedDB 目前不可用',true)}}).catch(e=>{storageHealth.idb=false;if(!storageHealth.local)markStorageFailure('資料尚未安全寫入：兩條本機儲存路徑皆失敗',e);else{dbMode='localStorage fallback';if(reason==='sessions')setLiveSaveState('分數已保留於 localStorage，但 IndexedDB 寫入失敗 · 請勿清除網站資料',true);renderSafety().catch(()=>{})}}),120)
+}
+function safeLocalPersist(key,value,reason){
+  let ok=true;try{if(value===null)localStorage.removeItem(key);else localStorage.setItem(key,value);storageHealth.local=true}catch(e){ok=false;storageHealth.local=false;storageHealth.unsaved=true;storageHealth.lastError='localStorage 寫入失敗 · '+(e?.name||'Error');console.warn('localStorage persist failed',e)}queueDbStatePersist(reason);return ok;
 }
 async function createSnapshot(reason='手動快照',options={}){
   if(!dbReady||!appDb){return null}
@@ -3033,10 +3049,24 @@ async function restoreSnapshot(id){
   if(!id||!dbReady)return;const snap=(await idbGetAll(DB_SNAPSHOT_STORE)).find(x=>x.id===id);if(!snap)return;if(!confirm(`確定回復到 ${new Date(snap.createdAt).toLocaleString('zh-TW')} 的快照？目前資料會先再建立一個復原點。`))return;await createSnapshot('快照回復前');applyState(snap.state,{render:false});await persistDbStateNow('snapshot-restore');renderAll();renderSafety();switchView('safetyView');alert('快照已回復。');
 }
 async function initDataSafety(){
-  try{appDb=await openDataDb();dbReady=true;dbMode='IndexedDB';const saved=(await idbGet(DB_STATE_STORE,'appState'))?.value;if(saved){applyState(saved,{render:false});}else{await idbPut(DB_STATE_STORE,{key:'appState',value:captureState()});await createSnapshot('首次啟用 IndexedDB');}
-    const metaRec=(await idbGet(DB_STATE_STORE,'safetyMeta'))?.value||{};if(!metaRec.lastAutoSnapshotAt||Date.now()-metaRec.lastAutoSnapshotAt>86400000){await createSnapshot('每日自動快照');metaRec.lastAutoSnapshotAt=Date.now();await idbPut(DB_STATE_STORE,{key:'safetyMeta',value:metaRec});}
+  const localCandidate=captureState();
+  try{
+    appDb=await openDataDb();dbReady=true;dbMode='IndexedDB';storageHealth.idb=true;
+    const savedRaw=(await idbGet(DB_STATE_STORE,'appState'))?.value,saved=normalizeState(savedRaw),localValid=stateShapeValid(localCandidate),savedValid=!!saved;
+    if(savedValid&&localValid){
+      const localStamp=stateFreshness(localCandidate),idbStamp=stateFreshness(saved);
+      if(idbStamp>localStamp)applyState(saved,{render:false});
+      else if(localStamp>idbStamp)await persistDbStateNow('startup-local-newer',localCandidate);
+      else{
+        const lc=JSON.stringify([localCandidate.sessions,localCandidate.meetups,localCandidate.roster,localCandidate.draft,localCandidate.publicControl]),ic=JSON.stringify([saved.sessions,saved.meetups,saved.roster,saved.draft,saved.publicControl]);
+        if(lc===ic)applyState(saved,{render:false});else{storageHealth.lastError='啟動偵測到兩份不同資料；已保留目前本機資料';await persistDbStateNow('startup-divergence-preserve-local',localCandidate)}
+      }
+    }else if(savedValid)applyState(saved,{render:false});
+    else if(localValid){await persistDbStateNow(savedRaw?'startup-invalid-idb-recovered-from-local':'startup-import-local',localCandidate);if(!savedRaw)await createSnapshot('首次啟用 IndexedDB')}
+    else throw new Error('No valid local or IndexedDB application state');
+    const metaRec=(await idbGet(DB_STATE_STORE,'safetyMeta'))?.value||{};if(!metaRec.lastAutoSnapshotAt||Date.now()-metaRec.lastAutoSnapshotAt>86400000){await createSnapshot('每日自動快照');metaRec.lastAutoSnapshotAt=Date.now();await idbPut(DB_STATE_STORE,{key:'safetyMeta',value:metaRec})}
     await persistDbStateNow('startup');renderAll();renderSafety();
-  }catch(e){console.warn('IndexedDB init failed; fallback to localStorage',e);dbReady=false;dbMode='localStorage fallback';renderSafety();}
+  }catch(e){console.warn('IndexedDB init failed; fallback to localStorage',e);dbReady=false;storageHealth.idb=false;dbMode='localStorage fallback';if(!storageHealth.local)markStorageFailure('資料尚未安全寫入：IndexedDB 初始化與 localStorage 皆不可用',e);renderSafety()}
 }
 function normalizeBowlingRoll(v){if(v===''||v===null||typeof v==='undefined')return null;const n=Number(v);return Number.isInteger(n)&&n>=0&&n<=10?n:null}
 function normalizeBowlingFrame(raw,index=0){const count=index===9?3:2,r=raw&&typeof raw==='object'?raw:{};return {rolls:Array.from({length:count},(_,i)=>normalizeBowlingRoll((r.rolls||[])[i])),updatedAt:Number(r.updatedAt)||0}}
@@ -3086,7 +3116,7 @@ function openRestoreDialog(payload,fileName='備份檔'){
   pendingRestorePayload=payload;$('restoreFileInfo').textContent=`${fileName} 已讀取。選擇匯入方式後再套用；套用前會自動建立安全快照。`;$('restoreMeetupsCount').textContent=payload.meetups.length;$('restoreRosterCount').textContent=payload.roster.length;$('restoreSessionsCount').textContent=payload.sessions.length;$('restoreLegacyCount').textContent=payload.legacy.length;const d=$('restoreDialog');rememberA11yFocus(d);if(d.showModal)d.showModal();else d.setAttribute('open','');requestAnimationFrame(()=>d.querySelector('input[name="restoreMode"]:checked')?.focus());
 }
 async function renderSafety(){
-  const eng=$('safetyEngine');if(!eng)return;eng.textContent=dbMode;$('safetyEngineSub').textContent=dbReady?'主要資料已由 IndexedDB 保存；localStorage 為相容鏡像。':'IndexedDB 不可用時仍可繼續使用 localStorage。';const snaps=await listSnapshots().catch(()=>[]);$('snapshotCount').textContent=snaps.length;if(snaps.length){$('lastSnapshotTime').textContent=new Date(snaps[0].createdAt).toLocaleDateString('zh-TW');$('lastSnapshotReason').textContent=snaps[0].reason||'快照';$('snapshotList').innerHTML=snaps.map(s=>`<div class="snapshot-item"><div class="snapshot-main"><strong>${esc(new Date(s.createdAt).toLocaleString('zh-TW'))}</strong><span>${esc(s.reason||'快照')} · ${esc(s.appVersion||'')}</span></div><button class="btn small" type="button" data-restore-snapshot="${esc(s.id)}">回復</button></div>`).join('')}else{$('lastSnapshotTime').textContent='—';$('lastSnapshotReason').textContent='尚無快照';$('snapshotList').innerHTML='<div class="snapshot-empty">尚無安全快照。</div>'}
+  const eng=$('safetyEngine');if(!eng)return;eng.textContent=dbMode;if(storageHealth.unsaved)$('safetyEngineSub').textContent='⚠ 資料尚未安全儲存。'+(storageHealth.lastError||'請先保留畫面並匯出備份。');else if(dbReady&&storageHealth.idb)$('safetyEngineSub').textContent=storageHealth.local?'主要資料已由 IndexedDB 保存；localStorage 為相容鏡像。':'主要資料已由 IndexedDB 保存；localStorage 鏡像目前不可用。';else $('safetyEngineSub').textContent=storageHealth.local?'IndexedDB 不可用，目前由 localStorage 暫存。':'⚠ 目前沒有可確認的持久化儲存路徑。';const snaps=await listSnapshots().catch(()=>[]);$('snapshotCount').textContent=snaps.length;if(snaps.length){$('lastSnapshotTime').textContent=new Date(snaps[0].createdAt).toLocaleDateString('zh-TW');$('lastSnapshotReason').textContent=snaps[0].reason||'快照';$('snapshotList').innerHTML=snaps.map(s=>`<div class="snapshot-item"><div class="snapshot-main"><strong>${esc(new Date(s.createdAt).toLocaleString('zh-TW'))}</strong><span>${esc(s.reason||'快照')} · ${esc(s.appVersion||'')}</span></div><button class="btn small" type="button" data-restore-snapshot="${esc(s.id)}">回復</button></div>`).join('')}else{$('lastSnapshotTime').textContent='—';$('lastSnapshotReason').textContent='尚無快照';$('snapshotList').innerHTML='<div class="snapshot-empty">尚無安全快照。</div>'}
 }
 function runIntegrityCheck(){
   const issues=[];const dup=(arr,label)=>{const seen=new Set();for(const x of arr){if(!x?.id){issues.push(`${label} 有缺少 ID 的資料`);continue}if(seen.has(x.id))issues.push(`${label} 有重複 ID：${x.id}`);seen.add(x.id)}};dup(sessions,'計分卡');dup(meetups,'球聚');dup(roster,'球員資料');const meetupIds=new Set(meetups.map(x=>x.id));for(const s of sessions){if(s.meetupId&&!meetupIds.has(s.meetupId))issues.push(`計分卡 ${s.id} 連結到不存在的球聚`);for(const p of s.players||[])for(const score of p.scores||[]){if(score!==null&&normalizeScore(score)===null)issues.push(`計分卡 ${s.id} 含無效分數`)}}const names=new Set();for(const r of roster){const k=nameKey(r.name);if(k&&names.has(k))issues.push(`球員資料重複姓名：${r.name}`);names.add(k)}const el=$('integrityResult');if(!issues.length)el.innerHTML='<strong class="integrity-ok">檢查通過：</strong>未發現重複 ID、無效分數、孤立球聚連結或重複球員資料姓名。';else el.innerHTML=`<strong class="integrity-warn">發現 ${issues.length} 個問題：</strong>${issues.slice(0,8).map(esc).join('；')}${issues.length>8?'…':''}`;
@@ -3102,9 +3132,9 @@ function load(){
   try{const s=JSON.parse(localStorage.getItem(SETTINGS)||'{}');if(s.venue)$('venue').value=s.venue;if(s.venue)$('meetupVenue').value=s.venue}catch{}
   migrateV3();
 }
-function persist(){localStorage.setItem(V2KEY,JSON.stringify(sessions));queueDbStatePersist('sessions');scheduleCloudPush('sessions');scheduleGroupPush('sessions')}
-function persistMeetups(){localStorage.setItem(MEETUPKEY,JSON.stringify(meetups));queueDbStatePersist('meetups');scheduleCloudPush('meetups');scheduleGroupPush('meetups')}
-function persistRoster(){localStorage.setItem(ROSTERKEY,JSON.stringify(roster));queueDbStatePersist('roster')}
+function persist(){safeLocalPersist(V2KEY,JSON.stringify(sessions),'sessions');scheduleCloudPush('sessions');scheduleGroupPush('sessions')}
+function persistMeetups(){safeLocalPersist(MEETUPKEY,JSON.stringify(meetups),'meetups');scheduleCloudPush('meetups');scheduleGroupPush('meetups')}
+function persistRoster(){safeLocalPersist(ROSTERKEY,JSON.stringify(roster),'roster')}
 function validMeetupContextId(id=''){const value=String(id||'');return value&&meetups.some(m=>m.id===value)?value:''}
 function validateCurrentMeetupContext(){
   const valid=validMeetupContextId(currentMeetupId);if(valid===currentMeetupId)return valid;
@@ -3151,7 +3181,7 @@ function refreshSheetCalcs(){
 }
 function saveDraft(){
   const draft={date:$('date').value,venue:$('venue').value,lane:$('lane').value,players:currentPlayersFromTable(),editingId,meetupId:currentMeetupId,importAudit:pendingImportAudit};
-  localStorage.setItem(DRAFTKEY,JSON.stringify(draft));queueDbStatePersist('draft');
+  safeLocalPersist(DRAFTKEY,JSON.stringify(draft),'draft');
 }
 function loadDraft(){
   try{const d=JSON.parse(localStorage.getItem(DRAFTKEY)||'null');if(d&&Array.isArray(d.players)){editingId=d.editingId||'';currentMeetupId=d.meetupId||currentMeetupId||'';if(currentMeetupId)localStorage.setItem(ACTIVEKEY,currentMeetupId);pendingImportAudit=d.importAudit||null;$('date').value=d.date||today();$('venue').value=d.venue||$('venue').value;$('lane').value=d.lane||'';renderScoreRows(d.players);updateEditStatus();return true}}catch{}
