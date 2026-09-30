@@ -1,0 +1,43 @@
+BowlMeet v0.4.7.4-dev.2｜Data Safety Recovery & Persistence Hardening
+Date: 2026-09-30
+Base: v0.4.7.4-dev.1
+
+DATA SAFETY NATIVE FAULT GATE
+GitHub Actions run: 36681233429
+Chromium: 24 PASS / 0 FAIL / 0 HARNESS ERROR
+WebKit:   24 PASS / 0 FAIL / 0 HARNESS ERROR
+Total executions: 48 / 48 PASS
+
+REGRESSION GATE
+GitHub Actions run: 36681495700
+Source / scoring / simulated Service Worker: 25 PASS / 0 FAIL
+Browser UI regression: 248 PASS / 0 FAIL
+2000 deterministic valid games matched independent scorer.
+PUBLIC / public-only share / tombstone regression: PASS.
+DB_VERSION = 2.
+No schema migration.
+
+FIXED
+- Newer local edits no longer get blindly overwritten by stale IndexedDB state.
+- Immediate reload before delayed IDB persistence retains the newer local edit.
+- New local sessions, drafts and removed-record controls survive stale IDB bootstrap.
+- localStorage QuotaExceededError no longer prevents IndexedDB fallback.
+- Partial localStorage mirror failure rolls back mixed-generation keys; IndexedDB remains recoverable.
+- idbPut / idbPutMany / idbDelete reject on transaction abort.
+- Closed/unavailable IndexedDB fallback survives restart.
+- Malformed IndexedDB appState cannot erase valid local records.
+- Corrupt local JSON recovers from valid IndexedDB.
+- When both local write paths are unavailable, UI reports unsaved state instead of claiming durable save.
+
+LIMITATIONS
+- WebKit is not a physical iPhone Safari/PWA.
+- No physical disk/power-loss injection.
+- No live Supabase/RLS mutation was used by this gate.
+- Physical-device data-flow acceptance remains PENDING.
+
+STATUS
+Data Safety Fault Injection: PASS
+Regression: PASS
+Physical Device Data Flow: PENDING
+RC / Stable Promotion: BLOCKED until device data-flow acceptance.
+Stable / Freeze: UNCHANGED
