@@ -1,0 +1,50 @@
+name: BowlMeet v0474 RC.1 full regression gate
+on:
+  push:
+    branches: ['v0.4.7.4-RC.1']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fault-injection:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify RC identity and frozen functionality
+        run: |
+          python tools/test-rc-identity-v0474.py
+          mkdir -p fi-results
+          sha256sum index.html tools/test-data-safety-v0474.py > fi-results/SHA256.txt
+      - name: Install browser
+        run: |
+          python -m pip install 'playwright==1.57.0'
+          python -m playwright install --with-deps ${{ matrix.browser }}
+      - name: Run native storage faults
+        run: |
+          set -o pipefail
+          python tools/test-data-safety-v0474.py . fi-results --browser '${{ matrix.browser }}' 2>&1 | tee fi-results/run.log
+      - name: Source scoring and simulated Service Worker regression
+        if: matrix.browser == 'chromium'
+        run: node tools/test-v0474.mjs . > fi-results/source-regression.json
+      - name: Browser UI and PUBLIC-only regression
+        if: matrix.browser == 'chromium'
+        run: python tools/test-ui-v0474.py . fi-results/ui > fi-results/ui.log
+      - name: Native Backup Restore regression
+        run: |
+          set -o pipefail
+          python tools/test-data-safety-v0474.py . fi-results/backup --browser '${{ matrix.browser }}' --suite backup 2>&1 | tee fi-results/backup.log
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: bowlmeet-rc1-full-gate-${{ matrix.browser }}
+          path: fi-results/
+          retention-days: 14
