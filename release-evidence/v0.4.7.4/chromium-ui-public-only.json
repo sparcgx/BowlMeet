@@ -1,0 +1,1042 @@
+{
+  "environment": "Chromium Linux; offline inlined source/assets; mock localStorage; no real cloud or native PWA/IndexedDB",
+  "checks": [
+    {
+      "name": "320: initialization",
+      "status": "PASS"
+    },
+    {
+      "name": "320/default: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "320/default: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "320/default: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "320/default: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-dock-float-r9"
+    },
+    {
+      "name": "320/default: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "320/default: fixed mobile dock",
+      "status": "PASS"
+    },
+    {
+      "name": "320/liquid-glass: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "320/liquid-glass: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "320/liquid-glass: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "320/liquid-glass: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-dock-float-r9"
+    },
+    {
+      "name": "320/liquid-glass: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "320/liquid-glass: fixed mobile dock",
+      "status": "PASS"
+    },
+    {
+      "name": "320/clear-blue: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "320/clear-blue: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "320/clear-blue: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "320/clear-blue: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-dock-float-r9"
+    },
+    {
+      "name": "320/clear-blue: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "320/clear-blue: fixed mobile dock",
+      "status": "PASS"
+    },
+    {
+      "name": "320/soft-violet: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "320/soft-violet: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "320/soft-violet: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "320/soft-violet: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-dock-float-r9"
+    },
+    {
+      "name": "320/soft-violet: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "320/soft-violet: fixed mobile dock",
+      "status": "PASS"
+    },
+    {
+      "name": "320/dark-night: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "320/dark-night: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "320/dark-night: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "320/dark-night: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-dock-float-r9"
+    },
+    {
+      "name": "320/dark-night: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "320/dark-night: fixed mobile dock",
+      "status": "PASS"
+    },
+    {
+      "name": "320/high-contrast: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "320/high-contrast: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "320/high-contrast: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "320/high-contrast: approved motion timing",
+      "status": "PASS",
+      "detail": "none"
+    },
+    {
+      "name": "320/high-contrast: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "320/high-contrast: fixed mobile dock",
+      "status": "PASS"
+    },
+    {
+      "name": "320: Theme Motion Off stops animation",
+      "status": "PASS"
+    },
+    {
+      "name": "320: transparency off removes gradient",
+      "status": "PASS"
+    },
+    {
+      "name": "320: transparency off is opaque",
+      "status": "PASS"
+    },
+    {
+      "name": "320: OS reduced motion stops animation",
+      "status": "PASS"
+    },
+    {
+      "name": "320: pagehide pauses motion",
+      "status": "PASS"
+    },
+    {
+      "name": "320: pageshow resumes motion",
+      "status": "PASS"
+    },
+    {
+      "name": "320: forced-colors stops motion",
+      "status": "PASS"
+    },
+    {
+      "name": "320: dock score navigation",
+      "status": "PASS"
+    },
+    {
+      "name": "320: dock history navigation",
+      "status": "PASS"
+    },
+    {
+      "name": "320: More sheet opens",
+      "status": "PASS"
+    },
+    {
+      "name": "320: More to settings",
+      "status": "PASS"
+    },
+    {
+      "name": "320: rejects invalid score 301",
+      "status": "PASS"
+    },
+    {
+      "name": "320: rejects invalid score -1",
+      "status": "PASS"
+    },
+    {
+      "name": "320: rejects invalid score 12.5",
+      "status": "PASS"
+    },
+    {
+      "name": "320: valid zero accepted",
+      "status": "PASS"
+    },
+    {
+      "name": "390: initialization",
+      "status": "PASS"
+    },
+    {
+      "name": "390/default: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "390/default: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "390/default: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "390/default: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-dock-float-r9"
+    },
+    {
+      "name": "390/default: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "390/default: fixed mobile dock",
+      "status": "PASS"
+    },
+    {
+      "name": "390/liquid-glass: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "390/liquid-glass: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "390/liquid-glass: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "390/liquid-glass: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-dock-float-r9"
+    },
+    {
+      "name": "390/liquid-glass: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "390/liquid-glass: fixed mobile dock",
+      "status": "PASS"
+    },
+    {
+      "name": "390/clear-blue: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "390/clear-blue: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "390/clear-blue: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "390/clear-blue: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-dock-float-r9"
+    },
+    {
+      "name": "390/clear-blue: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "390/clear-blue: fixed mobile dock",
+      "status": "PASS"
+    },
+    {
+      "name": "390/soft-violet: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "390/soft-violet: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "390/soft-violet: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "390/soft-violet: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-dock-float-r9"
+    },
+    {
+      "name": "390/soft-violet: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "390/soft-violet: fixed mobile dock",
+      "status": "PASS"
+    },
+    {
+      "name": "390/dark-night: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "390/dark-night: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "390/dark-night: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "390/dark-night: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-dock-float-r9"
+    },
+    {
+      "name": "390/dark-night: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "390/dark-night: fixed mobile dock",
+      "status": "PASS"
+    },
+    {
+      "name": "390/high-contrast: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "390/high-contrast: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "390/high-contrast: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "390/high-contrast: approved motion timing",
+      "status": "PASS",
+      "detail": "none"
+    },
+    {
+      "name": "390/high-contrast: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "390/high-contrast: fixed mobile dock",
+      "status": "PASS"
+    },
+    {
+      "name": "390: Theme Motion Off stops animation",
+      "status": "PASS"
+    },
+    {
+      "name": "390: transparency off removes gradient",
+      "status": "PASS"
+    },
+    {
+      "name": "390: transparency off is opaque",
+      "status": "PASS"
+    },
+    {
+      "name": "390: OS reduced motion stops animation",
+      "status": "PASS"
+    },
+    {
+      "name": "390: pagehide pauses motion",
+      "status": "PASS"
+    },
+    {
+      "name": "390: pageshow resumes motion",
+      "status": "PASS"
+    },
+    {
+      "name": "390: forced-colors stops motion",
+      "status": "PASS"
+    },
+    {
+      "name": "390: dock score navigation",
+      "status": "PASS"
+    },
+    {
+      "name": "390: dock history navigation",
+      "status": "PASS"
+    },
+    {
+      "name": "390: More sheet opens",
+      "status": "PASS"
+    },
+    {
+      "name": "390: More to settings",
+      "status": "PASS"
+    },
+    {
+      "name": "390: rejects invalid score 301",
+      "status": "PASS"
+    },
+    {
+      "name": "390: rejects invalid score -1",
+      "status": "PASS"
+    },
+    {
+      "name": "390: rejects invalid score 12.5",
+      "status": "PASS"
+    },
+    {
+      "name": "390: valid zero accepted",
+      "status": "PASS"
+    },
+    {
+      "name": "430: initialization",
+      "status": "PASS"
+    },
+    {
+      "name": "430/default: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "430/default: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "430/default: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "430/default: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-dock-float-r9"
+    },
+    {
+      "name": "430/default: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "430/default: fixed mobile dock",
+      "status": "PASS"
+    },
+    {
+      "name": "430/liquid-glass: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "430/liquid-glass: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "430/liquid-glass: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "430/liquid-glass: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-dock-float-r9"
+    },
+    {
+      "name": "430/liquid-glass: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "430/liquid-glass: fixed mobile dock",
+      "status": "PASS"
+    },
+    {
+      "name": "430/clear-blue: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "430/clear-blue: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "430/clear-blue: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "430/clear-blue: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-dock-float-r9"
+    },
+    {
+      "name": "430/clear-blue: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "430/clear-blue: fixed mobile dock",
+      "status": "PASS"
+    },
+    {
+      "name": "430/soft-violet: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "430/soft-violet: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "430/soft-violet: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "430/soft-violet: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-dock-float-r9"
+    },
+    {
+      "name": "430/soft-violet: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "430/soft-violet: fixed mobile dock",
+      "status": "PASS"
+    },
+    {
+      "name": "430/dark-night: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "430/dark-night: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "430/dark-night: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "430/dark-night: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-dock-float-r9"
+    },
+    {
+      "name": "430/dark-night: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "430/dark-night: fixed mobile dock",
+      "status": "PASS"
+    },
+    {
+      "name": "430/high-contrast: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "430/high-contrast: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "430/high-contrast: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "430/high-contrast: approved motion timing",
+      "status": "PASS",
+      "detail": "none"
+    },
+    {
+      "name": "430/high-contrast: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "430/high-contrast: fixed mobile dock",
+      "status": "PASS"
+    },
+    {
+      "name": "430: Theme Motion Off stops animation",
+      "status": "PASS"
+    },
+    {
+      "name": "430: transparency off removes gradient",
+      "status": "PASS"
+    },
+    {
+      "name": "430: transparency off is opaque",
+      "status": "PASS"
+    },
+    {
+      "name": "430: OS reduced motion stops animation",
+      "status": "PASS"
+    },
+    {
+      "name": "430: pagehide pauses motion",
+      "status": "PASS"
+    },
+    {
+      "name": "430: pageshow resumes motion",
+      "status": "PASS"
+    },
+    {
+      "name": "430: forced-colors stops motion",
+      "status": "PASS"
+    },
+    {
+      "name": "430: dock score navigation",
+      "status": "PASS"
+    },
+    {
+      "name": "430: dock history navigation",
+      "status": "PASS"
+    },
+    {
+      "name": "430: More sheet opens",
+      "status": "PASS"
+    },
+    {
+      "name": "430: More to settings",
+      "status": "PASS"
+    },
+    {
+      "name": "430: rejects invalid score 301",
+      "status": "PASS"
+    },
+    {
+      "name": "430: rejects invalid score -1",
+      "status": "PASS"
+    },
+    {
+      "name": "430: rejects invalid score 12.5",
+      "status": "PASS"
+    },
+    {
+      "name": "430: valid zero accepted",
+      "status": "PASS"
+    },
+    {
+      "name": "768: initialization",
+      "status": "PASS"
+    },
+    {
+      "name": "768/default: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "768/default: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "768/default: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "768/default: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-tab-float-r8"
+    },
+    {
+      "name": "768/default: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "768/liquid-glass: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "768/liquid-glass: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "768/liquid-glass: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "768/liquid-glass: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-tab-float-r8"
+    },
+    {
+      "name": "768/liquid-glass: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "768/clear-blue: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "768/clear-blue: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "768/clear-blue: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "768/clear-blue: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-tab-float-r8"
+    },
+    {
+      "name": "768/clear-blue: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "768/soft-violet: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "768/soft-violet: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "768/soft-violet: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "768/soft-violet: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-tab-float-r8"
+    },
+    {
+      "name": "768/soft-violet: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "768/dark-night: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "768/dark-night: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "768/dark-night: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "768/dark-night: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-tab-float-r8"
+    },
+    {
+      "name": "768/dark-night: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "768/high-contrast: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "768/high-contrast: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "768/high-contrast: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "768/high-contrast: approved motion timing",
+      "status": "PASS",
+      "detail": "none"
+    },
+    {
+      "name": "768/high-contrast: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "768: Theme Motion Off stops animation",
+      "status": "PASS"
+    },
+    {
+      "name": "768: transparency off removes gradient",
+      "status": "PASS"
+    },
+    {
+      "name": "768: transparency off is opaque",
+      "status": "PASS"
+    },
+    {
+      "name": "768: OS reduced motion stops animation",
+      "status": "PASS"
+    },
+    {
+      "name": "768: pagehide pauses motion",
+      "status": "PASS"
+    },
+    {
+      "name": "768: pageshow resumes motion",
+      "status": "PASS"
+    },
+    {
+      "name": "768: forced-colors stops motion",
+      "status": "PASS"
+    },
+    {
+      "name": "768: desktop score navigation",
+      "status": "PASS"
+    },
+    {
+      "name": "768: rejects invalid score 301",
+      "status": "PASS"
+    },
+    {
+      "name": "768: rejects invalid score -1",
+      "status": "PASS"
+    },
+    {
+      "name": "768: rejects invalid score 12.5",
+      "status": "PASS"
+    },
+    {
+      "name": "768: valid zero accepted",
+      "status": "PASS"
+    },
+    {
+      "name": "1440: initialization",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/default: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/default: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/default: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/default: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-tab-float-r8"
+    },
+    {
+      "name": "1440/default: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/liquid-glass: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/liquid-glass: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/liquid-glass: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/liquid-glass: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-tab-float-r8"
+    },
+    {
+      "name": "1440/liquid-glass: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/clear-blue: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/clear-blue: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/clear-blue: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/clear-blue: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-tab-float-r8"
+    },
+    {
+      "name": "1440/clear-blue: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/soft-violet: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/soft-violet: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/soft-violet: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/soft-violet: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-tab-float-r8"
+    },
+    {
+      "name": "1440/soft-violet: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/dark-night: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/dark-night: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/dark-night: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/dark-night: approved motion timing",
+      "status": "PASS",
+      "detail": "bowlmeet-tab-float-r8"
+    },
+    {
+      "name": "1440/dark-night: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/high-contrast: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/high-contrast: verified 192px icon loaded",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/high-contrast: targets >=44px",
+      "status": "PASS"
+    },
+    {
+      "name": "1440/high-contrast: approved motion timing",
+      "status": "PASS",
+      "detail": "none"
+    },
+    {
+      "name": "1440/high-contrast: no per-item backdrop filters",
+      "status": "PASS"
+    },
+    {
+      "name": "1440: Theme Motion Off stops animation",
+      "status": "PASS"
+    },
+    {
+      "name": "1440: transparency off removes gradient",
+      "status": "PASS"
+    },
+    {
+      "name": "1440: transparency off is opaque",
+      "status": "PASS"
+    },
+    {
+      "name": "1440: OS reduced motion stops animation",
+      "status": "PASS"
+    },
+    {
+      "name": "1440: pagehide pauses motion",
+      "status": "PASS"
+    },
+    {
+      "name": "1440: pageshow resumes motion",
+      "status": "PASS"
+    },
+    {
+      "name": "1440: forced-colors stops motion",
+      "status": "PASS"
+    },
+    {
+      "name": "1440: desktop score navigation",
+      "status": "PASS"
+    },
+    {
+      "name": "1440: rejects invalid score 301",
+      "status": "PASS"
+    },
+    {
+      "name": "1440: rejects invalid score -1",
+      "status": "PASS"
+    },
+    {
+      "name": "1440: rejects invalid score 12.5",
+      "status": "PASS"
+    },
+    {
+      "name": "1440: valid zero accepted",
+      "status": "PASS"
+    },
+    {
+      "name": "Synthetic refresh does not alter score/meetup/roster data",
+      "status": "PASS"
+    },
+    {
+      "name": "History renders all 100 sessions on entry",
+      "status": "PASS"
+    },
+    {
+      "name": "Public-only source excludes 99 unpublished sessions",
+      "status": "PASS"
+    },
+    {
+      "name": "Share uses public-only 48 scores",
+      "status": "PASS"
+    },
+    {
+      "name": "Tombstone removes cancelled public results",
+      "status": "PASS"
+    },
+    {
+      "name": "No unhandled page errors in exercised routes",
+      "status": "PASS",
+      "detail": []
+    }
+  ],
+  "passed": 248,
+  "failed": 0,
+  "metrics": {
+    "renderAll100x8_ms": [
+      70.10000000000582,
+      60.5,
+      66.59999999999127,
+      51.70000000001164,
+      49.09999999999127,
+      61.5,
+      59.90000000000873
+    ],
+    "nodes_before_history": 3712
+  }
+}

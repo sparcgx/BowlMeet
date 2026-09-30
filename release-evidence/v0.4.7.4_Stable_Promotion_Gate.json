@@ -1,0 +1,68 @@
+{
+  "version": "v0.4.7.4",
+  "status": "FORMAL_RELEASE_GATE_PASS",
+  "date": "2026-09-30",
+  "sourceCommit": "e4924dedd9945c16b3d0b8111cc497cceb3ff85d",
+  "indexSha256": "1e39a1f1b4b4b9c38b6ca93fda5bcfd188397d4bc3b2e700ea3b69cd6dad7518",
+  "fullGateRun": 36736711499,
+  "nativeFault": {
+    "chromium": {
+      "PASS": 24,
+      "FAIL": 0,
+      "HARNESS_ERROR": 0,
+      "PENDING": 0
+    },
+    "webkit": {
+      "PASS": 24,
+      "FAIL": 0,
+      "HARNESS_ERROR": 0,
+      "PENDING": 0
+    }
+  },
+  "backupRestore": {
+    "chromium": {
+      "PASS": 7,
+      "FAIL": 0,
+      "HARNESS_ERROR": 0,
+      "PENDING": 0
+    },
+    "webkit": {
+      "PASS": 7,
+      "FAIL": 0,
+      "HARNESS_ERROR": 0,
+      "PENDING": 0
+    }
+  },
+  "regression": {
+    "source-scoring-simulated-sw": {
+      "PASS": 25,
+      "FAIL": 0
+    },
+    "chromium-ui-public-only": {
+      "PASS": 248,
+      "FAIL": 0
+    }
+  },
+  "automaticTotalPass": 335,
+  "rcAcceptance": {
+    "status": "PASS_USER_REPORTED",
+    "time": "2026-09-30T23:21:28+08:00",
+    "commit": "0d87a4310ac4ab76cb45e25955391534bcdcd9eb",
+    "scope": "iPhone/PWA opening, save/reload, installed PWA close/reopen"
+  },
+  "previousStableCommit": "1d7ea21ea2654e989545974dcd3987281710c6fc",
+  "dbVersion": 2,
+  "productionPublicCode": "PUBLIC",
+  "schemaMigration": false,
+  "functionallyEquivalentToAcceptedRC": true,
+  "formalURL": "https://sparcgx.github.io/BowlMeet/",
+  "releasePR": 120,
+  "evidenceDirectory": "release-evidence/v0.4.7.4/",
+  "limitations": [
+    "WebKit CI is not physical iPhone Safari/PWA",
+    "SW Cache API is simulated in Node",
+    "UI localStorage is mocked; native FI/backup tests use native browser storage with synthetic records",
+    "No production Supabase/RLS mutations; no physical disk power-loss or real OS eviction test"
+  ],
+  "freezePolicy": "After deployment verification, main/stable/v0.4.7.4/freeze/v0.4.7.4 reference the same release commit; earlier freeze refs remain unchanged."
+}

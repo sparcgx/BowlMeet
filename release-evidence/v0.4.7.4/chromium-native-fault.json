@@ -1,0 +1,564 @@
+{
+  "version": "v0.4.7.4",
+  "purpose": "Native storage fault suite — isolated synthetic data",
+  "source_index_sha256": "1e39a1f1b4b4b9c38b6ca93fda5bcfd188397d4bc3b2e700ea3b69cd6dad7518",
+  "browser": "chromium",
+  "browser_version": "153.0.8010.0",
+  "environment": "localhost HTTP, fresh isolated browser context per scenario, native localStorage + native IndexedDB; Service Worker blocked; no production data or cloud",
+  "source_storage_prefix": "bowlmeet.fi.1790782002969371532.",
+  "external_requests_blocked": [],
+  "counts": {
+    "PASS": 24,
+    "FAIL": 0,
+    "HARNESS_ERROR": 0
+  },
+  "gate": "PASS",
+  "cases": [
+    {
+      "id": "FI-01",
+      "name": "Equal localStorage and IndexedDB bootstrap",
+      "category": "control",
+      "status": "PASS",
+      "detail": {
+        "memory_score": 100,
+        "idb_score": 100,
+        "local_score": 100,
+        "memory_session_ids": [
+          "fi-session"
+        ],
+        "idb_session_ids": [
+          "fi-session"
+        ],
+        "local_session_ids": [
+          "fi-session"
+        ],
+        "dbReady": true,
+        "dbMode": "IndexedDB",
+        "errors": [],
+        "events": []
+      }
+    },
+    {
+      "id": "FI-02",
+      "name": "Newer IndexedDB wins against older local mirror",
+      "category": "control",
+      "status": "PASS",
+      "detail": {
+        "memory_score": 220,
+        "idb_score": 220,
+        "local_score": 220,
+        "memory_session_ids": [
+          "fi-session"
+        ],
+        "idb_session_ids": [
+          "fi-session"
+        ],
+        "local_session_ids": [
+          "fi-session"
+        ],
+        "dbReady": true,
+        "dbMode": "IndexedDB",
+        "errors": [],
+        "events": []
+      }
+    },
+    {
+      "id": "FI-03",
+      "name": "Newer local score must survive older IndexedDB",
+      "category": "freshness",
+      "status": "PASS",
+      "detail": {
+        "memory_score": 220,
+        "idb_score": 220,
+        "local_score": 220,
+        "memory_session_ids": [
+          "fi-session"
+        ],
+        "idb_session_ids": [
+          "fi-session"
+        ],
+        "local_session_ids": [
+          "fi-session"
+        ],
+        "dbReady": true,
+        "dbMode": "IndexedDB",
+        "errors": [],
+        "events": []
+      }
+    },
+    {
+      "id": "FI-04",
+      "name": "New local session must survive older IndexedDB",
+      "category": "freshness",
+      "status": "PASS",
+      "detail": {
+        "memory_score": 220,
+        "idb_score": 220,
+        "local_score": 220,
+        "memory_session_ids": [
+          "fi-session",
+          "fi-session-added"
+        ],
+        "idb_session_ids": [
+          "fi-session",
+          "fi-session-added"
+        ],
+        "local_session_ids": [
+          "fi-session",
+          "fi-session-added"
+        ],
+        "dbReady": true,
+        "dbMode": "IndexedDB",
+        "errors": [],
+        "events": []
+      }
+    },
+    {
+      "id": "FI-05",
+      "name": "Local removed tombstone must not become published",
+      "category": "freshness",
+      "status": "PASS",
+      "detail": {
+        "expected": "removed",
+        "actual": "removed",
+        "local": {
+          "records": [
+            {
+              "id": "fi-session",
+              "state": "removed",
+              "updatedAt": 1700000010000
+            }
+          ]
+        },
+        "idb": {
+          "records": [
+            {
+              "id": "fi-session",
+              "state": "removed",
+              "updatedAt": 1700000010000
+            }
+          ]
+        },
+        "no_cloud": true
+      }
+    },
+    {
+      "id": "FI-06",
+      "name": "Newer local draft must survive older IndexedDB",
+      "category": "freshness",
+      "status": "PASS",
+      "detail": {
+        "draft_score": 220,
+        "visible_input": "220"
+      }
+    },
+    {
+      "id": "FI-07",
+      "name": "Immediate reload before 120ms persistence must retain edit",
+      "category": "freshness",
+      "status": "PASS",
+      "detail": {
+        "memory_score": 222,
+        "idb_score": 222,
+        "local_score": 222,
+        "memory_session_ids": [
+          "fi-session"
+        ],
+        "idb_session_ids": [
+          "fi-session"
+        ],
+        "local_session_ids": [
+          "fi-session"
+        ],
+        "dbReady": true,
+        "dbMode": "IndexedDB",
+        "errors": [],
+        "events": []
+      }
+    },
+    {
+      "id": "FI-08",
+      "name": "Sessions quota exception must not skip IDB fallback",
+      "category": "quota",
+      "status": "PASS",
+      "detail": {
+        "exception": "returned",
+        "idb_fallback_saved": true,
+        "queued_timer": 3,
+        "injection_events": [
+          {
+            "kind": "storage-write",
+            "key": "bowlmeet.fi.1790782002969371532.sessions.v2",
+            "name": "QuotaExceededError"
+          }
+        ],
+        "dbReady": true
+      }
+    },
+    {
+      "id": "FI-09",
+      "name": "Meetups quota exception must not skip IDB fallback",
+      "category": "quota",
+      "status": "PASS",
+      "detail": {
+        "exception": "returned",
+        "idb_fallback_saved": true,
+        "queued_timer": 3,
+        "injection_events": [
+          {
+            "kind": "storage-write",
+            "key": "bowlmeet.fi.1790782002969371532.events.v3",
+            "name": "QuotaExceededError"
+          }
+        ],
+        "dbReady": true
+      }
+    },
+    {
+      "id": "FI-10",
+      "name": "Roster quota exception must not skip IDB fallback",
+      "category": "quota",
+      "status": "PASS",
+      "detail": {
+        "exception": "returned",
+        "idb_fallback_saved": true,
+        "queued_timer": 3,
+        "injection_events": [
+          {
+            "kind": "storage-write",
+            "key": "bowlmeet.fi.1790782002969371532.roster.v3",
+            "name": "QuotaExceededError"
+          }
+        ],
+        "dbReady": true
+      }
+    },
+    {
+      "id": "FI-11",
+      "name": "Partial localStorage mirror must not leave mixed generations",
+      "category": "quota",
+      "status": "PASS",
+      "detail": {
+        "memory_score": 220,
+        "local_score": 100,
+        "local_meetup_title": "FI TITLE",
+        "idb_score": 220,
+        "engine": "主要資料已由 IndexedDB 保存；localStorage 為相容鏡像。",
+        "dbReady": true,
+        "events": [
+          {
+            "kind": "storage-write",
+            "key": "bowlmeet.fi.1790782002969371532.events.v3",
+            "name": "QuotaExceededError"
+          }
+        ]
+      }
+    },
+    {
+      "id": "FI-12",
+      "name": "Native localStorage quota must preserve IDB write path",
+      "category": "native-quota",
+      "status": "PASS",
+      "detail": {
+        "nativeQuota": "QuotaExceededError",
+        "fillCharacters": 5210112,
+        "fillKeys": 159,
+        "persistOutcome": "returned",
+        "idb_score": 233
+      }
+    },
+    {
+      "id": "FI-13",
+      "name": "idbPut promise rejects on native abort after request success",
+      "category": "transaction",
+      "status": "PASS",
+      "detail": {
+        "outcome": "rejected:AbortError",
+        "events": [
+          {
+            "kind": "request-success-before-abort",
+            "key": "fi-one",
+            "op": "put"
+          }
+        ],
+        "transaction_rolled_back": true
+      }
+    },
+    {
+      "id": "FI-14",
+      "name": "idbPutMany promise rejects on native abort and data rolls back",
+      "category": "transaction",
+      "status": "PASS",
+      "detail": {
+        "outcome": "rejected:AbortError",
+        "events": [
+          {
+            "kind": "request-success-before-abort",
+            "key": "meta",
+            "op": "put"
+          }
+        ],
+        "transaction_rolled_back": true
+      }
+    },
+    {
+      "id": "FI-15",
+      "name": "idbDelete promise rejects on native abort and record remains",
+      "category": "transaction",
+      "status": "PASS",
+      "detail": {
+        "outcome": "rejected:AbortError",
+        "events": [
+          {
+            "kind": "request-success-before-abort",
+            "key": "fi-delete",
+            "op": "delete"
+          }
+        ],
+        "transaction_rolled_back": true
+      }
+    },
+    {
+      "id": "FI-16",
+      "name": "Closed IndexedDB connection fallback survives restart",
+      "category": "freshness",
+      "status": "PASS",
+      "detail": {
+        "before_reload": {
+          "memory_score": 220,
+          "idb_score": 100,
+          "local_score": 220,
+          "memory_session_ids": [
+            "fi-session"
+          ],
+          "idb_session_ids": [
+            "fi-session"
+          ],
+          "local_session_ids": [
+            "fi-session"
+          ],
+          "dbReady": true,
+          "dbMode": "localStorage fallback",
+          "errors": [],
+          "events": []
+        },
+        "after_reload": {
+          "memory_score": 220,
+          "idb_score": 220,
+          "local_score": 220,
+          "memory_session_ids": [
+            "fi-session"
+          ],
+          "idb_session_ids": [
+            "fi-session"
+          ],
+          "local_session_ids": [
+            "fi-session"
+          ],
+          "dbReady": true,
+          "dbMode": "IndexedDB",
+          "errors": [],
+          "events": []
+        }
+      }
+    },
+    {
+      "id": "FI-17",
+      "name": "Malformed saved IDB object must not erase valid local records",
+      "category": "corruption",
+      "status": "PASS",
+      "detail": {
+        "memory_score": 220,
+        "idb_score": 220,
+        "local_score": 220,
+        "memory_session_ids": [
+          "fi-session"
+        ],
+        "idb_session_ids": [
+          "fi-session"
+        ],
+        "local_session_ids": [
+          "fi-session"
+        ],
+        "dbReady": true,
+        "dbMode": "IndexedDB",
+        "errors": [],
+        "events": []
+      }
+    },
+    {
+      "id": "FI-18",
+      "name": "IDB missing: valid local data imports on first boot",
+      "category": "control",
+      "status": "PASS",
+      "detail": {
+        "memory_score": 220,
+        "idb_score": 220,
+        "local_score": 220,
+        "memory_session_ids": [
+          "fi-session"
+        ],
+        "idb_session_ids": [
+          "fi-session"
+        ],
+        "local_session_ids": [
+          "fi-session"
+        ],
+        "dbReady": true,
+        "dbMode": "IndexedDB",
+        "errors": [],
+        "events": []
+      }
+    },
+    {
+      "id": "FI-19",
+      "name": "IDB unavailable: valid local data usable in fallback",
+      "category": "control",
+      "status": "PASS",
+      "detail": {
+        "dbReady": false,
+        "dbMode": "localStorage fallback",
+        "timer": 2,
+        "score": 220,
+        "sessions": [
+          "fi-session"
+        ],
+        "meetups": [
+          "fi-meetup"
+        ],
+        "roster": [
+          "fi-player"
+        ],
+        "publicControl": {
+          "records": []
+        },
+        "engine": "IndexedDB 不可用，目前由 localStorage 暫存。",
+        "live": "輸入即自動儲存"
+      }
+    },
+    {
+      "id": "FI-20",
+      "name": "Both write paths unavailable must show an unsaved warning",
+      "category": "feedback",
+      "status": "PASS",
+      "detail": {
+        "exception": "",
+        "dbReady": true,
+        "engine": "⚠ 資料尚未安全儲存。localStorage 寫入失敗；IndexedDB 備援寫入尚未確認 · QuotaExceededError",
+        "memory_score": 220,
+        "unsaved_warning": true
+      }
+    },
+    {
+      "id": "FI-21",
+      "name": "Edit while IDB open is blocked must survive release",
+      "category": "startup-race",
+      "status": "PASS",
+      "detail": {
+        "during_blocked_open": {
+          "dbReady": false,
+          "dbMode": "初始化中",
+          "timer": 2,
+          "score": 240,
+          "sessions": [
+            "fi-session"
+          ],
+          "meetups": [
+            "fi-meetup"
+          ],
+          "roster": [
+            "fi-player"
+          ],
+          "publicControl": {
+            "records": []
+          },
+          "engine": "IndexedDB 不可用，目前由 localStorage 暫存。",
+          "live": "分數已保留於 localStorage · IndexedDB 目前不可用"
+        },
+        "after_unblocking": {
+          "memory_score": 240,
+          "idb_score": 240,
+          "local_score": 240,
+          "memory_session_ids": [
+            "fi-session"
+          ],
+          "idb_session_ids": [
+            "fi-session"
+          ],
+          "local_session_ids": [
+            "fi-session"
+          ],
+          "dbReady": true,
+          "dbMode": "IndexedDB",
+          "errors": [],
+          "events": []
+        }
+      }
+    },
+    {
+      "id": "FI-22",
+      "name": "Normal snapshot restore retains score",
+      "category": "control",
+      "status": "PASS",
+      "detail": {
+        "after": 100,
+        "snapshotScore": 100
+      }
+    },
+    {
+      "id": "FI-23",
+      "name": "Valid zero score survives storage bootstrap",
+      "category": "control",
+      "status": "PASS",
+      "detail": {
+        "memory_score": 0,
+        "idb_score": 0,
+        "local_score": 0,
+        "memory_session_ids": [
+          "fi-session"
+        ],
+        "idb_session_ids": [
+          "fi-session"
+        ],
+        "local_session_ids": [
+          "fi-session"
+        ],
+        "dbReady": true,
+        "dbMode": "IndexedDB",
+        "errors": [],
+        "events": []
+      }
+    },
+    {
+      "id": "FI-24",
+      "name": "Corrupt local JSON recovers from valid IndexedDB",
+      "category": "control",
+      "status": "PASS",
+      "detail": {
+        "memory_score": 225,
+        "idb_score": 225,
+        "local_score": 225,
+        "memory_session_ids": [
+          "fi-session"
+        ],
+        "idb_session_ids": [
+          "fi-session"
+        ],
+        "local_session_ids": [
+          "fi-session"
+        ],
+        "dbReady": true,
+        "dbMode": "IndexedDB",
+        "errors": [],
+        "events": []
+      }
+    }
+  ],
+  "limitations": [
+    "Not iOS Safari or installed PWA",
+    "No live Supabase/RLS",
+    "No physical disk-power-loss test",
+    "Synthetic targeted API failures are not actual OS disk exhaustion; FI-12 uses native localStorage quota",
+    "Test bridge exposes existing calls, does not replace storage functions"
+  ]
+}

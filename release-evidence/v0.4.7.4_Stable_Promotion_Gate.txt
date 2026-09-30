@@ -1,0 +1,42 @@
+BowlMeet v0.4.7.4 | Formal Release & Stable Freeze
+Release Gate PASS — 2026-09-30
+
+User authorized formal release at 2026-09-30 23:22:03 Asia/Taipei.
+RC physical-device checklist: PASS_USER_REPORTED at 23:21:28 Asia/Taipei.
+Accepted RC: 0d87a4310ac4ab76cb45e25955391534bcdcd9eb.
+Formal tested source: e4924dedd9945c16b3d0b8111cc497cceb3ff85d.
+Formal index SHA-256: 1e39a1f1b4b4b9c38b6ca93fda5bcfd188397d4bc3b2e700ea3b69cd6dad7518
+CI: https://github.com/sparcgx/BowlMeet/actions/runs/36736711499
+PR: https://github.com/sparcgx/BowlMeet/pull/120
+
+PASS / FAIL / PENDING / HARNESS ERROR
+Native FI Chromium: 24 / 0 / 0 / 0
+Native FI Playwright WebKit: 24 / 0 / 0 / 0
+Native Backup/Restore Chromium: 7 / 0 / 0 / 0
+Native Backup/Restore Playwright WebKit: 7 / 0 / 0 / 0
+Source / scoring / simulated SW: 25 PASS / 0 FAIL.
+Offline Chromium UI + PUBLIC-only/sharing/tombstone: 248 PASS / 0 FAIL.
+335 automatic checks passed; individual JSON evidence archived in release-evidence/v0.4.7.4/.
+
+SCOPE
+Promotes dev.1 performance/UI/cache and dev.2 persistence recovery through accepted RC.1.
+Formal runtime differs from RC only in version/cache identity and release copy.
+No feature addition, Scoring change, IndexedDB/Supabase migration, or PUBLIC payload change.
+DB_VERSION=2; PUBLIC_HISTORY_CODE=PUBLIC; ranking and sharing remain PUBLIC-only.
+Sync and Backup/Restore remain compatible; local-only Theme/Layout preserved.
+Optional Backup Before PWA Update and InvalidStateError Recovery retained.
+No reading, editing, clearing or uploading of real user records was performed.
+Existing previews and prior release evidence retained.
+
+GOVERNANCE
+Formal URL: https://sparcgx.github.io/BowlMeet/
+main, stable/v0.4.7.4 and freeze/v0.4.7.4 are aligned after verified production deployment.
+v0.4.7.3 Stable/Freeze remain 1d7ea21ea2654e989545974dcd3987281710c6fc.
+RC.1 freeze remains 0d87a4310ac4ab76cb45e25955391534bcdcd9eb.
+Further development uses a new branch; frozen refs are not edited.
+Final merge/deployment/ref verification is recorded in PR #120.
+
+LIMITATIONS
+Physical acceptance above is the user's report, not agent-observed device execution.
+Playwright WebKit is not iPhone Safari; SW cache tests are Node simulations.
+No production Supabase/RLS, OS eviction, or physical power-loss test was claimed.
