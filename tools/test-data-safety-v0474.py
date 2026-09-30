@@ -18,6 +18,7 @@ original=(ROOT/'index.html').read_text(encoding='utf-8')
 assert "const DB_VERSION=2;" in original and "async function initDataSafety()" in original
 RUN='bowlmeet.fi.'+str(time.time_ns())+'.'
 source=original.replace('bowlingMeetup.',RUN)
+source=source.replace('bowlingScoreWorkstation.',RUN)
 source=re.sub(r'bowlmeet\.preview\.[A-Za-z0-9]+\.',RUN,source)
 source=re.sub(r"const BUILTIN_SUPABASE_URL='[^']*';","const BUILTIN_SUPABASE_URL='';",source)
 source=re.sub(r"const BUILTIN_SUPABASE_PUBLISHABLE_KEY='[^']*';","const BUILTIN_SUPABASE_PUBLISHABLE_KEY='';",source)
