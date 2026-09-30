@@ -1,0 +1,32 @@
+name: BowlMeet v0474 dev.2 regression gate
+on:
+  push:
+    branches: ['v0.4.7.4-dev.2']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Source scoring and Service Worker regression
+        run: |
+          mkdir -p test-results
+          node tools/test-v0474.mjs . > test-results/unit.json
+      - name: Install browser harness
+        run: |
+          python -m pip install 'playwright==1.57.0'
+          python -m playwright install --with-deps chromium
+      - name: UI regression
+        run: python tools/test-ui-v0474.py . test-results/ui > test-results/browser.log
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: bowlmeet-v0474-dev2-regression
+          path: test-results/
+          retention-days: 14
