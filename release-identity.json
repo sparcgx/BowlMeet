@@ -1,12 +1,14 @@
 {
-  "base_commit": "1d7ea21ea2654e989545974dcd3987281710c6fc",
-  "base_index_sha256": "97ce352f3a3d883562152d6aa444c8bfde9bf5325bc536ead0fd25afc59db7c1",
-  "result_index_sha256": "9b3133406b86151ebece2173ffc31ba757493d214013851ed78755fc3ef62237",
-  "version": "0.4.7.4-dev.2",
-  "channel": "development",
-  "native_device_gate": "PENDING_DATA_FLOW",
-  "data_safety_gate": "PASS_NATIVE_FI_24x2",
-  "data_safety_run": 36682857656,
-  "product_source_commit": "bfb3211094b5bffd98f2d404909bdedc109c2516",
-  "regression_run": 36682857656
+  "version": "0.4.7.4-RC.1",
+  "channel": "release-candidate",
+  "base_commit": "40df653f3df7070a9332de9ba1ea40c60444c74d",
+  "stable_freeze_commit": "1d7ea21ea2654e989545974dcd3987281710c6fc",
+  "result_index_sha256": "afe9fa0c5e31e47cf5f7de401125a0b42a8af39517fc2329eae13bc9d39bec7f",
+  "dev2_device_gate": "PASS_USER_REPORTED",
+  "dev2_device_reported_at": "2026-09-30T22:41:57+08:00",
+  "rc_device_gate": "PENDING_RC_SMOKE",
+  "automated_gate": "PASS",
+  "automated_gate_run": 36731423813,
+  "tested_source_commit": "1fabe4494cceed34fb9437ecc96bde9e74f6bbfc",
+  "stable_promotion": "NOT_EXECUTED"
 }
