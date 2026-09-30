@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.7.3</title>
+<title>保齡球球聚｜BowlMeet v0.4.7.4-dev.1</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="color-scheme" content="light dark" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="apple-mobile-web-app-title" content="BowlMeet" />
-<link rel="manifest" href="./manifest.webmanifest" />
-<link rel="apple-touch-icon" href="./icons/icon-192.png?v=0473" />
+<link rel="manifest" href="./manifest.webmanifest?v=0474d1" />
+<link rel="apple-touch-icon" href="./icons/icon-192.png?v=0474d1" />
 <style>
 :root{
   --bg:#f5f7fa;--card:#fff;--text:#172033;--muted:#697386;--line:#e4e8ef;
@@ -1136,7 +1136,7 @@ dialog::backdrop,
 }
 
 </style>
-<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0471" />
+<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0474d1" />
 <style id="history-score-critical">
 /* v0.4.6.3-dev.1 | Dynamic score grid + Safari/PWA fallback */
 .history-score-table-wrap{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
@@ -1562,20 +1562,22 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
   .design-preset-strip .layout-preset-btn{min-width:150px;scroll-snap-align:start}
 }
 </style>
-<link rel="stylesheet" href="./assets/theme-center-v0470.css?v=0471" />
-<link rel="stylesheet" href="./assets/theme-center-v0470-mobile.css?v=0471" />
-<link rel="stylesheet" href="./assets/theme-center-v0470-accessibility.css?v=0471" />
-<link rel="stylesheet" href="./assets/liquid-motion-v0470.css?v=0471" />
-<link rel="stylesheet" href="./assets/score-card-v0471.css?v=0471" />
-<link rel="stylesheet" href="./assets/score-card-mobile-v0471.css?v=0471" />
-<link rel="stylesheet" href="./assets/score-card-accessibility-v0471.css?v=0471" />
-<link rel="stylesheet" href="./assets/rc-mobile-repair-v0471.css?v=0471" />
+<link rel="stylesheet" href="./assets/theme-center-v0470.css?v=0474d1" />
+<link rel="stylesheet" href="./assets/theme-center-v0470-mobile.css?v=0474d1" />
+<link rel="stylesheet" href="./assets/theme-center-v0470-accessibility.css?v=0474d1" />
+<link rel="stylesheet" href="./assets/liquid-motion-v0470.css?v=0474d1" />
+<link rel="stylesheet" href="./assets/score-card-v0471.css?v=0474d1" />
+<link rel="stylesheet" href="./assets/score-card-mobile-v0471.css?v=0474d1" />
+<link rel="stylesheet" href="./assets/score-card-accessibility-v0471.css?v=0474d1" />
+<link rel="stylesheet" href="./assets/rc-mobile-repair-v0471.css?v=0474d1" />
+<link rel="stylesheet" href="./assets/ui-hardening-v0474.css?v=0474d1" />
+<script defer src="./assets/ui-lifecycle-v0474.js?v=0474d1"></script>
 </head>
 <body>
 <a class="skip-link" href="#mainContent">跳到主要內容</a>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><img class="brand-icon" src="./icons/icon-192.png?v=0473" alt="" width="42" height="42" /><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · Homepage Brand Icon Refresh · dev.1</p></div></div>
+  <div class="brand"><img class="brand-icon" src="./icons/icon-192.png?v=0474d1" alt="" width="42" height="42" /><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · Performance & UI Hardening · 開發測試</p></div></div>
 </div></header>
 <main id="mainContent" tabindex="-1">
   <nav class="tabs" aria-label="功能切換">
@@ -2522,7 +2524,7 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
     </div>
   </dialog>
 
-  <div class="footer-note">保齡球球聚｜BowlMeet · <span data-app-version></span> · 正式版</div>
+  <div class="footer-note">保齡球球聚｜BowlMeet · <span data-app-version></span> · 開發測試</div>
 </main>
 </div>
 <script>
@@ -2546,7 +2548,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.7.3';
+const APP_VERSION='0.4.7.4-dev.1';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const THEME_PREFS_KEY='bowlingMeetup.themePreferences.v1';
 const THEME_DEFAULTS=Object.freeze({
@@ -3161,6 +3163,9 @@ function newSheet(confirmNeeded=true){
 }
 function hasSheetData(){return currentPlayersFromTable().some(p=>p.name||p.scores.some(v=>v!==null))}
 function validateSheet(){
+  const invalid=[...$('scoreBody').querySelectorAll('.score-in')].find(input=>
+    input.validity.badInput||(!input.checkValidity())||(input.value!==''&&normalizeScore(input.value)===null));
+  if(invalid){invalid.focus();return {ok:false,msg:'分數需為 0～300 的整數；請修正標示欄位後再儲存。'};}
   const players=currentPlayersFromTable();let valid=0;
   for(const p of players){const nums=playerNumbers(p);if(!p.name&&nums.length) return {ok:false,msg:'有輸入分數但尚未填姓名。'};if(p.name&&nums.length)valid++;}
   if(!$('date').value)return {ok:false,msg:'請選擇日期。'};
@@ -4741,7 +4746,19 @@ function renderPersonal(){
   const rows=[...personalData.games].sort((a,b)=>String(b.date).localeCompare(String(a.date))||b.gameNo-a.gameNo||b.updatedAt-a.updatedAt);$('personalHistoryCount').textContent=`${rows.length} 局`;$('personalHistoryEmpty').style.display=rows.length?'none':'block';$('personalHistoryBody').innerHTML=rows.map(g=>`<tr><td>${esc(fmtDate(g.date))}</td><td>${esc(g.meetupTitle||'球聚')}</td><td>${esc(g.venue||'—')}</td><td>${esc(g.lane||'—')}</td><td>G${esc(g.gameNo)}</td><td class="personal-score">${esc(g.score)}</td><td>${esc(g.sourcePlayerName||'—')}</td></tr>`).join('')
 }
 
-function renderAll(){validateCurrentMeetupContext();renderKpis();renderHistory();renderStats();renderMeetups();renderRoster();renderHistoryMode();renderLeaderboard();renderAwards();renderRosterQuickSelect();renderQuickPlayerSuggestions();refreshSheetCalcs();renderShareOptions();renderSafety();renderSync();renderFieldSettings();renderPersonal();if(document.getElementById('meetupView')?.classList.contains('active'))renderLive()}
+function renderAll(){
+  validateCurrentMeetupContext();renderKpis();renderMeetups();
+  // Hidden history/analytics are rendered on entry, not on every live update.
+  // Preserve renderRoster's separate roster-picker side effect for setup forms.
+  if(document.getElementById('historyView')?.classList.contains('active')){
+    renderHistory();renderRoster();renderHistoryMode();
+  }else{
+    renderMeetupRosterPicker($('meetupEditId').value?(meetups.find(m=>m.id===$('meetupEditId').value)?.participantIds||[]):[]);
+  }
+  renderLeaderboard();renderAwards();renderRosterQuickSelect();renderQuickPlayerSuggestions();
+  refreshSheetCalcs();renderShareOptions();renderSafety();renderSync();renderFieldSettings();renderPersonal();
+  if(document.getElementById('meetupView')?.classList.contains('active'))renderLive();
+}
 
 function mirrorLiveSessionToCurrentScore(sess){
   if(!sess)return;
@@ -4784,7 +4801,7 @@ function switchView(id){
   if(viewId==='meetupView')renderLive();
   if(viewId==='syncView')renderSync();
   if(viewId==='personalView')renderPersonal();
-  if(viewId==='historyView'){renderHistory();renderHistoryMode()}
+  if(viewId==='historyView'){renderHistory();renderRoster();renderHistoryMode()}
   if(window.matchMedia?.('(max-width:680px)').matches){
     const active=[...document.querySelectorAll('.tab[data-view]')].find(t=>t.dataset.view===viewId);
     active?.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});

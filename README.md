@@ -1,3 +1,11 @@
+# BowlMeet v0.4.7.4-dev.1 — Performance & UI Hardening (DRAFT)
+
+正式基線仍為 v0.4.7.3；本分支未 Promotion。修正快取身份、手動分數驗證、隱藏頁面渲染及導覽介面。
+
+驗證分成 Source/Node 模擬、離線 Chromium DOM，以及待驗收的 iOS/PWA/IndexedDB/雲端。數據詳見 release-evidence/v0.4.7.4-dev.1_Audit.md。
+
+以下為歷史版本紀錄，不代表本分支目前版本。
+
 # BowlMeet v0.4.7.2 — Stable / Release Freeze
 
 正式認證來源：`freeze/v0.4.7.2-RC.1`。
