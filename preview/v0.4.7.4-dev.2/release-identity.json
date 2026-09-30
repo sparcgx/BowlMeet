@@ -4,6 +4,7 @@
   "result_index_sha256": "9b4ed29c8ea232c6ffd09331f953dd5ecc09736ed31402f7c236128e5d0e235a",
   "version": "0.4.7.4-dev.2",
   "channel": "isolated-preview-cloud-disabled",
-  "native_device_gate": "PENDING",
-  "data_safety_gate": "RUNNING"
+  "native_device_gate": "PENDING_DATA_FLOW",
+  "data_safety_gate": "PASS_NATIVE_FI_24x2",
+  "data_safety_run": 36681233429
 }
