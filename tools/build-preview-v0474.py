@@ -1,6 +1,6 @@
 """Build a self-contained, cloud-disabled preview. No production DB/keys/cache reuse."""
 from pathlib import Path
-import re,shutil,json,sys
+import re,shutil,json,sys,hashlib
 root=Path('.');out=Path(sys.argv[1]);out.mkdir(parents=True,exist_ok=True)
 for folder in ['assets','icons']:shutil.copytree(root/folder,out/folder,dirs_exist_ok=True)
 html=(root/'index.html').read_text()
@@ -21,5 +21,5 @@ manifest=json.loads((root/'manifest.webmanifest').read_text());manifest['name']=
 sw=(root/'sw.js').read_text().replace("const PRODUCTION_CACHE_ROOT='bowlmeet-v';","const PRODUCTION_CACHE_ROOT='bowlmeet-preview-v0474d2-';").replace('bowlmeet-v0.4.7.4-dev.2-','bowlmeet-preview-v0474d2-')
 (out/'sw.js').write_text(sw)
 for name in ['release-identity.json','deployment-test.html']:shutil.copy2(root/name,out/name)
-identity=json.loads((out/'release-identity.json').read_text());identity['channel']='isolated-preview-cloud-disabled';(out/'release-identity.json').write_text(json.dumps(identity,indent=2)+'\n')
+identity=json.loads((out/'release-identity.json').read_text());identity['channel']='isolated-preview-cloud-disabled';identity['source_index_sha256']=hashlib.sha256((root/'index.html').read_bytes()).hexdigest();identity['result_index_sha256']=hashlib.sha256((out/'index.html').read_bytes()).hexdigest();(out/'release-identity.json').write_text(json.dumps(identity,indent=2)+'\n')
 print('Isolated preview built at',out)

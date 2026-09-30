@@ -1,10 +1,12 @@
 {
   "base_commit": "1d7ea21ea2654e989545974dcd3987281710c6fc",
   "base_index_sha256": "97ce352f3a3d883562152d6aa444c8bfde9bf5325bc536ead0fd25afc59db7c1",
-  "result_index_sha256": "9b4ed29c8ea232c6ffd09331f953dd5ecc09736ed31402f7c236128e5d0e235a",
+  "result_index_sha256": "9b3133406b86151ebece2173ffc31ba757493d214013851ed78755fc3ef62237",
   "version": "0.4.7.4-dev.2",
   "channel": "development",
   "native_device_gate": "PENDING_DATA_FLOW",
   "data_safety_gate": "PASS_NATIVE_FI_24x2",
-  "data_safety_run": 36681233429
+  "data_safety_run": 36682857656,
+  "product_source_commit": "bfb3211094b5bffd98f2d404909bdedc109c2516",
+  "regression_run": 36682857656
 }

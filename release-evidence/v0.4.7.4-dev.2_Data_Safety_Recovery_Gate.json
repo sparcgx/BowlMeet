@@ -2,31 +2,78 @@
   "version": "v0.4.7.4-dev.2",
   "gate": "Data Safety Recovery & Persistence Hardening",
   "date": "2026-09-30",
-  "nativeFaultRun": 36681233429,
+  "productSourceCommit": "bfb3211094b5bffd98f2d404909bdedc109c2516",
+  "testCommit": "baede75f7079d9ca4565c549e9e6004f22d12306",
+  "sourceIndexSha256": "9b3133406b86151ebece2173ffc31ba757493d214013851ed78755fc3ef62237",
+  "nativeFaultRun": 36682857656,
   "nativeFault": {
     "chromium": {
-      "pass": 24,
-      "fail": 0,
-      "harnessError": 0
+      "PASS": 24,
+      "FAIL": 0,
+      "PENDING": 0,
+      "HARNESS_ERROR": 0
     },
-    "webkit": {
-      "pass": 24,
-      "fail": 0,
-      "harnessError": 0
+    "playwrightWebkit": {
+      "PASS": 24,
+      "FAIL": 0,
+      "PENDING": 0,
+      "HARNESS_ERROR": 0
+    }
+  },
+  "regression": {
+    "run": 36682857656,
+    "sourceScoringSimulatedSW": {
+      "PASS": 25,
+      "FAIL": 0,
+      "PENDING": 0,
+      "HARNESS_ERROR": 0
     },
-    "totalExecutions": 48
+    "chromiumOfflineUI": {
+      "PASS": 248,
+      "FAIL": 0,
+      "PENDING": 0,
+      "HARNESS_ERROR": 0
+    },
+    "publicOnly": "PASS within UI regression; synthetic data, no live Supabase",
+    "nativeBackupRestore": {
+      "chromium": {
+        "PASS": 7,
+        "FAIL": 0,
+        "PENDING": 0,
+        "HARNESS_ERROR": 0
+      },
+      "playwrightWebkit": {
+        "PASS": 7,
+        "FAIL": 0,
+        "PENDING": 0,
+        "HARNESS_ERROR": 0
+      }
+    }
   },
   "dbVersion": 2,
   "schemaMigration": false,
-  "fixed": [
-    "startup freshness reconciliation",
-    "malformed IDB state validation",
-    "localStorage quota independent IDB fallback",
-    "partial mirror rollback + IDB recovery",
-    "IDB transaction abort rejection",
-    "unsaved status feedback",
-    "corrupt local JSON recovery"
-  ],
   "physicalDeviceDataSafety": "PENDING",
-  "stablePromotion": "NOT EXECUTED"
+  "rc": "BLOCKED",
+  "stablePromotion": "NOT EXECUTED",
+  "stableFreezeCommit": "1d7ea21ea2654e989545974dcd3987281710c6fc",
+  "previousHarnessError": {
+    "run": 36681468102,
+    "reason": "Source identity guard referenced outdated commit; native scenarios did not execute",
+    "status": "HARNESS_ERROR",
+    "resolvedBy": 36682525742
+  },
+  "preview": {
+    "url": "https://sparcgx.github.io/BowlMeet/preview/v0.4.7.4-dev.2/",
+    "runtimeMatchesSourceBuild": true,
+    "isolatedStorage": true,
+    "cloudDisabled": true
+  },
+  "limitations": [
+    "Playwright WebKit is not physical iPhone Safari or installed PWA",
+    "UI uses mocked localStorage; native FI and backup suites use real browser storage on localhost",
+    "Service Worker cache regression is simulated in Node",
+    "No production PUBLIC data or live Supabase/RLS mutations",
+    "Previous-version backup compatibility uses synthetic fixtures",
+    "Physical power loss / OS eviction not tested"
+  ]
 }
