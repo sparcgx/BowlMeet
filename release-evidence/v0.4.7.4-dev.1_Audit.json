@@ -1,0 +1,44 @@
+{
+  "version": "v0.4.7.4-dev.1",
+  "baseline": "stable/v0.4.7.3",
+  "baseline_commit": "1d7ea21ea2654e989545974dcd3987281710c6fc",
+  "deployed_artifact_run": 36644728530,
+  "deployed_commit": "fd3567722bed0444e0095e782594fc155af99987",
+  "status": "DEVELOPMENT / DEVICE GATE PENDING",
+  "unit_gate": {
+    "pass": 25,
+    "fail": 0,
+    "scope": "No real cloud calls; Cache API simulated in Node"
+  },
+  "ui_gate": {
+    "pass": 248,
+    "fail": 0,
+    "environment": "Chromium Linux; offline inlined source/assets; mock localStorage; no real cloud or native PWA/IndexedDB"
+  },
+  "scoring_property_test": {
+    "valid_games": 2000,
+    "seed": 474,
+    "counted_as_one_test": true
+  },
+  "performance": {
+    "fixture": "100 sessions x 8 players x 6 games; local only, no cloud",
+    "samples_per_build": 7,
+    "before_ms": [206.30000000004657,195.69999999995343,153.19999999995343,166.40000000002328,192.59999999997672,197.70000000006985,147],
+    "after_ms": [43.40000000002328,32.09999999997672,31.20000000006985,29.899999999906868,29.800000000046566,30.599999999976717,38.40000000002328],
+    "before_median_ms": 192.6,
+    "after_median_ms": 31.2,
+    "median_reduction_percent": 83.8,
+    "nodes_before": 20779,
+    "nodes_after": 3712,
+    "limitation": "Offline synthetic DOM benchmark, not phone FPS, loading speed, battery or real user latency"
+  },
+  "source_parity": {
+    "supabase_schema.sql": true,
+    "supabase_pin_change_patch.sql": true,
+    "supabase_v044_public_record_control_patch.sql": true,
+    "all_other_inline_JavaScript_bit_identical": true
+  },
+  "not_executed": ["Physical iPhone/Safari/PWA","Native IndexedDB/Backup fault injection","Actual production Supabase RPC/RLS operations","Real network offline upgrade flow","Battery/GPU profiling"],
+  "stable_or_freeze_modified": false,
+  "promotion_executed": false
+}

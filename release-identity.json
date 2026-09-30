@@ -1,0 +1,15 @@
+{
+  "version": "0.4.7.4",
+  "channel": "stable",
+  "base_commit": "0d87a4310ac4ab76cb45e25955391534bcdcd9eb",
+  "previous_stable_commit": "1d7ea21ea2654e989545974dcd3987281710c6fc",
+  "result_index_sha256": "1e39a1f1b4b4b9c38b6ca93fda5bcfd188397d4bc3b2e700ea3b69cd6dad7518",
+  "rc_automated_gate": "PASS",
+  "rc_automated_gate_run": 36732238286,
+  "rc_device_gate": "PASS_USER_REPORTED",
+  "rc_device_reported_at": "2026-09-30T23:21:28+08:00",
+  "release_evidence": "release-evidence/v0.4.7.4_Stable_Promotion_Gate.json",
+  "db_version": 2,
+  "public_history_code": "PUBLIC",
+  "schema_migration": false
+}
