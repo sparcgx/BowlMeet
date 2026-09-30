@@ -1,0 +1,35 @@
+name: BowlMeet v0474 dev.2 isolated preview
+on:
+  push:
+    branches: ['v0.4.7.4-dev.2']
+  workflow_dispatch:
+permissions: {}
+jobs:
+  publish-preview:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: v0.4.7.4-dev.2
+          fetch-depth: 0
+      - name: Build isolated preview
+        run: python tools/build-preview-v0474.py "$RUNNER_TEMP/preview"
+      - name: Commit preview only
+        run: |
+          git fetch origin deploy/preview-v0.4.7.4-dev.2
+          git worktree add -B deploy/preview-v0.4.7.4-dev.2 "$RUNNER_TEMP/worktree" origin/deploy/preview-v0.4.7.4-dev.2
+          target="$RUNNER_TEMP/worktree/preview/v0.4.7.4-dev.2"
+          mkdir -p "$target"
+          rm -rf "$target"/*
+          cp -a "$RUNNER_TEMP/preview/." "$target/"
+          cd "$RUNNER_TEMP/worktree"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- preview/v0.4.7.4-dev.2
+          if git diff --cached --name-only | grep -v '^preview/v0.4.7.4-dev.2/'; then exit 1; fi
+          if ! git diff --cached --quiet; then
+            git commit -m 'preview(v0.4.7.4-dev.2): isolated data-safety recovery build'
+            git push origin HEAD:refs/heads/deploy/preview-v0.4.7.4-dev.2
+          fi
