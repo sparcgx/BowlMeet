@@ -2,7 +2,7 @@ name: BowlMeet native data-safety fault injection
 on:
   push:
     branches: ['test/v0.4.7.4-data-safety-fi']
-    paths: ['tools/test-data-safety-v0474.py', '.github/workflows/v0474-data-safety-fi.yml']
+    paths: ['tools/test-data-safety-v0474.py', 'tools/run-data-safety-fi.py', '.github/workflows/v0474-data-safety-fi.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -31,7 +31,7 @@ jobs:
           mkdir -p fi-results
           git rev-parse HEAD > fi-results/test-commit.txt
           git hash-object index.html > fi-results/index-blob.txt
-          sha256sum index.html tools/test-data-safety-v0474.py > fi-results/SHA256.txt
+          sha256sum index.html tools/test-data-safety-v0474.py tools/run-data-safety-fi.py > fi-results/SHA256.txt
       - name: Install pinned native browser harness
         run: |
           python -m pip install 'playwright==1.57.0'
@@ -39,7 +39,7 @@ jobs:
       - name: Execute native storage fault assertions
         run: |
           set -o pipefail
-          python tools/test-data-safety-v0474.py . fi-results --browser '${{ matrix.browser }}' 2>&1 | tee fi-results/run.log
+          python tools/run-data-safety-fi.py . fi-results --browser '${{ matrix.browser }}' 2>&1 | tee fi-results/run.log
       - name: Upload actual results even when safety assertions fail
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
