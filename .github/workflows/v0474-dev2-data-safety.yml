@@ -20,7 +20,7 @@ jobs:
           persist-credentials: false
       - name: Verify product delta is only dev.2 source
         run: |
-          git diff --exit-code 282cc721dfb2c596979ddc5cf8ed69367603f2d3 -- index.html assets sw.js manifest.webmanifest release-identity.json '*.sql'
+          git diff --exit-code 13b2eb0c330206f014a6a707ac8fb72f4b0eb800 -- index.html assets sw.js manifest.webmanifest release-identity.json '*.sql'
           mkdir -p fi-results
           sha256sum index.html tools/test-data-safety-v0474.py > fi-results/SHA256.txt
       - name: Install browser
