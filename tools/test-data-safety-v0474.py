@@ -24,6 +24,8 @@ source=re.sub(r"const BUILTIN_SUPABASE_URL='[^']*';","const BUILTIN_SUPABASE_URL
 source=re.sub(r"const BUILTIN_SUPABASE_PUBLISHABLE_KEY='[^']*';","const BUILTIN_SUPABASE_PUBLISHABLE_KEY='';",source)
 source=source.replace('const BUILTIN_CLOUD=true;','const BUILTIN_CLOUD=false;')
 KEYS={k:v for k,v in re.findall(r"const (\w+)='([^']*)';",source) if v.startswith(RUN)}
+for k,v in re.findall(r"const (\w+)='([^']*)';",source):
+ if k=='DB_NAME': KEYS[k]=v
 assert all(k in KEYS for k in ['V2KEY','V1KEY','MEETUPKEY','ROSTERKEY','DRAFTKEY','PUBLIC_CONTROL_KEY','DB_NAME'])
 HOOK=r'''
 window.__fi={
