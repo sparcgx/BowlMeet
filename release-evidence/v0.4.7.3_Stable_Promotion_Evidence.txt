@@ -1,0 +1,27 @@
+BowlMeet v0.4.7.3｜Stable Promotion Evidence
+Date: 2026-09-30
+
+Promotion source: v0.4.7.3-RC.1
+RC Baseline Gate: PASS — 20/20
+R9 mobile real-device acceptance: PASS
+Stable candidate: stable/v0.4.7.3
+Freeze: freeze/v0.4.7.3
+
+Promotion:
+- PR #112｜v0.4.7.3 Stable Promotion — MERGED
+- Production main now reports APP_VERSION 0.4.7.3
+- Production title: 保齡球球聚｜BowlMeet v0.4.7.3
+
+Final UI:
+- R8 desktop Active Tab: 1s / 0px↔-2px float
+- R9 mobile Active Dock: 1s / 0px↔-2px float
+- R9 iPhone real-device test: PASS
+
+Contracts unchanged:
+Scoring Core; 10-frame live scoring; PUBLIC/PUBLIC Control; public-only leaderboard/sharing; Sync; Backup/Restore; IndexedDB Schema; Supabase Schema; PUBLIC payload; DB_VERSION=2; local-only Theme/Layout preferences.
+
+Legacy baseline:
+- stable/v0.4.7.2 unchanged
+- freeze/v0.4.7.2 unchanged and identical
+- Stable Promotion completed
+- New Stable/Freeze must remain identical

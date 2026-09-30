@@ -1,0 +1,28 @@
+{
+  "version": "0.4.7.3",
+  "stage": "Stable Promotion",
+  "date": "2026-09-30",
+  "source_rc": "v0.4.7.3-RC.1",
+  "rc_gate": "PASS 20/20",
+  "r9_device": "PASS",
+  "promotion_pr": 112,
+  "promotion_status": "MERGED",
+  "production_main_version": "0.4.7.3",
+  "r8": "1s / 0px↔-2px",
+  "r9": "1s / 0px↔-2px",
+  "contracts_unchanged": [
+    "Scoring Core",
+    "10-frame live scoring",
+    "PUBLIC/PUBLIC Control",
+    "public-only leaderboard/sharing",
+    "Sync",
+    "Backup/Restore",
+    "IndexedDB Schema",
+    "Supabase Schema",
+    "PUBLIC payload",
+    "DB_VERSION=2",
+    "Theme/Layout local-only"
+  ],
+  "legacy_stable_v0472_unchanged": true,
+  "stable_freeze_must_be_identical": true
+}

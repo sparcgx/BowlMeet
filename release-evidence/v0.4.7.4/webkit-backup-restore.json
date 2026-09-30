@@ -1,0 +1,157 @@
+{
+  "version": "v0.4.7.4",
+  "purpose": "Native storage backup suite — isolated synthetic data",
+  "source_index_sha256": "1e39a1f1b4b4b9c38b6ca93fda5bcfd188397d4bc3b2e700ea3b69cd6dad7518",
+  "browser": "webkit",
+  "browser_version": "26.0",
+  "environment": "localhost HTTP, fresh isolated browser context per scenario, native localStorage + native IndexedDB; Service Worker blocked; no production data or cloud",
+  "source_storage_prefix": "bowlmeet.fi.1790782094123180352.",
+  "external_requests_blocked": [],
+  "counts": {
+    "PASS": 7,
+    "FAIL": 0,
+    "HARNESS_ERROR": 0
+  },
+  "gate": "PASS",
+  "cases": [
+    {
+      "id": "BR-01",
+      "name": "Full backup download contains complete compatible state",
+      "category": "backup",
+      "status": "PASS",
+      "detail": {
+        "schema": 3,
+        "version": "0.4.7.4",
+        "download_matches_payload": true,
+        "required_fields_present": true
+      }
+    },
+    {
+      "id": "BR-02",
+      "name": "Replace restore survives reload with pre-restore snapshot and PUBLIC control",
+      "category": "backup",
+      "status": "PASS",
+      "detail": {
+        "mode": "replace",
+        "prior_version": false,
+        "scores": [
+          220,
+          220,
+          220
+        ],
+        "expected": 220,
+        "public_control": "removed",
+        "preferences_unchanged": true,
+        "pre_restore_snapshot": true,
+        "counts": {
+          "added": 4,
+          "updated": 0,
+          "skipped": 0
+        },
+        "errors": []
+      }
+    },
+    {
+      "id": "BR-03",
+      "name": "Newer-record merge survives reload",
+      "category": "backup",
+      "status": "PASS",
+      "detail": {
+        "mode": "merge",
+        "prior_version": false,
+        "scores": [
+          220,
+          220,
+          220
+        ],
+        "expected": 220,
+        "public_control": "removed",
+        "preferences_unchanged": true,
+        "pre_restore_snapshot": true,
+        "counts": {
+          "added": 1,
+          "updated": 3,
+          "skipped": 0
+        },
+        "errors": []
+      }
+    },
+    {
+      "id": "BR-04",
+      "name": "Add-only restore preserves existing scores",
+      "category": "backup",
+      "status": "PASS",
+      "detail": {
+        "mode": "add",
+        "prior_version": false,
+        "scores": [
+          100,
+          100,
+          100
+        ],
+        "expected": 100,
+        "public_control": "removed",
+        "preferences_unchanged": true,
+        "pre_restore_snapshot": true,
+        "counts": {
+          "added": 1,
+          "updated": 0,
+          "skipped": 3
+        },
+        "errors": []
+      }
+    },
+    {
+      "id": "BR-05",
+      "name": "Legacy record array remains importable",
+      "category": "backup",
+      "status": "PASS",
+      "detail": {
+        "legacy_records": 1,
+        "score": 123
+      }
+    },
+    {
+      "id": "BR-06",
+      "name": "Malformed backup rejected without data mutation",
+      "category": "backup",
+      "status": "PASS",
+      "detail": {
+        "rejected": 4,
+        "unchanged": true
+      }
+    },
+    {
+      "id": "BR-07",
+      "name": "v0.4.7.3 full-state backup remains compatible",
+      "category": "backup",
+      "status": "PASS",
+      "detail": {
+        "mode": "replace",
+        "prior_version": true,
+        "scores": [
+          220,
+          220,
+          220
+        ],
+        "expected": 220,
+        "public_control": "removed",
+        "preferences_unchanged": true,
+        "pre_restore_snapshot": true,
+        "counts": {
+          "added": 4,
+          "updated": 0,
+          "skipped": 0
+        },
+        "errors": []
+      }
+    }
+  ],
+  "limitations": [
+    "Not iOS Safari or installed PWA",
+    "No live Supabase/RLS",
+    "No physical disk-power-loss test",
+    "Synthetic targeted API failures are not actual OS disk exhaustion; FI-12 uses native localStorage quota",
+    "Test bridge exposes existing calls, does not replace storage functions"
+  ]
+}
