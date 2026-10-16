@@ -1,0 +1,26 @@
+{
+  "version": "v0.4.8-RC.1",
+  "status": "CANDIDATE_FREEZE",
+  "tested_commit": "ed5778f17deb5377ab94603fb85e1905f89e46ac",
+  "index_sha256": "4eb31b256edeaf33370b7d73489aea4adbf4a55c027ca1318a849a55be44e82d",
+  "accepted_dev_commit": "00f45866aa8bf89ce6df6d294d3e6fc7b1f0a984",
+  "dev_device_gate": "PASS_USER_REPORTED",
+  "dev_device_reported_at": "2026-10-16T23:49:11+08:00",
+  "automated_gate": "PASS",
+  "run": 38941092004,
+  "counts": {
+    "PASS": 387,
+    "FAIL": 0,
+    "HARNESS_ERROR": 0,
+    "PENDING": 0
+  },
+  "rc_identity_equivalence": "PASS",
+  "rc_device_gate": "PENDING",
+  "stable_promotion": "BLOCKED",
+  "limitations": [
+    "Synthetic Chromium / Playwright WebKit; not real iPhone or installed PWA",
+    "SW Cache API simulated; no production Supabase testing",
+    "Reused tests retain historical suite/version labels; source hashes verify RC input"
+  ],
+  "stable_ref": "fb959a95d80896e1db4af690e90c38b0564a8880"
+}
