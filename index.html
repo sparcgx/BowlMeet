@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.7.4</title>
+<title>保齡球球聚｜BowlMeet v0.4.8-RC.1</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="color-scheme" content="light dark" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="apple-mobile-web-app-title" content="BowlMeet" />
-<link rel="manifest" href="./manifest.webmanifest?v=0474" />
-<link rel="apple-touch-icon" href="./icons/icon-192.png?v=0474" />
+<link rel="manifest" href="./manifest.webmanifest?v=048rc1" />
+<link rel="apple-touch-icon" href="./icons/icon-192.png?v=048rc1" />
 <style>
 :root{
   --bg:#f5f7fa;--card:#fff;--text:#172033;--muted:#697386;--line:#e4e8ef;
@@ -1136,7 +1136,7 @@ dialog::backdrop,
 }
 
 </style>
-<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=0474" />
+<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=048rc1" />
 <style id="history-score-critical">
 /* v0.4.6.3-dev.1 | Dynamic score grid + Safari/PWA fallback */
 .history-score-table-wrap{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
@@ -1562,22 +1562,23 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
   .design-preset-strip .layout-preset-btn{min-width:150px;scroll-snap-align:start}
 }
 </style>
-<link rel="stylesheet" href="./assets/theme-center-v0470.css?v=0474" />
-<link rel="stylesheet" href="./assets/theme-center-v0470-mobile.css?v=0474" />
-<link rel="stylesheet" href="./assets/theme-center-v0470-accessibility.css?v=0474" />
-<link rel="stylesheet" href="./assets/liquid-motion-v0470.css?v=0474" />
-<link rel="stylesheet" href="./assets/score-card-v0471.css?v=0474" />
-<link rel="stylesheet" href="./assets/score-card-mobile-v0471.css?v=0474" />
-<link rel="stylesheet" href="./assets/score-card-accessibility-v0471.css?v=0474" />
-<link rel="stylesheet" href="./assets/rc-mobile-repair-v0471.css?v=0474" />
-<link rel="stylesheet" href="./assets/ui-hardening-v0474.css?v=0474" />
-<script defer src="./assets/ui-lifecycle-v0474.js?v=0474"></script>
+<link rel="stylesheet" href="./assets/theme-center-v0470.css?v=048rc1" />
+<link rel="stylesheet" href="./assets/theme-center-v0470-mobile.css?v=048rc1" />
+<link rel="stylesheet" href="./assets/theme-center-v0470-accessibility.css?v=048rc1" />
+<link rel="stylesheet" href="./assets/liquid-motion-v0470.css?v=048rc1" />
+<link rel="stylesheet" href="./assets/score-card-v0471.css?v=048rc1" />
+<link rel="stylesheet" href="./assets/score-card-mobile-v0471.css?v=048rc1" />
+<link rel="stylesheet" href="./assets/score-card-accessibility-v0471.css?v=048rc1" />
+<link rel="stylesheet" href="./assets/rc-mobile-repair-v0471.css?v=048rc1" />
+<link rel="stylesheet" href="./assets/ui-hardening-v0474.css?v=048rc1" />
+<script defer src="./assets/ui-lifecycle-v0474.js?v=048rc1"></script>
+<link rel="stylesheet" href="./assets/lane-management-v048.css?v=048rc1" />
 </head>
 <body>
 <a class="skip-link" href="#mainContent">跳到主要內容</a>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><img class="brand-icon" src="./icons/icon-192.png?v=0474" alt="" width="42" height="42" /><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · Stable · 正式穩定版</p></div></div>
+  <div class="brand"><img class="brand-icon" src="./icons/icon-192.png?v=048rc1" alt="" width="42" height="42" /><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · Release Candidate · 發布候選凍結</p></div></div>
 </div></header>
 <main id="mainContent" tabindex="-1">
   <nav class="tabs" aria-label="功能切換">
@@ -1717,6 +1718,8 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
       <div id="liveMain" class="live-main" hidden>
         <section class="card live-score-panel">
           <div class="live-section-head"><div><h3>10 格即時計分</h3><p>每格輸入每球倒瓶數 0～10；全倒與補中依標準規則自動加成，第 10 格支援加投。</p></div><div class="live-round-nav"><button class="btn small" id="liveRoundRemoveBtn" type="button" title="減少動態局數">− 局</button><button class="btn small" id="livePrevRoundBtn2" type="button">←</button><span class="live-round-badge" id="liveRoundBadge">第 1 局</span><button class="btn small" id="liveNextRoundBtn" type="button">下一局 →</button><button class="btn small" id="liveRoundAddBtn" type="button" title="增加動態局數">＋ 局</button></div></div>
+          <div class="lane-toolbar"><div class="field"><label for="liveLaneFilter">顯示球道</label><select id="liveLaneFilter"><option value="*">全部球道</option></select></div><span id="liveLaneCount" class="pill" aria-live="polite"></span></div>
+          <details id="liveLaneManager" class="lane-manager"><summary>球道分組與投球順序</summary><p class="lane-help">安排僅存於這台裝置，下一局會沿用。完整備份可保留安排；不會同步至其他裝置。排名與進度仍以全場計算。</p><div class="lane-toolbar"><div class="field"><label for="liveLaneNames">球道號碼（以頓號或逗號分隔，最多 20 道）</label><input id="liveLaneNames" maxlength="240" placeholder="例如：12、13" /></div><button id="liveLaneApply" class="btn" type="button">套用球道</button></div><div id="liveLaneRoster"></div><p id="liveLaneStatus" role="status" aria-live="polite"></p></details>
           <div id="liveScoreList" class="live-score-list"></div>
           <div class="live-mobile-bar live-legacy-controls"><button class="btn" id="livePrevRoundMobile" type="button">← 上一局</button><button class="btn primary" id="liveNextRoundMobile" type="button">下一局 →</button></div>
         </section>
@@ -2548,7 +2551,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.7.4';
+const APP_VERSION='0.4.8-RC.1';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const THEME_PREFS_KEY='bowlingMeetup.themePreferences.v1';
 const THEME_DEFAULTS=Object.freeze({
@@ -3059,7 +3062,7 @@ async function initDataSafety(){
       if(idbStamp>localStamp)applyState(saved,{render:false});
       else if(localStamp>idbStamp)await persistDbStateNow('startup-local-newer',localCandidate);
       else{
-        const lc=JSON.stringify([localCandidate.sessions,localCandidate.meetups,localCandidate.roster,localCandidate.draft,localCandidate.publicControl]),ic=JSON.stringify([saved.sessions,saved.meetups,saved.roster,saved.draft,saved.publicControl]);
+        const lc=JSON.stringify([localCandidate.sessions,localCandidate.meetups,localCandidate.roster,localCandidate.draft,localCandidate.publicControl,localCandidate.liveState]),ic=JSON.stringify([saved.sessions,saved.meetups,saved.roster,saved.draft,saved.publicControl,saved.liveState]);
         if(lc===ic)applyState(saved,{render:false});else{storageHealth.lastError='啟動偵測到兩份不同資料；已保留目前本機資料';await persistDbStateNow('startup-divergence-preserve-local',localCandidate)}
       }}
     }else if(savedValid)applyState(saved,{render:false});
@@ -3916,7 +3919,61 @@ function liveHighestUsedGame(s){
 }
 function liveRoundLabel(m){return m?.dynamicGames?'動態局數':`固定 ${livePlannedGames(m)} 局`}
 function livePrefs(){try{const x=JSON.parse(localStorage.getItem(LIVEKEY)||'{}');return x&&typeof x==='object'?x:{}}catch{return {}}}
-function saveLivePrefs(){const p=livePrefs();if(currentMeetupId)p[currentMeetupId]={gameNo:liveGameNo,metric:liveMetric};localStorage.setItem(LIVEKEY,JSON.stringify(p));queueDbStatePersist('live-state')}
+function saveLivePrefs(){const p=livePrefs();if(currentMeetupId)p[currentMeetupId]={...p[currentMeetupId],gameNo:liveGameNo,metric:liveMetric};try{localStorage.setItem(LIVEKEY,JSON.stringify(p));queueDbStatePersist('live-state')}catch(e){console.warn('現場偏好未保存',e)}}
+
+// v0.4.8-RC.1: local workspace arrangement, never added to PUBLIC/room payloads.
+function laneLabels(raw){return [...new Set(String(raw||'').split(/[、,，;；\n]+/).map(x=>x.trim()).filter(Boolean))]}
+function liveLanePlan(m,s){
+  const saved=livePrefs()[m.id]?.lanePlan,valid=saved&&Array.isArray(saved.lanes)&&Array.isArray(saved.players);
+  const lanes=laneLabels(valid?saved.lanes.join('、'):m.lanes).filter(x=>x.length<=10&&x!=='*').slice(0,20),players=(s.players||[]).filter(p=>String(p.name||'').trim()),ids=new Set(players.map(p=>p.id)),seen=new Set(),entries=[];
+  for(const x of valid?saved.players:[]){if(!x||!ids.has(x.id)||seen.has(x.id))continue;seen.add(x.id);entries.push({id:x.id,lane:lanes.includes(x.lane)?x.lane:''})}
+  for(const p of players)if(!seen.has(p.id))entries.push({id:p.id,lane:''});
+  const filter=valid&&(['*','',...lanes].includes(saved.filter))?saved.filter:'*';
+  return {lanes,players:entries,filter};
+}
+function laneOrderedPlayers(plan){return [...plan.lanes,''].flatMap(lane=>plan.players.filter(p=>p.lane===lane))}
+function storeLiveLanePlan(m,plan,message){
+  const prefs=livePrefs();prefs[m.id]={...prefs[m.id],lanePlan:plan};
+  try{localStorage.setItem(LIVEKEY,JSON.stringify(prefs))}catch(e){
+    renderLive();$('liveLaneStatus').textContent='安排未保存：本機儲存空間無法寫入，已保留原安排。請匯出備份後再試。';return false;
+  }
+  queueDbStatePersist('lane-plan');renderLive();$('liveLaneStatus').textContent=message;return true;
+}
+function renderLiveLaneManager(m,s,viewer,rows){
+  const plan=liveLanePlan(m,s),ordered=laneOrderedPlayers(plan),byId=new Map(rows.map(r=>[r.id,r]));
+  $('liveLaneNames').value=plan.lanes.join('、');$('liveLaneNames').disabled=viewer;$('liveLaneApply').disabled=viewer;
+  const count=lane=>plan.players.filter(p=>p.lane===lane).length;
+  $('liveLaneFilter').innerHTML=`<option value="*">全部球道（${rows.length} 人）</option>`+plan.lanes.map(lane=>`<option value="${esc(lane)}">${esc(lane)} 號道（${count(lane)} 人）</option>`).join('')+`<option value="">未分組（${count('')} 人）</option>`;
+  $('liveLaneFilter').value=plan.filter;
+  $('liveLaneRoster').innerHTML=ordered.map(p=>{const peers=ordered.filter(x=>x.lane===p.lane),pos=peers.findIndex(x=>x.id===p.id),name=byId.get(p.id)?.name||'';return `<div class="lane-person"><strong>${esc(name)}</strong><select data-lane-player="${esc(p.id)}" aria-label="${esc(name)} 的球道" ${viewer?'disabled':''}><option value="">未分組</option>${plan.lanes.map(l=>`<option value="${esc(l)}" ${l===p.lane?'selected':''}>${esc(l)} 號道</option>`).join('')}</select><span class="lane-order">${pos+1}</span><button class="btn small" type="button" data-lane-move="${esc(p.id)}" data-direction="-1" aria-label="${esc(name)} 往前" ${viewer||pos===0?'disabled':''}>↑</button><button class="btn small" type="button" data-lane-move="${esc(p.id)}" data-direction="1" aria-label="${esc(name)} 往後" ${viewer||pos===peers.length-1?'disabled':''}>↓</button></div>`}).join('')||'<p class="lane-help">加入玩家後即可安排球道。</p>';
+  const visible=ordered.filter(p=>plan.filter==='*'||p.lane===plan.filter);
+  $('liveLaneCount').textContent=`顯示 ${visible.length} / ${rows.length} 人`;
+  return {plan,visible,byId};
+}
+function editLiveLanePlan(kind,pid='',value=''){
+  const requestedLanes=$('liveLaneNames').value;
+  if(!flushLiveRollCommit()){renderLive();return}
+  const m=meetups.find(x=>x.id===currentMeetupId);if(!m)return;
+  if(kind!=='filter'&&!syncAllowWrite(m.id,'調整球道分組')){renderLive();return}
+  const s=linkedSession(m);if(!s)return;const plan=liveLanePlan(m,s);
+  if(kind==='lanes'){
+    const lanes=laneLabels(requestedLanes);
+    if(lanes.length>20||lanes.some(x=>x.length>10||x==='*')){$('liveLaneStatus').textContent='最多 20 條球道，每個號碼最多 10 字，不能使用 *。';return}
+    const affected=plan.players.filter(p=>p.lane&&!lanes.includes(p.lane));
+    if(affected.length&&!confirm(`移除球道後，${affected.length} 位玩家會回到「未分組」。分數會保留，是否繼續？`)){renderLive();return}
+    plan.lanes=lanes;plan.players=plan.players.map(p=>({...p,lane:lanes.includes(p.lane)?p.lane:''}));if(plan.filter!=='*'&&!lanes.includes(plan.filter))plan.filter='*';
+  }else if(kind==='assign'){
+    if(value!==''&&!plan.lanes.includes(value))return;const p=plan.players.find(x=>x.id===pid);if(!p)return;
+    plan.players=plan.players.filter(x=>x.id!==pid).concat({...p,lane:value});
+  }else if(kind==='move'){
+    const p=plan.players.find(x=>x.id===pid);if(!p)return;const peers=plan.players.filter(x=>x.lane===p.lane),i=peers.findIndex(x=>x.id===pid),target=peers[i+Number(value)];if(!target)return;
+    const a=plan.players.indexOf(p),b=plan.players.indexOf(target);[plan.players[a],plan.players[b]]=[plan.players[b],plan.players[a]];
+  }else if(kind==='filter'){
+    if(!['*','',...plan.lanes].includes(value))return;plan.filter=value;
+  }else return;
+  storeLiveLanePlan(m,plan,kind==='filter'?'顯示球道已保存。':'球道與順序已保存於本機，下一局會沿用。');
+}
+
 function liveRecommendedRound(m,s){const planned=livePlannedGames(m),players=(s?.players||[]).filter(p=>String(p.name||'').trim());for(let i=0;i<planned;i++){if(players.some(p=>normalizeScore((p.scores||[])[i])===null))return i+1}return m?.dynamicGames&&planned<LIVE_GAME_MAX?planned+1:planned}
 function syncLiveSessionPlayers(m,s){
   const names=meetupParticipantNames(m);let changed=false;
@@ -4120,7 +4177,7 @@ function liveCompletedFrameSlots(p,planned){let count=0;const games=normalizeBow
 function clearCompletedMeetupContext(meetupId){
   closePostGameReview();
   cancelLiveRollCommit();liveRollWriteKey='';liveRollLastCommit={key:'',raw:'',gameNo:0,at:0};
-  const prefs=livePrefs();if(meetupId&&Object.prototype.hasOwnProperty.call(prefs,meetupId)){delete prefs[meetupId];localStorage.setItem(LIVEKEY,JSON.stringify(prefs))}
+  const prefs=livePrefs();if(meetupId&&Object.prototype.hasOwnProperty.call(prefs,meetupId)){const plan=prefs[meetupId]?.lanePlan;if(plan)prefs[meetupId]={lanePlan:plan};else delete prefs[meetupId];try{localStorage.setItem(LIVEKEY,JSON.stringify(prefs))}catch(e){console.warn('現場偏好未保存',e)}}
   liveGameNo=1;liveMetric='total';
   const liveSelect=$('liveMeetupSelect');if(liveSelect)liveSelect.value='';
   const quickPlayer=$('liveQuickPlayerName');if(quickPlayer)quickPlayer.value='';
@@ -4153,7 +4210,7 @@ function renderLive(){
   const liveCount=livePlannedGames(m),roundSel=$('liveGameRound');roundSel.innerHTML=Array.from({length:liveCount},(_,i)=>`<option value="${i+1}">第 ${i+1} 局</option>`).join('');roundSel.value=String(liveGameNo);$('liveRoundBadge').textContent=m.dynamicGames?`第 ${liveGameNo} / ${liveCount} 局`:`第 ${liveGameNo} 局`;
   const rows=liveRowsFor(m,sess),entered=rows.filter(r=>r.gameComplete).length,allVals=rows.flatMap(r=>r.scores.filter(v=>v!==null)),best=rows.reduce((acc,r)=>r.best!==null&&(!acc||r.best>acc.score)?{score:r.best,name:r.name}:acc,null),effectivePlanned=livePlannedGames(m),totalSlots=Math.max(1,rows.length*effectivePlanned*10),doneSlots=(sess.players||[]).filter(p=>String(p.name||'').trim()).reduce((sum,p)=>sum+liveCompletedFrameSlots(p,effectivePlanned),0),progress=Math.round(doneSlots/totalSlots*100);
   $('livePlayers').textContent=rows.length;$('liveRoundKpi').textContent=`${liveGameNo}/${effectivePlanned}`;$('liveRoundKpiSub').textContent=m.dynamicGames?'動態局數':`第 ${liveGameNo} 局`;$('liveRoundDone').textContent=`${entered}/${rows.length}`;$('liveMissingText').textContent=entered===rows.length&&rows.length?'全員 10 格完成':`尚有 ${Math.max(0,rows.length-entered)} 人未完成`;$('liveAvg').textContent=avg(allVals)??'—';$('liveBest').textContent=best?.score??'—';$('liveBestName').textContent=best?.name||'尚無分數';$('liveProgressText').textContent=`球聚進度 ${progress}% · ${doneSlots}/${totalSlots} 格完成`;$('liveProgressBar').style.width=`${progress}%`;
-  const rankRows=liveSortRows(rows,liveMetric),rankMap=new Map(rankRows.map((r,i)=>[r.id,i+1]));$('liveScoreList').innerHTML=rows.length?rows.map(r=>renderLivePlayerRow(r,rankMap.get(r.id)||0,viewer,planned)).join(''):'<div class="empty">這場球聚尚未加入參加球員。請回到「球聚活動」編輯參加名單。</div>';
+  const rankRows=liveSortRows(rows,liveMetric),rankMap=new Map(rankRows.map((r,i)=>[r.id,i+1]));const laneView=renderLiveLaneManager(m,sess,viewer,rows);$('liveScoreList').innerHTML=laneView.visible.length?laneView.visible.map(p=>{const peers=laneView.plan.players.filter(x=>x.lane===p.lane),position=peers.findIndex(x=>x.id===p.id)+1;return `<div class="lane-score-label">${p.lane?esc(p.lane)+' 號道':'未分組'} · 投球順序 ${position}</div>`+renderLivePlayerRow(laneView.byId.get(p.id),rankMap.get(p.id)||0,viewer,planned)}).join(''):'<div class="empty">此球道尚無玩家，可展開「球道分組與投球順序」安排，或切換全部球道。</div>';
   const metricSel=$('liveRankMetric');metricSel.value=[...metricSel.options].some(o=>o.value===liveMetric)?liveMetric:'total';const sorted=liveSortRows(rows,liveMetric);$('liveRankCount').textContent=`${rows.length} 人`;let last=null,rank=0;$('liveRankBody').innerHTML=sorted.map((r,i)=>{const val=liveMetricValue(r,liveMetric);if(i===0||val!==last)rank=i+1;last=val;return `<tr><td class="pos">${rank}</td><td class="who">${esc(r.name)}</td><td class="${liveMetric==='current'?'primary-val':''}">${r.current??'—'}</td><td class="${liveMetric==='total'?'primary-val':''}">${r.total}</td><td class="${liveMetric==='avg'?'primary-val':''}">${r.avg??'—'}</td><td class="${liveMetric==='best'?'primary-val':''}">${r.best??'—'}</td></tr>`}).join('');
   $('livePrevRoundBtn').disabled=liveGameNo<=1;$('livePrevRoundBtn2').disabled=liveGameNo<=1;$('livePrevRoundMobile').disabled=liveGameNo<=1;const addBtn=$('liveRoundAddBtn'),removeBtn=$('liveRoundRemoveBtn'),dynamic=m.dynamicGames===true;if(addBtn){addBtn.hidden=!dynamic;addBtn.disabled=!dynamic||effectivePlanned>=LIVE_GAME_MAX}if(removeBtn){removeBtn.hidden=!dynamic;removeBtn.disabled=!dynamic||effectivePlanned<=1||effectivePlanned<=liveHighestUsedGame(sess)}const atLast=liveGameNo>=effectivePlanned;$('liveNextRoundBtn').textContent=dynamic&&atLast&&effectivePlanned<LIVE_GAME_MAX?'新增下一局 →':atLast?'完成球聚':'下一局 →';$('liveNextRoundMobile').textContent=dynamic&&atLast&&effectivePlanned<LIVE_GAME_MAX?'新增下一局 →':atLast?'完成球聚':'下一局 →';saveLivePrefs()
 }
@@ -4890,6 +4947,10 @@ $('playerHistoryBackBtn').addEventListener('click',closePlayerHistory);$('player
 $('awardMeetup').addEventListener('change',e=>{const id=e.target.value;if(id&&validMeetupContextId(id)){setCurrentMeetup(id);syncMeetupDerivedSelectors(id)}renderAwards()});$('awardCurrentBtn').addEventListener('click',()=>{if(!currentMeetupId){alert('目前沒有選擇球聚活動。');return}if(!requirePublicMeetup(currentMeetupId,'查看獎項'))return;renderAwardOptions(currentMeetupId);syncMeetupDerivedSelectors(currentMeetupId);renderAwards()});$('awardShareBtn').addEventListener('click',()=>{const id=$('awardMeetup').value;if(!id||!requirePublicMeetup(id,'分享獎項'))return;if(validMeetupContextId(id))setCurrentMeetup(id);switchView('shareView');renderShareOptions(id);$('shareMeetup').value=id;$('shareCardType').value='awards';syncMeetupDerivedSelectors(id);updateShareControls(true)});$('addCustomAwardBtn').addEventListener('click',addCustomAward);$('customAwardList').addEventListener('click',e=>{const b=e.target.closest('[data-del-custom-award]');if(b&&confirm('確定移除這個自訂獎項？'))deleteCustomAward(b.dataset.delCustomAward)});
 
 $('postReviewCloseBtn').addEventListener('click',closePostGameReview);$('postReviewDoneBtn').addEventListener('click',closePostGameReview);$('postReviewShareBtn').addEventListener('click',openPostReviewShare);$('postReviewHistoryBtn').addEventListener('click',openPostReviewHistory);$('postGameReviewDialog').addEventListener('cancel',e=>{e.preventDefault();closePostGameReview()});
+$('liveLaneApply').addEventListener('click',()=>editLiveLanePlan('lanes'));
+$('liveLaneFilter').addEventListener('change',e=>editLiveLanePlan('filter','',e.target.value));
+$('liveLaneRoster').addEventListener('change',e=>{if(e.target.matches('[data-lane-player]'))editLiveLanePlan('assign',e.target.dataset.lanePlayer,e.target.value)});
+$('liveLaneRoster').addEventListener('click',e=>{const b=e.target.closest('[data-lane-move]');if(b)editLiveLanePlan('move',b.dataset.laneMove,b.dataset.direction)});
 $('liveMeetupSelect').addEventListener('change',e=>{if(!flushLiveRollCommit()){e.target.value=currentMeetupId||'';return}if(e.target.value)selectLiveMeetup(e.target.value,true);else{setCurrentMeetup('');renderLive()}});
 $('liveGameRound').addEventListener('change',e=>setLiveRound(e.target.value));
 $('liveAddPlayerBtn').addEventListener('click',addLivePlayerDirect);$('liveQuickPlayerName').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addLivePlayerDirect()}});
