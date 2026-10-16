@@ -1,0 +1,14 @@
+{
+  "version": "0.4.8-dev.1",
+  "channel": "isolated-preview-cloud-disabled",
+  "base_commit": "fb959a95d80896e1db4af690e90c38b0564a8880",
+  "result_index_sha256": "810b35b29c569287602b2d9d6fa393515985adb4e9d704730301f3e594e105ce",
+  "db_version": 2,
+  "public_history_code": "PUBLIC",
+  "schema_migration": false,
+  "device_gate": "PENDING",
+  "source_index_sha256": "f6e3f3082618086a15fc43a460b70f5e2249b806c6a3b2b2f8cde83e6568c508",
+  "tested_commit": "681e5ee820db0ffb29567bfe637a56b153fac5ef",
+  "automated_gate": "PASS",
+  "automated_gate_run": 38923835046
+}
