@@ -1,0 +1,103 @@
+{
+  "suite": "Series independent cases",
+  "checks": [
+    {
+      "name": "Only first N games count",
+      "status": "PASS"
+    },
+    {
+      "name": "Missing games are not zero scores",
+      "status": "PASS"
+    },
+    {
+      "name": "Zero is a completed game",
+      "status": "PASS"
+    },
+    {
+      "name": "No scores has no rank",
+      "status": "PASS"
+    },
+    {
+      "name": "Competition ties 1 1 3",
+      "status": "PASS"
+    },
+    {
+      "name": "Missing player not declared final",
+      "status": "PASS"
+    },
+    {
+      "name": "Average uses actual completed games",
+      "status": "PASS"
+    },
+    {
+      "name": "Average exact rational ties despite different game counts",
+      "status": "PASS"
+    },
+    {
+      "name": "Team sums and equal membership finish",
+      "status": "PASS"
+    },
+    {
+      "name": "Incomplete team round excluded from round sum but accumulated scores retained",
+      "status": "PASS"
+    },
+    {
+      "name": "Unequal team sizes cannot finalize",
+      "status": "PASS"
+    },
+    {
+      "name": "Unassigned players cannot finalize team match",
+      "status": "PASS"
+    },
+    {
+      "name": "Missing published member cannot finalize or supply score",
+      "status": "PASS"
+    },
+    {
+      "name": "Duplicate membership counts once",
+      "status": "PASS"
+    },
+    {
+      "name": "Duplicate session IDs counted once",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid rounds 0",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid rounds 7",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid rounds -1",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid rounds 1.5",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid rounds bad",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid scores excluded",
+      "status": "PASS"
+    },
+    {
+      "name": "Incomplete frames override stale total",
+      "status": "PASS"
+    },
+    {
+      "name": "Completed frames scored by existing core",
+      "status": "PASS"
+    },
+    {
+      "name": "Input data not mutated",
+      "status": "PASS"
+    }
+  ],
+  "passed": 24,
+  "failed": 0
+}

@@ -1,0 +1,34 @@
+{
+  "version": "v0.4.8-dev.1",
+  "baseline": "fb959a95d80896e1db4af690e90c38b0564a8880",
+  "tested_commit": "681e5ee820db0ffb29567bfe637a56b153fac5ef",
+  "index_sha256": "f6e3f3082618086a15fc43a460b70f5e2249b806c6a3b2b2f8cde83e6568c508",
+  "run": 38923835046,
+  "automated_gate": "PASS",
+  "counts": {
+    "PASS": 387,
+    "FAIL": 0,
+    "HARNESS_ERROR": 0,
+    "PENDING": 0
+  },
+  "device_gate": "PENDING",
+  "RC": "BLOCKED",
+  "suites": {
+    "lanes_chromium": 26,
+    "lanes_webkit": 26,
+    "fault_chromium": 24,
+    "fault_webkit": 24,
+    "backup_chromium": 7,
+    "backup_webkit": 7,
+    "source_scoring_simulated_sw": 25,
+    "ui_public_only": 248
+  },
+  "limitations": [
+    "Synthetic browser tests; not real iPhone or installed PWA",
+    "No production Supabase tests or data changes",
+    "Reused v0474 native harness retains its historical version label; source_index_sha256 verifies the v048 input",
+    "Earlier run 38923644966 stopped with a quota injection harness error; corrected run above passes",
+    "Local browser installation failed; full browser gates executed on GitHub Actions"
+  ],
+  "storage": "Local-only liveState lanePlan; full replace backup restore; no cloud payload/schema changes"
+}
