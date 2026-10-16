@@ -1,8 +1,8 @@
-/* v0.4.8-RC.1 | Versioned shell; never cache cloud APIs or other previews. */
+/* v0.4.8-dev.2 | Versioned shell; never cache cloud APIs or other previews. */
 const PRODUCTION_CACHE_ROOT='bowlmeet-v';
-const CACHE='bowlmeet-v0.4.8-RC.1-shell';
-const RUNTIME='bowlmeet-v0.4.8-RC.1-runtime';
-const APP_SHELL=['./','./index.html','./assets/lane-management-v048.css?v=048rc1','./manifest.webmanifest?v=048rc1','./assets/liquid-glass-dev4.css?v=048rc1','./assets/theme-center-v0470.css?v=048rc1','./assets/theme-center-v0470-mobile.css?v=048rc1','./assets/theme-center-v0470-accessibility.css?v=048rc1','./assets/liquid-motion-v0470.css?v=048rc1','./assets/score-card-v0471.css?v=048rc1','./assets/score-card-mobile-v0471.css?v=048rc1','./assets/score-card-accessibility-v0471.css?v=048rc1','./assets/rc-mobile-repair-v0471.css?v=048rc1','./assets/ui-hardening-v0474.css?v=048rc1','./assets/ui-lifecycle-v0474.js?v=048rc1','./icons/icon-192.png?v=048rc1','./icons/icon-512.svg?v=048rc1','./icons/icon-maskable-512.svg?v=048rc1'];
+const CACHE='bowlmeet-v0.4.8-dev.2-shell';
+const RUNTIME='bowlmeet-v0.4.8-dev.2-runtime';
+const APP_SHELL=['./','./index.html','./assets/series-v048.css?v=048dev2','./assets/lane-management-v048.css?v=048dev2','./manifest.webmanifest?v=048dev2','./assets/liquid-glass-dev4.css?v=048dev2','./assets/theme-center-v0470.css?v=048dev2','./assets/theme-center-v0470-mobile.css?v=048dev2','./assets/theme-center-v0470-accessibility.css?v=048dev2','./assets/liquid-motion-v0470.css?v=048dev2','./assets/score-card-v0471.css?v=048dev2','./assets/score-card-mobile-v0471.css?v=048dev2','./assets/score-card-accessibility-v0471.css?v=048dev2','./assets/rc-mobile-repair-v0471.css?v=048dev2','./assets/ui-hardening-v0474.css?v=048dev2','./assets/ui-lifecycle-v0474.js?v=048dev2','./icons/icon-192.png?v=048dev2','./icons/icon-512.svg?v=048dev2','./icons/icon-maskable-512.svg?v=048dev2'];
 const SCOPE=new URL(self.registration.scope);
 const INDEX_URL=new URL('./index.html',SCOPE).href;
 const ASSET_URLS=new Set(APP_SHELL.slice(2).map(p=>new URL(p,SCOPE).href));

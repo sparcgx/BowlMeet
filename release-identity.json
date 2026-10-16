@@ -1,13 +1,10 @@
 {
-  "version": "0.4.8-RC.1",
-  "channel": "release-candidate",
-  "base_commit": "00f45866aa8bf89ce6df6d294d3e6fc7b1f0a984",
-  "stable_commit": "fb959a95d80896e1db4af690e90c38b0564a8880",
-  "result_index_sha256": "4eb31b256edeaf33370b7d73489aea4adbf4a55c027ca1318a849a55be44e82d",
-  "dev_device_gate": "PASS_USER_REPORTED",
-  "dev_device_reported_at": "2026-10-16T23:49:11+08:00",
-  "rc_device_gate": "PENDING",
+  "version": "0.4.8-dev.2",
+  "channel": "development",
+  "base_commit": "cc51669b42be4867a8619cb02901edb5807ffcc7",
+  "result_index_sha256": "03f64e6e685b2cd62e459bbcef072dd8e200f2201af9bb52b005c10c40865759",
   "db_version": 2,
   "public_history_code": "PUBLIC",
-  "schema_migration": false
+  "schema_migration": false,
+  "device_gate": "PENDING"
 }

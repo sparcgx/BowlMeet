@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>保齡球球聚｜BowlMeet v0.4.8-RC.1</title>
+<title>保齡球球聚｜BowlMeet v0.4.8-dev.2</title>
 <meta name="theme-color" content="#ffffff" />
 <meta name="color-scheme" content="light dark" />
 <meta name="application-name" content="BowlMeet" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="apple-mobile-web-app-title" content="BowlMeet" />
-<link rel="manifest" href="./manifest.webmanifest?v=048rc1" />
-<link rel="apple-touch-icon" href="./icons/icon-192.png?v=048rc1" />
+<link rel="manifest" href="./manifest.webmanifest?v=048dev2" />
+<link rel="apple-touch-icon" href="./icons/icon-192.png?v=048dev2" />
 <style>
 :root{
   --bg:#f5f7fa;--card:#fff;--text:#172033;--muted:#697386;--line:#e4e8ef;
@@ -1136,7 +1136,7 @@ dialog::backdrop,
 }
 
 </style>
-<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=048rc1" />
+<link rel="stylesheet" href="./assets/liquid-glass-dev4.css?v=048dev2" />
 <style id="history-score-critical">
 /* v0.4.6.3-dev.1 | Dynamic score grid + Safari/PWA fallback */
 .history-score-table-wrap{display:block;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y}
@@ -1562,23 +1562,24 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
   .design-preset-strip .layout-preset-btn{min-width:150px;scroll-snap-align:start}
 }
 </style>
-<link rel="stylesheet" href="./assets/theme-center-v0470.css?v=048rc1" />
-<link rel="stylesheet" href="./assets/theme-center-v0470-mobile.css?v=048rc1" />
-<link rel="stylesheet" href="./assets/theme-center-v0470-accessibility.css?v=048rc1" />
-<link rel="stylesheet" href="./assets/liquid-motion-v0470.css?v=048rc1" />
-<link rel="stylesheet" href="./assets/score-card-v0471.css?v=048rc1" />
-<link rel="stylesheet" href="./assets/score-card-mobile-v0471.css?v=048rc1" />
-<link rel="stylesheet" href="./assets/score-card-accessibility-v0471.css?v=048rc1" />
-<link rel="stylesheet" href="./assets/rc-mobile-repair-v0471.css?v=048rc1" />
-<link rel="stylesheet" href="./assets/ui-hardening-v0474.css?v=048rc1" />
-<script defer src="./assets/ui-lifecycle-v0474.js?v=048rc1"></script>
-<link rel="stylesheet" href="./assets/lane-management-v048.css?v=048rc1" />
+<link rel="stylesheet" href="./assets/theme-center-v0470.css?v=048dev2" />
+<link rel="stylesheet" href="./assets/theme-center-v0470-mobile.css?v=048dev2" />
+<link rel="stylesheet" href="./assets/theme-center-v0470-accessibility.css?v=048dev2" />
+<link rel="stylesheet" href="./assets/liquid-motion-v0470.css?v=048dev2" />
+<link rel="stylesheet" href="./assets/score-card-v0471.css?v=048dev2" />
+<link rel="stylesheet" href="./assets/score-card-mobile-v0471.css?v=048dev2" />
+<link rel="stylesheet" href="./assets/score-card-accessibility-v0471.css?v=048dev2" />
+<link rel="stylesheet" href="./assets/rc-mobile-repair-v0471.css?v=048dev2" />
+<link rel="stylesheet" href="./assets/ui-hardening-v0474.css?v=048dev2" />
+<script defer src="./assets/ui-lifecycle-v0474.js?v=048dev2"></script>
+<link rel="stylesheet" href="./assets/lane-management-v048.css?v=048dev2" />
+<link rel="stylesheet" href="./assets/series-v048.css?v=048dev2" />
 </head>
 <body>
 <a class="skip-link" href="#mainContent">跳到主要內容</a>
 <div class="app">
 <header class="topbar"><div class="topbar-inner topbar-brand-only">
-  <div class="brand"><img class="brand-icon" src="./icons/icon-192.png?v=048rc1" alt="" width="42" height="42" /><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · Release Candidate · 發布候選凍結</p></div></div>
+  <div class="brand"><img class="brand-icon" src="./icons/icon-192.png?v=048dev2" alt="" width="42" height="42" /><div><h1>保齡球球聚｜BowlMeet</h1><p>BowlMeet <span data-app-version></span> · Development · 球聚賽制與系列賽</p></div></div>
 </div></header>
 <main id="mainContent" tabindex="-1">
   <nav class="tabs" aria-label="功能切換">
@@ -1724,6 +1725,7 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
           <div class="live-mobile-bar live-legacy-controls"><button class="btn" id="livePrevRoundMobile" type="button">← 上一局</button><button class="btn primary" id="liveNextRoundMobile" type="button">下一局 →</button></div>
         </section>
 
+        <section class="card series-panel"><h3>球聚系列賽</h3><details id="seriesSettings"><summary>設定賽制與隊伍</summary><p class="lane-help">賽制僅存於本機，完整備份可保留。前 N 局納入比賽，多出的局數不計入；設定不會修改原始分數。</p><div class="lane-toolbar"><div class="field"><label for="seriesMode">賽制</label><select id="seriesMode"><option value="off">未啟用</option><option value="total">個人總分賽</option><option value="avg">個人平均賽</option><option value="team">團體總分賽</option></select></div><div class="field"><label for="seriesRounds">計入前幾局</label><select id="seriesRounds"><option value="1">1 局</option><option value="2">2 局</option><option value="3">3 局</option><option value="4">4 局</option><option value="5">5 局</option><option value="6">6 局</option></select></div></div><div id="seriesTeamRoster" hidden></div><button class="btn primary" id="seriesSaveBtn" type="button">儲存賽制</button><p id="seriesStatus" role="status"></p></details><div id="liveSeriesResults"></div></section>
         <aside class="card live-rank-panel">
           <div class="live-section-head"><div><h3>即時排行榜</h3><p>分數儲存後立即重新排序。</p></div><span class="pill" id="liveRankCount">0 人</span></div>
           <div class="live-rank-controls"><div class="field"><label for="liveRankMetric">排名方式</label><select id="liveRankMetric"><option value="total">累計總分</option><option value="avg">平均分</option><option value="current">本局分數</option><option value="best">最高單局</option></select></div></div>
@@ -2118,7 +2120,7 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
       <h2>公開成績排行榜</h2><p class="section-desc">只統計已同步到公開歷史的成績；本機未公開或已取消公開的紀錄不會列入。排名指標可切換總分、平均與最高單局。</p>
       <div class="leaderboard-controls"><div class="field"><label for="leaderboardMeetup">球聚範圍</label><select id="leaderboardMeetup"><option value="all">全部歷史</option></select></div><div class="field"><label for="leaderboardMetric">排名指標</label><select id="leaderboardMetric"><option value="total">總分</option><option value="avg">平均</option><option value="best">最高單局</option></select></div><button class="btn" id="leaderboardCurrentBtn" type="button">目前球聚</button></div>
       <div class="leaderboard-summary"><div class="mini-kpi"><div class="cap">上榜球員</div><div class="num" id="rankPlayers">0</div></div><div class="mini-kpi"><div class="cap">已完成局數</div><div class="num" id="rankGames">0</div></div><div class="mini-kpi"><div class="cap">整體平均</div><div class="num" id="rankAvg">—</div></div><div class="mini-kpi"><div class="cap">最高單局</div><div class="num" id="rankBest">—</div></div></div>
-      <div class="rank-table-wrap"><table class="rank-table"><thead><tr><th>排名</th><th>球員</th><th>局數</th><th>總分</th><th>平均</th><th>最高</th><th>完成度</th></tr></thead><tbody id="leaderboardBody"></tbody></table><div id="leaderboardEmpty" class="leaderboard-empty">尚無可排行的成績。</div></div>
+      <div class="rank-table-wrap"><table class="rank-table"><thead><tr><th>排名</th><th>球員</th><th>局數</th><th>總分</th><th>平均</th><th>最高</th><th>完成度</th></tr></thead><tbody id="leaderboardBody"></tbody></table><div id="leaderboardEmpty" class="leaderboard-empty">尚無可排行的成績。</div></div><h3>公開系列賽結果</h3><div id="publicSeriesResults"></div>
     </section>
   </section>
 
@@ -2402,7 +2404,7 @@ html[data-theme="high-contrast"] .btn.primary{background:#000!important;border-c
         <h2>分享成績卡</h2>
         <p class="section-desc">只使用已同步到公開歷史的成績，產生 1080 × 1350 排行榜卡、球聚完整成績卡、球聚總覽卡或獎項卡。支援手機原生分享；不支援時會改為下載 PNG。</p>
         <div class="share-form">
-          <div class="field"><label for="shareCardType">分享卡類型</label><select id="shareCardType"><option value="ranking">排行榜卡</option><option value="meetupCard">球聚完整成績卡</option><option value="summary">球聚總覽卡</option><option value="awards">獎項卡</option></select><div class="share-type-note" id="shareTypeNote">排行榜卡可依總分、平均或最高單局排序。</div></div>
+          <div class="field"><label for="shareCardType">分享卡類型</label><select id="shareCardType"><option value="ranking">排行榜卡</option><option value="meetupCard">球聚完整成績卡</option><option value="series">系列賽結果卡</option><option value="summary">球聚總覽卡</option><option value="awards">獎項卡</option></select><div class="share-type-note" id="shareTypeNote">排行榜卡可依總分、平均或最高單局排序。</div></div>
           <div class="field"><label for="shareMeetup">球聚範圍</label><select id="shareMeetup"><option value="all">全部歷史</option></select></div>
           <div class="field" id="shareMetricField"><label for="shareMetric">排行榜指標</label><select id="shareMetric"><option value="total">總分</option><option value="avg">平均</option><option value="best">最高單局</option></select></div>
           <div class="field" id="shareTopNField"><label for="shareTopN">顯示名次</label><select id="shareTopN"><option value="3">前 3 名</option><option value="5" selected>前 5 名</option><option value="8">前 8 名</option></select></div>
@@ -2551,7 +2553,7 @@ const PUBLIC_HISTORY_CODE='PUBLIC';
 const PUBLIC_HISTORY_PIN='042042';
 const PUBLIC_HISTORY_NAME='BowlMeet 公開歷史';
 const GROUPSECRETKEY='bowlingMeetup.groupAuth.v042';
-const APP_VERSION='0.4.8-RC.1';
+const APP_VERSION='0.4.8-dev.2';
 const LAYOUT_PREFS_KEY='bowlingMeetup.layoutPreferences.v1';
 const THEME_PREFS_KEY='bowlingMeetup.themePreferences.v1';
 const THEME_DEFAULTS=Object.freeze({
@@ -3921,7 +3923,7 @@ function liveRoundLabel(m){return m?.dynamicGames?'動態局數':`固定 ${liveP
 function livePrefs(){try{const x=JSON.parse(localStorage.getItem(LIVEKEY)||'{}');return x&&typeof x==='object'?x:{}}catch{return {}}}
 function saveLivePrefs(){const p=livePrefs();if(currentMeetupId)p[currentMeetupId]={...p[currentMeetupId],gameNo:liveGameNo,metric:liveMetric};try{localStorage.setItem(LIVEKEY,JSON.stringify(p));queueDbStatePersist('live-state')}catch(e){console.warn('現場偏好未保存',e)}}
 
-// v0.4.8-RC.1: local workspace arrangement, never added to PUBLIC/room payloads.
+// v0.4.8-dev.2: local workspace arrangement, never added to PUBLIC/room payloads.
 function laneLabels(raw){return [...new Set(String(raw||'').split(/[、,，;；\n]+/).map(x=>x.trim()).filter(Boolean))]}
 function liveLanePlan(m,s){
   const saved=livePrefs()[m.id]?.lanePlan,valid=saved&&Array.isArray(saved.lanes)&&Array.isArray(saved.players);
@@ -3972,6 +3974,67 @@ function editLiveLanePlan(kind,pid='',value=''){
     if(!['*','',...plan.lanes].includes(value))return;plan.filter=value;
   }else return;
   storeLiveLanePlan(m,plan,kind==='filter'?'顯示球道已保存。':'球道與順序已保存於本機，下一局會沿用。');
+}
+
+// SERIES_ENGINE_BEGIN
+function normalizeSeriesRules(raw){
+  if(!raw||!['total','avg','team'].includes(raw.mode))return null;
+  const rounds=Number(raw.rounds);if(!Number.isInteger(rounds)||rounds<1||rounds>6)return null;
+  const seen=new Set(),teams=[];
+  for(const t of Array.isArray(raw.teams)?raw.teams:[]){const name=String(t?.name||'').trim().slice(0,20);if(!name)continue;let team=teams.find(x=>x.name===name);if(!team){team={name,ids:[]};teams.push(team)}for(const id of Array.isArray(t.ids)?t.ids:[]){if(typeof id==='string'&&id&&!seen.has(id)){seen.add(id);team.ids.push(id)}}}
+  return {mode:raw.mode,rounds,teams:teams.filter(t=>t.ids.length)};
+}
+function computeSeriesResult(session,rules){
+  const config=normalizeSeriesRules(rules);if(!config)return {configured:false,rows:[],warnings:[],final:false};
+  const n=config.rounds,seen=new Set(),players=(session?.players||[]).filter(p=>{if(!p?.id||seen.has(p.id)||!String(p.name||'').trim())return false;seen.add(p.id);return true}).map(p=>{
+    const scores=Array.from({length:n},(_,i)=>{const g=p.bowlingFrames?.[i];if(bowlingGameStarted(g)){const c=bowlingGameCalc(g);return c.complete?c.final:null}return normalizeScore(p.scores?.[i])}),vals=scores.filter(v=>v!==null);return {id:p.id,name:String(p.name),scores,total:vals.reduce((a,b)=>a+b,0),played:vals.length,expected:n,members:1};
+  });
+  const warnings=[];let rows=players;
+  if(config.mode==='team'){
+    const map=new Map(players.map(p=>[p.id,p])),assigned=new Set(config.teams.flatMap(t=>t.ids));
+    const unassigned=players.filter(p=>!assigned.has(p.id)).length;if(unassigned)warnings.push(`${unassigned} 位玩家尚未分隊`);
+    if(config.teams.length<2)warnings.push('團體賽至少需要兩隊');
+    if(new Set(config.teams.map(t=>t.ids.length)).size>1)warnings.push('各隊人數不同，請調整後再確認最終排名');
+    if(config.teams.some(t=>t.ids.some(id=>!map.has(id))))warnings.push('部分隊員在目前資料來源中沒有成績資料');
+    rows=config.teams.map(t=>{const members=t.ids.map(id=>map.get(id)),available=members.filter(Boolean);return {id:t.name,name:t.name,members:t.ids.length,expected:t.ids.length*n,played:available.reduce((s,p)=>s+p.played,0),total:available.reduce((s,p)=>s+p.total,0),scores:Array.from({length:n},(_,i)=>{const v=members.map(p=>p?.scores[i]??null);return v.every(x=>x!==null)?v.reduce((a,b)=>a+b,0):null})}});
+  }
+  const compare=(a,b)=>config.mode==='avg'?a.total*Math.max(1,b.played)-b.total*Math.max(1,a.played):a.total-b.total;
+  rows.sort((a,b)=>Number(b.played>0)-Number(a.played>0)||compare(b,a)||a.name.localeCompare(b.name,'zh-Hant'));
+  let last=null,rank=0;rows=rows.map((r,i)=>{if(r.played){if(!last||compare(r,last)!==0)rank=i+1;last=r}return {...r,rank:r.played?rank:null,average:r.played?Math.round(r.total/r.played*10)/10:null,missing:r.expected-r.played,complete:r.played===r.expected}});
+  return {configured:true,config,rows,warnings,final:rows.length>0&&!warnings.length&&rows.every(r=>r.complete),played:rows.reduce((s,r)=>s+r.played,0),expected:rows.reduce((s,r)=>s+r.expected,0)};
+}
+// SERIES_ENGINE_END
+function getSeriesRules(id){return normalizeSeriesRules(livePrefs()[id]?.seriesRules)}
+function seriesLabel(rules){return rules?`${rules.mode==='team'?'團體總分':rules.mode==='avg'?'個人平均':'個人總分'}賽 · 前 ${rules.rounds} 局`:'未設定賽制'}
+function seriesResultHtml(result,publicOnly=false){
+  if(!result.configured)return '<p class="lane-help">尚未設定賽制，可在球聚現場設定。</p>';
+  const r=result,n=r.config.rounds;return `<p class="series-summary"><strong>${esc(seriesLabel(r.config))}</strong> · ${r.final?'最終結果':'暫定排名'} · 完成 ${r.played}/${r.expected} 局${publicOnly?' · 僅公開成績':''}</p>${r.warnings.map(w=>`<p class="series-warning">${esc(w)}</p>`).join('')}<div class="rank-table-wrap"><table class="rank-table"><thead><tr><th>名次</th><th>${r.config.mode==='team'?'隊伍':'玩家'}</th>${Array.from({length:n},(_,i)=>`<th>G${i+1}</th>`).join('')}<th>總分</th><th>平均</th><th>完成／缺局</th></tr></thead><tbody>${r.rows.map(x=>`<tr><td>${x.rank??'—'}</td><td>${esc(x.name)}${r.config.mode==='team'?`<small>（${x.members} 人）</small>`:''}</td>${x.scores.map(v=>`<td>${v??'—'}</td>`).join('')}<td>${x.played?x.total:'—'}</td><td>${x.average??'—'}</td><td>${x.played}/${x.expected} · ${x.missing?'缺 '+x.missing+' 局':'完成'}</td></tr>`).join('')}</tbody></table></div><p class="lane-help">同分並列（1、1、3）；平均排名使用未四捨五入的數值。團體單局須全隊完成才顯示，累計總分包含已完成的個人局數。</p>`;
+}
+function renderLiveSeries(m,s,viewer){
+  const rules=getSeriesRules(m.id),cfg=rules||{mode:'off',rounds:Math.min(3,livePlannedGames(m)),teams:[]};
+  $('seriesMode').value=cfg.mode;$('seriesRounds').value=String(cfg.rounds);$('seriesMode').disabled=viewer;$('seriesRounds').disabled=viewer;$('seriesSaveBtn').disabled=viewer;
+  $('seriesTeamRoster').innerHTML=(s.players||[]).filter(p=>String(p.name||'').trim()).map(p=>`<div class="series-member"><label for="series-team-${esc(p.id)}">${esc(p.name)}</label><input id="series-team-${esc(p.id)}" data-series-player="${esc(p.id)}" maxlength="20" placeholder="例如 A 隊" value="${esc(cfg.teams.find(t=>t.ids.includes(p.id))?.name||'')}" ${viewer?'disabled':''}/></div>`).join('');
+  $('seriesTeamRoster').hidden=cfg.mode!=='team';$('liveSeriesResults').innerHTML=seriesResultHtml(computeSeriesResult(s,rules));
+}
+function saveSeriesRules(){
+  const mode=$('seriesMode').value,rounds=Number($('seriesRounds').value),teams=[];
+  for(const el of document.querySelectorAll('[data-series-player]')){const name=el.value.trim();if(!name)continue;let team=teams.find(t=>t.name===name);if(!team){team={name,ids:[]};teams.push(team)}team.ids.push(el.dataset.seriesPlayer)}
+  if(!flushLiveRollCommit())return;const m=meetups.find(x=>x.id===currentMeetupId);if(!m||!syncAllowWrite(m.id,'設定球聚賽制'))return;
+  const rules=mode==='off'?null:normalizeSeriesRules({mode,rounds,teams});if(mode!=='off'&&!rules){$('seriesStatus').textContent='請選擇有效賽制與 1～6 局。';return}
+  const p=livePrefs();p[m.id]={...p[m.id],seriesRules:rules};
+  try{localStorage.setItem(LIVEKEY,JSON.stringify(p))}catch(e){renderLive();$('seriesStatus').textContent='賽制未保存，本機儲存無法寫入；原設定仍保留。';return}
+  queueDbStatePersist('series-rules');renderLive();renderLeaderboard();renderShare();$('seriesStatus').textContent=rules?'賽制已保存於本機。':'已停用系列賽，原始成績保留。';
+}
+function publicSeriesResult(id){return computeSeriesResult(publicSessionForMeetup(id),publicMeetupById(id)?getSeriesRules(id):null)}
+function renderPublicSeries(id){const box=$('publicSeriesResults');if(box)box.innerHTML=id==='all'?'<p class="lane-help">選擇單一公開球聚查看系列賽結果。</p>':seriesResultHtml(publicSeriesResult(id),true)}
+function drawSeriesShareCard(ctx,W,H,data,title){
+  const r=publicSeriesResult(data.scope);drawShareHeader(ctx,W,title,r.configured?seriesLabel(r.config)+' · 僅公開成績':'請選擇已設定賽制的公開球聚');
+  if(!r.configured){shareFooter(ctx,W,H,'系列賽結果');return}
+  ctx.fillStyle='#172033';ctx.font='700 26px sans-serif';canvasText(ctx,(r.final?'最終結果':'暫定排名')+` · 完成 ${r.played}/${r.expected} 局`,72,305,W-144);
+  ctx.fillStyle='#697386';ctx.font='500 21px sans-serif';canvasText(ctx,r.warnings.join('；')||'同分並列；平均排名以未四捨五入數值計算',72,345,W-144);
+  const cols=[72,165,560,720,860];ctx.fillStyle='#172033';ctx.font='700 23px sans-serif';['名次',r.config.mode==='team'?'隊伍':'玩家','總分','平均','完成'].forEach((x,i)=>ctx.fillText(x,cols[i],405));
+  r.rows.forEach((x,i)=>{const y=465+i*66;ctx.fillStyle='#172033';ctx.font='700 25px sans-serif';canvasText(ctx,x.rank??'—',cols[0],y,75);canvasText(ctx,x.name,cols[1],y,370);canvasText(ctx,x.played?x.total:'—',cols[2],y,140);canvasText(ctx,x.average??'—',cols[3],y,120);canvasText(ctx,`${x.played}/${x.expected}`,cols[4],y,145)});
+  shareFooter(ctx,W,H,'系列賽 · 本機賽制設定 · 僅公開成績')
 }
 
 function liveRecommendedRound(m,s){const planned=livePlannedGames(m),players=(s?.players||[]).filter(p=>String(p.name||'').trim());for(let i=0;i<planned;i++){if(players.some(p=>normalizeScore((p.scores||[])[i])===null))return i+1}return m?.dynamicGames&&planned<LIVE_GAME_MAX?planned+1:planned}
@@ -4177,7 +4240,7 @@ function liveCompletedFrameSlots(p,planned){let count=0;const games=normalizeBow
 function clearCompletedMeetupContext(meetupId){
   closePostGameReview();
   cancelLiveRollCommit();liveRollWriteKey='';liveRollLastCommit={key:'',raw:'',gameNo:0,at:0};
-  const prefs=livePrefs();if(meetupId&&Object.prototype.hasOwnProperty.call(prefs,meetupId)){const plan=prefs[meetupId]?.lanePlan;if(plan)prefs[meetupId]={lanePlan:plan};else delete prefs[meetupId];try{localStorage.setItem(LIVEKEY,JSON.stringify(prefs))}catch(e){console.warn('現場偏好未保存',e)}}
+  const prefs=livePrefs();if(meetupId&&Object.prototype.hasOwnProperty.call(prefs,meetupId)){const plan=prefs[meetupId]?.lanePlan,rules=prefs[meetupId]?.seriesRules;if(plan||rules)prefs[meetupId]={...(plan?{lanePlan:plan}:{}),...(rules?{seriesRules:rules}:{})};else delete prefs[meetupId];try{localStorage.setItem(LIVEKEY,JSON.stringify(prefs))}catch(e){console.warn('現場偏好未保存',e)}}
   liveGameNo=1;liveMetric='total';
   const liveSelect=$('liveMeetupSelect');if(liveSelect)liveSelect.value='';
   const quickPlayer=$('liveQuickPlayerName');if(quickPlayer)quickPlayer.value='';
@@ -4211,6 +4274,7 @@ function renderLive(){
   const rows=liveRowsFor(m,sess),entered=rows.filter(r=>r.gameComplete).length,allVals=rows.flatMap(r=>r.scores.filter(v=>v!==null)),best=rows.reduce((acc,r)=>r.best!==null&&(!acc||r.best>acc.score)?{score:r.best,name:r.name}:acc,null),effectivePlanned=livePlannedGames(m),totalSlots=Math.max(1,rows.length*effectivePlanned*10),doneSlots=(sess.players||[]).filter(p=>String(p.name||'').trim()).reduce((sum,p)=>sum+liveCompletedFrameSlots(p,effectivePlanned),0),progress=Math.round(doneSlots/totalSlots*100);
   $('livePlayers').textContent=rows.length;$('liveRoundKpi').textContent=`${liveGameNo}/${effectivePlanned}`;$('liveRoundKpiSub').textContent=m.dynamicGames?'動態局數':`第 ${liveGameNo} 局`;$('liveRoundDone').textContent=`${entered}/${rows.length}`;$('liveMissingText').textContent=entered===rows.length&&rows.length?'全員 10 格完成':`尚有 ${Math.max(0,rows.length-entered)} 人未完成`;$('liveAvg').textContent=avg(allVals)??'—';$('liveBest').textContent=best?.score??'—';$('liveBestName').textContent=best?.name||'尚無分數';$('liveProgressText').textContent=`球聚進度 ${progress}% · ${doneSlots}/${totalSlots} 格完成`;$('liveProgressBar').style.width=`${progress}%`;
   const rankRows=liveSortRows(rows,liveMetric),rankMap=new Map(rankRows.map((r,i)=>[r.id,i+1]));const laneView=renderLiveLaneManager(m,sess,viewer,rows);$('liveScoreList').innerHTML=laneView.visible.length?laneView.visible.map(p=>{const peers=laneView.plan.players.filter(x=>x.lane===p.lane),position=peers.findIndex(x=>x.id===p.id)+1;return `<div class="lane-score-label">${p.lane?esc(p.lane)+' 號道':'未分組'} · 投球順序 ${position}</div>`+renderLivePlayerRow(laneView.byId.get(p.id),rankMap.get(p.id)||0,viewer,planned)}).join(''):'<div class="empty">此球道尚無玩家，可展開「球道分組與投球順序」安排，或切換全部球道。</div>';
+  renderLiveSeries(m,sess,viewer);
   const metricSel=$('liveRankMetric');metricSel.value=[...metricSel.options].some(o=>o.value===liveMetric)?liveMetric:'total';const sorted=liveSortRows(rows,liveMetric);$('liveRankCount').textContent=`${rows.length} 人`;let last=null,rank=0;$('liveRankBody').innerHTML=sorted.map((r,i)=>{const val=liveMetricValue(r,liveMetric);if(i===0||val!==last)rank=i+1;last=val;return `<tr><td class="pos">${rank}</td><td class="who">${esc(r.name)}</td><td class="${liveMetric==='current'?'primary-val':''}">${r.current??'—'}</td><td class="${liveMetric==='total'?'primary-val':''}">${r.total}</td><td class="${liveMetric==='avg'?'primary-val':''}">${r.avg??'—'}</td><td class="${liveMetric==='best'?'primary-val':''}">${r.best??'—'}</td></tr>`}).join('');
   $('livePrevRoundBtn').disabled=liveGameNo<=1;$('livePrevRoundBtn2').disabled=liveGameNo<=1;$('livePrevRoundMobile').disabled=liveGameNo<=1;const addBtn=$('liveRoundAddBtn'),removeBtn=$('liveRoundRemoveBtn'),dynamic=m.dynamicGames===true;if(addBtn){addBtn.hidden=!dynamic;addBtn.disabled=!dynamic||effectivePlanned>=LIVE_GAME_MAX}if(removeBtn){removeBtn.hidden=!dynamic;removeBtn.disabled=!dynamic||effectivePlanned<=1||effectivePlanned<=liveHighestUsedGame(sess)}const atLast=liveGameNo>=effectivePlanned;$('liveNextRoundBtn').textContent=dynamic&&atLast&&effectivePlanned<LIVE_GAME_MAX?'新增下一局 →':atLast?'完成球聚':'下一局 →';$('liveNextRoundMobile').textContent=dynamic&&atLast&&effectivePlanned<LIVE_GAME_MAX?'新增下一局 →':atLast?'完成球聚':'下一局 →';saveLivePrefs()
 }
@@ -4520,7 +4584,7 @@ function deleteCustomAward(id){const mid=$('awardMeetup').value,m=meetups.find(x
 function rankingRows(){return rankingRowsForScope($('leaderboardMeetup').value||'all')}
 function renderLeaderboard(preferredScope=''){
   const sel=$('leaderboardMeetup'),published=publicMeetupRecords(),prev=preferredScope||sel.value||'all';sel.innerHTML='<option value="all">全部公開歷史</option>'+published.map(m=>`<option value="${esc(m.id)}">${esc(fmtDate(m.date))} · ${esc(m.title)}</option>`).join('');sel.value=[...sel.options].some(o=>o.value===prev)?prev:'all';
-  const metric=$('leaderboardMetric').value||'total';let rows=rankingRows();const metricVal=x=>metric==='avg'?(x.avg??-1):metric==='best'?(x.best??-1):x.total;rows.sort((a,b)=>metricVal(b)-metricVal(a)||b.games-a.games||a.name.localeCompare(b.name,'zh-Hant'));$('rankPlayers').textContent=rows.filter(x=>x.games).length;$('rankGames').textContent=rows.reduce((a,b)=>a+b.games,0);const publicSession=publicSessionForMeetup(sel.value),allScoreRows=sel.value==='all'?publicGames():((publicSession?.players||[]).flatMap(p=>(p.scores||[]).map(normalizeScore).filter(v=>v!==null).map(score=>({score}))));const vals=allScoreRows.map(x=>x.score);$('rankAvg').textContent=avg(vals)??'—';$('rankBest').textContent=vals.length?Math.max(...vals):'—';$('leaderboardEmpty').textContent='公開歷史目前尚無可排行的成績。';$('leaderboardEmpty').style.display=rows.some(x=>x.games)?'none':'block';let last=null,rank=0;const max=Math.max(1,...rows.map(metricVal));$('leaderboardBody').innerHTML=rows.filter(x=>x.games||sel.value!=='all').map((x,i)=>{const val=metricVal(x);if(last===null||val!==last)rank=i+1;last=val;const progress=x.planned?Math.min(100,Math.round((x.games/x.planned)*100)):100;return `<tr><td class="rank-no">${rank}</td><td class="rank-name">${esc(x.name)}</td><td>${x.games}</td><td class="${metric==='total'?'rank-primary':''}">${x.total}</td><td class="${metric==='avg'?'rank-primary':''}">${x.avg??'—'}</td><td class="${metric==='best'?'rank-primary':''}">${x.best??'—'}</td><td>${x.planned?`<div class="rank-progress"><span style="width:${progress}%"></span></div><div style="font-size:10px;color:var(--muted);margin-top:3px">${x.games}/${x.planned} 局</div>`:'全部公開歷史'}</td></tr>`}).join('')
+  renderPublicSeries(sel.value);const metric=$('leaderboardMetric').value||'total';let rows=rankingRows();const metricVal=x=>metric==='avg'?(x.avg??-1):metric==='best'?(x.best??-1):x.total;rows.sort((a,b)=>metricVal(b)-metricVal(a)||b.games-a.games||a.name.localeCompare(b.name,'zh-Hant'));$('rankPlayers').textContent=rows.filter(x=>x.games).length;$('rankGames').textContent=rows.reduce((a,b)=>a+b.games,0);const publicSession=publicSessionForMeetup(sel.value),allScoreRows=sel.value==='all'?publicGames():((publicSession?.players||[]).flatMap(p=>(p.scores||[]).map(normalizeScore).filter(v=>v!==null).map(score=>({score}))));const vals=allScoreRows.map(x=>x.score);$('rankAvg').textContent=avg(vals)??'—';$('rankBest').textContent=vals.length?Math.max(...vals):'—';$('leaderboardEmpty').textContent='公開歷史目前尚無可排行的成績。';$('leaderboardEmpty').style.display=rows.some(x=>x.games)?'none':'block';let last=null,rank=0;const max=Math.max(1,...rows.map(metricVal));$('leaderboardBody').innerHTML=rows.filter(x=>x.games||sel.value!=='all').map((x,i)=>{const val=metricVal(x);if(last===null||val!==last)rank=i+1;last=val;const progress=x.planned?Math.min(100,Math.round((x.games/x.planned)*100)):100;return `<tr><td class="rank-no">${rank}</td><td class="rank-name">${esc(x.name)}</td><td>${x.games}</td><td class="${metric==='total'?'rank-primary':''}">${x.total}</td><td class="${metric==='avg'?'rank-primary':''}">${x.avg??'—'}</td><td class="${metric==='best'?'rank-primary':''}">${x.best??'—'}</td><td>${x.planned?`<div class="rank-progress"><span style="width:${progress}%"></span></div><div style="font-size:10px;color:var(--muted);margin-top:3px">${x.games}/${x.planned} 局</div>`:'全部公開歷史'}</td></tr>`}).join('')
 }
 function openMeetupLeaderboard(id){if(!requirePublicMeetup(id,'查看排行榜'))return;setCurrentMeetup(id);switchView('leaderboardView');renderLeaderboard(id)}
 
@@ -4548,8 +4612,8 @@ function renderShareOptions(preferredScope=''){
 function updateShareControls(redraw=true){
   const type=$('shareCardType')?.value||'ranking',scope=$('shareMeetup')?.value||'all';const awardsMode=type==='awards',summaryMode=type==='summary',meetupCardMode=type==='meetupCard';
   const rankOnly=type==='ranking';$('shareMetricField')?.classList.toggle('share-field-hidden',!rankOnly);$('shareTopNField')?.classList.toggle('share-field-hidden',!rankOnly);
-  if($('shareTypeNote'))$('shareTypeNote').textContent=type==='ranking'?'排行榜卡可依總分、平均或最高單局排序。':type==='meetupCard'?'球聚完整成績卡顯示該場所有玩家、實際有成績的局次與個人總和。':type==='summary'?'球聚總覽卡整合 KPI、前三名與主要獎項。':'獎項卡顯示自動獎項與自訂獎項；需選擇單一球聚。';
-  const published=publicMeetupRecords();if((awardsMode||summaryMode||meetupCardMode)&&scope==='all'&&published.length){$('shareMeetup').value=currentMeetupId&&published.some(m=>m.id===currentMeetupId)?currentMeetupId:published[0].id}
+  if($('shareTypeNote'))$('shareTypeNote').textContent=type==='series'?'以本機賽制計算，僅使用該球聚已公開成績；缺局時標示暫定排名。':type==='ranking'?'排行榜卡可依總分、平均或最高單局排序。':type==='meetupCard'?'球聚完整成績卡顯示該場所有玩家、實際有成績的局次與個人總和。':type==='summary'?'球聚總覽卡整合 KPI、前三名與主要獎項。':'獎項卡顯示自動獎項與自訂獎項；需選擇單一球聚。';
+  const published=publicMeetupRecords();if((awardsMode||summaryMode||meetupCardMode||type==='series')&&scope==='all'&&published.length){$('shareMeetup').value=currentMeetupId&&published.some(m=>m.id===currentMeetupId)?currentMeetupId:published[0].id}
   if(redraw)drawShareCard()
 }
 function roundedRect(ctx,x,y,w,h,r){const rr=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+rr,y);ctx.arcTo(x+w,y,x+w,y+h,rr);ctx.arcTo(x+w,y+h,x,y+h,rr);ctx.arcTo(x,y+h,x,y,rr);ctx.arcTo(x,y,x+w,y,rr);ctx.closePath()}
@@ -4594,21 +4658,22 @@ function drawMeetupFullShareCard(ctx,W,H,data,title,meta){
 function drawSummaryShareCard(ctx,W,H,data,title,meta){if(!data.m){drawRankingShareCard(ctx,W,H,data,title,meta);return}let rows=[...data.rows].sort((a,b)=>b.total-a.total||b.games-a.games).slice(0,3),aw=computeAwards(data.m.id);drawShareHeader(ctx,W,title,meta);drawShareStats(ctx,[['球員',String(data.rows.length)],['局數',String(data.vals.length)],['平均',String(data.overallAvg??'—')],['最高',String(data.overallBest??'—')]]);ctx.fillStyle='#172033';ctx.font='850 29px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText('TOP 3',72,470);const topY=495;rows.forEach((r,i)=>{const x=72+i*306,w=282,h=160;ctx.fillStyle='#fff';roundedRect(ctx,x,topY,w,h,20);ctx.fill();ctx.strokeStyle='#e4e8ef';ctx.stroke();ctx.fillStyle=i===0?'#0f62fe':'#697386';ctx.font='900 34px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText(`#${i+1}`,x+22,topY+45);ctx.fillStyle='#172033';ctx.font='850 27px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,r.name,x+22,topY+88,w-44);ctx.fillStyle='#697386';ctx.font='650 19px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText(`${r.total} 分 · AVG ${r.avg??'—'}`,x+22,topY+126)});ctx.fillStyle='#172033';ctx.font='850 29px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText('今日亮點',72,720);const highlights=aw.awards.filter(a=>['champion','single','club200','pb'].includes(a.key)).slice(0,4);highlights.forEach((a,i)=>{const x=72+(i%2)*488,y=746+Math.floor(i/2)*190,w=448,h=164;ctx.fillStyle='#fff';roundedRect(ctx,x,y,w,h,20);ctx.fill();ctx.strokeStyle='#e4e8ef';ctx.stroke();ctx.fillStyle='#697386';ctx.font='700 19px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';ctx.fillText(a.title,x+24,y+36);ctx.fillStyle='#172033';ctx.font='850 27px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,a.winners.length?a.winners.join('、'):'尚無結果',x+24,y+78,w-48);ctx.fillStyle='#0f62fe';ctx.font='800 22px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,a.value,x+24,y+116,w-48);ctx.fillStyle='#697386';ctx.font='500 16px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif';canvasText(ctx,a.detail,x+24,y+145,w-48)});shareFooter(ctx,W,H,'球聚總覽')}
 function drawShareCard(){
   const canvas=$('shareCanvas');if(!canvas)return null;
-  const ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height,type=$('shareCardType')?.value||'ranking',data=shareScopeData(),m=data.m;
+  const type=$('shareCardType')?.value||'ranking',data=shareScopeData(),m=data.m,series=type==='series'?publicSeriesResult(data.scope):null;canvas.height=series?.configured?Math.max(1350,560+series.rows.length*66):1350;const ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height;
   const autoTitle=type==='meetupCard'&&m?(fmtDate(m.date)+' 球聚卡'):(m?.title||(type==='awards'?'球聚獎項':'BowlMeet 球聚成績'));
   const title=$('shareCardTitle').value.trim()||autoTitle;
   const meta=m?((m.title||'球聚')+' · '+(m.venue||'未填球館')+(m.lanes?' · 球道 '+m.lanes:'')):'全部公開歷史成績';
   ctx.clearRect(0,0,W,H);ctx.fillStyle='#f5f7fa';ctx.fillRect(0,0,W,H);
-  if(type==='awards')drawAwardsShareCard(ctx,W,H,data,title,meta);
+  if(type==='series')drawSeriesShareCard(ctx,W,H,data,title);
+  else if(type==='awards')drawAwardsShareCard(ctx,W,H,data,title,meta);
   else if(type==='summary')drawSummaryShareCard(ctx,W,H,data,title,meta);
   else if(type==='meetupCard')drawMeetupFullShareCard(ctx,W,H,data,title,meta);
   else drawRankingShareCard(ctx,W,H,data,title,meta);
-  $('shareGeneratedAt').textContent='已更新 · '+(type==='awards'?'獎項卡':type==='summary'?'總覽卡':type==='meetupCard'?'球聚完整卡':'排行榜卡');
+  $('shareGeneratedAt').textContent='已更新 · '+(type==='series'?'系列賽結果卡':type==='awards'?'獎項卡':type==='summary'?'總覽卡':type==='meetupCard'?'球聚完整卡':'排行榜卡');
   lastShareBlob=null;return canvas
 }
 function shareCanvasBlob(){return new Promise((resolve,reject)=>{const c=drawShareCard();if(!c){reject(new Error('無法產生成績卡'));return}c.toBlob(b=>b?resolve(b):reject(new Error('圖片產生失敗')),'image/png',0.95)})}
-async function downloadShareCard(){try{const b=await shareCanvasBlob();const a=document.createElement('a');a.href=URL.createObjectURL(b);const m=publicMeetupById($('shareMeetup').value);const t=$('shareCardType')?.value||'ranking',label=t==='awards'?'獎項卡':t==='summary'?'總覽卡':t==='meetupCard'?'球聚卡':'排行榜卡';a.download='BowlMeet_'+(m?.date||today())+'_'+label+'.png';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1200)}catch(e){alert(e.message)}}
-async function nativeShareCard(){try{const b=await shareCanvasBlob();const m=publicMeetupById($('shareMeetup').value),t=$('shareCardType')?.value||'ranking',label=t==='awards'?'獎項卡':t==='summary'?'總覽卡':t==='meetupCard'?'球聚卡':'排行榜卡',file=new File([b],'BowlMeet_'+(m?.date||today())+'_'+label+'.png',{type:'image/png'});if(navigator.share&&navigator.canShare?.({files:[file]})){await navigator.share({title:m?.title||'BowlMeet 公開球聚成績',text:'BowlMeet 公開球聚成績卡',files:[file]})}else if(navigator.share){await navigator.share({title:m?.title||'BowlMeet 公開球聚成績',text:'BowlMeet 公開球聚成績卡'});await downloadShareCard()}else{await downloadShareCard();alert('此瀏覽器不支援原生分享，已改為下載 PNG。')}}catch(e){if(e?.name!=='AbortError'){console.error(e);alert('分享失敗，請改用「下載 PNG」。')}}}
+async function downloadShareCard(){try{const b=await shareCanvasBlob();const a=document.createElement('a');a.href=URL.createObjectURL(b);const m=publicMeetupById($('shareMeetup').value);const t=$('shareCardType')?.value||'ranking',label=t==='series'?'系列賽結果卡':t==='awards'?'獎項卡':t==='summary'?'總覽卡':t==='meetupCard'?'球聚卡':'排行榜卡';a.download='BowlMeet_'+(m?.date||today())+'_'+label+'.png';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1200)}catch(e){alert(e.message)}}
+async function nativeShareCard(){try{const b=await shareCanvasBlob();const m=publicMeetupById($('shareMeetup').value),t=$('shareCardType')?.value||'ranking',label=t==='series'?'系列賽結果卡':t==='awards'?'獎項卡':t==='summary'?'總覽卡':t==='meetupCard'?'球聚卡':'排行榜卡',file=new File([b],'BowlMeet_'+(m?.date||today())+'_'+label+'.png',{type:'image/png'});if(navigator.share&&navigator.canShare?.({files:[file]})){await navigator.share({title:m?.title||'BowlMeet 公開球聚成績',text:'BowlMeet 公開球聚成績卡',files:[file]})}else if(navigator.share){await navigator.share({title:m?.title||'BowlMeet 公開球聚成績',text:'BowlMeet 公開球聚成績卡'});await downloadShareCard()}else{await downloadShareCard();alert('此瀏覽器不支援原生分享，已改為下載 PNG。')}}catch(e){if(e?.name!=='AbortError'){console.error(e);alert('分享失敗，請改用「下載 PNG」。')}}}
 function updatePwaState(){const dot=$('pwaDot'),label=$('pwaState'),help=$('pwaHelp');if(!dot||!label)return;dot.className='pwa-dot '+(navigator.onLine?'online':'offline');const standalone=window.matchMedia?.('(display-mode: standalone)').matches||navigator.standalone===true;if(standalone){label.textContent='已以 App 模式執行';$('installAppBtn').textContent='已安裝';$('installAppBtn').classList.add('ready');help.textContent='目前為獨立 App 視窗。主要資料仍儲存在此裝置。'}else if(location.protocol==='file:'){label.textContent='目前為本機 HTML 模式';help.textContent='一般功能可使用；要安裝 PWA，請把 PWA 套件放到 HTTPS 網站或 localhost。iPhone 使用 Safari「分享 → 加入主畫面」。'}else{label.textContent=navigator.onLine?'PWA 已就緒':'離線模式';help.textContent='Android / Chrome / Edge 可到「設定 → App / PWA」安裝。iPhone 請用 Safari「分享 → 加入主畫面」。'}}
 async function installPwa(){const standalone=window.matchMedia?.('(display-mode: standalone)').matches||navigator.standalone===true;if(standalone){alert('目前已在 App 模式執行。');return}if(deferredInstallPrompt){deferredInstallPrompt.prompt();const choice=await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;updatePwaState();if(choice.outcome!=='accepted')return}else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){alert('iPhone / iPad：請用 Safari 開啟後，按「分享」→「加入主畫面」。')}else if(location.protocol==='file:'){alert('PWA 安裝需要 HTTPS 或 localhost。請部署目前版本的 BowlMeet PWA 後再安裝。')}else{alert('目前瀏覽器沒有提供自動安裝提示。可從瀏覽器選單選擇「安裝應用程式」或「加入主畫面」。')}}
 function setUpdateUi(text,detail='',ready=false){
@@ -4947,6 +5012,8 @@ $('playerHistoryBackBtn').addEventListener('click',closePlayerHistory);$('player
 $('awardMeetup').addEventListener('change',e=>{const id=e.target.value;if(id&&validMeetupContextId(id)){setCurrentMeetup(id);syncMeetupDerivedSelectors(id)}renderAwards()});$('awardCurrentBtn').addEventListener('click',()=>{if(!currentMeetupId){alert('目前沒有選擇球聚活動。');return}if(!requirePublicMeetup(currentMeetupId,'查看獎項'))return;renderAwardOptions(currentMeetupId);syncMeetupDerivedSelectors(currentMeetupId);renderAwards()});$('awardShareBtn').addEventListener('click',()=>{const id=$('awardMeetup').value;if(!id||!requirePublicMeetup(id,'分享獎項'))return;if(validMeetupContextId(id))setCurrentMeetup(id);switchView('shareView');renderShareOptions(id);$('shareMeetup').value=id;$('shareCardType').value='awards';syncMeetupDerivedSelectors(id);updateShareControls(true)});$('addCustomAwardBtn').addEventListener('click',addCustomAward);$('customAwardList').addEventListener('click',e=>{const b=e.target.closest('[data-del-custom-award]');if(b&&confirm('確定移除這個自訂獎項？'))deleteCustomAward(b.dataset.delCustomAward)});
 
 $('postReviewCloseBtn').addEventListener('click',closePostGameReview);$('postReviewDoneBtn').addEventListener('click',closePostGameReview);$('postReviewShareBtn').addEventListener('click',openPostReviewShare);$('postReviewHistoryBtn').addEventListener('click',openPostReviewHistory);$('postGameReviewDialog').addEventListener('cancel',e=>{e.preventDefault();closePostGameReview()});
+$('seriesMode').addEventListener('change',()=>{$('seriesTeamRoster').hidden=$('seriesMode').value!=='team'});
+$('seriesSaveBtn').addEventListener('click',saveSeriesRules);
 $('liveLaneApply').addEventListener('click',()=>editLiveLanePlan('lanes'));
 $('liveLaneFilter').addEventListener('change',e=>editLiveLanePlan('filter','',e.target.value));
 $('liveLaneRoster').addEventListener('change',e=>{if(e.target.matches('[data-lane-player]'))editLiveLanePlan('assign',e.target.dataset.lanePlayer,e.target.value)});
