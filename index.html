@@ -4011,6 +4011,7 @@ function seriesResultHtml(result,publicOnly=false){
   const r=result,n=r.config.rounds;return `<p class="series-summary"><strong>${esc(seriesLabel(r.config))}</strong> · ${r.final?'最終結果':'暫定排名'} · 完成 ${r.played}/${r.expected} 局${publicOnly?' · 僅公開成績':''}</p>${r.warnings.map(w=>`<p class="series-warning">${esc(w)}</p>`).join('')}<div class="rank-table-wrap"><table class="rank-table"><thead><tr><th>名次</th><th>${r.config.mode==='team'?'隊伍':'玩家'}</th>${Array.from({length:n},(_,i)=>`<th>G${i+1}</th>`).join('')}<th>總分</th><th>平均</th><th>完成／缺局</th></tr></thead><tbody>${r.rows.map(x=>`<tr><td>${x.rank??'—'}</td><td>${esc(x.name)}${r.config.mode==='team'?`<small>（${x.members} 人）</small>`:''}</td>${x.scores.map(v=>`<td>${v??'—'}</td>`).join('')}<td>${x.played?x.total:'—'}</td><td>${x.average??'—'}</td><td>${x.played}/${x.expected} · ${x.missing?'缺 '+x.missing+' 局':'完成'}</td></tr>`).join('')}</tbody></table></div><p class="lane-help">同分並列（1、1、3）；平均排名使用未四捨五入的數值。團體單局須全隊完成才顯示，累計總分包含已完成的個人局數。</p>`;
 }
 function renderLiveSeries(m,s,viewer){
+  $('seriesStatus').textContent='';
   const rules=getSeriesRules(m.id),cfg=rules||{mode:'off',rounds:Math.min(3,livePlannedGames(m)),teams:[]};
   $('seriesMode').value=cfg.mode;$('seriesRounds').value=String(cfg.rounds);$('seriesMode').disabled=viewer;$('seriesRounds').disabled=viewer;$('seriesSaveBtn').disabled=viewer;
   $('seriesTeamRoster').innerHTML=(s.players||[]).filter(p=>String(p.name||'').trim()).map(p=>`<div class="series-member"><label for="series-team-${esc(p.id)}">${esc(p.name)}</label><input id="series-team-${esc(p.id)}" data-series-player="${esc(p.id)}" maxlength="20" placeholder="例如 A 隊" value="${esc(cfg.teams.find(t=>t.ids.includes(p.id))?.name||'')}" ${viewer?'disabled':''}/></div>`).join('');
@@ -4028,7 +4029,7 @@ function saveSeriesRules(){
 function publicSeriesResult(id){return computeSeriesResult(publicSessionForMeetup(id),publicMeetupById(id)?getSeriesRules(id):null)}
 function renderPublicSeries(id){const box=$('publicSeriesResults');if(box)box.innerHTML=id==='all'?'<p class="lane-help">選擇單一公開球聚查看系列賽結果。</p>':seriesResultHtml(publicSeriesResult(id),true)}
 function drawSeriesShareCard(ctx,W,H,data,title){
-  const r=publicSeriesResult(data.scope);drawShareHeader(ctx,W,title,r.configured?seriesLabel(r.config)+' · 僅公開成績':'請選擇已設定賽制的公開球聚');
+  const r=publicSeriesResult(data.scope);drawShareHeader(ctx,W,title,r.configured?fmtDate(data.m?.date)+' · '+seriesLabel(r.config)+' · 僅公開成績':'請選擇已設定賽制的公開球聚');
   if(!r.configured){shareFooter(ctx,W,H,'系列賽結果');return}
   ctx.fillStyle='#172033';ctx.font='700 26px sans-serif';canvasText(ctx,(r.final?'最終結果':'暫定排名')+` · 完成 ${r.played}/${r.expected} 局`,72,305,W-144);
   ctx.fillStyle='#697386';ctx.font='500 21px sans-serif';canvasText(ctx,r.warnings.join('；')||'同分並列；平均排名以未四捨五入數值計算',72,345,W-144);
