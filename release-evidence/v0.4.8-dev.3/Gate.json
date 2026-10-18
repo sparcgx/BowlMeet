@@ -1,0 +1,19 @@
+{
+  "version": "0.4.8-dev.3",
+  "tested_commit": "c63b2a379f9615771db7e95533887573a073e6dc",
+  "source_index_sha256": "c598fb8ef55c1c1cae98c742be56144518d6c1a3d8d78d84b534769e07e8192a",
+  "workflow_run": 39092446402,
+  "automated_gate": "PASS",
+  "counts": {
+    "PASS": 505,
+    "FAIL": 0,
+    "HARNESS_ERROR": 0
+  },
+  "device_gate": "PENDING",
+  "promotion": "BLOCKED",
+  "scope": "Synthetic localhost Chromium and Playwright WebKit; no real iPhone, installed PWA or production Supabase",
+  "protected_refs": "e5a16e9749ca1c330aa849170d548b470759d736\trefs/heads/freeze/v0.4.7.1\ne4f807f1016269f2062415ffd08e652895c5de3d\trefs/heads/freeze/v0.4.7.1-RC.1-R1\n932d09d928e125d4bccf6ffd59ef09a6f38b2731\trefs/heads/freeze/v0.4.7.2\nf9e4d09e87c6c170483a064c8ff6cb0929013d32\trefs/heads/freeze/v0.4.7.2-RC.1\n1d7ea21ea2654e989545974dcd3987281710c6fc\trefs/heads/freeze/v0.4.7.3\nfb959a95d80896e1db4af690e90c38b0564a8880\trefs/heads/freeze/v0.4.7.4\n0d87a4310ac4ab76cb45e25955391534bcdcd9eb\trefs/heads/freeze/v0.4.7.4-RC.1\ncc51669b42be4867a8619cb02901edb5807ffcc7\trefs/heads/freeze/v0.4.8-RC.1\nca334e9e9d145b55f415f609bdf845b1b3221fd6\trefs/heads/stable/v0.4.3.3-R1\n33ceb041a70ca11d9b6b1b26f5a43c959c9ef4a5\trefs/heads/stable/v0.4.4-R1\nb9f1059851ae164528032e6132af1f9d6254e353\trefs/heads/stable/v0.4.4-R1-HF1\n057a3aa4109f1efd8054c124805a1e0a96913d7d\trefs/heads/stable/v0.4.5\na2a41e1e940ee1ce538d9d4ccb4091c2e1520f6d\trefs/heads/stable/v0.4.5.1\nf063b0e8379b87f325ff3bfa6c71dff428f0cc5e\trefs/heads/stable/v0.4.5.2\n234911acbbc6f975345d884492643752eafbd534\trefs/heads/stable/v0.4.6\n20043158958eab75803c65d4439b0a9a08cd00ef\trefs/heads/stable/v0.4.6.1\n837df522c60894593d164282c71f0f03247ddb89\trefs/heads/stable/v0.4.6.2\nfb4c9c5b49f2e4912ed8bfd5961987c886d8d4ba\trefs/heads/stable/v0.4.6.2.1\n57b1f4215705c9b4f942bfa896289b7982cf94ff\trefs/heads/stable/v0.4.6.3\n01a04ebf3a166bca6bd6e1cc51cf3f324f6d5a05\trefs/heads/stable/v0.4.6.4\nce820a37cfdbceffb13b4d808d623804b968f445\trefs/heads/stable/v0.4.6.5\n7d04ab6e7d3181fac53d742fdd5b736433c42d17\trefs/heads/stable/v0.4.6.6\nbf6054deeaa0658ab807c3c60ad095d7060d0de7\trefs/heads/stable/v0.4.6.7\n6c0b5d6fba948b3d1a0740659ef5bbb0c3b56181\trefs/heads/stable/v0.4.7.0\ne5a16e9749ca1c330aa849170d548b470759d736\trefs/heads/stable/v0.4.7.1\n932d09d928e125d4bccf6ffd59ef09a6f38b2731\trefs/heads/stable/v0.4.7.2\n1d7ea21ea2654e989545974dcd3987281710c6fc\trefs/heads/stable/v0.4.7.3\nfb959a95d80896e1db4af690e90c38b0564a8880\trefs/heads/stable/v0.4.7.4\n",
+  "scoring_core": "UNCHANGED",
+  "db_version": 2,
+  "public_history_code": "PUBLIC"
+}

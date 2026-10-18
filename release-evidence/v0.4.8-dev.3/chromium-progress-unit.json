@@ -1,0 +1,47 @@
+{
+  "suite": "Player progress",
+  "checks": [
+    {
+      "name": "Empty data",
+      "status": "PASS"
+    },
+    {
+      "name": "Zero counts",
+      "status": "PASS"
+    },
+    {
+      "name": "Insufficient prior period cannot imply progress",
+      "status": "PASS"
+    },
+    {
+      "name": "Equal non-overlapping 10 game windows",
+      "status": "PASS"
+    },
+    {
+      "name": "20 game window uses forty games",
+      "status": "PASS"
+    },
+    {
+      "name": "Unsorted input sorted chronologically",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid scores excluded",
+      "status": "PASS"
+    },
+    {
+      "name": "Partial current window sample count",
+      "status": "PASS"
+    },
+    {
+      "name": "Older results outside windows excluded",
+      "status": "PASS"
+    },
+    {
+      "name": "No mutation",
+      "status": "PASS"
+    }
+  ],
+  "passed": 10,
+  "failed": 0
+}
