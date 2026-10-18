@@ -1,0 +1,22 @@
+{
+  "version": "0.4.8-RC.2",
+  "channel": "isolated-preview-cloud-disabled",
+  "base_commit": "7b11081c0b1edfd972f8008f70b570b694b2f567",
+  "result_index_sha256": "b9bb3152138a62ec9b86d8db4446738c16cc37055cdead595b2deefe1e155622",
+  "db_version": 2,
+  "public_history_code": "PUBLIC",
+  "schema_migration": false,
+  "device_gate": "PENDING",
+  "source_index_sha256": "df6ad3c4e7ade1c76236553f295925d11dc2e99a1e6050d0a03afc4714669246",
+  "tested_commit": "f8a737c4dba067b2e343b6674fd02b9f02fd051d",
+  "workflow_run": 39104244154,
+  "automated_gate": "PASS",
+  "counts": {
+    "PASS": 505,
+    "FAIL": 0,
+    "HARNESS_ERROR": 0
+  },
+  "rc_identity_equivalence": "PASS",
+  "freeze_commit": "a534c12a471c963af2a50c630caac9ec306b5d47",
+  "freeze_branch": "freeze/v0.4.8-RC.2"
+}
