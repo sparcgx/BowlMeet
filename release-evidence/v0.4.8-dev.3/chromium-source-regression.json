@@ -1,0 +1,108 @@
+{
+  "suite": "Source / scoring differential / simulated Service Worker",
+  "scope": "No real cloud calls; Cache API simulated in Node",
+  "checks": [
+    {
+      "name": "Application JavaScript parses",
+      "status": "PASS"
+    },
+    {
+      "name": "DB_VERSION stays 2",
+      "status": "PASS"
+    },
+    {
+      "name": "Production PUBLIC code preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "Theme and layout local-only keys preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "Perfect 300",
+      "status": "PASS"
+    },
+    {
+      "name": "All spares 150",
+      "status": "PASS"
+    },
+    {
+      "name": "Open frames 90",
+      "status": "PASS"
+    },
+    {
+      "name": "Gutter game 0",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid tenth pins rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Incomplete game has no final total",
+      "status": "PASS"
+    },
+    {
+      "name": "2000 deterministic valid games match independent scorer",
+      "status": "PASS"
+    },
+    {
+      "name": "Worker JS parses",
+      "status": "PASS"
+    },
+    {
+      "name": "Manual update: install does not auto skip waiting",
+      "status": "PASS"
+    },
+    {
+      "name": "POST RPC bypasses cache",
+      "status": "PASS"
+    },
+    {
+      "name": "Cross-origin cloud GET bypasses cache",
+      "status": "PASS"
+    },
+    {
+      "name": "Requests bearing apikey bypass cache",
+      "status": "PASS"
+    },
+    {
+      "name": "Other project paths bypass cache",
+      "status": "PASS"
+    },
+    {
+      "name": "Preview navigation bypasses production SW",
+      "status": "PASS"
+    },
+    {
+      "name": "503 navigation uses last known good shell",
+      "status": "PASS"
+    },
+    {
+      "name": "Offline cold start returns explicit 503",
+      "status": "PASS"
+    },
+    {
+      "name": "Quota failure does not lose network response",
+      "status": "PASS"
+    },
+    {
+      "name": "Versioned stylesheet and manifest are precached exactly",
+      "status": "PASS"
+    },
+    {
+      "name": "Activation leaves preview caches intact",
+      "status": "PASS"
+    },
+    {
+      "name": "Navigation query strings do not create unbounded cached URLs",
+      "status": "PASS"
+    },
+    {
+      "name": "Manual score guard exists before normalization",
+      "status": "PASS"
+    }
+  ],
+  "passed": 25,
+  "failed": 0
+}
