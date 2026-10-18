@@ -1,0 +1,222 @@
+/* =========================================================
+   BowlMeet v0.4.7.0-dev.4 | Accessibility & Theme Hardening
+   UI-only accessibility layer loaded after dev.3 mobile CSS.
+   ========================================================= */
+
+:root{
+  --a11y-focus:color-mix(in srgb,var(--theme-primary,#0f62fe) 74%,#000 26%);
+  --a11y-focus-ring:0 0 0 3px color-mix(in srgb,var(--theme-primary,#0f62fe) 26%,transparent);
+  --a11y-disabled-opacity:.58;
+}
+
+/* Screen-reader utility + keyboard skip navigation */
+.sr-only{
+  position:absolute!important;
+  width:1px!important;height:1px!important;
+  padding:0!important;margin:-1px!important;
+  overflow:hidden!important;
+  clip:rect(0,0,0,0)!important;
+  white-space:nowrap!important;
+  border:0!important;
+}
+.skip-link{
+  position:fixed;
+  top:max(8px,env(safe-area-inset-top,0px));
+  left:max(8px,env(safe-area-inset-left,0px));
+  z-index:10000;
+  transform:translateY(-160%);
+  border:2px solid var(--a11y-focus);
+  border-radius:10px;
+  padding:10px 14px;
+  background:var(--surface-raised,var(--theme-surface-strong,#fff));
+  color:var(--text-primary,var(--theme-text,#172033));
+  font-weight:850;
+  box-shadow:var(--theme-shadow,0 8px 28px rgba(17,24,39,.12));
+  transition:transform .12s ease;
+}
+.skip-link:focus{transform:translateY(0)}
+
+/* One consistent focus contract across themes. */
+:where(
+  button,
+  [href],
+  input,
+  select,
+  textarea,
+  summary,
+  [tabindex]:not([tabindex="-1"]),
+  .theme-card,
+  .layout-preset-btn,
+  .dock-item,
+  .mobile-more-item
+):focus-visible{
+  outline:3px solid var(--a11y-focus)!important;
+  outline-offset:3px!important;
+  box-shadow:var(--a11y-focus-ring)!important;
+}
+:where(button,input,select,textarea):disabled{
+  opacity:var(--a11y-disabled-opacity);
+}
+:where(button,[role="button"],.dock-item,.mobile-more-item)[aria-disabled="true"]{
+  opacity:var(--a11y-disabled-opacity);
+  cursor:not-allowed!important;
+}
+
+/* Active navigation is represented by aria-current in addition to color. */
+.tab[aria-current="page"],
+.dock-item[aria-current="page"],
+.mobile-more-item[aria-current="page"]{
+  font-weight:900!important;
+}
+.tab[aria-current="page"]{
+  box-shadow:inset 0 -3px 0 currentColor!important;
+}
+.dock-item[aria-current="page"]::after,
+.mobile-more-item[aria-current="page"]::after{
+  content:"";
+  display:block;
+  width:6px;
+  height:6px;
+  margin:3px auto 0;
+  border-radius:50%;
+  background:currentColor;
+}
+.mobile-more-item[aria-current="page"]::after{margin-top:1px}
+
+/* Dialog / sheet keyboard boundaries. */
+dialog:focus,
+.mobile-more-sheet:focus{outline:none}
+dialog[open],
+.mobile-more-sheet.open{scroll-margin:12px}
+.mobile-more-sheet[role="dialog"] .mobile-more-head{
+  scroll-margin-top:8px;
+}
+
+/* Status semantics: shape/text marker accompanies color. */
+.message.ok,
+.message.err,
+.status-badge,
+.conf-badge,
+.sync-status-pill,
+.group-status,
+.personal-status,
+.cloud-state{
+  font-weight:750;
+}
+.message.ok::before{content:"✓ ";font-weight:950}
+.message.err::before{content:"! ";font-weight:950}
+.status-badge.ongoing::before,
+.conf-badge.good::before,
+.sync-status-pill.online::before,
+.group-status.online::before,
+.personal-status.online::before,
+.cloud-state.online::before{content:"✓ ";font-weight:950}
+.status-badge.planned::before,
+.conf-badge.low::before,
+.sync-status-pill.warn::before,
+.group-status.warn::before,
+.personal-status.warn::before,
+.cloud-state.warn::before{content:"! ";font-weight:950}
+.status-badge.done::before{content:"■ ";font-size:.72em;vertical-align:.08em}
+
+/* More readable disabled / selected controls in Dark Night. */
+html[data-theme="dark-night"] :where(button,input,select,textarea):disabled{
+  opacity:.7;
+}
+html[data-theme="dark-night"] :where(
+  button,[href],input,select,textarea,summary,[tabindex]:not([tabindex="-1"])
+):focus-visible{
+  --a11y-focus:#b9d5ff;
+  --a11y-focus-ring:0 0 0 3px rgba(130,183,255,.28);
+}
+
+/* High Contrast: state is border/outline + text marker, never color only. */
+html[data-theme="high-contrast"] :where(
+  button,[href],input,select,textarea,summary,[tabindex]:not([tabindex="-1"])
+):focus-visible{
+  outline:4px solid #000!important;
+  outline-offset:3px!important;
+  box-shadow:0 0 0 2px #fff!important;
+}
+html[data-theme="high-contrast"] [aria-current="page"]{
+  text-decoration:underline!important;
+  text-decoration-thickness:2px!important;
+  text-underline-offset:3px!important;
+}
+html[data-theme="high-contrast"] :where(.status-badge,.conf-badge,.sync-status-pill,.message){
+  border:2px solid currentColor!important;
+}
+
+/* Honor user contrast preference even outside the High Contrast theme. */
+@media(prefers-contrast:more){
+  :root{--border-default:var(--border-strong);--a11y-disabled-opacity:.72}
+  :where(.card,.panel,.sheet-card,.btn,input,select,textarea,.mobile-more-item,.dock-item){
+    border-width:2px!important;
+  }
+  :where(button,[href],input,select,textarea,summary,[tabindex]:not([tabindex="-1"])):focus-visible{
+    outline-width:4px!important;
+  }
+}
+
+/* Windows / browser forced-colors support. */
+@media(forced-colors:active){
+  :root{
+    --a11y-focus:Highlight;
+    --a11y-focus-ring:none;
+  }
+  html,body{background:Canvas!important;color:CanvasText!important}
+  :where(
+    .card,.panel,.sheet-card,.btn,.tab,
+    input,select,textarea,
+    .mobile-glass-dock,.mobile-more-sheet,.mobile-more-item,.dock-item,
+    dialog,.pwa-update-card,.restore-dialog-card,.player-session-dialog-card,.post-review-card
+  ){
+    forced-color-adjust:auto;
+    background:Canvas!important;
+    color:CanvasText!important;
+    border-color:CanvasText!important;
+    box-shadow:none!important;
+  }
+  :where(.btn.primary,.tab.active,[aria-current="page"]){
+    background:Highlight!important;
+    color:HighlightText!important;
+    border-color:Highlight!important;
+  }
+  :where(button,[href],input,select,textarea,summary,[tabindex]:not([tabindex="-1"])):focus-visible{
+    outline:3px solid Highlight!important;
+    box-shadow:none!important;
+  }
+  :where(.message.ok,.message.err,.status-badge,.conf-badge,.sync-status-pill){
+    background:Canvas!important;
+    color:CanvasText!important;
+    border:2px solid CanvasText!important;
+  }
+  .mobile-more-backdrop{background:Canvas!important;opacity:.65}
+  .theme-swatch{forced-color-adjust:none}
+}
+
+/* Motion and transparency hardening. */
+@media(prefers-reduced-motion:reduce){
+  .skip-link{transition:none!important}
+  :where(.mobile-more-sheet,.mobile-more-backdrop,.dock-item,.mobile-more-item,.theme-card,.layout-preset-btn){
+    animation:none!important;
+    transition:none!important;
+    transform:none!important;
+  }
+}
+@media(prefers-reduced-transparency:reduce){
+  .mobile-more-backdrop{
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+  }
+}
+
+/* Minimum keyboard/touch target size without forcing desktop density. */
+@media(pointer:coarse){
+  :where(button,.btn,.tab,.dock-item,.mobile-more-item,summary){
+    min-height:44px;
+  }
+}
+
+/* The main target receives focus from Skip Link without visual jump outline. */
+#mainContent:focus{outline:none}
