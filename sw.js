@@ -1,8 +1,8 @@
-/* v0.4.8-dev.3 | Versioned shell; never cache cloud APIs or other previews. */
+/* v0.4.8-RC.2 | Versioned shell; never cache cloud APIs or other previews. */
 const PRODUCTION_CACHE_ROOT='bowlmeet-v';
-const CACHE='bowlmeet-v0.4.8-dev.3-shell';
-const RUNTIME='bowlmeet-v0.4.8-dev.3-runtime';
-const APP_SHELL=['./','./assets/player-progress-v048.css?v=048dev3','./index.html','./assets/series-v048.css?v=048dev3','./assets/lane-management-v048.css?v=048dev3','./manifest.webmanifest?v=048dev3','./assets/liquid-glass-dev4.css?v=048dev3','./assets/theme-center-v0470.css?v=048dev3','./assets/theme-center-v0470-mobile.css?v=048dev3','./assets/theme-center-v0470-accessibility.css?v=048dev3','./assets/liquid-motion-v0470.css?v=048dev3','./assets/score-card-v0471.css?v=048dev3','./assets/score-card-mobile-v0471.css?v=048dev3','./assets/score-card-accessibility-v0471.css?v=048dev3','./assets/rc-mobile-repair-v0471.css?v=048dev3','./assets/ui-hardening-v0474.css?v=048dev3','./assets/ui-lifecycle-v0474.js?v=048dev3','./icons/icon-192.png?v=048dev3','./icons/icon-512.svg?v=048dev3','./icons/icon-maskable-512.svg?v=048dev3'];
+const CACHE='bowlmeet-v0.4.8-RC.2-shell';
+const RUNTIME='bowlmeet-v0.4.8-RC.2-runtime';
+const APP_SHELL=['./','./assets/player-progress-v048.css?v=048rc2','./index.html','./assets/series-v048.css?v=048rc2','./assets/lane-management-v048.css?v=048rc2','./manifest.webmanifest?v=048rc2','./assets/liquid-glass-dev4.css?v=048rc2','./assets/theme-center-v0470.css?v=048rc2','./assets/theme-center-v0470-mobile.css?v=048rc2','./assets/theme-center-v0470-accessibility.css?v=048rc2','./assets/liquid-motion-v0470.css?v=048rc2','./assets/score-card-v0471.css?v=048rc2','./assets/score-card-mobile-v0471.css?v=048rc2','./assets/score-card-accessibility-v0471.css?v=048rc2','./assets/rc-mobile-repair-v0471.css?v=048rc2','./assets/ui-hardening-v0474.css?v=048rc2','./assets/ui-lifecycle-v0474.js?v=048rc2','./icons/icon-192.png?v=048rc2','./icons/icon-512.svg?v=048rc2','./icons/icon-maskable-512.svg?v=048rc2'];
 const SCOPE=new URL(self.registration.scope);
 const INDEX_URL=new URL('./index.html',SCOPE).href;
 const ASSET_URLS=new Set(APP_SHELL.slice(2).map(p=>new URL(p,SCOPE).href));
