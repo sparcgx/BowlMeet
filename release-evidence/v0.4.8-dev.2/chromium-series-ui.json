@@ -1,0 +1,95 @@
+{
+  "suite": "v0.4.8-dev.2 series native UI",
+  "browser": "chromium",
+  "source_sha256": "5e170f54aecaca61d3fc1fc3dd1fd0c43c3cadb4a7e8642c364a71a7a7f16245",
+  "checks": [
+    {
+      "name": "Series defaults disabled",
+      "status": "PASS"
+    },
+    {
+      "name": "Individual total ranks correct player",
+      "status": "PASS"
+    },
+    {
+      "name": "Completed round final result",
+      "status": "PASS"
+    },
+    {
+      "name": "Missing rounds show provisional and deficit",
+      "status": "PASS"
+    },
+    {
+      "name": "Unequal teams warn",
+      "status": "PASS"
+    },
+    {
+      "name": "Team aggregate sum",
+      "status": "PASS"
+    },
+    {
+      "name": "Immediate reload preserves team rules",
+      "status": "PASS"
+    },
+    {
+      "name": "Disabling series preserves score records",
+      "status": "PASS"
+    },
+    {
+      "name": "Replacement backup restores rules and membership",
+      "status": "PASS"
+    },
+    {
+      "name": "Cloud payload excludes series settings",
+      "status": "PASS"
+    },
+    {
+      "name": "Public series uses remote scores only",
+      "status": "PASS"
+    },
+    {
+      "name": "Public leaderboard excludes private-only player",
+      "status": "PASS"
+    },
+    {
+      "name": "Series card only draws published scores",
+      "status": "PASS"
+    },
+    {
+      "name": "Unpublish removes series output",
+      "status": "PASS"
+    },
+    {
+      "name": "Viewer cannot alter series",
+      "status": "PASS"
+    },
+    {
+      "name": "Quota failure rejects settings and warns",
+      "status": "PASS"
+    },
+    {
+      "name": "Completed meetup retains series rules",
+      "status": "PASS"
+    },
+    {
+      "name": "320px series no page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "390px series no page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "1440px series no page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "Reopen tab retains rules",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "passed": 21,
+  "failed": 0,
+  "harness_errors": 0
+}

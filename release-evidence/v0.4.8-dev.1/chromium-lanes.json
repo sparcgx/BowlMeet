@@ -1,0 +1,115 @@
+{
+  "suite": "v0.4.8-dev.1 lane native UI",
+  "browser": "chromium",
+  "source_sha256": "f6e3f3082618086a15fc43a460b70f5e2249b806c6a3b2b2f8cde83e6568c508",
+  "checks": [
+    {
+      "name": "Legacy meetup defaults to unassigned",
+      "status": "PASS"
+    },
+    {
+      "name": "Reorder within lane updates displayed player IDs",
+      "status": "PASS"
+    },
+    {
+      "name": "Lane filter shows only assigned players",
+      "status": "PASS"
+    },
+    {
+      "name": "Ranking still includes all players",
+      "status": "PASS"
+    },
+    {
+      "name": "Next round preserves assignment and order",
+      "status": "PASS"
+    },
+    {
+      "name": "Filter flushes pending score to correct player",
+      "status": "PASS"
+    },
+    {
+      "name": "Grouping never changes scores or player IDs",
+      "status": "PASS"
+    },
+    {
+      "name": "Immediate reload retains plan against stale IDB",
+      "status": "PASS"
+    },
+    {
+      "name": "Close and reopen browser tab retains plan",
+      "status": "PASS"
+    },
+    {
+      "name": "Full backup contains local plan",
+      "status": "PASS"
+    },
+    {
+      "name": "Room sync payload excludes local plan",
+      "status": "PASS"
+    },
+    {
+      "name": "Removing occupied lane moves players to unassigned",
+      "status": "PASS"
+    },
+    {
+      "name": "Full replacement restore restores lane order",
+      "status": "PASS"
+    },
+    {
+      "name": "Quota failure rejects change and warns",
+      "status": "PASS"
+    },
+    {
+      "name": "Viewer cannot edit arrangement",
+      "status": "PASS"
+    },
+    {
+      "name": "Viewer can filter without modifying data",
+      "status": "PASS"
+    },
+    {
+      "name": "Reopening completed context preserves arrangement",
+      "status": "PASS"
+    },
+    {
+      "name": "Duplicate lane labels normalized",
+      "status": "PASS"
+    },
+    {
+      "name": "Reserved filter token rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "320px no page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "390px no page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "768px no page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "1440px no page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "Older backup without plans stays usable",
+      "status": "PASS"
+    },
+    {
+      "name": "Malformed plan drops duplicate and unknown IDs",
+      "status": "PASS"
+    },
+    {
+      "name": "Different meetups have independent arrangements",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "passed": 26,
+  "failed": 0,
+  "harness_errors": 0
+}
