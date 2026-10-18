@@ -1,0 +1,36 @@
+{
+  "name": "BowlMeet v0.4.8-dev.3 Preview",
+  "short_name": "BowlMeet Dev",
+  "description": "BowlMeet 開發版：球聚、現場計分、公開成績與本機資料安全管理。",
+  "lang": "zh-Hant",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#ffffff",
+  "orientation": "any",
+  "categories": [
+    "sports",
+    "utilities"
+  ],
+  "icons": [
+    {
+      "src": "./icons/icon-192.png?v=048dev3",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.svg?v=048dev3",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-maskable-512.svg?v=048dev3",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
