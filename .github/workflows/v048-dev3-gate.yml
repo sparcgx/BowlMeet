@@ -1,0 +1,62 @@
+name: BowlMeet v048 dev.3 progress and compatibility gate
+on:
+  push:
+    branches: ['v0.4.8-dev.3']
+    paths-ignore: ['release-evidence/**', 'README.md']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fault-injection:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Prepare evidence
+        run: |
+          mkdir -p fi-results
+          sha256sum index.html tools/test-data-safety-v0474.py > fi-results/SHA256.txt
+      - name: Install browser
+        run: |
+          python -m pip install 'playwright==1.57.0'
+          python -m playwright install --with-deps ${{ matrix.browser }}
+      - name: Player progress and detail UI
+        run: python tools/test-player-progress-ui-v048.py . fi-results/progress --browser '${{ matrix.browser }}'
+      - name: Progress calculation tests
+        if: matrix.browser == 'chromium'
+        run: node tools/test-player-progress-v048.mjs > fi-results/progress-unit.json
+      - name: Lane arrangement native UI regression
+        run: python tools/test-lanes-v048.py . fi-results/lanes --browser '${{ matrix.browser }}'
+      - name: Series UI regression
+        run: python tools/test-series-ui-v048.py . fi-results/series --browser '${{ matrix.browser }}'
+      - name: Series independent calculation tests
+        if: matrix.browser == 'chromium'
+        run: node tools/test-series-v048.mjs > fi-results/series-unit.json
+      - name: Run native storage faults
+        run: |
+          set -o pipefail
+          python tools/test-data-safety-v0474.py . fi-results --browser '${{ matrix.browser }}' 2>&1 | tee fi-results/run.log
+      - name: Source scoring and simulated Service Worker regression
+        if: matrix.browser == 'chromium'
+        run: node tools/test-v0474.mjs . > fi-results/source-regression.json
+      - name: Browser UI and PUBLIC-only regression
+        if: matrix.browser == 'chromium'
+        run: python tools/test-ui-v0474.py . fi-results/ui > fi-results/ui.log
+      - name: Native Backup Restore regression
+        run: |
+          set -o pipefail
+          python tools/test-data-safety-v0474.py . fi-results/backup --browser '${{ matrix.browser }}' --suite backup 2>&1 | tee fi-results/backup.log
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: bowlmeet-v048-dev3-${{ matrix.browser }}
+          path: fi-results/
+          retention-days: 14
