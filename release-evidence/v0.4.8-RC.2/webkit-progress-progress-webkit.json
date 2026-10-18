@@ -1,0 +1,95 @@
+{
+  "suite": "v0.4.8-dev.3 progress and detail native UI",
+  "browser": "webkit",
+  "source_sha256": "df6ad3c4e7ade1c76236553f295925d11dc2e99a1e6050d0a03afc4714669246",
+  "checks": [
+    {
+      "name": "Hub progress sample visible",
+      "status": "PASS"
+    },
+    {
+      "name": "Insufficient data labelled",
+      "status": "PASS"
+    },
+    {
+      "name": "Analytics progress integrated",
+      "status": "PASS"
+    },
+    {
+      "name": "Score opens readonly dialog",
+      "status": "PASS"
+    },
+    {
+      "name": "Ten frames rendered",
+      "status": "PASS"
+    },
+    {
+      "name": "Tenth bonus rolls visible",
+      "status": "PASS"
+    },
+    {
+      "name": "Perfect cumulative total",
+      "status": "PASS"
+    },
+    {
+      "name": "320px no page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "390px no page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "1440px no page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "Escape returns focus",
+      "status": "PASS"
+    },
+    {
+      "name": "Total-only does not fabricate frames",
+      "status": "PASS"
+    },
+    {
+      "name": "Incomplete frames labelled",
+      "status": "PASS"
+    },
+    {
+      "name": "Zero game has full detail",
+      "status": "PASS"
+    },
+    {
+      "name": "Player history chips open detail",
+      "status": "PASS"
+    },
+    {
+      "name": "Session detail nested dialog opens",
+      "status": "PASS"
+    },
+    {
+      "name": "Closing nested detail preserves session",
+      "status": "PASS"
+    },
+    {
+      "name": "Public-only score has no fabricated local detail",
+      "status": "PASS"
+    },
+    {
+      "name": "Removed public result rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Mismatch is not shown as valid frame data",
+      "status": "PASS"
+    },
+    {
+      "name": "General history scores open detail",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "passed": 21,
+  "failed": 0,
+  "harness_errors": 0
+}
