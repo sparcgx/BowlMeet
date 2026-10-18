@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright
 p=argparse.ArgumentParser();p.add_argument('root',type=Path);p.add_argument('out',type=Path);p.add_argument('--browser',default='chromium');a=p.parse_args();root=a.root.resolve();a.out.mkdir(parents=True,exist_ok=True)
 source=(root/'index.html').read_text();original=source
 source=re.sub(r"const BUILTIN_SUPABASE_URL='[^']*';","const BUILTIN_SUPABASE_URL='';",source);source=re.sub(r"const BUILTIN_SUPABASE_PUBLISHABLE_KEY='[^']*';","const BUILTIN_SUPABASE_PUBLISHABLE_KEY='';",source);source=source.replace('const BUILTIN_CLOUD=true;','const BUILTIN_CLOUD=false;')
-bridge="""window.qa={applyState,persistDbStateNow,openPlayerHub,openPlayerAnalytics,openPlayerHistory,openPlayerSessionDetail,playerCareerGames,resolveGameDetail,openGameDetail,playerProgress,setPublicRecordState,publish:s=>{groupRemote={schema:2,sessions:s,meetups:[],recordControls:[],updatedAt:100}}};
+bridge="""window.qa={showScores:()=>{historyMode='scores';switchView('historyView');renderHistoryMode()},applyState,persistDbStateNow,openPlayerHub,openPlayerAnalytics,openPlayerHistory,openPlayerSessionDetail,playerCareerGames,resolveGameDetail,openGameDetail,playerProgress,setPublicRecordState,publish:s=>{groupRemote={schema:2,sessions:s,meetups:[],recordControls:[],updatedAt:100}}};
 """
 marker="$('date').value=today();$('meetupDate').value=today();load();";assert marker in source;source=source.replace(marker,bridge+marker).replace('initDataSafety().then(','window.boot=initDataSafety().then(')
 class Handler(http.server.SimpleHTTPRequestHandler):
@@ -54,6 +54,7 @@ try:
   data['sessions'][0]['players'][0]['scores'][0]=299
   page.evaluate('s=>{qa.applyState(s);qa.openPlayerAnalytics("阿明");qa.openGameDetail(qa.playerCareerGames("阿明")[0])}',data)
   check('Mismatch is not shown as valid frame data','不一致' in page.locator('#gameDetailContent').inner_text())
+  page.locator('#gameDetailClose').click();page.evaluate("qa.showScores()");page.locator('#sessionList [data-game-detail]').first.click();check('General history scores open detail',page.locator('#gameDetailDialog').is_visible())
   ctx.close();browser.close()
 except Exception as e:errors.append('HARNESS: '+repr(e))
 finally:

@@ -3413,7 +3413,7 @@ function renderHistory(){
       const pc=playerCalc(p),pid=playerIdentity(p.name),lastRowClass=rowIndex===players.length-1?' history-score-last-row':'';
       const scores=Array.from({length:gameCount},(_,i)=>normalizeScore((p.scores||[])[i]));
       return '<div class="history-score-name'+lastRowClass+'"><button type="button" class="player-link" data-player-hub="'+esc(pid.key)+'" data-origin-session="'+esc(s.id)+'" aria-label="查看 '+esc(p.name)+' 的球員資料">'+esc(p.name)+'</button></div>'
-        +scores.map(v=>'<div class="history-game-score'+lastRowClass+'">'+(v===null?'—':v)+'</div>').join('')
+        +scores.map((v,i)=>'<div class="history-game-score'+lastRowClass+'">'+(v===null?'—':gameDetailButton({sessionId:s.id,playerId:p.id||'',playerKey:pid.key,gameNo:i+1,source:r.local&&r.public?'both':r.local?'local':'public'},String(v)))+'</div>').join('')
         +'<div class="history-score-total'+lastRowClass+'">'+pc.total+'</div><div class="history-score-average history-score-row-end'+lastRowClass+'">'+(pc.avg??'—')+'</div>';
     }).join('');
     const sourceTag=r.local&&r.public?'<span class="session-source-tag both">我的紀錄＋已公開</span>':r.local&&r.publicRemoved?'<span class="session-source-tag removed">我的紀錄 · 已取消公開</span>':r.local?'<span class="session-source-tag local">我的紀錄</span>':'<span class="session-source-tag public">公開</span>';

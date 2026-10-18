@@ -2,7 +2,7 @@
   "version": "0.4.8-dev.3",
   "channel": "development",
   "base_commit": "0706ba3d4d02dc14ba58eab69bbd11ae7bee6edb",
-  "result_index_sha256": "66fca6155a177dc94ca13d91ba5885a911fb85c57afbf7eddd76568b6d948f8e",
+  "result_index_sha256": "c598fb8ef55c1c1cae98c742be56144518d6c1a3d8d78d84b534769e07e8192a",
   "db_version": 2,
   "public_history_code": "PUBLIC",
   "schema_migration": false,
